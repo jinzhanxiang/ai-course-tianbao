@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 08 章 · 三智能体生态 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+</head>
+<body class="chapter-page">
+  <header class="topbar" style="background:rgba(10,14,39,0.95)">
+    <div class="topbar-left">
+      <span class="logo">🤖 天保智研</span>
+      <span class="course-title" style="color:#00D4FF">第 08 章 · 三智能体协同生态 ⭐</span>
+    </div>
+    <div class="topbar-center">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="right:33.3%;background:linear-gradient(90deg,#00D4FF,#FF6B6B)"></div>
+        <span class="progress-text" id="progressText" style="color:#00D4FF">8 / 12</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="theme-switcher">
+        <button data-theme="tianjin">🟦</button>
+        <button data-theme="dark" class="active">🌑</button>
+        <button data-theme="academic">⬜</button>
+        <button data-theme="guofeng">🟥</button>
+      </div>
+      <div class="mode-switcher">
+        <a href="../index.html" style="text-decoration:none"><button>🏠 主页</button></a>
+        <button id="modeBtn">📊 演示模式</button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar" style="background:rgba(10,14,39,0.9)">
+    <h3>📑 12 章节</h3>
+    <ol class="chapter-list">
+      <li><a href="../index.html">00 · 封面</a></li>
+      <li><a href="01-opening.html">01 · 开场破题</a></li>
+      <li><a href="02-revolution.html">02 · 智能体革命</a></li>
+      <li><a href="03-main.html">03 · main 调度</a></li>
+      <li><a href="04-project.html">04 · project 项目管家</a></li>
+      <li><a href="05-research.html">05 · research V3</a></li>
+      <li><a href="06-data.html">06 · data 清洗</a></li>
+      <li><a href="07-report.html">07 · report 排版</a></li>
+      <li><a href="08-ecosystem.html" class="active important">08 · 三智能体生态 ⭐</a></li>
+      <li><a href="09-case.html">09 · 实战案例</a></li>
+      <li><a href="10-methodology.html">10 · 纵横分析法</a></li>
+      <li><a href="11-demo.html">11 · 现场演示</a></li>
+      <li><a href="12-qa.html">12 · Q&A</a></li>
+    </ol>
+  </aside>
+
+  <main class="main-stage" style="background:#060A1A">
+
+    <!-- Slide 1：标题 -->
+    <div class="slide active">
+      <div style="text-align:center;padding-top:8vh">
+        <h1 style="font-size:52px;color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,0.5)">第 08 章 · 三智能体协同生态</h1>
+        <h2 style="font-size:22px;color:#8FA1CC;margin-top:16px;font-weight:normal">OpenClaw + Claude Code + Hermes = 互相调用 · 互相维护 · 共同进化</h2>
+
+        <div style="display:flex;gap:24px;justify-content:center;margin-top:48px">
+          <div style="padding:20px 32px;background:rgba(0,212,255,0.08);border:1px solid #1E3A6E;border-radius:12px;text-align:center">
+            <div style="font-size:40px;margin-bottom:8px">🤖</div>
+            <div style="color:#00D4FF;font-weight:bold">OpenClaw</div>
+            <div style="color:#8FA1CC;font-size:12px"><span class="clickable modal-trigger" data-modal="m-main" data-hint="👉 main 详情">5 大 Agent ▾</span> 调度</div>
+          </div>
+          <div style="padding:20px 32px;background:rgba(168,85,247,0.08);border:1px solid #6B21A8;border-radius:12px;text-align:center">
+            <div style="font-size:40px;margin-bottom:8px">💻</div>
+            <div style="color:#A855F7;font-weight:bold">Claude Code</div>
+            <div style="color:#8FA1CC;font-size:12px">代码 + 纵深分析</div>
+          </div>
+          <div style="padding:20px 32px;background:rgba(245,158,11,0.08);border:1px solid #92400E;border-radius:12px;text-align:center">
+            <div style="font-size:40px;margin-bottom:8px">⚙️</div>
+            <div style="color:#F59E0B;font-weight:bold">Hermes</div>
+            <div style="color:#8FA1CC;font-size:12px">编码 + 自我学习</div>
+          </div>
+        </div>
+
+        <div class="story-card" style="margin-top:32px;max-width:700px;margin-left:auto;margin-right:auto">
+          <p style="font-size:17px"><strong>"三套智能体不是孤立的，是'互相调用、互相维护、共同进化'的生态。"</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2：协同关系图 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:24px;text-align:center">🔗 三智能体协同关系图</h2>
+
+      <div style="position:relative;height:52vh;background:rgba(10,14,39,0.5);border:1px solid #1E3A6E;border-radius:12px;padding:24px;overflow:hidden">
+
+        <!-- OpenClaw 中心 -->
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;text-align:center">
+          <div style="width:100px;height:100px;background:rgba(0,212,255,0.15);border:2px solid #00D4FF;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:32px">🤖</div>
+          <div style="color:#00D4FF;font-weight:bold;margin-top:8px">OpenClaw</div>
+          <div style="color:#8FA1CC;font-size:11px">5 大 Agent</div>
+        </div>
+
+        <!-- Claude Code -->
+        <div style="position:absolute;top:20%;right:10%;text-align:center">
+          <div style="width:80px;height:80px;background:rgba(168,85,247,0.15);border:2px solid #A855F7;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:28px">💻</div>
+          <div style="color:#A855F7;font-weight:bold;margin-top:6px;font-size:14px">Claude Code</div>
+          <div style="color:#8FA1CC;font-size:11px">代码维护</div>
+          <div style="color:#8FA1CC;font-size:11px">纵深分析</div>
+        </div>
+
+        <!-- Hermes -->
+        <div style="position:absolute;bottom:20%;right:10%;text-align:center">
+          <div style="width:80px;height:80px;background:rgba(245,158,11,0.15);border:2px solid #F59E0B;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:28px">⚙️</div>
+          <div style="color:#F59E0B;font-weight:bold;margin-top:6px;font-size:14px">Hermes</div>
+          <div style="color:#8FA1CC;font-size:11px">编码实现</div>
+          <div style="color:#8FA1CC;font-size:11px">自我学习</div>
+        </div>
+
+        <!-- Wiki -->
+        <div style="position:absolute;bottom:20%;left:10%;text-align:center">
+          <div style="width:80px;height:80px;background:rgba(34,197,94,0.15);border:2px solid #22C55E;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:28px">📚</div>
+          <div style="color:#22C55E;font-weight:bold;margin-top:6px;font-size:14px">Wiki</div>
+          <div style="color:#8FA1CC;font-size:11px">知识中台</div>
+          <div style="color:#8FA1CC;font-size:11px">5786 实体</div>
+        </div>
+
+        <!-- 连线注释 -->
+        <div style="position:absolute;top:12%;left:38%;color:#A855F7;font-size:11px;font-weight:bold">维护/升级</div>
+        <div style="position:absolute;bottom:38%;right:22%;color:#F59E0B;font-size:11px;font-weight:bold">协助编码</div>
+        <div style="position:absolute;bottom:10%;left:38%;color:#22C55E;font-size:11px;font-weight:bold">知识沉淀</div>
+        <div style="position:absolute;top:50%;left:4%;color:#00D4FF;font-size:11px;font-weight:bold">调度</div>
+      </div>
+    </div>
+
+    <!-- Slide 3：Claude Code 故事1 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:16px">💻 故事 1：Claude Code 帮 OpenClaw 升级排错</h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:16px">2026-05-08 · Claude Code 发现配置错误，协助修复</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">发现问题</div>
+          <div class="timeline-title">Claude Code 升级时 base_url 配置错误</div>
+          <div class="timeline-desc">
+            <code style="font-size:12px;color:#FF6B6B">base_url: http://39.106.117.115:8899/v1</code>
+            <span style="color:#8FA1CC"> ← 多了 /v1 后缀</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">协作流程</div>
+          <div class="timeline-title">main 检查 → 冻结升级 → Claude Code 修复</div>
+          <div class="timeline-desc">
+            main sessions_list → 发现有 task 正在跑 → 冻结升级<br>
+            Claude Code 介入 → 修复 wrapper 脚本 → 改用环境变量方式<br>
+            验证：4 大 agent 全部恢复 ✅
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">关键教训</div>
+          <div class="timeline-title">"升级不能盲目冲，要先问 main"</div>
+          <div class="timeline-desc">
+            Claude Code 有时候比人更清楚配置细节。<br>
+            但任何可能中断任务的操作，必须经过 main 审批。
+          </div>
+        </div>
+      </div>
+
+      <div class="alert" style="margin-top:16px;background:rgba(168,85,247,0.1);border-color:#A855F7">
+        <strong style="color:#A855F7">💻 Claude Code 职责：</strong>
+        <span style="color:#8FA1CC">帮助 OpenClaw 升级、修复配置、切换模型、处理 session 异常。</span>
+      </div>
+    </div>
+
+    <!-- Slide 4：Claude Code 故事2 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:16px">📈 故事 2：Claude Code 帮 research 做纵深分析</h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:16px">2026-05-20 · 启源芯项目 DCF 敏感性分析</p>
+
+      <div class="flow-diagram" style="flex-wrap:nowrap;overflow-x:auto">
+        <div class="flow-node" style="border-color:#00D4FF">research V3<br><small>DCF 初稿<br>WACC=7.5%</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:#A855F7;background:rgba(168,85,247,0.1)">Claude Code<br><small>敏感性分析<br>Monte Carlo</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:#22C55E">research V3<br><small>整合终稿<br>含置信区间</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:#00D4FF">report<br><small>排版定稿</small></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px">
+        <div class="card" style="border-color:#A855F7">
+          <h3 class="card-title" style="color:#A855F7">WACC 敏感性</h3>
+          <div style="margin-top:8px;font-size:13px;line-height:2">
+            WACC 5.5% → DCF = <strong style="color:#22C55E">58 亿</strong><br>
+            WACC 7.5% → DCF = <strong style="color:#F59E0B">45 亿</strong><br>
+            WACC 9.5% → DCF = <strong style="color:#FF6B6B">35 亿</strong>
+          </div>
+        </div>
+        <div class="card" style="border-color:#A855F7">
+          <h3 class="card-title" style="color:#A855F7">Monte Carlo 10000 次</h3>
+          <div style="margin-top:8px;font-size:13px;line-height:2">
+            P30 = <strong style="color:#FF6B6B">38 亿</strong>（保守）<br>
+            P50 = <strong style="color:#F59E0B">45 亿</strong>（中性）<br>
+            P70 = <strong style="color:#22C55E">52 亿</strong>（乐观）
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5：Hermes 故事 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:16px">⚙️ 故事 3：Hermes 帮 data 梳理清洗流程</h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:16px">2026-06-29 · Hermes 看门狗自动重整 28 个脚本</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">触发</div>
+          <div class="timeline-title">wiki-watchdog.sh 看门狗自动扫描</div>
+          <div class="timeline-desc">发现 28 个脚本，分类混乱，无统一索引</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">分析</div>
+          <div class="timeline-title">Hermes 自动分类 L1/L2/L3</div>
+          <div class="timeline-desc">
+            L1 主执行: clean.sh（唯一入口）<br>
+            L2 二级: pdf_clean.sh / main_review.sh / validate.sh<br>
+            L3 辅助: 23+ 个工具脚本
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">输出</div>
+          <div class="timeline-title">SCRIPTS_INDEX.md + Wiki 同步</div>
+          <div class="timeline-desc">
+            生成完整索引文档<br>
+            自动同步到 Wiki（localhost:19001）<br>
+            供所有 agent 查询调用关系
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">持续</div>
+          <div class="timeline-title">看门狗持续守护</div>
+          <div class="timeline-desc">任何脚本异常 → Hermes 触发自愈流程 → 告警</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6：OpenClaw 帮 Hermes 故事 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:16px">🔧 故事 4：OpenClaw 帮 Hermes 修改配置</h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:16px">2026-05-08 · provider 大小写问题导致 Hermes 不认模型</p>
+
+      <div class="card" style="border-color:#00D4FF">
+        <h3 class="card-title" style="color:#00D4FF">问题现象</h3>
+        <p style="color:#8FA1CC;font-size:13px;line-height:1.7;margin-top:8px">
+          Hermes 配置文件中使用 <code style="color:#FF6B6B">provider: openai</code>（小写），<br>
+          但 Hermes 只认首字母大写的 <code style="color:#22C55E">provider: OpenAI</code>
+        </p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+        <div class="card">
+          <h3 class="card-title">❌ 错误配置</h3>
+          <code style="font-size:12px;color:#FF6B6B;font-family:var(--font-mono);line-height:2;display:block;margin-top:8px">
+            provider: openai<br>
+            model: deepseek-vash-flash
+          </code>
+        </div>
+        <div class="card">
+          <h3 class="card-title" style="color:#22C55E">✅ 正确配置</h3>
+          <code style="font-size:12px;color:#22C55E;font-family:var(--font-mono);line-height:2;display:block;margin-top:8px">
+            provider: OpenAI<br>
+            model: deepseek-vash-flash
+          </code>
+        </div>
+      </div>
+
+      <div class="alert" style="margin-top:16px;background:rgba(0,212,255,0.08);border-color:#00D4FF">
+        <strong style="color:#00D4FF">结论：</strong>
+        <span style="color:#8FA1CC">OpenClaw 帮 Hermes 排错，main 代理通过配置审查发现问题，修正后 Hermes 恢复正常。</span>
+      </div>
+    </div>
+
+    <!-- Slide 7：三智能体协作全景表 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:var(--accent);margin-bottom:16px">📋 三智能体协作全景</h2>
+
+      <table style="font-size:12px">
+        <thead>
+          <tr>
+            <th>协作方向</th>
+            <th>发起方</th>
+            <th>接收方</th>
+            <th>协作内容</th>
+            <th>典型案例</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:#A855F7">Claude Code → OpenClaw</td>
+            <td>💻</td>
+            <td>🤖</td>
+            <td>版本升级、配置修复</td>
+            <td>2026-05-08 修复 base_url</td>
+          </tr>
+          <tr>
+            <td style="color:#A855F7">Claude Code → research</td>
+            <td>💻</td>
+            <td>🔬</td>
+            <td>纵深分析（DCF/Monte Carlo）</td>
+            <td>启源芯 WACC 敏感性</td>
+          </tr>
+          <tr>
+            <td style="color:#F59E0B">Hermes → data</td>
+            <td>⚙️</td>
+            <td>🗄️</td>
+            <td>脚本重整、自动归档</td>
+            <td>2026-06-29 重整 28 脚本</td>
+          </tr>
+          <tr>
+            <td style="color:#F59E0B">Hermes → Wiki</td>
+            <td>⚙️</td>
+            <td>📚</td>
+            <td>图谱生成、自动监控</td>
+            <td>kg_viz_3d.py / 看门狗</td>
+          </tr>
+          <tr>
+            <td style="color:#00D4FF">OpenClaw → Hermes</td>
+            <td>🤖</td>
+            <td>⚙️</td>
+            <td>配置审查、问题定位</td>
+            <td>2026-05-08 provider 大小写</td>
+          </tr>
+          <tr>
+            <td style="color:#00D4FF">OpenClaw → Claude Code</td>
+            <td>🤖</td>
+            <td>💻</td>
+            <td>模型切换授权确认</td>
+            <td>2026-05-12 Kimi/Deepseek 切换</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:32px;text-align:center">
+        <a href="10-methodology.html" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#A855F7,#7C3AED);color:white;text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold">进入第 10 章：纵横分析法 ⭐▶</a>
+      </div>
+    </div>
+
+  
+  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
+<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
+
+<!-- ============ 5 大 Agent · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-main">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🧠 main · 总调度</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>最高指挥 · 接收主公指令 · 拆分 · 分派 · 验收</p>
+      <p><strong style="color:#00D4FF">5 大核心动作：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📥 接收指令 · 解析意图（提问 / 分派 / 命令 3 类）</li>
+        <li>🔪 拆分任务 · 5 要素（背景 / 目标 / 交付物 / 回传 / 时限）</li>
+        <li>📡 分派任务 · <code>sessions_send</code> 工具</li>
+        <li>📊 跟踪进度 · 心跳每 15min 巡检 · task-tracker.json</li>
+        <li>📋 验收反馈 · 闭环主公 · 失败立即告警</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实使用：</strong>主公 90% 的请求 · 平均每天 30+ 次调度<br>
+        <strong style="color:#00D4FF">典型命令：</strong>"今晚投决启源芯" → 90 分钟跑完 7 Agent 全流程
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-project">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📋 project · 项目管家</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#22C55E">职责定位：</strong>项目全生命周期管理 · 不做专业分析 · 只做协调推进</p>
+      <p><strong style="color:#22C55E">7 大核心能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📁 项目立项 · 17 类项目模板（并购 / 投决 / 储备 / 待立项）</li>
+        <li>📅 阶段管理 · 5 阶段（立项 → 尽调 → 投决 → 投后 → 退出）</li>
+        <li>💰 投资测算 · IRR / NPV / 回收期 · 敏感性自动跑</li>
+        <li>📂 文档协调 · 申请 · 起草 · 串联数据</li>
+        <li>👥 干系人管理 · 5 类角色识别</li>
+        <li>⚠️ 风险登记 · 7 大类风险自动标注</li>
+        <li>📊 可研报告 · 5 章框架自动生成</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
+        <strong style="color:#22C55E">真实数据：</strong>主公 60% 的项目任务 · 当前在跑 5 个项目<br>
+        <strong style="color:#22C55E">代表项目：</strong>启源芯（投决）/ 星恒（尽调）/ 晶能（储备）/ 盈科（GP→LP） / 中资环（待立项）
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-research">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🔬 research V3 · 研究分析</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>行业研究 / 财务尽调 / 估值建模 · 3 大专业能力</p>
+      <p><strong style="color:#F59E0B">7 维度输出：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🏭 行业分析 · CAGR / 政策 / 竞争格局</li>
+        <li>🔧 技术分析 · 国产化率 / 专利 / 工艺路径</li>
+        <li>👥 客户分析 · 集中度 / 头部客户 / 粘性</li>
+        <li>💴 财务分析 · 三表勾稽 · 同业比对</li>
+        <li>💰 估值建模 · DCF / 可比 / P/E / PS</li>
+        <li>📈 敏感性 · WACC 5.5%-9.5% · 收入 ±15%</li>
+        <li>🎯 风险与退出 · 7 大类风险 · 退出路径</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">真实案例：</strong>启源芯 WACC=7.5% → DCF=45 亿<br>
+        <strong style="color:#F59E0B">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash scripts/run_v3.sh full "分析启源芯" --task-id 001</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-data">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗃️ data · 数据清洗管道</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>转录 / OCR / 入库 · 不做分析 · 只做数据处理</p>
+      <p><strong style="color:#A855F7">7 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🎤 语音转录 · FunASR · 中英混合</li>
+        <li>📷 OCR · PaddleOCR · 表格识别</li>
+        <li>🧹 数据清洗 · 28 个脚本 · 一键运行</li>
+        <li>🔍 实体抽取 · 抽取后入 Wiki</li>
+        <li>📊 向量化 · bge-m3 · 768 维</li>
+        <li>🗄️ 入 Qdrant · 8 collections · 75,988 vectors</li>
+        <li>⏰ 定时跑 · 凌晨 3:00 自动入库</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>实体 5,786 → 6,098 · collections 8 · vectors 75,988<br>
+        <strong style="color:#A855F7">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash clean.sh {research|system|project|all}</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-report">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📄 report · 文档排版</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#EC4899">职责定位：</strong>Word / PDF / PPT · 会议纪要 · 不做内容创作只格式化</p>
+      <p><strong style="color:#EC4899">3 大管线：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📑 公文管线 · 国企规范的请示 / 报告 / 通知</li>
+        <li>📊 研报管线 · 行业研究 / 公司研究 / 投资分析</li>
+        <li>📝 纪要管线 · 会议纪要 · 主公自动模板</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(236,72,153,0.08);border-radius:8px">
+        <strong style="color:#EC4899">实际产出：</strong>投决材料 67 页 · 1 份 Word + 1 份 PDF<br>
+        <strong style="color:#EC4899">典型格式：</strong>国企公文规范 · 4 级标题 · 一图一表
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ <span class="clickable modal-trigger" data-modal="m-claude-code" data-hint="👉 Claude Code 详情">2 大助手 ▾</span> · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-claude-code">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🦾 Claude Code · 工程助手</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>写代码 · 改代码 · 跑命令 · 做工程</p>
+      <p><strong style="color:#00D4FF">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>💻 写代码 · Python / Shell / TypeScript / JavaScript</li>
+        <li>🔧 改代码 · 跨文件编辑 · Git diff 准确</li>
+        <li>🛠️ 跑命令 · Bash 工具 · 长时间任务后台跑</li>
+        <li>🔌 连接工具 · MCP 协议 · 100+ 工具集成</li>
+        <li>🪟 终端 UI · 可在 VSCode / Cursor / iTerm 等环境运行</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实数据：</strong>启源芯 WACC 敏感性 / Monte Carlo<br>
+        <strong style="color:#00D4FF">配置路径：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">~/.claude/settings.json</code><br>
+        <strong style="color:#00D4FF">当前模型：</strong>claude-sonnet-4-6 / deepseek-vash-flash 切换
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-hermes">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📚 Hermes · 知识中台</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>把语料/研报/纪要变成可检索的 Wiki</p>
+      <p><strong style="color:#A855F7">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📂 文档入库 · PDF/Word/MD 自动解析</li>
+        <li>🔍 全检索 · Wiki 浏览 · API 查询</li>
+        <li>🌐 Wiki API · port 19001 · RESTful 查询</li>
+        <li>📊 Wiki 静态站 · port 19000 · 浏览器浏览</li>
+        <li>🛡️ Watchdog · 自动重启 · 故障感知</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>5,786 → 6,098 实体 · 8 collections · 模型 bge-m3<br>
+        <strong style="color:#A855F7">配置命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash ~/.hermes/scripts/start-wiki.sh restart</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1 中台 ============ -->
+
+<div class="modal-overlay" id="m-zhongtai">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗄️ <span class="clickable modal-trigger" data-modal="m-zhongtai" data-hint="👉 知识中台详情">1 套知识中台 ▾</span></h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>所有智能体的记忆层 · 让人 + Agent 都能访问</p>
+      <p><strong style="color:#F59E0B">3 层架构：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🗄️ <strong>PostgreSQL</strong> · 4 张表（entity / report / indicator / knowledge_logic）· 关系数据</li>
+        <li>🔢 <strong>Qdrant</strong> · 8 collections · 75,988 个 vectors · 向量检索</li>
+        <li>📚 <strong>Wiki</strong> · Hermes 静态站 · port 19000 · 浏览用</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">关键能力：</strong>检索 · 去重 · 关联 · 时序 · 备份<br>
+        <strong style="color:#F59E0B">当前规模：</strong>6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑
+      </p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+  <footer class="controls" style="background:rgba(10,14,39,0.9)">
+    <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
+    <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题</span>
+    <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      let current = 0;
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (current < slides.length - 1) { slides[current].classList.remove('active'); current++; slides[current].classList.add('active'); updateProgress(current, slides.length); }
+      });
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        if (current > 0) { slides[current].classList.remove('active'); current--; slides[current].classList.add('active'); updateProgress(current, slides.length); }
+      });
+      function updateProgress(cur, total) {
+        document.getElementById('progressFill').style.right = `${100 - ((cur+1)/total)*100}%`;
+        document.getElementById('progressText').textContent = `${cur+1} / ${total}`;
+      }
+    });
+  </script>
+</body>
+</html>

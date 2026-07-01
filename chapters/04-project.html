@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 04 章 · project 项目管家 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+</head>
+<body class="chapter-page">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">🤖 天保智研</span>
+      <span class="course-title">第 04 章 · project 项目管家</span>
+    </div>
+    <div class="topbar-center">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="right:75%"></div>
+        <span class="progress-text" id="progressText">4 / 12</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="theme-switcher">
+        <button data-theme="tianjin" class="active">🟦</button>
+        <button data-theme="dark">🌑</button>
+        <button data-theme="academic">⬜</button>
+        <button data-theme="guofeng">🟥</button>
+      </div>
+      <div class="mode-switcher">
+        <a href="../index.html" style="text-decoration:none"><button>🏠 主页</button></a>
+        <button id="modeBtn">📊 演示模式</button>
+      </div>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <h3>📑 12 章节</h3>
+    <ol class="chapter-list">
+      <li><a href="../index.html">00 · 封面</a></li>
+      <li><a href="01-opening.html">01 · 开场破题</a></li>
+      <li><a href="02-revolution.html">02 · 智能体革命</a></li>
+      <li><a href="03-main.html">03 · main 调度</a></li>
+      <li><a href="04-project.html" class="active">04 · project 项目管家 ⭐</a></li>
+      <li><a href="05-research.html">05 · research V3</a></li>
+      <li><a href="06-data.html">06 · data 清洗</a></li>
+      <li><a href="07-report.html">07 · report 排版</a></li>
+      <li><a href="08-ecosystem.html">08 · 三智能体生态</a></li>
+      <li><a href="09-case.html">09 · 实战案例</a></li>
+      <li><a href="10-methodology.html">10 · 纵横分析法</a></li>
+      <li><a href="11-demo.html">11 · 现场演示</a></li>
+      <li><a href="12-qa.html">12 · Q&A</a></li>
+    </ol>
+  </aside>
+
+  <main class="main-stage">
+
+    <!-- Slide 1：标题 -->
+    <div class="slide active">
+      <header class="chapter-header" style="margin-bottom:40px">
+        <h1 style="font-size:48px;color:var(--accent)">第 04 章 · project 项目管家</h1>
+        <p style="font-size:20px;color:var(--text-secondary);margin-top:12px">项目全生命周期 · 投资请示起草 · 节点跟踪</p>
+      </header>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-num">📋</div>
+          <div class="kpi-label">项目台账管理</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">GP+LP</div>
+          <div class="kpi-label">双线管理</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">4</div>
+          <div class="kpi-label">阶段节点</div>
+        </div>
+      </div>
+
+      <div class="story-card" style="margin-top:24px">
+        <p class="story-meta">核心定位</p>
+        <p style="font-size:18px"><strong>"project 不是'做项目'，是'调度项目中的多 Agent 协同'。它让 research 出研究、data 出数据、report 出文档，自己只负责流程。"</strong></p>
+      </div>
+    </div>
+
+    <!-- Slide 2：项目类型 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">📋 天保当前项目版图</h2>
+
+      <div class="agent-grid" style="grid-template-columns:repeat(3,1fr)">
+        <div class="agent-card">
+          <span class="emoji">🏭</span>
+          <h4>启源芯项目</h4>
+          <p>功率半导体 · 投决阶段</p>
+          <p style="color:var(--accent);font-size:12px;margin-top:8px">⭐ 重点推进</p>
+        </div>
+        <div class="agent-card">
+          <span class="emoji">🔋</span>
+          <h4>星恒电源</h4>
+          <p>固态锂电 · 尽调阶段</p>
+        </div>
+        <div class="agent-card">
+          <span class="emoji">💡</span>
+          <h4>晶能光电</h4>
+          <p>LED 芯片 · 储备项目</p>
+        </div>
+        <div class="agent-card">
+          <span class="emoji">🔄</span>
+          <h4>盈科汇金</h4>
+          <p>GP→LP 双线管理</p>
+        </div>
+        <div class="agent-card">
+          <span class="emoji">🌱</span>
+          <h4>中资环绿色循环</h4>
+          <p>5000 万 · 待立项</p>
+        </div>
+        <div class="agent-card">
+          <span class="emoji">📊</span>
+          <h4>基地项目</h4>
+          <p>中资环 · 框架梳理</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3：工作流 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🔄 项目生命周期管理流</h2>
+
+      <div class="flow-diagram" style="flex-wrap:nowrap;overflow-x:auto">
+        <div class="flow-node" style="border-color:#22C55E">📝 立项<br><small>立项建议</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">🔬 研究<br><small>行业/财务</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">📊 尽调<br><small>DD + 估值</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:var(--accent)">📄 投决<br><small>投资请示</small></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:#F59E0B">⚙️ 投后<br><small>跟踪管理</small></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px">
+        <div class="card">
+          <h3 class="card-title">📄 投资请示起草</h3>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;margin-top:8px">
+            project 负责起草投资请示文档框架，调用 research 出行业分析、data 出财务数据、report 做最终排版。main 负责调度各环节协同。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">📅 节点跟踪</h3>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;margin-top:8px">
+            每个项目关键节点（立项/尽调/投决/投后）都有时间戳记录。主公随时问 project，项目当前在哪一步，一目了然。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">🔗 GP/LP 双线</h3>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;margin-top:8px">
+            盈科汇金等多个基金项目涉及 GP（普通合伙人）+ LP（有限合伙人）双线管理。project 负责维护 GP→LP 关系和出资结构。
+          </p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">🤝 跨 Agent 协调</h3>
+          <p style="color:var(--text-secondary);font-size:13px;line-height:1.7;margin-top:8px">
+            project 接到 main 分派 → research 做研究框架 → data 清洗材料 → report 排版输出。全程不需要主公介入。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4：会议纪要 → 待办 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">📝 会议纪要 → 待办事项自动提取</h2>
+
+      <div class="flow-diagram">
+        <div class="flow-node">🗣️ 会议录音/纪要</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">🔍 project 提取</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">📋 拆解为待办</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">⏰ 分配负责人</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:var(--accent)">✅ 跟踪闭环</div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:16px">
+        <strong>主公实例：</strong>"上周五投决会的会议纪要，project 提取了 8 项待办，其中 3 项已在本周一闭环，5 项分配到相关同事。"
+      </div>
+    </div>
+
+    <!-- Slide 5：与 main 的协同 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🤝 project 与 main 的协同关系</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>场景</th>
+            <th>main 的动作</th>
+            <th>project 的动作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>新项目立项</td>
+            <td>main 拆解任务，分派给 project</td>
+            <td>project 建档、起草立项建议</td>
+          </tr>
+          <tr>
+            <td>项目需要研究</td>
+            <td>main 调度 research 协同</td>
+            <td>project 提供研究框架需求</td>
+          </tr>
+          <tr>
+            <td>项目需要材料</td>
+            <td>main 调度 data 协同</td>
+            <td>project 整理材料清单</td>
+          </tr>
+          <tr>
+            <td>需要输出文档</td>
+            <td>main 调度 report 协同</td>
+            <td>project 提供文档框架和内容要点</td>
+          </tr>
+          <tr>
+            <td>投决前夕</td>
+            <td>main 监控全流程进度</td>
+            <td>project 汇总所有材料，通知主公</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:32px;text-align:center">
+        <a href="05-research.html" style="display:inline-block;padding:14px 32px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold">进入第 05 章：research V3 研究员 ▶</a>
+      </div>
+    </div>
+
+  
+  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
+<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
+
+<!-- ============ <span class="clickable modal-trigger" data-modal="m-main" data-hint="👉 main 详情">5 大 Agent ▾</span> · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-main">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🧠 main · 总调度</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>最高指挥 · 接收主公指令 · 拆分 · 分派 · 验收</p>
+      <p><strong style="color:#00D4FF">5 大核心动作：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📥 接收指令 · 解析意图（提问 / 分派 / 命令 3 类）</li>
+        <li>🔪 拆分任务 · 5 要素（背景 / 目标 / 交付物 / 回传 / 时限）</li>
+        <li>📡 分派任务 · <code>sessions_send</code> 工具</li>
+        <li>📊 跟踪进度 · 心跳每 15min 巡检 · task-tracker.json</li>
+        <li>📋 验收反馈 · 闭环主公 · 失败立即告警</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实使用：</strong>主公 90% 的请求 · 平均每天 30+ 次调度<br>
+        <strong style="color:#00D4FF">典型命令：</strong>"今晚投决启源芯" → 90 分钟跑完 7 Agent 全流程
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-project">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📋 project · 项目管家</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#22C55E">职责定位：</strong>项目全生命周期管理 · 不做专业分析 · 只做协调推进</p>
+      <p><strong style="color:#22C55E">7 大核心能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📁 项目立项 · 17 类项目模板（并购 / 投决 / 储备 / 待立项）</li>
+        <li>📅 阶段管理 · 5 阶段（立项 → 尽调 → 投决 → 投后 → 退出）</li>
+        <li>💰 投资测算 · IRR / NPV / 回收期 · 敏感性自动跑</li>
+        <li>📂 文档协调 · 申请 · 起草 · 串联数据</li>
+        <li>👥 干系人管理 · 5 类角色识别</li>
+        <li>⚠️ 风险登记 · 7 大类风险自动标注</li>
+        <li>📊 可研报告 · 5 章框架自动生成</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
+        <strong style="color:#22C55E">真实数据：</strong>主公 60% 的项目任务 · 当前在跑 5 个项目<br>
+        <strong style="color:#22C55E">代表项目：</strong>启源芯（投决）/ 星恒（尽调）/ 晶能（储备）/ 盈科（GP→LP） / 中资环（待立项）
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-research">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🔬 research V3 · 研究分析</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>行业研究 / 财务尽调 / 估值建模 · 3 大专业能力</p>
+      <p><strong style="color:#F59E0B">7 维度输出：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🏭 行业分析 · CAGR / 政策 / 竞争格局</li>
+        <li>🔧 技术分析 · 国产化率 / 专利 / 工艺路径</li>
+        <li>👥 客户分析 · 集中度 / 头部客户 / 粘性</li>
+        <li>💴 财务分析 · 三表勾稽 · 同业比对</li>
+        <li>💰 估值建模 · DCF / 可比 / P/E / PS</li>
+        <li>📈 敏感性 · WACC 5.5%-9.5% · 收入 ±15%</li>
+        <li>🎯 风险与退出 · 7 大类风险 · 退出路径</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">真实案例：</strong>启源芯 WACC=7.5% → DCF=45 亿<br>
+        <strong style="color:#F59E0B">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash scripts/run_v3.sh full "分析启源芯" --task-id 001</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-data">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗃️ data · 数据清洗管道</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>转录 / OCR / 入库 · 不做分析 · 只做数据处理</p>
+      <p><strong style="color:#A855F7">7 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🎤 语音转录 · FunASR · 中英混合</li>
+        <li>📷 OCR · PaddleOCR · 表格识别</li>
+        <li>🧹 数据清洗 · 28 个脚本 · 一键运行</li>
+        <li>🔍 实体抽取 · 抽取后入 Wiki</li>
+        <li>📊 向量化 · bge-m3 · 768 维</li>
+        <li>🗄️ 入 Qdrant · 8 collections · 75,988 vectors</li>
+        <li>⏰ 定时跑 · 凌晨 3:00 自动入库</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>实体 5,786 → 6,098 · collections 8 · vectors 75,988<br>
+        <strong style="color:#A855F7">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash clean.sh {research|system|project|all}</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-report">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📄 report · 文档排版</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#EC4899">职责定位：</strong>Word / PDF / PPT · 会议纪要 · 不做内容创作只格式化</p>
+      <p><strong style="color:#EC4899">3 大管线：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📑 公文管线 · 国企规范的请示 / 报告 / 通知</li>
+        <li>📊 研报管线 · 行业研究 / 公司研究 / 投资分析</li>
+        <li>📝 纪要管线 · 会议纪要 · 主公自动模板</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(236,72,153,0.08);border-radius:8px">
+        <strong style="color:#EC4899">实际产出：</strong>投决材料 67 页 · 1 份 Word + 1 份 PDF<br>
+        <strong style="color:#EC4899">典型格式：</strong>国企公文规范 · 4 级标题 · 一图一表
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ <span class="clickable modal-trigger" data-modal="m-claude-code" data-hint="👉 Claude Code 详情">2 大助手 ▾</span> · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-claude-code">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🦾 Claude Code · 工程助手</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>写代码 · 改代码 · 跑命令 · 做工程</p>
+      <p><strong style="color:#00D4FF">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>💻 写代码 · Python / Shell / TypeScript / JavaScript</li>
+        <li>🔧 改代码 · 跨文件编辑 · Git diff 准确</li>
+        <li>🛠️ 跑命令 · Bash 工具 · 长时间任务后台跑</li>
+        <li>🔌 连接工具 · MCP 协议 · 100+ 工具集成</li>
+        <li>🪟 终端 UI · 可在 VSCode / Cursor / iTerm 等环境运行</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实数据：</strong>启源芯 WACC 敏感性 / Monte Carlo<br>
+        <strong style="color:#00D4FF">配置路径：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">~/.claude/settings.json</code><br>
+        <strong style="color:#00D4FF">当前模型：</strong>claude-sonnet-4-6 / deepseek-vash-flash 切换
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-hermes">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📚 Hermes · 知识中台</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>把语料/研报/纪要变成可检索的 Wiki</p>
+      <p><strong style="color:#A855F7">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📂 文档入库 · PDF/Word/MD 自动解析</li>
+        <li>🔍 全检索 · Wiki 浏览 · API 查询</li>
+        <li>🌐 Wiki API · port 19001 · RESTful 查询</li>
+        <li>📊 Wiki 静态站 · port 19000 · 浏览器浏览</li>
+        <li>🛡️ Watchdog · 自动重启 · 故障感知</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>5,786 → 6,098 实体 · 8 collections · 模型 bge-m3<br>
+        <strong style="color:#A855F7">配置命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash ~/.hermes/scripts/start-wiki.sh restart</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1 中台 ============ -->
+
+<div class="modal-overlay" id="m-zhongtai">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗄️ <span class="clickable modal-trigger" data-modal="m-zhongtai" data-hint="👉 知识中台详情">1 套知识中台 ▾</span></h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>所有智能体的记忆层 · 让人 + Agent 都能访问</p>
+      <p><strong style="color:#F59E0B">3 层架构：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🗄️ <strong>PostgreSQL</strong> · 4 张表（entity / report / indicator / knowledge_logic）· 关系数据</li>
+        <li>🔢 <strong>Qdrant</strong> · 8 collections · 75,988 个 vectors · 向量检索</li>
+        <li>📚 <strong>Wiki</strong> · Hermes 静态站 · port 19000 · 浏览用</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">关键能力：</strong>检索 · 去重 · 关联 · 时序 · 备份<br>
+        <strong style="color:#F59E0B">当前规模：</strong>6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑
+      </p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+  <footer class="controls">
+    <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
+    <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题 · M 模式</span>
+    <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slides = document.querySelectorAll('.slide');
+      let current = 0;
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        if (current < slides.length - 1) { slides[current].classList.remove('active'); current++; slides[current].classList.add('active'); updateProgress(current, slides.length); }
+      });
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        if (current > 0) { slides[current].classList.remove('active'); current--; slides[current].classList.add('active'); updateProgress(current, slides.length); }
+      });
+      function updateProgress(cur, total) {
+        document.getElementById('progressFill').style.right = `${100 - ((cur+1)/total)*100}%`;
+        document.getElementById('progressText').textContent = `${cur+1} / ${total}`;
+      }
+    });
+  </script>
+</body>
+</html>

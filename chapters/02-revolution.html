@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 02 章 · 智能体革命 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/themes.css">
+</head>
+<body class="chapter-page">
+  <!-- 顶部条 -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">🤖 天保智研</span>
+      <span class="course-title">第 02 章 · 智能体革命</span>
+    </div>
+    <div class="topbar-center">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="right:83.3%"></div>
+        <span class="progress-text" id="progressText">2 / 12</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="theme-switcher">
+        <button data-theme="tianjin" class="active">🟦</button>
+        <button data-theme="dark">🌑</button>
+        <button data-theme="academic">⬜</button>
+        <button data-theme="guofeng">🟥</button>
+      </div>
+      <div class="mode-switcher">
+        <a href="../index.html" style="text-decoration:none">
+          <button>🏠 主页</button>
+        </a>
+        <button id="modeBtn">📊 演示模式</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <h3>📑 12 章节</h3>
+    <ol class="chapter-list">
+      <li><a href="../index.html">00 · 封面</a></li>
+      <li><a href="01-opening.html">01 · 开场破题</a></li>
+      <li><a href="02-revolution.html" class="active">02 · 智能体革命</a></li>
+      <li><a href="03-main.html">03 · main 调度</a></li>
+      <li><a href="04-project.html">04 · project 项目管家</a></li>
+      <li><a href="05-research.html">05 · research V3</a></li>
+      <li><a href="06-data.html">06 · data 清洗</a></li>
+      <li><a href="07-report.html">07 · report 排版</a></li>
+      <li><a href="08-ecosystem.html" class="important">08 · 三智能体生态 ⭐</a></li>
+      <li><a href="09-case.html">09 · 实战案例</a></li>
+      <li><a href="10-methodology.html" class="important">10 · 纵横分析法 ⭐</a></li>
+      <li><a href="11-demo.html" class="hot">11 · 现场演示</a></li>
+      <li><a href="12-qa.html">12 · Q&A</a></li>
+    </ol>
+  </aside>
+
+  <!-- 主内容 -->
+  <main class="main-stage">
+    <!-- Slide 1：标题 -->
+    <div class="slide active">
+      <header class="chapter-header" style="margin-bottom:40px">
+        <h1 style="font-size:48px;color:var(--accent)">第 02 章 · 智能体革命</h1>
+        <p style="font-size:20px;color:var(--text-secondary);margin-top:12px">从"问答"到"行动"——AI Agent 时代的来临</p>
+      </header>
+
+      <div class="alert alert-info">
+        <strong>核心命题：</strong> 2024 年起，大模型从"对话"转向"行动"。智能体（Agent）= LLM + 工具 + 记忆 + 规划。
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <div class="kpi-num">2024</div>
+          <div class="kpi-label">AI Agent 元年</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">Reason + Act</div>
+          <div class="kpi-label">范式转移</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">7</div>
+          <div class="kpi-label">天保已部署</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2：什么是 Agent -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🤖 什么是智能体？</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>传统 LLM（2023 前）</th>
+            <th>智能体 Agent（2024+）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>输入</strong></td>
+            <td>一段提示词</td>
+            <td>一个目标</td>
+          </tr>
+          <tr>
+            <td><strong>输出</strong></td>
+            <td>一段回答</td>
+            <td>一个执行结果</td>
+          </tr>
+          <tr>
+            <td><strong>工具</strong></td>
+            <td>无</td>
+            <td>函数调用 / 数据库 / API</td>
+          </tr>
+          <tr>
+            <td><strong>记忆</strong></td>
+            <td>无</td>
+            <td>短期 + 长期</td>
+          </tr>
+          <tr>
+            <td><strong>规划</strong></td>
+            <td>无</td>
+            <td>CoT / ToT / Plan-Execute</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-warning">
+        <strong>本质区别：</strong>传统 LLM 是"问答机器"，智能体是"数字员工"。
+      </div>
+    </div>
+
+    <!-- Slide 3：Agent 架构 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🏗️ 智能体的最小架构</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+        <div class="card">
+          <h3 class="card-title">🧠 大脑（LLM）</h3>
+          <p style="color:var(--text-secondary)">负责推理、决策、规划。MiniMax / Kimi / Claude / Deepseek / 小米 Mimo，多模型融合。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">🔧 双手（Tools）</h3>
+          <p style="color:var(--text-secondary)">读 PDF、写文件、跑 Python、调数据库。Function Call 协议。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">📝 记忆（Memory）</h3>
+          <p style="color:var(--text-secondary)">短期上下文 + 长期向量库。OpenClaw 用 Qdrant + bge-m3。</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">📋 计划（Planning）</h3>
+          <p style="color:var(--text-secondary)">CoT 思维链 + ToT 思维树 + ReAct 推理-行动循环。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4：天保的 7+1 体系 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🎯 天保的 7+1 智能体体系</h2>
+
+      <h3 style="color:var(--accent);margin-top:16px"><span class="clickable modal-trigger" data-modal="m-main" style="cursor:pointer">🟢 5 大 Agent（OpenClaw 内部，业务主力） ▾</span></h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(5,1fr)">
+        <div class="agent-card" data-agent="main"><span class="emoji">🎯</span><h4>main</h4><p>总调度</p></div>
+        <div class="agent-card" data-agent="project"><span class="emoji">📋</span><h4>project</h4><p>项目管家</p></div>
+        <div class="agent-card" data-agent="research"><span class="emoji">🔬</span><h4>research V3</h4><p>研究员</p></div>
+        <div class="agent-card" data-agent="data"><span class="emoji">🗄️</span><h4>data</h4><p>数据工</p></div>
+        <div class="agent-card" data-agent="report"><span class="emoji">📄</span><h4>report</h4><p>报告专家</p></div>
+      </div>
+
+      <h3 style="color:var(--accent);margin-top:24px"><span class="clickable modal-trigger" data-modal="m-claude-code" style="cursor:pointer">🔵 2 大助手（外部协同，工程基建） ▾</span></h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(2,1fr);max-width:600px;margin-left:auto;margin-right:auto">
+        <div class="agent-card" data-agent="claude"><span class="emoji">💻</span><h4>Claude Code</h4><p>智能体维护 + 投资研究纵深</p></div>
+        <div class="agent-card" data-agent="hermes"><span class="emoji">⚙️</span><h4>Hermes</h4><p>复杂编码 + 自我学习</p></div>
+      </div>
+
+      <h3 style="color:var(--accent);margin-top:24px"><span class="clickable modal-trigger" data-modal="m-zhongtai" style="cursor:pointer">🟡 1 套中台（知识资产） ▾</span></h3>
+      <div class="agent-grid" style="grid-template-columns:1fr;max-width:300px;margin-left:auto;margin-right:auto">
+        <div class="agent-card" data-agent="wiki"><span class="emoji">📚</span><h4>Wiki 知识库</h4><p>5786 实体 · localhost:19000</p></div>
+      </div>
+    </div>
+
+    <!-- Slide 5：关键启示 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">💡 关键启示</h2>
+
+      <div class="story-card">
+        <p class="story-meta">主公的金句</p>
+        <p style="font-size:20px;line-height:1.8"><strong>"今天的 AI 不是替代人类，而是让每一个人都拥有一个'数字员工团队'。"</strong></p>
+      </div>
+
+      <div class="alert alert-success">
+        <strong>团队跃迁公式：</strong>个人能力 × 智能体数量 = 团队产出的乘法效应。
+      </div>
+
+      <div style="margin-top:24px">
+        <h3 style="color:var(--accent)">从今天开始，请记住 3 句话：</h3>
+        <ol style="line-height:2;font-size:16px;color:var(--text-secondary);margin-top:12px">
+          <li><strong style="color:var(--accent)">你不是一个人在战斗</strong> — 你背后有 7+1 个数字员工</li>
+          <li><strong style="color:var(--accent)">指令即代码</strong> — 你发指令的方式，决定 AI 的产出质量</li>
+          <li><strong style="color:var(--accent)">拍板才是你的事</strong> — AI 负责"草稿+校验"，人类负责"拍板"</li>
+        </ol>
+      </div>
+
+      <div style="margin-top:32px;text-align:center">
+        <a href="03-main.html" style="display:inline-block;padding:14px 32px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold">进入第 03 章：main 总调度 ▶</a>
+      </div>
+    </div>
+  
+  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
+<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
+
+<!-- ============ 5 大 Agent · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-main">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🧠 main · 总调度</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>最高指挥 · 接收主公指令 · 拆分 · 分派 · 验收</p>
+      <p><strong style="color:#00D4FF">5 大核心动作：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📥 接收指令 · 解析意图（提问 / 分派 / 命令 3 类）</li>
+        <li>🔪 拆分任务 · 5 要素（背景 / 目标 / 交付物 / 回传 / 时限）</li>
+        <li>📡 分派任务 · <code>sessions_send</code> 工具</li>
+        <li>📊 跟踪进度 · 心跳每 15min 巡检 · task-tracker.json</li>
+        <li>📋 验收反馈 · 闭环主公 · 失败立即告警</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实使用：</strong>主公 90% 的请求 · 平均每天 30+ 次调度<br>
+        <strong style="color:#00D4FF">典型命令：</strong>"今晚投决启源芯" → 90 分钟跑完 7 Agent 全流程
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-project">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📋 project · 项目管家</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#22C55E">职责定位：</strong>项目全生命周期管理 · 不做专业分析 · 只做协调推进</p>
+      <p><strong style="color:#22C55E">7 大核心能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📁 项目立项 · 17 类项目模板（并购 / 投决 / 储备 / 待立项）</li>
+        <li>📅 阶段管理 · 5 阶段（立项 → 尽调 → 投决 → 投后 → 退出）</li>
+        <li>💰 投资测算 · IRR / NPV / 回收期 · 敏感性自动跑</li>
+        <li>📂 文档协调 · 申请 · 起草 · 串联数据</li>
+        <li>👥 干系人管理 · 5 类角色识别</li>
+        <li>⚠️ 风险登记 · 7 大类风险自动标注</li>
+        <li>📊 可研报告 · 5 章框架自动生成</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
+        <strong style="color:#22C55E">真实数据：</strong>主公 60% 的项目任务 · 当前在跑 5 个项目<br>
+        <strong style="color:#22C55E">代表项目：</strong>启源芯（投决）/ 星恒（尽调）/ 晶能（储备）/ 盈科（GP→LP） / 中资环（待立项）
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-research">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🔬 research V3 · 研究分析</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>行业研究 / 财务尽调 / 估值建模 · 3 大专业能力</p>
+      <p><strong style="color:#F59E0B">7 维度输出：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🏭 行业分析 · CAGR / 政策 / 竞争格局</li>
+        <li>🔧 技术分析 · 国产化率 / 专利 / 工艺路径</li>
+        <li>👥 客户分析 · 集中度 / 头部客户 / 粘性</li>
+        <li>💴 财务分析 · 三表勾稽 · 同业比对</li>
+        <li>💰 估值建模 · DCF / 可比 / P/E / PS</li>
+        <li>📈 敏感性 · WACC 5.5%-9.5% · 收入 ±15%</li>
+        <li>🎯 风险与退出 · 7 大类风险 · 退出路径</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">真实案例：</strong>启源芯 WACC=7.5% → DCF=45 亿<br>
+        <strong style="color:#F59E0B">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash scripts/run_v3.sh full "分析启源芯" --task-id 001</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-data">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗃️ data · 数据清洗管道</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>转录 / OCR / 入库 · 不做分析 · 只做数据处理</p>
+      <p><strong style="color:#A855F7">7 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🎤 语音转录 · FunASR · 中英混合</li>
+        <li>📷 OCR · PaddleOCR · 表格识别</li>
+        <li>🧹 数据清洗 · 28 个脚本 · 一键运行</li>
+        <li>🔍 实体抽取 · 抽取后入 Wiki</li>
+        <li>📊 向量化 · bge-m3 · 768 维</li>
+        <li>🗄️ 入 Qdrant · 8 collections · 75,988 vectors</li>
+        <li>⏰ 定时跑 · 凌晨 3:00 自动入库</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>实体 5,786 → 6,098 · collections 8 · vectors 75,988<br>
+        <strong style="color:#A855F7">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash clean.sh {research|system|project|all}</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-report">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📄 report · 文档排版</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#EC4899">职责定位：</strong>Word / PDF / PPT · 会议纪要 · 不做内容创作只格式化</p>
+      <p><strong style="color:#EC4899">3 大管线：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📑 公文管线 · 国企规范的请示 / 报告 / 通知</li>
+        <li>📊 研报管线 · 行业研究 / 公司研究 / 投资分析</li>
+        <li>📝 纪要管线 · 会议纪要 · 主公自动模板</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(236,72,153,0.08);border-radius:8px">
+        <strong style="color:#EC4899">实际产出：</strong>投决材料 67 页 · 1 份 Word + 1 份 PDF<br>
+        <strong style="color:#EC4899">典型格式：</strong>国企公文规范 · 4 级标题 · 一图一表
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2 大助手 · 详情弹窗 ============ -->
+
+<div class="modal-overlay" id="m-claude-code">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🦾 Claude Code · 工程助手</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#00D4FF">职责定位：</strong>写代码 · 改代码 · 跑命令 · 做工程</p>
+      <p><strong style="color:#00D4FF">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>💻 写代码 · Python / Shell / TypeScript / JavaScript</li>
+        <li>🔧 改代码 · 跨文件编辑 · Git diff 准确</li>
+        <li>🛠️ 跑命令 · Bash 工具 · 长时间任务后台跑</li>
+        <li>🔌 连接工具 · MCP 协议 · 100+ 工具集成</li>
+        <li>🪟 终端 UI · 可在 VSCode / Cursor / iTerm 等环境运行</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
+        <strong style="color:#00D4FF">真实数据：</strong>启源芯 WACC 敏感性 / Monte Carlo<br>
+        <strong style="color:#00D4FF">配置路径：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">~/.claude/settings.json</code><br>
+        <strong style="color:#00D4FF">当前模型：</strong>claude-sonnet-4-6 / deepseek-vash-flash 切换
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m-hermes">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">📚 Hermes · 知识中台</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#A855F7">职责定位：</strong>把语料/研报/纪要变成可检索的 Wiki</p>
+      <p><strong style="color:#A855F7">5 大能力：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>📂 文档入库 · PDF/Word/MD 自动解析</li>
+        <li>🔍 全检索 · Wiki 浏览 · API 查询</li>
+        <li>🌐 Wiki API · port 19001 · RESTful 查询</li>
+        <li>📊 Wiki 静态站 · port 19000 · 浏览器浏览</li>
+        <li>🛡️ Watchdog · 自动重启 · 故障感知</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
+        <strong style="color:#A855F7">真实数据：</strong>5,786 → 6,098 实体 · 8 collections · 模型 bge-m3<br>
+        <strong style="color:#A855F7">配置命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash ~/.hermes/scripts/start-wiki.sh restart</code>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 1 中台 ============ -->
+
+<div class="modal-overlay" id="m-zhongtai">
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <h2 class="modal-title">🗄️ 1 套知识中台</h2>
+    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
+      <p><strong style="color:#F59E0B">职责定位：</strong>所有智能体的记忆层 · 让人 + Agent 都能访问</p>
+      <p><strong style="color:#F59E0B">3 层架构：</strong></p>
+      <ol style="margin-left:20px;margin-top:8px">
+        <li>🗄️ <strong>PostgreSQL</strong> · 4 张表（entity / report / indicator / knowledge_logic）· 关系数据</li>
+        <li>🔢 <strong>Qdrant</strong> · 8 collections · 75,988 个 vectors · 向量检索</li>
+        <li>📚 <strong>Wiki</strong> · Hermes 静态站 · port 19000 · 浏览用</li>
+      </ol>
+      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
+        <strong style="color:#F59E0B">关键能力：</strong>检索 · 去重 · 关联 · 时序 · 备份<br>
+        <strong style="color:#F59E0B">当前规模：</strong>6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑
+      </p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+  <!-- 控制条 -->
+  <footer class="controls">
+    <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
+    <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题 · M 模式</span>
+    <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>
+  </footer>
+
+  <!-- 备注弹层 -->
+  <div class="speaker-notes-panel" id="speakerPanel">
+    <button class="close-btn" id="closeSpeaker">✕</button>
+    <h3>🎤 演讲者备注</h3>
+    <div id="speakerContent">
+      【Slide 1】开场题：<br>
+      · 不要解释概念，让 KPI 数字自己说话<br>
+      · 节奏：每页 60-90 秒，留 5-8 分钟互动<br><br>
+      【Slide 2】表格：<br>
+      · 强调"行动"二字。问现场：你们日常用的是哪种？<br><br>
+      【Slide 3】4 卡：<br>
+      · 用 5 分钟讲完 4 个维度<br>
+      · 提到天保实际配置：MiniMax + Kimi + Claude + Deepseek + 小米<br><br>
+      【Slide 4】7+1 体系：<br>
+      · "主公的一句话，7 个数字员工一起干活"<br>
+      · 这是全场最重要的全场图<br><br>
+      【Slide 5】金句：<br>
+      · 把"你不是一个人在战斗"念出来，让全场共鸣<br>
+      · 末尾引导进入第 03 章
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // 重写：每章独立显示进度
+    document.addEventListener('DOMContentLoaded', () => {
+      const total = document.querySelectorAll('.slide').length;
+      let current = 0;
+
+      document.getElementById('prevBtn').addEventListener('click', () => {
+        const slides = document.querySelectorAll('.slide');
+        if (current > 0) {
+          slides[current].classList.remove('active');
+          current--;
+          slides[current].classList.add('active');
+          updateProgress(current, slides.length);
+        }
+      });
+      document.getElementById('nextBtn').addEventListener('click', () => {
+        const slides = document.querySelectorAll('.slide');
+        if (current < slides.length - 1) {
+          slides[current].classList.remove('active');
+          current++;
+          slides[current].classList.add('active');
+          updateProgress(current, slides.length);
+        }
+      });
+      function updateProgress(cur, total) {
+        const pct = ((cur + 1) / total) * 100;
+        document.getElementById('progressFill').style.right = `${100 - pct}%`;
+        document.getElementById('progressText').textContent = `${cur + 1} / ${total}`;
+      }
+    });
+  </script>
+</body>
+</html>
