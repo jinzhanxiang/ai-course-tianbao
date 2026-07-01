@@ -228,7 +228,21 @@
     },
 
     // ===== 主公 v3.0 反馈新增:关键词直接点击 =====
-    // 01 开场 - 5 大 Agent 拆解(点正文"5 大 Agent"直接弹出)
+    // 03 main 调度 - 5 大动作
+    'burst-main': {
+      title: 'main · 总调度 5 大动作',
+      subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环',
+      layout: 'pipe',
+      cards: [
+        { icon: '📥', name: '1. 接收', tag: '意图解析', detail: '主公发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令。', color: '#00D4FF', pos: 0 },
+        { icon: '🔪', name: '2. 拆解', tag: '5 要素', detail: '任务拆解 · 包含背景/目标/交付物/回传要求/预期完成时间。', color: '#22C55E', pos: 1 },
+        { icon: '📡', name: '3. 分派', tag: 'sessions_send', detail: '调用 sessions_send 工具 · 发送到对应 Agent 队列。\n主公不直接指挥 Agent。', color: '#F59E0B', pos: 2 },
+        { icon: '📊', name: '4. 跟踪', tag: '心跳 15 分钟', detail: '心跳机制每 15 分钟巡检 · 检查 task-tracker.json。\n超时 30 分钟追问 · 超时 2 小时告警主公。', color: '#A855F7', pos: 3 },
+        { icon: '📋', name: '5. 反馈', tag: '10 分钟内', detail: '任务完成后 10 分钟内反馈主公 · 超时 30 分钟追究。\n闭环报告含原始交付物 + 结果摘要 + 后续建议。', color: '#EC4899', pos: 4 }
+      ]
+    },
+
+    // 01 开场 - 5 大 Agent 拆解（点正文“5 大 Agent”直接弹出）
     'burst-5agents': {
       title: '5 大 Agent · 角色矩阵',
       subtitle: '从单兵作战到 5 Agent 流水线协同',
@@ -311,7 +325,7 @@
         }
         break;
       case '5star':
-        // 五芒星布局（中心 + 四角）
+        // 五芒星布局(中心 + 四角)
         const posMap5 = {
           'top': { left: '50%', top: '15%' },
           'bottom-left': { left: '15%', top: '75%' },
