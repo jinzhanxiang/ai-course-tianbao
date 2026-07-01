@@ -1044,3 +1044,35 @@ th {
 
 /* burst 适配暗主题 */
 .theme-dark .burst-card { background: rgba(15,23,42,0.95); }
+
+/* v1.3.1 burst-trigger 增强样式 */
+.burst-trigger {
+  display: inline-block !important;
+  cursor: pointer !important;
+  background: linear-gradient(135deg, #00D4FF20, #A855F720) !important;
+  border: 2.5px solid #00D4FF !important;
+  color: #00D4FF !important;
+  padding: 6px 16px !important;
+  margin: 2px 4px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  position: relative !important;
+  box-shadow: 0 4px 16px rgba(0,212,255,0.3), 0 0 0 0 rgba(0,212,255,0.4) !important;
+  animation: burst-pulse 2.5s ease-in-out infinite !important;
+}
+
+@keyframes burst-pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,212,255,0.3), 0 0 0 0 rgba(0,212,255,0.4); }
+  50% { box-shadow: 0 4px 16px rgba(0,212,255,0.5), 0 0 0 8px rgba(0,212,255,0); }
+}
+
+.burst-trigger:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  background: linear-gradient(135deg, #00D4FF40, #A855F740) !important;
+  box-shadow: 0 10px 30px rgba(0,212,255,0.6) !important;
+}
+
+.burst-trigger:active {
+  transform: translateY(0) scale(0.98) !important;
+}
