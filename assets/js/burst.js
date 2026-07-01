@@ -86,7 +86,7 @@
     'burst-data-7': {
       title: '数据清洗 · 7 步流水线',
       subtitle: '从原始材料到结构化入库',
-      layout: 'cascade',
+      layout: 'grid',
       cards: [
         { icon: '📥', name: '1. 采集', tag: '多源输入', detail: 'PDF 研报 / Word 纪要 / 录音 / Excel 财务表 / 网页快照。统一进入 inputs/ 目录。', color: '#A855F7', pos: 0 },
         { icon: '🎙️', name: '2. 转录', tag: '语音→文字', detail: 'FunASR 模型处理录音(会议录音 / 调研访谈)。输出带时间戳的 SRT 文本。', color: '#A855F7', pos: 1 },
@@ -199,7 +199,7 @@
     'burst-method-8': {
       title: '纵横分析法 · 8 维',
       subtitle: '横切面 + 纵深线 + 6 子维交叉验证',
-      layout: 'fan',
+      layout: 'grid',
       cards: [
         { icon: '↔️', name: '横线', tag: '横向比较', detail: '同期可比公司 / 同期类似项目 / 同期行业平均。\n问题:相对位置在哪?', color: '#A855F7', pos: 0 },
         { icon: '↕️', name: '纵线', tag: '历史趋势', detail: '过去 3-5 年财务 / 业务 / 估值变化。\n问题:成长性如何?', color: '#A855F7', pos: 1 },
@@ -304,18 +304,26 @@
         coords.push({ left: '8%', top: '50%' });
         if (count >= 2) coords.push({ left: '50%', top: '50%' });
         if (count >= 3) coords.push({ left: '92%', top: '50%' });
-        for (let i = 3; i < count; i++) coords.push({ left: '50%', top: `${20 + i*15}%` });
+        for (let i = 3; i < count; i++) coords.push({ left: '50%', top: `${15 + i*18}%` });
         break;
       case 'vert':
-        // 纵向
+        // 纵向(适配卡片高度 ~240px,stage 高度 ~800px)
+        // count 张卡均匀分布在 10%~90% 范围内
+        const vertStep = count === 1 ? 0 : 80 / Math.max(1, count - 1);
         for (let i = 0; i < count; i++) {
-          coords.push({ left: '50%', top: `${15 + i * (70 / Math.max(1, count-1))}%` });
+          coords.push({ left: '50%', top: `${10 + i * vertStep}%` });
         }
         break;
       case 'pipe':
-        // 横向流水线
+        // 横向流水线 - 防止左右溢出
+        // 根据 count 决定间距范围:多卡则压缩间距
+        const pipeMargin = count <= 3 ? 10 : (count <= 5 ? 8 : 6);
+        const pipeRange = 100 - 2 * pipeMargin;
+        const pipeStep = count === 1 ? 0 : pipeRange / Math.max(1, count - 1);
         for (let i = 0; i < count; i++) {
-          coords.push({ left: `${5 + i * (90 / Math.max(1, count-1))}%`, top: '50%' });
+          // 中心点 left% 不能超过 95 (防止卡片右溢出)
+          const left = Math.min(95, pipeMargin + i * pipeStep);
+          coords.push({ left: `${left}%`, top: '50%' });
         }
         break;
       case 'twocol':
@@ -325,17 +333,28 @@
         }
         break;
       case '5star':
-        // 五芒星布局(中心 + 四角)
-        const posMap5 = {
-          'top': { left: '50%', top: '15%' },
-          'bottom-left': { left: '15%', top: '75%' },
-          'bottom-right': { left: '85%', top: '75%' },
-          'right': { left: '85%', top: '50%' },
-          'left': { left: '15%', top: '50%' }
-        };
+        // 五芒星布局(中心 + 四围,按索引分配,不受 pos 字段影响)
+        // 第 1 张居中,其余 4 张按四角分布
         if (cards && cards.length > 0) {
-          cards.forEach(card => {
-            coords.push(posMap5[card.pos] || { left: '50%', top: '50%' });
+          // 位置 0 = 中心, 1-4 = 上/右/下/左
+          const starRadius = 36; // 距离中心的半径(%)
+          const center = { left: '50%', top: '50%', center: true };
+          // 上(-90°), 右(0°), 下(90°), 左(180°)
+          const offsets = [
+            { angle: -90 }, // 顶
+            { angle: 0 },   // 右
+            { angle: 90 },  // 底
+            { angle: 180 }  // 左
+          ];
+          cards.forEach((card, idx) => {
+            if (idx === 0) {
+              coords.push(center);
+            } else {
+              const off = offsets[(idx - 1) % 4];
+              const left = 50 + starRadius * Math.cos(off.angle * Math.PI / 180);
+              const top = 50 + starRadius * Math.sin(off.angle * Math.PI / 180);
+              coords.push({ left: `${left}%`, top: `${top}%` });
+            }
           });
         }
         break;
@@ -344,7 +363,8 @@
         // 中心圆 + 周围辐射(中心 + count-1 周围)
         // 中心点
         coords.push({ left: '50%', top: '50%', center: true });
-        const radius = 38; // 半径(%)
+        // 半径自适应:卡片越多半径越大,避免重叠
+        const radius = count <= 3 ? 32 : (count <= 5 ? 38 : 42);
         for (let i = 0; i < count - 1; i++) {
           const angle = (Math.PI * 2 * i / (count - 1)) - Math.PI / 2;
           const left = 50 + radius * Math.cos(angle);
@@ -359,26 +379,44 @@
           const r = Math.floor(i / cols);
           const c = i % cols;
           coords.push({
-            left: `${15 + c * (70 / Math.max(1, cols-1))}%`,
-            top: `${25 + r * 50}%`
+            left: `${10 + c * (80 / Math.max(1, cols-1))}%`,
+            top: `${15 + r * (70 / Math.max(1, Math.ceil(count/cols) - 1))}%`
           });
         }
         break;
       case 'cascade':
-        // 垂直瀑布
+        // 垂直瀑布 - 奇偶列分别计算纵向位置
+        // i=0 左, i=1 右, i=2 左, i=3 右...
+        // 按列分别计算,但 push 按索引顺序保留
+        const casLeft = []; const casRight = [];
         for (let i = 0; i < count; i++) {
-          coords.push({ left: `${15 + (i % 2) * 60}%`, top: `${10 + i * (75 / Math.max(1, count-1))}%` });
+          if (i % 2 === 0) casLeft.push(i); else casRight.push(i);
         }
+        const casTotalLeft = casLeft.length;
+        const casTotalRight = casRight.length;
+        // 按 index 顺序构建位置表
+        const casCoords = new Array(count);
+        casLeft.forEach((cardIdx, colIdx) => {
+          const t = casTotalLeft === 1 ? 50 : 10 + colIdx * (80 / Math.max(1, casTotalLeft - 1));
+          casCoords[cardIdx] = { left: '18%', top: `${t}%` };
+        });
+        casRight.forEach((cardIdx, colIdx) => {
+          const t = casTotalRight === 1 ? 50 : 10 + colIdx * (80 / Math.max(1, casTotalRight - 1));
+          casCoords[cardIdx] = { left: '82%', top: `${t}%` };
+        });
+        casCoords.forEach(c => coords.push(c));
         break;
       case 'fan':
-        // 折扇(中心 + 两侧展开)
+        // 折扇(中心 + 两侧展开) - 增大半径防止重叠
         coords.push({ left: '50%', top: '50%', center: true });
+        // 半径随 count 增大
+        const fanRadius = count <= 4 ? 35 : (count <= 6 ? 40 : 44);
         for (let i = 0; i < count - 1; i++) {
           const t = i / Math.max(1, count - 2); // 0..1
           const angle = -60 + t * 120; // -60 ~ 60 度
           coords.push({
-            left: `${50 + 35 * Math.cos(angle * Math.PI / 180)}%`,
-            top: `${50 + 35 * Math.sin(angle * Math.PI / 180)}%`
+            left: `${50 + fanRadius * Math.cos(angle * Math.PI / 180)}%`,
+            top: `${50 + fanRadius * Math.sin(angle * Math.PI / 180)}%`
           });
         }
         break;
@@ -442,6 +480,14 @@
       div.style.left = coord.left;
       div.style.top = coord.top;
       div.setAttribute('data-i', idx);
+      // pipe 布局 + 5+ 张卡 -> 缩小宽度防重叠
+      if (data.layout === 'pipe' && data.cards.length >= 5) {
+        div.style.width = '180px';
+      } else if (data.layout === 'cascade' && data.cards.length >= 5) {
+        div.style.width = '200px';
+      } else if (data.layout === 'grid' && data.cards.length >= 6) {
+        div.style.width = '210px';
+      }
 
       // 标题 + 标签 + 详情
       const detailHtml = (card.detail || '').replace(/\n/g, '<br>');
@@ -500,13 +546,13 @@
   document.addEventListener('click', (e) => {
     if (!currentBurstId) return;
     const stage = document.getElementById(currentBurstId);
-    // 如果点击不在 stage 内(包括 stage 本身),关闭
-    if (stage && !stage.contains(e.target)) {
-      // 也不在 trigger 内
-      if (!currentTrigger || !currentTrigger.contains(e.target)) {
-        closeBurst();
-      }
-    }
+    if (!stage) return;
+    // 点击在 burst-card、burst-close、burst-header 内部不关闭
+    if (e.target.closest('.burst-card, .burst-close, .burst-header')) return;
+    // 点击在 trigger 内不关闭
+    if (currentTrigger && currentTrigger.contains(e.target)) return;
+    // 其他情况(包括点击 stage 背景、stage::before)都关闭
+    closeBurst();
   });
 
   document.addEventListener('keydown', (e) => {
