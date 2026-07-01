@@ -511,7 +511,27 @@
       <button class="burst-close" type="button">✕ 关闭</button>
     `;
 
-    // 卡片
+    // ====== 视频 burst 模式 ======
+    if (data.videoPoster) {
+      const vc = document.createElement('div');
+      vc.className = 'burst-video-container';
+      vc.innerHTML = `
+        <video class="burst-video" src="${data.video || ''}"
+          poster="${data.videoPoster}"
+          controls autoplay playsinline
+          style="width:100%;height:auto;max-height:70vh;border-radius:12px;margin-top:8px">
+        </video>`;
+      stage.appendChild(vc);
+      // 视频播放完毕后自动关闭（可选）
+      const vid = vc.querySelector('video');
+      vid && vid.addEventListener('ended', () => { closeBurst(); });
+      requestAnimationFrame(() => {
+        stage.classList.add('show');
+      });
+      return;
+    }
+
+    // ====== 常规卡片 burst 模式 ======
     // 决定每张卡的实际宽度（与下方 set width 同步）
     let cardW = 240, cardH = 200;
     if (data.layout === 'pipe' && data.cards.length >= 5) cardW = 180;
