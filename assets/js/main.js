@@ -39,6 +39,7 @@
   // ============ 模式 ============
   function initMode() {
     const btn = document.getElementById('modeBtn');
+    if (!btn) return;
     btn.addEventListener('click', toggleMode);
   }
 
@@ -76,8 +77,8 @@
     });
 
     // 翻页按钮
-    document.getElementById('prevBtn').addEventListener('click', prevSlide);
-    document.getElementById('nextBtn').addEventListener('click', nextSlide);
+    document.getElementById('prevBtn')?.addEventListener('click', prevSlide);
+    document.getElementById('nextBtn')?.addEventListener('click', nextSlide);
   }
 
   function nextSlide() {
@@ -102,9 +103,12 @@
 
   function updateProgress() {
     const slides = document.querySelectorAll('.slide');
+    if (slides.length === 0) return;
     const pct = ((state.slide + 1) / slides.length) * 100;
-    document.getElementById('progressFill').style.right = `${100 - pct}%`;
-    document.getElementById('progressText').textContent = `${state.slide + 1} / ${slides.length}`;
+    const fill = document.getElementById('progressFill');
+    const txt = document.getElementById('progressText');
+    if (fill) fill.style.right = `${100 - pct}%`;
+    if (txt) txt.textContent = `${state.slide + 1} / ${slides.length}`;
   }
 
   // ============ 键盘 ============
