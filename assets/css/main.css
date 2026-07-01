@@ -825,8 +825,11 @@ th {
 .burst-stage.show {
   display: block;
   opacity: 1;
-  transform: scale(1);
+  transform: scale(var(--burst-stage-scale, 1));
   pointer-events: auto;
+}
+.burst-stage.scaled {
+  transform-origin: center top;
 }
 
 /* 全屏背景 - 模糊原内容 */

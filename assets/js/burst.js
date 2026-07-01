@@ -296,40 +296,64 @@
   };
 
   // ============== 2. 排版算法 ==============
-  function getLayoutCoords(layout, count, cards) {
+  function getLayoutCoords(layout, count, cards, opts) {
     const coords = [];
+    // 卡片实际宽度(px)和 stage 宽度(px)，用于算 safe margin
+    const cardW = (opts && opts.cardW) || 240;
+    const cardH = (opts && opts.cardH) || 220;
+    const stageW = (opts && opts.stageW) || 1382;  // 默认 1440 视口下 stage 宽
+    const stageH = (opts && opts.stageH) || 800;
+    // 卡片中心位置的安全边界 (% of stage)
+    const safeMarginPct = (cardW / 2 / stageW) * 100;  // 第一张卡 left 必须 >= 此值
+    const safeTopPct = (cardH / 2 / stageH) * 100;
     switch (layout) {
       case 'threecol':
-        // 三栏
-        coords.push({ left: '8%', top: '50%' });
+        // 三栏 - 首尾卡位置必须考虑卡片宽度，避免出视口
+        const tc1 = Math.max(safeMarginPct + 2, 12);
+        const tc3 = Math.min(100 - safeMarginPct - 2, 88);
+        coords.push({ left: `${tc1}%`, top: '50%' });
         if (count >= 2) coords.push({ left: '50%', top: '50%' });
-        if (count >= 3) coords.push({ left: '92%', top: '50%' });
+        if (count >= 3) coords.push({ left: `${tc3}%`, top: '50%' });
         for (let i = 3; i < count; i++) coords.push({ left: '50%', top: `${15 + i*18}%` });
         break;
       case 'vert':
-        // 纵向(适配卡片高度 ~240px,stage 高度 ~800px)
-        // count 张卡均匀分布在 10%~90% 范围内
-        const vertStep = count === 1 ? 0 : 80 / Math.max(1, count - 1);
+        // 纵向 - 用像素位置定位, step 用所需间距（不超出 cardContainer）
+        const vertCardH = Math.max(cardH, 280);
+        const vertCardContainerH = (opts && opts.cardContainerH) || 600;
+        const vertGap = 30;
+        const vertStartY = (vertCardH / 2) + 20;
+        const vertRequiredRange = (vertCardH + vertGap) * Math.max(1, count - 1);
+        // step = max(必需间距) - 保证不重叠
+        const vertStepPx = count === 1 ? 0 : vertRequiredRange / Math.max(1, count - 1);
         for (let i = 0; i < count; i++) {
-          coords.push({ left: '50%', top: `${10 + i * vertStep}%` });
+          coords.push({ left: '50%', top: `${vertStartY + i * vertStepPx}px` });
         }
         break;
       case 'pipe':
-        // 横向流水线 - 防止左右溢出
-        // 根据 count 决定间距范围:多卡则压缩间距
-        const pipeMargin = count <= 3 ? 10 : (count <= 5 ? 8 : 6);
+        // 横向流水线 - 动态算 margin 防溢出
+        // cardW/stageW → safeMarginPct；多卡则压缩间距
+        const pipeMargin = count <= 3 ? Math.max(safeMarginPct + 1, 10)
+                          : (count <= 5 ? Math.max(safeMarginPct + 1, 9)
+                          : Math.max(safeMarginPct + 1, 8));
         const pipeRange = 100 - 2 * pipeMargin;
         const pipeStep = count === 1 ? 0 : pipeRange / Math.max(1, count - 1);
         for (let i = 0; i < count; i++) {
-          // 中心点 left% 不能超过 95 (防止卡片右溢出)
-          const left = Math.min(95, pipeMargin + i * pipeStep);
+          // 中心点 left% 不能超过 100-safeMarginPct (防止卡片右溢出)
+          const left = Math.min(100 - safeMarginPct, pipeMargin + i * pipeStep);
           coords.push({ left: `${left}%`, top: '50%' });
         }
         break;
       case 'twocol':
-        // 两列(左右并排)
+        // 两列(左右并排) - 防溢出
         for (let i = 0; i < count; i++) {
-          coords.push({ left: count === 1 ? '50%' : `${15 + i * 70}%`, top: '50%' });
+          if (count === 1) {
+            coords.push({ left: '50%', top: '50%' });
+          } else {
+            // 两张卡分别靠近左右 safeMarginPct
+            const tw1 = Math.max(safeMarginPct + 3, 15);
+            const tw2 = Math.min(100 - safeMarginPct - 3, 85);
+            coords.push({ left: i === 0 ? `${tw1}%` : `${tw2}%`, top: '50%' });
+          }
         }
         break;
       case '5star':
@@ -373,38 +397,59 @@
         }
         break;
       case 'grid':
-        // 网格(自适应)
+        // 网格(自适应) - 用像素位置, step 保证不重叠
         const cols = count <= 2 ? count : Math.ceil(Math.sqrt(count));
+        const rows = Math.ceil(count / cols);
+        const gridCardH = Math.max(cardH, 260);
+        const gap = 30;
+        const cardContainerH = (opts && opts.cardContainerH) || 600;
+        const gridStartY = (gridCardH / 2) + 15;
+        const gridRequiredRange = (gridCardH + gap) * Math.max(1, rows - 1);
+        // step = max(必需间距) - 保证不重叠
+        const gridRowStepPx = count <= 1 || rows <= 1 ? 0 : gridRequiredRange / Math.max(1, rows - 1);
+        const colStartX = (opts.cardW || 240) / 2 + 10;
+        const colEndX = (opts.stageW || 1382) - colStartX;
+        const colRangePx = colEndX - colStartX;
+        const colStepPx = cols <= 1 ? 0 : colRangePx / Math.max(1, cols - 1);
         for (let i = 0; i < count; i++) {
           const r = Math.floor(i / cols);
           const c = i % cols;
+          const rowY = rows <= 1 ? (cardContainerH / 2) : (gridStartY + r * gridRowStepPx);
+          const colX = cols <= 1 ? ((opts.stageW || 1382) / 2) : (colStartX + c * colStepPx);
           coords.push({
-            left: `${10 + c * (80 / Math.max(1, cols-1))}%`,
-            top: `${15 + r * (70 / Math.max(1, Math.ceil(count/cols) - 1))}%`
+            left: `${colX}px`,
+            top: `${rowY}px`
           });
         }
         break;
       case 'cascade':
-        // 垂直瀑布 - 奇偶列分别计算纵向位置
-        // i=0 左, i=1 右, i=2 左, i=3 右...
-        // 按列分别计算,但 push 按索引顺序保留
+        // 垂直瀑布 - 奇偶列分别计算纵向位置(像素), step 保证不重叠
+        const casCardH = Math.max(cardH, 260);
+        const casCardContainerH = (opts && opts.cardContainerH) || 600;
+        const casGap = 30;
+        const casStartY = (casCardH / 2) + 15;
         const casLeft = []; const casRight = [];
         for (let i = 0; i < count; i++) {
           if (i % 2 === 0) casLeft.push(i); else casRight.push(i);
         }
         const casTotalLeft = casLeft.length;
         const casTotalRight = casRight.length;
-        // 按 index 顺序构建位置表
-        const casCoords = new Array(count);
+        const casRequiredL = (casCardH + casGap) * Math.max(1, casTotalLeft - 1);
+        const casRequiredR = (casCardH + casGap) * Math.max(1, casTotalRight - 1);
+        const casStepL = casTotalLeft <= 1 ? 0 : casRequiredL / Math.max(1, casTotalLeft - 1);
+        const casStepR = casTotalRight <= 1 ? 0 : casRequiredR / Math.max(1, casTotalRight - 1);
+        const casLeftX = (opts.cardW || 240) / 2 + 20;
+        const casRightX = (opts.stageW || 1382) - casLeftX;
+        const casCoordsArr = new Array(count);
         casLeft.forEach((cardIdx, colIdx) => {
-          const t = casTotalLeft === 1 ? 50 : 10 + colIdx * (80 / Math.max(1, casTotalLeft - 1));
-          casCoords[cardIdx] = { left: '18%', top: `${t}%` };
+          const y = casTotalLeft === 1 ? (casCardContainerH / 2) : (casStartY + colIdx * casStepL);
+          casCoordsArr[cardIdx] = { left: `${casLeftX}px`, top: `${y}px` };
         });
         casRight.forEach((cardIdx, colIdx) => {
-          const t = casTotalRight === 1 ? 50 : 10 + colIdx * (80 / Math.max(1, casTotalRight - 1));
-          casCoords[cardIdx] = { left: '82%', top: `${t}%` };
+          const y = casTotalRight === 1 ? (casCardContainerH / 2) : (casStartY + colIdx * casStepR);
+          casCoordsArr[cardIdx] = { left: `${casRightX}px`, top: `${y}px` };
         });
-        casCoords.forEach(c => coords.push(c));
+        casCoordsArr.forEach(c => coords.push(c));
         break;
       case 'fan':
         // 折扇(中心 + 两侧展开) - 增大半径防止重叠
@@ -467,9 +512,50 @@
     `;
 
     // 卡片
-    const coords = getLayoutCoords(data.layout, data.cards.length, data.cards);
+    // 决定每张卡的实际宽度（与下方 set width 同步）
+    let cardW = 240, cardH = 200;
+    if (data.layout === 'pipe' && data.cards.length >= 5) cardW = 180;
+    else if (data.layout === 'pipe' && data.cards.length >= 3) cardW = 210;
+    else if (data.layout === 'cascade' && data.cards.length >= 5) cardW = 200;
+    else if (data.layout === 'grid' && data.cards.length >= 6) cardW = 210;
+    else if (data.layout === 'twocol') cardW = 260;
+    // stage 实际宽度 = min(96vw, 1400px)
+    const stageW = Math.min(window.innerWidth * 0.96, 1400);
+    const stageH = Math.min(window.innerHeight - 40, 800);
+    // 根据 layout 动态计算 cardContainer 高度（限制在 viewport 内）
+    const headerH = 130;  // burst-header 大致高度
+    const stageMarginTop = 20;  // .burst-stage margin-top
+    // 可用高度 = viewport - stageMarginTop - headerH - 20 (底部安全间距)
+    const maxContainerH = Math.max(400, window.innerHeight - stageMarginTop - headerH - 20);
+    const cardContainerH = (() => {
+      let required = 600;
+      // 使用与定位算法一致的 cardH 估算（多行 detail 实际更高）
+      const realCardH = (data.layout === 'vert') ? Math.max(cardH, 280)
+                      : (data.layout === 'grid') ? Math.max(cardH, 260)
+                      : (data.layout === 'cascade') ? Math.max(cardH, 260)
+                      : cardH;
+      // 顶距 (gridStartY = cardH/2 + 15) + 底距 (cardH/2) = cardH + 15
+      const topBottomPad = realCardH + 15;
+      if (data.layout === 'vert') {
+        required = data.cards.length * (realCardH + 30) + topBottomPad;
+      } else if (data.layout === 'grid') {
+        const cols = data.cards.length <= 2 ? data.cards.length : Math.ceil(Math.sqrt(data.cards.length));
+        const rows = Math.ceil(data.cards.length / cols);
+        required = rows * (realCardH + 30) + topBottomPad;
+      } else if (data.layout === 'cascade') {
+        const maxColCount = Math.ceil(data.cards.length / 2);
+        required = maxColCount * (realCardH + 30) + topBottomPad;
+      }
+      // 不限制在 viewport - 让 stage scale 处理超界
+      return Math.max(600, required);
+    })();
+    const coords = getLayoutCoords(data.layout, data.cards.length, data.cards, {
+      cardW, cardH, stageW, stageH,
+      cardContainerH  // 动态高度，供 vert/grid/cascade 使用
+    });
     const cardContainer = document.createElement('div');
     cardContainer.className = 'burst-cards';
+    cardContainer.style.minHeight = cardContainerH + 'px';
 
     data.cards.forEach((card, idx) => {
       const div = document.createElement('div');
@@ -503,6 +589,20 @@
       cardContainer.appendChild(div);
     });
     stage.appendChild(cardContainer);
+
+    // 动态计算 stage scale：如果内容超过 viewport，缩放避免出底部
+    const stageRect = stage.getBoundingClientRect();
+    // 预估内容总高度：header(~130) + cardContainerH
+    const contentH = 130 + cardContainerH;
+    const maxVisibleH = window.innerHeight - 40;  // 留 40px 底部
+    if (contentH > maxVisibleH) {
+      const scale = Math.max(0.6, maxVisibleH / contentH);
+      stage.style.setProperty('--burst-stage-scale', scale);
+      stage.classList.add('scaled');
+    } else {
+      stage.style.removeProperty('--burst-stage-scale');
+      stage.classList.remove('scaled');
+    }
 
     // 显示
     requestAnimationFrame(() => {
