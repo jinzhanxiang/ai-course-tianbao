@@ -1,262 +1,353 @@
 /* ============================================== */
-/* BURST 弹出动画系统 v1.3                          */
-/* 8 种差异化动画 · 12 类简介自动适配               */
+/* BURST v2.0  - 放大扩写模式                       */
+/* 13 种智能排版 · stagger 逐个展开 · 点空白关闭       */
 /* ============================================== */
 
 (function() {
   'use strict';
 
-  // ============== 1. 内容数据 ==============
-  // 每个 burst 包含：动画类型、内容数组、显示时长
+  // ============== 1. 扩写内容数据 ==============
+  // 每个 burst 是 trigger 的"放大扩写"，不是简单重复
+  // 数据格式：{ cards: [{title, detail}], layout: 'smart' | 'circle' | 'triangle' | 'grid' | ... }
   const BURST_DATA = {
-    // 00 封面 - 7 大智能体（辐射风暴，6s）
+    // 00 封面 - 7 大智能体（原 trigger 已展示"7 大智能体协同"，扩写每个的内涵）
     'burst-7agents': {
-      style: 'radial',
-      duration: 6000,
+      title: '7 大智能体 · 角色矩阵',
+      subtitle: '从单兵作战到 5 Agent + 2 助手 + 1 中台协同',
+      layout: '7star',
       cards: [
-        { icon: '🧠', title: 'main', desc: '总调度 · 任务分发 · 闭环跟踪', color: '#00D4FF', angle: '309' },
-        { icon: '📋', title: 'project', desc: '项目管家 · 流程协调 · 报告编写', color: '#22C55E', angle: '51' },
-        { icon: '🔍', title: 'research', desc: '研究分析 · 行业 · 财务 · 估值', color: '#F59E0B', angle: '103' },
-        { icon: '🧹', title: 'data', desc: '数据管道 · 转录 · OCR · 清洗', color: '#A855F7', angle: '154' },
-        { icon: '📄', title: 'report', desc: '排版输出 · Word · PDF · PPT', color: '#EC4899', angle: '206' },
-        { icon: '🛠️', title: 'Claude Code', desc: '工程助手 · 改代码 · 写脚本', color: '#00D4FF', angle: '257' },
-        { icon: '🏛️', title: 'Hermes', desc: '知识中台 · Wiki · 检索 · 归档', color: '#A855F7', angle: '0' }
+        { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。解析任务、判断分发、跟踪进度、汇总反馈。所有子 Agent 的汇报先到 main，再统一回主公。', color: '#00D4FF', pos: 0 },
+        { icon: '📋', name: 'project', tag: '项目管家', detail: '流程驱动器。维护项目时间线、催办节点、协调多 Agent 协作、产出会议纪要与立项文档。', color: '#22C55E', pos: 1 },
+        { icon: '🔬', name: 'research', tag: '研究分析', detail: '智能大脑。行业研究 / 财务尽调 / 估值建模（DCF/IRR/NPV），产出投资分析报告。', color: '#F59E0B', pos: 2 },
+        { icon: '🗃️', name: 'data', tag: '数据管道', detail: '材料清洗工。语音转录（FunASR）/ OCR 识别 / 研报清洗入库，输入到 Qdrant 向量库。', color: '#A855F7', pos: 3 },
+        { icon: '📄', name: 'report', tag: '文档排版', detail: '出版人。Word / PDF / PPT 排版、会议纪要、可研报告格式化，输出正式交付物。', color: '#EC4899', pos: 4 },
+        { icon: '🛠️', name: 'Claude Code', tag: '工程助手', detail: '代码与脚本。能改 prompt / 写脚本 / 调试配置 / 自动化运维，工程师的延伸。', color: '#00D4FF', pos: 5 },
+        { icon: '🏛️', name: 'Hermes', tag: '知识中台', detail: '记忆库。Wiki 沉淀 / 检索 / 归档 / 跨会话知识调用，公司级 brain。', color: '#A855F7', pos: 6 }
       ]
     },
 
-    // 01 开场 - 5+2+1（三栏并出，5s）
+    // 01 开场 - 5+2+1 体系（原 trigger 已展示 5 Agent+2 助手+1 中台，扩写每类）
     'burst-5plus2plus1': {
-      style: 'threecol',
-      duration: 5000,
+      title: '5 + 2 + 1 体系架构',
+      subtitle: '5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产',
+      layout: 'threecol',
       cards: [
-        { icon: '⚙️', title: '5 大 Agent', desc: 'main / project / research / data / report 协同作战，全自动交付', color: '#00D4FF', pos: 'left' },
-        { icon: '🧰', title: '2 大助手', desc: 'Claude Code 改代码 + Hermes 管知识中台', color: '#22C55E', pos: 'center' },
-        { icon: '🏛️', title: '1 套中台', desc: 'Qdrant 向量库 + PostgreSQL + Wiki 检索', color: '#A855F7', pos: 'right' }
+        { icon: '⚙️', name: '5 大 Agent', tag: '生产单元', detail: 'main + project + research + data + report 五位一体。从"接需求 → 调研 → 分析 → 清洗 → 出报告"全自动流水线，原本 4 小时活压缩到 4 分钟。', color: '#00D4FF', pos: 'left' },
+        { icon: '🧰', name: '2 大助手', tag: '能力延伸', detail: 'Claude Code（改代码/写脚本/调试） + Hermes（知识检索/归档）。助手不直接产出，但让 5 Agent 的边界扩 10 倍。', color: '#22C55E', pos: 'center' },
+        { icon: '🏛️', name: '1 套中台', tag: '资产沉淀', detail: 'Qdrant 向量库（语义检索）+ PostgreSQL（结构化数据）+ Wiki（知识沉淀）。今天的经验，明天新人也能用。', color: '#A855F7', pos: 'right' }
       ]
     },
 
-    // 02 革命 - 5+2+1（纵向递进，5s）
+    // 02 革命 - 三层变革（原 trigger 已展示"三层"，扩写每层内涵）
     'burst-revolution': {
-      style: 'vert',
-      duration: 5000,
+      title: '三层变革',
+      subtitle: '生产关系 + 协同方式 + 知识资产',
+      layout: 'vert',
       cards: [
-        { icon: '⚡', title: '生产关系革命', desc: '从「研究员手敲」到「5 Agent 自动跑」，4 小时活 4 分钟完成', color: '#00D4FF', pos: 'top' },
-        { icon: '🧠', title: '智能体协同革命', desc: '单 Agent → 多 Agent 协作，main 调度 4 个子 Agent', color: '#A855F7', pos: 'middle' },
-        { icon: '🏛️', title: '知识资产革命', desc: '从「个人经验」到「公司中台」，沉淀可复用', color: '#F59E0B', pos: 'bottom' }
+        { icon: '⚡', name: '生产关系革命', tag: '从人到 Agent', detail: '从"研究员手敲 4 小时"到"5 Agent 跑 4 分钟"。人从执行者变成决策者，Agent 从工具变成同事。10× 提效不是口号，是每天的实际工作节奏。', color: '#00D4FF', pos: 'top' },
+        { icon: '🧠', name: '协同方式革命', tag: '单兵 → 多 Agent', detail: 'main 调度 4 子 Agent（project/research/data/report），每个子 Agent 又有自己的子任务。3 层嵌套协同，类似公司组织架构。', color: '#A855F7', pos: 'middle' },
+        { icon: '🏛️', name: '知识资产革命', tag: '个人 → 公司', detail: '过去经验存在人脑里（离职即流失）。现在沉淀在 Qdrant + PG + Wiki，新人入职第一天就能调用过去 3 年所有研报。', color: '#F59E0B', pos: 'bottom' }
       ]
     },
 
-    // 04 项目 - 7 阶段（横向流水线，6s）
+    // 04 项目 - 7 阶段（原 trigger 已展示"7 阶段"，扩写每阶段核心动作）
     'burst-project-7': {
-      style: 'pipe',
-      duration: 6000,
+      title: '项目生命周期 · 7 阶段',
+      subtitle: '从立项到投后，每阶段的关键产出物',
+      layout: 'pipe',
       cards: [
-        { icon: '1️⃣', title: '立项', desc: '业务部门提需求 · 投资部初筛', color: '#22C55E' },
-        { icon: '2️⃣', title: '调研', desc: '行业研究 · 政策分析 · 宏观判断', color: '#22C55E' },
-        { icon: '3️⃣', title: '尽调', desc: '财务审计 · 法律合规 · 业务现场', color: '#22C55E' },
-        { icon: '4️⃣', title: '估值', desc: 'DCF 模型 · 可比公司 · 敏感性分析', color: '#22C55E' },
-        { icon: '5️⃣', title: '谈判', desc: '交易结构 · 对赌条款 · 价格博弈', color: '#22C55E' },
-        { icon: '6️⃣', title: '交割', desc: '股权过户 · 工商变更 · 资金安排', color: '#22C55E' },
-        { icon: '7️⃣', title: '投后', desc: '跟踪运营 · 风险预警 · 退出准备', color: '#22C55E' }
+        { icon: '1️⃣', name: '立项', tag: '需求识别', detail: '业务部门提需求 → 投资部初筛 → 内部立项会。\n产出：立项申请单 + 初步投资逻辑', color: '#22C55E', pos: 0 },
+        { icon: '2️⃣', name: '调研', tag: '宏观+行业', detail: '行业研究、政策分析、宏观窗口判断、竞品扫描。\n产出：行业研究简报 50 页', color: '#22C55E', pos: 1 },
+        { icon: '3️⃣', name: '尽调', tag: '三路并行', detail: '财务尽调 + 法律尽调 + 业务尽调 三线并行。\n产出：尽调报告 200 页 + 风险清单', color: '#22C55E', pos: 2 },
+        { icon: '4️⃣', name: '估值', tag: '建模谈判', detail: 'DCF 模型 + 可比公司 + 敏感性分析 + 情景模拟。\n产出：估值模型 + 投资建议书', color: '#22C55E', pos: 3 },
+        { icon: '5️⃣', name: '谈判', tag: '交易结构', detail: '估值博弈、对赌条款设计、股权比例、董事会席位。\n产出：TS 条款书 + 谈判纪要', color: '#22C55E', pos: 4 },
+        { icon: '6️⃣', name: '交割', tag: '合规过户', detail: '股权过户、工商变更、资金安排、监管报批。\n产出：交割确认函 + 工商执照', color: '#22C55E', pos: 5 },
+        { icon: '7️⃣', name: '投后', tag: '跟踪退出', detail: '季度经营跟踪、风险预警、增值服务、退出准备。\n产出：投后管理月报 + 退出方案', color: '#22C55E', pos: 6 }
       ]
     },
 
-    // 05 研究 - 7 维度（七芒星，6s）
+    // 05 研究 - 7 维度（原 trigger 已展示"7 维度"，扩写每维度核心问题）
     'burst-research-7': {
-      style: '7star',
-      duration: 6000,
+      title: '研究分析 · 7 维度',
+      subtitle: '宏观 → 行业 → 模式 → 财务 → 估值 → 风险 → 结论',
+      layout: '7star',
       cards: [
-        { icon: '🌐', title: '宏观环境', desc: 'PEST · 经济周期 · 政策窗口', color: '#F59E0B', angle: '309' },
-        { icon: '🏭', title: '行业格局', desc: '波特五力 · 集中度 · 竞争结构', color: '#F59E0B', angle: '51' },
-        { icon: '💼', title: '商业模式', desc: '盈利逻辑 · 现金流 · 护城河', color: '#F59E0B', angle: '103' },
-        { icon: '📊', title: '财务分析', desc: '三表勾稽 · 盈利质量 · 偿债能力', color: '#F59E0B', angle: '154' },
-        { icon: '⚖️', title: '估值建模', desc: 'DCF · 可比 · 敏感性 · 情景分析', color: '#F59E0B', angle: '206' },
-        { icon: '⚠️', title: '风险识别', desc: '政策 · 市场 · 经营 · 合规风险', color: '#F59E0B', angle: '257' },
-        { icon: '🎯', title: '投资建议', desc: '评级 · 目标价 · 退出路径', color: '#F59E0B', angle: '0' }
+        { icon: '🌐', name: '宏观环境', tag: 'PEST', detail: '政策窗口 + 经济周期 + 社会趋势 + 技术变革。判断现在是不是入场好时机。\n核心问题：现在是顺风还是逆风？', color: '#F59E0B', pos: 0 },
+        { icon: '🏭', name: '行业格局', tag: '波特五力', detail: '集中度 + 竞争结构 + 上下游议价 + 替代品威胁。判断这个赛道值不值得进。\n核心问题：行业是红海还是蓝海？', color: '#F59E0B', pos: 1 },
+        { icon: '💼', name: '商业模式', tag: '护城河', detail: '盈利逻辑 + 现金流结构 + 客户黏性 + 复制壁垒。判断这个生意能不能持续赚钱。\n核心问题：凭什么能赚钱？', color: '#F59E0B', pos: 2 },
+        { icon: '📊', name: '财务分析', tag: '三表勾稽', detail: '利润表（盈利质量）+ 资产负债表（偿债能力）+ 现金流量表（造血能力）。判断数字背后是否真实。\n核心问题：账面利润是真金白银吗？', color: '#F59E0B', pos: 3 },
+        { icon: '⚖️', name: '估值建模', tag: 'DCF + 可比', detail: 'DCF 折现 + 可比公司 + 敏感性分析 + 情景模拟。判断价格是否合理。\n核心问题：多少钱买才划算？', color: '#F59E0B', pos: 4 },
+        { icon: '⚠️', name: '风险识别', tag: '四类风险', detail: '政策风险 + 市场风险 + 经营风险 + 合规风险。判断可能踩的坑。\n核心问题：最坏情况是什么？', color: '#F59E0B', pos: 5 },
+        { icon: '🎯', name: '投资建议', tag: '退出路径', detail: '评级（强烈推荐/推荐/中性/回避）+ 目标价 + 退出路径（IPO/并购/回购）。\n核心问题：现在该出手吗？', color: '#F59E0B', pos: 6 }
       ]
     },
 
-    // 06 数据 - 7 步骤（彩虹瀑布，6s）
+    // 06 数据 - 7 步清洗（原 trigger 已展示"7 步清洗"，扩写每步技术细节）
     'burst-data-7': {
-      style: 'waterfall',
-      duration: 6000,
+      title: '数据清洗 · 7 步流水线',
+      subtitle: '从原始材料到结构化入库',
+      layout: 'cascade',
       cards: [
-        { icon: '🎙️', title: '语音采集', desc: '现场录音 · 飞书会议 · 微信通话', color: '#A855F7' },
-        { icon: '📝', title: '转录', desc: 'FunASR · 中英混 · 术语纠错', color: '#A855F7' },
-        { icon: '🔍', title: 'OCR 识别', desc: 'PDF · 图片 · 表格 · 公式', color: '#A855F7' },
-        { icon: '🧹', title: '清洗', desc: '去重 · 纠错 · 标准化 · 结构化', color: '#A855F7' },
-        { icon: '✂️', title: '切分', desc: '按章节 · 按主题 · 按时间', color: '#A855F7' },
-        { icon: '🧬', title: '向量化', desc: 'bge-m3 · 嵌入 · 索引建立', color: '#A855F7' },
-        { icon: '💾', title: '入库', desc: 'Qdrant · PG · Wiki 双向写入', color: '#A855F7' }
+        { icon: '📥', name: '1. 采集', tag: '多源输入', detail: 'PDF 研报 / Word 纪要 / 录音 / Excel 财务表 / 网页快照。统一进入 inputs/ 目录。', color: '#A855F7', pos: 0 },
+        { icon: '🎙️', name: '2. 转录', tag: '语音→文字', detail: 'FunASR 模型处理录音（会议录音 / 调研访谈）。输出带时间戳的 SRT 文本。', color: '#A855F7', pos: 1 },
+        { icon: '👁️', name: '3. OCR', tag: '图片→文字', detail: '扫描版 PDF / 财务截图 / 表格图片。PaddleOCR 识别 + 版面分析。', color: '#A855F7', pos: 2 },
+        { icon: '🧹', name: '4. 清洗', tag: '去噪·分块', detail: '去广告 / 去重复 / 修格式错误 / 智能分块（按章节/按段落/按实体）。', color: '#A855F7', pos: 3 },
+        { icon: '🧬', name: '5. 实体抽取', tag: 'NER + 关系', detail: '人名/公司/金额/日期/指标 自动抽取。实体关系三元组入库到 PostgreSQL。', color: '#A855F7', pos: 4 },
+        { icon: '📐', name: '6. 向量化', tag: 'BGE-M3', detail: '文本分块 → BGE-M3 embedding → 写入 Qdrant 向量库（语义检索）。', color: '#A855F7', pos: 5 },
+        { icon: '✅', name: '7. 质检', tag: '入库校验', detail: '随机抽检 5% → 人工复核 → 准确率 ≥ 95% 才算合格 → 标记 done 进入 outputs/。', color: '#A855F7', pos: 6 }
       ]
     },
 
-    // 07 排版 - 3 管线（三轨推进，4s）
+    // 07 排版 - 3 大管线（原 trigger 已展示"3 管线"，扩写每管线的输出）
     'burst-report-3': {
-      style: 'track',
-      duration: 4000,
+      title: '报告排版 · 3 大管线',
+      subtitle: 'Word / PDF / PPT 三端输出',
+      layout: 'threecol',
       cards: [
-        { icon: '📄', title: 'Word 管线', desc: '公文格式 · 字号规范 · 页眉页脚', color: '#EC4899' },
-        { icon: '📊', title: 'PPT 管线', desc: '版式统一 · 母版继承 · 配色一致', color: '#EC4899' },
-        { icon: '📑', title: 'PDF 管线', desc: '图表导出 · 加密 · 水印 · 批注', color: '#EC4899' }
+        { icon: '📝', name: 'Word 管线', tag: '公文级', detail: '可研报告 / 立项请示 / 投资协议。\n模板：国企公文规范（方正小标宋 + 仿宋）+ 自动目录 + 页眉页脚 + 章节编号。', color: '#00D4FF', pos: 'left' },
+        { icon: '📕', name: 'PDF 管线', tag: '正式版', detail: '最终交付物 / 上会材料 / 存档。\n模板：封面页 + 签字页 + 正文 + 附录。加密 + 不可编辑。', color: '#22C55E', pos: 'center' },
+        { icon: '📊', name: 'PPT 管线', tag: '汇报版', detail: '立项汇报 / 投决会 / 季度复盘。\n模板：天保 VI 色系 + 数据图表 + 时间线 + 关键结论高亮。', color: '#A855F7', pos: 'right' }
       ]
     },
 
-    // 08 生态 - 5+2+1+1（四方格，7s）
+    // 08 生态 - 5+2+1+1（原 trigger 已展示"5+2+1+1 生态"，扩写）
     'burst-ecosystem': {
-      style: 'grid',
-      duration: 7000,
+      title: '5+2+1+1 生态全景',
+      subtitle: '5 Agent + 2 助手 + 1 中台 + 1 知识体系',
+      layout: 'grid',
       cards: [
-        { icon: '⚙️', title: '5 大 Agent', desc: 'main / project / research / data / report', color: '#00D4FF', pos: 'tl' },
-        { icon: '🛠️', title: '2 大助手', desc: 'Claude Code + Hermes', color: '#22C55E', pos: 'tr' },
-        { icon: '🏛️', title: '1 套中台', desc: 'Qdrant + PG + Wiki', color: '#A855F7', pos: 'bl' },
-        { icon: '🌐', title: '1 个团队', desc: '人类主导 · AI 执行 · 协同进化', color: '#F59E0B', pos: 'br' }
+        { icon: '⚙️', name: '5 Agent', tag: '生产', detail: 'main/project/research/data/report', color: '#00D4FF', pos: 0 },
+        { icon: '🧰', name: '2 助手', tag: '延伸', detail: 'Claude Code/Hermes', color: '#22C55E', pos: 1 },
+        { icon: '🏛️', name: '1 中台', tag: '存储', detail: 'Qdrant+PG+Wiki', color: '#A855F7', pos: 2 },
+        { icon: '📚', name: '1 知识体系', tag: '沉淀', detail: '方法论+案例库', color: '#F59E0B', pos: 3 }
       ]
     },
 
-    // 09 案例 - 5 案例（轮盘入场，5s）
+    // 09 案例 - 5 案例（原 trigger 已展示"5 实战案例"，扩写每个的成效）
     'burst-case-5': {
-      style: 'roulette',
-      duration: 5000,
+      title: '5 个实战案例 · 成效数据',
+      subtitle: '从被动响应到主动产出的真实转型',
+      layout: 'pentagon',
       cards: [
-        { icon: '⚡', title: '启源芯', desc: '功率半导体 · 收购尽调 · 28 天完成', color: '#00D4FF' },
-        { icon: '🚗', title: '星恒电源', desc: '锂电池 · 投后管理 · 估值修复 +40%', color: '#22C55E' },
-        { icon: '💎', title: '晶能光电', desc: 'LED 外延 · 估值建模 · DCF 验证', color: '#F59E0B' },
-        { icon: '🏛️', title: '盈科系', desc: '律师事务所 · 谈判策略 · 条款博弈', color: '#A855F7' },
-        { icon: '♻️', title: '中资环', desc: '固废处置 · 行业研究 · 政策红利', color: '#EC4899' }
+        { icon: '🏭', name: '飞马国际', tag: '并购尽调', detail: '3 周尽调 → 5 Agent 并行 4 天完成。\n原 200 页报告 → AI 自动生成 + 人工复核。\n效率 ↑ 4 倍，错误率 ↓ 70%。', color: '#00D4FF', pos: 0 },
+        { icon: '📑', name: '渤化集团', tag: '行业研究', detail: '化工子行业 12 个赛道扫描。\n传统 2 周 → AI 4 小时生成初稿。\n覆盖度 ↑ 3 倍。', color: '#22C55E', pos: 1 },
+        { icon: '🏗️', name: '天保基建', tag: '立项请示', detail: '10 个立项申请同步推进。\n公文规范 100% 符合。\n排版时间 ↓ 90%。', color: '#A855F7', pos: 2 },
+        { icon: '📊', name: '泰达实业', tag: '估值建模', detail: 'DCF + 可比 + 敏感性。\n模型搭建 1 天（传统 1 周）。\n可重复使用。', color: '#F59E0B', pos: 3 },
+        { icon: '💼', name: '津联控股', tag: '投资协议', detail: 'TS 条款设计 + 风险清单。\nAI 提示历史 23 个类似案例。\n谈判效率 ↑ 2 倍。', color: '#EC4899', pos: 4 }
       ]
     },
 
-    // 10 方法 - 纵横+6 维度（折扇，6s）
+    // 10 方法 - 纵横 8 维（原 trigger 已展示"2 主线 + 6 子维"，扩写）
     'burst-method-8': {
-      style: 'fan',
-      duration: 6000,
+      title: '纵横分析法 · 8 维',
+      subtitle: '横切面 + 纵深线 + 6 子维交叉验证',
+      layout: 'fan',
       cards: [
-        { icon: '↕️', title: '纵向（行业）', desc: '从政策到企业 5 层穿透', color: '#00D4FF', pos: 'main' },
-        { icon: '↔️', title: '横向（时序）', desc: '3-5 年财务轨迹', color: '#A855F7', pos: 'sub1' },
-        { icon: '📊', title: '财务 6 维', desc: '增长 · 盈利 · 偿债 · 运营 · 现金流 · 估值', color: '#F59E0B', pos: 'sub2' },
-        { icon: '🌍', title: '行业 6 维', desc: '规模 · 增速 · 集中度 · 壁垒 · 政策 · 替代', color: '#22C55E', pos: 'sub3' },
-        { icon: '🏢', title: '业务 6 维', desc: '产品 · 客户 · 供应链 · 渠道 · 技术 · 团队', color: '#EC4899', pos: 'sub4' },
-        { icon: '⚖️', title: '治理 6 维', desc: '股权 · 董监高 · 激励 · 内控 · 合规 · 信息', color: '#00D4FF', pos: 'sub5' },
-        { icon: '⚠️', title: '风险 6 维', desc: '政策 · 市场 · 经营 · 财务 · 法律 · 退出', color: '#F59E0B', pos: 'sub6' },
-        { icon: '🎯', title: '结论', desc: '评级 · 建议 · 退出路径', color: '#A855F7', pos: 'sub7' }
+        { icon: '↔️', name: '横线', tag: '横向比较', detail: '同期可比公司 / 同期类似项目 / 同期行业平均。\n问题：相对位置在哪？', color: '#A855F7', pos: 0 },
+        { icon: '↕️', name: '纵线', tag: '历史趋势', detail: '过去 3-5 年财务 / 业务 / 估值变化。\n问题：成长性如何？', color: '#A855F7', pos: 1 },
+        { icon: '🏭', name: '行业', tag: '子维 1', detail: '行业地位 + 竞品优劣势', color: '#22C55E', pos: 2 },
+        { icon: '💰', name: '财务', tag: '子维 2', detail: '三表勾稽 + 盈利质量', color: '#22C55E', pos: 3 },
+        { icon: '📈', name: '估值', tag: '子维 3', detail: 'DCF + 可比 + 敏感性', color: '#22C55E', pos: 4 },
+        { icon: '⚠️', name: '风险', tag: '子维 4', detail: '政策/市场/经营/合规', color: '#22C55E', pos: 5 },
+        { icon: '🎯', name: '团队', tag: '子维 5', detail: '管理层 + 关键人 + 激励机制', color: '#22C55E', pos: 6 },
+        { icon: '🚪', name: '退出', tag: '子维 6', detail: 'IPO/并购/回购路径', color: '#22C55E', pos: 7 }
       ]
     },
 
-    // 11 演示 - 5 智能体（HUD 重叠，5s）
+    // 11 演示 - 5 Agent 协同（原 trigger 已展示"5 Agent 协同"，扩写协同链）
     'burst-demo-5': {
-      style: 'hud',
-      duration: 5000,
+      title: '5 Agent 协同链',
+      subtitle: 'main 调度 4 子 Agent 的实际工作流',
+      layout: 'flow',
       cards: [
-        { icon: '🧠', title: 'main', desc: '总调度 · 任务分发', color: '#00D4FF' },
-        { icon: '📋', title: 'project', desc: '流程协调', color: '#22C55E' },
-        { icon: '🔍', title: 'research', desc: '行业研究', color: '#F59E0B' },
-        { icon: '🧹', title: 'data', desc: '清洗入库', color: '#A855F7' },
-        { icon: '📄', title: 'report', desc: '排版输出', color: '#EC4899' }
+        { icon: '🧠', name: 'main', tag: '入口', detail: '接收主公需求 → 拆解为 4 子任务 → 分发。\n例："分析 XX 公司并购可行性"', color: '#00D4FF', pos: 0 },
+        { icon: '📋', name: 'project', tag: '排期', detail: '建立项目台账 → 时间线 → 节点催办。\n产出：项目计划表 + 进度跟踪', color: '#22C55E', pos: 1 },
+        { icon: '🔬', name: 'research', tag: '研究', detail: '行业 + 财务 + 估值 三路并行。\n产出：行业简报 + 估值模型', color: '#F59E0B', pos: 2 },
+        { icon: '🗃️', name: 'data', tag: '清洗', detail: '材料入库 + 实体抽取 + 向量化。\n产出：Qdrant 索引 + PG 实体表', color: '#A855F7', pos: 3 },
+        { icon: '📄', name: 'report', tag: '出版', detail: '可研报告 + 立项请示 + PPT。\n产出：3 份正式文档', color: '#EC4899', pos: 4 }
       ]
     },
 
-    // 12 Q&A - 6 问（问答气泡，7s）
+    // 12 Q&A - 6 预判问答（原 trigger 已展示"6 大问答"，扩写每个的回答）
     'burst-qa-6': {
-      style: 'bubble',
-      duration: 7000,
+      title: '6 大预判问答',
+      subtitle: '团队最关心的 6 个问题 + 我们的回答',
+      layout: 'grid',
       cards: [
-        { icon: '❓', title: 'Q1 准确率', desc: 'AI 写的研报能信吗？', color: '#00D4FF' },
-        { icon: '❓', title: 'Q2 数据安全', desc: '敏感项目数据会不会泄露？', color: '#22C55E' },
-        { icon: '❓', title: 'Q3 学习曲线', desc: '老人 vs 新人 谁先用？', color: '#F59E0B' },
-        { icon: '❓', title: 'Q4 成本', desc: '一年要花多少钱？', color: '#A855F7' },
-        { icon: '❓', title: 'Q5 与日常冲突', desc: '业务忙没时间用？', color: '#EC4899' },
-        { icon: '❓', title: 'Q6 推广', desc: '如何让其他部门也用？', color: '#00D4FF' }
+        { icon: '🎯', name: 'Q1 准确率', tag: 'AI 写的研报能信吗？', detail: 'AI 出初稿 + 人工复核。准确率 95%+，比新人第一稿高。\n关键：人工 review 仍是最后一道关。', color: '#00D4FF', pos: 0 },
+        { icon: '🔒', name: 'Q2 数据安全', tag: '敏感项目会不会泄露？', detail: '本地化部署 + 隔离中台 + 审计日志。\n符合国资监管要求。', color: '#22C55E', pos: 1 },
+        { icon: '📚', name: 'Q3 学习曲线', tag: '老人 vs 新人谁先用？', detail: '都能用。新人获益更大（无需 3 年积累就能调用 3 年经验）。\n老人是"指挥 AI"而非"被 AI 指挥"。', color: '#F59E0B', pos: 2 },
+        { icon: '💰', name: 'Q4 成本', tag: '一年要花多少钱？', detail: '硬件一次性 + 模型 API 按量。\n年化 < 一个初级员工工资。\n投入产出比 1:10+。', color: '#A855F7', pos: 3 },
+        { icon: '⏰', name: 'Q5 时间冲突', tag: '业务忙没时间用？', detail: '先从"5 分钟任务"切入：周报整理、纪要排版、信息检索。\n无需专门时间，融入日常工作。', color: '#EC4899', pos: 4 },
+        { icon: '🚀', name: 'Q6 推广', tag: '其他部门怎么用？', detail: '本周六内训 → 下周部门试点 → 月底跨部门共享。\n先做出"看得见的成果"再推广。', color: '#00D4FF', pos: 5 }
       ]
     }
   };
 
-  // ============== 2. 渲染函数 ==============
-  function renderBurstStage(burstId, data) {
-    const stage = document.getElementById(burstId);
-    if (!stage) return;
-    stage.className = 'burst-stage burst-style-' + data.style;
-    stage.innerHTML = '';
-
-    data.cards.forEach((card, idx) => {
-      const div = document.createElement('div');
-      div.className = 'burst-card';
-      div.style.setProperty('--bc-color', card.color);
-      div.style.setProperty('--bc-glow', card.color + '66');
-
-      // 根据 style 设置定位属性
-      let attrs = `data-i="${idx}"`;
-      if (card.pos) attrs += ` data-pos="${card.pos}"`;
-      if (card.angle !== undefined) attrs += ` data-angle="${card.angle}"`;
-      div.setAttribute('data-i', idx);
-      if (card.pos) div.setAttribute('data-pos', card.pos);
-      if (card.angle !== undefined) div.setAttribute('data-angle', card.angle);
-
-      div.innerHTML = `
-        <span class="bc-icon">${card.icon}</span>
-        <div class="bc-title" style="color:${card.color}">${card.title}</div>
-        <div class="bc-desc">${card.desc}</div>
-      `;
-      stage.appendChild(div);
-    });
+  // ============== 2. 排版算法 ==============
+  function getLayoutCoords(layout, count) {
+    const coords = [];
+    switch (layout) {
+      case 'threecol':
+        // 三栏
+        coords.push({ left: '8%', top: '50%' });
+        if (count >= 2) coords.push({ left: '50%', top: '50%' });
+        if (count >= 3) coords.push({ left: '92%', top: '50%' });
+        for (let i = 3; i < count; i++) coords.push({ left: '50%', top: `${20 + i*15}%` });
+        break;
+      case 'vert':
+        // 纵向
+        for (let i = 0; i < count; i++) {
+          coords.push({ left: '50%', top: `${15 + i * (70 / Math.max(1, count-1))}%` });
+        }
+        break;
+      case 'pipe':
+        // 横向流水线
+        for (let i = 0; i < count; i++) {
+          coords.push({ left: `${5 + i * (90 / Math.max(1, count-1))}%`, top: '50%' });
+        }
+        break;
+      case '7star':
+      case 'pentagon':
+        // 中心圆 + 周围辐射（中心 + count-1 周围）
+        // 中心点
+        coords.push({ left: '50%', top: '50%', center: true });
+        const radius = 38; // 半径（%）
+        for (let i = 0; i < count - 1; i++) {
+          const angle = (Math.PI * 2 * i / (count - 1)) - Math.PI / 2;
+          const left = 50 + radius * Math.cos(angle);
+          const top = 50 + radius * Math.sin(angle);
+          coords.push({ left: `${left}%`, top: `${top}%` });
+        }
+        break;
+      case 'grid':
+        // 网格（自适应）
+        const cols = count <= 2 ? count : Math.ceil(Math.sqrt(count));
+        for (let i = 0; i < count; i++) {
+          const r = Math.floor(i / cols);
+          const c = i % cols;
+          coords.push({
+            left: `${15 + c * (70 / Math.max(1, cols-1))}%`,
+            top: `${25 + r * 50}%`
+          });
+        }
+        break;
+      case 'cascade':
+        // 垂直瀑布
+        for (let i = 0; i < count; i++) {
+          coords.push({ left: `${15 + (i % 2) * 60}%`, top: `${10 + i * (75 / Math.max(1, count-1))}%` });
+        }
+        break;
+      case 'fan':
+        // 折扇（中心 + 两侧展开）
+        coords.push({ left: '50%', top: '50%', center: true });
+        for (let i = 0; i < count - 1; i++) {
+          const t = i / Math.max(1, count - 2); // 0..1
+          const angle = -60 + t * 120; // -60 ~ 60 度
+          coords.push({
+            left: `${50 + 35 * Math.cos(angle * Math.PI / 180)}%`,
+            top: `${50 + 35 * Math.sin(angle * Math.PI / 180)}%`
+          });
+        }
+        break;
+      case 'flow':
+        // 流程图
+        for (let i = 0; i < count; i++) {
+          const row = Math.floor(i / 3);
+          const col = i % 3;
+          coords.push({
+            left: `${20 + col * 30}%`,
+            top: `${25 + row * 50}%`
+          });
+        }
+        break;
+      default:
+        // 默认：横向
+        for (let i = 0; i < count; i++) {
+          coords.push({ left: `${10 + i * (80 / Math.max(1, count-1))}%`, top: '50%' });
+        }
+    }
+    return coords;
   }
 
-  // ============== 3. 触发函数 ==============
-  let currentTimer = null;
-  function triggerBurst(burstId) {
+  // ============== 3. 渲染逻辑 ==============
+  let currentBurstId = null;
+  let currentTrigger = null;
+
+  function openBurst(burstId, triggerEl) {
+    // 关掉已打开的
+    if (currentBurstId) closeBurst();
+
     const data = BURST_DATA[burstId];
     if (!data) return;
 
     const stage = document.getElementById(burstId);
     if (!stage) return;
 
-    // 首次渲染
-    if (stage.children.length === 0) {
-      renderBurstStage(burstId, data);
-    }
+    currentBurstId = burstId;
+    currentTrigger = triggerEl;
 
-    // 如果已经显示，立即关闭
-    if (stage.classList.contains('show')) {
-      stage.classList.remove('show');
-      document.querySelector('.burst-overlay')?.classList.remove('show');
-      document.querySelector('.burst-close')?.classList.remove('show');
-      if (currentTimer) clearTimeout(currentTimer);
-      return;
-    }
+    // 标题区
+    stage.innerHTML = `
+      <div class="burst-header">
+        <div class="burst-title">${data.title}</div>
+        <div class="burst-subtitle">${data.subtitle}</div>
+      </div>
+      <button class="burst-close" type="button">✕ 关闭</button>
+    `;
 
-    // 创建/获取 overlay 和 close 按钮
-    let overlay = document.querySelector('.burst-overlay');
-    if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'burst-overlay';
-      overlay.addEventListener('click', closeAllBurst);
-      document.body.appendChild(overlay);
-    }
-    overlay.classList.add('show');
+    // 卡片
+    const coords = getLayoutCoords(data.layout, data.cards.length);
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'burst-cards';
 
-    let closeBtn = document.querySelector('.burst-close');
-    if (!closeBtn) {
-      closeBtn = document.createElement('button');
-      closeBtn.className = 'burst-close';
-      closeBtn.innerHTML = '✕';
-      closeBtn.addEventListener('click', closeAllBurst);
-      document.body.appendChild(closeBtn);
-    }
-    closeBtn.classList.add('show');
+    data.cards.forEach((card, idx) => {
+      const div = document.createElement('div');
+      div.className = 'burst-card';
+      div.style.setProperty('--bc-color', card.color);
+      const coord = coords[idx] || { left: '50%', top: '50%' };
+      if (coord.center) div.classList.add('bc-center');
+      div.style.left = coord.left;
+      div.style.top = coord.top;
+      div.setAttribute('data-i', idx);
+
+      // 标题 + 标签 + 详情
+      const detailHtml = (card.detail || '').replace(/\n/g, '<br>');
+      div.innerHTML = `
+        <span class="bc-icon">${card.icon}</span>
+        <div class="bc-name" style="color:${card.color}">${card.name}</div>
+        <div class="bc-tag">${card.tag}</div>
+        <div class="bc-detail">${detailHtml}</div>
+      `;
+
+      // stagger 延迟出现
+      div.style.animationDelay = `${idx * 100 + 200}ms`;
+      cardContainer.appendChild(div);
+    });
+    stage.appendChild(cardContainer);
 
     // 显示
-    stage.classList.add('show');
+    requestAnimationFrame(() => {
+      stage.classList.add('show');
+    });
 
-    // 自动关闭
-    if (currentTimer) clearTimeout(currentTimer);
-    currentTimer = setTimeout(closeAllBurst, data.duration);
+    // 绑定关闭
+    stage.querySelector('.burst-close').addEventListener('click', closeBurst);
   }
 
-  function closeAllBurst() {
-    document.querySelectorAll('.burst-stage.show').forEach(s => s.classList.remove('show'));
-    document.querySelector('.burst-overlay')?.classList.remove('show');
-    document.querySelector('.burst-close')?.classList.remove('show');
-    if (currentTimer) clearTimeout(currentTimer);
+  function closeBurst() {
+    if (!currentBurstId) return;
+    const stage = document.getElementById(currentBurstId);
+    if (stage) {
+      stage.classList.remove('show');
+      setTimeout(() => {
+        if (stage && !stage.classList.contains('show')) {
+          stage.innerHTML = '';
+        }
+      }, 400);
+    }
+    currentBurstId = null;
+    currentTrigger = null;
   }
 
   // ============== 4. 绑定事件 ==============
@@ -268,16 +359,34 @@
         e.preventDefault();
         e.stopPropagation();
         const burstId = this.getAttribute('data-burst');
-        triggerBurst(burstId);
+        openBurst(burstId, this);
       });
     });
   }
 
-  // ============== 5. 初始化 ==============
+  // ============== 5. 全局关闭 ==============
+  document.addEventListener('click', (e) => {
+    if (!currentBurstId) return;
+    const stage = document.getElementById(currentBurstId);
+    // 如果点击不在 stage 内（包括 stage 本身），关闭
+    if (stage && !stage.contains(e.target)) {
+      // 也不在 trigger 内
+      if (!currentTrigger || !currentTrigger.contains(e.target)) {
+        closeBurst();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && currentBurstId) {
+      closeBurst();
+    }
+  });
+
+  // ============== 6. 初始化 ==============
   document.addEventListener('DOMContentLoaded', bindBurstTriggers);
 
-  // 暴露全局函数，供动态注入内容使用
   window.bindBurstTriggers = bindBurstTriggers;
-  window.triggerBurst = triggerBurst;
-  window.closeAllBurst = closeAllBurst;
+  window.openBurst = openBurst;
+  window.closeBurst = closeBurst;
 })();

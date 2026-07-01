@@ -800,271 +800,243 @@ th {
 /* BURST 动画系统 - 8 种差异化弹出效果（v1.3）    */
 /* ============================================== */
 
-/* 通用 burst 容器 */
+
+/* ============================================== */
+/* BURST v2.0  放大扩写模式                         */
+/* ============================================== */
+
+/* 容器 - 默认隐藏，绝对定位覆盖在 trigger 上方 */
 .burst-stage {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: 8000;
-  overflow: hidden;
-}
-
-.burst-card {
   position: absolute;
-  pointer-events: auto;
-  cursor: pointer;
-  background: var(--bg-card, rgba(15,23,42,0.95));
-  backdrop-filter: blur(20px);
-  border-radius: 16px;
-  padding: 18px 22px;
-  min-width: 200px;
-  max-width: 280px;
-  border: 2px solid var(--bc-color, #00D4FF);
-  box-shadow: 0 12px 48px var(--bc-glow, rgba(0,212,255,0.4)),
-              inset 0 0 0 1px rgba(255,255,255,0.1);
-  color: #fff;
+  z-index: 1000;
+  pointer-events: none;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(0.3);
-  transition: all 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
-  font-size: 14px;
-  line-height: 1.5;
+  transform: scale(0.8);
+  transform-origin: center top;
+  transition: opacity 0.4s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: min(96vw, 1400px);
+  min-height: 400px;
+  margin-top: 80px;
+  display: none;
 }
 
-.burst-card:hover {
-  transform: translate(-50%, -50%) scale(1.08) !important;
-  box-shadow: 0 18px 60px var(--bc-glow, rgba(0,212,255,0.7));
-}
-
-.burst-card .bc-icon {
-  font-size: 32px;
+.burst-stage.show {
   display: block;
-  margin-bottom: 8px;
-}
-
-.burst-card .bc-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.burst-card .bc-desc {
-  font-size: 12px;
-  opacity: 0.85;
-  font-weight: 400;
-}
-
-.burst-stage.show .burst-card {
   opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* 全屏背景 - 模糊原内容 */
+.burst-stage::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(10, 14, 39, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: -1;
+}
+
+/* 标题区 */
+.burst-header {
+  text-align: center;
+  margin: 20px auto 30px;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.burst-title {
+  font-size: 32px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00D4FF, #A855F7, #F59E0B);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+  animation: burst-title-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+.burst-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 1.5px;
+  animation: burst-title-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@keyframes burst-title-in {
+  from { opacity: 0; transform: translateY(-15px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* 关闭按钮 */
 .burst-close {
   position: fixed;
-  top: 30px; right: 40px;
-  z-index: 8500;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: rgba(15,23,42,0.9);
-  border: 2px solid rgba(255,255,255,0.3);
+  top: 24px;
+  right: 32px;
+  z-index: 1001;
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.1);
+  border: 1.5px solid rgba(255,255,255,0.3);
   color: #fff;
-  font-size: 24px;
+  border-radius: 24px;
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s;
-}
-
-.burst-close.show {
-  opacity: 1;
-  pointer-events: auto;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  backdrop-filter: blur(8px);
 }
 
 .burst-close:hover {
-  background: rgba(220,38,38,0.9);
-  transform: rotate(90deg);
+  background: rgba(255,255,255,0.2);
+  border-color: #00D4FF;
+  transform: scale(1.05);
 }
 
-/* 全屏遮罩 */
-.burst-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(8px);
-  z-index: 7990;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-
-.burst-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ============== 动画 1: 辐射风暴（7 角）- 00 封面 ============== */
-@keyframes burst-7ray {
-  from { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
-  to   { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
-.burst-style-radial .burst-card { transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
-.burst-style-radial.show .burst-card[data-angle="0"]   { left: 50%; top: 8%;  }
-.burst-style-radial.show .burst-card[data-angle="51"]  { left: 88%; top: 25%; }
-.burst-style-radial.show .burst-card[data-angle="103"] { left: 88%; top: 75%; }
-.burst-style-radial.show .burst-card[data-angle="154"] { left: 50%; top: 92%; }
-.burst-style-radial.show .burst-card[data-angle="206"] { left: 12%; top: 75%; }
-.burst-style-radial.show .burst-card[data-angle="257"] { left: 12%; top: 25%; }
-.burst-style-radial.show .burst-card[data-angle="309"] { left: 50%; top: 50%; transform: translate(-50%,-50%) scale(1.15); }
-
-/* ============== 动画 2: 三栏并出（3 段）- 01 开场 ============== */
-.burst-style-threecol .burst-card { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.burst-style-threecol.show .burst-card[data-pos="left"]   { left: 20%; top: 50%; transform: translate(-50%,-50%) rotate(-2deg); }
-.burst-style-threecol.show .burst-card[data-pos="center"] { left: 50%; top: 50%; transform: translate(-50%,-50%) scale(1.1); }
-.burst-style-threecol.show .burst-card[data-pos="right"]  { left: 80%; top: 50%; transform: translate(-50%,-50%) rotate(2deg); }
-
-/* ============== 动画 3: 纵向递进（3 层）- 02 革命 ============== */
-.burst-style-vert .burst-card { transition: all 0.6s ease-out; }
-.burst-style-vert.show .burst-card[data-pos="top"]    { left: 50%; top: 18%; }
-.burst-style-vert.show .burst-card[data-pos="middle"] { left: 50%; top: 50%; }
-.burst-style-vert.show .burst-card[data-pos="bottom"] { left: 50%; top: 82%; }
-
-/* ============== 动画 4: 横向流水线（7 段）- 04 项目 ============== */
-.burst-style-pipe .burst-card { transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-.burst-style-pipe.show .burst-card { left: calc(50% + var(--pipe-x, 0px)); top: 50%; transform: translate(-50%, -50%); }
-.burst-style-pipe.show .burst-card[data-i="0"] { --pipe-x: -450px; }
-.burst-style-pipe.show .burst-card[data-i="1"] { --pipe-x: -300px; }
-.burst-style-pipe.show .burst-card[data-i="2"] { --pipe-x: -150px; }
-.burst-style-pipe.show .burst-card[data-i="3"] { --pipe-x:    0px; transform: translate(-50%, -50%) scale(1.15); }
-.burst-style-pipe.show .burst-card[data-i="4"] { --pipe-x:  150px; }
-.burst-style-pipe.show .burst-card[data-i="5"] { --pipe-x:  300px; }
-.burst-style-pipe.show .burst-card[data-i="6"] { --pipe-x:  450px; }
-
-/* ============== 动画 5: 七芒星（7 角）- 05 研究 ============== */
-.burst-style-7star .burst-card { transition: all 0.7s cubic-bezier(0.5, -0.5, 0.5, 1.5); }
-.burst-style-7star.show .burst-card[data-angle="0"]   { left: 50%; top: 10%; }
-.burst-style-7star.show .burst-card[data-angle="51"]  { left: 85%; top: 26%; }
-.burst-style-7star.show .burst-card[data-angle="103"] { left: 85%; top: 73%; }
-.burst-style-7star.show .burst-card[data-angle="154"] { left: 50%; top: 90%; }
-.burst-style-7star.show .burst-card[data-angle="206"] { left: 15%; top: 73%; }
-.burst-style-7star.show .burst-card[data-angle="257"] { left: 15%; top: 26%; }
-.burst-style-7star.show .burst-card[data-angle="309"] { left: 50%; top: 50%; transform: translate(-50%,-50%) scale(1.2); }
-
-/* ============== 动画 6: 彩虹瀑布（垂直流）- 06 数据 ============== */
-.burst-style-waterfall .burst-card { transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1); }
-.burst-style-waterfall.show .burst-card { left: calc(50% + var(--wf-x, 0px)); top: var(--wf-y, 50%); transform: translate(-50%, -50%); }
-.burst-style-waterfall.show .burst-card[data-i="0"] { --wf-x: -280px; --wf-y: 12%; }
-.burst-style-waterfall.show .burst-card[data-i="1"] { --wf-x: -180px; --wf-y: 25%; }
-.burst-style-waterfall.show .burst-card[data-i="2"] { --wf-x: -80px;  --wf-y: 38%; }
-.burst-style-waterfall.show .burst-card[data-i="3"] { --wf-x:  20px;  --wf-y: 50%; transform: translate(-50%, -50%) scale(1.18); }
-.burst-style-waterfall.show .burst-card[data-i="4"] { --wf-x:  120px; --wf-y: 62%; }
-.burst-style-waterfall.show .burst-card[data-i="5"] { --wf-x:  220px; --wf-y: 75%; }
-.burst-style-waterfall.show .burst-card[data-i="6"] { --wf-x:  320px; --wf-y: 88%; }
-
-/* ============== 动画 7: 三轨推进（横向滑入）- 07 排版 ============== */
-.burst-style-track .burst-card { transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
-.burst-style-track.show .burst-card { left: 50%; top: var(--trk-y, 50%); transform: translate(-50%, -50%); }
-.burst-style-track.show .burst-card[data-i="0"] { --trk-y: 25%; }
-.burst-style-track.show .burst-card[data-i="1"] { --trk-y: 50%; transform: translate(-50%, -50%) scale(1.12); }
-.burst-style-track.show .burst-card[data-i="2"] { --trk-y: 75%; }
-
-/* ============== 动画 8: 四方格 - 08 生态 ============== */
-.burst-style-grid .burst-card { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.burst-style-grid.show .burst-card[data-pos="tl"] { left: 25%; top: 22%; }
-.burst-style-grid.show .burst-card[data-pos="tr"] { left: 75%; top: 22%; }
-.burst-style-grid.show .burst-card[data-pos="bl"] { left: 25%; top: 78%; }
-.burst-style-grid.show .burst-card[data-pos="br"] { left: 75%; top: 78%; }
-
-/* ============== 动画 9: 轮盘入场（旋转换位）- 09 案例 ============== */
-@keyframes burst-rotate-in {
-  from { transform: translate(-50%, -50%) rotate(-360deg) scale(0); opacity: 0; }
-  to   { transform: translate(-50%, -50%) rotate(0deg) scale(1); opacity: 1; }
-}
-.burst-style-roulette .burst-card { animation: burst-rotate-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.burst-style-roulette.show .burst-card[data-i="0"] { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1.18); }
-.burst-style-roulette.show .burst-card[data-i="1"] { left: 18%; top: 30%; }
-.burst-style-roulette.show .burst-card[data-i="2"] { left: 82%; top: 30%; }
-.burst-style-roulette.show .burst-card[data-i="3"] { left: 18%; top: 75%; }
-.burst-style-roulette.show .burst-card[data-i="4"] { left: 82%; top: 75%; }
-
-/* ============== 动画 10: 折扇（2 大 + 6 子）- 10 方法 ============== */
-.burst-style-fan .burst-card { transition: all 0.6s cubic-bezier(0.5, -0.3, 0.5, 1.5); }
-.burst-style-fan.show .burst-card[data-pos="main"]   { left: 25%; top: 50%; transform: translate(-50%, -50%) scale(1.25); }
-.burst-style-fan.show .burst-card[data-pos="sub1"]   { left: 60%; top: 18%; transform: translate(-50%, -50%) rotate(-3deg); }
-.burst-style-fan.show .burst-card[data-pos="sub2"]   { left: 60%; top: 38%; transform: translate(-50%, -50%) rotate(3deg); }
-.burst-style-fan.show .burst-card[data-pos="sub3"]   { left: 60%; top: 58%; transform: translate(-50%, -50%) rotate(-3deg); }
-.burst-style-fan.show .burst-card[data-pos="sub4"]   { left: 80%; top: 22%; transform: translate(-50%, -50%) rotate(2deg); }
-.burst-style-fan.show .burst-card[data-pos="sub5"]   { left: 80%; top: 42%; transform: translate(-50%, -50%) rotate(-2deg); }
-.burst-style-fan.show .burst-card[data-pos="sub6"]   { left: 80%; top: 62%; transform: translate(-50%, -50%) rotate(2deg); }
-.burst-style-fan.show .burst-card[data-pos="sub7"]   { left: 80%; top: 82%; transform: translate(-50%, -50%) rotate(-2deg); }
-
-/* ============== 动画 11: HUD 重叠（层叠卡片）- 11 演示 ============== */
-.burst-style-hud .burst-card { transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.burst-style-hud.show .burst-card[data-i="0"] { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(1.3); z-index: 5; }
-.burst-style-hud.show .burst-card[data-i="1"] { left: calc(50% - 200px); top: 30%; transform: translate(-50%, -50%) scale(0.85); z-index: 4; }
-.burst-style-hud.show .burst-card[data-i="2"] { left: calc(50% + 200px); top: 30%; transform: translate(-50%, -50%) scale(0.85); z-index: 3; }
-.burst-style-hud.show .burst-card[data-i="3"] { left: calc(50% - 200px); top: 70%; transform: translate(-50%, -50%) scale(0.85); z-index: 2; }
-.burst-style-hud.show .burst-card[data-i="4"] { left: calc(50% + 200px); top: 70%; transform: translate(-50%, -50%) scale(0.85); z-index: 1; }
-
-/* ============== 动画 12: 问答气泡（依次浮起）- 12 Q&A ============== */
-@keyframes bubble-rise {
-  from { transform: translate(-50%, -50%) translateY(40px) scale(0.6); opacity: 0; }
-  to   { transform: translate(-50%, -50%) translateY(0) scale(1); opacity: 1; }
-}
-.burst-style-bubble .burst-card { animation: bubble-rise 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
-.burst-style-bubble.show .burst-card[data-i="0"] { left: 22%; top: 16%; animation-delay: 0.0s; }
-.burst-style-bubble.show .burst-card[data-i="1"] { left: 78%; top: 16%; animation-delay: 0.1s; }
-.burst-style-bubble.show .burst-card[data-i="2"] { left: 22%; top: 50%; animation-delay: 0.2s; }
-.burst-style-bubble.show .burst-card[data-i="3"] { left: 78%; top: 50%; animation-delay: 0.3s; }
-.burst-style-bubble.show .burst-card[data-i="4"] { left: 22%; top: 84%; animation-delay: 0.4s; }
-.burst-style-bubble.show .burst-card[data-i="5"] { left: 78%; top: 84%; animation-delay: 0.5s; }
-
-/* ============== 通用 burst-trigger 按钮样式 ============== */
-.burst-trigger {
-  display: inline-block;
-  cursor: pointer;
+/* 卡片容器 - relative 让 absolute 卡片定位 */
+.burst-cards {
   position: relative;
-  background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(168,85,247,0.15));
-  padding: 4px 14px;
-  border-radius: 8px;
-  border: 1.5px solid currentColor;
-  transition: all 0.3s;
-  font-weight: 600;
+  width: 100%;
+  min-height: 480px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.burst-trigger:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,212,255,0.35);
+/* 卡片 - 放大扩写 */
+.burst-card {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  width: 240px;
+  min-height: 140px;
+  background: rgba(15, 23, 42, 0.92);
+  border: 2px solid var(--bc-color, #00D4FF);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  animation: burst-card-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.burst-stage.show .burst-card {
+  /* trigger JS 设置 left/top */
+}
+
+.burst-card.bc-center {
+  transform: translate(-50%, -50%) scale(0);
+  width: 280px;
+  min-height: 160px;
+  z-index: 5;
+}
+
+@keyframes burst-card-in {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(-8deg); }
+  60%  { opacity: 1; transform: translate(-50%, -50%) scale(1.1) rotate(2deg); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
+}
+
+.burst-card:hover {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+  box-shadow: 0 16px 48px var(--bc-color, rgba(0,212,255,0.4)), 0 0 0 2px var(--bc-color, #00D4FF);
+  z-index: 20;
+}
+
+.burst-card.bc-center:hover {
+  transform: translate(-50%, -50%) scale(1.15) !important;
+}
+
+/* 卡片内字体 - 大 */
+.bc-icon {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 8px var(--bc-color, #00D4FF));
+}
+
+.bc-name {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.bc-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.08);
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.bc-detail {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  margin-top: 4px;
+}
+
+/* 暗主题适配 */
+.theme-dark .burst-card {
+  background: rgba(10, 14, 39, 0.92);
+}
+
+/* 天保主题适配 */
+.theme-tianjin .burst-card {
+  background: rgba(0, 51, 102, 0.92);
+}
+
+/* 学术主题适配 */
+.theme-academic .burst-card {
+  background: rgba(255, 255, 255, 0.96);
+  color: #1a1a1a;
+}
+.theme-academic .bc-detail {
+  color: #444;
+}
+.theme-academic .burst-subtitle {
+  color: #555;
+}
+
+/* 国风主题 */
+.theme-guofeng .burst-card {
+  background: rgba(120, 30, 30, 0.92);
+}
+/* ============================================== */
+/* BURST v2.0  Trigger 按钮                         */
+/* ============================================== */
+.burst-trigger {
+  display: inline-block !important;
+  cursor: pointer !important;
+  background: linear-gradient(135deg, #00D4FF25, #A855F725) !important;
+  border: 2.5px solid #00D4FF !important;
+  color: #00D4FF !important;
+  padding: 8px 18px !important;
+  margin: 2px 4px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+  position: relative !important;
+  box-shadow: 0 4px 16px rgba(0,212,255,0.3) !important;
+  animation: burst-trigger-pulse 2.5s ease-in-out infinite !important;
 }
 
 .burst-trigger::after {
   content: ' ✨';
   font-size: 14px;
+  margin-left: 4px;
 }
 
-/* burst 适配暗主题 */
-.theme-dark .burst-card { background: rgba(15,23,42,0.95); }
-
-/* v1.3.1 burst-trigger 增强样式 */
-.burst-trigger {
-  display: inline-block !important;
-  cursor: pointer !important;
-  background: linear-gradient(135deg, #00D4FF20, #A855F720) !important;
-  border: 2.5px solid #00D4FF !important;
-  color: #00D4FF !important;
-  padding: 6px 16px !important;
-  margin: 2px 4px !important;
-  border-radius: 12px !important;
-  font-weight: 700 !important;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-  position: relative !important;
-  box-shadow: 0 4px 16px rgba(0,212,255,0.3), 0 0 0 0 rgba(0,212,255,0.4) !important;
-  animation: burst-pulse 2.5s ease-in-out infinite !important;
-}
-
-@keyframes burst-pulse {
-  0%, 100% { box-shadow: 0 4px 16px rgba(0,212,255,0.3), 0 0 0 0 rgba(0,212,255,0.4); }
-  50% { box-shadow: 0 4px 16px rgba(0,212,255,0.5), 0 0 0 8px rgba(0,212,255,0); }
+@keyframes burst-trigger-pulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(0,212,255,0.3), 0 0 0 0 rgba(0,212,255,0.5); }
+  50% { box-shadow: 0 4px 16px rgba(0,212,255,0.5), 0 0 0 10px rgba(0,212,255,0); }
 }
 
 .burst-trigger:hover {
@@ -1075,4 +1047,10 @@ th {
 
 .burst-trigger:active {
   transform: translateY(0) scale(0.98) !important;
+}
+
+/* 主题适配 */
+.theme-academic .burst-trigger {
+  background: linear-gradient(135deg, #f0f4f825, #6366f125) !important;
+  color: #1e40af !important;
 }
