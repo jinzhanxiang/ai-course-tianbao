@@ -56,12 +56,11 @@
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px">
         <h1 style="font-size:40px;color:var(--accent)"><span class="burst-trigger" data-burst="burst-case-5" data-hint="👉 轮盘入场动画">第 09 章 · 实战案例</span></h1>
-      <p style="margin-top:18px"><span class="burst-trigger" data-burst="burst-case-5" data-hint="👉 5 案例轮盘">✨ 点击查看 5 个实战项目</span></p>
-        <p style="font-size:15px;color:var(--text-secondary);margin-top:8px">👆 点击下方任意案例卡 · 查看 7 智能体协同全过程</p>
+      <p style="font-size:15px;color:var(--text-secondary);margin-top:8px">👆 点击下方任意案例卡 · 查看 7 智能体协同全过程</p>
       </header>
 
       <div class="agent-grid" style="grid-template-columns:repeat(3,1fr)">
-        <div class="modal-trigger" data-modal="case-qiyuanxin" style="cursor:pointer">
+        <div class="burst-trigger" data-burst="burst-case-qiyuanxin" data-hint="👉 点击展开 启源芯项目 详情" style="cursor:pointer">
           <div class="agent-card" style="transition:all 0.3s">
             <span class="emoji">🏭</span>
             <h4>启源芯项目</h4>
@@ -74,7 +73,7 @@
           </div>
         </div>
 
-        <div class="modal-trigger" data-modal="case-xingheng" style="cursor:pointer">
+        <div class="burst-trigger" data-burst="burst-case-xingheng" data-hint="👉 点击展开 星恒电源 详情" style="cursor:pointer">
           <div class="agent-card" style="transition:all 0.3s">
             <span class="emoji">🔋</span>
             <h4>星恒电源</h4>
@@ -87,7 +86,7 @@
           </div>
         </div>
 
-        <div class="modal-trigger" data-modal="case-jingneng" style="cursor:pointer">
+        <div class="burst-trigger" data-burst="burst-case-jingneng" data-hint="👉 点击展开 晶能光电 详情" style="cursor:pointer">
           <div class="agent-card" style="transition:all 0.3s">
             <span class="emoji">💡</span>
             <h4>晶能光电</h4>
@@ -102,7 +101,7 @@
       </div>
 
       <div class="agent-grid" style="grid-template-columns:repeat(2,1fr);margin-top:16px">
-        <div class="modal-trigger" data-modal="case-yingke" style="cursor:pointer">
+        <div class="burst-trigger" data-burst="burst-case-yingke" data-hint="👉 点击展开 盈科系项目 详情" style="cursor:pointer">
           <div class="agent-card" style="transition:all 0.3s">
             <span class="emoji">💼</span>
             <h4>盈科系项目</h4>
@@ -115,7 +114,7 @@
           </div>
         </div>
 
-        <div class="modal-trigger" data-modal="case-zhongzihuan" style="cursor:pointer">
+        <div class="burst-trigger" data-burst="burst-case-zhongzihuan" data-hint="👉 点击展开 中资环绿色循环 详情" style="cursor:pointer">
           <div class="agent-card" style="transition:all 0.3s">
             <span class="emoji">♻️</span>
             <h4>中资环绿色循环</h4>
@@ -135,119 +134,6 @@
     </div>
   </main>
 
-  <!-- ============ 5 个案例详情弹窗 ============ -->
-  <div class="modal-overlay" id="case-qiyuanxin">
-    <div class="modal-box">
-      <button class="modal-close">✕</button>
-      <h2 class="modal-title">🏭 启源芯项目 · 90 分钟投决全流程</h2>
-      <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-        <p><strong style="color:var(--accent)">项目背景：</strong>功率半导体（SiC 衬底）· 投决阶段 · 主公周五晚下令</p>
-        <p><strong style="color:var(--accent)">5+2+1 协同全过程：</strong></p>
-        <ol style="margin-left:20px;margin-top:8px">
-          <li><strong style="color:#00D4FF">T+0 min</strong> · main 接收指令 "今晚投决启源芯"</li>
-          <li><strong style="color:#00D4FF">T+5 min</strong> · main 拆解为 5 个子任务，分派给 4 个 Agent</li>
-          <li><strong style="color:#22C55E">T+15 min</strong> · data 启动清洗 30 份同业研报</li>
-          <li><strong style="color:#F59E0B">T+30 min</strong> · research V3 行业研究 + 财务建模并行</li>
-          <li><strong style="color:#A855F7">T+45 min</strong> · Claude Code 介入：WACC 敏感性 + Monte Carlo</li>
-          <li><strong style="color:#22C55E">T+60 min</strong> · project 起草可研报告 5 章</li>
-          <li><strong style="color:#EC4899">T+75 min</strong> · report 排版 67 页投决材料</li>
-          <li><strong style="color:#00D4FF">T+90 min</strong> · main 汇总反馈主公</li>
-        </ol>
-        <p style="margin-top:16px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
-          <strong style="color:#22C55E">结果：</strong>估值区间 35-58 亿（中值 45 亿）· 投委会通过<br>
-          <strong style="color:#F59E0B">效率提升：</strong>传统 1 周 → 90 分钟（提升 50 倍）
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="case-xingheng">
-    <div class="modal-box">
-      <button class="modal-close">✕</button>
-      <h2 class="modal-title">🔋 星恒电源 · 100 份研报批量入库</h2>
-      <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-        <p><strong style="color:var(--accent)">项目背景：</strong>固态锂电池 · 尽调阶段 · 需快速建立行业认知</p>
-        <p><strong style="color:var(--accent)">data 清洗过程：</strong></p>
-        <ol style="margin-left:20px;margin-top:8px">
-          <li>下载 100 份券商研报（PDF）</li>
-          <li>PaddleOCR 识别（中文+表格）</li>
-          <li>实体抽取：技术路线 / 客户 / 投资方 / 财务数据</li>
-          <li>bge-m3 向量化 → Qdrant 8 collections 分布</li>
-          <li>实体去重合并 → +186 新实体</li>
-        </ol>
-        <p style="margin-top:16px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
-          <strong style="color:#A855F7">关键收益：</strong>行业认知从 0 到 80% · 检索命中率 95%<br>
-          <strong style="color:#A855F7">耗时：</strong>2 小时 100 份（传统 1 周）
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="case-jingneng">
-    <div class="modal-box">
-      <button class="modal-close">✕</button>
-      <h2 class="modal-title">💡 晶能光电 · 7 维度行业梳理</h2>
-      <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-        <p><strong style="color:var(--accent)">项目背景：</strong>LED 芯片 · 储备项目 · 跟踪 1 年后开始立项</p>
-        <p><strong style="color:var(--accent)">research V3 输出：</strong></p>
-        <ol style="margin-left:20px;margin-top:8px">
-          <li><strong>行业：</strong>Mini LED + Micro LED 双引擎 · CAGR 25%</li>
-          <li><strong>技术：</strong>GaN 衬底 · 专利 200+ · 国产化率 60%</li>
-          <li><strong>客户：</strong>三星 / 苹果 / 京东方 / 三安光电</li>
-          <li><strong>财务：</strong>毛利率 28% · 净利率 12% · 应收周转 60 天</li>
-          <li><strong>估值：</strong>PE 18x（行业平均 22x）</li>
-          <li><strong>风险：</strong>美国出口管制 · 韩国技术替代</li>
-          <li><strong>退出：</strong>科创板 IPO 路径明确（已在辅导）</li>
-        </ol>
-        <p style="margin-top:16px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-          <strong style="color:#F59E0B">主公决策：</strong>继续跟踪 · 待 IPO 节点介入
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="case-yingke">
-    <div class="modal-box">
-      <button class="modal-close">✕</button>
-      <h2 class="modal-title">💼 盈科系项目 · GP→LP 架构优化</h2>
-      <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-        <p><strong style="color:var(--accent)">项目背景：</strong>原为 GP 管理人 · 因监管变化调整为 LP 投资人</p>
-        <p><strong style="color:var(--accent)">project 主导过程：</strong></p>
-        <ol style="margin-left:20px;margin-top:8px">
-          <li>梳理原 GP 协议 12 份 · 找出 3 个关键条款</li>
-          <li>对比国资监管要求 · 形成合规清单</li>
-          <li>设计 3 套 LP 方案（A/B/C）</li>
-          <li>协调法务 / 财务 / 国资三方</li>
-          <li>主公决策选 B 方案 · 6 周内完成工商变更</li>
-        </ol>
-        <p style="margin-top:16px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
-          <strong style="color:#22C55E">结果：</strong>节税 800 万 / 年 · 监管合规 100%
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="case-zhongzihuan">
-    <div class="modal-box">
-      <button class="modal-close">✕</button>
-      <h2 class="modal-title">♻️ 中资环绿色循环 · 5000 万立项</h2>
-      <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-        <p><strong style="color:var(--accent)">项目背景：</strong>5000 万 · 绿色循环产业 · 待立项决策</p>
-        <p><strong style="color:var(--accent)">5 维度风险排查：</strong></p>
-        <ol style="margin-left:20px;margin-top:8px">
-          <li><strong>政策风险：</strong>国家鼓励 · 地方补贴 30%</li>
-          <li><strong>技术风险：</strong>成熟工艺 · 设备国产化</li>
-          <li><strong>市场风险：</strong>下游钢铁厂需求稳定</li>
-          <li><strong>财务风险：</strong>IRR 18% · 回收期 4.5 年</li>
-          <li><strong>合规风险：</strong>环评通过 · 国资备案完成</li>
-        </ol>
-        <p style="margin-top:16px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-          <strong style="color:#F59E0B">主公态度：</strong>再等等 · 让 research 跑一遍竞品分析
-        </p>
-      </div>
-    </div>
-  </div>
-
   <footer class="controls">
     <button id="prevBtn" class="ctrl-btn" onclick="location.href='08-ecosystem.html'">◀</button>
     <button id="nextBtn" class="ctrl-btn" onclick="location.href='10-methodology.html'">▶</button>
@@ -256,5 +142,10 @@
   <script src="../assets/js/burst.js"></script>
 
   <div class="burst-stage" id="burst-case-5"></div>
+  <div class="burst-stage" id="burst-case-qiyuanxin"></div>
+  <div class="burst-stage" id="burst-case-xingheng"></div>
+  <div class="burst-stage" id="burst-case-jingneng"></div>
+  <div class="burst-stage" id="burst-case-yingke"></div>
+  <div class="burst-stage" id="burst-case-zhongzihuan"></div>
 </body>
 </html>
