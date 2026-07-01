@@ -259,22 +259,22 @@
       </div>
 
       <div class="agent-grid" style="margin-top:24px">
-        <div class="agent-card" onclick="document.querySelector('[data-agent=main]')?.click()">
+        <div class="burst-trigger" data-burst="burst-main" data-hint="👉 点击查看 main 总调度详情" style="cursor:pointer"><div class="agent-card">
           <span class="emoji">🎯</span>
           <h4>main 总调度</h4>
           <p>唯一入口 · 5 要素分派 · 闭环反馈</p>
         </div>
-        <div class="agent-card">
+        <div class="burst-trigger" data-burst="burst-main" data-hint="👉 点击查看心跳守护详情" style="cursor:pointer"><div class="agent-card">
           <span class="emoji">💓</span>
           <h4>心跳守护</h4>
           <p>Docker / Task / Session / 记忆</p>
         </div>
-        <div class="agent-card">
+        <div class="burst-trigger" data-burst="burst-main" data-hint="👉 点击查看 sessions_send 详情" style="cursor:pointer"><div class="agent-card">
           <span class="emoji">🔗</span>
           <h4>sessions_send</h4>
           <p>跨 Agent 通信 · 回调机制</p>
         </div>
-        <div class="agent-card">
+        <div class="burst-trigger" data-burst="burst-main" data-hint="👉 点击查看记忆系统详情" style="cursor:pointer"><div class="agent-card">
           <span class="emoji">🧠</span>
           <h4>记忆系统</h4>
           <p>5786 实体 · Qdrant · bge-m3</p>
