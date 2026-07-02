@@ -1,31 +1,7 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>封面 — 智能体赋能投资研究</title>
-  <link rel="stylesheet" href="../assets/css/main.css?v=3">
-  <link rel="stylesheet" href="../assets/css/themes.css?v=3">
-</head>
-<body class="chapter-page">
-  <main class="main-stage">
-    <div class="slide active">
-      <div class="hero">
-        <div class="hero-image">
-          <img src="../assets/img/cover-7agents.png" alt="7 大智能体协同总览" style="max-width:580px;max-height:60vh;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,0.5)">
-        </div>
-        <div class="hero-content">
-          <h1 class="hero-title"><span class="burst-trigger" data-burst="burst-7agents" data-hint="👉 点击查看 7 大智能体">🎯 智能体赋能投资研究</span></h1>
-          <h2 class="hero-subtitle">从实践案例到团队跃迁</h2>
-          <p class="hero-tagline">5 大 Agent </span>  ·  2 大助手 </span>  ·  1 套知识中台 </span></p>
-          <p class="hero-author">决策者 · 投资部 · 2026.07</p>
-        </div>
-      </div>
-    </div>
-  
-  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
-<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
+/* 🚀 5+2+1 智能体信息池 · 共享 modal（自动注入到各章节） */
+/* 由 chapters/_shared-agents.html 生成 · 修改请改源文件后重新生成 */
 
+window.SHARED_AGENT_MODALS = `
 <!-- ============ 5 大 Agent · 详情弹窗 ============ -->
 
 <div class="modal-overlay" id="m-main">
@@ -211,11 +187,11 @@
   </div>
 </div>
 
-</main>
-  <script src="../assets/js/main.js?v=3"></script>
-  <script>document.querySelector('.hero-image img').onload = () => document.querySelector('.slide').classList.add('ready')</script>
-  <script src="../assets/js/burst.js"></script>
+`;
 
-  <div class="burst-stage" id="burst-7agents"></div>
-</body>
-</html>
+/* 注入函数：把共享 modal 挂到 #shared-modals-slot */
+window.injectSharedModals = function() {
+  const slot = document.getElementById("shared-modals-slot");
+  if (!slot) return;
+  slot.innerHTML = window.SHARED_AGENT_MODALS;
+};

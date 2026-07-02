@@ -21,6 +21,7 @@
     initNavigation();
     initKeys();
     initAgents();
+    if (typeof window.injectSharedModals === 'function') window.injectSharedModals();
 
     // 默认模式说明：探索模式把所有 slide 同时展开，演示模式只显一张
     if (state.mode === 'exploration') {

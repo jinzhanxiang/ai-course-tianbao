@@ -10,7 +10,7 @@
 <body class="chapter-page">
   <header class="topbar" style="background:rgba(10,14,39,0.95)">
     <div class="topbar-left">
-      <span class="logo">🤖 天保智研</span>
+      <span class="logo">🤖 智能体研究中心</span>
       <span class="course-title" style="color:#A855F7">第 10 章 · 纵横分析法 ⭐</span>
     </div>
     <div class="topbar-center">
@@ -253,203 +253,7 @@ plt.axhline(y=45, color='r', linestyle='--')
       </div>
     </div>
 
-  
-  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
-<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
-
-<!-- ============ 5 大 Agent </span> · 详情弹窗 ============ -->
-
-<div class="modal-overlay" id="m-main">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🧠 main · 总调度</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#00D4FF">职责定位：</strong>最高指挥 · 接收主公指令 · 拆分 · 分派 · 验收</p>
-      <p><strong style="color:#00D4FF">5 大核心动作：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📥 接收指令 · 解析意图（提问 / 分派 / 命令 3 类）</li>
-        <li>🔪 拆分任务 · 5 要素（背景 / 目标 / 交付物 / 回传 / 时限）</li>
-        <li>📡 分派任务 · <code>sessions_send</code> 工具</li>
-        <li>📊 跟踪进度 · 心跳每 15min 巡检 · task-tracker.json</li>
-        <li>📋 验收反馈 · 闭环主公 · 失败立即告警</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
-        <strong style="color:#00D4FF">真实使用：</strong>主公 90% 的请求 · 平均每天 30+ 次调度<br>
-        <strong style="color:#00D4FF">典型命令：</strong>"今晚投决启源芯" → 90 分钟跑完 7 Agent 全流程
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-project">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📋 project · 项目管家</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#22C55E">职责定位：</strong>项目全生命周期管理 · 不做专业分析 · 只做协调推进</p>
-      <p><strong style="color:#22C55E">7 大核心能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📁 项目立项 · 17 类项目模板（并购 / 投决 / 储备 / 待立项）</li>
-        <li>📅 阶段管理 · 5 阶段（立项 → 尽调 → 投决 → 投后 → 退出）</li>
-        <li>💰 投资测算 · IRR / NPV / 回收期 · 敏感性自动跑</li>
-        <li>📂 文档协调 · 申请 · 起草 · 串联数据</li>
-        <li>👥 干系人管理 · 5 类角色识别</li>
-        <li>⚠️ 风险登记 · 7 大类风险自动标注</li>
-        <li>📊 可研报告 · 5 章框架自动生成</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
-        <strong style="color:#22C55E">真实数据：</strong>主公 60% 的项目任务 · 当前在跑 5 个项目<br>
-        <strong style="color:#22C55E">代表项目：</strong>启源芯（投决）/ 星恒（尽调）/ 晶能（储备）/ 盈科（GP→LP） / 中资环（待立项）
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-research">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🔬 research V3 · 研究分析</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#F59E0B">职责定位：</strong>行业研究 / 财务尽调 / 估值建模 · 3 大专业能力</p>
-      <p><strong style="color:#F59E0B">7 维度输出：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🏭 行业分析 · CAGR / 政策 / 竞争格局</li>
-        <li>🔧 技术分析 · 国产化率 / 专利 / 工艺路径</li>
-        <li>👥 客户分析 · 集中度 / 头部客户 / 粘性</li>
-        <li>💴 财务分析 · 三表勾稽 · 同业比对</li>
-        <li>💰 估值建模 · DCF / 可比 / P/E / PS</li>
-        <li>📈 敏感性 · WACC 5.5%-9.5% · 收入 ±15%</li>
-        <li>🎯 风险与退出 · 7 大类风险 · 退出路径</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-        <strong style="color:#F59E0B">真实案例：</strong>启源芯 WACC=7.5% → DCF=45 亿<br>
-        <strong style="color:#F59E0B">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash scripts/run_v3.sh full "分析启源芯" --task-id 001</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-data">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🗃️ data · 数据清洗管道</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#A855F7">职责定位：</strong>转录 / OCR / 入库 · 不做分析 · 只做数据处理</p>
-      <p><strong style="color:#A855F7">7 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🎤 语音转录 · FunASR · 中英混合</li>
-        <li>📷 OCR · PaddleOCR · 表格识别</li>
-        <li>🧹 数据清洗 · 28 个脚本 · 一键运行</li>
-        <li>🔍 实体抽取 · 抽取后入 Wiki</li>
-        <li>📊 向量化 · bge-m3 · 768 维</li>
-        <li>🗄️ 入 Qdrant · 8 collections · 75,988 vectors</li>
-        <li>⏰ 定时跑 · 凌晨 3:00 自动入库</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
-        <strong style="color:#A855F7">真实数据：</strong>实体 5,786 → 6,098 · collections 8 · vectors 75,988<br>
-        <strong style="color:#A855F7">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash clean.sh {research|system|project|all}</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-report">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📄 report · 文档排版</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#EC4899">职责定位：</strong>Word / PDF / PPT · 会议纪要 · 不做内容创作只格式化</p>
-      <p><strong style="color:#EC4899">3 大管线：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📑 公文管线 · 国企规范的请示 / 报告 / 通知</li>
-        <li>📊 研报管线 · 行业研究 / 公司研究 / 投资分析</li>
-        <li>📝 纪要管线 · 会议纪要 · 主公自动模板</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(236,72,153,0.08);border-radius:8px">
-        <strong style="color:#EC4899">实际产出：</strong>投决材料 67 页 · 1 份 Word + 1 份 PDF<br>
-        <strong style="color:#EC4899">典型格式：</strong>国企公文规范 · 4 级标题 · 一图一表
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- ============ 2 大助手 </span> · 详情弹窗 ============ -->
-
-<div class="modal-overlay" id="m-claude-code">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🦾 Claude Code · 工程助手</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#00D4FF">职责定位：</strong>写代码 · 改代码 · 跑命令 · 做工程</p>
-      <p><strong style="color:#00D4FF">5 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>💻 写代码 · Python / Shell / TypeScript / JavaScript</li>
-        <li>🔧 改代码 · 跨文件编辑 · Git diff 准确</li>
-        <li>🛠️ 跑命令 · Bash 工具 · 长时间任务后台跑</li>
-        <li>🔌 连接工具 · MCP 协议 · 100+ 工具集成</li>
-        <li>🪟 终端 UI · 可在 VSCode / Cursor / iTerm 等环境运行</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
-        <strong style="color:#00D4FF">真实数据：</strong>启源芯 WACC 敏感性 / Monte Carlo<br>
-        <strong style="color:#00D4FF">配置路径：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">~/.claude/settings.json</code><br>
-        <strong style="color:#00D4FF">当前模型：</strong>claude-sonnet-4-6 / deepseek-vash-flash 切换
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-hermes">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📚 Hermes · 知识中台</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#A855F7">职责定位：</strong>把语料/研报/纪要变成可检索的 Wiki</p>
-      <p><strong style="color:#A855F7">5 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📂 文档入库 · PDF/Word/MD 自动解析</li>
-        <li>🔍 全检索 · Wiki 浏览 · API 查询</li>
-        <li>🌐 Wiki API · port 19001 · RESTful 查询</li>
-        <li>📊 Wiki 静态站 · port 19000 · 浏览器浏览</li>
-        <li>🛡️ Watchdog · 自动重启 · 故障感知</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
-        <strong style="color:#A855F7">真实数据：</strong>5,786 → 6,098 实体 · 8 collections · 模型 bge-m3<br>
-        <strong style="color:#A855F7">配置命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash ~/.hermes/scripts/start-wiki.sh restart</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- ============ 1 中台 ============ -->
-
-<div class="modal-overlay" id="m-zhongtai">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🗄️ 1 套知识中台 </span></h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#F59E0B">职责定位：</strong>所有智能体的记忆层 · 让人 + Agent 都能访问</p>
-      <p><strong style="color:#F59E0B">3 层架构：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🗄️ <strong>PostgreSQL</strong> · 4 张表（entity / report / indicator / knowledge_logic）· 关系数据</li>
-        <li>🔢 <strong>Qdrant</strong> · 8 collections · 75,988 个 vectors · 向量检索</li>
-        <li>📚 <strong>Wiki</strong> · Hermes 静态站 · port 19000 · 浏览用</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-        <strong style="color:#F59E0B">关键能力：</strong>检索 · 去重 · 关联 · 时序 · 备份<br>
-        <strong style="color:#F59E0B">当前规模：</strong>6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑
-      </p>
-    </div>
-  </div>
-</div>
-
-</main>
-
-  <footer class="controls" style="background:rgba(10,14,39,0.9)">
-    <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
-    <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题</span>
-    <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>
-  </footer>
-
+<script src="../assets/js/shared-agents.js?v=3"></script>
   <script src="../assets/js/main.js?v=3"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -470,5 +274,6 @@ plt.axhline(y=45, color='r', linestyle='--')
   <script src="../assets/js/burst.js"></script>
 
   <div class="burst-stage" id="burst-method-8"></div>
+<div id="shared-modals-slot"></div>
 </body>
 </html>
