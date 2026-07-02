@@ -279,6 +279,18 @@
       ]
     },
 
+    // ====== 01 开场 - 变革+团队的三层架构（主公特别要求） ======
+    'burst-revolution-team': {
+      title: '变革 + 团队 · 三层架构',
+      subtitle: '变革思考 × 数字员工 × 资产沉淀 — 一个都不能少',
+      layout: 'vert',
+      cards: [
+        { icon: '⚡', name: '第一层 · 生产关系变革', tag: '人从执行者 → 决策者', detail: '过去：研究员手敲 4 小时 → 现在：5 Agent 跑 4 分钟，人只做判断与决策。\n\n1 个项目人员可以同时跟 8 个项目，过去最多 2 个。\n\n本质：执行环节被 Agent 接管，人专注价值判断。', color: '#00D4FF', pos: 'top' },
+        { icon: '🧠', name: '第二层 · 多 Agent 协同', tag: '5 Agent + 2 助手 + 1 中台', detail: 'main 调度 project / research / data / report 四个子 Agent，每个子 Agent 又有自己的子任务（3 层嵌套协同，类似公司组织架构）。\n\n加 2 个外部助手（claude-code / hermes）扩展能力边界。\n\n加 1 个知识中台（PG / Qdrant / Wiki）确保经验不流失。', color: '#A855F7', pos: 'middle' },
+        { icon: '🏛️', name: '第三层 · 知识资产变革', tag: '个人记忆 → 公司资产', detail: '过去：经验在人脑里，离职即流失。\n现在：沉淀在 PG + Qdrant + Wiki 三层资产。\n\n新人入职第一天就能调用过去 3 年的所有研报、估值模型、行业判断。\n\n本质：把“个人能力”变成“组织能力”，这是公司层面最大的护城河。', color: '#F59E0B', pos: 'bottom' }
+      ]
+    },
+
     // 12 Q&A - 6 预判问答(原 trigger 已展示"6 大问答",扩写每个的回答)
     'burst-qa-6': {
       title: '6 大预判问答',
@@ -613,12 +625,14 @@
 
     // ====== 常规卡片 burst 模式 ======
     // 决定每张卡的实际宽度（与下方 set width 同步）
-    let cardW = 240, cardH = 200;
-    if (data.layout === 'pipe' && data.cards.length >= 5) cardW = 180;
-    else if (data.layout === 'pipe' && data.cards.length >= 3) cardW = 210;
-    else if (data.layout === 'cascade' && data.cards.length >= 5) cardW = 200;
-    else if (data.layout === 'grid' && data.cards.length >= 6) cardW = 210;
-    else if (data.layout === 'twocol') cardW = 260;
+    let cardW = 300, cardH = 240;
+    if (data.layout === 'pipe' && data.cards.length >= 5) cardW = 240;
+    else if (data.layout === 'pipe' && data.cards.length >= 3) cardW = 270;
+    else if (data.layout === 'cascade' && data.cards.length >= 5) cardW = 260;
+    else if (data.layout === 'grid' && data.cards.length >= 6) cardW = 260;
+    else if (data.layout === 'twocol') cardW = 320;
+    else if (data.layout === 'vert') cardW = 340;
+    else if (data.layout === 'threecol') cardW = 320;
     // stage 实际宽度 = min(96vw, 1400px)
     const stageW = Math.min(window.innerWidth * 0.96, 1400);
     const stageH = Math.min(window.innerHeight - 40, 800);
@@ -668,11 +682,17 @@
       div.setAttribute('data-i', idx);
       // pipe 布局 + 5+ 张卡 -> 缩小宽度防重叠
       if (data.layout === 'pipe' && data.cards.length >= 5) {
-        div.style.width = '180px';
+        div.style.width = '240px';
       } else if (data.layout === 'cascade' && data.cards.length >= 5) {
-        div.style.width = '200px';
+        div.style.width = '260px';
       } else if (data.layout === 'grid' && data.cards.length >= 6) {
-        div.style.width = '210px';
+        div.style.width = '260px';
+      } else if (data.layout === 'vert') {
+        div.style.width = '340px';
+      } else if (data.layout === 'threecol') {
+        div.style.width = '320px';
+      } else if (data.layout === 'twocol') {
+        div.style.width = '320px';
       }
 
       // 标题 + 标签 + 详情
