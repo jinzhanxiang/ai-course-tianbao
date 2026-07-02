@@ -136,10 +136,12 @@
       switch (e.key) {
         case 'ArrowLeft':
         case 'PageUp':
+        case 'ArrowUp':
           prevSlide();
           break;
         case 'ArrowRight':
         case 'PageDown':
+        case 'ArrowDown':
         case ' ':
           nextSlide();
           break;
