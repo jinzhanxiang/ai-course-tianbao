@@ -305,7 +305,7 @@
   // ============== 5) 数据流动效 ==============
   function initDataFlow() {
     // 扫描所有 .data-flow 容器，绘制连接线 + 流动光点
-    document.querySelectorAll('.data-flow').forEach(container => {
+    document.querySelectorAll('.data-flow, .flow-diagram').forEach(container => {
       setupFlowContainer(container);
     });
     // 监听后续添加
@@ -313,10 +313,10 @@
       for (const m of muts) {
         m.addedNodes.forEach(n => {
           if (n.nodeType === 1) {
-            if (n.classList && n.classList.contains('data-flow')) {
+            if (n.classList && (n.classList.contains('data-flow') || n.classList.contains('flow-diagram'))) {
               setupFlowContainer(n);
             }
-            n.querySelectorAll && n.querySelectorAll('.data-flow').forEach(c => setupFlowContainer(c));
+            n.querySelectorAll && n.querySelectorAll('.data-flow, .flow-diagram').forEach(c => setupFlowContainer(c));
           }
         });
       }
@@ -343,6 +343,8 @@
     container.dataset.flowInit = '1';
 
     const nodes = container.querySelectorAll('.flow-node, [data-flow-node]');
+    // 排除掉 .flow-arrow，避免被当作节点
+    const allNodes = Array.from(nodes).filter(n => !n.classList.contains('flow-arrow'));
     if (nodes.length < 2) return;
 
     // 用 SVG 画连线
@@ -362,7 +364,7 @@
 
     function getCoords() {
       const cRect = container.getBoundingClientRect();
-      return Array.from(nodes).map(n => {
+      return Array.from(allNodes).map(n => {
         const r = n.getBoundingClientRect();
         return {
           x: r.left - cRect.left + r.width / 2,
@@ -431,7 +433,7 @@
     });
 
     // 节点 hover 高亮连线
-    nodes.forEach((n, i) => {
+    allNodes.forEach((n, i) => {
       n.addEventListener('mouseenter', () => {
         svg.querySelectorAll('line').forEach((l, j) => {
           if (j === i || j === i - 1) {
