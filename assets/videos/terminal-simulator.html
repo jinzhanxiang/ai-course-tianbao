@@ -3,67 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>终端模拟器 — 神经网络分发</title>
+<title>🕸️ 神经网络 · 科幻终端</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
-    background: #0d1117;
+    background: #050810;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     padding: 20px;
-  }
-
-  .terminal-window {
-    width: 100%;
-    max-width: 900px;
-    background: #161b22;
-    border-radius: 10px;
-    border: 1px solid #30363d;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    position: relative;
   }
 
+  /* 背景：星空 + 网格 */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0,212,255,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(168,85,247,0.15) 0%, transparent 50%),
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  /* 粒子层 */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .stage-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* 左侧：神经网络可视化 */
+  .neural-pane {
+    width: 200px;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .neural-pane::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .neural-title {
+    font-size: 10px;
+    color: #00d4ff;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #00d4ff;
+  }
+
+  /* SVG 神经网络 */
+  .neural-svg {
+    width: 100%;
+    height: 280px;
+  }
+  .neural-node {
+    fill: #00d4ff;
+    stroke: rgba(0,212,255,0.3);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 6px #00d4ff);
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+  .neural-node.main {
+    fill: #fff;
+    filter: drop-shadow(0 0 12px #fff);
+  }
+  .neural-node.research { animation-delay: 0s; }
+  .neural-node.project { animation-delay: 0.2s; }
+  .neural-node.data { animation-delay: 0.4s; }
+  .neural-node.report { animation-delay: 0.6s; }
+  @keyframes nodePulse {
+    0%, 100% { r: 8; }
+    50% { r: 11; }
+  }
+  .neural-link {
+    stroke: rgba(0,212,255,0.4);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+    animation: linkFlow 1.5s linear infinite;
+  }
+  @keyframes linkFlow {
+    to { stroke-dashoffset: -16; }
+  }
+  .neural-link.active {
+    stroke: #00d4ff;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px #00d4ff);
+    animation: linkFlow 0.8s linear infinite;
+  }
+
+  .neural-node-label {
+    font-size: 9px;
+    fill: #8b949e;
+    text-anchor: middle;
+    text-transform: uppercase;
+  }
+  .neural-node-label.main { fill: #fff; }
+
+  .neural-status {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #6e7681;
+    text-align: center;
+    border-top: 1px solid rgba(0,212,255,0.2);
+    padding-top: 8px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #3fb950;
+    margin-right: 4px;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* 右侧：终端窗口 */
+  .terminal-window {
+    flex: 1;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.05);
+    position: relative;
+  }
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scanLine 3s linear infinite;
+  }
   .terminal-titlebar {
-    background: #21262d;
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
     padding: 12px 16px;
     display: flex;
     align-items: center;
     gap: 8px;
-    border-bottom: 1px solid #30363d;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
   }
-
   .titlebar-dot {
     width: 12px; height: 12px;
     border-radius: 50%;
   }
-  .dot-red { background: #ff5f57; }
-  .dot-yellow { background: #febc2e; }
-  .dot-green { background: #28c840; }
-
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
   .titlebar-title {
     flex: 1;
     text-align: center;
-    color: #8b949e;
+    color: #00d4ff;
     font-size: 13px;
+    text-shadow: 0 0 6px rgba(0,212,255,0.5);
+    letter-spacing: 1px;
   }
-
   .terminal-body {
     padding: 16px 20px;
     min-height: 380px;
     max-height: 520px;
     overflow-y: auto;
-    background: #0d1117;
     scrollbar-width: thin;
-    scrollbar-color: #30363d #0d1117;
+    scrollbar-color: rgba(0,212,255,0.3) #0d1117;
   }
-
   .terminal-body::-webkit-scrollbar { width: 6px; }
   .terminal-body::-webkit-scrollbar-track { background: #0d1117; }
-  .terminal-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+  .terminal-body::-webkit-scrollbar-thumb {
+    background: rgba(0,212,255,0.3);
+    border-radius: 3px;
+  }
 
   .log-line {
     font-size: 13px;
@@ -71,19 +220,17 @@
     white-space: pre-wrap;
     word-break: break-all;
     opacity: 0;
-    transform: translateY(4px);
-    animation: lineAppear 0.25s ease forwards;
+    transform: translateX(-8px);
+    animation: lineAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
-
   @keyframes lineAppear {
-    to { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateX(0); }
   }
-
   .log-time { color: #6e7681; }
   .log-main { color: #e6edf3; }
-  .log-send { color: #79c0ff; }
-  .log-ok { color: #3fb950; }
-  .log-phase { color: #d2a8ff; }
+  .log-send { color: #79c0ff; text-shadow: 0 0 4px rgba(121,192,255,0.5); }
+  .log-ok { color: #3fb950; text-shadow: 0 0 4px rgba(63,185,80,0.5); }
+  .log-phase { color: #d2a8ff; text-shadow: 0 0 4px rgba(210,168,255,0.5); }
   .log-warn { color: #f0883e; }
   .log-data { color: #56d364; }
   .log-sep { color: #30363d; }
@@ -91,13 +238,13 @@
   .cursor-blink {
     display: inline-block;
     width: 8px; height: 15px;
-    background: #58a6ff;
-    animation: blink 1s step-end infinite;
+    background: #00d4ff;
+    box-shadow: 0 0 6px #00d4ff;
+    animation: cursor 1s step-end infinite;
     vertical-align: text-bottom;
     margin-left: 2px;
   }
-
-  @keyframes blink {
+  @keyframes cursor {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
@@ -106,70 +253,220 @@
     display: flex;
     gap: 4px;
     margin: 4px 0 8px 0;
+    flex-wrap: wrap;
+  }
+  .progress-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
   }
   .progress-track {
-    flex: 1; height: 4px;
+    flex: 1; min-width: 100px; height: 6px;
     background: #21262d;
-    border-radius: 2px;
+    border-radius: 3px;
     overflow: hidden;
+    border: 1px solid rgba(0,212,255,0.15);
   }
   .progress-fill {
     height: 100%;
-    border-radius: 2px;
+    border-radius: 3px;
     width: 0%;
-    transition: width 0.8s ease;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 8px currentColor;
   }
-  .fill-research { background: #79c0ff; }
-  .fill-project { background: #d2a8ff; }
-  .fill-data { background: #56d364; }
-  .fill-report { background: #f0883e; }
+  .fill-research { background: #00d4ff; color: #00d4ff; }
+  .fill-project { background: #a855f7; color: #a855f7; }
+  .fill-data { background: #56d364; color: #56d364; }
+  .fill-report { background: #f0883e; color: #f0883e; }
 
-  .log-line .tag {
+  .progress-label {
+    font-size: 10px;
+    width: 60px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .progress-pct {
+    font-size: 10px;
+    width: 36px;
+    text-align: right;
+  }
+
+  .tag {
     display: inline-block;
-    padding: 0px 5px;
+    padding: 1px 6px;
     border-radius: 3px;
     font-size: 11px;
     font-weight: 600;
     margin-right: 4px;
+    letter-spacing: 0.5px;
   }
-  .tag-research { background: rgba(121,192,255,0.15); color: #79c0ff; }
-  .tag-project { background: rgba(210,168,255,0.15); color: #d2a8ff; }
-  .tag-data { background: rgba(86,211,100,0.15); color: #56d364; }
-  .tag-report { background: rgba(240,136,62,0.15); color: #f0883e; }
-  .tag-main { background: rgba(230,237,243,0.1); color: #e6edf3; }
+  .tag-research { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .tag-project { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3); }
+  .tag-data { background: rgba(86,211,100,0.15); color: #56d364; border: 1px solid rgba(86,211,100,0.3); }
+  .tag-report { background: rgba(240,136,62,0.15); color: #f0883e; border: 1px solid rgba(240,136,62,0.3); }
+  .tag-main { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  /* 数据流粒子 */
+  .data-pulse {
+    fill: #00d4ff;
+    filter: drop-shadow(0 0 4px #00d4ff);
+    animation: dataPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes dataPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
 </style>
 </head>
 <body>
 
-<div class="terminal-window">
-  <div class="terminal-titlebar">
-    <div class="titlebar-dot dot-red"></div>
-    <div class="titlebar-dot dot-yellow"></div>
-    <div class="titlebar-dot dot-green"></div>
-    <div class="titlebar-title">zsh — main@openclaw — 120×40</div>
-  </div>
-  <div class="terminal-body" id="terminalBody">
+<canvas id="particles"></canvas>
 
+<div class="stage-wrap">
+
+  <!-- 左侧：神经网络可视化 -->
+  <div class="neural-pane">
+    <div class="neural-title">▣ NEURAL MESH</div>
+    <svg class="neural-svg" viewBox="0 0 180 280">
+      <!-- 连线 main -> 4 agents -->
+      <line class="neural-link" x1="90" y1="40" x2="40" y2="120" />
+      <line class="neural-link" x1="90" y1="40" x2="140" y2="120" />
+      <line class="neural-link" x1="90" y1="40" x2="40" y2="200" />
+      <line class="neural-link" x1="90" y1="40" x2="140" y2="200" />
+      <!-- agents 之间连线 -->
+      <line class="neural-link" x1="40" y1="120" x2="140" y2="120" stroke-dasharray="2 4" />
+      <line class="neural-link" x1="40" y1="200" x2="140" y2="200" stroke-dasharray="2 4" />
+      <line class="neural-link" x1="40" y1="120" x2="40" y2="200" stroke-dasharray="2 4" />
+      <line class="neural-link" x1="140" y1="120" x2="140" y2="200" stroke-dasharray="2 4" />
+
+      <!-- 中心 main 节点 -->
+      <circle class="neural-node main" cx="90" cy="40" r="10" />
+      <text class="neural-node-label main" x="90" y="22">MAIN</text>
+
+      <!-- 4 个 agent 节点 -->
+      <circle class="neural-node research" cx="40" cy="120" r="8" />
+      <text class="neural-node-label" x="40" y="140">RESEARCH</text>
+
+      <circle class="neural-node project" cx="140" cy="120" r="8" />
+      <text class="neural-node-label" x="140" y="140">PROJECT</text>
+
+      <circle class="neural-node data" cx="40" cy="200" r="8" />
+      <text class="neural-node-label" x="40" y="220">DATA</text>
+
+      <circle class="neural-node report" cx="140" cy="200" r="8" />
+      <text class="neural-node-label" x="140" y="220">REPORT</text>
+
+      <!-- 数据流粒子 -->
+      <circle class="data-pulse" cx="65" cy="80" r="2">
+        <animate attributeName="cx" values="90;40" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="40;120" dur="1.5s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="115" cy="80" r="2">
+        <animate attributeName="cx" values="90;140" dur="1.5s" begin="0.2s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="40;120" dur="1.5s" begin="0.2s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="65" cy="160" r="2">
+        <animate attributeName="cx" values="90;40" dur="1.5s" begin="0.4s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="40;200" dur="1.5s" begin="0.4s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="115" cy="160" r="2">
+        <animate attributeName="cx" values="90;140" dur="1.5s" begin="0.6s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="40;200" dur="1.5s" begin="0.6s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+
+    <div class="neural-status">
+      <span class="status-dot"></span>
+      MESH ONLINE · 4/4
+    </div>
   </div>
+
+  <!-- 右侧：终端窗口 -->
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ zsh — main@openclaw — 120×40</div>
+    </div>
+    <div class="terminal-body" id="terminalBody"></div>
+  </div>
+
 </div>
 
 <script>
+// 粒子背景
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * W,
+    y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#00d4ff', '#a855f7', '#56d364'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  // 连线
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.strokeStyle = 'rgba(0,212,255,' + (0.15 - d/800) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
 const LOGS = [
   { cls: 'log-main', text: '[09:00:01] <span class="tag tag-main">MAIN</span> 收到任务：分析启源芯半导体', delay: 0 },
   { cls: 'log-main', text: '[09:00:02] <span class="tag tag-main">MAIN</span> 任务解析 → 投资研究（行业+财务+估值）', delay: 300 },
   { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> 查询 task-tracker.json → 分配 task-20260702-001', delay: 600 },
-  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → research × 1', delay: 900 },
-  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → project × 1', delay: 1100 },
-  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → data × 1', delay: 1300 },
-  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → report × 1', delay: 1500 },
-  { cls: 'log-sep',  text: '─'.repeat(60), delay: 1700 },
+  { cls: 'log-send', text: '[09:00:03] <span class="tag tag-main">MAIN</span> ➤ sessions_send → research', delay: 900 },
+  { cls: 'log-send', text: '[09:00:03] <span class="tag tag-main">MAIN</span> ➤ sessions_send → project', delay: 1100 },
+  { cls: 'log-send', text: '[09:00:03] <span class="tag tag-main">MAIN</span> ➤ sessions_send → data', delay: 1300 },
+  { cls: 'log-send', text: '[09:00:03] <span class="tag tag-main">MAIN</span> ➤ sessions_send → report', delay: 1500 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 1700 },
   { cls: 'log-ok',   text: '[09:00:04] ✓ research 已启动 <span class="tag tag-research">并行执行中</span>', delay: 1900 },
   { cls: 'log-ok',   text: '[09:00:04] ✓ project  已启动 <span class="tag tag-project">并行执行中</span>', delay: 2000 },
   { cls: 'log-ok',   text: '[09:00:04] ✓ data    已启动 <span class="tag tag-data">并行执行中</span>', delay: 2100 },
   { cls: 'log-ok',   text: '[09:00:04] ✓ report  已启动 <span class="tag tag-report">并行执行中</span>', delay: 2200 },
-  { cls: 'log-sep',  text: '─'.repeat(60), delay: 2400 },
-  // Progress bars
-  null, // insert progress bars here
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 2400 },
+  null,
   { cls: 'log-main', text: '[09:00:05] <span class="tag tag-main">MAIN</span> 4路并行 → 等待回调...', delay: 3000 },
   { cls: 'log-phase',text: '[09:00:08] <span class="tag tag-research">research</span> Phase1 前置分析完成 (3.2s)', delay: 3700 },
   { cls: 'log-phase',text: '[09:00:09] <span class="tag tag-data">data</span> run_sync.sh 清洗脚本启动', delay: 4300 },
@@ -179,43 +476,41 @@ const LOGS = [
   { cls: 'log-phase',text: '[09:00:17] <span class="tag tag-research">research</span> Phase3 交叉合成完成', delay: 6800 },
   { cls: 'log-phase',text: '[09:00:19] <span class="tag tag-project">project</span> 汇总 4 路结果', delay: 7400 },
   { cls: 'log-phase',text: '[09:00:20] <span class="tag tag-research">research</span> Phase4 最终报告生成完成', delay: 8000 },
-  { cls: 'log-sep',  text: '─'.repeat(60), delay: 8400 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 8400 },
   { cls: 'log-ok',   text: '[09:00:21] ✓ task-20260702-001 完成 → 回调 main', delay: 8700 },
   { cls: 'log-main', text: '[09:00:22] <span class="tag tag-main">MAIN</span> 汇总完成 → 回传主公', delay: 9300 },
-  { cls: 'log-sep',  text: '─'.repeat(60), delay: 9700 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 9700 },
   { cls: 'log-main', text: '[09:00:23] <span class="tag tag-main">MAIN</span> 任务完成  <span class="cursor-blink"></span>', delay: 10000 },
 ];
 
 const terminalBody = document.getElementById('terminalBody');
 
-// Insert progress bar HTML
 const progressHTML = `
-<div style="margin: 8px 0;">
-  <div style="font-size:11px;color:#6e7681;margin-bottom:4px;">并行进度</div>
-  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
-    <span style="font-size:11px;color:#79c0ff;width:70px;">research</span>
-    <div class="progress-track" style="flex:1"><div class="progress-fill fill-research" id="bar-research"></div></div>
-    <span style="font-size:11px;color:#79c0ff;width:30px;text-align:right" id="pct-research">0%</span>
+<div style="margin: 8px 0 12px 0;">
+  <div style="font-size:10px;color:#00d4ff;letter-spacing:2px;margin-bottom:6px;">▣ PARALLEL EXECUTION</div>
+  <div class="progress-row">
+    <span class="progress-label" style="color:#00d4ff">RESEARCH</span>
+    <div class="progress-track"><div class="progress-fill fill-research" id="bar-research"></div></div>
+    <span class="progress-pct" style="color:#00d4ff" id="pct-research">0%</span>
   </div>
-  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
-    <span style="font-size:11px;color:#d2a8ff;width:70px;">project</span>
-    <div class="progress-track" style="flex:1"><div class="progress-fill fill-project" id="bar-project"></div></div>
-    <span style="font-size:11px;color:#d2a8ff;width:30px;text-align:right" id="pct-project">0%</span>
+  <div class="progress-row">
+    <span class="progress-label" style="color:#a855f7">PROJECT</span>
+    <div class="progress-track"><div class="progress-fill fill-project" id="bar-project"></div></div>
+    <span class="progress-pct" style="color:#a855f7" id="pct-project">0%</span>
   </div>
-  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
-    <span style="font-size:11px;color:#56d364;width:70px;">data</span>
-    <div class="progress-track" style="flex:1"><div class="progress-fill fill-data" id="bar-data"></div></div>
-    <span style="font-size:11px;color:#56d364;width:30px;text-align:right" id="pct-data">0%</span>
+  <div class="progress-row">
+    <span class="progress-label" style="color:#56d364">DATA</span>
+    <div class="progress-track"><div class="progress-fill fill-data" id="bar-data"></div></div>
+    <span class="progress-pct" style="color:#56d364" id="pct-data">0%</span>
   </div>
-  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
-    <span style="font-size:11px;color:#f0883e;width:70px;">report</span>
-    <div class="progress-track" style="flex:1"><div class="progress-fill fill-report" id="bar-report"></div></div>
-    <span style="font-size:11px;color:#f0883e;width:30px;text-align:right" id="pct-report">0%</span>
+  <div class="progress-row">
+    <span class="progress-label" style="color:#f0883e">REPORT</span>
+    <div class="progress-track"><div class="progress-fill fill-report" id="bar-report"></div></div>
+    <span class="progress-pct" style="color:#f0883e" id="pct-report">0%</span>
   </div>
 </div>`;
 
-// Animate progress bars
-function animateBar(id, pct, duration) {
+function animateBar(id, pct) {
   const el = document.getElementById('bar-' + id);
   const lbl = document.getElementById('pct-' + id);
   if (!el) return;
@@ -223,7 +518,6 @@ function animateBar(id, pct, duration) {
   if (lbl) lbl.textContent = pct + '%';
 }
 
-// Progress timeline: research 3.2s, data 6s, project 15s, report 18s
 const progressTimeline = [
   { t: 1900, id: 'research', pct: 15 },
   { t: 2000, id: 'project', pct: 10 },
@@ -244,13 +538,12 @@ const progressTimeline = [
 
 let progIdx = 0;
 let startTime = null;
-
 function runProgress(timestamp) {
   if (!startTime) startTime = timestamp;
   const elapsed = timestamp - startTime;
   while (progIdx < progressTimeline.length && progressTimeline[progIdx].t <= elapsed) {
     const item = progressTimeline[progIdx];
-    animateBar(item.id, item.pct, 800);
+    animateBar(item.id, item.pct);
     progIdx++;
   }
   if (progIdx < progressTimeline.length || elapsed < 10000) {
@@ -258,19 +551,14 @@ function runProgress(timestamp) {
   }
 }
 
-// Insert lines
-let lineIdx = 0;
-let progInserted = false;
-
-LOGS.forEach((log, i) => {
+LOGS.forEach((log) => {
   if (log === null) {
-    // insert progress bars
     setTimeout(() => {
       const div = document.createElement('div');
       div.innerHTML = progressHTML;
       div.style.opacity = '0';
-      div.style.transform = 'translateY(4px)';
-      div.style.animation = 'lineAppear 0.25s ease forwards';
+      div.style.transform = 'translateX(-8px)';
+      div.style.animation = 'lineAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
       terminalBody.appendChild(div);
       setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 50);
       requestAnimationFrame(runProgress);
