@@ -310,8 +310,8 @@
     'burst-video-radar': {
       title: '🎯 8 维企业雷达图',
       subtitle: '财务·产业·估值·风险·治理·ESG·政策·团队',
-      videoPoster: '../assets/videos/posters/07-eight-dimension.png',
-      layout: 'kenburns'
+      terminalSrc: '../assets/videos/radar-8d.html',
+      layout: 'terminal'
     },
     'burst-video-maindash': {
       title: '🧠 main 指挥中心',

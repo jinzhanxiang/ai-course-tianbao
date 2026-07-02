@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 8 维企业雷达图</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(255,200,55,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(168,85,247,0.10) 0%, transparent 50%),
+      linear-gradient(rgba(255,200,55,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(255,200,55,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 18px;
+    align-items: stretch;
+  }
+
+  /* 通用窗口 */
+  .window {
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(255,200,55,0.15), inset 0 0 20px rgba(255,200,55,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fcd34d, transparent);
+    animation: scanLine 3s linear infinite;
+    z-index: 5;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255,200,55,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    color: #fcd34d; font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(252,211,77,0.5);
+  }
+
+  /* 左侧：维度列表 */
+  .dim-list-pane {
+    width: 230px;
+    border: 1px solid rgba(252,211,77,0.3);
+  }
+  .dim-list-body {
+    flex: 1;
+    padding: 14px 16px;
+    overflow-y: auto;
+  }
+  .dim-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s ease;
+  }
+  .dim-item.show { opacity: 1; transform: translateX(0); }
+  .dim-num {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(252,211,77,0.15);
+    border: 1px solid rgba(252,211,77,0.4);
+    color: #fcd34d;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    text-shadow: 0 0 4px #fcd34d;
+  }
+  .dim-num.done {
+    background: rgba(86,211,100,0.2);
+    border-color: rgba(86,211,100,0.6);
+    color: #56d364;
+    text-shadow: 0 0 4px #56d364;
+  }
+  .dim-content { flex: 1; min-width: 0; }
+  .dim-name {
+    font-size: 12px;
+    color: #e6edf3;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .dim-bar-wrap {
+    height: 5px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+  .dim-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #fcd34d 0%, #f0883e 100%);
+    box-shadow: 0 0 6px #fcd34d;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .dim-score {
+    font-size: 10px;
+    color: #fcd34d;
+    font-weight: 700;
+    margin-top: 2px;
+    text-shadow: 0 0 3px rgba(252,211,77,0.5);
+  }
+  .dim-source {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 1px;
+  }
+
+  /* 中央：雷达图 */
+  .radar-pane {
+    flex: 1;
+    border: 1px solid rgba(252,211,77,0.3);
+    min-height: 580px;
+    position: relative;
+  }
+  .radar-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+  }
+  .radar-svg {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+  }
+  .radar-axis {
+    stroke: rgba(252,211,77,0.15);
+    stroke-width: 1;
+    fill: none;
+  }
+  .radar-grid {
+    stroke: rgba(252,211,77,0.1);
+    stroke-width: 0.5;
+    fill: none;
+    stroke-dasharray: 2 3;
+  }
+  .radar-label {
+    fill: #e6edf3;
+    font-size: 11px;
+    text-anchor: middle;
+    font-weight: 600;
+  }
+  .radar-label-cn {
+    fill: #fcd34d;
+    font-size: 13px;
+    text-anchor: middle;
+    font-weight: 700;
+    text-shadow: 0 0 4px #fcd34d;
+  }
+  .radar-vertex {
+    fill: #fcd34d;
+    stroke: #fff;
+    stroke-width: 1;
+    filter: drop-shadow(0 0 4px #fcd34d);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .radar-vertex.show { opacity: 1; }
+
+  /* 雷达图 polygon（启源芯） */
+  .poly-qiyuan {
+    fill: rgba(86,211,100,0.25);
+    stroke: #56d364;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 8px #56d364);
+    stroke-dasharray: 4 2;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+  .poly-qiyuan.show { opacity: 1; }
+
+  /* 对标公司 polygon */
+  .poly-peer {
+    fill: rgba(255,200,55,0.1);
+    stroke: #fcd34d;
+    stroke-width: 1.5;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+  .poly-peer.show { opacity: 0.7; }
+
+  .radar-center {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+  }
+  .radar-center-score {
+    font-size: 28px;
+    font-weight: 900;
+    color: #56d364;
+    text-shadow: 0 0 8px #56d364;
+  }
+  .radar-center-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  /* 右侧：评估日志 + 最终结论 */
+  .log-pane {
+    width: 280px;
+    border: 1px solid rgba(252,211,77,0.3);
+    display: flex;
+    flex-direction: column;
+  }
+  .log-body {
+    flex: 1;
+    padding: 14px 16px;
+    overflow-y: auto;
+    max-height: 480px;
+  }
+  .log-line {
+    font-size: 11px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-all;
+    margin-bottom: 6px;
+    opacity: 0;
+    transform: translateX(8px);
+    animation: lineAppear 0.3s ease forwards;
+  }
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .log-time { color: #6e7681; font-size: 10px; }
+  .log-main { color: #e6edf3; }
+  .log-ok { color: #56d364; text-shadow: 0 0 4px rgba(86,211,100,0.5); }
+  .log-warn { color: #ff5f57; }
+  .log-data { color: #fcd34d; text-shadow: 0 0 4px rgba(252,211,77,0.5); }
+  .log-phase {
+    color: #a855f7;
+    text-shadow: 0 0 4px rgba(168,85,247,0.5);
+    font-weight: 700;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(168,85,247,0.2);
+  }
+
+  .verdict {
+    border-top: 1px solid rgba(252,211,77,0.2);
+    background: linear-gradient(180deg, rgba(252,211,77,0.05) 0%, rgba(168,85,247,0.05) 100%);
+    padding: 14px 16px;
+    font-size: 12px;
+  }
+  .verdict-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    color: rgba(255,255,255,0.7);
+  }
+  .verdict-line .label { color: rgba(255,255,255,0.5); }
+  .verdict-line .val-good { color: #56d364; font-weight: 700; text-shadow: 0 0 4px rgba(86,211,100,0.5); }
+  .verdict-line .val-warn { color: #f0883e; font-weight: 700; }
+  .verdict-final {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(86,211,100,0.1);
+    border: 1px solid rgba(86,211,100,0.4);
+    border-radius: 6px;
+    color: #56d364;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 0 4px rgba(86,211,100,0.5);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .verdict-final.show { opacity: 1; }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-right: 3px;
+  }
+  .tag-finance { background: rgba(86,211,100,0.2); color: #56d364; }
+  .tag-business { background: rgba(168,85,247,0.2); color: #a855f7; }
+  .tag-legal { background: rgba(240,136,62,0.2); color: #f0883e; }
+  .tag-ops { background: rgba(0,212,255,0.2); color: #00d4ff; }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage">
+
+  <!-- 左侧：8 维度列表 -->
+  <div class="window dim-list-pane">
+    <div class="titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ 8 DIMENSIONS</div>
+    </div>
+    <div class="dim-list-body" id="dimList"></div>
+  </div>
+
+  <!-- 中央：雷达图 -->
+  <div class="window radar-pane">
+    <div class="titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ RADAR CHART · 启源芯 vs 行业 P50</div>
+    </div>
+    <div class="radar-body">
+      <svg class="radar-svg" viewBox="0 0 460 460">
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- 8 圈网格 -->
+        <g id="gridGroup"></g>
+
+        <!-- 8 轴 -->
+        <g id="axisGroup"></g>
+
+        <!-- 标签 -->
+        <g id="labelGroup"></g>
+
+        <!-- 行业 P50 polygon -->
+        <polygon class="poly-peer" id="polyPeer" points="" />
+
+        <!-- 启源芯 polygon -->
+        <polygon class="poly-qiyuan" id="polyQiyuan" points="" />
+
+        <!-- 顶点 -->
+        <g id="vertexGroup"></g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 右侧：评估日志 -->
+  <div class="window log-pane">
+    <div class="titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ 评估流水</div>
+    </div>
+    <div class="log-body" id="logBody"></div>
+    <div class="verdict">
+      <div class="verdict-line"><span class="label">综合得分</span><span class="val-good" id="finalScore">--</span></div>
+      <div class="verdict-line"><span class="label">行业 P50 对比</span><span class="val-good">+18%</span></div>
+      <div class="verdict-line"><span class="label">评级</span><span class="val-good">A</span></div>
+      <div class="verdict-final" id="verdictFinal">✓ 建议推进并购 · 报价 42亿</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 50; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#fcd34d', '#a855f7', '#56d364'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* === 8 维度数据 === */
+const DIMS = [
+  { id: 1, name: '财务健康度', source: 'finance WS', score: 88, peer: 70 },
+  { id: 2, name: '盈利质量',   source: 'finance WS', score: 85, peer: 68 },
+  { id: 3, name: '估值合理性', source: 'finance WS', score: 78, peer: 75 },
+  { id: 4, name: '市场地位',   source: 'business WS', score: 92, peer: 72 },
+  { id: 5, name: '竞争壁垒',   source: 'business WS', score: 86, peer: 65 },
+  { id: 6, name: '增长潜力',   source: 'business WS', score: 90, peer: 70 },
+  { id: 7, name: '法律合规风险', source: 'legal WS', score: 82, peer: 60 },  // 越高越合规
+  { id: 8, name: '整合难度',   source: 'ops WS',    score: 75, peer: 55 },  // 越低越易整合
+];
+
+/* === 渲染左侧维度列表 === */
+const dimList = document.getElementById('dimList');
+DIMS.forEach((d, i) => {
+  const item = document.createElement('div');
+  item.className = 'dim-item';
+  item.id = 'dim-' + d.id;
+  item.innerHTML = `
+    <div class="dim-num" id="dim-num-${d.id}">${d.id}</div>
+    <div class="dim-content">
+      <div class="dim-name">${d.name}</div>
+      <div class="dim-bar-wrap"><div class="dim-bar" id="dim-bar-${d.id}" style="width:0%"></div></div>
+      <div class="dim-score" id="dim-score-${d.id}">0 / 100</div>
+      <div class="dim-source"><span class="tag tag-${d.source.split(' ')[0]}">${d.source.split(' ')[0]}</span> ${d.source.split(' ')[1]}</div>
+    </div>
+  `;
+  dimList.appendChild(item);
+});
+
+/* === 渲染雷达图 === */
+const cx = 230, cy = 230;
+const radius = 165;
+const N = 8;
+
+function angle(i) { return (Math.PI * 2 * i) / N - Math.PI / 2; }
+function pos(score, i) {
+  const r = (score / 100) * radius;
+  return [cx + Math.cos(angle(i)) * r, cy + Math.sin(angle(i)) * r];
+}
+
+// 网格
+const gridGroup = document.getElementById('gridGroup');
+for (let level = 1; level <= 5; level++) {
+  const r = (level / 5) * radius;
+  const pts = [];
+  for (let i = 0; i < N; i++) {
+    const [x, y] = [cx + Math.cos(angle(i)) * r, cy + Math.sin(angle(i)) * r];
+    pts.push(`${x},${y}`);
+  }
+  const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  poly.setAttribute('points', pts.join(' '));
+  poly.setAttribute('class', 'radar-grid');
+  gridGroup.appendChild(poly);
+}
+
+// 轴线
+const axisGroup = document.getElementById('axisGroup');
+for (let i = 0; i < N; i++) {
+  const [x, y] = pos(100, i);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1', cx);
+  line.setAttribute('y1', cy);
+  line.setAttribute('x2', x);
+  line.setAttribute('y2', y);
+  line.setAttribute('class', 'radar-axis');
+  axisGroup.appendChild(line);
+}
+
+// 标签
+const labelGroup = document.getElementById('labelGroup');
+DIMS.forEach((d, i) => {
+  const [lx, ly] = pos(120, i);
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.id = 'label-' + d.id;
+  g.setAttribute('opacity', '0');
+  g.setAttribute('style', 'transition:opacity 0.4s');
+  const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t1.setAttribute('x', lx);
+  t1.setAttribute('y', ly - 4);
+  t1.setAttribute('class', 'radar-label-cn');
+  t1.textContent = d.id;
+  const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t2.setAttribute('x', lx);
+  t2.setAttribute('y', ly + 12);
+  t2.setAttribute('class', 'radar-label');
+  t2.textContent = d.name;
+  g.appendChild(t1);
+  g.appendChild(t2);
+  labelGroup.appendChild(g);
+});
+
+// 顶点
+const vertexGroup = document.getElementById('vertexGroup');
+DIMS.forEach((d, i) => {
+  const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  c.setAttribute('id', 'vert-' + d.id);
+  c.setAttribute('class', 'radar-vertex');
+  c.setAttribute('r', '4');
+  c.setAttribute('cx', cx);
+  c.setAttribute('cy', cy);
+  vertexGroup.appendChild(c);
+});
+
+/* === 动画时间线 === */
+const startTs = 200;
+
+DIMS.forEach((d, i) => {
+  setTimeout(() => {
+    // 左侧 item
+    document.getElementById('dim-' + d.id).classList.add('show');
+    // 雷达标签
+    document.getElementById('label-' + d.id).setAttribute('opacity', '1');
+  }, startTs + i * 400);
+
+  // 柱状条填充
+  setTimeout(() => {
+    document.getElementById('dim-bar-' + d.id).style.width = d.score + '%';
+    document.getElementById('dim-score-' + d.id).textContent = d.score + ' / 100';
+  }, startTs + i * 400 + 200);
+
+  // 顶点位置动画
+  setTimeout(() => {
+    const v = document.getElementById('vert-' + d.id);
+    const [x, y] = pos(d.score, i);
+    v.setAttribute('cx', x);
+    v.setAttribute('cy', y);
+    v.classList.add('show');
+  }, startTs + i * 400 + 400);
+});
+
+// 行业 P50 polygon 提前显示
+setTimeout(() => {
+  const peerPts = DIMS.map((d, i) => pos(d.peer, i).join(',')).join(' ');
+  document.getElementById('polyPeer').setAttribute('points', peerPts);
+  document.getElementById('polyPeer').classList.add('show');
+}, startTs);
+
+// 启源芯 polygon 填充动画
+setTimeout(() => {
+  const pts = DIMS.map((d, i) => pos(d.score, i).join(',')).join(' ');
+  document.getElementById('polyQiyuan').setAttribute('points', pts);
+  document.getElementById('polyQiyuan').classList.add('show');
+}, startTs + N * 400 + 800);
+
+/* === 右侧日志 === */
+const logs = [
+  { t: 600, txt: '<span class="log-time">[16:20:00]</span> <span class="log-main">主公启动雷达评估</span>' },
+  { t: 1000, txt: '<span class="log-phase">[16:20:01] <span class="tag tag-finance">finance</span> WS</span>' },
+  { t: 1500, txt: '<span class="log-data">[16:20:02] ✓ 营收 138亿/+24% 净利 18亿</span>' },
+  { t: 2000, txt: '<span class="log-data">[16:20:03] ✓ EBITDA 8.7亿 (调整后)</span>' },
+  { t: 2500, txt: '<span class="log-data">[16:20:04] ✓ 财务健康度: <b>88/100</b></span>' },
+  { t: 3000, txt: '<span class="log-phase">[16:20:05] <span class="tag tag-business">business</span> WS</span>' },
+  { t: 3500, txt: '<span class="log-data">[16:20:06] ✓ TAM 2000亿 / 市场份额 12.3%</span>' },
+  { t: 4000, txt: '<span class="log-data">[16:20:07] ✓ 客户 CR5 = 47% (健康)</span>' },
+  { t: 4500, txt: '<span class="log-data">[16:20:08] ✓ 市场地位: <b>92/100</b></span>' },
+  { t: 5000, txt: '<span class="log-phase">[16:20:09] <span class="tag tag-legal">legal</span> WS</span>' },
+  { t: 5500, txt: '<span class="log-data">[16:20:10] ✓ 26/05/09 法律尽调 已发布</span>' },
+  { t: 6000, txt: '<span class="log-data">[16:20:11] ✓ 诉讼 3 起 (标的 800万)</span>' },
+  { t: 6500, txt: '<span class="log-data">[16:20:12] ✓ 专利 127 项 / 无质押</span>' },
+  { t: 7000, txt: '<span class="log-phase">[16:20:13] <span class="tag tag-ops">ops</span> WS</span>' },
+  { t: 7500, txt: '<span class="log-data">[16:20:14] ✓ 核心团队留任率 92%</span>' },
+  { t: 8000, txt: '<span class="log-data">[16:20:15] ✓ 系统整合难度: 中等</span>' },
+  { t: 8500, txt: '<span class="log-ok">[16:20:16] ✓ 8 维度全部采集完成</span>' },
+  { t: 9000, txt: '<span class="log-main">综合得分: <b>84.5/100</b></span>' },
+];
+
+const logBody = document.getElementById('logBody');
+logs.forEach(l => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line';
+    div.innerHTML = l.txt;
+    logBody.appendChild(div);
+    logBody.scrollTop = logBody.scrollHeight;
+  }, l.t);
+});
+
+setTimeout(() => {
+  document.getElementById('finalScore').textContent = '84.5 / 100';
+}, 9200);
+setTimeout(() => {
+  document.getElementById('verdictFinal').classList.add('show');
+}, 9500);
+
+// 全部 8 个维度 num 编号最终变绿
+setTimeout(() => {
+  for (let i = 1; i <= 8; i++) {
+    document.getElementById('dim-num-' + i).classList.add('done');
+  }
+}, 9700);
+</script>
+
+</body>
+</html>
