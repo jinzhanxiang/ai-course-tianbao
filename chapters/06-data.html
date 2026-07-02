@@ -121,6 +121,41 @@
       </div>
     </div>
 
+    <!-- Slide 3.5：MCP 协议 · Agent↔工具的标准化（2026-07 新增） -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:var(--accent);margin-bottom:20px">🔌 MCP 协议：清洗管道的「USB-C 接口」</h2>
+
+      <div class="alert alert-info" style="margin-bottom:18px;font-size:13px">
+        <strong>MCP（Model Context Protocol）</strong>是 Anthropic 在 2024-11 发布的<strong>Agent ↔ 工具交互协议</strong>，已成为事实标准。我们的 data 清洗管道本质上就是<strong>私域 MCP 实现</strong>。
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:13px;color:var(--accent);margin:0 0 10px 0">🔌 MCP 协议是什么</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            相当于<strong>「USB-C」</strong>：任何 Agent 可以用同一套协议调用任何工具。<br>
+            不再需要为每个 Agent ↔ 工具组合写定制代码。<br>
+            <strong style="color:#38bdf8">Anthropic 主导 · 事实标准</strong>
+          </p>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:13px;color:var(--accent);margin:0 0 10px 0">📦 data 的 MCP 工具集</h3>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:2">
+            · <code>pdf_clean.sh</code> → PDF 预处理<br>
+            · <code>clean.sh</code> → 主清洗调度<br>
+            · <code>validate.sh</code> → 字段校验<br>
+            · <code>asr_workflow.py</code> → 语音转录<br>
+            · <code>health_check.sh</code> → 服务监控
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px;background:rgba(56,189,248,0.06);border-left:3px solid #38bdf8;font-size:12px">
+        <strong style="color:#38bdf8">主公讲解话术：</strong><br>
+        "data agent 调用 pdf_clean.sh、clean.sh 这 28 个脚本的过程，就是<strong>私域 MCP 协议</strong>的实现。——这和 AWS Bedrock AgentCore 用 MCP 调用工具，是同一套逻辑。"
+      </div>
+    </div>
+
     <!-- Slide 4：Hermes 协助故事 -->
     <div class="slide">
       <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">⚙️ Hermes 协助 data 梳理流程</h2>

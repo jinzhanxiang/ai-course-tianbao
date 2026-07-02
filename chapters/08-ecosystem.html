@@ -234,6 +234,43 @@
       </div>
     </div>
 
+    <!-- Slide 6.5：Loop Engineering 工具栈趋同（2026-07 新增） -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:16px">🔄 Loop Engineering 工具栈趋同（2026）</h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:18px">Claude Code、GitHub Codex、Cursor 所有主流 Coding Agent 都在向 Loop Engineering 五元素收敛</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="border-color:#A855F7;padding:16px">
+          <h3 style="font-size:13px;color:#A855F7;margin:0 0 10px 0">💻 Claude Code（Anthropic）</h3>
+          <div style="font-size:12px;color:#8FA1CC;line-height:2">
+            ① Automations：<code>claude -p</code> / wrapper 脚本<br>
+            ② Skills：<code>~/.claude/settings.json</code><br>
+            ③ Memory：<code>~/.claude/memory/</code><br>
+            ④ Worktrees：<code>--settings</code> 隔离配置<br>
+            ⑤ Eval：手动 <code>--print</code> 输出验证
+          </div>
+        </div>
+        <div class="card" style="border-color:#22C55E;padding:16px">
+          <h3 style="font-size:13px;color:#22C55E;margin:0 0 10px 0">🔵 GitHub Codex（OpenAI）</h3>
+          <div style="font-size:12px;color:#8FA1CC;line-height:2">
+            ① Automations：CI/CD 集成触发<br>
+            ② Skills：<code>system prompt</code> 角色定义<br>
+            ③ Memory：对话 context 窗口（128K）<br>
+            ④ Worktrees：PR context 隔离<br>
+            ⑤ Eval：PR review comments
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:#F59E0B;padding:14px;background:rgba(245,158,11,0.06)">
+        <h3 style="font-size:13px;color:#F59E0B;margin:0 0 8px 0">📌 趋同结论（Addy Osmani 2026-06）</h3>
+        <p style="font-size:12px;color:#8FA1CC;line-height:1.7;margin:0">
+          所有主流 Coding Agent 都在收敛到同一套工程化框架：<strong>Automations（心跳）+ Skills（知识）+ Memory（记忆）+ Worktrees（隔离）+ Eval（判定）</strong>。<br>
+          主公的 OpenClaw 体系是<strong>同款框架在企业级投资场景的完整实现</strong>。
+        </p>
+      </div>
+    </div>
+
     <!-- Slide 7：三智能体协作全景表 -->
     <div class="slide">
       <h2 style="font-size:28px;color:var(--accent);margin-bottom:16px">📋 三智能体协作全景</h2>
