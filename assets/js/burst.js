@@ -292,57 +292,57 @@
         { icon: '⏰', name: 'Q5 时间冲突', tag: '业务忙没时间用?', detail: '先从"5 分钟任务"切入:周报整理、纪要排版、信息检索。\n无需专门时间,融入日常工作。', color: '#EC4899', pos: 4 },
         { icon: '🚀', name: 'Q6 推广', tag: '其他部门怎么用?', detail: '本周六内训 → 下周部门试点 → 月底跨部门共享。\n先做出"看得见的成果"再推广。', color: '#00D4FF', pos: 5 }
       ]
+    },
+
+    // ====== 方案 C: 4 个海报 Ken Burns 缩放动画 ======
+    'burst-video-warroom': {
+      title: '💹 投资作战室',
+      subtitle: '7 维度对标 · 30 秒得到估值区间',
+      videoPoster: '../assets/videos/posters/05-war-room.png',
+      layout: 'kenburns'
+    },
+    'burst-video-beforeafter': {
+      title: '✨ 研报清洗前后对比',
+      subtitle: '80 页 PDF → 79 个实体/110 个指标/178 个逻辑',
+      videoPoster: '../assets/videos/posters/06-before-after.png',
+      layout: 'kenburns'
+    },
+    'burst-video-radar': {
+      title: '🎯 8 维企业雷达图',
+      subtitle: '财务·产业·估值·风险·治理·ESG·政策·团队',
+      videoPoster: '../assets/videos/posters/07-eight-dimension.png',
+      layout: 'kenburns'
+    },
+    'burst-video-maindash': {
+      title: '🧠 main 指挥中心',
+      subtitle: '5 大仪表盘实时呈现 4 代理状态',
+      videoPoster: '../assets/videos/posters/01-main-command-center.png',
+      layout: 'kenburns'
+    },
+
+    // ====== 3 个 AI 生成视频 burst ======
+    'burst-video-neural': {
+      title: '🕸️ 7 节点神经网络',
+      subtitle: 'main → project/research/data/report → 一同起势',
+      videoPoster: '../assets/videos/posters/04-neural-network.png',
+      video: '../assets/videos/04-neural-network.mp4',
+      layout: 'video'
+    },
+    'burst-video-qiyuan': {
+      title: '🏭 启源芯 · 投决现场',
+      subtitle: 'DCF 35-58 亿·全息金融层叠加',
+      videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
+      video: '../assets/videos/02-qiyuan-factory.mp4',
+      layout: 'video'
+    },
+    'burst-video-pipeline': {
+      title: '🌊 研报数据清洗流水线',
+      subtitle: '乱纸堆 → 管道 → 晶体向量',
+      videoPoster: '../assets/videos/posters/03-data-cleaning.png',
+      video: '../assets/videos/03-data-pipeline.mp4',
+      layout: 'video'
     }
   };
-
-  // ====== 方案 C: 4 个海报 Ken Burns 缩放动画 ======
-  'burst-video-warroom': {
-    title: '💹 投资作战室',
-    subtitle: '7 维度对标 · 30 秒得到估值区间',
-    videoPoster: '../assets/videos/posters/05-war-room.png',
-    layout: 'kenburns'
-  },
-  'burst-video-beforeafter': {
-    title: '✨ 研报清洗前后对比',
-    subtitle: '80 页 PDF → 79 个实体/110 个指标/178 个逻辑',
-    videoPoster: '../assets/videos/posters/06-before-after.png',
-    layout: 'kenburns'
-  },
-  'burst-video-radar': {
-    title: '🎯 8 维企业雷达图',
-    subtitle: '财务·产业·估值·风险·治理·ESG·政策·团队',
-    videoPoster: '../assets/videos/posters/07-eight-dimension.png',
-    layout: 'kenburns'
-  },
-  'burst-video-maindash': {
-    title: '🧠 main 指挥中心',
-    subtitle: '5 大仪表盘实时呈现 4 代理状态',
-    videoPoster: '../assets/videos/posters/01-main-command-center.png',
-    layout: 'kenburns'
-  },
-
-  // ====== 3 个 AI 生成视频 burst ======
-  'burst-video-neural': {
-    title: '🕸️ 7 节点神经网络',
-    subtitle: 'main → project/research/data/report → 一同起势',
-    videoPoster: '../assets/videos/posters/04-neural-network.png',
-    video: '../assets/videos/04-neural-network.mp4',
-    layout: 'video'
-  },
-  'burst-video-qiyuan': {
-    title: '🏭 启源芯 · 投决现场',
-    subtitle: 'DCF 35-58 亿·全息金融层叠加',
-    videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
-    video: '../assets/videos/02-qiyuan-factory.mp4',
-    layout: 'video'
-  },
-  'burst-video-pipeline': {
-    title: '🌊 研报数据清洗流水线',
-    subtitle: '乱纸堆 → 管道 → 晶体向量',
-    videoPoster: '../assets/videos/posters/03-data-cleaning.png',
-    video: '../assets/videos/03-data-pipeline.mp4',
-    layout: 'video'
-  },
 
   // ============== 2. 排版算法 ==============
   function getLayoutCoords(layout, count, cards, opts) {
