@@ -486,17 +486,16 @@
         }
         break;
       case 'grid':
-        // CSS Grid 布局 - 彻底避免重叠，使用 flex 居中卡片
+        // CSS Grid 布局 - 上下两行卡片不重叠
         const cols = count <= 4 ? Math.min(count, 3) : 3;
         const rows = Math.ceil(count / cols);
         const stageW = (opts && opts.stageW) || 1382;
-        const gridGap = 28;
-        const cardW = 270;
-        const cardH = 240;
+        const gridGap = 50;  // 足够大的间距避免遮挡
+        const cardW = 260;
+        const cardH = 300;  // 必须与 CSS max-height 一致
         const gridW = cols * cardW + (cols - 1) * gridGap;
-        const gridH = rows * cardH + (rows - 1) * gridGap;
         const startX = (stageW - gridW) / 2 + cardW / 2;
-        const startY = 120 + cardH / 2; // 顶部预留 120px 给标题
+        const startY = 110 + cardH / 2; // 顶部预留 110px 给标题
         for (let i = 0; i < count; i++) {
           const r = Math.floor(i / cols);
           const c = i % cols;

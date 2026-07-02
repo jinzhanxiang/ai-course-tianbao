@@ -905,7 +905,7 @@ th {
   transform-origin: center top;
   transition: opacity 0.4s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   width: min(96vw, 1400px);
-  min-height: 600px;
+  min-height: 760px;
   max-height: calc(100vh - 40px);
   overflow: visible;
   margin-top: 20px;
@@ -1035,13 +1035,13 @@ th {
   position: absolute;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  width: 280px;
-  min-height: 180px;
-  max-height: 300px;
+  width: 260px;
+  min-height: 220px;
+  max-height: 280px;
   background: linear-gradient(135deg, #ffffff, #f8faff);
   border: 2px solid var(--bc-color, #00D4FF);
   border-radius: 20px;
-  padding: 18px 20px;
+  padding: 16px 18px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.03), 0 0 30px var(--bc-color, transparent);
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
   animation: burst-card-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
