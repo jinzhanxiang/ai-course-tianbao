@@ -279,6 +279,36 @@
       ]
     },
 
+    // ====== 01 开场 - 人力岗视角（HR × AI）======
+    'burst-hr-scenarios': {
+      title: '人力岗 · AI 帮你干掉重复活',
+      subtitle: 'JD · 简历 · 面试纪要 · 培训文档 · 薪酬报告 · 7 个场景全部干掉',
+      layout: 'threecol',
+      cards: [
+        { icon: '📝', name: 'JD 撰写', tag: '岗位说明书', detail: '输入:岗位名称 + 部门 + 职级。\nAI 输出:职责 / 任职资格 / 薪酬范围 / 发展路径。\n原本 2 小时 → 现在 5 分钟。', color: '#EC4899', pos: 'left' },
+        { icon: '🔍', name: '简历筛选', tag: '智能匹配', detail: '上传 100 份简历 → AI 评估匹配度 → 排出 Top 10。\n资深 HR 看 1 份简历需 5 分钟，100 份 = 8 小时。\nAI 看 100 份 = 10 秒，人工复选 10 份 = 50 分钟。', color: '#F59E0B', pos: 'center' },
+        { icon: '🎙️', name: '面试纪要', tag: '语音转写 + 摘要', detail: '面试录音 60 分钟 → FunASR 转文字 → AI 摘要出:\n能力评分 / 潜在风险 / 建议薪资 / 面试官提问覆盖度。\n原本要 2 小时整理，现在 3 分钟出报告。', color: '#A855F7', pos: 'right' },
+        { icon: '📚', name: '培训文档', tag: '知识库生成', detail: '从历史项目 / 课程 / 专家访谈 → 抽取知识点 → 结构化课程。\n可一键生成 Word / PPT / 在线考试题。\n原本 3 天 → 3 小时。', color: '#00D4FF', pos: 'left' },
+        { icon: '📊', name: '薪酬报告', tag: '市场对比', detail: '输入:岗位 + 城市 + 公司规模。\nAI 查询 10 家可比公司公开薪酬 → 生成 5 档报告 (P10/P25/P50/P75/P90)。\n原本要做 1 周调研，现在 30 分钟。', color: '#22C55E', pos: 'center' },
+        { icon: '🤝', name: '绩效沟通', tag: '谈话脚本', detail: '输入:员工姓名 + 绩效评级。\nAI 生成:该员工的沟通脚本 + 潜在反问预判 + 推荐改进路径。\n原本要临场发挥，现在可以按脚本走。', color: '#FF6B6B', pos: 'right' }
+      ]
+    },
+
+    // ====== 01 开场 - IT/工程岗视角（Dev × AI）======
+    'burst-it-scenarios': {
+      title: 'IT/工程岗 · 你的 10× 程序员同事上线',
+      subtitle: '结对编程 · 脚本生成 · Debug · 单元测试 · 部署脚本 · 工程能力全提 10 倍',
+      layout: 'threecol',
+      cards: [
+        { icon: '⚙️', name: 'Claude Code', tag: '结对编程', detail: '不是取代你，是跟你一起写。\n你负责设计 / 架构 / 决策，它负责:模板代码 / 文档 / 重复样板 / 跨语言翻译。\n同一个工程师原来 1 周交付 1 模块 → 现在 1 天。', color: '#00D4FF', pos: 'left' },
+        { icon: '🔧', name: '脚本生成', tag: 'WACC / Monte Carlo', detail: '需要写 WACC 敏感性脚本？\n告诉 AI 你要的逻辑 → 生成 Python 代码 + 测试用例。\n不需要从 0 开始拼库函数。', color: '#A855F7', pos: 'center' },
+        { icon: '🐛', name: 'Debug 助手', tag: '错误分析', detail: '丢一段报错日志 → AI 给出:可能原因 Top 3 + 验证步骤 + 修复方案。\n原本在 Stack Overflow 查 1 小时，现在 2 分钟。', color: '#F59E0B', pos: 'right' },
+        { icon: '🧪', name: '单元测试', tag: '自动覆盖', detail: '老代码补单元测试 = 最痛苦的事。\nAI 看函数代码 → 自动生成 30-50 个测试用例 → 覆盖主要边界条件。\n原本 1 天，现在 1 小时。', color: '#22C55E', pos: 'left' },
+        { icon: '🚀', name: '部署脚本', tag: '一键发布', detail: '需要把项目发到服务器？\nAI 生成:Dockerfile + docker-compose + nginx 配置 + 自动化脚本。\n原本要部署运维一起做，现在一人完成。', color: '#EC4899', pos: 'center' },
+        { icon: '📚', name: 'Hermes 中台', tag: '知识管理', detail: '你们写的所有文档 / 代码注释 / 部署手册 → 自动入库 Hermes。\n新人入职第一天就能查:怎么部署 / 怎么 debug / 历史踩过什么坑。\n原本要带 1 个月，现在 1 天上手。', color: '#FF6B6B', pos: 'right' }
+      ]
+    },
+
     // ====== 01 开场 - 变革+团队的三层架构（您特别要求） ======
     'burst-revolution-team': {
       title: '变革 + 团队 · 三层架构',
