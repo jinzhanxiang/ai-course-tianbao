@@ -1,0 +1,403 @@
+/* =====================================================
+   Cyber / Sci-Fi 主题 + 透明背景 + 卡片渐进渐出
+   配套 main.css 一起加载（layout.js 自动注入）
+   ===================================================== */
+
+/* ============== Cyber 主题变量 ============== */
+[data-theme="cyber"] {
+  --bg-primary: #050714;
+  --bg-secondary: #0A0F2C;
+  --bg-card: rgba(10, 15, 44, 0.55);
+  --accent: #00F0FF;        /* 霓虹青 */
+  --accent-hover: #66F7FF;
+  --accent-2: #FF00E5;      /* 霓虹紫粉 */
+  --accent-3: #FFE600;      /* 警示黄 */
+  --text-primary: #E8F4FF;
+  --text-secondary: #8FA8CC;
+  --text-muted: #5A6B95;
+  --border: rgba(0, 240, 255, 0.25);
+  --shadow: 0 0 24px rgba(0, 240, 255, 0.35), 0 8px 32px rgba(0, 0, 0, 0.5);
+  --glow: rgba(0, 240, 255, 0.25);
+  --font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+  --font-main: -apple-system, "PingFang SC", "Microsoft YaHei", "JetBrains Mono", sans-serif;
+}
+
+/* ============== Cyber 背景：扫描线 + 网格 ============== */
+[data-theme="cyber"] body {
+  background:
+    /* 顶部光晕 */
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 240, 255, 0.15) 0%, transparent 60%),
+    /* 底部光晕 */
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(255, 0, 229, 0.12) 0%, transparent 60%),
+    /* 网格底纹 */
+    linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--bg-primary);
+  background-attachment: fixed;
+  position: relative;
+}
+
+[data-theme="cyber"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 240, 255, 0.025) 2px,
+    rgba(0, 240, 255, 0.025) 4px
+  );
+  z-index: 1;
+  animation: scanLineMove 8s linear infinite;
+}
+
+@keyframes scanLineMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(40px); }
+}
+
+/* ============== 顶栏 + 侧栏：玻璃态 + 霓虹边框 ============== */
+[data-theme="cyber"] .topbar,
+[data-theme="cyber"] .sidebar,
+[data-theme="cyber"] .controls {
+  background: rgba(10, 15, 44, 0.7);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+
+[data-theme="cyber"] .topbar {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+[data-theme="cyber"] .sidebar {
+  border-right: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+[data-theme="cyber"] .controls {
+  border-top: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+[data-theme="cyber"] .sidebar-item.active,
+[data-theme="cyber"] .sidebar-item:hover {
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.15) 0%, transparent 100%);
+  border-left: 2px solid var(--accent);
+  box-shadow: -2px 0 8px rgba(0, 240, 255, 0.4);
+}
+
+/* ============== 标题：霓虹辉光 ============== */
+[data-theme="cyber"] .slide-title,
+[data-theme="cyber"] .slide h1,
+[data-theme="cyber"] .slide h2 {
+  color: var(--accent);
+  text-shadow:
+    0 0 8px rgba(0, 240, 255, 0.6),
+    0 0 24px rgba(0, 240, 255, 0.3);
+  letter-spacing: 0.5px;
+}
+
+[data-theme="cyber"] .slide h3,
+[data-theme="cyber"] .slide h4,
+[data-theme="cyber"] .card-title,
+[data-theme="cyber"] .bc-name {
+  color: var(--accent);
+  text-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+}
+
+/* ============== 卡片：玻璃态 + 霓虹边框 ============== */
+[data-theme="cyber"] .card {
+  background: rgba(10, 15, 44, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  box-shadow:
+    0 0 16px rgba(0, 240, 255, 0.1),
+    inset 0 1px 0 rgba(0, 240, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="cyber"] .card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transition: left 0.6s;
+}
+
+[data-theme="cyber"] .card:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 32px rgba(0, 240, 255, 0.35),
+    inset 0 1px 0 rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+[data-theme="cyber"] .card:hover::before {
+  left: 100%;
+}
+
+/* ============== Burst Card：科幻玻璃 + 渐进渐出 ============== */
+.burst-stage {
+  background: transparent !important;  /* 透明背景，不挡内容 */
+}
+
+.burst-card {
+  background: rgba(10, 15, 44, 0.7);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  border-radius: 14px;
+  box-shadow:
+    0 0 24px rgba(0, 240, 255, 0.2),
+    inset 0 1px 0 rgba(0, 240, 255, 0.15);
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  animation: burstCardIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes burstCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(6px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.burst-card:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 32px rgba(0, 240, 255, 0.5),
+    0 0 0 1px var(--accent),
+    inset 0 1px 0 rgba(0, 240, 255, 0.4);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.burst-card .bc-icon {
+  font-size: 32px;
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+}
+
+.burst-card .bc-name {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.burst-card .bc-tag {
+  color: var(--accent-2);
+  background: rgba(255, 0, 229, 0.1);
+  border: 1px solid rgba(255, 0, 229, 0.3);
+  border-radius: 999px;
+  padding: 2px 10px;
+  display: inline-block;
+}
+
+.burst-card .bc-detail {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* ============== Modal：透明背景 + 玻璃弹窗 ============== */
+.modal-overlay,
+.agent-modal {
+  background: rgba(5, 7, 20, 0.35) !important;  /* 极透明，让背景透出 */
+  backdrop-filter: blur(16px) saturate(1.6) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.6) !important;
+}
+
+[data-theme="cyber"] .modal-overlay,
+[data-theme="cyber"] .agent-modal {
+  background: rgba(5, 7, 20, 0.25) !important;
+}
+
+.modal-box,
+.agent-modal-content {
+  background: rgba(10, 15, 44, 0.85) !important;
+  backdrop-filter: blur(24px) saturate(1.4) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  box-shadow:
+    0 0 48px rgba(0, 240, 255, 0.4),
+    0 24px 80px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(0, 240, 255, 0.2) !important;
+  animation: modalSciFiIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+@keyframes modalSciFiIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(8px) hue-rotate(45deg);
+  }
+  60% {
+    filter: blur(0) hue-rotate(0deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) hue-rotate(0deg);
+  }
+}
+
+[data-theme="cyber"] .modal-close {
+  background: rgba(0, 240, 255, 0.1) !important;
+  border: 1px solid rgba(0, 240, 255, 0.4) !important;
+  color: var(--accent) !important;
+}
+
+[data-theme="cyber"] .modal-close:hover {
+  background: var(--accent) !important;
+  color: var(--bg-primary) !important;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
+}
+
+/* ============== 按钮：霓虹辉光 ============== */
+[data-theme="cyber"] .btn,
+[data-theme="cyber"] button:not(.modal-close):not(.burst-close) {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
+  transition: all 0.3s;
+}
+
+[data-theme="cyber"] .btn:hover,
+[data-theme="cyber"] button:not(.modal-close):not(.burst-close):hover {
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.5);
+  border-color: var(--accent);
+}
+
+/* ============== 表格：赛博表格 ============== */
+[data-theme="cyber"] th {
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 2px solid var(--accent);
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
+}
+
+[data-theme="cyber"] td {
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+[data-theme="cyber"] tr:hover {
+  background: rgba(0, 240, 255, 0.05);
+}
+
+/* ============== 进度条 ============== */
+[data-theme="cyber"] .topbar-progress {
+  background: rgba(0, 240, 255, 0.15);
+}
+
+[data-theme="cyber"] .topbar-progress-bar {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* ============== 终端/代码块（呼应 Sci-Fi） ============== */
+[data-theme="cyber"] pre,
+[data-theme="cyber"] code,
+[data-theme="cyber"] .six-screen {
+  background: rgba(5, 7, 20, 0.6);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+/* ============== 链接 + 高亮 ============== */
+[data-theme="cyber"] a {
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(0, 240, 255, 0.4);
+}
+
+[data-theme="cyber"] ::selection {
+  background: rgba(0, 240, 255, 0.4);
+  color: var(--bg-primary);
+}
+
+/* ============== 自定义滚动条 ============== */
+[data-theme="cyber"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+[data-theme="cyber"] ::-webkit-scrollbar-track {
+  background: rgba(0, 240, 255, 0.05);
+}
+[data-theme="cyber"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  border-radius: 4px;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* ============== Burst 头部（标题区） ============== */
+[data-theme="cyber"] .burst-header h2 {
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+[data-theme="cyber"] .burst-header p {
+  color: var(--text-secondary);
+}
+
+/* ============== 章节切换动画 ============== */
+@keyframes chapterFadeIn {
+  from { opacity: 0; transform: translateY(12px); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+[data-theme="cyber"] .slide.active,
+[data-theme="cyber"] .slide.show {
+  animation: chapterFadeIn 0.5s ease-out;
+}
+
+/* ============== 主题切换按钮在 cyber 下 ============== */
+[data-theme="cyber"] .theme-toggle button.active {
+  background: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: 0 0 12px var(--accent);
+}
+
+/* ============== Grid 智能布局（不遮挡） ============== */
+[data-theme="cyber"] .burst-cards[data-layout="grid"],
+[data-theme="cyber"] .burst-cards[data-layout="threecol"],
+[data-theme="cyber"] .burst-cards[data-layout="twocol"] {
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+[data-theme="cyber"] .burst-cards[data-layout="grid"] {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+[data-theme="cyber"] .burst-cards[data-layout="threecol"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+[data-theme="cyber"] .burst-cards[data-layout="twocol"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 容器布局不强制位置（grid 接管） */
+[data-theme="cyber"] .burst-cards[data-layout="grid"] .burst-card,
+[data-theme="cyber"] .burst-cards[data-layout="threecol"] .burst-card,
+[data-theme="cyber"] .burst-cards[data-layout="twocol"] .burst-card {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: auto !important;
+  margin: 0 !important;
+}

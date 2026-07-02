@@ -698,6 +698,8 @@
     });
     const cardContainer = document.createElement('div');
     cardContainer.className = 'burst-cards';
+    // 标记 layout 类型，让 CSS Grid 自动布局接管（grid/threecol/twocol 三种）
+    cardContainer.setAttribute('data-layout', data.layout || 'free');
     cardContainer.style.minHeight = cardContainerH + 'px';
 
     data.cards.forEach((card, idx) => {

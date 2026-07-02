@@ -407,12 +407,13 @@ body {
 .agent-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(5, 7, 20, 0.35);  /* 透明化：让背景透出 */
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 300;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
 }
 .agent-modal.show { display: flex; }
 .agent-modal-content {
@@ -719,8 +720,9 @@ th {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(5, 7, 20, 0.35);  /* 透明化：让背景透出 */
+  backdrop-filter: blur(16px) saturate(1.6);
+  -webkit-backdrop-filter: blur(16px) saturate(1.6);
   display: none;
   align-items: center;
   justify-content: center;
@@ -783,7 +785,7 @@ th {
 
 /* 暗夜黑主题下的 modal 微调 */
 [data-theme="dark"] .modal-overlay {
-  background: rgba(6, 10, 26, 0.85);
+  background: rgba(6, 10, 26, 0.45);
 }
 [data-theme="dark"] .modal-box {
   box-shadow: 0 24px 80px rgba(0,0,0,0.8), 0 0 60px rgba(0,212,255,0.3);
@@ -1029,6 +1031,28 @@ th {
   margin: 0 auto;
 }
 
+/* Grid 布局智能卡片容器（不遮挡、不溢出） */
+.burst-cards[data-layout="grid"],
+.burst-cards[data-layout="threecol"],
+.burst-cards[data-layout="twocol"] {
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+}
+
+.burst-cards[data-layout="grid"] {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.burst-cards[data-layout="threecol"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.burst-cards[data-layout="twocol"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* 卡片 - 放大扩写 */
 .burst-card {
   position: absolute;
@@ -1054,12 +1078,55 @@ th {
   /* trigger JS 设置 left/top */
 }
 
+/* Grid 模式：卡片变 relative，自动布局 */
+.burst-cards[data-layout="grid"] .burst-card,
+.burst-cards[data-layout="threecol"] .burst-card,
+.burst-cards[data-layout="twocol"] .burst-card {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none;
+  opacity: 0;
+  animation: burst-card-stagger 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  width: 100% !important;
+  max-width: 100%;
+  min-height: 260px;
+}
+
+@keyframes burst-card-stagger {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+    filter: blur(4px);
+  }
+  50% {
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 .burst-card.bc-center {
   transform: translate(-50%, -50%) scale(0);
   width: 360px;
   min-height: 220px;
   z-index: 5;
   padding: 28px 32px;
+}
+
+/* Grid 模式中心卡片 */
+.burst-cards[data-layout="grid"] .burst-card.bc-center,
+.burst-cards[data-layout="threecol"] .burst-card.bc-center,
+.burst-cards[data-layout="twocol"] .burst-card.bc-center {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  transform: none;
+  width: 100% !important;
+  grid-column: 1 / -1;  /* 中心卡片跨满整行 */
 }
 
 @keyframes burst-card-in {
@@ -1072,6 +1139,14 @@ th {
   transform: translate(-50%, -50%) scale(1.08) !important;
   box-shadow: 0 16px 48px var(--bc-color, rgba(0,212,255,0.4)), 0 0 0 2px var(--bc-color, #00D4FF);
   z-index: 20;
+}
+
+/* Grid 模式 hover 不缩放，避免遮挡 */
+.burst-cards[data-layout="grid"] .burst-card:hover,
+.burst-cards[data-layout="threecol"] .burst-card:hover,
+.burst-cards[data-layout="twocol"] .burst-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  z-index: 5;
 }
 
 .burst-card.bc-center:hover {
