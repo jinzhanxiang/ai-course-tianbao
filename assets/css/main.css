@@ -1038,6 +1038,29 @@ th {
   40%  { opacity: 0.7; filter: blur(4px); }
   100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
 }
+
+/* ====== 海报 Ken Burns 缩放动画 ======= */
+.burst-poster-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.3), 0 0 80px rgba(0, 212, 255, 0.1);
+  animation: waterToTv 0.6s ease-out forwards;
+}
+.burst-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: cover;
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+@keyframes kenBurns {
+  0%   { transform: scale(1.0) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-2%, -1%); }
+}
 /* ============================================== */
 /* BURST v3.0  Trigger 关键词 - 正文中可点击高亮文字 */
 /* ============================================== */
