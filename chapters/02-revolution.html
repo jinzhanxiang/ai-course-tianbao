@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>第 02 章 · 智能体革命 — 智能体赋能投资研究</title>
-  <link rel="stylesheet" href="../assets/css/main.css?v=3">
-  <link rel="stylesheet" href="../assets/css/themes.css?v=3">
+  <link rel="stylesheet" href="../assets/css/main.css?v=4">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=4">
 </head>
 <body class="chapter-page">
   <!-- 顶部条 -->
@@ -58,18 +58,24 @@
 
   <!-- 主内容 -->
   <main class="main-stage">
-    <!-- Slide 1：标题 -->
-    <div class="slide active">
-      <header class="chapter-header" style="margin-bottom:40px">
-        <h1 style="font-size:48px;color:var(--accent)">第 02 章 · 智能体革命</h1>
-      <p style="font-size:20px;color:var(--text-secondary);margin-top:12px">从"问答"到"行动"——<span class="burst-trigger" data-burst="burst-revolution" data-hint="👉 点击查看 3 层变革">AI Agent 时代</span>的来临</p>
-      </header>
 
-      <div class="alert alert-info">
+    <!-- Slide 1：标题页 -->
+    <div class="slide active">
+      <div style="text-align:center;padding:60px 20px 40px">
+        <div style="font-size:60px;margin-bottom:20px">🤖</div>
+        <h1 style="font-size:48px;color:var(--accent);margin:0 0 16px 0;font-weight:700">第 02 章 · 智能体革命</h1>
+        <p style="font-size:20px;color:var(--text-secondary);margin:0">
+          从「问答」到「行动」——
+          <span class="burst-trigger" data-burst="burst-revolution" data-hint="👉 点击查看 3 层变革" style="color:var(--accent);font-weight:600">AI Agent 时代</span>
+          的来临
+        </p>
+      </div>
+
+      <div class="alert alert-info" style="max-width:780px;margin:32px auto 0;font-size:14px">
         <strong>核心命题：</strong> 2024 年起，大模型从"对话"转向"行动"。智能体（Agent）= LLM + 工具 + 记忆 + 规划。
       </div>
 
-      <div class="kpi-row">
+      <div class="kpi-row" style="margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto">
         <div class="kpi-card">
           <div class="kpi-num">2024</div>
           <div class="kpi-label">AI Agent 元年</div>
@@ -83,190 +89,180 @@
           <div class="kpi-label">天保已部署</div>
         </div>
       </div>
+
+      <div style="text-align:center;margin-top:48px;color:var(--text-secondary);font-size:13px">
+        ↓ 往下滚动查看变革对比 ↓
+      </div>
     </div>
 
-    <!-- Slide 2：什么是 Agent（变革对比，给刚接触的人） -->
+    <!-- Slide 2：什么是智能体（变革对比，给刚接触的人） -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:12px">🤖 什么是智能体？</h2>
-      <p style="font-size:16px;color:var(--text-secondary);margin-bottom:18px">先看清楚这场变革 —— 智能体时代 vs 传统时代，到底变了什么？</p>
+      <h2 class="slide-title">🤖 什么是智能体？</h2>
+      <p class="slide-subtitle">先看清楚这场变革 —— 智能体时代 vs 传统时代，到底变了什么？</p>
 
-      <!-- 变革心刐1：一句诓大背景 -->
-      <div class="alert alert-info" style="margin-bottom:18px">
-        <strong>变革大背景：</strong>我们正在经历 <span style="color:var(--accent);font-weight:700">“软件 2.0”</span> 的变革。从“手工生产” → “智能工厂” 需要三步：<strong>云计算 (2010s) → 大模型 (2023) → 智能体 (2024+)</strong>。
+      <div class="alert alert-info" style="margin-bottom:24px">
+        <strong>变革大背景：</strong>我们正在经历
+        <span style="color:var(--accent);font-weight:700">「软件 2.0」</span>
+        的变革。从「手工生产」→「智能工厂」需要三步：<strong>云计算 (2010s) → 大模型 (2023) → 智能体 (2024+)</strong>。
       </div>
 
-      <!-- 对比表：五行核心差异 -->
-      <h3 style="color:var(--accent);margin-bottom:12px;font-size:18px">📊 智能体时代 vs 传统时代（5 个核心差异）</h3>
+      <h3>📊 智能体时代 vs 传统时代（5 个核心差异）</h3>
 
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px">
-        <div style="padding:14px;background:rgba(255,95,87,0.08);border:1px solid rgba(255,95,87,0.3);border-radius:8px">
-          <div style="font-size:11px;color:#ff5f57;font-weight:700;letter-spacing:1px">传统软件</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>人写规则</strong><br><span style="color:var(--text-secondary);font-size:11px">if-else 逻辑</span></div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);">→</div>
-        <div style="padding:14px;background:rgba(86,211,100,0.08);border:1px solid rgba(86,211,100,0.3);border-radius:8px">
-          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:1px">智能体时代</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>LLM 推理</strong><br><span style="color:var(--text-secondary);font-size:11px">模型出步骤</span></div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);"></div>
-        <div style="padding:14px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);border-radius:8px">
-          <div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:1px">变革</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>从规则到推理</strong><br><span style="color:var(--text-secondary);font-size:11px">开发范式革命</span></div>
-        </div>
-      </div>
-
-      <table>
+      <table style="margin-bottom:20px">
         <thead>
           <tr>
-            <th style="width:14%">维度</th>
-            <th style="background:rgba(255,95,87,0.1);width:32%">传统软件时代（2000-2023）</th>
-            <th style="background:rgba(255,200,55,0.1);width:8%"></th>
-            <th style="background:rgba(86,211,100,0.1);width:32%">智能体 Agent 时代（2024+）</th>
-            <th style="background:rgba(168,85,247,0.1);width:14%">变革</th>
+            <th style="width:12%">维度</th>
+            <th style="background:rgba(255,95,87,0.08);width:32%;color:#ff5f57">传统软件时代（2000-2023）</th>
+            <th style="background:rgba(86,211,100,0.08);width:32%;color:#56d364">智能体 Agent 时代（2024+）</th>
+            <th style="background:rgba(168,85,247,0.08);width:24%;color:#a855f7">变革</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>交互方式</strong></td>
             <td>点按钮 / 填表单 / 下拉菜单</td>
-            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
             <td>说话下达目标</td>
             <td><span style="color:#a855f7;font-weight:700">从 UI 到 NL</span></td>
           </tr>
           <tr>
             <td><strong>使用主体</strong></td>
             <td>人被软件指挥</td>
-            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
             <td>人指挥软件干活</td>
             <td><span style="color:#a855f7;font-weight:700">主体反转</span></td>
           </tr>
           <tr>
             <td><strong>输出类型</strong></td>
             <td>信息展示 / 表格汇总</td>
-            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
             <td>执行结果 / 交付物</td>
             <td><span style="color:#a855f7;font-weight:700">从查到做</span></td>
           </tr>
           <tr>
             <td><strong>调用关系</strong></td>
             <td>单个软件独立运行</td>
-            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
             <td>多个 Agent 并行协同 + 反向调用人</td>
             <td><span style="color:#a855f7;font-weight:700">从点到网</span></td>
           </tr>
           <tr>
             <td><strong>能力交付</strong></td>
-            <td>\"点击什么出什么\"</td>
-            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
-            <td>\"赋予一个可用的智能能力\"</td>
+            <td>「点击什么出什么」</td>
+            <td>「赋予一个可用的智能能力」</td>
             <td><span style="color:#a855f7;font-weight:700">从能用到能动</span></td>
           </tr>
         </tbody>
       </table>
 
-      <!-- 3 个生活化类比 -->
-      <h3 style="color:var(--accent);margin-top:24px;margin-bottom:12px;font-size:18px">🌍 拿 3 件事看变革</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
-        <div class="card" style="border-top:3px solid #ff5f57">
-          <h4 style="color:#ff5f57;font-size:14px;margin-bottom:8px">📧 发一封邮件</h4>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            <strong>传统：</strong>打开 Outlook → 点\"新建\" → 输入收件人 → 写主题 → 写正文 → 点\"发送\"</br>
-            <strong style="color:#56d364">智能体：</strong>说话：\"帮我给王总发一封邮件，说明天下午 3 点跟他确认启源芯尽调访谈\"
+      <h3 style="margin-top:8px">🌍 拿 3 件事看变革</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
+        <div class="card" style="border-top:3px solid #ff5f57;padding:14px">
+          <h4 style="color:#ff5f57">📧 发一封邮件</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>打开 Outlook → 点「新建」→ 输入收件人 → 写主题 → 写正文 → 点「发送」<br>
+            <strong style="color:#56d364">智能体：</strong>说话：「帮我给王总发一封邮件，说明天下午 3 点跟他确认启源芯尽调访谈」
           </p>
         </div>
-        <div class="card" style="border-top:3px solid #febc2e">
-          <h4 style="color:#febc2e;font-size:14px;margin-bottom:8px">📑 出一份尽调报告</h4>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            <strong>传统：</strong>50 页 Word → 手工查财报 → 手工录数据 → 手工改格式</br>
-            <strong style="color:#56d364">智能体：</strong>一句话：\"出启源芯尽调报告\" → 7 维度并行 90 分钟出 80 页成稿
+        <div class="card" style="border-top:3px solid #febc2e;padding:14px">
+          <h4 style="color:#febc2e">📑 出一份尽调报告</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>50 页 Word → 手工查财报 → 手工录数据 → 手工改格式<br>
+            <strong style="color:#56d364">智能体：</strong>一句话：「出启源芯尽调报告」→ 7 维度并行 90 分钟出 80 页成稿
           </p>
         </div>
-        <div class="card" style="border-top:3px solid #a855f7">
-          <h4 style="color:#a855f7;font-size:14px;margin-bottom:8px">🧾 清洗 13 份研报</h4>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            <strong>传统：</strong>实习生请假 3 天手工 OCR + Excel</br>
-            <strong style="color:#56d364">智能体：</strong>data agent 2 小时 → 79 实体 / 110 指标 / 178 逻辑/ 自动入库
+        <div class="card" style="border-top:3px solid #a855f7;padding:14px">
+          <h4 style="color:#a855f7">🧾 清洗 13 份研报</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>实习生请假 3 天手工 OCR + Excel<br>
+            <strong style="color:#56d364">智能体：</strong>data agent 2 小时 → 79 实体 / 110 指标 / 178 逻辑 / 自动入库
           </p>
         </div>
       </div>
 
-      <div class="alert alert-warning" style="margin-top:18px">
-        <strong>本质区别：</strong>传统 LLM 是“问答机器”，智能体是“数字员工”。这不是进化，是<strong>范式跃迁</strong>——就像从马车到汽车，不是马车快一点。
+      <div class="alert alert-warning">
+        <strong>本质区别：</strong>传统 LLM 是「问答机器」，智能体是「数字员工」。这不是进化，是
+        <strong>范式跃迁</strong>——就像从马车到汽车，不是马车快一点。
       </div>
     </div>
 
     <!-- Slide 2.5：AI 演化四阶段 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:8px">🚀 AI 演化的四个阶段</h2>
-      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:20px">从「聊天框」到「智能体」到「下一步」——一条清晰的演进路径</p>
+      <h2 class="slide-title">🚀 AI 演化的四个阶段</h2>
+      <p class="slide-subtitle">从「聊天框」→「智能体」→「下一步」—— 一条清晰的演进路径</p>
 
       <!-- 顶部时间轴 -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px;position:relative">
-        <div style="text-align:center;padding:10px;background:rgba(86,211,100,0.08);border-left:3px solid #56d364;border-radius:6px">
-          <div style="font-size:11px;color:#56d364;font-weight:700">2017 · Transformer</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:4px"><strong>1. Chatbox 聊天框</strong></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;position:relative">
+        <div style="text-align:center;padding:14px 8px;background:rgba(86,211,100,0.08);border-left:4px solid #56d364;border-radius:6px">
+          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:0.5px">2017 · Transformer</div>
+          <div style="font-size:14px;color:var(--text-primary);margin-top:6px;font-weight:700">① Chatbox 聊天框</div>
         </div>
-        <div style="text-align:center;padding:10px;background:rgba(86,211,100,0.08);border-left:3px solid #56d364;border-radius:6px">
-          <div style="font-size:11px;color:#56d364;font-weight:700">2022 · ChatGPT</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:4px"><strong>2. Chatbox 全民化</strong></div>
+        <div style="text-align:center;padding:14px 8px;background:rgba(86,211,100,0.08);border-left:4px solid #56d364;border-radius:6px">
+          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:0.5px">2022 · ChatGPT</div>
+          <div style="font-size:14px;color:var(--text-primary);margin-top:6px;font-weight:700">② Chatbox 全民化</div>
         </div>
-        <div style="text-align:center;padding:10px;background:rgba(168,85,247,0.08);border-left:3px solid #a855f7;border-radius:6px">
-          <div style="font-size:11px;color:#a855f7;font-weight:700">2024 · Agent 元年</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:4px"><strong>3. 智能体 Agent</strong></div>
+        <div style="text-align:center;padding:14px 8px;background:rgba(168,85,247,0.08);border-left:4px solid #a855f7;border-radius:6px">
+          <div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:0.5px">2024 · Agent 元年</div>
+          <div style="font-size:14px;color:var(--text-primary);margin-top:6px;font-weight:700">③ 智能体 Agent</div>
         </div>
-        <div style="text-align:center;padding:10px;background:rgba(255,95,87,0.08);border-left:3px solid #ff5f57;border-radius:6px">
-          <div style="font-size:11px;color:#ff5f57;font-weight:700">2026+ · 在路上</div>
-          <div style="font-size:13px;color:var(--text-primary);margin-top:4px"><strong>4. 智能体的下一步</strong></div>
+        <div style="text-align:center;padding:14px 8px;background:rgba(255,95,87,0.08);border-left:4px solid #ff5f57;border-radius:6px">
+          <div style="font-size:11px;color:#ff5f57;font-weight:700;letter-spacing:0.5px">2026+ · 在路上</div>
+          <div style="font-size:14px;color:var(--text-primary);margin-top:6px;font-weight:700">④ 智能体的下一步</div>
         </div>
       </div>
 
-      <!-- 阶段 1：Chatbox 开始 -->
-      <div class="card" style="margin-bottom:14px;border-left:4px solid #56d364;padding:16px">
-        <h3 style="color:#56d364;font-size:18px;margin-bottom:8px">① Chatbox 开始 — 人与 AI 的第一次对话</h3>
-        <div style="display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start">
-          <div style="background:#0d1117;color:#56d364;padding:10px;border-radius:8px;font-family:monospace;font-size:11px;line-height:1.5">
+      <!-- ① Chatbox 开始 -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 20px;background:rgba(86,211,100,0.04);border-left:4px solid #56d364;border-radius:8px;margin-bottom:14px">
+        <div>
+          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:1px">STAGE 01</div>
+          <div style="font-size:18px;font-weight:700;color:#56d364;margin:6px 0 4px 0">Chatbox 开始</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">人与 AI 的第一次对话</div>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:start">
+          <div style="background:#0d1117;color:#56d364;padding:12px;border-radius:6px;font-family:monospace;font-size:11px;line-height:1.6">
             <div style="opacity:0.6">User:</div>
             <div>天保控股是哪一年成立的？</div>
-            <div style="opacity:0.6;margin-top:6px">AI:</div>
-            <div>天保控股成立于2009年...</div>
+            <div style="opacity:0.6;margin-top:8px">AI:</div>
+            <div>天保控股成立于 2009 年...</div>
           </div>
           <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-            <strong style="color:var(--accent)">起点：</strong>2017 年 Google 发表《Attention Is All You Need》，提出 <strong>Transformer 架构</strong>。2022 年 11 月 OpenAI 发布 <strong>ChatGPT</strong>，5 天 100 万用户、2 个月 1 亿用户，史上增长最快的消费级应用。
-            <br><br>
-            <strong style="color:var(--accent)">本质：</strong>一个人类输入文本框、一个 LLM、一个文本输出框。<strong>一句话能聊，一件事做不了。</strong>
+            <strong style="color:var(--accent)">起点：</strong>2017 年 Google 发表《Attention Is All You Need》，提出 <strong>Transformer 架构</strong>。2022 年 11 月 OpenAI 发布 <strong>ChatGPT</strong>，5 天 100 万用户、2 个月 1 亿用户，史上增长最快的消费级应用。<br>
+            <strong style="color:var(--accent)">本质：</strong>一个人类输入文本框 + 一个 LLM + 一个文本输出框。<strong>一句话能聊，一件事做不了。</strong>
           </div>
         </div>
       </div>
 
-      <!-- 阶段 2：Chatbox 特点 -->
-      <div class="card" style="margin-bottom:14px;border-left:4px solid #56d364;padding:16px">
-        <h3 style="color:#56d364;font-size:18px;margin-bottom:10px">② Chatbox 的主要特点 — 三句话概括</h3>
+      <!-- ② Chatbox 特点 -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 20px;background:rgba(86,211,100,0.04);border-left:4px solid #56d364;border-radius:8px;margin-bottom:14px">
+        <div>
+          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:1px">STAGE 02</div>
+          <div style="font-size:18px;font-weight:700;color:#56d364;margin:6px 0 4px 0">Chatbox 主要特点</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">三句话概括</div>
+        </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-          <div style="background:rgba(86,211,100,0.05);padding:12px;border-radius:6px">
-            <div style="font-size:13px;color:#56d364;font-weight:700;margin-bottom:6px">🎯 单轮对话 / 多轮上下文</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">你问一句它答一句。能记住本轮聊过什么，但<strong>关掉就忘</strong>。没有跨会话记忆，没有跨任务能力。</div>
+          <div style="padding:12px;background:rgba(86,211,100,0.06);border-radius:6px">
+            <div style="font-size:13px;color:#56d364;font-weight:700;margin-bottom:6px">🎯 单轮 / 多轮上下文</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">能记住本轮聊过什么，但<strong>关掉就忘</strong>。没有跨会话记忆，没有跨任务能力。</div>
           </div>
-          <div style="background:rgba(86,211,100,0.05);padding:12px;border-radius:6px">
+          <div style="padding:12px;background:rgba(86,211,100,0.06);border-radius:6px">
             <div style="font-size:13px;color:#56d364;font-weight:700;margin-bottom:6px">📚 只能「答」不能「做」</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">能写文案、写代码、翻译、总结。<strong>不能读你的文件、不能跑你的代码、不能改你的数据库。</strong>你看到的是文字，不是结果。</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">能写文案、写代码、翻译。<strong>不能读你的文件、不能跑你的代码、不能改数据库。</strong></div>
           </div>
-          <div style="background:rgba(86,211,100,0.05);padding:12px;border-radius:6px">
+          <div style="padding:12px;background:rgba(86,211,100,0.06);border-radius:6px">
             <div style="font-size:13px;color:#56d364;font-weight:700;margin-bottom:6px">🧠 知识停在训练日</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">训练完什么就会什么，不知道训练后发生的事（<strong>幻觉</strong>就是这个原因）。要新知识？只能重新训练或外挂 RAG。</div>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">训练完什么就会什么，不知道训练后发生的事（<strong>幻觉</strong>就是这个原因）。</div>
           </div>
         </div>
       </div>
 
-      <!-- 阶段 3：智能体 Agent -->
-      <div class="card" style="margin-bottom:14px;border-left:4px solid #a855f7;padding:16px">
-        <h3 style="color:#a855f7;font-size:18px;margin-bottom:8px">③ 智能体 Agent — 给 LLM 装上手脚</h3>
+      <!-- ③ 智能体 Agent -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 20px;background:rgba(168,85,247,0.04);border-left:4px solid #a855f7;border-radius:8px;margin-bottom:14px">
+        <div>
+          <div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:1px">STAGE 03</div>
+          <div style="font-size:18px;font-weight:700;color:#a855f7;margin:6px 0 4px 0">智能体 Agent</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">给 LLM 装上手脚</div>
+        </div>
         <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-          <strong style="color:var(--accent)">核心变化（2024 年起）：</strong>LLM 不再只是“答题”，而是“<strong>接目标→拆任务→调工具→交付结果</strong>”。
-          <br><br>
-          <strong style="color:var(--accent)">公式：</strong><span style="background:#0d1117;color:#56d364;padding:3px 8px;border-radius:4px;font-family:monospace">Agent = LLM（大胼） + Tools（双手） + Memory（记忆） + Planning（规划）</span>
-          <br><br>
-          <strong style="color:var(--accent)">三个代表性事件：</strong>
-          <ul style="margin-top:6px;margin-left:20px;line-height:1.9">
+          <strong style="color:var(--accent)">核心变化（2024 年起）：</strong>LLM 不再只是「答题」，而是「<strong>接目标 → 拆任务 → 调工具 → 交付结果</strong>」。<br>
+          <span style="display:inline-block;margin-top:8px;background:#0d1117;color:#56d364;padding:4px 10px;border-radius:4px;font-family:monospace;font-size:12px">Agent = LLM（大脑）+ Tools（双手）+ Memory（记忆）+ Planning（规划）</span><br>
+          <strong style="color:var(--accent);margin-top:10px;display:inline-block">三个代表性事件：</strong>
+          <ul style="margin:6px 0 0 20px;line-height:1.85;font-size:13px">
             <li><strong>Devin</strong>（2024.3）— 首个被广泛关注的 AI 软件工程师，能独立接单完成 bug fix</li>
             <li><strong>AutoGPT / BabyAGI</strong>（2023 Q4）— 证明了 LLM 可以自主拆解目标、循环执行</li>
             <li><strong>Anthropic Computer Use / OpenAI Operator</strong>（2024 Q4）— Agent 能像人一样操控浏览器和桌面</li>
@@ -274,304 +270,178 @@
         </div>
       </div>
 
-      <!-- 阶段 4：下一步 -->
-      <div class="card" style="border-left:4px solid #ff5f57;padding:16px">
-        <h3 style="color:#ff5f57;font-size:18px;margin-bottom:10px">④ 智能体的下一步 — 四个方向已经在走</h3>
+      <!-- ④ 智能体下一步 -->
+      <div style="display:grid;grid-template-columns:200px 1fr;gap:20px;padding:18px 20px;background:rgba(255,95,87,0.04);border-left:4px solid #ff5f57;border-radius:8px;margin-bottom:14px">
+        <div>
+          <div style="font-size:11px;color:#ff5f57;font-weight:700;letter-spacing:1px">STAGE 04</div>
+          <div style="font-size:18px;font-weight:700;color:#ff5f57;margin:6px 0 4px 0">智能体的下一步</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">四个方向已经在走</div>
+        </div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
-          <div style="padding:12px;background:rgba(255,95,87,0.05);border-radius:6px;border-top:2px solid #ff5f57">
-            <div style="font-size:12px;color:#ff5f57;font-weight:700">🌐 1. 多 Agent 协同</div>
-            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.5">不再是“一个 Agent 干一切”，而是 <strong>main 调度 + 4 专业 Agent</strong>（research/data/project/report）。天保已在路上。</div>
+          <div style="padding:12px;background:rgba(255,95,87,0.06);border-radius:6px;border-top:2px solid #ff5f57">
+            <div style="font-size:12px;color:#ff5f57;font-weight:700">🌐 多 Agent 协同</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.55">不再是「一个 Agent 干一切」，而是 <strong>main 调度 + 4 专业 Agent</strong>（research/data/project/report）。天保已在路上。</div>
           </div>
-          <div style="padding:12px;background:rgba(255,95,87,0.05);border-radius:6px;border-top:2px solid #ff5f57">
-            <div style="font-size:12px;color:#ff5f57;font-weight:700">🧠 2. 长期记忆 / 个性化</div>
-            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.5">RAG + 向量库 + 持续学习。<strong>OpenClaw Hermes</strong> 就是这个方向：记住公司、项目、同事的偏好。</div>
+          <div style="padding:12px;background:rgba(255,95,87,0.06);border-radius:6px;border-top:2px solid #ff5f57">
+            <div style="font-size:12px;color:#ff5f57;font-weight:700">🧠 长期记忆 / 个性化</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.55">RAG + 向量库 + 持续学习。<strong>OpenClaw Hermes</strong> 就是这个方向：记住公司、项目、同事偏好。</div>
           </div>
-          <div style="padding:12px;background:rgba(255,95,87,0.05);border-radius:6px;border-top:2px solid #ff5f57">
-            <div style="font-size:12px;color:#ff5f57;font-weight:700">🤖 3. 具身智能 / 物理 Agent</div>
-            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.5">从虚拟走到物理：自动驾驶、人形机器人（特斯拉 Optimus、Figure 02）。<strong>2025 年是起点。</strong></div>
+          <div style="padding:12px;background:rgba(255,95,87,0.06);border-radius:6px;border-top:2px solid #ff5f57">
+            <div style="font-size:12px;color:#ff5f57;font-weight:700">🤖 具身智能 / 物理 Agent</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.55">从虚拟走到物理：自动驾驶、人形机器人（特斯拉 Optimus、Figure 02）。<strong>2025 年是起点。</strong></div>
           </div>
-          <div style="padding:12px;background:rgba(255,95,87,0.05);border-radius:6px;border-top:2px solid #ff5f57">
-            <div style="font-size:12px;color:#ff5f57;font-weight:700">🏢 4. 垂直领域 Agent 公司</div>
-            <div style="font-size:12px;color:var(--text-secondary);margin-top:6px;line-height:1.5">每个行业都会跑出“<strong>投研 Agent 公司 / 尽调 Agent 公司 / 法务 Agent 公司</strong>”。天保走的是“投资垂类 Agent 团队”。</div>
+          <div style="padding:12px;background:rgba(255,95,87,0.06);border-radius:6px;border-top:2px solid #ff5f57">
+            <div style="font-size:12px;color:#ff5f57;font-weight:700">🏢 垂直领域 Agent</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;line-height:1.55">每个行业都会跑出 <strong>投研 Agent 公司 / 尽调 Agent 公司 / 法务 Agent 公司</strong>。天保走的是「投资垂类 Agent 团队」。</div>
           </div>
         </div>
       </div>
 
-      <div class="alert alert-info" style="margin-top:16px">
-        <strong>📍 我们的位置：</strong>Chatbox 阶段 → 已过 ✅｜智能体阶段 → 在用 ✅｜下一步（多 Agent 协同 + 长期记忆）→ <span style="color:#56d364;font-weight:700">正在进行中</span> ⏳｜具身智能 → <span style="color:#ff5f57;font-weight:700">观望中</span> 👀
+      <div class="alert alert-info">
+        <strong>📍 我们的位置：</strong>Chatbox 阶段 → 已过 ✅ ｜ 智能体阶段 → 在用 ✅ ｜ 下一步（多 Agent 协同 + 长期记忆）→ <span style="color:#56d364;font-weight:700">正在进行中</span> ⏳ ｜ 具身智能 → <span style="color:#ff5f57;font-weight:700">观望中</span> 👀
       </div>
     </div>
 
-    <!-- Slide 3：Agent 架构 -->
+    <!-- Slide 3：智能体最小架构 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🏗️ 智能体的最小架构</h2>
+      <h2 class="slide-title">🏗️ 智能体的最小架构</h2>
+      <p class="slide-subtitle">一个智能体 = 大脑 + 双手 + 记忆 + 计划 —— 缺一不可</p>
 
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
-        <div class="card">
-          <h3 class="card-title">🧠 大脑（LLM）</h3>
-          <p style="color:var(--text-secondary)">负责推理、决策、规划。MiniMax / Kimi / Claude / Deepseek / 小米 Mimo，多模型融合。</p>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">🧠</span>
+            <h3 style="margin:0">大脑（LLM）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">负责推理、决策、规划。<br>MiniMax / Kimi / Claude / Deepseek / 小米 Mimo，多模型融合。</p>
         </div>
-        <div class="card">
-          <h3 class="card-title">🔧 双手（Tools）</h3>
-          <p style="color:var(--text-secondary)">读 PDF、写文件、跑 Python、调数据库。Function Call 协议。</p>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">🔧</span>
+            <h3 style="margin:0">双手（Tools）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">读 PDF、写文件、跑 Python、调数据库。<br>Function Call 协议。</p>
         </div>
-        <div class="card">
-          <h3 class="card-title">📝 记忆（Memory）</h3>
-          <p style="color:var(--text-secondary)">短期上下文 + 长期向量库。OpenClaw 用 Qdrant + bge-m3。</p>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">📝</span>
+            <h3 style="margin:0">记忆（Memory）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">短期上下文 + 长期向量库。<br>OpenClaw 用 Qdrant + bge-m3。</p>
         </div>
-        <div class="card">
-          <h3 class="card-title">📋 计划（Planning）</h3>
-          <p style="color:var(--text-secondary)">CoT 思维链 + ToT 思维树 + ReAct 推理-行动循环。</p>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">📋</span>
+            <h3 style="margin:0">计划（Planning）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">CoT 思维链 + ToT 思维树 + ReAct 推理-行动循环。</p>
         </div>
       </div>
     </div>
 
     <!-- Slide 4：天保的 7+1 体系 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🎯 天保的 7+1 智能体体系</h2>
+      <h2 class="slide-title">🎯 天保的 7+1 智能体体系</h2>
+      <p class="slide-subtitle">点
+        <span class="burst-trigger" data-burst="burst-video-neural" data-hint="👉 播放神经网络演示视频" style="cursor:pointer;color:var(--accent);font-weight:600">这里</span>
+        看 7 节点神经网络如何联动
+        <span class="burst-trigger" data-burst="burst-video-maindash" data-hint="👉 查看 main 指挥中心" style="cursor:pointer;color:var(--accent);font-weight:600">main 指挥中心</span>
+      </p>
 
-      <p style="font-size:18px;color:var(--text-secondary);margin-bottom:16px">点 <span class="burst-trigger" data-burst="burst-video-neural" data-hint="👉 播放神经网络演示视频" style="cursor:pointer;font-weight:600">这里</span> 看 7 节点神经网络如何联动 <span class="burst-trigger" data-burst="burst-video-maindash" data-hint="👉 查看 main 指挥中心" style="cursor:pointer;font-weight:600">main 指挥中心</span></p>
-
-      <h3 style="color:var(--accent);margin-top:16px">🟢 <span class="burst-trigger" data-burst="burst-revolution" data-hint="👉 点击弹出详解">5 大 Agent</span>（OpenClaw 内部，业务主力） </span></h3>
-      <div class="agent-grid" style="grid-template-columns:repeat(5,1fr)">
-        <div class="agent-card modal-trigger" data-agent="main" data-modal="m-main"><span class="emoji">🎯</span><h4>main</h4><p>总调度</p></div>
-        <div class="agent-card modal-trigger" data-agent="project" data-modal="m-project"><span class="emoji">📋</span><h4>project</h4><p>项目管家</p></div>
-        <div class="agent-card modal-trigger" data-agent="research" data-modal="m-research"><span class="emoji">🔬</span><h4>research V3</h4><p>研究员</p></div>
-        <div class="agent-card modal-trigger" data-agent="data" data-modal="m-data"><span class="emoji">🗄️</span><h4>data</h4><p>数据工</p></div>
-        <div class="agent-card modal-trigger" data-agent="report" data-modal="m-report"><span class="emoji">📄</span><h4>report</h4><p>报告专家</p></div>
+      <h3 style="margin-top:24px">🟢 5 大 Agent（OpenClaw 内部 · 业务主力）</h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(5,1fr);gap:16px">
+        <div class="agent-card modal-trigger" data-agent="main" data-modal="m-main" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">🎯</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">main</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">总调度</p>
+        </div>
+        <div class="agent-card modal-trigger" data-agent="project" data-modal="m-project" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">📋</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">project</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">项目管家</p>
+        </div>
+        <div class="agent-card modal-trigger" data-agent="research" data-modal="m-research" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">🔬</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">research V3</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">研究员</p>
+        </div>
+        <div class="agent-card modal-trigger" data-agent="data" data-modal="m-data" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">🗄️</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">data</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">数据工</p>
+        </div>
+        <div class="agent-card modal-trigger" data-agent="report" data-modal="m-report" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">📄</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">report</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">报告专家</p>
+        </div>
       </div>
 
-      <h3 style="color:var(--accent);margin-top:24px">🔵 2 大助手（外部协同，工程基建） </span></h3>
-      <div class="agent-grid" style="grid-template-columns:repeat(2,1fr);max-width:600px;margin-left:auto;margin-right:auto">
-        <div class="agent-card modal-trigger" data-agent="claude" data-modal="m-claude-code"><span class="emoji">💻</span><h4>Claude Code</h4><p>智能体维护 + 投资研究纵深</p></div>
-        <div class="agent-card modal-trigger" data-agent="hermes" data-modal="m-hermes"><span class="emoji">⚙️</span><h4>Hermes</h4><p>复杂编码 + 自我学习</p></div>
+      <h3 style="margin-top:24px">🔵 2 大助手（外部协同 · 工程基建）</h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;max-width:520px;margin-left:auto;margin-right:auto">
+        <div class="agent-card modal-trigger" data-agent="claude" data-modal="m-claude-code" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">💻</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">Claude Code</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">智能体维护 + 投资研究纵深</p>
+        </div>
+        <div class="agent-card modal-trigger" data-agent="hermes" data-modal="m-hermes" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">⚙️</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">Hermes</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">复杂编码 + 自我学习</p>
+        </div>
       </div>
 
-      <h3 style="color:var(--accent);margin-top:24px">🟡 1 套中台（知识资产） </span></h3>
+      <h3 style="margin-top:24px">🟡 1 套中台（知识资产）</h3>
       <div class="agent-grid" style="grid-template-columns:1fr;max-width:300px;margin-left:auto;margin-right:auto">
-        <div class="agent-card modal-trigger" data-agent="wiki" data-modal="m-zhongtai"><span class="emoji">📚</span><h4>Wiki 知识库</h4><p>5786 实体 · localhost:19000</p></div>
+        <div class="agent-card modal-trigger" data-agent="wiki" data-modal="m-zhongtai" style="padding:20px 12px">
+          <span class="emoji" style="font-size:36px">📚</span>
+          <h4 style="font-size:16px;margin:8px 0 4px 0">Wiki 知识库</h4>
+          <p style="font-size:12px;color:var(--text-secondary)">5786 实体 · localhost:19000</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:24px">
+        <strong>📌 一个公式：</strong>每个 Agent 赋能一位员工，7+1 = 7+1 倍产能。
       </div>
     </div>
 
     <!-- Slide 5：关键启示 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">💡 关键启示</h2>
+      <h2 class="slide-title">💡 关键启示</h2>
 
-      <div class="story-card">
-        <p class="story-meta">主公的金句</p>
-        <p style="font-size:20px;line-height:1.8"><strong>"今天的 AI 不是替代人类，而是让每一个人都拥有一个'数字员工团队'。"</strong></p>
+      <div class="story-card" style="margin:20px 0;padding:24px 28px">
+        <p class="story-meta" style="margin:0 0 10px 0">主公的金句</p>
+        <p style="font-size:22px;line-height:1.7;margin:0;color:var(--text-primary)">
+          <strong>"今天的 AI 不是替代人类，而是让每一个人都拥有一个『数字员工团队』。"</strong>
+        </p>
       </div>
 
       <div class="alert alert-success">
         <strong>团队跃迁公式：</strong>个人能力 × 智能体数量 = 团队产出的乘法效应。
       </div>
 
-      <div style="margin-top:24px">
-        <h3 style="color:var(--accent)">从今天开始，请记住 3 句话：</h3>
-        <ol style="line-height:2;font-size:16px;color:var(--text-secondary);margin-top:12px">
-          <li><strong style="color:var(--accent)">你不是一个人在战斗</strong> — 你背后有 7+1 个数字员工</li>
-          <li><strong style="color:var(--accent)">指令即代码</strong> — 你发指令的方式，决定 AI 的产出质量</li>
-          <li><strong style="color:var(--accent)">拍板才是你的事</strong> — AI 负责"草稿+校验"，人类负责"拍板"</li>
-        </ol>
-      </div>
+      <h3 style="margin-top:24px">从今天开始，请记住 3 句话：</h3>
+      <ol style="line-height:2;font-size:15px;color:var(--text-secondary);margin:12px 0;padding-left:24px">
+        <li><strong style="color:var(--accent)">你不是一个人在战斗</strong> — 你背后有 7+1 个数字员工</li>
+        <li><strong style="color:var(--accent)">指令即代码</strong> — 你发指令的方式，决定 AI 的产出质量</li>
+        <li><strong style="color:var(--accent)">拍板才是你的事</strong> — AI 负责「草稿+校验」，人类负责「拍板」</li>
+      </ol>
 
-      <div style="margin-top:32px;text-align:center">
-        <a href="03-main.html" style="display:inline-block;padding:14px 32px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold">进入第 03 章：main 总调度 ▶</a>
+      <div style="text-align:center;margin-top:36px">
+        <a href="03-main.html" style="display:inline-block;padding:14px 36px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold;box-shadow:0 4px 12px rgba(86,211,100,0.3)">进入第 03 章：main 总调度 ▶</a>
       </div>
     </div>
-  
-  <!-- ============ 共享：5+2+1 智能体信息池 ============ -->
-<!-- 🚀 5+2+1 智能体信息池（7 个 modal，全章节共享） -->
 
-<!-- ============ 5 大 Agent · 详情弹窗 ============ -->
+  </main>
 
-<div class="modal-overlay" id="m-main">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🧠 main · 总调度</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#00D4FF">职责定位：</strong>最高指挥 · 接收主公指令 · 拆分 · 分派 · 验收</p>
-      <p><strong style="color:#00D4FF">5 大核心动作：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📥 接收指令 · 解析意图（提问 / 分派 / 命令 3 类）</li>
-        <li>🔪 拆分任务 · 5 要素（背景 / 目标 / 交付物 / 回传 / 时限）</li>
-        <li>📡 分派任务 · <code>sessions_send</code> 工具</li>
-        <li>📊 跟踪进度 · 心跳每 15min 巡检 · task-tracker.json</li>
-        <li>📋 验收反馈 · 闭环主公 · 失败立即告警</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
-        <strong style="color:#00D4FF">真实使用：</strong>主公 90% 的请求 · 平均每天 30+ 次调度<br>
-        <strong style="color:#00D4FF">典型命令：</strong>"今晚投决启源芯" → 90 分钟跑完 7 Agent 全流程
-      </p>
-    </div>
-  </div>
-</div>
+  <!-- Agent 侧栏（演示模式用，探索模式自动隐藏） -->
+  <aside class="agent-rail">
+    <div class="rail-header">🤖 智能体</div>
+    <div class="rail-list"></div>
+  </aside>
 
-<div class="modal-overlay" id="m-project">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📋 project · 项目管家</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#22C55E">职责定位：</strong>项目全生命周期管理 · 不做专业分析 · 只做协调推进</p>
-      <p><strong style="color:#22C55E">7 大核心能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📁 项目立项 · 17 类项目模板（并购 / 投决 / 储备 / 待立项）</li>
-        <li>📅 阶段管理 · 5 阶段（立项 → 尽调 → 投决 → 投后 → 退出）</li>
-        <li>💰 投资测算 · IRR / NPV / 回收期 · 敏感性自动跑</li>
-        <li>📂 文档协调 · 申请 · 起草 · 串联数据</li>
-        <li>👥 干系人管理 · 5 类角色识别</li>
-        <li>⚠️ 风险登记 · 7 大类风险自动标注</li>
-        <li>📊 可研报告 · 5 章框架自动生成</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(34,197,94,0.08);border-radius:8px">
-        <strong style="color:#22C55E">真实数据：</strong>主公 60% 的项目任务 · 当前在跑 5 个项目<br>
-        <strong style="color:#22C55E">代表项目：</strong>启源芯（投决）/ 星恒（尽调）/ 晶能（储备）/ 盈科（GP→LP） / 中资环（待立项）
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-research">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🔬 research V3 · 研究分析</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#F59E0B">职责定位：</strong>行业研究 / 财务尽调 / 估值建模 · 3 大专业能力</p>
-      <p><strong style="color:#F59E0B">7 维度输出：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🏭 行业分析 · CAGR / 政策 / 竞争格局</li>
-        <li>🔧 技术分析 · 国产化率 / 专利 / 工艺路径</li>
-        <li>👥 客户分析 · 集中度 / 头部客户 / 粘性</li>
-        <li>💴 财务分析 · 三表勾稽 · 同业比对</li>
-        <li>💰 估值建模 · DCF / 可比 / P/E / PS</li>
-        <li>📈 敏感性 · WACC 5.5%-9.5% · 收入 ±15%</li>
-        <li>🎯 风险与退出 · 7 大类风险 · 退出路径</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-        <strong style="color:#F59E0B">真实案例：</strong>启源芯 WACC=7.5% → DCF=45 亿<br>
-        <strong style="color:#F59E0B">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash scripts/run_v3.sh full "分析启源芯" --task-id 001</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-data">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🗃️ data · 数据清洗管道</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#A855F7">职责定位：</strong>转录 / OCR / 入库 · 不做分析 · 只做数据处理</p>
-      <p><strong style="color:#A855F7">7 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🎤 语音转录 · FunASR · 中英混合</li>
-        <li>📷 OCR · PaddleOCR · 表格识别</li>
-        <li>🧹 数据清洗 · 28 个脚本 · 一键运行</li>
-        <li>🔍 实体抽取 · 抽取后入 Wiki</li>
-        <li>📊 向量化 · bge-m3 · 768 维</li>
-        <li>🗄️ 入 Qdrant · 8 collections · 75,988 vectors</li>
-        <li>⏰ 定时跑 · 凌晨 3:00 自动入库</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
-        <strong style="color:#A855F7">真实数据：</strong>实体 5,786 → 6,098 · collections 8 · vectors 75,988<br>
-        <strong style="color:#A855F7">入口命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash clean.sh {research|system|project|all}</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-report">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📄 report · 文档排版</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#EC4899">职责定位：</strong>Word / PDF / PPT · 会议纪要 · 不做内容创作只格式化</p>
-      <p><strong style="color:#EC4899">3 大管线：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📑 公文管线 · 国企规范的请示 / 报告 / 通知</li>
-        <li>📊 研报管线 · 行业研究 / 公司研究 / 投资分析</li>
-        <li>📝 纪要管线 · 会议纪要 · 主公自动模板</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(236,72,153,0.08);border-radius:8px">
-        <strong style="color:#EC4899">实际产出：</strong>投决材料 67 页 · 1 份 Word + 1 份 PDF<br>
-        <strong style="color:#EC4899">典型格式：</strong>国企公文规范 · 4 级标题 · 一图一表
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- ============ 2 大助手 · 详情弹窗 ============ -->
-
-<div class="modal-overlay" id="m-claude-code">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🦾 Claude Code · 工程助手</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#00D4FF">职责定位：</strong>写代码 · 改代码 · 跑命令 · 做工程</p>
-      <p><strong style="color:#00D4FF">5 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>💻 写代码 · Python / Shell / TypeScript / JavaScript</li>
-        <li>🔧 改代码 · 跨文件编辑 · Git diff 准确</li>
-        <li>🛠️ 跑命令 · Bash 工具 · 长时间任务后台跑</li>
-        <li>🔌 连接工具 · MCP 协议 · 100+ 工具集成</li>
-        <li>🪟 终端 UI · 可在 VSCode / Cursor / iTerm 等环境运行</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(0,212,255,0.08);border-radius:8px">
-        <strong style="color:#00D4FF">真实数据：</strong>启源芯 WACC 敏感性 / Monte Carlo<br>
-        <strong style="color:#00D4FF">配置路径：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">~/.claude/settings.json</code><br>
-        <strong style="color:#00D4FF">当前模型：</strong>claude-sonnet-4-6 / deepseek-vash-flash 切换
-      </p>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="m-hermes">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">📚 Hermes · 知识中台</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#A855F7">职责定位：</strong>把语料/研报/纪要变成可检索的 Wiki</p>
-      <p><strong style="color:#A855F7">5 大能力：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>📂 文档入库 · PDF/Word/MD 自动解析</li>
-        <li>🔍 全检索 · Wiki 浏览 · API 查询</li>
-        <li>🌐 Wiki API · port 19001 · RESTful 查询</li>
-        <li>📊 Wiki 静态站 · port 19000 · 浏览器浏览</li>
-        <li>🛡️ Watchdog · 自动重启 · 故障感知</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(168,85,247,0.08);border-radius:8px">
-        <strong style="color:#A855F7">真实数据：</strong>5,786 → 6,098 实体 · 8 collections · 模型 bge-m3<br>
-        <strong style="color:#A855F7">配置命令：</strong><code style="background:rgba(255,255,255,0.1);padding:2px 6px;border-radius:4px">bash ~/.hermes/scripts/start-wiki.sh restart</code>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- ============ 1 中台 ============ -->
-
-<div class="modal-overlay" id="m-zhongtai">
-  <div class="modal-box">
-    <button class="modal-close">✕</button>
-    <h2 class="modal-title">🗄️ 1 套知识中台</h2>
-    <div style="color:var(--text-secondary);font-size:14px;line-height:1.8">
-      <p><strong style="color:#F59E0B">职责定位：</strong>所有智能体的记忆层 · 让人 + Agent 都能访问</p>
-      <p><strong style="color:#F59E0B">3 层架构：</strong></p>
-      <ol style="margin-left:20px;margin-top:8px">
-        <li>🗄️ <strong>PostgreSQL</strong> · 4 张表（entity / report / indicator / knowledge_logic）· 关系数据</li>
-        <li>🔢 <strong>Qdrant</strong> · 8 collections · 75,988 个 vectors · 向量检索</li>
-        <li>📚 <strong>Wiki</strong> · Hermes 静态站 · port 19000 · 浏览用</li>
-      </ol>
-      <p style="margin-top:14px;padding:12px;background:rgba(245,158,11,0.08);border-radius:8px">
-        <strong style="color:#F59E0B">关键能力：</strong>检索 · 去重 · 关联 · 时序 · 备份<br>
-        <strong style="color:#F59E0B">当前规模：</strong>6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑
-      </p>
-    </div>
-  </div>
-</div>
-
-</main>
-
-  <!-- 控制条 -->
-  <footer class="controls">
+  <!-- 底部控制条 -->
+  <footer class="controls  <footer class="controls">
     <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
     <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题 · M 模式</span>
     <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>

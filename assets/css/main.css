@@ -431,6 +431,81 @@ body {
   margin-bottom: 16px;
 }
 
+/* ==================== Slide 排版优化 (v3.1) ==================== */
+
+/* Slide 内部统一间距与字号 */
+.slide {
+  scroll-margin-top: 20px;
+}
+
+.slide-title {
+  font-size: 30px;
+  color: var(--accent);
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+}
+
+.slide-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 20px 0;
+  line-height: 1.5;
+}
+
+.slide h3 {
+  font-size: 17px;
+  margin: 0 0 10px 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.slide h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+/* 卡片内边距与字号统一 */
+.slide .card {
+  padding: 16px 18px;
+  font-size: 13px;
+}
+
+.slide .card p {
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Alert 间距 */
+.slide .alert {
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* 探索模式下的 slide 优化 */
+[data-mode="exploration"] .slide {
+  padding: 40px 56px;
+}
+
+[data-mode="exploration"] .slide + .slide {
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* 表格字体收紧 */
+.slide table {
+  font-size: 13px;
+}
+
+.slide table th,
+.slide table td {
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+
 /* ==================== 探索模式 ==================== */
 [data-mode="exploration"] html,
 [data-mode="exploration"] body {
