@@ -324,23 +324,23 @@
     'burst-video-neural': {
       title: '🕸️ 7 节点神经网络',
       subtitle: 'main → project/research/data/report → 一同起势',
-      videoPoster: '../assets/videos/posters/04-neural-network.png',
-      video: '../assets/videos/04-neural-network.mp4',
-      layout: 'video'
+      terminalSrc: '../assets/videos/terminal-simulator.html',
+      // video: '../assets/videos/04-neural-network.mp4',  // 暂不使用
+      layout: 'terminal'
     },
     'burst-video-qiyuan': {
       title: '🏭 启源芯 · 投决现场',
       subtitle: 'DCF 35-58 亿·全息金融层叠加',
       videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
       video: '../assets/videos/02-qiyuan-factory.mp4',
-      layout: 'video'
+      layout: 'terminal'
     },
     'burst-video-pipeline': {
       title: '🌊 研报数据清洗流水线',
       subtitle: '乱纸堆 → 管道 → 晶体向量',
       videoPoster: '../assets/videos/posters/03-data-cleaning.png',
       video: '../assets/videos/03-data-pipeline.mp4',
-      layout: 'video'
+      layout: 'terminal'
     }
   };
 
@@ -567,6 +567,17 @@
       </div>
       <button class="burst-close" type="button">✕ 关闭</button>
     `;
+
+    // ====== 终端模拟器模式 ======
+    if (data.terminalSrc) {
+      const iframe = document.createElement('iframe');
+      iframe.src = data.terminalSrc;
+      iframe.style.cssText = 'width:100%;height:520px;border:none;border-radius:10px;background:#0d1117;';
+      iframe.title = data.title || '终端模拟器';
+      stage.appendChild(iframe);
+      requestAnimationFrame(() => { stage.classList.add('show'); });
+      return;
+    }
 
     // ====== 视频 burst 模式 ======
     if (data.videoPoster) {

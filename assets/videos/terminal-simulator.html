@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>终端模拟器 — 神经网络分发</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    padding: 20px;
+  }
+
+  .terminal-window {
+    width: 100%;
+    max-width: 900px;
+    background: #161b22;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  }
+
+  .terminal-titlebar {
+    background: #21262d;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #30363d;
+  }
+
+  .titlebar-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .titlebar-title {
+    flex: 1;
+    text-align: center;
+    color: #8b949e;
+    font-size: 13px;
+  }
+
+  .terminal-body {
+    padding: 16px 20px;
+    min-height: 380px;
+    max-height: 520px;
+    overflow-y: auto;
+    background: #0d1117;
+    scrollbar-width: thin;
+    scrollbar-color: #30363d #0d1117;
+  }
+
+  .terminal-body::-webkit-scrollbar { width: 6px; }
+  .terminal-body::-webkit-scrollbar-track { background: #0d1117; }
+  .terminal-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+
+  .log-line {
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    opacity: 0;
+    transform: translateY(4px);
+    animation: lineAppear 0.25s ease forwards;
+  }
+
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .log-time { color: #6e7681; }
+  .log-main { color: #e6edf3; }
+  .log-send { color: #79c0ff; }
+  .log-ok { color: #3fb950; }
+  .log-phase { color: #d2a8ff; }
+  .log-warn { color: #f0883e; }
+  .log-data { color: #56d364; }
+  .log-sep { color: #30363d; }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: #58a6ff;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .progress-bar-wrap {
+    display: flex;
+    gap: 4px;
+    margin: 4px 0 8px 0;
+  }
+  .progress-track {
+    flex: 1; height: 4px;
+    background: #21262d;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.8s ease;
+  }
+  .fill-research { background: #79c0ff; }
+  .fill-project { background: #d2a8ff; }
+  .fill-data { background: #56d364; }
+  .fill-report { background: #f0883e; }
+
+  .log-line .tag {
+    display: inline-block;
+    padding: 0px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-research { background: rgba(121,192,255,0.15); color: #79c0ff; }
+  .tag-project { background: rgba(210,168,255,0.15); color: #d2a8ff; }
+  .tag-data { background: rgba(86,211,100,0.15); color: #56d364; }
+  .tag-report { background: rgba(240,136,62,0.15); color: #f0883e; }
+  .tag-main { background: rgba(230,237,243,0.1); color: #e6edf3; }
+</style>
+</head>
+<body>
+
+<div class="terminal-window">
+  <div class="terminal-titlebar">
+    <div class="titlebar-dot dot-red"></div>
+    <div class="titlebar-dot dot-yellow"></div>
+    <div class="titlebar-dot dot-green"></div>
+    <div class="titlebar-title">zsh — main@openclaw — 120×40</div>
+  </div>
+  <div class="terminal-body" id="terminalBody">
+
+  </div>
+</div>
+
+<script>
+const LOGS = [
+  { cls: 'log-main', text: '[09:00:01] <span class="tag tag-main">MAIN</span> 收到任务：分析启源芯半导体', delay: 0 },
+  { cls: 'log-main', text: '[09:00:02] <span class="tag tag-main">MAIN</span> 任务解析 → 投资研究（行业+财务+估值）', delay: 300 },
+  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> 查询 task-tracker.json → 分配 task-20260702-001', delay: 600 },
+  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → research × 1', delay: 900 },
+  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → project × 1', delay: 1100 },
+  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → data × 1', delay: 1300 },
+  { cls: 'log-main', text: '[09:00:03] <span class="tag tag-main">MAIN</span> sessions_send → report × 1', delay: 1500 },
+  { cls: 'log-sep',  text: '─'.repeat(60), delay: 1700 },
+  { cls: 'log-ok',   text: '[09:00:04] ✓ research 已启动 <span class="tag tag-research">并行执行中</span>', delay: 1900 },
+  { cls: 'log-ok',   text: '[09:00:04] ✓ project  已启动 <span class="tag tag-project">并行执行中</span>', delay: 2000 },
+  { cls: 'log-ok',   text: '[09:00:04] ✓ data    已启动 <span class="tag tag-data">并行执行中</span>', delay: 2100 },
+  { cls: 'log-ok',   text: '[09:00:04] ✓ report  已启动 <span class="tag tag-report">并行执行中</span>', delay: 2200 },
+  { cls: 'log-sep',  text: '─'.repeat(60), delay: 2400 },
+  // Progress bars
+  null, // insert progress bars here
+  { cls: 'log-main', text: '[09:00:05] <span class="tag tag-main">MAIN</span> 4路并行 → 等待回调...', delay: 3000 },
+  { cls: 'log-phase',text: '[09:00:08] <span class="tag tag-research">research</span> Phase1 前置分析完成 (3.2s)', delay: 3700 },
+  { cls: 'log-phase',text: '[09:00:09] <span class="tag tag-data">data</span> run_sync.sh 清洗脚本启动', delay: 4300 },
+  { cls: 'log-phase',text: '[09:00:11] <span class="tag tag-research">research</span> Phase2 检索分析中 (行业/财务/估值并行)', delay: 5000 },
+  { cls: 'log-phase',text: '[09:00:13] <span class="tag tag-project">project</span> 协调 4 个子任务进度', delay: 5600 },
+  { cls: 'log-phase',text: '[09:00:15] <span class="tag tag-data">data</span> 清洗完成: 79实体/110指标/178逻辑', delay: 6200 },
+  { cls: 'log-phase',text: '[09:00:17] <span class="tag tag-research">research</span> Phase3 交叉合成完成', delay: 6800 },
+  { cls: 'log-phase',text: '[09:00:19] <span class="tag tag-project">project</span> 汇总 4 路结果', delay: 7400 },
+  { cls: 'log-phase',text: '[09:00:20] <span class="tag tag-research">research</span> Phase4 最终报告生成完成', delay: 8000 },
+  { cls: 'log-sep',  text: '─'.repeat(60), delay: 8400 },
+  { cls: 'log-ok',   text: '[09:00:21] ✓ task-20260702-001 完成 → 回调 main', delay: 8700 },
+  { cls: 'log-main', text: '[09:00:22] <span class="tag tag-main">MAIN</span> 汇总完成 → 回传主公', delay: 9300 },
+  { cls: 'log-sep',  text: '─'.repeat(60), delay: 9700 },
+  { cls: 'log-main', text: '[09:00:23] <span class="tag tag-main">MAIN</span> 任务完成  <span class="cursor-blink"></span>', delay: 10000 },
+];
+
+const terminalBody = document.getElementById('terminalBody');
+
+// Insert progress bar HTML
+const progressHTML = `
+<div style="margin: 8px 0;">
+  <div style="font-size:11px;color:#6e7681;margin-bottom:4px;">并行进度</div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+    <span style="font-size:11px;color:#79c0ff;width:70px;">research</span>
+    <div class="progress-track" style="flex:1"><div class="progress-fill fill-research" id="bar-research"></div></div>
+    <span style="font-size:11px;color:#79c0ff;width:30px;text-align:right" id="pct-research">0%</span>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
+    <span style="font-size:11px;color:#d2a8ff;width:70px;">project</span>
+    <div class="progress-track" style="flex:1"><div class="progress-fill fill-project" id="bar-project"></div></div>
+    <span style="font-size:11px;color:#d2a8ff;width:30px;text-align:right" id="pct-project">0%</span>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
+    <span style="font-size:11px;color:#56d364;width:70px;">data</span>
+    <div class="progress-track" style="flex:1"><div class="progress-fill fill-data" id="bar-data"></div></div>
+    <span style="font-size:11px;color:#56d364;width:30px;text-align:right" id="pct-data">0%</span>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px;">
+    <span style="font-size:11px;color:#f0883e;width:70px;">report</span>
+    <div class="progress-track" style="flex:1"><div class="progress-fill fill-report" id="bar-report"></div></div>
+    <span style="font-size:11px;color:#f0883e;width:30px;text-align:right" id="pct-report">0%</span>
+  </div>
+</div>`;
+
+// Animate progress bars
+function animateBar(id, pct, duration) {
+  const el = document.getElementById('bar-' + id);
+  const lbl = document.getElementById('pct-' + id);
+  if (!el) return;
+  el.style.width = pct + '%';
+  if (lbl) lbl.textContent = pct + '%';
+}
+
+// Progress timeline: research 3.2s, data 6s, project 15s, report 18s
+const progressTimeline = [
+  { t: 1900, id: 'research', pct: 15 },
+  { t: 2000, id: 'project', pct: 10 },
+  { t: 2100, id: 'data', pct: 15 },
+  { t: 2200, id: 'report', pct: 10 },
+  { t: 3700, id: 'research', pct: 50 },
+  { t: 4300, id: 'data', pct: 40 },
+  { t: 5000, id: 'research', pct: 70 },
+  { t: 5600, id: 'project', pct: 50 },
+  { t: 6200, id: 'data', pct: 80 },
+  { t: 6800, id: 'research', pct: 95 },
+  { t: 7400, id: 'project', pct: 80 },
+  { t: 8000, id: 'research', pct: 100 },
+  { t: 8400, id: 'data', pct: 100 },
+  { t: 8700, id: 'project', pct: 100 },
+  { t: 9300, id: 'report', pct: 100 },
+];
+
+let progIdx = 0;
+let startTime = null;
+
+function runProgress(timestamp) {
+  if (!startTime) startTime = timestamp;
+  const elapsed = timestamp - startTime;
+  while (progIdx < progressTimeline.length && progressTimeline[progIdx].t <= elapsed) {
+    const item = progressTimeline[progIdx];
+    animateBar(item.id, item.pct, 800);
+    progIdx++;
+  }
+  if (progIdx < progressTimeline.length || elapsed < 10000) {
+    requestAnimationFrame(runProgress);
+  }
+}
+
+// Insert lines
+let lineIdx = 0;
+let progInserted = false;
+
+LOGS.forEach((log, i) => {
+  if (log === null) {
+    // insert progress bars
+    setTimeout(() => {
+      const div = document.createElement('div');
+      div.innerHTML = progressHTML;
+      div.style.opacity = '0';
+      div.style.transform = 'translateY(4px)';
+      div.style.animation = 'lineAppear 0.25s ease forwards';
+      terminalBody.appendChild(div);
+      setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 50);
+      requestAnimationFrame(runProgress);
+    }, 2600);
+    return;
+  }
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line ' + log.cls;
+    div.innerHTML = log.text;
+    terminalBody.appendChild(div);
+    setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 20);
+  }, log.delay);
+});
+</script>
+
+</body>
+</html>
