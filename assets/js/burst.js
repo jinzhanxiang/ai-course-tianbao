@@ -381,6 +381,53 @@
       subtitle: '5 阶段：OCR → 实体 → 指标 → 逻辑 → 向量入库',
       terminalSrc: '../assets/videos/data-pipeline.html',
       layout: 'terminal'
+    },
+
+    // ========== Phase F 新增：11/12/13 章节封面 burst ==========
+    'burst-quality-1': {
+      title: '🛡️ 智能体质量提升 · 全章速览',
+      subtitle: '三层防御 · 60% → 90%+ · 主公实战方法论',
+      layout: 'grid',
+      cards: [
+        { icon: '🎯', name: '1. 单 Agent 天花板', tag: '60-70%', detail: '认知偏差 + 知识盲区 + 单点脆弱。3 大根因导致单 Agent 质量上限。', color: '#EF4444', pos: 0 },
+        { icon: '🛡️', name: '2. 三层防御全景', tag: '体系图', detail: 'L1 MoA 提智力 · L2 辩论防幻觉 · L3 交叉验对保可靠。', color: '#38bdf8', pos: 1 },
+        { icon: '🧠', name: '3. L1 MoA 架构', tag: '65.8%', detail: 'Together AI ICLR 2025 · AlpacaEval 65.8% > GPT-4 57.5%。3 层分层聚合。', color: '#38bdf8', pos: 2 },
+        { icon: '🧪', name: '4. 主公 5+2+1+1 落地', tag: '9 模型', detail: 'OpenClaw 5 Agent + Claude + Hermes + Wiki + 中台 = 9 模型协同层叠。', color: '#22C55E', pos: 3 },
+        { icon: '⚖️', name: '5. L2 多 Agent 辩论', tag: '防幻觉', detail: 'MDPI 2025 · 幻觉率降低 40-60%。正反方 + 裁判三角。', color: '#F59E0B', pos: 4 },
+        { icon: '🎭', name: '6. OpenClaw 辩论实现', tag: '实测', detail: 'main 调度 2 副本对立 · 第三方裁决 · 自动归档正反观点。', color: '#F59E0B', pos: 5 },
+        { icon: '🔍', name: '7. L3 交叉验对', tag: '保可靠', detail: 'Self-Consistency + Critic 模式 + 多智能体校验。', color: '#22C55E', pos: 6 },
+        { icon: '📊', name: '8. 主公实测数据', tag: '效果', detail: '5 个项目从 60-70% 提升到 85-92%。3 个月复测，幻觉率 < 5%。', color: '#22C55E', pos: 7 }
+      ]
+    },
+    'burst-train-1': {
+      title: '🛠️ 如何训练智能体 · 全章速览',
+      subtitle: '训练 vs 编排 · Hermes 案例 · 自我进化',
+      layout: 'grid',
+      cards: [
+        { icon: '⚖️', name: '1. 训练 vs 编排', tag: '90/10', detail: '90% 任务用编排（工具+提示词）即可。10% 才需要微调。', color: '#A855F7', pos: 0 },
+        { icon: '🧪', name: '2. 4 大训练框架', tag: '工具箱', detail: 'ReAct · Reflexion · AutoGPT · Tool-Use。各自适用场景。', color: '#A855F7', pos: 1 },
+        { icon: '🛠️', name: '3. "我做智能体" 4 步', tag: '方法论', detail: '定职责 → 设模型 → 接工具 → 建回路。最简单的智能体也是这 4 步。', color: '#A855F7', pos: 2 },
+        { icon: '⚙️', name: '4. Hermes 28 脚本', tag: '案例', detail: 'V0.1 → V3.38 · 28 版本 · 10 周迭代 · 5786 入库实体。', color: '#febc2e', pos: 3 },
+        { icon: '📐', name: '5. 8 条编码规范', tag: '基线', detail: 'shellcheck + lint + 命名 + 注释 + 测试 + 容错 + 日志 + 文档。', color: '#febc2e', pos: 4 },
+        { icon: '🔄', name: '6. 4 步反馈循环', tag: '自进化', detail: '执行 → 监控 → 偏差检测 → 自我修正。Hermes 的核心机制。', color: '#febc2e', pos: 5 },
+        { icon: '🎯', name: '7. 训练 vs 编排决策树', tag: '选型', detail: '成本低 + 数据少 → 编排。数据丰富 + 性能要求高 → 微调。', color: '#A855F7', pos: 6 },
+        { icon: '🌟', name: '8. 章节金句', tag: '收获', detail: '"你需要的不是调参，是流程"。"工具链的稳定性比模型大小更重要"。', color: '#EC4899', pos: 7 }
+      ]
+    },
+    'burst-workflow-1': {
+      title: '🌱 个人如何打造 Workflow · 全章速览',
+      subtitle: '从零基础到团队队长 · 5 阶段升级路径',
+      layout: 'grid',
+      cards: [
+        { icon: '🪜', name: '1. 5 阶段路径', tag: '升级图', detail: 'L1 零基础 → L2 用户 → L3 制作者 → L4 训练官 → L5 架构师。', color: '#22C55E', pos: 0 },
+        { icon: '🛠️', name: '2. 5 工具栈对比', tag: '选型', detail: 'n8n / Dify / Langflow / Flowise / OpenClaw。能力/门槛/成本 4 维对比。', color: '#22C55E', pos: 1 },
+        { icon: '🌿', name: '3. Dify 实战模板', tag: '3 套', detail: '行业研究 · 邮件助手 · 会议纪要。即装即用的 workflow 模板。', color: '#22C55E', pos: 2 },
+        { icon: '✅', name: '4. 5 维度验收', tag: '质检', detail: '准确性 · 效率 · 稳定性 · 可审计 · 可复制。每维度有具体指标。', color: '#22C55E', pos: 3 },
+        { icon: '📅', name: '5. 12 月里程碑', tag: '路线', detail: 'Q1 入门 → Q2 制作者 → Q3 训练官 → Q4 架构师。每个季度 3 个任务。', color: '#22C55E', pos: 4 },
+        { icon: '⚠️', name: '6. 5 条踩坑教训', tag: '避坑', detail: '不求大求全 · 不重写轮子 · 不闭门造车 · 不忽略监控 · 不省略验收。', color: '#F59E0B', pos: 5 },
+        { icon: '🎁', name: '7. 5 个示范 workflow', tag: '主公案例', detail: '并购研究 · 党委会材料 · 清洗入库 · 会议纪要 · 合规审查。', color: '#22C55E', pos: 6 },
+        { icon: '🌟', name: '8. 章节金句', tag: '收获', detail: '"从用户到制作者，从工具到流程，从单兵到团队"。', color: '#EC4899', pos: 7 }
+      ]
     }
   };
 
