@@ -16,7 +16,7 @@
       subtitle: '从单兵作战到 5 Agent + 2 助手 + 1 中台协同',
       layout: '7star',
       cards: [
-        { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。解析任务、判断分发、跟踪进度、汇总反馈。所有子 Agent 的汇报先到 main,再统一回主公。', color: '#00D4FF', pos: 0 },
+        { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。解析任务、判断分发、跟踪进度、汇总反馈。所有子 Agent 的汇报先到 main,再统一回您。', color: '#00D4FF', pos: 0 },
         { icon: '📋', name: 'project', tag: '项目管家', detail: '流程驱动器。维护项目时间线、催办节点、协调多 Agent 协作、产出会议纪要与立项文档。', color: '#22C55E', pos: 1 },
         { icon: '🔬', name: 'research', tag: '研究分析', detail: '智能大脑。行业研究 / 财务尽调 / 估值建模(DCF/IRR/NPV),产出投资分析报告。', color: '#F59E0B', pos: 2 },
         { icon: '🗃️', name: 'data', tag: '数据管道', detail: '材料清洗工。语音转录(FunASR)/ OCR 识别 / 研报清洗入库,输入到 Qdrant 向量库。', color: '#A855F7', pos: 3 },
@@ -137,13 +137,13 @@
       ]
     },
 
-    // 09 案例 - 5 案例详情(按主公v3.0:点击正文"启源芯项目"弹出对应详情)
+    // 09 案例 - 5 案例详情(按您v3.0:点击正文"启源芯项目"弹出对应详情)
     'burst-case-qiyuanxin': {
       title: '启源芯项目 · 90 分钟投决全流程',
       subtitle: '功率半导体 · SiC 衬底 · 投决阶段',
       layout: 'pipe',
       cards: [
-        { icon: '🧠', name: 'main 接收', tag: '0 分钟', detail: '主公周五晚下令:"启源芯投决"。\nmain 立即拆 4 子任务(project/research/data/report)', color: '#00D4FF', pos: 0 },
+        { icon: '🧠', name: 'main 接收', tag: '0 分钟', detail: '您周五晚下令:"启源芯投决"。\nmain 立即拆 4 子任务(project/research/data/report)', color: '#00D4FF', pos: 0 },
         { icon: '📋', name: 'project 排期', tag: '2 分钟', detail: '建立项目台账 · 设定 5 节点(研究/尽调/估值/决策/会后)\n输出:项目计划表 + 倒计时看板', color: '#22C55E', pos: 1 },
         { icon: '🔬', name: 'research 出报告', tag: '35 分钟', detail: '行业分析 + 财务尽调 + 估值建模三路并行。\nDCF=WACC 7.5% → 估值 45 亿(区间 35-58)\n可比公司:北方华创/华润微/士兰微', color: '#F59E0B', pos: 2 },
         { icon: '🗃️', name: 'data 入库', tag: '60 分钟', detail: '历史尽调材料清洗 + 7 个案例匹配 + bge-m3 向量化。\n入库:Qdrant 8 collections · 23,000 vectors 新增', color: '#A855F7', pos: 3 },
@@ -167,7 +167,7 @@
       layout: 'pipe',
       cards: [
         { icon: '📡', name: '跟踪期', tag: '1 年', detail: '每月跟踪公司动态 · 行业政策 · 竞品动作。\ndata:每次公告入库 + Wiki 记录 365 条', color: '#00D4FF', pos: 0 },
-        { icon: '🎯', name: '立项启动', tag: 'T0', detail: '主公判断时机成熟 → 下令启动立项。\nmain:拆解 5 子任务 · 召集 5 Agent', color: '#22C55E', pos: 1 },
+        { icon: '🎯', name: '立项启动', tag: 'T0', detail: '您判断时机成熟 → 下令启动立项。\nmain:拆解 5 子任务 · 召集 5 Agent', color: '#22C55E', pos: 1 },
         { icon: '📋', name: '项目立项', tag: '3 天', detail: 'project:立项申请单 · 投资逻辑 · 风险初判。\nresearch:赛道二次扫描 · 财务初筛', color: '#F59E0B', pos: 2 },
         { icon: '📄', name: '立项决议', tag: '7 天', detail: '立项决议书 + 5 Agent 协同产出。\n进入正式尽调阶段', color: '#EC4899', pos: 3 }
       ]
@@ -191,7 +191,7 @@
         { icon: '🌱', name: '行业概览', tag: 'D0', detail: '绿色循环产业 + 政策导向 + 市场容量。\nAI:3 小时出行业简报(传统 3 周)', color: '#00D4FF', pos: 0 },
         { icon: '💰', name: '财务测算', tag: 'D+3', detail: '5000 万投资 · 预期 IRR 12-15% · 回收期 5 年。\n敏感性:项目周期 ±20%', color: '#F59E0B', pos: 1 },
         { icon: '⚠️', name: '风险清单', tag: 'D+5', detail: '7 大类风险 + 对应缓释措施。\nAI 提示历史 12 个类似项目', color: '#A855F7', pos: 2 },
-        { icon: '📄', name: '可研报告', tag: 'D+10', detail: '项目可研报告 50 页 + 投决请示 + PPT。\n等待主公决策', color: '#EC4899', pos: 3 }
+        { icon: '📄', name: '可研报告', tag: 'D+10', detail: '项目可研报告 50 页 + 投决请示 + PPT。\n等待您决策', color: '#EC4899', pos: 3 }
       ]
     },
 
@@ -218,27 +218,27 @@
       subtitle: 'main 调度 4 子 Agent · 实时同步进度',
       layout: 'pipe',
       cards: [
-        { icon: '🎯', name: '屏 1 main 总调度', tag: '00:00', detail: '主公:"今晚投决启源芯"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。', color: '#00D4FF', pos: 0 },
+        { icon: '🎯', name: '屏 1 main 总调度', tag: '00:00', detail: '您:"今晚投决启源芯"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。', color: '#00D4FF', pos: 0 },
         { icon: '🕐', name: '屏 2 指令下达', tag: '00:02', detail: '4 Agent 接到任务 → 启动。\n显示启源芯项目背景 + 授权范围。', color: '#8FA1CC', pos: 1 },
         { icon: '🔬', name: '屏 3 research 三路', tag: '00:05-30', detail: '行业研究 + 财务建模 + 估值 · 三路并行。\n输出:DCF 45 亿 · 可比 35-58 区间。', color: '#F59E0B', pos: 2 },
         { icon: '🗃️', name: '屏 4 data 清洗', tag: '20:00-50:00', detail: '100 份材料 → OCR/转录 → 实体抽取 → Qdrant。\n入库 23,000 vectors · 186 实体。', color: '#A855F7', pos: 3 },
-        { icon: '📋', name: '屏 5 project 台账', tag: '持续', detail: '项目台账实时更新 · 节点倒计时 · 风险灯。\n主公随时看进度。', color: '#22C55E', pos: 4 },
+        { icon: '📋', name: '屏 5 project 台账', tag: '持续', detail: '项目台账实时更新 · 节点倒计时 · 风险灯。\n您随时看进度。', color: '#22C55E', pos: 4 },
         { icon: '📄', name: '屏 6 report 出版', tag: '90:00', detail: '投决请示 67 页(Word)+ PPT 28 页 + PDF。\n国企公文规范 100% 符合。', color: '#EC4899', pos: 5 }
       ]
     },
 
-    // ===== 主公 v3.0 反馈新增:关键词直接点击 =====
+    // ===== 您 v3.0 反馈新增:关键词直接点击 =====
     // 03 main 调度 - 5 大动作
     'burst-main': {
       title: 'main · 总调度 5 大动作',
       subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环',
       layout: 'pipe',
       cards: [
-        { icon: '📥', name: '1. 接收', tag: '意图解析', detail: '主公发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令。', color: '#00D4FF', pos: 0 },
+        { icon: '📥', name: '1. 接收', tag: '意图解析', detail: '您发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令。', color: '#00D4FF', pos: 0 },
         { icon: '🔪', name: '2. 拆解', tag: '5 要素', detail: '任务拆解 · 包含背景/目标/交付物/回传要求/预期完成时间。', color: '#22C55E', pos: 1 },
-        { icon: '📡', name: '3. 分派', tag: 'sessions_send', detail: '调用 sessions_send 工具 · 发送到对应 Agent 队列。\n主公不直接指挥 Agent。', color: '#F59E0B', pos: 2 },
-        { icon: '📊', name: '4. 跟踪', tag: '心跳 15 分钟', detail: '心跳机制每 15 分钟巡检 · 检查 task-tracker.json。\n超时 30 分钟追问 · 超时 2 小时告警主公。', color: '#A855F7', pos: 3 },
-        { icon: '📋', name: '5. 反馈', tag: '10 分钟内', detail: '任务完成后 10 分钟内反馈主公 · 超时 30 分钟追究。\n闭环报告含原始交付物 + 结果摘要 + 后续建议。', color: '#EC4899', pos: 4 }
+        { icon: '📡', name: '3. 分派', tag: 'sessions_send', detail: '调用 sessions_send 工具 · 发送到对应 Agent 队列。\n您不直接指挥 Agent。', color: '#F59E0B', pos: 2 },
+        { icon: '📊', name: '4. 跟踪', tag: '心跳 15 分钟', detail: '心跳机制每 15 分钟巡检 · 检查 task-tracker.json。\n超时 30 分钟追问 · 超时 2 小时告警您。', color: '#A855F7', pos: 3 },
+        { icon: '📋', name: '5. 反馈', tag: '10 分钟内', detail: '任务完成后 10 分钟内反馈您 · 超时 30 分钟追究。\n闭环报告含原始交付物 + 结果摘要 + 后续建议。', color: '#EC4899', pos: 4 }
       ]
     },
 
@@ -248,7 +248,7 @@
       subtitle: '从单兵作战到 5 Agent 流水线协同',
       layout: '5star',
       cards: [
-        { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。接收指令、拆任务、分派子 Agent、跟踪进度、汇总反馈。所有子 Agent 汇报先到 main,再统一回主公。', color: '#00D4FF', pos: 'top' },
+        { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。接收指令、拆任务、分派子 Agent、跟踪进度、汇总反馈。所有子 Agent 汇报先到 main,再统一回您。', color: '#00D4FF', pos: 'top' },
         { icon: '📋', name: 'project', tag: '项目管家', detail: '流程驱动器。维护项目时间线、催办节点、协调多 Agent 协作、产出立项文档与会议纪要。', color: '#22C55E', pos: 'left' },
         { icon: '🔬', name: 'research', tag: '研究分析', detail: '智能大脑。行业研究 / 财务尽调 / 估值建模(DCF/IRR/NPV),产出投资分析报告。', color: '#F59E0B', pos: 'bottom-left' },
         { icon: '🗃️', name: 'data', tag: '数据管道', detail: '材料清洗工。语音转录(FunASR)/ OCR / 研报清洗入库,输入到 Qdrant 向量库。', color: '#A855F7', pos: 'bottom-right' },
@@ -279,7 +279,7 @@
       ]
     },
 
-    // ====== 01 开场 - 变革+团队的三层架构（主公特别要求） ======
+    // ====== 01 开场 - 变革+团队的三层架构（您特别要求） ======
     'burst-revolution-team': {
       title: '变革 + 团队 · 三层架构',
       subtitle: '变革思考 × 数字员工 × 资产沉淀 — 一个都不能少',
