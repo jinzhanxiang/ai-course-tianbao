@@ -85,49 +85,113 @@
       </div>
     </div>
 
-    <!-- Slide 2：什么是 Agent -->
+    <!-- Slide 2：什么是 Agent（变革对比，给刚接触的人） -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🤖 什么是智能体？</h2>
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:12px">🤖 什么是智能体？</h2>
+      <p style="font-size:16px;color:var(--text-secondary);margin-bottom:18px">先看清楚这场变革 —— 智能体时代 vs 传统时代，到底变了什么？</p>
+
+      <!-- 变革心刐1：一句诓大背景 -->
+      <div class="alert alert-info" style="margin-bottom:18px">
+        <strong>变革大背景：</strong>我们正在经历 <span style="color:var(--accent);font-weight:700">“软件 2.0”</span> 的变革。从“手工生产” → “智能工厂” 需要三步：<strong>云计算 (2010s) → 大模型 (2023) → 智能体 (2024+)</strong>。
+      </div>
+
+      <!-- 对比表：五行核心差异 -->
+      <h3 style="color:var(--accent);margin-bottom:12px;font-size:18px">📊 智能体时代 vs 传统时代（5 个核心差异）</h3>
+
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px">
+        <div style="padding:14px;background:rgba(255,95,87,0.08);border:1px solid rgba(255,95,87,0.3);border-radius:8px">
+          <div style="font-size:11px;color:#ff5f57;font-weight:700;letter-spacing:1px">传统软件</div>
+          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>人写规则</strong><br><span style="color:var(--text-secondary);font-size:11px">if-else 逻辑</span></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);">→</div>
+        <div style="padding:14px;background:rgba(86,211,100,0.08);border:1px solid rgba(86,211,100,0.3);border-radius:8px">
+          <div style="font-size:11px;color:#56d364;font-weight:700;letter-spacing:1px">智能体时代</div>
+          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>LLM 推理</strong><br><span style="color:var(--text-secondary);font-size:11px">模型出步骤</span></div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--accent);"></div>
+        <div style="padding:14px;background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);border-radius:8px">
+          <div style="font-size:11px;color:#a855f7;font-weight:700;letter-spacing:1px">变革</div>
+          <div style="font-size:13px;color:var(--text-primary);margin-top:6px"><strong>从规则到推理</strong><br><span style="color:var(--text-secondary);font-size:11px">开发范式革命</span></div>
+        </div>
+      </div>
 
       <table>
         <thead>
           <tr>
-            <th>维度</th>
-            <th>传统 LLM（2023 前）</th>
-            <th>智能体 Agent（2024+）</th>
+            <th style="width:14%">维度</th>
+            <th style="background:rgba(255,95,87,0.1);width:32%">传统软件时代（2000-2023）</th>
+            <th style="background:rgba(255,200,55,0.1);width:8%"></th>
+            <th style="background:rgba(86,211,100,0.1);width:32%">智能体 Agent 时代（2024+）</th>
+            <th style="background:rgba(168,85,247,0.1);width:14%">变革</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>输入</strong></td>
-            <td>一段提示词</td>
-            <td>一个目标</td>
+            <td><strong>交互方式</strong></td>
+            <td>点按钮 / 填表单 / 下拉菜单</td>
+            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
+            <td>说话下达目标</td>
+            <td><span style="color:#a855f7;font-weight:700">从 UI 到 NL</span></td>
           </tr>
           <tr>
-            <td><strong>输出</strong></td>
-            <td>一段回答</td>
-            <td>一个执行结果</td>
+            <td><strong>使用主体</strong></td>
+            <td>人被软件指挥</td>
+            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
+            <td>人指挥软件干活</td>
+            <td><span style="color:#a855f7;font-weight:700">主体反转</span></td>
           </tr>
           <tr>
-            <td><strong>工具</strong></td>
-            <td>无</td>
-            <td>函数调用 / 数据库 / API</td>
+            <td><strong>输出类型</strong></td>
+            <td>信息展示 / 表格汇总</td>
+            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
+            <td>执行结果 / 交付物</td>
+            <td><span style="color:#a855f7;font-weight:700">从查到做</span></td>
           </tr>
           <tr>
-            <td><strong>记忆</strong></td>
-            <td>无</td>
-            <td>短期 + 长期</td>
+            <td><strong>调用关系</strong></td>
+            <td>单个软件独立运行</td>
+            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
+            <td>多个 Agent 并行协同 + 反向调用人</td>
+            <td><span style="color:#a855f7;font-weight:700">从点到网</span></td>
           </tr>
           <tr>
-            <td><strong>规划</strong></td>
-            <td>无</td>
-            <td>CoT / ToT / Plan-Execute</td>
+            <td><strong>能力交付</strong></td>
+            <td>\"点击什么出什么\"</td>
+            <td style="text-align:center;color:var(--accent);font-size:20px">→</td>
+            <td>\"赋予一个可用的智能能力\"</td>
+            <td><span style="color:#a855f7;font-weight:700">从能用到能动</span></td>
           </tr>
         </tbody>
       </table>
 
-      <div class="alert alert-warning">
-        <strong>本质区别：</strong>传统 LLM 是"问答机器"，智能体是"数字员工"。
+      <!-- 3 个生活化类比 -->
+      <h3 style="color:var(--accent);margin-top:24px;margin-bottom:12px;font-size:18px">🌍 拿 3 件事看变革</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+        <div class="card" style="border-top:3px solid #ff5f57">
+          <h4 style="color:#ff5f57;font-size:14px;margin-bottom:8px">📧 发一封邮件</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            <strong>传统：</strong>打开 Outlook → 点\"新建\" → 输入收件人 → 写主题 → 写正文 → 点\"发送\"</br>
+            <strong style="color:#56d364">智能体：</strong>说话：\"帮我给王总发一封邮件，说明天下午 3 点跟他确认启源芯尽调访谈\"
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #febc2e">
+          <h4 style="color:#febc2e;font-size:14px;margin-bottom:8px">📑 出一份尽调报告</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            <strong>传统：</strong>50 页 Word → 手工查财报 → 手工录数据 → 手工改格式</br>
+            <strong style="color:#56d364">智能体：</strong>一句话：\"出启源芯尽调报告\" → 7 维度并行 90 分钟出 80 页成稿
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #a855f7">
+          <h4 style="color:#a855f7;font-size:14px;margin-bottom:8px">🧾 清洗 13 份研报</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            <strong>传统：</strong>实习生请假 3 天手工 OCR + Excel</br>
+            <strong style="color:#56d364">智能体：</strong>data agent 2 小时 → 79 实体 / 110 指标 / 178 逻辑/ 自动入库
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:18px">
+        <strong>本质区别：</strong>传统 LLM 是“问答机器”，智能体是“数字员工”。这不是进化，是<strong>范式跃迁</strong>——就像从马车到汽车，不是马车快一点。
       </div>
     </div>
 
