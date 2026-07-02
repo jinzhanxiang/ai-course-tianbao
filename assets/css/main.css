@@ -897,40 +897,39 @@ th {
 
 /* 容器 - 默认隐藏，绝对定位覆盖在 trigger 上方 */
 .burst-stage {
-  position: absolute;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
   z-index: 1000;
   pointer-events: none;
   opacity: 0;
-  transform: scale(0.8);
-  transform-origin: center top;
+  transform: scale(0.95);
+  transform-origin: center center;
   transition: opacity 0.4s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  width: min(96vw, 1400px);
-  min-height: 760px;
-  max-height: calc(100vh - 40px);
-  overflow: visible;
-  margin-top: 20px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   display: none;
 }
 
 .burst-stage.show {
-  display: block;
+  display: flex;
+  flex-direction: column;
   opacity: 1;
   transform: scale(var(--burst-stage-scale, 1));
   pointer-events: auto;
 }
 .burst-stage.scaled {
-  transform-origin: center top;
+  transform-origin: center center;
 }
 
-/* 全屏背景 - 浅色 + 模糊，让卡片更醒目 */
+/* 全屏背景幕布 - 浅色玻璃感，覆盖整个屏幕 */
 .burst-stage::before {
   content: '';
-  position: fixed;
+  position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(135deg, rgba(248, 250, 255, 0.97), rgba(238, 244, 255, 0.97));
   backdrop-filter: blur(12px) saturate(1.2);
   -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  z-index: -1;
   pointer-events: auto;
   cursor: pointer;
 }
