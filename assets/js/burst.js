@@ -297,9 +297,9 @@
     // ====== 方案 C: 4 个海报 Ken Burns 缩放动画 ======
     'burst-video-warroom': {
       title: '💹 投资作战室',
-      subtitle: '7 维度对标 · 30 秒得到估值区间',
-      videoPoster: '../assets/videos/posters/05-war-room.png',
-      layout: 'kenburns'
+      subtitle: '7 维度 WS 并行 · 30 秒得到启源芯估值区间',
+      terminalSrc: '../assets/videos/war-room.html',
+      layout: 'terminal'
     },
     'burst-video-beforeafter': {
       title: '✨ 研报清洗前后对比',

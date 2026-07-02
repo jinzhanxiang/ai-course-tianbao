@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💹 投资作战室</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(240,136,62,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(255,200,55,0.10) 0%, transparent 50%),
+      linear-gradient(rgba(240,136,62,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(240,136,62,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* 左侧：7 维度雷达/网络 */
+  .neural-pane {
+    width: 220px;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(240,136,62,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 40px rgba(240,136,62,0.15), inset 0 0 20px rgba(240,136,62,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .neural-pane::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #f0883e, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .neural-title {
+    font-size: 10px;
+    color: #f0883e;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #f0883e;
+  }
+
+  .neural-svg { width: 100%; height: 350px; }
+  .hex {
+    fill: #1a1f29;
+    stroke: rgba(240,136,62,0.4);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 4px rgba(240,136,62,0.3));
+    transition: all 0.3s ease;
+  }
+  .hex.active {
+    fill: #f0883e;
+    stroke: #f0883e;
+    filter: drop-shadow(0 0 8px #f0883e);
+  }
+  .hex.done {
+    fill: #3fb950;
+    stroke: #3fb950;
+    filter: drop-shadow(0 0 6px #3fb950);
+  }
+  .hex-text {
+    font-size: 8px;
+    fill: #e6edf3;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+  }
+  .hex-text.active-text { fill: #fff; }
+  .hex-pct {
+    font-size: 9px;
+    fill: #fcd34d;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .neural-status {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #6e7681;
+    text-align: center;
+    border-top: 1px solid rgba(240,136,62,0.2);
+    padding-top: 8px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #f0883e;
+    margin-right: 4px;
+    animation: blink 1.5s ease-in-out infinite;
+    box-shadow: 0 0 6px #f0883e;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* 右侧终端 */
+  .terminal-window {
+    flex: 1;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(240,136,62,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(240,136,62,0.15), inset 0 0 20px rgba(240,136,62,0.05);
+    position: relative;
+  }
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #f0883e, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  .terminal-titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(240,136,62,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    color: #f0883e; font-size: 13px;
+    text-shadow: 0 0 6px rgba(240,136,62,0.5);
+    letter-spacing: 1px;
+  }
+  .terminal-body {
+    padding: 16px 20px;
+    min-height: 380px;
+    max-height: 520px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240,136,62,0.3) #0d1117;
+  }
+  .terminal-body::-webkit-scrollbar { width: 6px; }
+  .terminal-body::-webkit-scrollbar-track { background: #0d1117; }
+  .terminal-body::-webkit-scrollbar-thumb { background: rgba(240,136,62,0.3); border-radius: 3px; }
+
+  .log-line {
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: lineAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .log-time { color: #6e7681; }
+  .log-main { color: #e6edf3; }
+  .log-ok { color: #3fb950; text-shadow: 0 0 4px rgba(63,185,80,0.5); }
+  .log-phase { color: #f0883e; text-shadow: 0 0 4px rgba(240,136,62,0.5); }
+  .log-data { color: #fcd34d; text-shadow: 0 0 4px rgba(252,211,77,0.5); }
+  .log-warn { color: #ff5f57; }
+  .log-sep { color: #30363d; }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: #f0883e;
+    box-shadow: 0 0 6px #f0883e;
+    animation: cursor 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+  @keyframes cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-research { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .tag-finance { background: rgba(86,211,100,0.15); color: #56d364; border: 1px solid rgba(86,211,100,0.3); }
+  .tag-business { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.3); }
+  .tag-legal { background: rgba(240,136,62,0.15); color: #f0883e; border: 1px solid rgba(240,136,62,0.3); }
+  .tag-tech { background: rgba(121,192,255,0.15); color: #79c0ff; border: 1px solid rgba(121,192,255,0.3); }
+  .tag-industry { background: rgba(210,168,255,0.15); color: #d2a8ff; border: 1px solid rgba(210,168,255,0.3); }
+  .tag-esg { background: rgba(63,185,80,0.15); color: #3fb950; border: 1px solid rgba(63,185,80,0.3); }
+  .tag-team { background: rgba(252,211,77,0.15); color: #fcd34d; border: 1px solid rgba(252,211,77,0.3); }
+  .tag-main { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .tag-stat { background: rgba(240,136,62,0.2); color: #f0883e; border: 1px solid rgba(240,136,62,0.5); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage-wrap">
+
+  <div class="neural-pane">
+    <div class="neural-title">⬡ 7-DIMENSION WS MESH</div>
+    <svg class="neural-svg" viewBox="0 0 200 350">
+      <!-- 中心 -->
+      <circle cx="100" cy="175" r="8" fill="#fff" filter="url(#glow)">
+        <animate attributeName="r" values="8;11;8" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <text x="100" y="155" font-size="9" fill="#fff" text-anchor="middle" font-weight="700">MAIN</text>
+
+      <!-- 7 维度六边形蜂窝 -->
+      <!-- 1 finance (top) -->
+      <polygon class="hex" id="hex-1" points="100,30 130,45 130,75 100,90 70,75 70,45" />
+      <text class="hex-text" id="hex-text-1" x="100" y="60">FINANCE</text>
+      <text class="hex-pct" id="hex-pct-1" x="100" y="73" style="opacity:0">0%</text>
+
+      <!-- 2 business -->
+      <polygon class="hex" id="hex-2" points="170,75 200,90 200,120 170,135 140,120 140,90" />
+      <text class="hex-text" id="hex-text-2" x="170" y="105">BUSINESS</text>
+      <text class="hex-pct" id="hex-pct-2" x="170" y="118" style="opacity:0">0%</text>
+
+      <!-- 3 legal -->
+      <polygon class="hex" id="hex-3" points="170,165 200,180 200,210 170,225 140,210 140,180" />
+      <text class="hex-text" id="hex-text-3" x="170" y="195">LEGAL</text>
+      <text class="hex-pct" id="hex-pct-3" x="170" y="208" style="opacity:0">0%</text>
+
+      <!-- 4 tech -->
+      <polygon class="hex" id="hex-4" points="100,210 130,225 130,255 100,270 70,255 70,225" />
+      <text class="hex-text" id="hex-text-4" x="100" y="240">TECH</text>
+      <text class="hex-pct" id="hex-pct-4" x="100" y="253" style="opacity:0">0%</text>
+
+      <!-- 5 industry -->
+      <polygon class="hex" id="hex-5" points="30,165 60,180 60,210 30,225 0,210 0,180" />
+      <text class="hex-text" id="hex-text-5" x="30" y="195">INDUSTRY</text>
+      <text class="hex-pct" id="hex-pct-5" x="30" y="208" style="opacity:0">0%</text>
+
+      <!-- 6 esg -->
+      <polygon class="hex" id="hex-6" points="30,75 60,90 60,120 30,135 0,120 0,90" />
+      <text class="hex-text" id="hex-text-6" x="30" y="105">ESG</text>
+      <text class="hex-pct" id="hex-pct-6" x="30" y="118" style="opacity:0">0%</text>
+
+      <!-- 7 team -->
+      <polygon class="hex" id="hex-7" points="100,120 130,135 130,165 100,180 70,165 70,135" />
+      <text class="hex-text" id="hex-text-7" x="100" y="150">TEAM</text>
+      <text class="hex-pct" id="hex-pct-7" x="100" y="163" style="opacity:0">0%</text>
+
+      <!-- 连线 -->
+      <line x1="100" y1="175" x2="100" y2="60" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="170" y2="105" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="170" y2="195" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="100" y2="240" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="30" y2="195" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="30" y2="105" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <line x1="100" y1="175" x2="100" y2="150" stroke="rgba(240,136,62,0.3)" stroke-width="0.5" stroke-dasharray="2 2" />
+    </svg>
+
+    <div class="neural-status">
+      <span class="status-dot"></span>
+      WS MESH ACTIVE · 7/7
+    </div>
+  </div>
+
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ zsh — research@war-room — 120×40</div>
+    </div>
+    <div class="terminal-body" id="terminalBody"></div>
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#f0883e', '#fcd34d', '#ff5f57'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.strokeStyle = 'rgba(240,136,62,' + (0.15 - d/800) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+function activateHex(id) {
+  const el = document.getElementById('hex-' + id);
+  const txt = document.getElementById('hex-text-' + id);
+  if (el) el.classList.add('active');
+  if (txt) txt.classList.add('active-text');
+}
+function updatePct(id, pct) {
+  const el = document.getElementById('hex-pct-' + id);
+  if (el) { el.textContent = pct + '%'; el.style.opacity = '1'; }
+}
+function completeHex(id) {
+  const el = document.getElementById('hex-' + id);
+  if (el) { el.classList.remove('active'); el.classList.add('done'); }
+}
+
+const LOGS = [
+  // 阶段 0
+  { cls: 'log-main', text: '[16:20:01] <span class="tag tag-main">主公</span> 发起任务：30 秒得到启源芯估值区间', delay: 0 },
+  { cls: 'log-main', text: '[16:20:02] <span class="tag tag-main">MAIN</span> 任务解析 → V3.38.0 WS 并行（7 维度）', delay: 400 },
+  { cls: 'log-phase',text: '[16:20:03] <span class="tag tag-research">research</span> run_workstream_workflow --task=qiyuan', delay: 700 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 1000 },
+
+  // 阶段 1：finance WS
+  { cls: 'log-phase',text: '[16:20:05] <span class="tag tag-finance">WS-1</span> 财务与估值 → QoE盈利质量分析', delay: 1400, action: () => activateHex(1) },
+  { cls: 'log-data', text: '[16:20:06] ⠋ 数据源：tushare / mx / ifind', delay: 1800 },
+  { cls: 'log-data', text: '[16:20:08] ✓ 营收/净利润/EBITDA 已采集', delay: 2200 },
+  { cls: 'log-data', text: '[16:20:11] ✓ 净债务/营运资本 已校准', delay: 2600 },
+  { cls: 'log-ok',   text: '[16:20:13] ✓ 财务 WS 完成：调整后 EBITDA=8.7亿', delay: 3000, action: () => { updatePct(1, 100); completeHex(1); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 3300 },
+
+  // 阶段 2：business WS
+  { cls: 'log-phase',text: '[16:20:14] <span class="tag tag-business">WS-2</span> 商业与竞争 → 商业尽调框架', delay: 3700, action: () => activateHex(2) },
+  { cls: 'log-data', text: '[16:20:15] ⠋ 数据源：mx_search / ifind / tavily', delay: 4100 },
+  { cls: 'log-data', text: '[16:20:17] ✓ TAM/SAM/SOM 已测算', delay: 4500 },
+  { cls: 'log-data', text: '[16:20:20] ✓ 市场份额/竞争壁垒 已评估', delay: 4900 },
+  { cls: 'log-ok',   text: '[16:20:22] ✓ 商业 WS 完成：市场份额 12.3%', delay: 5300, action: () => { updatePct(2, 100); completeHex(2); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 5600 },
+
+  // 阶段 3：legal WS
+  { cls: 'log-phase',text: '[16:20:23] <span class="tag tag-legal">WS-3</span> 法务与合规 → 法务尽调框架', delay: 6000, action: () => activateHex(3) },
+  { cls: 'log-data', text: '[16:20:24] ⠋ 26/05/09 法律尽调报告 已加载', delay: 6400 },
+  { cls: 'log-data', text: '[16:20:26] ✓ 合同审查：87 份重大合同', delay: 6800 },
+  { cls: 'log-data', text: '[16:20:28] ✓ 诉讼/知识产权/合规 已评估', delay: 7200 },
+  { cls: 'log-ok',   text: '[16:20:30] ✓ 法务 WS 完成：风险等级=B+ → A-', delay: 7600, action: () => { updatePct(3, 100); completeHex(3); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 7900 },
+
+  // 阶段 4：tech WS
+  { cls: 'log-phase',text: '[16:20:31] <span class="tag tag-tech">WS-4</span> 技术与研发 → 技术尽调框架', delay: 8300, action: () => activateHex(4) },
+  { cls: 'log-data', text: '[16:20:32] ⠋ 专利/核心技术/研发投入 已扫描', delay: 8700 },
+  { cls: 'log-data', text: '[16:20:34] ✓ 专利 127 项（发明 89 / 实用 38）', delay: 9100 },
+  { cls: 'log-ok',   text: '[16:20:36] ✓ 技术 WS 完成：技术壁垒=高', delay: 9500, action: () => { updatePct(4, 100); completeHex(4); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 9800 },
+
+  // 阶段 5：industry WS
+  { cls: 'log-phase',text: '[16:20:37] <span class="tag tag-industry">WS-5</span> 行业与赛道 → 行业研究框架', delay: 10200, action: () => activateHex(5) },
+  { cls: 'log-data', text: '[16:20:38] ⠋ 氢燃料电池+商用车 行业数据 已采集', delay: 10600 },
+  { cls: 'log-data', text: '[16:20:40] ✓ 行业增速 CAGR=23.5%', delay: 11000 },
+  { cls: 'log-ok',   text: '[16:20:42] ✓ 行业 WS 完成：行业评级=A', delay: 11400, action: () => { updatePct(5, 100); completeHex(5); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 11700 },
+
+  // 阶段 6：esg WS
+  { cls: 'log-phase',text: '[16:20:43] <span class="tag tag-esg">WS-6</span> ESG与可持续 → ESG评估框架', delay: 12100, action: () => activateHex(6) },
+  { cls: 'log-data', text: '[16:20:44] ⠋ 环保/社会/治理 3 维度已扫描', delay: 12500 },
+  { cls: 'log-data', text: '[16:20:46] ✓ 碳排放/员工/治理结构 已评估', delay: 12900 },
+  { cls: 'log-ok',   text: '[16:20:48] ✓ ESG WS 完成：综合得分=82/100', delay: 13300, action: () => { updatePct(6, 100); completeHex(6); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 13600 },
+
+  // 阶段 7：team WS
+  { cls: 'log-phase',text: '[16:20:49] <span class="tag tag-team">WS-7</span> 团队与治理 → 团队评估框架', delay: 14000, action: () => activateHex(7) },
+  { cls: 'log-data', text: '[16:20:50] ⠋ 高管/股东/激励 已采集', delay: 14400 },
+  { cls: 'log-data', text: '[16:20:52] ✓ 核心团队稳定性评估', delay: 14800 },
+  { cls: 'log-ok',   text: '[16:20:54] ✓ 团队 WS 完成：稳定性=A', delay: 15200, action: () => { updatePct(7, 100); completeHex(7); } },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 15500 },
+
+  // 合成
+  { cls: 'log-main', text: '[16:21:00] <span class="tag tag-main">MAIN</span> 7 WS 全部完成 → 交叉合成', delay: 15900 },
+  { cls: 'log-phase',text: '[16:21:03] <span class="tag tag-research">research</span> DCF + 可比公司 + 敏感性 3 表', delay: 16300 },
+  { cls: 'log-data', text: '[16:21:05] ⠋ DCF: 35-58亿 (WACC=9.8%)', delay: 16700 },
+  { cls: 'log-data', text: '[16:21:07] ⠋ 可比公司: 38-52亿 (P/E 中枢 18x)', delay: 17100 },
+  { cls: 'log-ok',   text: '[16:21:09] ✓ 估值区间: 35-58亿 (中位 46.5亿)', delay: 17500 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 17800 },
+
+  // 完成
+  { cls: 'log-ok',   text: '[16:21:10] ✓ <span class="tag tag-stat">最终估值</span> 35-58亿 | 中位 46.5亿 | 建议报价 42亿', delay: 18200 },
+  { cls: 'log-main', text: '[16:21:11] <span class="tag tag-main">MAIN</span> 任务完成  <span class="cursor-blink"></span>', delay: 18700 },
+];
+
+const terminalBody = document.getElementById('terminalBody');
+
+LOGS.forEach((log) => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line ' + log.cls;
+    div.innerHTML = log.text;
+    terminalBody.appendChild(div);
+    setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 20);
+    if (log.action) log.action();
+  }, log.delay);
+});
+</script>
+
+</body>
+</html>
