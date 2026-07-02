@@ -1,16 +1,79 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<html lang="zh-CN" data-theme="tianjin" data-mode="exploration">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>第 01 章 · 开场破题 — 智能体赋能投资研究</title>
-  <link rel="stylesheet" href="../assets/css/main.css?v=3">
-  <link rel="stylesheet" href="../assets/css/themes.css?v=3">
+  <link rel="stylesheet" href="../assets/css/main.css?v=4">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=4">
+  <style>
+    /* 开场专属科幻样式 */
+    .sci-terminal {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+      border: 1px solid rgba(0, 212, 255, 0.4);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-family: 'SF Mono', Monaco, Consolas, monospace;
+      color: #00d4ff;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.15), inset 0 0 20px rgba(0, 212, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    .sci-terminal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+      animation: scan 3s infinite;
+    }
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    .sci-line { margin: 4px 0; font-size: 13px; }
+    .sci-prompt { color: #56d364; }
+    .sci-ok { color: #56d364; }
+    .sci-warn { color: #febc2e; }
+    .sci-online {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #56d364;
+      box-shadow: 0 0 8px #56d364;
+      animation: pulse 1.5s infinite;
+      margin-right: 6px;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .glow-text {
+      background: linear-gradient(90deg, #00d4ff, #a855f7, #56d364);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .role-card {
+      padding: 20px 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(168,85,247,0.05));
+      border: 1px solid rgba(0,212,255,0.2);
+      transition: all 0.3s;
+    }
+    .role-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.2);
+    }
+    .role-emoji { font-size: 36px; margin-bottom: 8px; }
+    .role-title { font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+    .role-hook { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  </style>
 </head>
 <body class="chapter-page">
   <header class="topbar">
     <div class="topbar-left">
-      <span class="logo">🤖 天保智研</span>
+      <span class="logo">🤖 智研 · 智能体实战</span>
       <span class="course-title">第 01 章 · 开场破题</span>
     </div>
     <div class="topbar-center">
@@ -44,56 +107,230 @@
       <li><a href="05-research.html">05 · research V3</a></li>
       <li><a href="06-data.html">06 · data 清洗</a></li>
       <li><a href="07-report.html">07 · report 排版</a></li>
-      <li><a href="08-ecosystem.html">08 · 三智能体生态</a></li>
+      <li><a href="08-ecosystem.html" class="important">08 · 三智能体生态 ⭐</a></li>
       <li><a href="09-case.html">09 · 实战案例</a></li>
-      <li><a href="10-methodology.html">10 · 纵横分析法</a></li>
-      <li><a href="11-demo.html">11 · 现场演示</a></li>
+      <li><a href="10-methodology.html" class="important">10 · 纵横分析法 ⭐</a></li>
+      <li><a href="11-demo.html" class="hot">11 · 现场演示</a></li>
       <li><a href="12-qa.html">12 · Q&A</a></li>
     </ol>
   </aside>
 
   <main class="main-stage">
+
+    <!-- Slide 1：科幻开场 -->
     <div class="slide active">
-      <header class="chapter-header" style="margin-bottom:32px">
-        <h1 style="font-size:44px;color:var(--accent)">第 01 章 · 开场破题</h1>
-      </header>
-      <div class="story-card">
-        <p class="story-meta">开场金句</p>
-        <p style="font-size:20px;line-height:1.8">
-          <strong>"我今天不讲 AI 概念，讲我们天保自己的智能体团队——</strong>
-          <span class="burst-trigger" data-burst="burst-5agents" data-hint="👉 点击展开 5 个 Agent 详情"><strong>5 大 Agent</strong></span>
-          <strong>、</strong>
-          <span class="burst-trigger" data-burst="burst-2helpers" data-hint="👉 点击展开 2 个助手详情"><strong>2 大助手</strong></span>
-          <strong>、</strong>
-          <span class="burst-trigger" data-burst="burst-1platform" data-hint="👉 点击展开知识中台详情"><strong>1 套知识中台</strong></span>
-          <strong>，怎么把投研效率提升数倍。"</strong>
+      <div style="text-align:center;padding:40px 20px 24px">
+        <div style="font-size:52px;margin-bottom:12px">⚡</div>
+        <h1 style="font-size:46px;margin:0 0 14px 0;font-weight:800;letter-spacing:-1px" class="glow-text">
+          你好，我是你的数字化同行者
+        </h1>
+        <p style="font-size:18px;color:var(--text-secondary);margin:0;line-height:1.6">
+          今天不讲 AI 概念，只讲一件事 ——<br>
+          <strong style="color:var(--accent)">我和我的 7 个数字员工，过去 12 个月做对了什么。</strong>
         </p>
       </div>
-      <div class="kpi-row" style="margin-top:32px">
-        <div class="kpi-card"><div class="kpi-num">5</div><div class="kpi-label">大 Agent</div></div>
-        <div class="kpi-card"><div class="kpi-num">2</div><div class="kpi-label">大助手</div></div>
-        <div class="kpi-card"><div class="kpi-num">1</div><div class="kpi-label">知识中台</div></div>
-        <div class="kpi-card"><div class="kpi-num">5786</div><div class="kpi-label">实体积累</div></div>
-      </div>
-      <div style="margin-top:32px;text-align:center">
-        <a href="02-revolution.html" style="display:inline-block;padding:12px 28px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:15px;font-weight:bold">进入第 02 章 ▶</a>
+
+      <div class="sci-terminal" style="margin:28px auto 0;max-width:780px">
+        <div class="sci-line"><span class="sci-prompt">$</span> openclaw --status</div>
+        <div class="sci-line"><span class="sci-online"></span><span class="sci-ok">5 agents online</span> · <span class="sci-ok">2 helpers standby</span> · <span class="sci-ok">1 knowledge base loaded</span></div>
+        <div class="sci-line"><span class="sci-prompt">></span> main, project, research, data, report ... <span class="sci-ok">[OK]</span></div>
+        <div class="sci-line"><span class="sci-prompt">></span> claude-code, hermes ... <span class="sci-ok">[OK]</span></div>
+        <div class="sci-line"><span class="sci-prompt">></span> wiki · 5,786 entities · 178 logics · <span class="sci-warn">uptime 99.7%</span></div>
+        <div class="sci-line" style="margin-top:8px;color:#fff"><strong>系统就绪。准备开始 90 分钟的实战演示。</strong></div>
       </div>
     </div>
+
+    <!-- Slide 2：震撼数字 -->
+    <div class="slide">
+      <h2 class="slide-title">📊 过去 12 个月，我们做到了什么？</h2>
+      <p class="slide-subtitle">不讲未来画饼，看真实数字</p>
+
+      <div class="kpi-row" style="margin:32px 0">
+        <div class="kpi-card">
+          <div class="kpi-num">7</div>
+          <div class="kpi-label">数字员工在岗</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">5,786</div>
+          <div class="kpi-label">知识实体沉淀</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">90<span style="font-size:24px">min</span></div>
+          <div class="kpi-label">一份尽调报告</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">×5</div>
+          <div class="kpi-label">投研效率提升</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="max-width:780px;margin:0 auto">
+        <strong>今天的核心命题：</strong>当每一个普通员工都拥有「7 个数字员工」，组织会发生什么？
+      </div>
+    </div>
+
+    <!-- Slide 3：分岗位抓眼（科幻版）-->
+    <div class="slide">
+      <h2 class="slide-title">🎯 不管你坐在哪个位置，这场分享都跟你有关</h2>
+      <p class="slide-subtitle">4 类岗位 · 4 个不同的「我」的视角</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px">
+        <div class="role-card">
+          <div class="role-emoji">💼</div>
+          <div class="role-title">管理者视角</div>
+          <div class="role-hook">
+            如果你手下 5 个人的活，<strong style="color:var(--accent)">1 个人 + 5 个数字员工</strong>能干完，<br>你要不要换打法？
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">📈</div>
+          <div class="role-title">投资岗视角</div>
+          <div class="role-hook">
+            13 份研报以前要 <strong>3 天</strong>，<br>现在 <strong>2 小时</strong>，你多出来的时间干嘛？
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">👥</div>
+          <div class="role-title">人力岗视角</div>
+          <div class="role-hook">
+            招聘 JD、面试纪要、入职文档，<br><strong style="color:var(--accent)">AI 帮你把重复活全部干掉</strong>。
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">💻</div>
+          <div class="role-title">IT/工程岗视角</div>
+          <div class="role-hook">
+            写代码不再从 0 开始，<br>Agent <strong>和你结对编程</strong>，<br>你的 10 倍程序员同事上线了。
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:20px">
+        <strong>如果你不属于以上岗位 ——</strong>也没关系。今天你只要记住一件事：<strong style="color:var(--accent)">「数字员工」不是科幻，是已经发生的事实。</strong>
+      </div>
+    </div>
+
+    <!-- Slide 4：团队介绍（5+2+1）-->
+    <div class="slide">
+      <h2 class="slide-title">🤖 我的 7 个数字员工 · 一图速览</h2>
+      <p class="slide-subtitle">5 大 Agent + 2 大助手 + 1 套知识中台 —— 完整作战编制</p>
+
+      <h3 style="margin-top:20px">🟢 5 大 Agent（业务主力 · OpenClaw 内部）</h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(5,1fr);gap:14px">
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">🎯</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">main</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">总调度</p>
+        </div>
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">📋</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">project</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">项目管家</p>
+        </div>
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">🔬</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">research V3</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">研究员</p>
+        </div>
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">🗄️</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">data</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">数据工</p>
+        </div>
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">📄</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">report</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">报告专家</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:20px">🔵 2 大助手（工程基建 · 外部协同）</h3>
+      <div class="agent-grid" style="grid-template-columns:repeat(2,1fr);gap:14px;max-width:480px;margin-left:auto;margin-right:auto">
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">💻</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">Claude Code</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">智能体维护 + 投研纵深</p>
+        </div>
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">⚙️</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">Hermes</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">复杂编码 + 自我学习</p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:20px">🟡 1 套中台（知识资产）</h3>
+      <div class="agent-grid" style="grid-template-columns:1fr;max-width:280px;margin-left:auto;margin-right:auto">
+        <div class="agent-card" style="padding:18px 10px">
+          <span class="emoji" style="font-size:32px">📚</span>
+          <h4 style="font-size:15px;margin:6px 0 3px 0">Wiki 知识库</h4>
+          <p style="font-size:11px;color:var(--text-secondary)">5,786 实体 · 178 逻辑 · 越用越聪明</p>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:20px">
+        <strong>📌 这不是 PPT，是真的在跑的 7 个进程。</strong>接下来 90 分钟，我会把每一个的「真实工作流」拆给你看。
+      </div>
+    </div>
+
+    <!-- Slide 5：今日路线图 -->
+    <div class="slide">
+      <h2 class="slide-title">🗺️ 今天 90 分钟的路线图</h2>
+      <p class="slide-subtitle">从「看到」到「会做」，分 3 个阶段</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px">
+        <div class="card" style="border-left:4px solid #00d4ff;padding:20px">
+          <div style="font-size:13px;color:#00d4ff;font-weight:700;letter-spacing:1px;margin-bottom:6px">PART 1 · 看懂</div>
+          <h3 style="margin:0 0 10px 0">变革 + 团队</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            • 智能体是什么（30 秒版）<br>
+            • 我的 7 个数字员工到底怎么分工<br>
+            • 90 分钟你能带走什么
+          </p>
+          <div style="margin-top:12px;font-size:11px;color:var(--text-secondary)">⏱ 约 20 分钟</div>
+        </div>
+        <div class="card" style="border-left:4px solid #a855f7;padding:20px">
+          <div style="font-size:13px;color:#a855f7;font-weight:700;letter-spacing:1px;margin-bottom:6px">PART 2 · 拆解</div>
+          <h3 style="margin:0 0 10px 0">5 大 Agent 拆解</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            • main 怎么调度 · project 怎么管项目<br>
+            • research / data / report 怎么协作<br>
+            • 真实任务的 7 步执行流
+          </p>
+          <div style="margin-top:12px;font-size:11px;color:var(--text-secondary)">⏱ 约 40 分钟</div>
+        </div>
+        <div class="card" style="border-left:4px solid #56d364;padding:20px">
+          <div style="font-size:13px;color:#56d364;font-weight:700;letter-spacing:1px;margin-bottom:6px">PART 3 · 实战</div>
+          <h3 style="margin:0 0 10px 0">案例 + 现场演示</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            • 真实项目案例（启源芯投决）<br>
+            • 现场跑一遍：一条命令出报告<br>
+            • Q&A · 你的问题现场答
+          </p>
+          <div style="margin-top:12px;font-size:11px;color:var(--text-secondary)">⏱ 约 30 分钟</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:24px;text-align:center">
+        <strong>一句话承诺：</strong>90 分钟后，你会带走 <strong>5 个可复用的工作流</strong>，明天就能用。
+      </div>
+    </div>
+
   </main>
 
+  <!-- Agent 侧栏 -->
+  <aside class="agent-rail">
+    <div class="rail-header">🤖 智能体</div>
+    <div class="rail-list"></div>
+  </aside>
+
+  <!-- 底部控制条 -->
   <footer class="controls">
     <button id="prevBtn" class="ctrl-btn" onclick="location.href='00-cover.html'">◀</button>
-    <span class="ctrl-info">← / → 翻页</span>
+    <span class="ctrl-info">← / → 翻页 · T 主题 · M 模式</span>
     <button id="nextBtn" class="ctrl-btn" onclick="location.href='02-revolution.html'">▶</button>
   </footer>
+
   <script src="../assets/js/main.js?v=3"></script>
   <script src="../assets/js/burst.js"></script>
-
-  <!-- 5 大 Agent burst stage -->
-  <div class="burst-stage" id="burst-5agents"></div>
-  <!-- 2 大助手 burst stage -->
-  <div class="burst-stage" id="burst-2helpers"></div>
-  <!-- 1 套知识中台 burst stage -->
-  <div class="burst-stage" id="burst-1platform"></div>
 </body>
 </html>
