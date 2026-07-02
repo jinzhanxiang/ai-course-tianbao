@@ -14,8 +14,8 @@
     theme: 'tianjin',
   };
 
-  // ============ 初始化 ============
-  document.addEventListener('DOMContentLoaded', () => {
+  // ============ 初始化（兼容 DCL 已触发场景）============
+  function initAll() {
     initTheme();
     initMode();
     initNavigation();
@@ -30,7 +30,14 @@
       if (btn) btn.innerHTML = '📚 探索模式';
     }
     updateProgress();
-  });
+  }
+
+  // 初始化路径：DCL 还未触发则监听；已触发则同步执行（兼容 layout.js）
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
 
   // ============ 主题 ============
   function initTheme() {

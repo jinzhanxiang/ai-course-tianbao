@@ -161,13 +161,12 @@
     document.dispatchEvent(new CustomEvent('layout-injected'));
   }
 
-  // ============ 立即同步注入（保证在 main.js DOMContentLoaded 之前完成）============
-  // 由于 layout.js 在 main.js 之前加载，且 body 已存在，可直接同步执行
-  if (document.body) {
-    injectLayout();
-  } else {
-    // 极少数情况下 body 还未就绪 → 等待 DOMContentLoaded
+  // ============ 等待 DOMContentLoaded 后注入（确保 main 内容已就绪）============
+  // layout.js 需放在 body 末尾，能读取所有 [data-burst] 元素
+  if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', injectLayout);
+  } else {
+    injectLayout();
   }
 
   // 暴露给其他模块使用
