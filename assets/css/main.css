@@ -432,6 +432,19 @@ body {
 }
 
 /* ==================== 探索模式 ==================== */
+[data-mode="exploration"] html,
+[data-mode="exploration"] body {
+  height: auto !important;
+  min-height: 100%;
+  overflow: auto !important;
+}
+[data-mode="exploration"] body {
+  grid-template-rows: 60px auto 60px;
+}
+[data-mode="exploration"] .main-stage {
+  overflow: visible !important;
+  height: auto !important;
+}
 [data-mode="exploration"] .sidebar {
   transform: translateX(0);
 }
@@ -442,11 +455,13 @@ body {
   display: block;
   position: relative;
   inset: auto;
-  min-height: 100%;
-  margin-bottom: 40px;
+  min-height: auto;
+  width: 100%;
+  margin-bottom: 32px;
   background: var(--bg-card);
   border-radius: 12px;
-  padding: 60px;
+  padding: 48px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 [data-mode="exploration"] .controls {
   display: none;
