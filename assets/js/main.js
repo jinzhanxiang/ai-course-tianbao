@@ -9,7 +9,8 @@
     chapter: 0,
     slide: 0,
     slides: [],
-    mode: 'presentation',
+    // 从 <html data-mode="..."> 读取默认模式，这样每章可以独立设置默认状态
+    mode: document.documentElement.dataset.mode === 'exploration' ? 'exploration' : 'presentation',
     theme: 'tianjin',
   };
 
@@ -20,6 +21,13 @@
     initNavigation();
     initKeys();
     initAgents();
+
+    // 默认模式说明：探索模式把所有 slide 同时展开，演示模式只显一张
+    if (state.mode === 'exploration') {
+      document.querySelectorAll('.slide').forEach(s => s.classList.add('active'));
+      const btn = document.getElementById('modeBtn');
+      if (btn) btn.innerHTML = '📚 探索模式';
+    }
     updateProgress();
   });
 
