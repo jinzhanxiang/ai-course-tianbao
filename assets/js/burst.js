@@ -315,9 +315,9 @@
     },
     'burst-video-maindash': {
       title: '🧠 main 指挥中心',
-      subtitle: '5 大仪表盘实时呈现 4 代理状态',
-      videoPoster: '../assets/videos/posters/01-main-command-center.png',
-      layout: 'kenburns'
+      subtitle: 'sessions_send + task-tracker + 心跳日志 实时仪表盘',
+      terminalSrc: '../assets/videos/main-dash.html',
+      layout: 'terminal'
     },
 
     // ====== 3 个 AI 生成视频 burst ======

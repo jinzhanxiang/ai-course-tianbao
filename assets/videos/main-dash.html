@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎛️ main 指挥中心</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0,212,255,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(168,85,247,0.10) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(240,136,62,0.08) 0%, transparent 50%),
+      linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 0 0, 0 0, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1300px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  /* 通用窗口 */
+  .window {
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,212,255,0.15), inset 0 0 20px rgba(0,212,255,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scanLine 3s linear infinite;
+    z-index: 5;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(0,212,255,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    color: #00d4ff; font-size: 13px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px rgba(0,212,255,0.5);
+  }
+
+  /* ===== 左列：4 代理 + sessions_send 派发 ===== */
+  .col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .agent-board {
+    flex: 1;
+    border: 1px solid rgba(0,212,255,0.3);
+    min-height: 340px;
+  }
+  .agent-grid {
+    flex: 1;
+    padding: 14px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .agent-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 10px;
+    background: rgba(255,255,255,0.02);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .agent-card.busy {
+    border-color: rgba(240,136,62,0.5);
+    background: rgba(240,136,62,0.08);
+    box-shadow: 0 0 12px rgba(240,136,62,0.2);
+  }
+  .agent-card.done {
+    border-color: rgba(86,211,100,0.5);
+    background: rgba(86,211,100,0.08);
+  }
+  .agent-name {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .agent-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #6e7681;
+  }
+  .agent-card.busy .agent-dot { background: #f0883e; box-shadow: 0 0 6px #f0883e; animation: pulse 1s ease infinite; }
+  .agent-card.done .agent-dot { background: #56d364; box-shadow: 0 0 6px #56d364; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .agent-task {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+    margin-bottom: 4px;
+    min-height: 28px;
+  }
+  .agent-meta {
+    font-size: 9px;
+    color: #6e7681;
+  }
+  .agent-meta span.ok { color: #56d364; }
+  .agent-meta span.warn { color: #f0883e; }
+
+  /* sessions_send 派发面板 */
+  .dispatch-board {
+    border: 1px solid rgba(168,85,247,0.3);
+    box-shadow: 0 0 40px rgba(168,85,247,0.15), inset 0 0 20px rgba(168,85,247,0.05);
+  }
+  .dispatch-board .titlebar-title { color: #a855f7; text-shadow: 0 0 6px rgba(168,85,247,0.5); }
+  .dispatch-board::before { background: linear-gradient(90deg, transparent, #a855f7, transparent); }
+  .dispatch-body {
+    padding: 14px;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 250px;
+  }
+  .dispatch-line {
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border-left: 2px solid #a855f7;
+    background: rgba(168,85,247,0.05);
+    border-radius: 0 4px 4px 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: lineAppear 0.4s ease forwards;
+  }
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .dispatch-time { color: #6e7681; font-size: 9px; }
+  .dispatch-tag {
+    display: inline-block;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 700;
+    background: rgba(168,85,247,0.2);
+    color: #a855f7;
+    border: 1px solid rgba(168,85,247,0.4);
+    margin-right: 4px;
+  }
+  .dispatch-target {
+    color: #00d4ff;
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+  }
+
+  /* ===== 中列：main 中央 + 真实 task-tracker ===== */
+  .col-center {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* MAIN 心跳显示 */
+  .main-core {
+    border: 1px solid rgba(0,212,255,0.4);
+    box-shadow: 0 0 50px rgba(0,212,255,0.3), inset 0 0 30px rgba(0,212,255,0.1);
+    min-height: 220px;
+  }
+  .main-core-body {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .main-pulse {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00d4ff 0%, #0066cc 70%);
+    box-shadow: 0 0 40px #00d4ff, 0 0 80px rgba(0,212,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    animation: corePulse 2s ease-in-out infinite;
+    position: relative;
+  }
+  .main-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border: 2px solid #00d4ff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: ringExpand 2s ease-out infinite;
+  }
+  @keyframes corePulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 40px #00d4ff, 0 0 80px rgba(0,212,255,0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 60px #00d4ff, 0 0 120px rgba(0,212,255,0.7); }
+  }
+  @keyframes ringExpand {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.8); opacity: 0; }
+  }
+  .main-title {
+    font-size: 14px;
+    color: #00d4ff;
+    font-weight: 700;
+    text-shadow: 0 0 6px #00d4ff;
+    letter-spacing: 2px;
+  }
+  .main-subtitle {
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+  .heartbeat-info {
+    margin-top: 12px;
+    font-size: 11px;
+    color: #56d364;
+    font-weight: 700;
+    text-shadow: 0 0 4px rgba(86,211,100,0.5);
+  }
+  .heartbeat-info .dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #56d364;
+    box-shadow: 0 0 6px #56d364;
+    margin-right: 4px;
+    animation: pulse 1s ease infinite;
+  }
+
+  /* task-tracker.json 视图 */
+  .task-tracker {
+    flex: 1;
+    border: 1px solid rgba(252,211,77,0.3);
+    box-shadow: 0 0 40px rgba(252,211,77,0.15), inset 0 0 20px rgba(252,211,77,0.05);
+  }
+  .task-tracker::before { background: linear-gradient(90deg, transparent, #fcd34d, transparent); }
+  .task-tracker .titlebar-title { color: #fcd34d; text-shadow: 0 0 6px rgba(252,211,77,0.5); }
+  .task-tracker-body {
+    flex: 1;
+    padding: 12px 14px;
+    overflow-y: auto;
+    max-height: 280px;
+    font-size: 11px;
+  }
+  .tracker-row {
+    padding: 6px 8px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid #6e7681;
+    opacity: 0;
+    animation: lineAppear 0.4s ease forwards;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .tracker-row.completed { border-left-color: #56d364; background: rgba(86,211,100,0.05); }
+  .tracker-row.in-progress { border-left-color: #f0883e; background: rgba(240,136,62,0.05); }
+  .tracker-row.overdue { border-left-color: #ff5f57; background: rgba(255,95,87,0.05); }
+  .tracker-id { color: #00d4ff; font-family: monospace; font-size: 9px; }
+  .tracker-agent { font-weight: 700; padding: 1px 4px; border-radius: 2px; font-size: 9px; }
+  .tracker-agent.research { background: rgba(86,211,100,0.2); color: #56d364; }
+  .tracker-agent.data { background: rgba(168,85,247,0.2); color: #a855f7; }
+  .tracker-agent.project { background: rgba(0,212,255,0.2); color: #00d4ff; }
+  .tracker-agent.report { background: rgba(252,211,77,0.2); color: #fcd34d; }
+  .tracker-agent.main { background: rgba(255,255,255,0.1); color: #fff; }
+  .tracker-status {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    font-weight: 700;
+    margin-left: 4px;
+  }
+  .tracker-status.completed { background: rgba(86,211,100,0.2); color: #56d364; }
+  .tracker-status.in-progress { background: rgba(240,136,62,0.2); color: #f0883e; }
+  .tracker-status.overdue { background: rgba(255,95,87,0.2); color: #ff5f57; }
+  .tracker-task { color: rgba(255,255,255,0.8); }
+
+  /* ===== 右列：心跳日志 + 检查清单 ===== */
+  .col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .heartbeat-log {
+    flex: 1;
+    border: 1px solid rgba(86,211,100,0.3);
+    box-shadow: 0 0 40px rgba(86,211,100,0.15), inset 0 0 20px rgba(86,211,100,0.05);
+    min-height: 340px;
+  }
+  .heartbeat-log::before { background: linear-gradient(90deg, transparent, #56d364, transparent); }
+  .heartbeat-log .titlebar-title { color: #56d364; text-shadow: 0 0 6px rgba(86,211,100,0.5); }
+  .heartbeat-body {
+    flex: 1;
+    padding: 12px 14px;
+    overflow-y: auto;
+    max-height: 380px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .hb-line {
+    margin-bottom: 4px;
+    opacity: 0;
+    animation: lineAppear 0.4s ease forwards;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .hb-time { color: #6e7681; font-size: 9px; }
+  .hb-ok { color: #56d364; text-shadow: 0 0 3px rgba(86,211,100,0.4); }
+  .hb-warn { color: #f0883e; }
+  .hb-fail { color: #ff5f57; }
+  .hb-info { color: #00d4ff; }
+  .hb-phase {
+    color: #a855f7;
+    font-weight: 700;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(168,85,247,0.2);
+    text-shadow: 0 0 3px rgba(168,85,247,0.4);
+  }
+
+  /* 检查清单 */
+  .checklist {
+    border: 1px solid rgba(0,212,255,0.3);
+  }
+  .checklist-body {
+    padding: 12px 14px;
+    flex: 1;
+    font-size: 11px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: lineAppear 0.4s ease forwards;
+  }
+  .check-box {
+    width: 16px; height: 16px;
+    border: 1px solid #6e7681;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: transparent;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+  .check-box.checked {
+    border-color: #56d364;
+    background: rgba(86,211,100,0.2);
+    color: #56d364;
+    text-shadow: 0 0 4px #56d364;
+  }
+  .check-label {
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+  }
+  .check-label.checked { color: rgba(255,255,255,0.4); text-decoration: line-through; }
+  .check-status {
+    margin-left: auto;
+    font-size: 10px;
+    color: #6e7681;
+  }
+  .check-status.ok { color: #56d364; }
+  .check-status.warn { color: #f0883e; }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage">
+
+  <!-- 左列 -->
+  <div class="col-left">
+
+    <!-- 4 代理状态 -->
+    <div class="window agent-board">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ AGENTS STATUS</div>
+      </div>
+      <div class="agent-grid" id="agentGrid"></div>
+    </div>
+
+    <!-- sessions_send 派发 -->
+    <div class="window dispatch-board">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ sessions_send DISPATCH</div>
+      </div>
+      <div class="dispatch-body" id="dispatchBody"></div>
+    </div>
+
+  </div>
+
+  <!-- 中列 -->
+  <div class="col-center">
+
+    <!-- MAIN 心跳核心 -->
+    <div class="window main-core">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ MAIN ORCHESTRATOR</div>
+      </div>
+      <div class="main-core-body">
+        <div class="main-pulse" id="mainPulse">M</div>
+        <div class="main-title">MAIN</div>
+        <div class="main-subtitle">总调度 · 系统管理 · 主动巡检</div>
+        <div class="heartbeat-info" id="hbInfo"><span class="dot"></span>HEARTBEAT OK · 每 15 分钟</div>
+      </div>
+    </div>
+
+    <!-- task-tracker 真实任务 -->
+    <div class="window task-tracker">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ memory/task-tracker.json</div>
+      </div>
+      <div class="task-tracker-body" id="trackerBody"></div>
+    </div>
+
+  </div>
+
+  <!-- 右列 -->
+  <div class="col-right">
+
+    <!-- 心跳日志 -->
+    <div class="window heartbeat-log">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ heartbeat-execution.log</div>
+      </div>
+      <div class="heartbeat-body" id="hbBody"></div>
+    </div>
+
+    <!-- 检查清单 -->
+    <div class="window checklist">
+      <div class="titlebar">
+        <div class="titlebar-dot dot-red"></div>
+        <div class="titlebar-dot dot-yellow"></div>
+        <div class="titlebar-dot dot-green"></div>
+        <div class="titlebar-title">⬡ HEARTBEAT CHECKLIST</div>
+      </div>
+      <div class="checklist-body" id="checklistBody"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 50; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#00d4ff', '#a855f7', '#56d364'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* === 4 代理卡片 === */
+const AGENTS = [
+  { name: 'main', task: '总调度 + 心跳检查', session: '51KB · 7 行', status: 'idle', dotCls: 'agent-card' },
+  { name: 'research', task: '启源芯 估值建模', session: '6.9KB · 在线', status: 'busy', dotCls: 'agent-card busy' },
+  { name: 'data', task: 'OCR 清洗入库', session: '557KB · 工作', status: 'busy', dotCls: 'agent-card busy' },
+  { name: 'project', task: '流程协调 + 报告', session: '89KB · 待命', status: 'idle', dotCls: 'agent-card' },
+  { name: 'report', task: '排版输出', session: '162KB · 待命', status: 'idle', dotCls: 'agent-card' },
+  { name: 'memory', task: 'Dream · 3 阶段', session: '11MB · 6h', status: 'idle', dotCls: 'agent-card' },
+];
+
+const agentGrid = document.getElementById('agentGrid');
+AGENTS.forEach((a, i) => {
+  const card = document.createElement('div');
+  card.className = a.dotCls;
+  card.id = 'agent-card-' + a.name;
+  card.style.opacity = '0';
+  card.innerHTML = `
+    <div class="agent-name"><div class="agent-dot"></div>${a.name}</div>
+    <div class="agent-task">${a.task}</div>
+    <div class="agent-meta">session: ${a.session}</div>
+  `;
+  agentGrid.appendChild(card);
+  setTimeout(() => { card.style.transition = 'all 0.5s ease'; card.style.opacity = '1'; }, 400 + i * 200);
+});
+
+/* === sessions_send 派发记录 === */
+const DISPATCHES = [
+  { t: 800,  time: '10:30:01', agent: 'project', text: '启动 task-20260609-002 配置整改' },
+  { t: 1500, time: '10:30:02', agent: 'report',  text: '启动 task-20260609-003 TOOLS.md 拆分' },
+  { t: 2200, time: '10:30:03', agent: 'data',    text: '启动 task-20260609-004 数据治理' },
+  { t: 2900, time: '10:30:04', agent: 'research',text: '启动 task-20260609-005 配置整改' },
+  { t: 3600, time: '10:35:12', agent: 'project', text: '✓ 完成 TOOLS/SOUL/AGENTS 整改 (-23%)' },
+  { t: 4300, time: '10:35:14', agent: 'report',  text: '✓ 完成 TOOLS.md 拆分 (-12%)' },
+  { t: 5000, time: '11:08:30', agent: 'data',    text: '↻ 启动 task-20260425-001 清洗入库' },
+  { t: 5700, time: '11:08:31', agent: 'research',text: '↻ 启源芯 估值建模 V3.38.0' },
+];
+
+const dispatchBody = document.getElementById('dispatchBody');
+DISPATCHES.forEach(d => {
+  setTimeout(() => {
+    const line = document.createElement('div');
+    line.className = 'dispatch-line';
+    line.innerHTML = `
+      <div class="dispatch-time">${d.time}</div>
+      <span class="dispatch-tag">SEND</span>
+      → <span class="dispatch-target">agent:${d.agent}:feishu:direct</span>
+      <div style="color:rgba(255,255,255,0.7);margin-top:3px;">${d.text}</div>
+    `;
+    dispatchBody.appendChild(line);
+    dispatchBody.scrollTop = dispatchBody.scrollHeight;
+  }, d.t);
+});
+
+/* === task-tracker.json 真实任务 === */
+const TASKS = [
+  { id: 'task-20260608-001', agent: 'research', status: 'completed', text: '自查 EmbeddedAttemptSessionTakeoverError' },
+  { id: 'task-20260609-001', agent: 'main',    status: 'completed', text: '配置审定（CONFIG_AUDIT_TRIGGER）' },
+  { id: 'task-20260609-002', agent: 'project', status: 'completed', text: '配置整改：TOOLS.md/SOUL.md/AGENTS.md' },
+  { id: 'task-20260609-003', agent: 'report',  status: 'completed', text: '配置整改：TOOLS.md 预防性拆分' },
+  { id: 'task-20260609-004', agent: 'data',    status: 'completed', text: '配置整改：TOOLS.md(231%)+AGENTS.md(166%)' },
+  { id: 'task-20260609-005', agent: 'research',status: 'completed', text: '配置整改：TOOLS.md(239%)+AGENTS.md(128%)' },
+];
+
+const trackerBody = document.getElementById('trackerBody');
+TASKS.forEach((t, i) => {
+  setTimeout(() => {
+    const row = document.createElement('div');
+    row.className = 'tracker-row ' + t.status;
+    row.innerHTML = `
+      <div><span class="tracker-id">${t.id}</span> <span class="tracker-agent ${t.agent}">${t.agent}</span><span class="tracker-status ${t.status}">${t.status.toUpperCase()}</span></div>
+      <div class="tracker-task">${t.text}</div>
+    `;
+    trackerBody.appendChild(row);
+    trackerBody.scrollTop = trackerBody.scrollHeight;
+  }, 1500 + i * 350);
+});
+
+/* === 心跳日志 === */
+const HB = [
+  { t: 1000, txt: '<span class="hb-time">[11:00:00]</span> <span class="hb-phase">— 心跳开始 —</span>' },
+  { t: 1300, txt: '<span class="hb-time">[11:00:01]</span> <span class="hb-info">[0/8]</span> Session 清理 · <span class="hb-ok">已禁用 (2026-05-19)</span>' },
+  { t: 1700, txt: '<span class="hb-time">[11:00:02]</span> <span class="hb-info">[1/8]</span> PostgreSQL <span class="hb-ok">✓ 运行中</span>' },
+  { t: 2100, txt: '<span class="hb-time">[11:00:03]</span> <span class="hb-info">[1/8]</span> Qdrant <span class="hb-ok">✓ 运行中</span>' },
+  { t: 2500, txt: '<span class="hb-time">[11:00:04]</span> <span class="hb-info">[2/8]</span> task-monitor.sh <span class="hb-ok">✓ 无 overdue</span>' },
+  { t: 2900, txt: '<span class="hb-time">[11:00:05]</span> <span class="hb-info">[2/8]</span> in-progress: <span class="hb-warn">research V3.38</span>' },
+  { t: 3300, txt: '<span class="hb-time">[11:00:06]</span> <span class="hb-info">[3/8]</span> session-monitor.sh <span class="hb-ok">✓ 无🔴告警</span>' },
+  { t: 3700, txt: '<span class="hb-time">[11:00:07]</span> <span class="hb-info">[3/8]</span> data session: 557KB <span class="hb-warn">⚠ 接近阈值</span>' },
+  { t: 4100, txt: '<span class="hb-time">[11:00:08]</span> <span class="hb-info">[4/8]</span> 内存: <span class="hb-ok">7.8GB 可用</span>' },
+  { t: 4500, txt: '<span class="hb-time">[11:00:09]</span> <span class="hb-info">[5/8]</span> 待办: <span class="hb-ok">无逾期</span>' },
+  { t: 4900, txt: '<span class="hb-time">[11:00:10]</span> <span class="hb-info">[6/8]</span> memory .dreams: <span class="hb-ok">11MB / 5503 entries</span>' },
+  { t: 5300, txt: '<span class="hb-time">[11:00:11]</span> <span class="hb-info">[7/8]</span> 群消息: <span class="hb-info">3 条新</span>' },
+  { t: 5700, txt: '<span class="hb-time">[11:00:12]</span> <span class="hb-ok">[8/8] ✓ 所有检查通过</span>' },
+  { t: 6100, txt: '<span class="hb-time">[11:00:13]</span> <span class="hb-ok">HEARTBEAT_OK</span>' },
+];
+
+const hbBody = document.getElementById('hbBody');
+HB.forEach(l => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'hb-line';
+    div.innerHTML = l.txt;
+    hbBody.appendChild(div);
+    hbBody.scrollTop = hbBody.scrollHeight;
+  }, l.t);
+});
+
+/* === 检查清单 === */
+const CHECKS = [
+  { name: '0. Session 清理',   status: '已禁用', stCls: 'warn', t: 800 },
+  { name: '1. PostgreSQL/Qdrant', status: '✓ 运行中', stCls: 'ok', t: 1100 },
+  { name: '2. task-monitor',   status: '✓ 无 overdue', stCls: 'ok', t: 1400 },
+  { name: '3. session-monitor',status: '✓ 无🔴', stCls: 'ok', t: 1700 },
+  { name: '4. 内存检查',       status: '✓ 7.8GB', stCls: 'ok', t: 2000 },
+  { name: '5. 待办事项',       status: '✓ 无逾期', stCls: 'ok', t: 2300 },
+  { name: '6. 定时进度保存',   status: '✓ 12:25/17:25', stCls: 'ok', t: 2600 },
+  { name: '7. 记忆系统检查',   status: '✓ 11MB', stCls: 'ok', t: 2900 },
+  { name: '8. 群消息关注',     status: '✓ 3 条新', stCls: 'ok', t: 3200 },
+  { name: '9. 配置文件审定',   status: '周日 20:00', stCls: 'warn', t: 3500 },
+];
+
+const checklistBody = document.getElementById('checklistBody');
+CHECKS.forEach(c => {
+  setTimeout(() => {
+    const item = document.createElement('div');
+    item.className = 'check-item';
+    item.innerHTML = `
+      <div class="check-box" id="cb-${c.t}">✓</div>
+      <div class="check-label" id="cl-${c.t}">${c.name}</div>
+      <div class="check-status ${c.stCls}">${c.status}</div>
+    `;
+    checklistBody.appendChild(item);
+    setTimeout(() => {
+      document.getElementById('cb-' + c.t).classList.add('checked');
+      document.getElementById('cl-' + c.t).classList.add('checked');
+    }, 200);
+  }, c.t);
+});
+
+/* === MAIN 心跳动效 === */
+const hbInfo = document.getElementById('hbInfo');
+setTimeout(() => {
+  hbInfo.innerHTML = '<span class="dot"></span>HEARTBEAT_OK · 8/8 通过';
+  document.getElementById('mainPulse').style.animation = 'corePulse 1s ease-in-out infinite';
+}, 6500);
+setTimeout(() => {
+  document.getElementById('mainPulse').style.animation = 'corePulse 2s ease-in-out infinite';
+}, 9500);
+</script>
+
+</body>
+</html>
