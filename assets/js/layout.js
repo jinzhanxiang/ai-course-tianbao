@@ -123,15 +123,14 @@
       body.insertBefore(tempTopbar.firstChild, body.firstChild);
     }
 
-    // 中部：sidebar（插入到 body 内 topbar 之后）
+    // 中部：sidebar（插入到 topbar 之后）
     const sidebarHtml = renderSidebar();
-    const tempSidebar = document.createElement('div');
-    tempSidebar.innerHTML = sidebarHtml;
-    let inserted = false;
-    for (let node of tempSidebar.childNodes) {
-      const after = inserted ? body.children[1 + (inserted ? 1 : 0)] : body.children[1];
-      body.insertBefore(node, after);
-      inserted = true;
+    const topbar = body.querySelector('.topbar');
+    const mainEl = body.querySelector('main');
+    if (topbar && mainEl) {
+      mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
+    } else if (mainEl) {
+      mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
     }
 
     // 底部：footer（append 到 body 末尾）
