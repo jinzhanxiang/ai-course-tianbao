@@ -546,7 +546,15 @@
     if (!data) return;
 
     const stage = document.getElementById(burstId);
-    if (!stage) return;
+    if (!stage) {
+      // 动态创建 stage 元素（适用于 video burst 等任意章节触发）
+      const newStage = document.createElement('div');
+      newStage.className = 'burst-stage';
+      newStage.id = burstId;
+      document.body.appendChild(newStage);
+      // 递归调用，复用后续逻辑
+      return openBurst(burstId, triggerEl);
+    }
 
     currentBurstId = burstId;
     currentTrigger = triggerEl;
