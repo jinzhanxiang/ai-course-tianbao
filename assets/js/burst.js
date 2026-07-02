@@ -285,12 +285,12 @@
       subtitle: 'JD · 简历 · 面试纪要 · 培训文档 · 薪酬报告 · 7 个场景全部干掉',
       layout: 'grid',
       cards: [
-        { icon: '📝', name: 'JD 撰写', tag: '岗位说明书', detail: '输入:岗位名称 + 部门 + 职级。\nAI 输出:职责 / 任职资格 / 薪酬范围 / 发展路径。\n原本 2 小时 → 现在 5 分钟。', color: '#EC4899', pos: 'left' },
-        { icon: '🔍', name: '简历筛选', tag: '智能匹配', detail: '上传 100 份简历 → AI 评估匹配度 → 排出 Top 10。\n资深 HR 看 1 份简历需 5 分钟，100 份 = 8 小时。\nAI 看 100 份 = 10 秒，人工复选 10 份 = 50 分钟。', color: '#F59E0B', pos: 'center' },
-        { icon: '🎙️', name: '面试纪要', tag: '语音转写 + 摘要', detail: '面试录音 60 分钟 → FunASR 转文字 → AI 摘要出:\n能力评分 / 潜在风险 / 建议薪资 / 面试官提问覆盖度。\n原本要 2 小时整理，现在 3 分钟出报告。', color: '#A855F7', pos: 'right' },
-        { icon: '📚', name: '培训文档', tag: '知识库生成', detail: '从历史项目 / 课程 / 专家访谈 → 抽取知识点 → 结构化课程。\n可一键生成 Word / PPT / 在线考试题。\n原本 3 天 → 3 小时。', color: '#00D4FF', pos: 'left' },
-        { icon: '📊', name: '薪酬报告', tag: '市场对比', detail: '输入:岗位 + 城市 + 公司规模。\nAI 查询 10 家可比公司公开薪酬 → 生成 5 档报告 (P10/P25/P50/P75/P90)。\n原本要做 1 周调研，现在 30 分钟。', color: '#22C55E', pos: 'center' },
-        { icon: '🤝', name: '绩效沟通', tag: '谈话脚本', detail: '输入:员工姓名 + 绩效评级。\nAI 生成:该员工的沟通脚本 + 潜在反问预判 + 推荐改进路径。\n原本要临场发挥，现在可以按脚本走。', color: '#FF6B6B', pos: 'right' }
+        { icon: '📝', name: 'JD 撰写', tag: '岗位说明书', detail: '输入岗位+部门+职级。\nAI 输出:职责 / 资格 / 薪酬 / 路径。\n2 小时 → 5 分钟。', color: '#EC4899', pos: 'left' },
+        { icon: '🔍', name: '简历筛选', tag: '智能匹配', detail: '100 份简历 → AI 评估匹配度。\n排出 Top 10。\n8 小时 → 50 分钟。', color: '#F59E0B', pos: 'center' },
+        { icon: '🎙️', name: '面试纪要', tag: '语音转写+摘要', detail: '60 分钟录音 → AI 摘要。\n能力评分/风险/建议薪资。\n2 小时 → 3 分钟。', color: '#A855F7', pos: 'right' },
+        { icon: '📚', name: '培训文档', tag: '知识库生成', detail: '历史项目 → 知识点抽取。\n一键生成 Word/PPT/考题。\n3 天 → 3 小时。', color: '#00D4FF', pos: 'left' },
+        { icon: '📊', name: '薪酬报告', tag: '市场对比', detail: '输入岗位+城市+规模。\n生成 5 档报告(P10-P90)。\n1 周 → 30 分钟。', color: '#22C55E', pos: 'center' },
+        { icon: '🤝', name: '绩效沟通', tag: '谈话脚本', detail: '输入姓名+评级。\nAI 生成沟通脚本+反问预判。\n临场发挥 → 按脚本走。', color: '#FF6B6B', pos: 'right' }
       ]
     },
 
@@ -300,12 +300,12 @@
       subtitle: '结对编程 · 脚本生成 · Debug · 单元测试 · 部署脚本 · 工程能力全提 10 倍',
       layout: 'grid',
       cards: [
-        { icon: '⚙️', name: 'Claude Code', tag: '结对编程', detail: '不是取代你，是跟你一起写。\n你负责设计 / 架构 / 决策，它负责:模板代码 / 文档 / 重复样板 / 跨语言翻译。\n同一个工程师原来 1 周交付 1 模块 → 现在 1 天。', color: '#00D4FF', pos: 'left' },
-        { icon: '🔧', name: '脚本生成', tag: 'WACC / Monte Carlo', detail: '需要写 WACC 敏感性脚本？\n告诉 AI 你要的逻辑 → 生成 Python 代码 + 测试用例。\n不需要从 0 开始拼库函数。', color: '#A855F7', pos: 'center' },
-        { icon: '🐛', name: 'Debug 助手', tag: '错误分析', detail: '丢一段报错日志 → AI 给出:可能原因 Top 3 + 验证步骤 + 修复方案。\n原本在 Stack Overflow 查 1 小时，现在 2 分钟。', color: '#F59E0B', pos: 'right' },
-        { icon: '🧪', name: '单元测试', tag: '自动覆盖', detail: '老代码补单元测试 = 最痛苦的事。\nAI 看函数代码 → 自动生成 30-50 个测试用例 → 覆盖主要边界条件。\n原本 1 天，现在 1 小时。', color: '#22C55E', pos: 'left' },
-        { icon: '🚀', name: '部署脚本', tag: '一键发布', detail: '需要把项目发到服务器？\nAI 生成:Dockerfile + docker-compose + nginx 配置 + 自动化脚本。\n原本要部署运维一起做，现在一人完成。', color: '#EC4899', pos: 'center' },
-        { icon: '📚', name: 'Hermes 中台', tag: '知识管理', detail: '你们写的所有文档 / 代码注释 / 部署手册 → 自动入库 Hermes。\n新人入职第一天就能查:怎么部署 / 怎么 debug / 历史踩过什么坑。\n原本要带 1 个月，现在 1 天上手。', color: '#FF6B6B', pos: 'right' }
+        { icon: '⚙️', name: 'Claude Code', tag: '结对编程', detail: '你负责设计/架构/决策。\n它负责:模板代码/文档/翻译。\n1 周 1 模块 → 1 天。', color: '#00D4FF', pos: 'left' },
+        { icon: '🔧', name: '脚本生成', tag: 'WACC/Monte Carlo', detail: '告诉 AI 逻辑 → 生成代码。\nPython+测试用例。\n不用从 0 拼库函数。', color: '#A855F7', pos: 'center' },
+        { icon: '🐛', name: 'Debug 助手', tag: '错误分析', detail: '报错日志 → Top 3 原因。\n验证步骤 + 修复方案。\n1 小时 → 2 分钟。', color: '#F59E0B', pos: 'right' },
+        { icon: '🧪', name: '单元测试', tag: '自动覆盖', detail: '老代码补测试 = 最痛苦。\nAI 生成 30-50 用例。\n1 天 → 1 小时。', color: '#22C55E', pos: 'left' },
+        { icon: '🚀', name: '部署脚本', tag: '一键发布', detail: 'Dockerfile + nginx 配置。\ndocker-compose + 自动化。\n运维一起做 → 一人完成。', color: '#EC4899', pos: 'center' },
+        { icon: '📚', name: 'Hermes 中台', tag: '知识管理', detail: '文档/代码/部署 → 自动入库。\n新人第 1 天就能查。\n带 1 个月 → 1 天上手。', color: '#FF6B6B', pos: 'right' }
       ]
     },
 
@@ -486,28 +486,23 @@
         }
         break;
       case 'grid':
-        // 网格(自适应) - 用像素位置, step 保证不重叠
-        const cols = count <= 2 ? count : Math.ceil(Math.sqrt(count));
+        // CSS Grid 布局 - 彻底避免重叠，使用 flex 居中卡片
+        const cols = count <= 4 ? Math.min(count, 3) : 3;
         const rows = Math.ceil(count / cols);
-        const gridCardH = Math.max(cardH, 260);
-        const gap = 30;
-        const cardContainerH = (opts && opts.cardContainerH) || 600;
-        const gridStartY = (gridCardH / 2) + 15;
-        const gridRequiredRange = (gridCardH + gap) * Math.max(1, rows - 1);
-        // step = max(必需间距) - 保证不重叠
-        const gridRowStepPx = count <= 1 || rows <= 1 ? 0 : gridRequiredRange / Math.max(1, rows - 1);
-        const colStartX = (opts.cardW || 240) / 2 + 10;
-        const colEndX = (opts.stageW || 1382) - colStartX;
-        const colRangePx = colEndX - colStartX;
-        const colStepPx = cols <= 1 ? 0 : colRangePx / Math.max(1, cols - 1);
+        const stageW = (opts && opts.stageW) || 1382;
+        const gridGap = 28;
+        const cardW = 270;
+        const cardH = 240;
+        const gridW = cols * cardW + (cols - 1) * gridGap;
+        const gridH = rows * cardH + (rows - 1) * gridGap;
+        const startX = (stageW - gridW) / 2 + cardW / 2;
+        const startY = 120 + cardH / 2; // 顶部预留 120px 给标题
         for (let i = 0; i < count; i++) {
           const r = Math.floor(i / cols);
           const c = i % cols;
-          const rowY = rows <= 1 ? (cardContainerH / 2) : (gridStartY + r * gridRowStepPx);
-          const colX = cols <= 1 ? ((opts.stageW || 1382) / 2) : (colStartX + c * colStepPx);
           coords.push({
-            left: `${colX}px`,
-            top: `${rowY}px`
+            left: `${startX + c * (cardW + gridGap)}px`,
+            top: `${startY + r * (cardH + gridGap)}px`
           });
         }
         break;
