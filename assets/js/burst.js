@@ -283,7 +283,7 @@
     'burst-hr-scenarios': {
       title: '人力岗 · AI 帮你干掉重复活',
       subtitle: 'JD · 简历 · 面试纪要 · 培训文档 · 薪酬报告 · 7 个场景全部干掉',
-      layout: 'threecol',
+      layout: 'grid',
       cards: [
         { icon: '📝', name: 'JD 撰写', tag: '岗位说明书', detail: '输入:岗位名称 + 部门 + 职级。\nAI 输出:职责 / 任职资格 / 薪酬范围 / 发展路径。\n原本 2 小时 → 现在 5 分钟。', color: '#EC4899', pos: 'left' },
         { icon: '🔍', name: '简历筛选', tag: '智能匹配', detail: '上传 100 份简历 → AI 评估匹配度 → 排出 Top 10。\n资深 HR 看 1 份简历需 5 分钟，100 份 = 8 小时。\nAI 看 100 份 = 10 秒，人工复选 10 份 = 50 分钟。', color: '#F59E0B', pos: 'center' },
@@ -298,7 +298,7 @@
     'burst-it-scenarios': {
       title: 'IT/工程岗 · 你的 10× 程序员同事上线',
       subtitle: '结对编程 · 脚本生成 · Debug · 单元测试 · 部署脚本 · 工程能力全提 10 倍',
-      layout: 'threecol',
+      layout: 'grid',
       cards: [
         { icon: '⚙️', name: 'Claude Code', tag: '结对编程', detail: '不是取代你，是跟你一起写。\n你负责设计 / 架构 / 决策，它负责:模板代码 / 文档 / 重复样板 / 跨语言翻译。\n同一个工程师原来 1 周交付 1 模块 → 现在 1 天。', color: '#00D4FF', pos: 'left' },
         { icon: '🔧', name: '脚本生成', tag: 'WACC / Monte Carlo', detail: '需要写 WACC 敏感性脚本？\n告诉 AI 你要的逻辑 → 生成 Python 代码 + 测试用例。\n不需要从 0 开始拼库函数。', color: '#A855F7', pos: 'center' },
