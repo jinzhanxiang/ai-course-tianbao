@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ 研报清洗前后对比</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(168,85,247,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, rgba(255,200,55,0.08) 0%, transparent 50%),
+      linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  /* 通用窗口 */
+  .window {
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(168,85,247,0.15), inset 0 0 20px rgba(168,85,247,0.05);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    animation: scanLine 3s linear infinite;
+    z-index: 5;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(168,85,247,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .titlebar-title.before { color: #ff5f57; text-shadow: 0 0 6px rgba(255,95,87,0.5); }
+  .titlebar-title.after { color: #56d364; text-shadow: 0 0 6px rgba(86,211,100,0.5); }
+
+  /* BEFORE 左侧 - 乱纸堆 */
+  .before-pane { flex: 1; border: 1px solid rgba(255,95,87,0.4); }
+  .paper-stack {
+    flex: 1;
+    position: relative;
+    padding: 16px;
+    min-height: 540px;
+    overflow: hidden;
+  }
+  .paper {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.4;
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(2px);
+  }
+  .paper.active {
+    border-color: rgba(255,95,87,0.6);
+    box-shadow: 0 0 20px rgba(255,95,87,0.3);
+  }
+  .paper-label {
+    position: absolute;
+    top: 4px; right: 4px;
+    font-size: 8px;
+    padding: 1px 4px;
+    border-radius: 2px;
+    background: rgba(255,95,87,0.2);
+    color: #ff5f57;
+    font-weight: 700;
+  }
+  .garbage {
+    color: rgba(255,95,87,0.6);
+    text-shadow: 0 0 3px rgba(255,95,87,0.4);
+  }
+  .ocr-error {
+    color: rgba(254,188,46,0.7);
+    text-decoration: line-through;
+    text-decoration-color: rgba(254,188,46,0.5);
+  }
+
+  .before-stats {
+    border-top: 1px solid rgba(255,95,87,0.2);
+    background: rgba(255,95,87,0.05);
+    padding: 12px 16px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+  }
+  .stat-line {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+  }
+  .stat-val-bad {
+    color: #ff5f57;
+    font-weight: 700;
+    text-shadow: 0 0 4px rgba(255,95,87,0.5);
+  }
+
+  /* 中央：转换箭头 */
+  .arrow-pane {
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .arrow-core {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #a855f7 0%, #6b21a8 70%);
+    box-shadow: 0 0 30px #a855f7, 0 0 60px rgba(168,85,247,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 900;
+    animation: coreSpin 4s ease-in-out infinite;
+  }
+  @keyframes coreSpin {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  .arrow-title {
+    font-size: 10px;
+    color: #a855f7;
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 6px #a855f7;
+    font-weight: 700;
+  }
+  .arrow-sub {
+    font-size: 8px;
+    color: rgba(168,85,247,0.6);
+    text-align: center;
+    margin-top: 2px;
+  }
+  .pipeline-step {
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+    color: #56d364;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+  }
+  .pipeline-step.show { opacity: 1; transform: translateY(0); }
+  .pipeline-step-icon {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(86,211,100,0.1);
+    border: 1px solid rgba(86,211,100,0.4);
+    border-radius: 12px;
+    margin: 2px 0;
+    text-shadow: 0 0 4px #56d364;
+  }
+
+  /* AFTER 右侧 - 晶体向量 */
+  .after-pane { flex: 1; border: 1px solid rgba(86,211,100,0.4); }
+  .crystal-stack {
+    flex: 1;
+    position: relative;
+    padding: 16px;
+    min-height: 540px;
+    overflow: hidden;
+  }
+
+  /* 实体晶体 */
+  .crystal-card {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(86,211,100,0.15) 0%, rgba(0,212,255,0.08) 100%);
+    border: 1px solid rgba(86,211,100,0.5);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 10px;
+    color: #e6edf3;
+    line-height: 1.4;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(0.5) rotate(180deg);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 12px rgba(86,211,100,0.2);
+  }
+  .crystal-card.show {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  .crystal-tag {
+    display: inline-block;
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-entity { background: rgba(86,211,100,0.3); color: #56d364; border: 1px solid rgba(86,211,100,0.6); }
+  .tag-indicator { background: rgba(0,212,255,0.3); color: #00d4ff; border: 1px solid rgba(0,212,255,0.6); }
+  .tag-logic { background: rgba(168,85,247,0.3); color: #a855f7; border: 1px solid rgba(168,85,247,0.6); }
+  .crystal-name {
+    color: #fff;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  .crystal-meta {
+    color: rgba(255,255,255,0.5);
+    font-size: 9px;
+    margin-top: 2px;
+  }
+
+  /* 连线 */
+  .link-line {
+    position: absolute;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .link-line.show { opacity: 1; }
+
+  .after-stats {
+    border-top: 1px solid rgba(86,211,100,0.2);
+    background: rgba(86,211,100,0.05);
+    padding: 12px 16px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+  }
+  .stat-val-good {
+    color: #56d364;
+    font-weight: 700;
+    text-shadow: 0 0 4px rgba(86,211,100,0.5);
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+  }
+  .tag-data { background: rgba(168,85,247,0.2); color: #a855f7; border: 1px solid rgba(168,85,247,0.5); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage">
+
+  <!-- 左侧：BEFORE -->
+  <div class="window before-pane">
+    <div class="titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title before">⬡ 清洗前 · RAW PDF</div>
+    </div>
+    <div class="paper-stack" id="paperStack">
+      <!-- 30 张乱纸，position 随机分布 -->
+    </div>
+    <div class="before-stats">
+      <div class="stat-line"><span>📄 总页数</span><span class="stat-val-bad">80 页 / 研报</span></div>
+      <div class="stat-line"><span>🔤 OCR 错字率</span><span class="stat-val-bad">23.4%</span></div>
+      <div class="stat-line"><span>🗑️ 噪声字符</span><span class="stat-val-bad">3,294 行元数据</span></div>
+      <div class="stat-line"><span>📊 可机读结构化</span><span class="stat-val-bad">0%</span></div>
+    </div>
+  </div>
+
+  <!-- 中央：转换箭头 -->
+  <div class="arrow-pane">
+    <div class="arrow-title">DATA<br>REFINERY</div>
+    <div class="arrow-core" id="arrowCore">→</div>
+    <div class="arrow-sub">v3.38.0</div>
+    <div class="pipeline-step" id="ps1"><div class="pipeline-step-icon">OCR</div></div>
+    <div class="pipeline-step" id="ps2"><div class="pipeline-step-icon">NER 实体</div></div>
+    <div class="pipeline-step" id="ps3"><div class="pipeline-step-icon">指标</div></div>
+    <div class="pipeline-step" id="ps4"><div class="pipeline-step-icon">逻辑</div></div>
+    <div class="pipeline-step" id="ps5"><div class="pipeline-step-icon">向量</div></div>
+  </div>
+
+  <!-- 右侧：AFTER -->
+  <div class="window after-pane">
+    <div class="titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title after">⬡ 清洗后 · CRYSTAL VECTORS</div>
+    </div>
+    <div class="crystal-stack" id="crystalStack">
+      <!-- 实体/指标/逻辑 晶体卡 -->
+    </div>
+    <div class="after-stats">
+      <div class="stat-line"><span>🟢 实体 (entity)</span><span class="stat-val-good">79 个</span></div>
+      <div class="stat-line"><span>🔵 指标 (indicator)</span><span class="stat-val-good">110 个</span></div>
+      <div class="stat-line"><span>🟣 逻辑链 (logic_chain)</span><span class="stat-val-good">178 个</span></div>
+      <div class="stat-line"><span>📊 向量入库</span><span class="stat-val-good">1,024 维 × 367</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 50; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#a855f7', '#00d4ff', '#56d364'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 100) {
+        ctx.strokeStyle = 'rgba(168,85,247,' + (0.12 - d/900) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[j=Math.min(j,particles.length-1)] || particles[i].x);
+      }
+    }
+  }
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(draw);
+}
+draw();
+
+/* === 左侧 30 张乱纸 === */
+const paperStack = document.getElementById('paperStack');
+const paperData = [
+  { label: 'p001', txt: '方正证券研究所\n═══════════\n2026年4月3日\n固态电池设备行业\n深度报告\n【行业评级: 推荐】\n分析师: 王XX S1230520010001\n───────────', tag: true },
+  { label: 'p005', txt: '[IMAGE:page_005]\n[OCR-VLM-PROTO]\nimg_data: <binary>\ncoords: [12,34,567,890]\n─────────────────', garbage: true },
+  { label: 'p010', txt: '行业概况\n我国固态电池产业\n处于快速发展阶段，\n2025年市场规模约\n<span class="ocr-error">4O</span>亿元，预计2030年\n达<span class="ocr-error">lOOO</span>亿元以上...', tag: true },
+  { label: 'p015', txt: '一、干法电极工艺\n干法电极是固态电池\n前段核心工艺，可...\n<span class="ocr-error">提髙</span>能量密度约\n<span class="ocr-error">2O%</span>...', tag: true },
+  { label: 'p020', txt: '图 1: 全球固态电池\n设备市场规模\n数据来源: GGII', tag: true },
+  { label: 'p025', txt: '\n[TABLE_3x4]\n| 公司 | 营收 | 增速 |\n| 先导智能 | 138亿 | 24% |\n| 利元亨 | 62亿 | 35% |\n<span class="ocr-error">| 某公司 | XX亿 | XX |</span>', tag: true },
+  { label: 'p030', txt: '二、竞争格局\n国内主要参与者:\n<span class="ocr-error">先导智 能</span>\n<span class="ocr-error">利元 亨</span>\n海目星\n<span class="ocr-error">华 自 科技</span>\n<span class="ocr-error">杭可科 技</span>', tag: true },
+  { label: 'p040', txt: '\n[PAGE_040_BREAK]\n[EMPTY_PARAGRAPH]\n<span class="ocr-error">㊗</span>\n[PAGE_040_HEADER_FOOTER]\n方正证券 12\n\n三、风险提示', tag: true },
+  { label: 'p050', txt: '三、风险提示\n1. 技术路线风险\n2. 产业化进度不及预期\n3. <span class="ocr-error">原材 料价格波动</span>', tag: true },
+  { label: 'p060', txt: '四、投资建议\n建议关注以下标的:\n✓ 先导智能 (300450)\n✓ 利元亨 (688499)\n✓ <span class="ocr-error">华 自 科技</span>\n✓ 海目星 (688559)', tag: true },
+  { label: 'p070', txt: '[PAGE_070_FOOTER]\n方正证券 13\n[BREAK]\n[OCR-DUMMY-STRING]', garbage: true },
+  { label: 'p080', txt: '风险评估:\n固态电池技术路线尚\n<span class="ocr-error">未完全成熟</span>，产\n业化进程存在不确定\n性...', tag: true },
+  { label: 'noise1', txt: '\n\n[IMAGE_PROTO]\n[VLM_METADATA]\n<img_url:file://>\nb64:<binary>\nmd5: xxxx\n───────\n', garbage: true },
+  { label: 'noise2', txt: '\n[PAGE_FOOTER_001]\n[PAGE_HEADER_001]\n[PAGE_BREAK_001]\n[OCR_LOOP_ERR_4523]\n', garbage: true },
+];
+
+for (let i = 0; i < 22; i++) {
+  const d = paperData[i % paperData.length];
+  const p = document.createElement('div');
+  p.className = 'paper';
+  if (d.tag) p.classList.add('active');
+  const x = (Math.random() * 80) + 2;
+  const y = (i * 26) + Math.random() * 6;
+  const rot = (Math.random() - 0.5) * 6;
+  p.style.cssText = `left:${x}%; top:${y}px; width:${240 + Math.random()*60}px; transform:rotate(${rot}deg);`;
+  p.innerHTML = `<div class="paper-label">${d.label}</div>${d.txt.replace(/\n/g, '<br>')}`;
+  paperStack.appendChild(p);
+}
+
+/* === 右侧 实体/指标/逻辑 晶体 === */
+const crystalStack = document.getElementById('crystalStack');
+const crystals = [
+  // 实体 (entity)
+  { kind: 'entity', name: '先导智能', meta: '300450.SZ · 锂电设备龙头' },
+  { kind: 'entity', name: '利元亨', meta: '688499.SH · 化成分容' },
+  { kind: 'entity', name: '海目星', meta: '688559.SH · 激光设备' },
+  { kind: 'entity', name: '杭可科技', meta: '688006.SH · 后段设备' },
+  { kind: 'entity', name: '先导智能 (锂电)', meta: '业务条线 · 整线交付' },
+  { kind: 'entity', name: '固态电池设备', meta: '行业概念 · 战略性新兴' },
+  { kind: 'entity', name: '干法电极工艺', meta: '技术概念 · 前段核心' },
+  // 指标 (indicator)
+  { kind: 'indicator', name: '2025 市场规模', meta: '40 亿元 · GGII' },
+  { kind: 'indicator', name: '2030E 市场规模', meta: '>1000 亿元 · CAGR 70%' },
+  { kind: 'indicator', name: '先导智能 2025 营收', meta: '138 亿元 · +24% YoY' },
+  { kind: 'indicator', name: '利元亨 2025 营收', meta: '62 亿元 · +35% YoY' },
+  { kind: 'indicator', name: '干法电极良率', meta: '>85% · 工艺标准' },
+  // 逻辑链 (logic)
+  { kind: 'logic', name: '技术迭代 → 设备增量', meta: '链 L012 · 高置信 0.91' },
+  { kind: 'logic', name: '行业景气 → 估值溢价', meta: '链 L029 · 高置信 0.88' },
+  { kind: 'logic', name: '产能扩张 → 设备订单', meta: '链 L045 · 中置信 0.79' },
+  { kind: 'logic', name: '政策支持 → 行业评级A', meta: '链 L067 · 高置信 0.92' },
+];
+
+const positions = [
+  // entity 区域（左上）
+  { x: 4,  y: 6,  w: 175 },
+  { x: 32, y: 6,  w: 175 },
+  { x: 60, y: 6,  w: 175 },
+  { x: 4,  y: 100, w: 175 },
+  { x: 32, y: 100, w: 175 },
+  { x: 60, y: 100, w: 175 },
+  { x: 18, y: 200, w: 175 },
+  // indicator 区域（中）
+  { x: 4,  y: 290, w: 175 },
+  { x: 32, y: 290, w: 175 },
+  { x: 60, y: 290, w: 175 },
+  { x: 18, y: 380, w: 175 },
+  { x: 45, y: 380, w: 175 },
+  // logic 区域（右下）
+  { x: 4,  y: 470, w: 175 },
+  { x: 32, y: 470, w: 175 },
+  { x: 60, y: 470, w: 175 },
+  { x: 18, y: 560, w: 175 },
+];
+
+crystals.forEach((c, i) => {
+  const pos = positions[i];
+  const card = document.createElement('div');
+  card.className = 'crystal-card';
+  card.style.cssText = `left:${pos.x}%; top:${pos.y}px; width:${pos.w}px;`;
+  const tagClass = c.kind === 'entity' ? 'tag-entity' : c.kind === 'indicator' ? 'tag-indicator' : 'tag-logic';
+  const tagText = c.kind === 'entity' ? '实体' : c.kind === 'indicator' ? '指标' : '逻辑';
+  card.innerHTML = `
+    <div><span class="crystal-tag ${tagClass}">${tagText}</span></div>
+    <div class="crystal-name">${c.name}</div>
+    <div class="crystal-meta">${c.meta}</div>
+  `;
+  crystalStack.appendChild(card);
+});
+
+/* === 时间线：清洗前 → pipeline step 依次亮 → 清洗后 === */
+const pipelineSteps = ['ps1', 'ps2', 'ps3', 'ps4', 'ps5'];
+
+setTimeout(() => {
+  // 阶段 1: pipeline step 1 显示
+  document.getElementById('ps1').classList.add('show');
+  // 左侧乱纸轻微抖动
+  document.querySelectorAll('.paper').forEach((p, i) => {
+    setTimeout(() => {
+      p.style.boxShadow = '0 0 15px rgba(254,188,46,0.4)';
+      setTimeout(() => p.style.boxShadow = '', 200);
+    }, i * 50);
+  });
+}, 800);
+
+setTimeout(() => document.getElementById('ps2').classList.add('show'), 2400);
+setTimeout(() => document.getElementById('ps3').classList.add('show'), 3600);
+setTimeout(() => document.getElementById('ps4').classList.add('show'), 4800);
+setTimeout(() => document.getElementById('ps5').classList.add('show'), 6000);
+
+// 阶段 2: 左侧乱纸逐渐褪色消失
+setTimeout(() => {
+  document.querySelectorAll('.paper').forEach((p, i) => {
+    setTimeout(() => {
+      p.style.opacity = '0.15';
+      p.style.transform = `rotate(${(Math.random()-0.5)*15}deg) translateY(${Math.random()*30}px)`;
+    }, i * 80);
+  });
+}, 7200);
+
+// 阶段 3: 右侧晶体依次出现
+crystals.forEach((c, i) => {
+  setTimeout(() => {
+    crystalStack.children[i].classList.add('show');
+  }, 9000 + i * 280);
+});
+
+// 阶段 4: 中心 arrow 旋转加快
+setTimeout(() => {
+  document.getElementById('arrowCore').style.animation = 'coreSpin 1.2s ease-in-out infinite';
+}, 10000);
+</script>
+
+</body>
+</html>

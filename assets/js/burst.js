@@ -303,9 +303,9 @@
     },
     'burst-video-beforeafter': {
       title: '✨ 研报清洗前后对比',
-      subtitle: '80 页 PDF → 79 个实体/110 个指标/178 个逻辑',
-      videoPoster: '../assets/videos/posters/06-before-after.png',
-      layout: 'kenburns'
+      subtitle: '80 页 PDF → 79 个实体 / 110 个指标 / 178 个逻辑链',
+      terminalSrc: '../assets/videos/before-after.html',
+      layout: 'terminal'
     },
     'burst-video-radar': {
       title: '🎯 8 维企业雷达图',
