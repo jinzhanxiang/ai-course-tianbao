@@ -491,14 +491,18 @@
         const rows = Math.ceil(count / cols);
         const stageW = (opts && opts.stageW) || window.innerWidth || 1440;
         const stageH = (opts && opts.stageH) || window.innerHeight || 900;
-        const gridGap = 50;  // 足够大的间距避免遮挡
+        const gridGap = 40;  // 间距
         const cardW = 260;
-        const cardH = 280;  // 必须与 CSS max-height 一致
+        const cardH = 270;  // 与 CSS max-height 280 一致 + 缓冲
         const gridW = cols * cardW + (cols - 1) * gridGap;
         const gridH = rows * cardH + (rows - 1) * gridGap;
-        // 顶端预留 150px (header 高度)；总体居中
+        // header 预留 160px，整体内容垂直居中在剩余区域
+        const headerSpace = 160;
+        const availH = stageH - headerSpace;
+        // 第 1 行中心 Y = headerSpace + cardH/2
+        // 如总高超可用区，起始位置 = headerSpace + cardH/2（不缩）
         const startX = (stageW - gridW) / 2 + cardW / 2;
-        const startY = Math.max(150, (stageH - gridH) / 2) + cardH / 2;
+        const startY = headerSpace + cardH / 2;
         for (let i = 0; i < count; i++) {
           const r = Math.floor(i / cols);
           const c = i % cols;
@@ -737,12 +741,13 @@
     });
     stage.appendChild(cardContainer);
 
-    // 动态计算 stage scale：如果内容超过 viewport，缩放避免出底部
+    // 动态计算 stage scale：stage 已改为 100vh 全屏，不再需要整体 scale
+    // 保留逻辑以备未来需要，但当前默认不缩放
     const stageRect = stage.getBoundingClientRect();
-    // 预估内容总高度：header(~130) + cardContainerH
     const contentH = 130 + cardContainerH;
-    const maxVisibleH = window.innerHeight - 40;  // 留 40px 底部
-    if (contentH > maxVisibleH) {
+    const maxVisibleH = window.innerHeight - 40;
+    // stage 已是 viewport 全高，scale 只在极端多卡时使用
+    if (contentH > maxVisibleH + 200) {  // 加 200px buffer
       const scale = Math.max(0.6, maxVisibleH / contentH);
       stage.style.setProperty('--burst-stage-scale', scale);
       stage.classList.add('scaled');
