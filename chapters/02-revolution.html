@@ -9,52 +9,8 @@
 </head>
 <body class="chapter-page">
   <!-- 顶部条 -->
-  <header class="topbar">
-    <div class="topbar-left">
-      <span class="logo">🤖 智能体研究中心</span>
-      <span class="course-title">第 02 章 · 智能体革命</span>
-    </div>
-    <div class="topbar-center">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="right:83.3%"></div>
-        <span class="progress-text" id="progressText">2 / 12</span>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="theme-switcher">
-        <button data-theme="tianjin" class="active">🟦</button>
-        <button data-theme="dark">🌑</button>
-        <button data-theme="academic">⬜</button>
-        <button data-theme="guofeng">🟥</button>
-      </div>
-      <div class="mode-switcher">
-        <a href="../index.html" style="text-decoration:none">
-          <button>🏠 主页</button>
-        </a>
-        <button id="modeBtn">📊 演示模式</button>
-      </div>
-    </div>
-  </header>
 
   <!-- 侧边栏 -->
-  <aside class="sidebar">
-    <h3>📑 12 章节</h3>
-    <ol class="chapter-list">
-      <li><a href="../index.html">00 · 封面</a></li>
-      <li><a href="01-opening.html">01 · 开场破题</a></li>
-      <li><a href="02-revolution.html" class="active">02 · 智能体革命</a></li>
-      <li><a href="03-main.html">03 · main 调度</a></li>
-      <li><a href="04-project.html">04 · project 项目管家</a></li>
-      <li><a href="05-research.html">05 · research V3</a></li>
-      <li><a href="06-data.html">06 · data 清洗</a></li>
-      <li><a href="07-report.html">07 · report 排版</a></li>
-      <li><a href="08-ecosystem.html" class="important">08 · 三智能体生态 ⭐</a></li>
-      <li><a href="09-case.html">09 · 实战案例</a></li>
-      <li><a href="10-methodology.html" class="important">10 · 纵横分析法 ⭐</a></li>
-      <li><a href="11-demo.html" class="hot">11 · 现场演示</a></li>
-      <li><a href="12-qa.html">12 · Q&A</a></li>
-    </ol>
-  </aside>
 
   <!-- 主内容 -->
   <main class="main-stage">
@@ -291,7 +247,6 @@
       </div>
     </div>
 
-
     <!-- Slide 3：智能体最小架构 -->
     <div class="slide">
       <h2 class="slide-title">🏗️ 智能体的最小架构</h2>
@@ -431,11 +386,7 @@
   </aside>
 
   <!-- 底部控制条 -->
-  <footer class="controls  <footer class="controls">
-    <button id="prevBtn" class="ctrl-btn">◀ 上一页</button>
-    <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题 · M 模式</span>
-    <button id="nextBtn" class="ctrl-btn">下一页 ▶</button>
-  </footer>
+  <footer class="controls  
 
   <!-- 备注弹层 -->
   <div class="speaker-notes-panel" id="speakerPanel">
@@ -459,7 +410,6 @@
     </div>
   </div>
 
-  <script src="../assets/js/main.js?v=3"></script>
   <script>
     // 重写：每章独立显示进度
     document.addEventListener('DOMContentLoaded', () => {
@@ -491,8 +441,10 @@
       }
     });
   </script>
-  <script src="../assets/js/burst.js"></script>
-
-  <div class="burst-stage" id="burst-revolution"></div>
+  
+<script src="../assets/js/layout.js?v=4"></script>
+<script src="../assets/js/shared-agents.js?v=3"></script>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/burst.js"></script>
 </body>
 </html>

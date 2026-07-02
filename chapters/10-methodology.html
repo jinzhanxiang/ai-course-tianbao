@@ -8,43 +8,6 @@
   <link rel="stylesheet" href="../assets/css/themes.css?v=3">
 </head>
 <body class="chapter-page">
-  <header class="topbar" style="background:rgba(10,14,39,0.95)">
-    <div class="topbar-left">
-      <span class="logo">🤖 智能体研究中心</span>
-      <span class="course-title" style="color:#A855F7">第 10 章 · 纵横分析法 ⭐</span>
-    </div>
-    <div class="topbar-center">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="right:16.7%;background:linear-gradient(90deg,#A855F7,#F59E0B)"></div>
-        <span class="progress-text" id="progressText" style="color:#A855F7">10 / 12</span>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="theme-switcher">
-        <button data-theme="tianjin">🟦</button>
-        <button data-theme="dark" class="active">🌑</button>
-        <button data-theme="academic">⬜</button>
-        <button data-theme="guofeng">🟥</button>
-      </div>
-      <div class="mode-switcher">
-        <a href="../index.html" style="text-decoration:none"><button>🏠 主页</button></a>
-        <button id="modeBtn">📊 演示模式</button>
-      </div>
-    </div>
-  </header>
-
-  <aside class="sidebar" style="background:rgba(10,14,39,0.9)">
-    <h3>📑 12 章节</h3>
-    <ol class="chapter-list">
-      <li><a href="../index.html">00 · 封面</a></li>
-      <li><a href="01-opening.html">01 · 开场</a></li>
-      <li><a href="02-revolution.html">02 · 革命</a></li>
-      <li><a href="08-ecosystem.html">08 · 生态 ⭐</a></li>
-      <li><a href="10-methodology.html" class="active important">10 · 纵横 ⭐</a></li>
-      <li><a href="11-demo.html">11 · 演示 🔴</a></li>
-      <li><a href="12-qa.html">12 · Q&A</a></li>
-    </ol>
-  </aside>
 
   <main class="main-stage" style="background:#060A1A">
 
@@ -253,27 +216,10 @@ plt.axhline(y=45, color='r', linestyle='--')
       </div>
     </div>
 
-<script src="../assets/js/shared-agents.js?v=3"></script>
-  <script src="../assets/js/main.js?v=3"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.slide');
-      let current = 0;
-      document.getElementById('nextBtn').addEventListener('click', () => {
-        if (current < slides.length - 1) { slides[current].classList.remove('active'); current++; slides[current].classList.add('active'); updateProgress(current, slides.length); }
-      });
-      document.getElementById('prevBtn').addEventListener('click', () => {
-        if (current > 0) { slides[current].classList.remove('active'); current--; slides[current].classList.add('active'); updateProgress(current, slides.length); }
-      });
-      function updateProgress(cur, total) {
-        document.getElementById('progressFill').style.right = `${100 - ((cur+1)/total)*100}%`;
-        document.getElementById('progressText').textContent = `${cur+1} / ${total}`;
-      }
-    });
-  </script>
-  <script src="../assets/js/burst.js"></script>
 
-  <div class="burst-stage" id="burst-method-8"></div>
-<div id="shared-modals-slot"></div>
+<script src="../assets/js/layout.js?v=4"></script>
+<script src="../assets/js/shared-agents.js?v=3"></script>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/burst.js"></script>
 </body>
 </html>

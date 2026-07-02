@@ -8,49 +8,6 @@
   <link rel="stylesheet" href="../assets/css/themes.css?v=3">
 </head>
 <body class="chapter-page">
-  <header class="topbar">
-    <div class="topbar-left">
-      <span class="logo">🤖 智能体研究中心</span>
-      <span class="course-title">第 05 章 · research V3 研究员</span>
-    </div>
-    <div class="topbar-center">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="right:66.7%"></div>
-        <span class="progress-text" id="progressText">5 / 12</span>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="theme-switcher">
-        <button data-theme="tianjin" class="active">🟦</button>
-        <button data-theme="dark">🌑</button>
-        <button data-theme="academic">⬜</button>
-        <button data-theme="guofeng">🟥</button>
-      </div>
-      <div class="mode-switcher">
-        <a href="../index.html" style="text-decoration:none"><button>🏠 主页</button></a>
-        <button id="modeBtn">📊 演示模式</button>
-      </div>
-    </div>
-  </header>
-
-  <aside class="sidebar">
-    <h3>📑 12 章节</h3>
-    <ol class="chapter-list">
-      <li><a href="../index.html">00 · 封面</a></li>
-      <li><a href="01-opening.html">01 · 开场破题</a></li>
-      <li><a href="02-revolution.html">02 · 智能体革命</a></li>
-      <li><a href="03-main.html">03 · main 调度</a></li>
-      <li><a href="04-project.html">04 · project 项目管家</a></li>
-      <li><a href="05-research.html" class="active">05 · research V3 ⭐</a></li>
-      <li><a href="06-data.html">06 · data 清洗</a></li>
-      <li><a href="07-report.html">07 · report 排版</a></li>
-      <li><a href="08-ecosystem.html">08 · 三智能体生态</a></li>
-      <li><a href="09-case.html">09 · 实战案例</a></li>
-      <li><a href="10-methodology.html">10 · 纵横分析法</a></li>
-      <li><a href="11-demo.html">11 · 现场演示</a></li>
-      <li><a href="12-qa.html">12 · Q&A</a></li>
-    </ol>
-  </aside>
 
   <main class="main-stage">
 
@@ -224,27 +181,10 @@
       </div>
     </div>
 
-<script src="../assets/js/shared-agents.js?v=3"></script>
-  <script src="../assets/js/main.js?v=3"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const slides = document.querySelectorAll('.slide');
-      let current = 0;
-      document.getElementById('nextBtn').addEventListener('click', () => {
-        if (current < slides.length - 1) { slides[current].classList.remove('active'); current++; slides[current].classList.add('active'); updateProgress(current, slides.length); }
-      });
-      document.getElementById('prevBtn').addEventListener('click', () => {
-        if (current > 0) { slides[current].classList.remove('active'); current--; slides[current].classList.add('active'); updateProgress(current, slides.length); }
-      });
-      function updateProgress(cur, total) {
-        document.getElementById('progressFill').style.right = `${100 - ((cur+1)/total)*100}%`;
-        document.getElementById('progressText').textContent = `${cur+1} / ${total}`;
-      }
-    });
-  </script>
-  <script src="../assets/js/burst.js"></script>
 
-  <div class="burst-stage" id="burst-research-7"></div>
-<div id="shared-modals-slot"></div>
+<script src="../assets/js/layout.js?v=4"></script>
+<script src="../assets/js/shared-agents.js?v=3"></script>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/burst.js"></script>
 </body>
 </html>

@@ -111,7 +111,6 @@
 
   // ============ 主注入函数 ============
   function injectLayout() {
-    console.log('[layout] injecting, readyState=' + document.readyState + ', body children=' + document.body.children.length);
     const body = document.body;
     if (!body) return;
 
@@ -128,9 +127,7 @@
     const topbar = body.querySelector('.topbar');
     const mainEl = body.querySelector('main');
     if (topbar && mainEl) {
-      console.log('[layout] sidebar html length=' + sidebarHtml.length);
       mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
-      console.log('[layout] sidebar inserted, body children=' + body.children.length);
     } else if (mainEl) {
       mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
     }

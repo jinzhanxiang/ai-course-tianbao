@@ -8,56 +8,6 @@
   <link rel="stylesheet" href="../assets/css/themes.css?v=3">
 </head>
 <body class="chapter-page">
-  <header class="topbar" style="background:rgba(10,14,39,0.95);border-bottom:1px solid #1E3A6E">
-    <div class="topbar-left">
-      <span class="logo">🤖 智能体研究中心</span>
-      <span class="course-title" style="color:#00D4FF">第 11 章 · 现场演示 · 6 屏协同作战</span>
-    </div>
-    <div class="topbar-center">
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill" style="right:8.3%;background:linear-gradient(90deg,#00D4FF,#FF6B6B)"></div>
-        <span class="progress-text" id="progressText" style="color:#00D4FF">11 / 12</span>
-      </div>
-    </div>
-    <div class="topbar-right">
-      <div class="theme-switcher">
-        <button data-theme="tianjin">🟦</button>
-        <button data-theme="dark" class="active">🌑</button>
-        <button data-theme="academic">⬜</button>
-        <button data-theme="guofeng">🟥</button>
-      </div>
-      <div class="mode-switcher">
-        <a href="../index.html" style="text-decoration:none"><button>🏠</button></a>
-        <button id="liveBtn" style="background:#00D4FF;color:#0A0E27;font-weight:bold;border:none">🔴 LIVE 演示</button>
-      </div>
-    </div>
-  </header>
-
-  <aside class="sidebar" style="background:rgba(10,14,39,0.9)">
-    <h3>📺 6 屏实时</h3>
-    <div style="font-size:11px;color:#00D4FF;line-height:2;margin-top:8px">
-      <div>🟢 main     <span id="s-main" class="status-dot"></span></div>
-      <div>🟢 research <span id="s-research" class="status-dot"></span></div>
-      <div>🟢 data     <span id="s-data" class="status-dot"></span></div>
-      <div>🟢 project  <span id="s-project" class="status-dot"></span></div>
-      <div>🟢 report   <span id="s-report" class="status-dot"></span></div>
-      <div>🔵 Claude   <span id="s-claude" class="status-dot"></span></div>
-    </div>
-    <style>
-      .status-dot { display:inline-block;width:8px;height:8px;border-radius:50%;background:#22C55E;margin-left:4px;animation:pulse 2s infinite }
-      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    </style>
-    <h3 style="margin-top:16px">📑 章节</h3>
-    <ol class="chapter-list">
-      <li><a href="../index.html">00 · 封面</a></li>
-      <li><a href="01-opening.html">01 · 开场</a></li>
-      <li><a href="02-revolution.html">02 · 革命</a></li>
-      <li><a href="08-ecosystem.html">08 · 生态 ⭐</a></li>
-      <li><a href="10-methodology.html">10 · 纵横 ⭐</a></li>
-      <li><a href="11-demo.html" class="active hot">11 · 演示 🔴</a></li>
-      <li><a href="12-qa.html">12 · Q&A</a></li>
-    </ol>
-  </aside>
 
   <main class="main-stage" style="background:#060A1A">
 
@@ -490,13 +440,3 @@
       </div>
     </div>
 
-
-<script src="../assets/js/shared-agents.js?v=3"></script>
-<div id="shared-modals-slot"></div>
-
-
-
-  <script src="../assets/js/main.js?v=3"></script>
-  <script src="../assets/js/burst.js"></script>
-
-  <div class="burst-stage" id="burst-demo-5"></div>
