@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏭 启源芯 · 投决现场</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(168,85,247,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(0,212,255,0.15) 0%, transparent 50%),
+      linear-gradient(rgba(168,85,247,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(168,85,247,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* 左侧：5 路工作流汇聚图 */
+  .neural-pane {
+    width: 220px;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 40px rgba(168,85,247,0.15), inset 0 0 20px rgba(168,85,247,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .neural-pane::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .neural-title {
+    font-size: 10px;
+    color: #a855f7;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #a855f7;
+  }
+
+  .neural-svg { width: 100%; height: 300px; }
+  .neural-node {
+    stroke: rgba(168,85,247,0.3);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 6px currentColor);
+    animation: nodePulse 2s ease-in-out infinite;
+  }
+  .neural-node.main { fill: #fff; color: #fff; filter: drop-shadow(0 0 12px #fff); }
+  .neural-node.research { fill: #00d4ff; color: #00d4ff; animation-delay: 0s; }
+  .neural-node.financial { fill: #56d364; color: #56d364; animation-delay: 0.2s; }
+  .neural-node.legal { fill: #f0883e; color: #f0883e; animation-delay: 0.4s; }
+  .neural-node.industry { fill: #d2a8ff; color: #d2a8ff; animation-delay: 0.6s; }
+  .neural-node.valuation { fill: #fcd34d; color: #fcd34d; animation-delay: 0.8s; }
+  @keyframes nodePulse {
+    0%, 100% { r: 7; }
+    50% { r: 10; }
+  }
+  .neural-link {
+    stroke: rgba(168,85,247,0.4);
+    stroke-width: 1;
+    stroke-dasharray: 4 4;
+    animation: linkFlow 1.5s linear infinite;
+  }
+  @keyframes linkFlow {
+    to { stroke-dashoffset: -16; }
+  }
+  .neural-link.active {
+    stroke: #a855f7;
+    stroke-width: 2;
+    filter: drop-shadow(0 0 4px #a855f7);
+    animation: linkFlow 0.8s linear infinite;
+  }
+  .neural-node-label {
+    font-size: 8px;
+    fill: #8b949e;
+    text-anchor: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .neural-node-label.main { fill: #fff; }
+  .neural-node-label.research { fill: #00d4ff; }
+  .neural-node-label.financial { fill: #56d364; }
+  .neural-node-label.legal { fill: #f0883e; }
+  .neural-node-label.industry { fill: #d2a8ff; }
+  .neural-node-label.valuation { fill: #fcd34d; }
+
+  .data-pulse {
+    fill: #a855f7;
+    filter: drop-shadow(0 0 4px #a855f7);
+    animation: dataPulse 1.5s ease-in-out infinite;
+  }
+  @keyframes dataPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .neural-status {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #6e7681;
+    text-align: center;
+    border-top: 1px solid rgba(168,85,247,0.2);
+    padding-top: 8px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #a855f7;
+    margin-right: 4px;
+    animation: blink 1.5s ease-in-out infinite;
+    box-shadow: 0 0 6px #a855f7;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* 右侧终端 */
+  .terminal-window {
+    flex: 1;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(168,85,247,0.15), inset 0 0 20px rgba(168,85,247,0.05);
+    position: relative;
+  }
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #a855f7, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  .terminal-titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(168,85,247,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    color: #a855f7; font-size: 13px;
+    text-shadow: 0 0 6px rgba(168,85,247,0.5);
+    letter-spacing: 1px;
+  }
+  .terminal-body {
+    padding: 16px 20px;
+    min-height: 380px;
+    max-height: 520px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(168,85,247,0.3) #0d1117;
+  }
+  .terminal-body::-webkit-scrollbar { width: 6px; }
+  .terminal-body::-webkit-scrollbar-track { background: #0d1117; }
+  .terminal-body::-webkit-scrollbar-thumb { background: rgba(168,85,247,0.3); border-radius: 3px; }
+
+  .log-line {
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: lineAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .log-time { color: #6e7681; }
+  .log-main { color: #e6edf3; }
+  .log-send { color: #79c0ff; text-shadow: 0 0 4px rgba(121,192,255,0.5); }
+  .log-ok { color: #3fb950; text-shadow: 0 0 4px rgba(63,185,80,0.5); }
+  .log-phase { color: #d2a8ff; text-shadow: 0 0 4px rgba(210,168,255,0.5); }
+  .log-data { color: #fcd34d; text-shadow: 0 0 4px rgba(252,211,77,0.5); }
+  .log-sep { color: #30363d; }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: #a855f7;
+    box-shadow: 0 0 6px #a855f7;
+    animation: cursor 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+  @keyframes cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-research { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .tag-financial { background: rgba(86,211,100,0.15); color: #56d364; border: 1px solid rgba(86,211,100,0.3); }
+  .tag-legal { background: rgba(240,136,62,0.15); color: #f0883e; border: 1px solid rgba(240,136,62,0.3); }
+  .tag-industry { background: rgba(210,168,255,0.15); color: #d2a8ff; border: 1px solid rgba(210,168,255,0.3); }
+  .tag-valuation { background: rgba(252,211,77,0.15); color: #fcd34d; border: 1px solid rgba(252,211,77,0.3); }
+  .tag-main { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .tag-final { background: rgba(168,85,247,0.2); color: #a855f7; border: 1px solid rgba(168,85,247,0.5); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage-wrap">
+
+  <div class="neural-pane">
+    <div class="neural-title">⬡ INVESTMENT COMMITTEE</div>
+    <svg class="neural-svg" viewBox="0 0 200 300">
+      <!-- 5 路汇聚到 main -->
+      <line class="neural-link active" x1="100" y1="50" x2="30" y2="130" />
+      <line class="neural-link active" x1="100" y1="50" x2="170" y2="130" />
+      <line class="neural-link active" x1="100" y1="50" x2="50" y2="220" />
+      <line class="neural-link active" x1="100" y1="50" x2="150" y2="220" />
+      <line class="neural-link active" x1="100" y1="50" x2="100" y2="130" />
+
+      <!-- 5 个工作流 -->
+      <circle class="neural-node research" cx="30" cy="130" r="8" />
+      <text class="neural-node-label research" x="30" y="150">INDUSTRY</text>
+
+      <circle class="neural-node legal" cx="170" cy="130" r="8" />
+      <text class="neural-node-label legal" x="170" y="150">LEGAL</text>
+
+      <circle class="neural-node financial" cx="50" cy="220" r="8" />
+      <text class="neural-node-label financial" x="50" y="240">FINANCIAL</text>
+
+      <circle class="neural-node valuation" cx="150" cy="220" r="8" />
+      <text class="neural-node-label valuation" x="150" y="240">VALUATION</text>
+
+      <circle class="neural-node industry" cx="100" cy="130" r="8" />
+      <text class="neural-node-label industry" x="100" y="115">RISK</text>
+
+      <!-- 中心 main -->
+      <circle class="neural-node main" cx="100" cy="50" r="11" />
+      <text class="neural-node-label main" x="100" y="32">MAIN</text>
+
+      <!-- 数据粒子从 5 路流向 main -->
+      <circle class="data-pulse" cx="65" cy="90" r="2">
+        <animate attributeName="cx" values="30;100" dur="2s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="130;50" dur="2s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="135" cy="90" r="2">
+        <animate attributeName="cx" values="170;100" dur="2s" begin="0.4s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="130;50" dur="2s" begin="0.4s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="75" cy="180" r="2">
+        <animate attributeName="cx" values="50;100" dur="2s" begin="0.8s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="220;50" dur="2s" begin="0.8s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="125" cy="180" r="2">
+        <animate attributeName="cx" values="150;100" dur="2s" begin="1.2s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="220;50" dur="2s" begin="1.2s" repeatCount="indefinite" />
+      </circle>
+      <circle class="data-pulse" cx="100" cy="90" r="2">
+        <animate attributeName="cx" values="100;100" dur="2s" begin="1.6s" repeatCount="indefinite" />
+        <animate attributeName="cy" values="130;50" dur="2s" begin="1.6s" repeatCount="indefinite" />
+      </circle>
+    </svg>
+
+    <div class="neural-status">
+      <span class="status-dot"></span>
+      5 STREAMS MERGING
+    </div>
+  </div>
+
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ zsh — research@qiyuan-investment — 120×40</div>
+    </div>
+    <div class="terminal-body" id="terminalBody"></div>
+  </div>
+
+</div>
+
+<script>
+// 粒子背景
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#a855f7', '#00d4ff', '#fcd34d'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.strokeStyle = 'rgba(168,85,247,' + (0.15 - d/800) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+const LOGS = [
+  // 阶段 1：主公发起任务
+  { cls: 'log-main', text: '[14:30:01] <span class="tag tag-main">主公</span> 发起任务：启源芯动力并购投决材料', delay: 0 },
+  { cls: 'log-main', text: '[14:30:02] <span class="tag tag-main">MAIN</span> 任务解析 → 并购尽调（行业+财务+法律+估值+风险）', delay: 400 },
+  { cls: 'log-main', text: '[14:30:03] <span class="tag tag-main">MAIN</span> 分配 task-20260702-002 → 5 路并发', delay: 700 },
+  { cls: 'log-send', text: '[14:30:03] ➤ sessions_send → research (industry)', delay: 1100 },
+  { cls: 'log-send', text: '[14:30:03] ➤ sessions_send → research (financial)', delay: 1300 },
+  { cls: 'log-send', text: '[14:30:03] ➤ sessions_send → research (legal)', delay: 1500 },
+  { cls: 'log-send', text: '[14:30:03] ➤ sessions_send → research (valuation DCF)', delay: 1700 },
+  { cls: 'log-send', text: '[14:30:03] ➤ sessions_send → research (risk)', delay: 1900 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 2100 },
+
+  // 阶段 2：研究执行
+  { cls: 'log-phase',text: '[14:30:05] <span class="tag tag-research">industry</span> 行业研究启动：氢燃料电池+商用车', delay: 2500 },
+  { cls: 'log-phase',text: '[14:30:06] <span class="tag tag-financial">financial</span> 财务分析：3年报表+尽调底稿', delay: 3100 },
+  { cls: 'log-phase',text: '[14:30:07] <span class="tag tag-legal">legal</span> 法律尽调：26/05/09 报告已发', delay: 3700 },
+  { cls: 'log-phase',text: '[14:30:08] <span class="tag tag-valuation">valuation</span> DCF 估值启动：35-58 亿区间', delay: 4300 },
+  { cls: 'log-phase',text: '[14:30:09] <span class="tag tag-industry">risk</span> 风险评估：政策/对手/整合 3 维度', delay: 4900 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 5400 },
+
+  // 阶段 3：交叉合成
+  { cls: 'log-main', text: '[14:32:15] <span class="tag tag-main">MAIN</span> Phase3 交叉合成：5 路结果对齐', delay: 5800 },
+  { cls: 'log-phase',text: '[14:32:18] <span class="tag tag-research">research</span> 交叉验证：DCF 与可比公司 ±12%', delay: 6400 },
+  { cls: 'log-phase',text: '[14:32:22] <span class="tag tag-financial">financial</span> 财务模型校准：WACC=9.8%', delay: 7000 },
+  { cls: 'log-phase',text: '[14:32:25] <span class="tag tag-legal">legal</span> 法律风险评级：B+ → A-', delay: 7600 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 8100 },
+
+  // 阶段 4：投决材料生成
+  { cls: 'log-main', text: '[14:35:00] <span class="tag tag-main">MAIN</span> 投决材料生成启动', delay: 8400 },
+  { cls: 'log-data', text: '[14:35:12] <span class="tag tag-final">DOCX</span> 投资请示报告：合并方案/估值/风险', delay: 9000 },
+  { cls: 'log-data', text: '[14:35:20] <span class="tag tag-final">XLSX</span> 财务模型：DCF/可比/敏感性 3 表', delay: 9600 },
+  { cls: 'log-data', text: '[14:35:28] <span class="tag tag-final">PPTX</span> 投决汇报：18 页要点', delay: 10200 },
+  { cls: 'log-data', text: '[14:35:35] <span class="tag tag-final">PDF</span> 法律尽调附件归档', delay: 10800 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 11300 },
+
+  // 完成
+  { cls: 'log-ok',   text: '[14:35:40] ✓ task-20260702-002 完成 → 5 份材料已交付', delay: 11700 },
+  { cls: 'log-main', text: '[14:35:41] <span class="tag tag-main">MAIN</span> 汇总完成 → 主公可投决  <span class="cursor-blink"></span>', delay: 12300 },
+];
+
+const terminalBody = document.getElementById('terminalBody');
+
+LOGS.forEach((log) => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line ' + log.cls;
+    div.innerHTML = log.text;
+    terminalBody.appendChild(div);
+    setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 20);
+  }, log.delay);
+});
+</script>
+
+</body>
+</html>

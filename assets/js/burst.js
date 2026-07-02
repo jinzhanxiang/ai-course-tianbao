@@ -330,9 +330,8 @@
     },
     'burst-video-qiyuan': {
       title: '🏭 启源芯 · 投决现场',
-      subtitle: 'DCF 35-58 亿·全息金融层叠加',
-      videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
-      video: '../assets/videos/02-qiyuan-factory.mp4',
+      subtitle: '5 路工作流汇聚·90 分钟生成完整投决材料',
+      terminalSrc: '../assets/videos/qiyuan-investment.html',
       layout: 'terminal'
     },
     'burst-video-pipeline': {
