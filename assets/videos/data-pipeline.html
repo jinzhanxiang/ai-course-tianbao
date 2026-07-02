@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌊 研报数据清洗流水线</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #050810;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(86,211,100,0.15) 0%, transparent 50%),
+      radial-gradient(circle at 50% 70%, rgba(0,212,255,0.12) 0%, transparent 50%),
+      linear-gradient(rgba(86,211,100,0.04) 1px, transparent 1px) 0 0 / 40px 40px,
+      linear-gradient(90deg, rgba(86,211,100,0.04) 1px, transparent 1px) 0 0 / 40px 40px;
+    z-index: 0;
+    animation: bgShift 20s linear infinite;
+  }
+  @keyframes bgShift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0; }
+    to { background-position: 0 0, 0 0, 40px 40px, 40px 40px; }
+  }
+
+  #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+
+  .stage-wrap {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* 左侧：5 阶段流水线 */
+  .neural-pane {
+    width: 240px;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(86,211,100,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 0 40px rgba(86,211,100,0.15), inset 0 0 20px rgba(86,211,100,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .neural-pane::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #56d364, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  @keyframes scanLine {
+    0% { top: 0; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .neural-title {
+    font-size: 10px;
+    color: #56d364;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #56d364;
+  }
+
+  .neural-svg { width: 100%; height: 380px; }
+  .pipe-stage {
+    fill: #1a1f29;
+    stroke: rgba(86,211,100,0.4);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 4px rgba(86,211,100,0.3));
+    transition: all 0.3s ease;
+  }
+  .pipe-stage.active {
+    fill: #56d364;
+    stroke: #56d364;
+    filter: drop-shadow(0 0 8px #56d364);
+  }
+  .pipe-stage.done {
+    fill: #00d4ff;
+    stroke: #00d4ff;
+    filter: drop-shadow(0 0 6px #00d4ff);
+  }
+  .pipe-text {
+    font-size: 9px;
+    fill: #e6edf3;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pipe-text-sub {
+    font-size: 7px;
+    fill: #8b949e;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+  .pipe-flow {
+    stroke: rgba(86,211,100,0.6);
+    stroke-width: 2;
+    fill: none;
+    filter: drop-shadow(0 0 3px #56d364);
+    stroke-dasharray: 4 2;
+    animation: flowMove 1s linear infinite;
+  }
+  @keyframes flowMove {
+    to { stroke-dashoffset: -12; }
+  }
+  .pipe-particle {
+    fill: #56d364;
+    filter: drop-shadow(0 0 4px #56d364);
+  }
+
+  .neural-status {
+    margin-top: 8px;
+    font-size: 10px;
+    color: #6e7681;
+    text-align: center;
+    border-top: 1px solid rgba(86,211,100,0.2);
+    padding-top: 8px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #56d364;
+    margin-right: 4px;
+    animation: blink 1.5s ease-in-out infinite;
+    box-shadow: 0 0 6px #56d364;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* 右侧终端 */
+  .terminal-window {
+    flex: 1;
+    background: linear-gradient(180deg, rgba(13,17,23,0.95) 0%, rgba(22,27,34,0.85) 100%);
+    border: 1px solid rgba(86,211,100,0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(86,211,100,0.15), inset 0 0 20px rgba(86,211,100,0.05);
+    position: relative;
+  }
+  .terminal-window::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #56d364, transparent);
+    animation: scanLine 3s linear infinite;
+  }
+  .terminal-titlebar {
+    background: linear-gradient(180deg, #21262d 0%, #161b22 100%);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(86,211,100,0.2);
+  }
+  .titlebar-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot-red { background: #ff5f57; box-shadow: 0 0 6px #ff5f57; }
+  .dot-yellow { background: #febc2e; box-shadow: 0 0 6px #febc2e; }
+  .dot-green { background: #28c840; box-shadow: 0 0 6px #28c840; }
+  .titlebar-title {
+    flex: 1; text-align: center;
+    color: #56d364; font-size: 13px;
+    text-shadow: 0 0 6px rgba(86,211,100,0.5);
+    letter-spacing: 1px;
+  }
+  .terminal-body {
+    padding: 16px 20px;
+    min-height: 380px;
+    max-height: 520px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(86,211,100,0.3) #0d1117;
+  }
+  .terminal-body::-webkit-scrollbar { width: 6px; }
+  .terminal-body::-webkit-scrollbar-track { background: #0d1117; }
+  .terminal-body::-webkit-scrollbar-thumb { background: rgba(86,211,100,0.3); border-radius: 3px; }
+
+  .log-line {
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-break: break-all;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: lineAppear 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+  @keyframes lineAppear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .log-time { color: #6e7681; }
+  .log-main { color: #e6edf3; }
+  .log-ok { color: #3fb950; text-shadow: 0 0 4px rgba(63,185,80,0.5); }
+  .log-phase { color: #56d364; text-shadow: 0 0 4px rgba(86,211,100,0.5); }
+  .log-data { color: #fcd34d; }
+  .log-sep { color: #30363d; }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: #56d364;
+    box-shadow: 0 0 6px #56d364;
+    animation: cursor 1s step-end infinite;
+    vertical-align: text-bottom;
+    margin-left: 2px;
+  }
+  @keyframes cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 4px;
+    letter-spacing: 0.5px;
+  }
+  .tag-data { background: rgba(86,211,100,0.15); color: #56d364; border: 1px solid rgba(86,211,100,0.3); }
+  .tag-step { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.3); }
+  .tag-main { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+  .tag-stat { background: rgba(252,211,77,0.15); color: #fcd34d; border: 1px solid rgba(252,211,77,0.3); }
+
+  /* 进度条 */
+  .progress-bar-wrap { margin: 6px 0; }
+  .progress-row {
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  }
+  .progress-track {
+    flex: 1; min-width: 100px; height: 6px;
+    background: #21262d;
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(86,211,100,0.15);
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 8px currentColor;
+    background: #56d364;
+    color: #56d364;
+  }
+  .progress-label {
+    font-size: 10px; width: 70px; color: #56d364;
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .progress-pct {
+    font-size: 10px; width: 36px; text-align: right; color: #56d364;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="stage-wrap">
+
+  <div class="neural-pane">
+    <div class="neural-title">⬡ CLEANING PIPELINE</div>
+    <svg class="neural-svg" viewBox="0 0 220 380">
+      <!-- 5 个阶段 竖向排列 -->
+      <!-- Stage 1: OCR -->
+      <rect class="pipe-stage" id="pipe-1" x="30" y="20" width="160" height="50" rx="6" />
+      <text class="pipe-text" x="110" y="40">① OCR 解析</text>
+      <text class="pipe-text-sub" x="110" y="56">PDF → 文本流</text>
+
+      <!-- Stage 2: 实体识别 -->
+      <rect class="pipe-stage" id="pipe-2" x="30" y="100" width="160" height="50" rx="6" />
+      <text class="pipe-text" x="110" y="120">② 实体识别</text>
+      <text class="pipe-text-sub" x="110" y="136">NLP · 79 实体</text>
+
+      <!-- Stage 3: 指标抽取 -->
+      <rect class="pipe-stage" id="pipe-3" x="30" y="180" width="160" height="50" rx="6" />
+      <text class="pipe-text" x="110" y="200">③ 指标抽取</text>
+      <text class="pipe-text-sub" x="110" y="216">财务·业务·治理</text>
+
+      <!-- Stage 4: 逻辑推理 -->
+      <rect class="pipe-stage" id="pipe-4" x="30" y="260" width="160" height="50" rx="6" />
+      <text class="pipe-text" x="110" y="280">④ 逻辑推理</text>
+      <text class="pipe-text-sub" x="110" y="296">因果链 · 178 逻辑</text>
+
+      <!-- Stage 5: 向量入库 -->
+      <rect class="pipe-stage" id="pipe-5" x="30" y="340" width="160" height="40" rx="6" />
+      <text class="pipe-text" x="110" y="358">⑤ 向量入库</text>
+      <text class="pipe-text-sub" x="110" y="372">BGE-M3 + PG</text>
+
+      <!-- 流动连线（数据粒子） -->
+      <path class="pipe-flow" d="M 110 70 L 110 100" id="flow-1-2" style="opacity:0" />
+      <path class="pipe-flow" d="M 110 150 L 110 180" id="flow-2-3" style="opacity:0" />
+      <path class="pipe-flow" d="M 110 230 L 110 260" id="flow-3-4" style="opacity:0" />
+      <path class="pipe-flow" d="M 110 310 L 110 340" id="flow-4-5" style="opacity:0" />
+    </svg>
+
+    <div class="neural-status">
+      <span class="status-dot"></span>
+      PIPELINE ONLINE · 5/5
+    </div>
+  </div>
+
+  <div class="terminal-window">
+    <div class="terminal-titlebar">
+      <div class="titlebar-dot dot-red"></div>
+      <div class="titlebar-dot dot-yellow"></div>
+      <div class="titlebar-dot dot-green"></div>
+      <div class="titlebar-title">⬡ zsh — data@openclaw — 120×40</div>
+    </div>
+    <div class="terminal-body" id="terminalBody"></div>
+  </div>
+
+</div>
+
+<script>
+// 粒子背景
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+for (let i = 0; i < 60; i++) {
+  particles.push({
+    x: Math.random() * W, y: Math.random() * H,
+    vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    c: ['#56d364', '#00d4ff', '#fcd34d'][Math.floor(Math.random() * 3)]
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+    ctx.fillStyle = p.c;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 120) {
+        ctx.strokeStyle = 'rgba(86,211,100,' + (0.15 - d/800) + ')';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// 流水线激活动画
+function activateStage(id) {
+  const el = document.getElementById('pipe-' + id);
+  if (el) el.classList.add('active');
+}
+function completeStage(id) {
+  const el = document.getElementById('pipe-' + id);
+  if (el) {
+    el.classList.remove('active');
+    el.classList.add('done');
+  }
+  // 显示流向
+  if (id < 5) {
+    const flow = document.getElementById('flow-' + id + '-' + (id+1));
+    if (flow) flow.style.opacity = '1';
+  }
+}
+
+const LOGS = [
+  // 阶段 0：主公发起
+  { cls: 'log-main', text: '[10:15:00] <span class="tag tag-main">主公</span> 发起任务：清洗 13 份启源芯尽调研报', delay: 0 },
+  { cls: 'log-main', text: '[10:15:01] <span class="tag tag-main">MAIN</span> 分配 task-20260425-001 → data agent', delay: 400 },
+  { cls: 'log-phase',text: '[10:15:02] <span class="tag tag-data">data</span> 输入扫描：inputs/research/*.pdf (13 files)', delay: 700 },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 1000 },
+
+  // Step 1: OCR
+  { cls: 'log-phase',text: '[10:15:05] <span class="tag tag-step">STEP 1</span> OCR 解析启动（FunASR/PaddleOCR）', delay: 1400, action: () => activateStage(1) },
+  { cls: 'log-data', text: '[10:15:06] ⠋ 解析 PDF 第 1/13 份：启源芯动力尽调报告.pdf', delay: 1800 },
+  { cls: 'log-data', text: '[10:15:09] ✓ 第 1 份完成：89 页 → 文本流', delay: 2200 },
+  { cls: 'log-data', text: '[10:15:13] ✓ 第 2 份完成：120 页 → 文本流', delay: 2600 },
+  { cls: 'log-data', text: '[10:15:18] ✓ 第 3-13 份完成（11 份批量）', delay: 3000 },
+  { cls: 'log-ok',   text: '[10:15:25] ✓ STEP1 完成：13 份 PDF → 1,287 个文本块', delay: 3400, action: () => completeStage(1) },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 3700 },
+
+  // Step 2: 实体识别
+  { cls: 'log-phase',text: '[10:15:26] <span class="tag tag-step">STEP 2</span> 实体识别启动（spaCy NER）', delay: 4100, action: () => activateStage(2) },
+  { cls: 'log-data', text: '[10:15:28] ⠋ 识别公司/人物/地点/产品 4 类实体', delay: 4500 },
+  { cls: 'log-data', text: '[10:15:32] ✓ 提取实体 79 个（含启源芯动力/天保控股等）', delay: 4900 },
+  { cls: 'log-ok',   text: '[10:15:35] ✓ STEP2 完成：79 实体', delay: 5300, action: () => completeStage(2) },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 5600 },
+
+  // Step 3: 指标抽取
+  { cls: 'log-phase',text: '[10:15:36] <span class="tag tag-step">STEP 3</span> 指标抽取启动（财务/业务/治理）', delay: 6000, action: () => activateStage(3) },
+  { cls: 'log-data', text: '[10:15:38] ⠋ 抽取财务指标：营收/利润/资产负债率', delay: 6400 },
+  { cls: 'log-data', text: '[10:15:42] ✓ 财务指标 47 个', delay: 6800 },
+  { cls: 'log-data', text: '[10:15:46] ✓ 业务指标 38 个', delay: 7200 },
+  { cls: 'log-data', text: '[10:15:50] ✓ 治理指标 25 个', delay: 7600 },
+  { cls: 'log-ok',   text: '[10:15:54] ✓ STEP3 完成：110 指标', delay: 8000, action: () => completeStage(3) },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 8300 },
+
+  // Step 4: 逻辑推理
+  { cls: 'log-phase',text: '[10:15:55] <span class="tag tag-step">STEP 4</span> 逻辑推理启动（因果链 + 假设）', delay: 8700, action: () => activateStage(4) },
+  { cls: 'log-data', text: '[10:15:58] ⠋ 构建知识图谱：实体×关系×因果', delay: 9100 },
+  { cls: 'log-data', text: '[10:16:03] ✓ 因果链 89 条', delay: 9500 },
+  { cls: 'log-data', text: '[10:16:08] ✓ 关联假设 89 条', delay: 9900 },
+  { cls: 'log-ok',   text: '[10:16:12] ✓ STEP4 完成：178 逻辑', delay: 10300, action: () => completeStage(4) },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 10600 },
+
+  // Step 5: 向量入库
+  { cls: 'log-phase',text: '[10:16:13] <span class="tag tag-step">STEP 5</span> 向量入库启动（BGE-M3 + PG）', delay: 11000, action: () => activateStage(5) },
+  { cls: 'log-data', text: '[10:16:15] ⠋ 调用 bge-m3-mlx-fp16 模型（localhost:8080）', delay: 11400 },
+  { cls: 'log-data', text: '[10:16:18] ⠋ 生成 1024 维向量（1287 块）', delay: 11800 },
+  { cls: 'log-data', text: '[10:16:25] ⠋ 写入 PostgreSQL：openclaw_db', delay: 12200 },
+  { cls: 'log-ok',   text: '[10:16:32] ✓ STEP5 完成：1,287 向量入库', delay: 12600, action: () => completeStage(5) },
+  { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 12900 },
+
+  // 完成
+  { cls: 'log-ok',   text: '[10:16:35] ✓ <span class="tag tag-stat">最终统计</span> 79 实体 / 110 指标 / 178 逻辑 / 1287 向量', delay: 13300 },
+  { cls: 'log-main', text: '[10:16:36] <span class="tag tag-main">data</span> 任务完成 → 回调 main  <span class="cursor-blink"></span>', delay: 13800 },
+];
+
+const terminalBody = document.getElementById('terminalBody');
+
+LOGS.forEach((log) => {
+  setTimeout(() => {
+    const div = document.createElement('div');
+    div.className = 'log-line ' + log.cls;
+    div.innerHTML = log.text;
+    terminalBody.appendChild(div);
+    setTimeout(() => terminalBody.scrollTop = terminalBody.scrollHeight, 20);
+    if (log.action) log.action();
+  }, log.delay);
+});
+</script>
+
+</body>
+</html>

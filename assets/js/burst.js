@@ -336,9 +336,8 @@
     },
     'burst-video-pipeline': {
       title: '🌊 研报数据清洗流水线',
-      subtitle: '乱纸堆 → 管道 → 晶体向量',
-      videoPoster: '../assets/videos/posters/03-data-cleaning.png',
-      video: '../assets/videos/03-data-pipeline.mp4',
+      subtitle: '5 阶段：OCR → 实体 → 指标 → 逻辑 → 向量入库',
+      terminalSrc: '../assets/videos/data-pipeline.html',
       layout: 'terminal'
     }
   };
