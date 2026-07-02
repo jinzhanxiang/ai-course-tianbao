@@ -401,3 +401,43 @@
   width: auto !important;
   margin: 0 !important;
 }
+/* ================ Phase C: 数据流动效 ================ */
+@keyframes dataFlow {
+  from { stroke-dashoffset: 50; }
+  to { stroke-dashoffset: 0; }
+}
+
+.data-flow {
+  position: relative;
+}
+
+[data-theme="cyber"] .data-flow .flow-node {
+  position: relative;
+  z-index: 6;
+}
+
+/* ================ Phase C: 3D Tilt ================ */
+[data-theme="cyber"] .sidebar .chapter-list li,
+[data-theme="cyber"] .agent-btn,
+[data-theme="cyber"] .agent-card {
+  transform-style: preserve-3d;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme="cyber"] .sidebar .chapter-list li:hover {
+  z-index: 10;
+}
+
+[data-theme="cyber"] .agent-btn:hover {
+  z-index: 10;
+}
+
+/* burst 卡片 3D tilt（轻量版，最大角度 8°） */
+[data-theme="cyber"] .burst-card[data-tilt] {
+  transform-style: preserve-3d;
+}
+
+/* ================ Phase C: Burst 粒子爆破 ================ */
+.fx-burst-canvas {
+  filter: drop-shadow(0 0 4px rgba(0,240,255,0.4));
+}
