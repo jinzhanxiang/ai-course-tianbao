@@ -552,20 +552,20 @@
         const stageH = (opts && opts.stageH) || window.innerHeight || 900;
         const gridGap = 25;  // 间距
         const cardW = 260;
-        const cardH = 250;  // 与实际渲染高度一致（实测 262，留 12 余量）
+        const gridCardH = 250;  // 与实际渲染高度一致（实测 262，留 12 余量）—— 改名避外层 const cardH 冲突
         const gridW = cols * cardW + (cols - 1) * gridGap;
-        const gridH = rows * cardH + (rows - 1) * gridGap;
+        const gridH = rows * gridCardH + (rows - 1) * gridGap;
         // 整体居中（header 160 + 底部 40 buffer）
         const totalBlockH = gridH + 200; // header + grid + padding
         const topPad = Math.max(120, (stageH - gridH - 200) / 2);
         const startX = (stageW - gridW) / 2 + cardW / 2;
-        const startY = topPad + cardH / 2;
+        const startY = topPad + gridCardH / 2;
         for (let i = 0; i < count; i++) {
           const r = Math.floor(i / cols);
           const c = i % cols;
           coords.push({
             left: `${startX + c * (cardW + gridGap)}px`,
-            top: `${startY + r * (cardH + gridGap)}px`
+            top: `${startY + r * (gridCardH + gridGap)}px`
           });
         }
         break;
