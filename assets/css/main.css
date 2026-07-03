@@ -277,6 +277,21 @@ body {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+/* is-tall 顶部固定标签 - 让主公一看就知道该页可滚到底再翻页 */
+.slide.active.is-tall::before {
+  content: '↕ 该页可滚 · 到底后再 → 翻页';
+  position: sticky;
+  top: 0;
+  display: block;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent, #00D4FF);
+  letter-spacing: 1px;
+  background: linear-gradient(180deg, var(--bg-primary) 80%, transparent 100%);
+  z-index: 10;
+}
 .slide.active.is-tall::after {
   content: '↑↓ 可上下滚动 ↑↓';
   display: block;
@@ -1125,6 +1140,17 @@ th {
   cursor: default;
   color: #1a2540;
   overflow: hidden;
+  font-family: var(--font-main, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
+  font-feature-settings: "tnum";  /* tabular nums，数字对齐 */
+}
+
+.burst-card .bc-icon,
+.bc-icon {
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-size: 32px;
+  line-height: 1;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .burst-stage.show .burst-card {
@@ -1219,32 +1245,35 @@ th {
 }
 
 .bc-name {
-  font-size: 26px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: 800;
   margin-bottom: 6px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   color: var(--bc-color, #1a2540);
+  font-family: var(--font-main, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
+  line-height: 1.35;
 }
 
 .bc-tag {
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #1a2540;
   background: var(--bc-color, #00D4FF);
-  padding: 4px 12px;
-  border-radius: 10px;
-  margin-bottom: 12px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
   letter-spacing: 0.5px;
   opacity: 0.9;
 }
 
 .bc-detail {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 13px;
+  line-height: 1.65;
   color: #2a3550;
-  margin-top: 8px;
+  margin-top: 6px;
   font-weight: 500;
+  font-family: var(--font-main, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif);
   /* 不限行数 - 让卡片按需扩展 */
   display: block;
   overflow: visible;

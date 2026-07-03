@@ -156,11 +156,26 @@
     document.addEventListener('keydown', e => {
       // 忽略输入框
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      // burst 弹窗打开时 - 键盘交由 burst 自身处理 (Esc / 路由)，不翻页
+      if (document.querySelector('.burst-stage.show')) {
+        if (e.key === 'Escape') {
+          // 让 burst 自身处理
+        }
+        return;
+      }
 
       // 如果当前 slide 超高，先在 slide 内部滚动（避免误翻页）
       const slide = document.querySelector('.slide.active');
       const isTall = slide && slide.classList.contains('is-tall');
       const canScroll = slide && (slide.scrollHeight - slide.clientHeight - slide.scrollTop) > 20;
+
+      // 反馈气泡 - 确认按键已收到
+      let actionLabel = null;
+      if (['ArrowRight', 'PageDown', 'ArrowDown', ' '].includes(e.key)) {
+        actionLabel = isTall && canScroll ? '↓ 内部滚动' : '下一页 →';
+      } else if (['ArrowLeft', 'PageUp', 'ArrowUp'].includes(e.key)) {
+        actionLabel = isTall && slide.scrollTop > 0 ? '↑ 内部滚动' : '← 上一页';
+      }
 
       switch (e.key) {
         case 'ArrowLeft':
@@ -209,6 +224,32 @@
           goLast();
           break;
       }
+
+      if (actionLabel) {
+        showKeyHint(actionLabel);
+      }
+    });
+  }
+
+  // 右下角闪现按键提示气泡 - 让主公确认按键被收到
+  function showKeyHint(text) {
+    const id = 'key-hint-toast';
+    let el = document.getElementById(id);
+    if (!el) {
+      el = document.createElement('div');
+      el.id = id;
+      el.style.cssText = 'position:fixed;bottom:80px;right:30px;background:rgba(0,30,60,.92);color:#5eb6ff;padding:14px 22px;border-radius:14px;font-family:var(--font-main);font-size:15px;font-weight:600;letter-spacing:1px;z-index:9999;pointer-events:none;opacity:0;transition:opacity .25s,transform .25s;transform:translateY(10px);box-shadow:0 8px 24px rgba(0,0,0,.3);border:2px solid rgba(94,182,255,.4);';
+      document.body.appendChild(el);
+    }
+    el.textContent = '⌨️ ' + text;
+    requestAnimationFrame(() => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      clearTimeout(el._t);
+      el._t = setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+      }, 1200);
     });
   }
 
