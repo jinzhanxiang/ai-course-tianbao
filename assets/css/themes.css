@@ -138,6 +138,44 @@
   line-height: 1.5;
 }
 
+/* ==================== role-card（01-opening 4 类岗位视角） ==================== */
+.role-card {
+  padding: 20px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+.role-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.role-card .role-emoji {
+  font-size: 40px;
+  margin-bottom: 10px;
+  display: block;
+}
+.role-card .role-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.role-card .role-hook {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
 .alert {
   padding: 16px 20px;
   border-radius: 8px;
