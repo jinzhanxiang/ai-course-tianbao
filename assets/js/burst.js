@@ -864,8 +864,8 @@
         <div class="bc-detail">${detailHtml}</div>
       `;
 
-      // stagger 延迟出现
-      div.style.animationDelay = `${idx * 100 + 200}ms`;
+      // 2026-07-03 主公要求：删除悬浮偏离动画效果，stagger 仅保留 50ms 微延迟
+      div.style.animationDelay = `${idx * 50}ms`;
       cardContainer.appendChild(div);
     });
     stage.appendChild(cardContainer);
