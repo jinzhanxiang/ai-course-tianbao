@@ -1840,3 +1840,159 @@ code, pre, kbd { font-size: var(--font-code); }
 .slide-content, .content, article p {
   max-width: var(--para-max-width);
 }
+
+/* ============================================================================
+   03-main 金句开场 + 心跳五元素对照表（2026-07-04 主公指派微臣深划）
+   ============================================================================ */
+
+/* 金句开场 slide */
+.quote-stage { animation: quote-fade-in 0.8s ease-out both; }
+.quote-block-mega {
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+.quote-block-mega:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.18);
+}
+@keyframes quote-fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loop 心跳五元素对照表 */
+.loop-comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+  background: rgba(13, 17, 23, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+.loop-comparison-table thead th {
+  padding: 12px 14px;
+  background: rgba(168, 85, 247, 0.12);
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+}
+.loop-comparison-table tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.08);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.loop-comparison-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.loop-comparison-table tbody tr:hover {
+  background: rgba(0, 212, 255, 0.04);
+}
+.loop-comparison-table code {
+  font-size: 11px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.loop-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* 响应式：迫不得已缩小（不会伤可读性） */
+@media (max-width: 1200px) {
+  .loop-comparison-table { font-size: 11px; }
+  .loop-comparison-table thead th,
+  .loop-comparison-table tbody td { padding: 8px 10px; }
+}
+
+/* ============================================================================
+   08-ecosystem MCP + A2A 6 层协议栈大图（2026-07-04 主公指派微臣深划）
+   ============================================================================ */
+
+.protocol-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.stack-layer {
+  display: grid;
+  grid-template-columns: 130px 1fr 180px;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(13, 17, 23, 0.5);
+  border: 1px solid rgba(168, 85, 247, 0.12);
+  transition: all 0.3s ease-out;
+  min-height: 50px;
+}
+.stack-layer:hover {
+  background: rgba(0, 212, 255, 0.04);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.15);
+}
+
+.layer-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.3px;
+}
+
+.layer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.protocol-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(13, 17, 23, 0.6);
+  letter-spacing: 0.2px;
+}
+.protocol-tag-major {
+  box-shadow: 0 0 8px currentColor;
+  animation: protocol-pulse 2.4s ease-in-out infinite;
+}
+@keyframes protocol-pulse {
+  0%, 100% { box-shadow: 0 0 4px currentColor; }
+  50% { box-shadow: 0 0 12px currentColor; }
+}
+
+.layer-note {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: right;
+  padding-left: 12px;
+  border-left: 1px dashed rgba(168, 85, 247, 0.2);
+}
+
+/* 响应式：调整 grid */
+@media (max-width: 1400px) {
+  .stack-layer {
+    grid-template-columns: 110px 1fr;
+    gap: 6px;
+  }
+  .layer-note {
+    grid-column: 2;
+    text-align: left;
+    border-left: none;
+    padding-left: 0;
+  }
+}

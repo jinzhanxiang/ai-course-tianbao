@@ -335,6 +335,94 @@
       </div>
     </div>
 
+    <!-- Slide 8：MCP + A2A 6 层协议栈大图（2026 Agent 元年 ⓩ 趋同论断） -->
+    <div class="slide">
+      <h2 style="font-size:30px;color:#00D4FF;margin-bottom:12px">🌐 Agent 时代的 TCP/IP 时刻 · MCP + A2A 协议栈</h2>
+
+      <p style="color:var(--text-secondary);margin-bottom:14px;font-size:13px">
+        2026 H1 · Anthropic MCP + Google A2A 在 5 个领域完成<strong style="color:#56d364">趋同收敛</strong>。
+        这不是预言，是<strong style="color:var(--accent)">正在发生的协议趋同</strong>。
+      </p>
+
+      <div class="protocol-stack">
+        <!-- L1：应用层 -->
+        <div class="stack-layer" style="border-left:4px solid #00D4FF;background:rgba(0,212,255,0.06)">
+          <div class="layer-label">L1 · 应用层</div>
+          <div class="layer-content">
+            <span class="protocol-tag" style="color:#00D4FF;border-color:#00D4FF">Claude Code</span>
+            <span class="protocol-tag" style="color:#00D4FF;border-color:#00D4FF">OpenAI Codex</span>
+            <span class="protocol-tag" style="color:#00D4FF;border-color:#00D4FF">Trae / Cursor</span>
+            <span class="protocol-tag" style="color:#00D4FF;border-color:#00D4FF">OpenClaw main</span>
+          </div>
+          <div class="layer-note">30+ Agent IDE/CLI 正在接入</div>
+        </div>
+
+        <!-- L2：调度层 -->
+        <div class="stack-layer" style="border-left:4px solid #38bdf8;background:rgba(56,189,248,0.06)">
+          <div class="layer-label">L2 · 调度层</div>
+          <div class="layer-content">
+            <span class="protocol-tag" style="color:#38bdf8;border-color:#38bdf8">LangGraph</span>
+            <span class="protocol-tag" style="color:#38bdf8;border-color:#38bdf8">CrewAI</span>
+            <span class="protocol-tag" style="color:#38bdf8;border-color:#38bdf8">AutoGen</span>
+            <span class="protocol-tag" style="color:#38bdf8;border-color:#38bdf8">Anthropic SDK</span>
+          </div>
+          <div class="layer-note">主流框架齐齐提供 Supervisor 模式</div>
+        </div>
+
+        <!-- L3：协议层 -->
+        <div class="stack-layer" style="border-left:4px solid #A855F7;background:rgba(168,85,247,0.08)">
+          <div class="layer-label" style="color:#A855F7">L3 · 协议层（决定性变化）</div>
+          <div class="layer-content">
+            <span class="protocol-tag protocol-tag-major" style="color:#A855F7;border-color:#A855F7;background:rgba(168,85,247,0.12)">Anthropic MCP</span>
+            <span class="protocol-tag protocol-tag-major" style="color:#A855F7;border-color:#A855F7;background:rgba(168,85,247,0.12)">Google A2A</span>
+            <span class="protocol-tag protocol-tag-major" style="color:#A855F7;border-color:#A855F7;background:rgba(168,85,247,0.12)">ACP / ANP</span>
+          </div>
+          <div class="layer-note" style="color:#A855F7">Tool Calling + Agent-to-Agent 互操作协议</div>
+        </div>
+
+        <!-- L4：能力层 -->
+        <div class="stack-layer" style="border-left:4px solid #F59E0B;background:rgba(245,158,11,0.05)">
+          <div class="layer-label">L4 · 能力层</div>
+          <div class="layer-content">
+            <span class="protocol-tag" style="color:#F59E0B;border-color:#F59E0B">Skills</span>
+            <span class="protocol-tag" style="color:#F59E0B;border-color:#F59E0B">Functions</span>
+            <span class="protocol-tag" style="color:#F59E0B;border-color:#F59E0B">Tools / Hooks</span>
+            <span class="protocol-tag" style="color:#F59E0B;border-color:#F59E0B">Plugins</span>
+          </div>
+          <div class="layer-note">各家实现各一套，但这层语法上齐上 SDK</div>
+        </div>
+
+        <!-- L5：记忆层 -->
+        <div class="stack-layer" style="border-left:4px solid #22C55E;background:rgba(34,197,94,0.05)">
+          <div class="layer-label">L5 · 记忆层</div>
+          <div class="layer-content">
+            <span class="protocol-tag" style="color:#22c55e;border-color:#22c55e">CLAUDE.md</span>
+            <span class="protocol-tag" style="color:#22c55e;border-color:#22c55e">thread / Vector</span>
+            <span class="protocol-tag" style="color:#22c55e;border-color:#22c55e">workspace.db</span>
+            <span class="protocol-tag" style="color:#22c55e;border-color:#22c55e">memory-core</span>
+          </div>
+          <div class="layer-note">上下文中长期存储 · 企业级 RAG 接入点</div>
+        </div>
+
+        <!-- L6：执行层 -->
+        <div class="stack-layer" style="border-left:4px solid #EF4444;background:rgba(239,68,68,0.05)">
+          <div class="layer-label">L6 · 执行层</div>
+          <div class="layer-content">
+            <span class="protocol-tag" style="color:#ef4444;border-color:#ef4444">git worktree</span>
+            <span class="protocol-tag" style="color:#ef4444;border-color:#ef4444">Docker sandbox</span>
+            <span class="protocol-tag" style="color:#ef4444;border-color:#ef4444">AWS Bedrock</span>
+            <span class="protocol-tag" style="color:#ef4444;border-color:#ef4444">MiniMax / Qwen</span>
+          </div>
+          <div class="layer-note">不想看到的 Harness 实质上都出在这一层</div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:12px;font-size:13px;line-height:1.6">
+        <strong style="color:#A855F7">趋同论断</strong>：主公在 2026 H1看到的“Claude Code / Cursor / Trae 工具栈怎么这么像”不是现象，是<strong>协议收敛的必然产物</strong>。
+        企业选型不必踩坑 — 抱定 MCP + A2A，3 年都不会过时。
+      </div>
+    </div>
+
 <script src="../assets/js/layout.js?v=20260704-audit"></script>
 <script src="../assets/js/shared-agents.js?v=20260704-audit"></script>
 <script src="../assets/js/main.js?v=20260704-audit"></script>
