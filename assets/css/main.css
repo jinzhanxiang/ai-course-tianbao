@@ -1803,3 +1803,40 @@ h1.slide-title,
   margin-right: 12px;
   vertical-align: middle;
 }
+
+/* ============================================================================
+ * 字号响应式系统（2026-07-04 报告 #task-20260704-004 由 report 生成）
+ * 目标：5+2+1+1 课件全部章节自动适配 4:3 / 16:9 / 大屏
+ * CSS 变量统一管理，避免散落内联 font-size
+ * ============================================================================ */
+:root {
+  /* 字号层级 - clamp 推荐公式 */
+  --font-h1: clamp(32px, 4vw, 56px);
+  --font-h2: clamp(24px, 3vw, 40px);
+  --font-h3: clamp(20px, 2.5vw, 32px);
+  --font-body: clamp(14px, 1.5vw, 18px);
+  --font-small: clamp(12px, 1.2vw, 14px);
+  --font-code: clamp(13px, 1vw, 15px);
+  
+  /* 行高 */
+  --lh-tight: 1.2;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.8;
+  
+  /* 文本框 */
+  --content-max-width: min(90vw, 1200px);
+  --para-max-width: 65ch;
+}
+
+/* 全局应用：让标题跟随 CSS 变量 */
+h1, .h1 { font-size: var(--font-h1); line-height: var(--lh-tight); }
+h2, .h2 { font-size: var(--font-h2); line-height: var(--lh-tight); }
+h3, .h3 { font-size: var(--font-h3); line-height: var(--lh-normal); }
+p, li, dd { font-size: var(--font-body); line-height: var(--lh-normal); }
+small, .small { font-size: var(--font-small); }
+code, pre, kbd { font-size: var(--font-code); }
+
+/* 段落最大宽度（控制阅读节奏） */
+.slide-content, .content, article p {
+  max-width: var(--para-max-width);
+}
