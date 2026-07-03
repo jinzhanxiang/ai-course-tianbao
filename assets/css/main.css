@@ -277,6 +277,16 @@ body {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+.slide.active.is-tall::after {
+  content: '↑↓ 可上下滚动 ↑↓';
+  display: block;
+  text-align: center;
+  padding: 16px 0 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(40px); }

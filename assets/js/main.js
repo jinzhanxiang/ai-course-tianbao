@@ -156,17 +156,34 @@
       // 忽略输入框
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
+      // 如果当前 slide 超高，先在 slide 内部滚动（避免误翻页）
+      const slide = document.querySelector('.slide.active');
+      const isTall = slide && slide.classList.contains('is-tall');
+      const canScroll = slide && (slide.scrollHeight - slide.clientHeight - slide.scrollTop) > 20;
+
       switch (e.key) {
         case 'ArrowLeft':
         case 'PageUp':
         case 'ArrowUp':
-          prevSlide();
+          // tall slide: 优先内部滚动
+          if (isTall && slide.scrollTop > 0) {
+            slide.scrollBy({ top: -slide.clientHeight * 0.85, behavior: 'smooth' });
+            e.preventDefault();
+          } else {
+            prevSlide();
+          }
           break;
         case 'ArrowRight':
         case 'PageDown':
         case 'ArrowDown':
         case ' ':
-          nextSlide();
+          // tall slide: 优先内部滚动（重要修复点）
+          if (isTall && canScroll) {
+            slide.scrollBy({ top: slide.clientHeight * 0.85, behavior: 'smooth' });
+            e.preventDefault();
+          } else {
+            nextSlide();
+          }
           break;
         case 'p':
         case 'P':
