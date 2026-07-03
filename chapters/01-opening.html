@@ -148,22 +148,26 @@
 
     /* 岗位卡片 */
     .role-card {
-      padding: 18px 16px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(168,85,247,0.04));
-      border: 1px solid rgba(0,212,255,0.25);
+      padding: 22px 20px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(0, 212, 255, 0.35);
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
       cursor: pointer;
       height: 100%;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
     }
     .role-card:hover {
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 12px 36px rgba(0, 212, 255, 0.25), 0 0 0 1px rgba(0,212,255,0.6);
-      border-color: rgba(0, 212, 255, 0.6);
+      box-shadow: 0 12px 36px rgba(0, 212, 255, 0.35), 0 0 0 1px rgba(0,212,255,0.8);
+      border-color: rgba(0, 212, 255, 0.8);
+      background: rgba(15, 23, 42, 0.85);
     }
-    .role-emoji { font-size: 32px; margin-bottom: 6px; }
-    .role-title { font-size: 16px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
-    .role-hook { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+    .role-emoji { font-size: 40px; margin-bottom: 10px; }
+    .role-title { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .role-hook { font-size: 13px; color: var(--text-primary); line-height: 1.7; }
 
     /* 路线图节点 */
     .route-card {
