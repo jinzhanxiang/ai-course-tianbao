@@ -3,3 +3,20 @@
 *.tmp
 .idea/
 .vscode/
+
+# 测试输出（临时）
+/_test/
+/test/
+/tmp/
+
+# 不要提交本地测试输出
+*.pyc
+__pycache__/
+.DS_Store
+node_modules/
+/backend.log
+/live-api.log
+
+# 编辑器
+.vscode/
+.idea/

@@ -26,6 +26,7 @@
     { num: '14', file: '14-agent-cases.html', title: '智能体实战 ⭐', emoji: '🤖' },
     { num: '15', file: '15-demo.html',         title: '现场演示',     emoji: '🎬' },
     { num: '16', file: '16-qa.html',           title: 'Q&A',          emoji: '❓' },
+    { num: '17', file: '17-live-demo.html',     title: '\uD83C\uDFAC 真实召唤 LIVE',  emoji: '\uD83C\uDFAC' },
   ];
 
   // 当前章节信息（从 URL 推断）
