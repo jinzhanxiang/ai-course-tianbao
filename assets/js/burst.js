@@ -395,6 +395,26 @@
       layout: 'terminal'
     },
 
+    // ========== Phase G 新增：02.5 章 5+2+1 体系总览 ==========
+    'burst-arch-overview': {
+      title: '🏛️ 5+2+1 体系 · 主公亲测全景图',
+      subtitle: '9 模型协同层叠 · 5 Agent + 2 助手 + 1 中台 · 2026-07-03 主公实战',
+      layout: 'grid',
+      cards: [
+        // ===== 5 大 Agent =====
+        { icon: '🧠', name: '1. main', tag: '总调度', detail: '接收指令 · 拆解任务 · 分派子代理 · 跟踪进度 · 汇总回主公。所有汇报先到 main，再统一回您。', color: '#00D4FF', pos: 0 },
+        { icon: '📋', name: '2. project', tag: '项目管家', detail: '立项文档 · 节点跟踪 · 协调多代理 · 会议纪要。project 再聪明也不能跑数据，主公金句。', color: '#22C55E', pos: 1 },
+        { icon: '🔬', name: '3. research', tag: '研究员', detail: '行业研究 · 财务尽调 · 估值建模。星恒电源尽调 90 分钟完成（传统 2-3 天）。', color: '#F59E0B', pos: 2 },
+        { icon: '🗃️', name: '4. data', tag: '数据工', detail: '语音转录 · OCR · 清洗入库 · 不做分析。199 份研报 → 5894 实体可检索。', color: '#A855F7', pos: 3 },
+        { icon: '📄', name: '5. report', tag: '报告专家', detail: 'Word · PDF · PPT 排版 · 不做内容。可研报告 / 公文 / 会议纪要一键排版。', color: '#EC4899', pos: 4 },
+        // ===== 2 大助手 =====
+        { icon: '⌨️', name: '6. Claude Code', tag: '代码执行', detail: '外部 · Anthropic 出品 · 接管代码任务。补全脚本、shell 命令、文件读写，Agent 调用工具的桥梁。', color: '#febc2e', pos: 5 },
+        { icon: '🤖', name: '7. Hermes', tag: '自我学习', detail: '外部 · 28 脚本迭代 · V0.1→V3.38 · 知识结构化。学习主公工作流，沉淀为可复用工具链。', color: '#febc2e', pos: 6 },
+        // ===== 1 套中台 =====
+        { icon: '📚', name: '8. Wiki + oMLX', tag: '知识中台', detail: 'oMLX：本地 9 模型推理中台。Wiki：5786 实体 / 199 研报可检索。9 模型层叠=5+2+1+1中台。', color: '#38bdf8', pos: 7 }
+      ]
+    },
+
     // ========== Phase F 新增：11/12/13 章节封面 burst ==========
     'burst-quality-1': {
       title: '🛡️ 智能体质量提升 · 全章速览',
