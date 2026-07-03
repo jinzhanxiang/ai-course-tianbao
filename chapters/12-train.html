@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>第 12 章 · 如何训练一个智能体 · 智能体赋能投资研究</title>
-  <link rel="stylesheet" href="../assets/css/main.css?v=4">
+  <link rel="stylesheet" href="../assets/css/main.css?v=1783066499">
   <link rel="stylesheet" href="../assets/css/themes.css?v=4">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=1">
 </head>
@@ -172,46 +172,58 @@
       </div>
     </div>
 
-    <!-- Slide 5：Hermes 案例 · 28 个脚本迭代 -->
+    <!-- Slide 5：Hermes 案例 · 真实脚本迭代 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">⚙️ Hermes 清洗入库案例 · 28 个脚本迭代</h2>
+      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">⚙️ Hermes 清洗入库案例 · V0→V3 真实迭代</h2>
 
       <div class="alert alert-info" style="margin-bottom:16px">
-        <p style="font-size:13px"><strong>📌 任务背景</strong>：清洗入库执行脚本从 V0.1 迭代到 V3.38，共 <strong style="color:#febc2e">28 个版本</strong>，<strong>单 Agent 由 Hermes 主导迭代</strong>。</p>
+        <p style="font-size:13px"><strong>📌 任务背景</strong>：data 代理的清洗入库脚本由 Hermes 主导迭代，从 V0（2026-04-17）到 V3（2026-05-02），共 <strong style="color:#febc2e">140 个 Python + 15 个 Shell 脚本</strong>，<strong>累计 155 个脚本</strong>，处理 <strong style="color:#22C55E">199 份研报 / 33,985 chunks / 5,967 实体</strong>。</p>
       </div>
 
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📊 迭代阶段分布</h3>
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📊 V0→V3 四阶段迭代（真实失败记录）</h3>
 
       <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:14px">
-        <div style="display:grid;grid-template-columns:60px 1fr 80px;gap:10px;font-size:13px;color:var(--text-secondary);line-height:1.7;align-items:center">
-          <strong style="color:#38bdf8">V0.x</strong>
-          <span>基础脚本（5 版）· 单 PDF → JSON 入库</span>
-          <span style="color:#38bdf8">1 周</span>
-          <strong style="color:#22C55E">V1.x</strong>
-          <span>批量化（6 版）· Step 1 PDF → Step 2 OCR → Step 3 bge-m3</span>
-          <span style="color:#22C55E">2 周</span>
-          <strong style="color:#F59E0B">V2.x</strong>
-          <span>质量校验（8 版）· 加 Step 0.5 预处理 + 置信度评分</span>
-          <span style="color:#F59E0B">3 周</span>
-          <strong style="color:#EC4899">V3.x</strong>
-          <span>工业化（9 版）· Memory 三阶段 + Dreaming 自动维护</span>
-          <span style="color:#EC4899">4 周</span>
+        <div style="display:grid;grid-template-columns:50px 1fr 90px 80px;gap:10px;font-size:12px;color:var(--text-secondary);line-height:1.8;align-items:center">
+          <strong style="color:#38bdf8">V0</strong>
+          <span>core_conclusion 提取率仅 30% → 5 层匹配策略后提升至 90%+</span>
+          <span style="color:#38bdf8">04-17</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#22C55E">V1</strong>
+          <span>calculation_method 仅公式匹配 40% → 扩展文字描述型（"按...计算"）→ 80%+</span>
+          <span style="color:#22C55E">04-21</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#F59E0B">V2</strong>
+          <span>&lt;256 token 切块占 8.5% → 小切块合并逻辑 + 段落完整性 → &lt;5%</span>
+          <span style="color:#F59E0B">04-22</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#EC4899">V3</strong>
+          <span>reasoning 覆盖率 31% → backfill_reasoning_v2.py 前置过滤（overlap 0.9→0.75）→ 60-70%</span>
+          <span style="color:#EC4899">05-02</span>
+          <span style="color:#22C55E">✅ 解决</span>
         </div>
       </div>
 
       <div class="kpi-row">
         <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#febc2e;font-size:22px">28</div>
-          <div class="kpi-label">版本数</div>
+          <div class="kpi-value" style="color:#febc2e;font-size:22px">155</div>
+          <div class="kpi-label">总脚本数</div>
         </div>
         <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#febc2e;font-size:22px">10 周</div>
-          <div class="kpi-label">总周期</div>
+          <div class="kpi-value" style="color:#22C55E;font-size:22px">199</div>
+          <div class="kpi-label">入库研报</div>
         </div>
         <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#febc2e;font-size:22px">5786</div>
-          <div class="kpi-label">入库实体</div>
+          <div class="kpi-value" style="color:#38bdf8;font-size:22px">33,985</div>
+          <div class="kpi-label">Chunks</div>
         </div>
+        <div class="kpi" style="padding:12px">
+          <div class="kpi-value" style="color:#A855F7;font-size:22px">5,967</div>
+          <div class="kpi-label">实体入库</div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:12px">
+        <p style="font-size:12px"><strong>💡 核心教训</strong>：LLM 兜底前必须有<strong>前置过滤</strong>（Garbage in → garbage out），<strong>前置过滤 &gt; 后置优化</strong>。</p>
       </div>
     </div>
 
