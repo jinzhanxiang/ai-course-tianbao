@@ -11,6 +11,7 @@
     { num: '00', file: '00-cover.html',        title: '封面',         emoji: '🎯' },
     { num: '01', file: '01-opening.html',      title: '开场破题',     emoji: '🚀' },
     { num: '02', file: '02-revolution.html',   title: '智能体革命',   emoji: '⚡' },
+    { num: '02.5', file: '02-revolution-architecture.html', title: '5+2+1 体系总览 ⭐', emoji: '🧠' },
     { num: '03', file: '03-main.html',         title: 'main 调度 ⭐', emoji: '🎯' },
     { num: '04', file: '04-project.html',      title: 'project 项目管家', emoji: '📋' },
     { num: '05', file: '05-research.html',     title: 'research V3',  emoji: '🔬' },
@@ -76,7 +77,7 @@
   function renderSidebar() {
     return `
 <aside class="sidebar">
-  <h3>📑 12 章节</h3>
+  <h3>📑 ${CHAPTERS.length - 1} 章节</h3>
   <ol class="chapter-list">
     ${CHAPTERS.map(c => `
     <li><a href="${c.file}" ${c.file === currentFile ? 'class="active"' : ''}>${c.num} · ${c.title}</a></li>
