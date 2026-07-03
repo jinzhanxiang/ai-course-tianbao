@@ -1062,26 +1062,48 @@ th {
   margin: 0 auto;
 }
 
-/* Grid 布局智能卡片容器（不遮挡、不溢出） */
+/* Grid 布局智能卡片容器（不遮挡、不溢出、永远不被裁） */
 .burst-cards[data-layout="grid"],
 .burst-cards[data-layout="threecol"],
-.burst-cards[data-layout="twocol"] {
+.burst-cards[data-layout="twocol"],
+.burst-cards[data-layout="pipe"] {  /* pipe 也走 grid 多行、避免重叠 */
   display: grid;
-  gap: 24px;
-  padding: 24px;
+  gap: 20px;
+  padding: 24px 32px 48px;
   max-width: 1400px;
+  width: 100%;
+  box-sizing: border-box;
+  /* auto-rows 让 grid 实际行高跟内容，不强制 260px */
+  grid-auto-rows: minmax(min-content, auto);
 }
 
 .burst-cards[data-layout="grid"] {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* clamp: 小屏1列，中屏2-3列，大屏自适应多列 */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 90vw), 1fr));
 }
 
 .burst-cards[data-layout="threecol"] {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 32vw), 1fr));
 }
 
 .burst-cards[data-layout="twocol"] {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 45vw), 1fr));
+}
+
+/* pipe 模式：6+ 卡片、避免重叠 */
+.burst-cards[data-layout="pipe"] {
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 30vw), 1fr));
+  gap: 18px;
+  padding: 24px 28px 40px;
+}
+.burst-cards[data-layout="pipe"] .burst-card {
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  width: 100% !important;
+  max-width: 100%;
+  transform: none;
+  animation: burst-card-stagger 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 /* 卡片 - 放大扩写 */
@@ -1090,8 +1112,8 @@ th {
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   width: 260px;
-  min-height: 220px;
-  max-height: 280px;
+  min-height: 200px;
+  /* max-height: 280px;  ← 故意去掉，让卡片按内容自适应高度 */
   background: linear-gradient(135deg, #ffffff, #f8faff);
   border: 2px solid var(--bc-color, #00D4FF);
   border-radius: 20px;
@@ -1121,7 +1143,11 @@ th {
   animation: burst-card-stagger 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   width: 100% !important;
   max-width: 100%;
-  min-height: 260px;
+  min-height: 200px;
+  /* 高度按内容自适应，不再被 max-height 撑爆 */
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes burst-card-stagger {
@@ -1214,17 +1240,18 @@ th {
 }
 
 .bc-detail {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   color: #2a3550;
   margin-top: 8px;
   font-weight: 500;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  /* 不限行数 - 让卡片按需扩展 */
+  display: block;
+  overflow: visible;
+  word-break: break-word;
+  white-space: pre-wrap;
 }
+.bc-detail br { line-height: 1.8; }
 
 /* 暗主题适配 - 卡片背景深色 */
 .theme-dark .burst-card,

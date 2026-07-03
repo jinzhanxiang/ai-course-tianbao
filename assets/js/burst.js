@@ -767,23 +767,21 @@
       div.style.setProperty('--bc-color', card.color);
       const coord = coords[idx] || { left: '50%', top: '50%' };
       if (coord.center) div.classList.add('bc-center');
-      div.style.left = coord.left;
-      div.style.top = coord.top;
+      // CSS Grid 布局的 layout: grid/twocol/threecol/pipe 完全交由 CSS 处理。
+      // 只有绝对定位布局才需要 left/top。
+      const useAutoLayout = ['grid', 'twocol', 'threecol', 'pipe'].includes(data.layout);
+      if (!useAutoLayout) {
+        div.style.left = coord.left;
+        div.style.top = coord.top;
+      }
       div.setAttribute('data-i', idx);
-      // pipe 布局 + 5+ 张卡 -> 缩小宽度防重叠
-      if (data.layout === 'pipe' && data.cards.length >= 5) {
-        div.style.width = '240px';
-      } else if (data.layout === 'cascade' && data.cards.length >= 5) {
-        div.style.width = '260px';
-      } else if (data.layout === 'grid' && data.cards.length >= 6) {
+      // pipe 布局 + 5+ 张卡 -> 缩小宽度防重叠（现在交给 CSS grid auto-fit，不再需要）
+      if (data.layout === 'cascade' && data.cards.length >= 5) {
         div.style.width = '260px';
       } else if (data.layout === 'vert') {
         div.style.width = '340px';
-      } else if (data.layout === 'threecol') {
-        div.style.width = '320px';
-      } else if (data.layout === 'twocol') {
-        div.style.width = '320px';
       }
+      // grid/twocol/threecol/pipe 由 CSS grid auto-fit 决定，无需固定宽度
 
       // 标题 + 标签 + 详情
       const detailHtml = (card.detail || '').replace(/\n/g, '<br>');

@@ -132,6 +132,7 @@
     requestAnimationFrame(() => {
       const stageH = slide.clientHeight;
       const contentH = slide.scrollHeight;
+
       if (contentH > stageH - 20) {
         slide.classList.add('is-tall');
       } else {
