@@ -392,7 +392,98 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Esc 关闭 modal
+    // ===== sci-fi 粒子背景增强（Canvas-based） =====
+  function initSciFiParticles() {
+    // 只在 sci-fi-bg 元素内注入粒子层
+    const bgHolder = document.querySelector('.sci-fi-bg');
+    if (!bgHolder || bgHolder.querySelector('.sci-fi-particles')) return;
+
+    const layer = document.createElement('div');
+    layer.className = 'sci-fi-particles';
+    bgHolder.appendChild(layer);
+
+    // 注入 canvas（30 个粒子 + 缓慢上升的"光线"）
+    const html = `
+      <canvas id="sci-fi-canvas" style="position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0.55"></canvas>
+      <div class="sci-fi-light"></div>
+    `;
+    layer.innerHTML = html;
+
+    const cv = document.getElementById('sci-fi-canvas');
+    if (!cv || !cv.getContext) return;
+    const ctx = cv.getContext('2d');
+    let w, h, particles;
+
+    const resize = () => {
+      w = cv.width = window.innerWidth;
+      h = cv.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    // 初始化粒子 28 个
+    particles = Array.from({ length: 28 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: 1 + Math.random() * 2.2,
+      hue: ['#00D4FF', '#A855F7', '#22C55E'][Math.floor(Math.random() * 3)],
+      a: 0.15 + Math.random() * 0.4
+    }));
+
+    let raf;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -10) p.x = w + 10;
+        if (p.x > w + 10) p.x = -10;
+        if (p.y < -10) p.y = h + 10;
+        if (p.y > h + 10) p.y = -10;
+        ctx.beginPath();
+        ctx.fillStyle = p.hue;
+        ctx.globalAlpha = p.a;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      // 邻近连线
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 140) {
+            ctx.beginPath();
+            ctx.strokeStyle = particles[i].hue;
+            ctx.globalAlpha = (1 - d / 140) * 0.2;
+            ctx.lineWidth = 0.6;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    // 元素隐藏时停止动画
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) cancelAnimationFrame(raf);
+      else draw();
+    });
+  }
+
+  // DOM ready 调用
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSciFiParticles);
+  } else {
+    initSciFiParticles();
+  }
+
+// Esc 关闭 modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.modal-overlay.show').forEach(m => {

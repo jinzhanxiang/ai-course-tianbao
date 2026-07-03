@@ -217,6 +217,57 @@
       </div>
     </div>
 
+    <!-- Slide 6.5：从“幻觉”到“质量护城河”·MCP + 多 Agent 架构与 openclaw 同构 -->
+    <div class="slide">
+      <h2 style="font-size:30px;color:#56d364;margin-bottom:14px">🛡️ 从“幻觉”到“质量护城河”</h2>
+
+      <p style="color:var(--text-secondary);margin-bottom:16px;font-size:13px">
+        三项业内<strong style="color:#56d364">主流架构</strong>与主公 openclaw <strong style="color:#00D4FF">5+2+1+1=9</strong> <strong style="color:#A855F7">同构对应</strong>。
+      </p>
+
+      <div style="max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+        <!-- 1. MCP -->
+        <div class="neon-card" style="padding:16px;border-top:3px solid #00D4FF">
+          <h3 style="color:#00D4FF;font-size:14px;margin:0 0 6px 0">🧬 MCP 协议</h3>
+          <p style="color:var(--text-secondary);font-size:11px;line-height:1.6;margin:6px 0">
+            <strong style="color:#00D4FF">上下文协议</strong>、Anthropic 2024 发布。<br>
+            丫鬟上下文传递·LLM 接口跨工具统一。
+          </p>
+          <div style="background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);border-radius:6px;padding:8px;text-align:center;margin-top:8px">
+            <small style="color:#00D4FF">openclaw → <strong>layout.js 上下文注入</strong></small>
+          </div>
+        </div>
+
+        <!-- 2. A2A -->
+        <div class="neon-card" style="padding:16px;border-top:3px solid #A855F7">
+          <h3 style="color:#A855F7;font-size:14px;margin:0 0 6px 0">🐝 A2A 协议</h3>
+          <p style="color:var(--text-secondary);font-size:11px;line-height:1.6;margin:6px 0">
+            <strong style="color:#A855F7">协议间通信</strong>、Google 2025 发布。<br>
+            Agent 心跳·消息路由·跨服务体系。
+          </p>
+          <div style="background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);border-radius:6px;padding:8px;text-align:center;margin-top:8px">
+            <small style="color:#A855F7">openclaw → <strong>sessions_send 异步路由</strong></small>
+          </div>
+        </div>
+
+        <!-- 3. Supervision -->
+        <div class="neon-card" style="padding:16px;border-top:3px solid #56d364">
+          <h3 style="color:#56d364;font-size:14px;margin:0 0 6px 0">🎖️ Supervision</h3>
+          <p style="color:var(--text-secondary);font-size:11px;line-height:1.6;margin:6px 0">
+            <strong style="color:#56d364">LangGraph 金标准</strong>·Supervisor + Worker。<br>
+            单一上下文·明确边界·反馈ループ。
+          </p>
+          <div style="background:rgba(86,211,100,0.1);border:1px solid rgba(86,211,100,0.3);border-radius:6px;padding:8px;text-align:center;margin-top:8px">
+            <small style="color:#56d364">openclaw → <strong>main = Supervisor</strong></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:16px;font-size:13px;line-height:1.7;max-width:1080px;margin-left:auto;margin-right:auto">
+        <strong style="color:#00D4FF">主公 takeaway</strong>：<strong style="color:#56d364">三项业内主流 × openclaw 三个组件全用上</strong>。为什么不用学别的框架？<strong style="color:#A855F7">openclaw 本身就是}</strong>。
+      </div>
+    </div>
+
     <!-- Slide 7：避坑指南 -->
     <div class="slide">
       <h2 style="font-size:32px;color:#EF4444;margin-bottom:18px">🚫 5 个常见避坑</h2>
