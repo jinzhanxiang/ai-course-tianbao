@@ -457,38 +457,6 @@
     </div>
   </div>
 
-  <script>
-    // 重写：每章独立显示进度
-    document.addEventListener('DOMContentLoaded', () => {
-      const total = document.querySelectorAll('.slide').length;
-      let current = 0;
-
-      document.getElementById('prevBtn').addEventListener('click', () => {
-        const slides = document.querySelectorAll('.slide');
-        if (current > 0) {
-          slides[current].classList.remove('active');
-          current--;
-          slides[current].classList.add('active');
-          updateProgress(current, slides.length);
-        }
-      });
-      document.getElementById('nextBtn').addEventListener('click', () => {
-        const slides = document.querySelectorAll('.slide');
-        if (current < slides.length - 1) {
-          slides[current].classList.remove('active');
-          current++;
-          slides[current].classList.add('active');
-          updateProgress(current, slides.length);
-        }
-      });
-      function updateProgress(cur, total) {
-        const pct = ((cur + 1) / total) * 100;
-        document.getElementById('progressFill').style.right = `${100 - pct}%`;
-        document.getElementById('progressText').textContent = `${cur + 1} / ${total}`;
-      }
-    });
-  </script>
-  
 <script src="../assets/js/layout.js?v=4"></script>
 <script src="../assets/js/shared-agents.js?v=3"></script>
 <script src="../assets/js/main.js?v=3"></script>

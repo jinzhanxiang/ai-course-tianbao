@@ -19,8 +19,11 @@
     { num: '08', file: '08-ecosystem.html',    title: '三智能体生态', emoji: '🌐' },
     { num: '09', file: '09-case.html',         title: '实战案例',     emoji: '📚' },
     { num: '10', file: '10-methodology.html',  title: '纵横分析法',   emoji: '🎯' },
-    { num: '11', file: '11-demo.html',         title: '现场演示',     emoji: '🎬' },
-    { num: '12', file: '12-qa.html',           title: 'Q&A',          emoji: '❓' },
+    { num: '11', file: '11-quality.html',      title: '质量提升',     emoji: '✨' },
+    { num: '12', file: '12-train.html',        title: '训练 vs 编排', emoji: '🎓' },
+    { num: '13', file: '13-workflow.html',     title: '工作流协同',   emoji: '🔄' },
+    { num: '14', file: '14-demo.html',         title: '现场演示',     emoji: '🎬' },
+    { num: '15', file: '15-qa.html',           title: 'Q&A',          emoji: '❓' },
   ];
 
   // 当前章节信息（从 URL 推断）

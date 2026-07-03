@@ -124,19 +124,23 @@
     }
   }
 
-  // 根据内容高度调整 slide 布局：高度 > 可视区 -> 顶部对齐+滚动；否则居中
+  // 根据内容高度调整 slide 布局：内容可滚动->顶部对齐；否则居中
   function adjustSlideLayout() {
     const slide = document.querySelector('.slide.active');
     if (!slide) return;
-    // 下一帧取 scrollHeight，因为 DOM 可能未布局完
     requestAnimationFrame(() => {
       const stageH = slide.clientHeight;
       const contentH = slide.scrollHeight;
+      // 只有可滚动距离 > 5px 才算 tall
+      // 否则不需 is-tall (即使 reportjs 一致也可能为 tall，但 scrollTop 不会有)
+      const overflow = contentH - stageH;
 
-      if (contentH > stageH - 20) {
+      if (overflow > 5) {
         slide.classList.add('is-tall');
+        slide.style.setProperty('--slide-overflow', overflow + 'px');
       } else {
         slide.classList.remove('is-tall');
+        slide.style.removeProperty('--slide-overflow');
       }
     });
   }
