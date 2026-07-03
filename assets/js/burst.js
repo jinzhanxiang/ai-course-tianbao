@@ -536,6 +536,17 @@
         break;
       }
       case '7star': {
+        // 七芒星布局(中心 + 六围)
+        // 第 1 张居中,其余 6 张等间距辐射
+        const starRadius = 38;
+        coords.push({ left: '50%', top: '50%', center: true });
+        for (let i = 0; i < count - 1 && i < 6; i++) {
+          const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
+          const left = 50 + starRadius * Math.cos(angle);
+          const top = 50 + starRadius * Math.sin(angle);
+          coords.push({ left: `${left}%`, top: `${top}%` });
+        }
+        break;
       }
       case 'pentagon': {
         // 中心圆 + 周围辐射(中心 + count-1 周围)
