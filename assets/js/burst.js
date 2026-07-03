@@ -691,12 +691,44 @@
 
     // ====== 终端模拟器模式 ======
     if (data.terminalSrc) {
-      const iframe = document.createElement('iframe');
-      iframe.src = data.terminalSrc;
-      iframe.style.cssText = 'width:100%;height:520px;border:none;border-radius:10px;background:#0d1117;';
-      iframe.title = data.title || '终端模拟器';
-      stage.appendChild(iframe);
+      // 用 fetch + inline 注入（避免 iframe 在某些环境下不渲染）
+      const container = document.createElement('div');
+      container.className = 'terminal-container';
+      container.style.cssText = 'width:100%;min-height:520px;background:#0d1117;border-radius:10px;overflow:hidden;position:relative;';
+      stage.appendChild(container);
       requestAnimationFrame(() => { stage.classList.add('show'); });
+
+      // 加载失败回退到 iframe
+      fetch(data.terminalSrc).then(function(r){
+        return r.text();
+      }).then(function(html){
+        // 提取 <style> + <body> 内容
+        const styleMatch = html.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+        const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+        if (styleMatch) {
+          const style = document.createElement('style');
+          style.textContent = '[data-burst-inline="' + burstId + '"] ' + styleMatch[1];
+          document.head.appendChild(style);
+        }
+        if (bodyMatch) {
+          const wrap = document.createElement('div');
+          wrap.setAttribute('data-burst-inline', burstId);
+          wrap.style.cssText = 'width:100%;min-height:520px;';
+          wrap.innerHTML = bodyMatch[1];
+          container.appendChild(wrap);
+          // 执行 HTML 内的 <script>
+          const scripts = wrap.querySelectorAll('script');
+          scripts.forEach(function(oldScript){
+            const newScript = document.createElement('script');
+            if (oldScript.src) newScript.src = oldScript.src;
+            else newScript.textContent = oldScript.textContent;
+            oldScript.parentNode.replaceChild(newScript, oldScript);
+          });
+        }
+      }).catch(function(){
+        // 回退到 iframe
+        container.innerHTML = '<iframe src="' + data.terminalSrc + '" style="width:100%;height:520px;border:none;border-radius:10px;background:#0d1117;" title="' + (data.title || '') + '"></iframe>';
+      });
       return;
     }
 
@@ -782,22 +814,19 @@
     cardContainer.className = 'burst-cards';
     // 标记 layout 类型，让 CSS Grid 自动布局接管（grid/threecol/twocol 三种）
     cardContainer.setAttribute('data-layout', data.layout || 'free');
-    cardContainer.style.minHeight = cardContainerH + 'px';
+    // cardContainer 不设置 minHeight，由 flex: 1 + max-height 自适应
 
     data.cards.forEach((card, idx) => {
       const div = document.createElement('div');
       div.className = 'burst-card';
       div.style.setProperty('--bc-color', card.color);
-      const coord = coords[idx] || { left: '50%', top: '50%' };
-      if (coord.center) div.classList.add('bc-center');
-      // CSS Grid 布局的 layout: grid/twocol/threecol/pipe 完全交由 CSS 处理。
-      // 只有绝对定位布局才需要 left/top。
-      const useAutoLayout = ['grid', 'twocol', 'threecol', 'pipe'].includes(data.layout);
-      if (!useAutoLayout) {
-        div.style.left = coord.left;
-        div.style.top = coord.top;
-      }
+      // 2026-07-03 重构：所有布局都交给 CSS Grid 处理绝对统一，避免重叠/移动/溢出
+      // 取消 useAutoLayout 变量 - 100% 走 CSS Grid
       div.setAttribute('data-i', idx);
+      div.classList.add('bc-index-' + idx);
+      div.classList.add('bc-layout-' + (data.layout || 'free'));
+      // grid/twocol/threecol/pipe 不需要额外处理（CSS 默认 grid auto-fit）
+      // 7star / pentagon / 5star / vert / cascade / fan 由 CSS grid-template-areas 接管
       // pipe 布局 + 5+ 张卡 -> 缩小宽度防重叠（现在交给 CSS grid auto-fit，不再需要）
       if (data.layout === 'cascade' && data.cards.length >= 5) {
         div.style.width = '260px';
@@ -836,9 +865,27 @@
       stage.classList.remove('scaled');
     }
 
-    // 显示
+    // 显示后调整 scale以适应 viewport,避免卡片被裁切
     requestAnimationFrame(() => {
       stage.classList.add('show');
+      // 实际渲染后计算 scale
+      requestAnimationFrame(() => {
+        // 用 scrollHeight 可获取被 max-height 裁掉的真实内容高度
+        const header = stage.querySelector('.burst-header');
+        const headerH = header ? header.offsetHeight : 130;
+        // cc.scrollHeight 是 cc 内部所有内容的真高（不被 max-height 限制）
+        const actualContentH = headerH + cardContainer.scrollHeight;
+        const vh = window.innerHeight;
+        // content 超出 viewport 时缩放（最少 0.6 避免看不清）
+        if (actualContentH > vh - 80) {
+          const scale = Math.max(0.6, (vh - 100) / actualContentH);
+          stage.style.setProperty('--burst-stage-scale', scale);
+          stage.classList.add('scaled');
+        } else {
+          stage.style.removeProperty('--burst-stage-scale');
+          stage.classList.remove('scaled');
+        }
+      });
     });
 
     // 绑定关闭
