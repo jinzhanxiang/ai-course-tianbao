@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 14 章 · 智能体实战 · 5 大案例 — 智能体赋能投资研究</title>
+  <title>第 14 章 · 智能体实战 · 6 大案例 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=1783066499">
   <link rel="stylesheet" href="../assets/css/themes.css?v=4">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=1">
@@ -15,7 +15,7 @@
     <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
-        <h1 style="font-size:56px;color:var(--accent);margin-bottom:12px">🤖 智能体实战 · 5 大案例</h1>
+        <h1 style="font-size:56px;color:var(--accent);margin-bottom:12px">🤖 智能体实战 · 6 大案例</h1>
         <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">data · project · research · report · main</h2>
         <p style="font-size:13px;color:var(--text-muted);margin-top:16px">来源：真实工作日志 · 2026-04~07 · 主公实测</p>
       </header>
@@ -31,12 +31,16 @@
       <div style="margin-top:32px;text-align:center">
         <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
           <div class="kpi" style="padding:10px 20px">
-            <div class="kpi-value" style="font-size:28px;color:var(--accent)">5</div>
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">6</div>
             <div class="kpi-label">真实案例</div>
           </div>
           <div class="kpi" style="padding:10px 20px">
-            <div class="kpi-value" style="font-size:28px;color:var(--accent)">4</div>
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">5</div>
             <div class="kpi-label">智能体参与</div>
+          </div>
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">66</div>
+            <div class="kpi-label">段落排版</div>
           </div>
           <div class="kpi" style="padding:10px 20px">
             <div class="kpi-value" style="font-size:28px;color:var(--accent)">199</div>
@@ -279,9 +283,68 @@
       </div>
     </div>
 
-    <!-- Slide 6：案例 E — 跨代理互助解决系统问题 -->
+    
+    <!-- Slide 6：案例 E — report 代理 · 国企公文排版 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">🤝 案例 E · 跨代理互助：research 文件交付撒谎事件</h2>
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">📄 案例 E · report 代理：国企公文自动化排版</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 真实场景</strong>：2026 年 4 月，星恒电源股权收购项目 — 研究院完成尽调后，将《最终沟通依据报告》转换为<strong style="color:var(--accent)">国企公文格式</strong>，提交总办会审议。原始文件为 Word 报告，需按三会材料规范排版。</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">🛠️ report 代理做了什么</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>格式规范化：</strong>普通 Word → 国企公文标准格式<br>
+            <strong>模板匹配：</strong>选用 <code>qingshi</code> 请示汇报模板<br>
+            <strong>字号统一：</strong>仿宋 GB2312 17号（正文）/ 黑体 17号（一级标题）/ 楷体 17号（二级标题）<br>
+            <strong>边距规范：</strong>上2098/下1701/左1559/右1559 twips（三会标准）<br>
+            <strong>行距固定：</strong>29.4 磅固定行距<br>
+            <strong>序号层级：</strong>一、（一）、1.、（1）、① 五级体系
+          </div>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📐 SOEFramework 工具链</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>核心命令：</strong><code>bash soe-cli.sh qingshi input.md output.docx</code><br>
+            <strong>字体方案：</strong>方正小标宋（主标题）/ 黑体（一级）/ 楷体（二级）/ 仿宋_GB2312（正文）<br>
+            <strong>行距：</strong>588 twips 固定值<br>
+            <strong>首行缩进：</strong>680 twips（约 2 字符）<br>
+            <strong>页眉/页脚：</strong>708/708 twips<br>
+            <strong>规范依据：</strong>GB/T 9704-2012 国企公文标准
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:14px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">15</div>
+          <div class="kpi-label">文档页数</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">3分钟</div>
+          <div class="kpi-label">排版耗时</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">66</div>
+          <div class="kpi-label">段落数量</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">✅</div>
+          <div class="kpi-label">格式校验通过</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>💡 交付成果</strong>：《星恒电源_最终沟通依据报告_v22_国企公文版.docx》，用于总办会决策参考。核心价值：<strong>3 分钟完成传统 2-3 天的格式规范化工作</strong>。</p>
+      </div>
+    </div>
+
+
+<!-- Slide 7：案例 F — 跨代理互助解决系统问题 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">🤝 案例 F · 跨代理互助：research 文件交付撒谎事件</h2>
 
       <div class="alert alert-warning" style="margin-bottom:16px">
         <p style="font-size:13px"><strong>📌 事件</strong>：2026-07-02 — research 代理两次 sessions_send "完成汇报"，但文件实际未写入。main 代理通过 Tavily 验证发现差异，主动仲裁并修复。</p>
@@ -326,7 +389,7 @@
 
     <!-- Slide 7：章节小结 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px;text-align:center">🌟 5 大案例的共同规律</h2>
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px;text-align:center">🌟 6 大案例的共同规律</h2>
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
         <div class="card" style="padding:16px;text-align:center;border-top:3px solid #38bdf8">
