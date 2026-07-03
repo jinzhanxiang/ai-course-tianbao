@@ -30,6 +30,11 @@
       if (btn) btn.innerHTML = '📚 探索模式';
     }
     updateProgress();
+
+    // 初始调整 slide 布局（为超长 slide 启用滚动）
+    adjustSlideLayout();
+    // resize 时重调
+    window.addEventListener('resize', () => requestAnimationFrame(adjustSlideLayout));
   }
 
   // 初始化路径：DCL 还未触发则监听；已触发则同步执行（兼容 layout.js）
@@ -104,6 +109,7 @@
       state.slide++;
       slides[state.slide].classList.add('active');
       updateProgress();
+      adjustSlideLayout();
     }
   }
 
@@ -114,7 +120,24 @@
       state.slide--;
       slides[state.slide].classList.add('active');
       updateProgress();
+      adjustSlideLayout();
     }
+  }
+
+  // 根据内容高度调整 slide 布局：高度 > 可视区 -> 顶部对齐+滚动；否则居中
+  function adjustSlideLayout() {
+    const slide = document.querySelector('.slide.active');
+    if (!slide) return;
+    // 下一帧取 scrollHeight，因为 DOM 可能未布局完
+    requestAnimationFrame(() => {
+      const stageH = slide.clientHeight;
+      const contentH = slide.scrollHeight;
+      if (contentH > stageH - 20) {
+        slide.classList.add('is-tall');
+      } else {
+        slide.classList.remove('is-tall');
+      }
+    });
   }
 
   function updateProgress() {

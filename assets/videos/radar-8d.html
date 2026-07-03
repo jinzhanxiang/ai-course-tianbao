@@ -219,7 +219,7 @@
   }
   .radar-vertex.show { opacity: 1; }
 
-  /* 雷达图 polygon（启源芯） */
+  /* 雷达图 polygon（星恒电源） */
   .poly-qiyuan {
     fill: rgba(86,211,100,0.25);
     stroke: #56d364;
@@ -366,7 +366,7 @@
       <div class="titlebar-dot dot-red"></div>
       <div class="titlebar-dot dot-yellow"></div>
       <div class="titlebar-dot dot-green"></div>
-      <div class="titlebar-title">⬡ RADAR CHART · 启源芯 vs 行业 P50</div>
+      <div class="titlebar-title">⬡ RADAR CHART · 星恒电源 vs 行业 P50</div>
     </div>
     <div class="radar-body">
       <svg class="radar-svg" viewBox="0 0 460 460">
@@ -392,7 +392,7 @@
         <!-- 行业 P50 polygon -->
         <polygon class="poly-peer" id="polyPeer" points="" />
 
-        <!-- 启源芯 polygon -->
+        <!-- 星恒电源 polygon -->
         <polygon class="poly-qiyuan" id="polyQiyuan" points="" />
 
         <!-- 顶点 -->
@@ -592,7 +592,7 @@ setTimeout(() => {
   document.getElementById('polyPeer').classList.add('show');
 }, startTs);
 
-// 启源芯 polygon 填充动画
+// 星恒电源 polygon 填充动画
 setTimeout(() => {
   const pts = DIMS.map((d, i) => pos(d.score, i).join(',')).join(' ');
   document.getElementById('polyQiyuan').setAttribute('points', pts);

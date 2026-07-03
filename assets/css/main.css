@@ -264,13 +264,18 @@ body {
 .slide.active {
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* 内容垂直居中 */
+  justify-content: center;  /* 默认居中 */
   align-items: stretch;
+  /* 防止内容超出后被裁顶/裁底 */
+  min-height: 0;
+  overflow-y: auto;
 }
 
-/* 保留绝对定位子元素的樣式（在 flex 环境里依然起作用） */
-.slide.active > [style*="position: absolute"] {
-  position: absolute;
+/* 如果内容超出 100vh，就不居中，改为顶部对齐以便可滚 */
+.slide.active.is-tall {
+  justify-content: flex-start;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 @keyframes slideIn {

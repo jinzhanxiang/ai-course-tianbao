@@ -139,15 +139,15 @@
 
     // 09 案例 - 5 案例详情(按您v3.0:点击正文"启源芯项目"弹出对应详情)
     'burst-case-qiyuanxin': {
-      title: '启源芯项目 · 90 分钟投决全流程',
-      subtitle: '功率半导体 · SiC 衬底 · 投决阶段',
+      title: '⚠️ 已废弃 · 参见 burst-case-xingheng-13',
+      subtitle: '本 burst 已重定向至星恒电源 13.73% 收购案例',
       layout: 'pipe',
       cards: [
-        { icon: '🧠', name: 'main 接收', tag: '0 分钟', detail: '您周五晚下令:"启源芯投决"。\nmain 立即拆 4 子任务(project/research/data/report)', color: '#00D4FF', pos: 0 },
-        { icon: '📋', name: 'project 排期', tag: '2 分钟', detail: '建立项目台账 · 设定 5 节点(研究/尽调/估值/决策/会后)\n输出:项目计划表 + 倒计时看板', color: '#22C55E', pos: 1 },
-        { icon: '🔬', name: 'research 出报告', tag: '35 分钟', detail: '行业分析 + 财务尽调 + 估值建模三路并行。\nDCF=WACC 7.5% → 估值 45 亿(区间 35-58)\n可比公司:北方华创/华润微/士兰微', color: '#F59E0B', pos: 2 },
-        { icon: '🗃️', name: 'data 入库', tag: '60 分钟', detail: '历史尽调材料清洗 + 7 个案例匹配 + bge-m3 向量化。\n入库:Qdrant 8 collections · 23,000 vectors 新增', color: '#A855F7', pos: 3 },
-        { icon: '📄', name: 'report 出版', tag: '90 分钟', detail: '投决请示 67 页(Word)+ PPT 28 页 + PDF 存档。\n国企公文规范 100% · 错误 0 · 自动目录 · 页眉页脚', color: '#EC4899', pos: 4 }
+        { icon: '🔋', name: '案例已更换', tag: '📢', detail: '原启源芯案例（与 SiC 衬底/功率半导体混淆）已被主公识别为错误。\n请参见：星恒电源 13.73% 收购方案 B 商业尽调复核。', color: '#EF4444', pos: 0 },
+        { icon: '✅', name: '现行案例', tag: '星恒电源', detail: '动力电池 · 尽调复核阶段\n基准 MOIC 0.32 (亏 68%)\n50 家股东 · 启源纳川 17.73%', color: '#22C55E', pos: 1 },
+        { icon: '📚', name: 'Wiki 词条', tag: '+98 实体', detail: '原案例其他实体仍保留在 Wiki 词条中（实体数：5786 → 5884）。\n新项目信息不再上报该词条。', color: '#38bdf8', pos: 2 },
+        { icon: '💡', name: '教训', tag: '2026-07-03', detail: '“启源芯动力”(电池) ≠ "功率半导体/SiC 衬底"，主公跳正为二者区分。\n未来案例选择必须验证业务方向一致性。', color: '#F59E0B', pos: 3 },
+        { icon: '📄', name: '补充文档', tag: '待补', detail: '· 14-demo.html 中的“启源纳川”是股东名（保留）\n· burst-case-xingheng-13 是星恒详情 burst', color: '#A855F7', pos: 4 }
       ]
     },
     'burst-case-xingheng': {
@@ -159,6 +159,18 @@
         { icon: '📊', name: '财务尽调', tag: '2-6h', detail: 'data:审计报告 + 财报 + 银行流水 · 21 张表格 OCR。\nresearch:营收增速 + 毛利率 + 营运资金分析', color: '#F59E0B', pos: 1 },
         { icon: '⚖️', name: '估值初步', tag: '6-10h', detail: 'DCF 建模 + 3 家可比公司 + 敏感性 4 场景。\n初次估值区间:180-250 亿', color: '#A855F7', pos: 2 },
         { icon: '📄', name: '报告', tag: '10-12h', detail: '尽调报告 200 页(含财务/法律/业务三路尽调)。\n风险清单 17 项 + 建议下一步访谈名单', color: '#EC4899', pos: 3 }
+      ]
+    },
+    'burst-case-xingheng-13': {
+      title: '星恒电源 · 13.73% 收购方案 B 尽调复核',
+      subtitle: '动力电池 · 尽调复核阶段 · 6 屏协同 90 分钟',
+      layout: 'pipe',
+      cards: [
+        { icon: '🔋', name: '股权扫描', tag: '0min', detail: 'data:50 家股东名册 OCR + 分类入库。\n启源纳川 17.73% · 实控人方志刚 · 业务伙伴另外', color: '#00D4FF', pos: 0 },
+        { icon: '📊', name: '财务复核', tag: '0-30min', detail: 'research+data:23 份底稿审计。\n营收YoY 18% · 净利率 12% · 现金流/净利 0.95', color: '#F59E0B', pos: 1 },
+        { icon: '⚖️', name: '估值拆解', tag: '30-60min', detail: 'Claude Code 纵深：PE 4x / 8x / 12x 3 场景。\nPS / PB / DCF 三路径交叉验对。\n基准 MOIC = 0.32 (亏 68%)', color: '#A855F7', pos: 2 },
+        { icon: '📋', name: '风险矩阵', tag: '60-80min', detail: 'project:7+5 项风险矩阵。\n🔴 无控制权 / 灰 IPO 失败 / 灰 战略协同无制度保障', color: '#22C55E', pos: 3 },
+        { icon: '📄', name: '尽调意见排版', tag: '80-90min', detail: 'report:尽调意见 35 页 Word + 19 页 PPT + Wiki 同步。\n退出路径：港股 IPO 8.05(c) / 并购两条路', color: '#EC4899', pos: 4 }
       ]
     },
     'burst-case-jingneng': {
@@ -214,16 +226,16 @@
 
     // 11 演示 - 6 屏协同(原 trigger 已展示"6 屏协同",扩写每屏内容)
     'burst-demo-5': {
-      title: '6 屏协同 · 90 分钟投决全流程',
+      title: '6 屏协同 · 90 分钟尽调复核全流程',
       subtitle: 'main 调度 4 子 Agent · 实时同步进度',
       layout: 'pipe',
       cards: [
-        { icon: '🎯', name: '屏 1 main 总调度', tag: '00:00', detail: '您:"今晚投决启源芯"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。', color: '#00D4FF', pos: 0 },
-        { icon: '🕐', name: '屏 2 指令下达', tag: '00:02', detail: '4 Agent 接到任务 → 启动。\n显示启源芯项目背景 + 授权范围。', color: '#8FA1CC', pos: 1 },
-        { icon: '🔬', name: '屏 3 research 三路', tag: '00:05-30', detail: '行业研究 + 财务建模 + 估值 · 三路并行。\n输出:DCF 45 亿 · 可比 35-58 区间。', color: '#F59E0B', pos: 2 },
-        { icon: '🗃️', name: '屏 4 data 清洗', tag: '20:00-50:00', detail: '100 份材料 → OCR/转录 → 实体抽取 → Qdrant。\n入库 23,000 vectors · 186 实体。', color: '#A855F7', pos: 3 },
+        { icon: '🎯', name: '屏 1 main 总调度', tag: '00:00', detail: '您:"今晚出星恒电源尽调复核"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。', color: '#00D4FF', pos: 0 },
+        { icon: '🕐', name: '屏 2 指令下达', tag: '00:02', detail: '4 Agent 接到任务 → 启动。\n显示星恒电源 13.73% 收购背景 + 授权范围。', color: '#8FA1CC', pos: 1 },
+        { icon: '🔬', name: '屏 3 research 三路', tag: '00:05-30', detail: '行业扫描 + 财务建模 + 估值 · 三路并行。\n输出:DCF 基准 MOIC 0.32 · PE 4.3-12x 区间。', color: '#F59E0B', pos: 2 },
+        { icon: '🗃️', name: '屏 4 data 清洗', tag: '20:00-50:00', detail: '23 份底稿 → OCR/转录 → 实体抽取 → Qdrant。\n入库 5884 实体 · +98 新增。', color: '#A855F7', pos: 3 },
         { icon: '📋', name: '屏 5 project 台账', tag: '持续', detail: '项目台账实时更新 · 节点倒计时 · 风险灯。\n您随时看进度。', color: '#22C55E', pos: 4 },
-        { icon: '📄', name: '屏 6 report 出版', tag: '90:00', detail: '投决请示 67 页(Word)+ PPT 28 页 + PDF。\n国企公文规范 100% 符合。', color: '#EC4899', pos: 5 }
+        { icon: '📄', name: '屏 6 report 出版', tag: '90:00', detail: '尽调意见 35 页(Word)+ PPT 19 页 + PDF。\n国企公文规范 100% 符合。', color: '#EC4899', pos: 5 }
       ]
     },
 
@@ -339,7 +351,7 @@
     // ====== 方案 C: 4 个海报 Ken Burns 缩放动画 ======
     'burst-video-warroom': {
       title: '💹 投资作战室',
-      subtitle: '7 维度 WS 并行 · 30 秒得到启源芯估值区间',
+      subtitle: '7 维度 WS 并行 · 30 秒得到星恒电源估值区间',
       terminalSrc: '../assets/videos/war-room.html',
       layout: 'terminal'
     },
@@ -371,8 +383,8 @@
       layout: 'terminal'
     },
     'burst-video-qiyuan': {
-      title: '🏭 启源芯 · 投决现场',
-      subtitle: '5 路工作流汇聚·90 分钟生成完整投决材料',
+      title: '⚠️ 已下线 · 参见 burst-video-xingheng',
+      subtitle: '原启源芯·投决现场动画（6 屏日志）已下架，请参考星恒电源 14-demo',
       terminalSrc: '../assets/videos/qiyuan-investment.html',
       layout: 'terminal'
     },

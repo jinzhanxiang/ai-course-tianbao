@@ -409,14 +409,14 @@ function completeStage(id) {
 
 const LOGS = [
   // 阶段 0：主公发起
-  { cls: 'log-main', text: '[10:15:00] <span class="tag tag-main">主公</span> 发起任务：清洗 13 份启源芯尽调研报', delay: 0 },
+  { cls: 'log-main', text: '[10:15:00] <span class="tag tag-main">主公</span> 发起任务：清洗 13 份星恒电源 13.73% 收购尽调研报', delay: 0 },
   { cls: 'log-main', text: '[10:15:01] <span class="tag tag-main">MAIN</span> 分配 task-20260425-001 → data agent', delay: 400 },
   { cls: 'log-phase',text: '[10:15:02] <span class="tag tag-data">data</span> 输入扫描：inputs/research/*.pdf (13 files)', delay: 700 },
   { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 1000 },
 
   // Step 1: OCR
   { cls: 'log-phase',text: '[10:15:05] <span class="tag tag-step">STEP 1</span> OCR 解析启动（FunASR/PaddleOCR）', delay: 1400, action: () => activateStage(1) },
-  { cls: 'log-data', text: '[10:15:06] ⠋ 解析 PDF 第 1/13 份：启源芯动力尽调报告.pdf', delay: 1800 },
+  { cls: 'log-data', text: '[10:15:06] ⠋ 解析 PDF 第 1/13 份：星恒电源 13.73% 收购动力尽调报告.pdf', delay: 1800 },
   { cls: 'log-data', text: '[10:15:09] ✓ 第 1 份完成：89 页 → 文本流', delay: 2200 },
   { cls: 'log-data', text: '[10:15:13] ✓ 第 2 份完成：120 页 → 文本流', delay: 2600 },
   { cls: 'log-data', text: '[10:15:18] ✓ 第 3-13 份完成（11 份批量）', delay: 3000 },
@@ -426,7 +426,7 @@ const LOGS = [
   // Step 2: 实体识别
   { cls: 'log-phase',text: '[10:15:26] <span class="tag tag-step">STEP 2</span> 实体识别启动（spaCy NER）', delay: 4100, action: () => activateStage(2) },
   { cls: 'log-data', text: '[10:15:28] ⠋ 识别公司/人物/地点/产品 4 类实体', delay: 4500 },
-  { cls: 'log-data', text: '[10:15:32] ✓ 提取实体 79 个（含启源芯动力/天保控股等）', delay: 4900 },
+  { cls: 'log-data', text: '[10:15:32] ✓ 提取实体 79 个（含星恒电源 13.73% 收购动力/天保控股等）', delay: 4900 },
   { cls: 'log-ok',   text: '[10:15:35] ✓ STEP2 完成：79 实体', delay: 5300, action: () => completeStage(2) },
   { cls: 'log-sep',  text: '──────────────────────────────────────────────────', delay: 5600 },
 

@@ -31,7 +31,7 @@ window.COURSE_DATA = {
         '会议纪要 → 待办事项',
         '跨代理协调（research/data/report）'
       ],
-      case: '盈科创新资产管理 / 晶能光电 / 启源芯 等多个 PE 项目进度跟踪，main 调度 project 起草请示初稿。',
+      case: '盈科创新资产管理 / 晶能光电 / 星恒电源 等多个 PE 项目进度跟踪，main 调度 project 起草请示初稿。',
       path: '~/.openclaw/workspace-project/'
     },
     research: {
@@ -45,7 +45,7 @@ window.COURSE_DATA = {
         'Qdrant 三阶段检索 + KG 框架',
         '9 步质控链 + 蒙特卡洛模拟'
       ],
-      case: '启源芯项目：V3.0 自动出行业研究初稿；Claude Code 介入做敏感性分析（WACC ±2%）。',
+      case: '星恒电源项目：V3.0 自动出尽调复核初稿；Claude Code 介入做敏感性分析（PE 4x/8x/12x）。',
       path: '~/Documents/OpenClaw-Workspace-research/scripts/run_v3.sh'
     },
     data: {
@@ -59,7 +59,7 @@ window.COURSE_DATA = {
         'PostgreSQL + Qdrant 入库',
         '自动向量化（bge-m3）'
       ],
-      case: '启源芯 100 份研报清洗入库：人工 1 周 → data 2 小时，5786 实体入库。',
+      case: '星恒电源 23 份底稿清洗入库：人工 1 周 → data 2 小时，5786 实体入库。',
       path: '~/Documents/OpenClaw-Workspace-data/scripts/cleaning/'
     },
     report: {
@@ -73,7 +73,7 @@ window.COURSE_DATA = {
         'PDF 合并 + 目录生成',
         'XSD 验证门控'
       ],
-      case: '启源芯投决文档 1 小时定稿（原 8 小时手动排版）。',
+      case: '星恒电源尽调复核文档 1 小时定稿（原 8 小时手动排版）。',
       path: '~/.openclaw/workspace-report/'
     },
     claude: {
@@ -87,7 +87,7 @@ window.COURSE_DATA = {
         'DCF 蒙特卡洛 10000 次模拟',
         '行业回测 + 风险情景设计'
       ],
-      case: '2026-05-08 帮助 OpenClaw 切换 Kimi / Deepseek V4 Pro；启源芯 WACC 敏感性 ±2%。',
+      case: '2026-05-08 帮助 OpenClaw 切换 Kimi / Deepseek V4 Pro；星恒电源 PE 敏感性 ±28%。',
       path: '~/.claude/settings.json'
     },
     hermes: {
@@ -131,7 +131,7 @@ window.COURSE_DATA = {
     '【data 清洗】念数字：100 份研报 / 2 小时 / 5786 实体，全场震撼。',
     '【report】展示一份"1 小时出稿"的真实投决文档。',
     '【三智能体生态】⭐ 重点章：讲 5 个真实故事，让同事看到"系统是会自己活的"。',
-    '【实战案例】重点讲启源芯：5 个 Agent 90 分钟从立项到投决。',
+    '【实战案例】重点讲星恒电源 13.73% 收购：5 个 Agent 90 分钟从立项到尽调复核。',
     '【纵横分析法】⭐ 重点章：讲"纵"（敏感性）+ "横"（7 维度），强调 Claude Code。',
     '【现场演示】6 屏协同作战。这是压轴环节，建议提前录像预案。',
     '【Q&A】准备好 5 个犀利问题，让 AI 现身说法。'
