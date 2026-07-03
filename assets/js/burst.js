@@ -455,7 +455,7 @@
     const safeMarginPct = (cardW / 2 / stageW) * 100;  // 第一张卡 left 必须 >= 此值
     const safeTopPct = (cardH / 2 / stageH) * 100;
     switch (layout) {
-      case 'threecol':
+      case 'threecol': {
         // 三栏 - 首尾卡位置必须考虑卡片宽度，避免出视口
         const tc1 = Math.max(safeMarginPct + 2, 12);
         const tc3 = Math.min(100 - safeMarginPct - 2, 88);
@@ -464,7 +464,8 @@
         if (count >= 3) coords.push({ left: `${tc3}%`, top: '50%' });
         for (let i = 3; i < count; i++) coords.push({ left: '50%', top: `${15 + i*18}%` });
         break;
-      case 'vert':
+      }
+      case 'vert': {
         // 纵向 - 用像素位置定位, step 用所需间距（不超出 cardContainer）
         const vertCardH = Math.max(cardH, 280);
         const vertCardContainerH = (opts && opts.cardContainerH) || 600;
@@ -477,7 +478,8 @@
           coords.push({ left: '50%', top: `${vertStartY + i * vertStepPx}px` });
         }
         break;
-      case 'pipe':
+      }
+      case 'pipe': {
         // 横向流水线 - 动态算 margin 防溢出
         // cardW/stageW → safeMarginPct；多卡则压缩间距
         const pipeMargin = count <= 3 ? Math.max(safeMarginPct + 1, 10)
@@ -491,7 +493,8 @@
           coords.push({ left: `${left}%`, top: '50%' });
         }
         break;
-      case 'twocol':
+      }
+      case 'twocol': {
         // 两列(左右并排) - 防溢出
         for (let i = 0; i < count; i++) {
           if (count === 1) {
@@ -504,7 +507,8 @@
           }
         }
         break;
-      case '5star':
+      }
+      case '5star': {
         // 五芒星布局(中心 + 四围,按索引分配,不受 pos 字段影响)
         // 第 1 张居中,其余 4 张按四角分布
         if (cards && cards.length > 0) {
@@ -530,8 +534,10 @@
           });
         }
         break;
-      case '7star':
-      case 'pentagon':
+      }
+      case '7star': {
+      }
+      case 'pentagon': {
         // 中心圆 + 周围辐射(中心 + count-1 周围)
         // 中心点
         coords.push({ left: '50%', top: '50%', center: true });
@@ -544,7 +550,8 @@
           coords.push({ left: `${left}%`, top: `${top}%` });
         }
         break;
-      case 'grid':
+      }
+      case 'grid': {
         // CSS Grid 布局 - 上下两行卡片不重叠，映射到全屏幕布
         const cols = count <= 4 ? Math.min(count, 3) : 3;
         const rows = Math.ceil(count / cols);
@@ -569,7 +576,8 @@
           });
         }
         break;
-      case 'cascade':
+      }
+      case 'cascade': {
         // 垂直瀑布 - 奇偶列分别计算纵向位置(像素), step 保证不重叠
         const casCardH = Math.max(cardH, 260);
         const casCardContainerH = (opts && opts.cardContainerH) || 600;
@@ -598,7 +606,8 @@
         });
         casCoordsArr.forEach(c => coords.push(c));
         break;
-      case 'fan':
+      }
+      case 'fan': {
         // 折扇(中心 + 两侧展开) - 增大半径防止重叠
         coords.push({ left: '50%', top: '50%', center: true });
         // 半径随 count 增大
@@ -612,7 +621,8 @@
           });
         }
         break;
-      case 'flow':
+      }
+      case 'flow': {
         // 流程图
         for (let i = 0; i < count; i++) {
           const row = Math.floor(i / 3);
@@ -623,6 +633,7 @@
           });
         }
         break;
+      }
       default:
         // 默认:横向
         for (let i = 0; i < count; i++) {
