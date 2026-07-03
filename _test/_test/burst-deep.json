@@ -1,0 +1,154 @@
+[
+  {
+    "ch": "02-revolution",
+    "burst": "burst-video-neural",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 0,
+      "html": "",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "02-revolution",
+    "burst": "burst-video-maindash",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 0,
+      "html": "",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "02-revolution",
+    "burst": "burst-revolution-team",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 2,
+      "html": "\n      <div class=\"burst-header\">\n        <div class=\"burst-title\">变革 + 团队 · 三层架构</div>\n        <div class=\"burst-subtitle\">变革思考 × 数字员工 × 资产沉淀 — 一个都不能少</div>\n      </div>\n      <button class=\"burst-close\" type=\"button\">✕ 关闭</button>\n    ",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "14-demo",
+    "burst": "burst-demo-5",
+    "info": {
+      "found": true,
+      "display": "flex",
+      "visibility": "visible",
+      "opacity": "1",
+      "class": "burst-stage show",
+      "children": 3,
+      "html": "\n      <div class=\"burst-header\">\n        <div class=\"burst-title\">6 屏协同 · 90 分钟尽调复核全流程</div>\n        <div class=\"burst-subtitle\">main 调度 4 子 Agent · 实时同步进度</div>\n      </div>\n      <button class=\"burst-close\" type=\"button\">✕ 关闭</button>\n    <div class=\"burst-cards\" data-layout=\"pipe\" style=\"min-height: 600px;\"><div class=\"burst-card\" data-i=\"0\" style=\"--bc-color: #00D4FF; animation-delay: 200ms;\">\n        <span class=\"bc-icon\">🎯</span>\n        <div class=\"bc-name\" style=\"color:#00D4FF\">屏 1 mai",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-main",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 0,
+      "html": "",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-5plus2plus1",
+    "info": {
+      "found": true,
+      "display": "flex",
+      "visibility": "visible",
+      "opacity": "1",
+      "class": "burst-stage show",
+      "children": 3,
+      "html": "\n      <div class=\"burst-header\">\n        <div class=\"burst-title\">5 + 2 + 1 体系架构</div>\n        <div class=\"burst-subtitle\">5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产</div>\n      </div>\n      <button class=\"burst-close\" type=\"button\">✕ 关闭</button>\n    <div class=\"burst-cards\" data-layout=\"threecol\" style=\"min-height: 600px;\"><div class=\"burst-card\" data-i=\"0\" style=\"--bc-color: #00D4FF; animation-delay: 200ms;\">\n        <span class=\"bc-icon\">⚙️</span>\n        <div class=\"bc-name\" style=\"color:#00D4FF\">5",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-1platform",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 0,
+      "html": "",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-case-xingheng",
+    "info": {
+      "found": true,
+      "display": "none",
+      "visibility": "visible",
+      "opacity": "0",
+      "class": "burst-stage",
+      "children": 0,
+      "html": "",
+      "has_iframe": false,
+      "iframe_src": "",
+      "has_video": false,
+      "video_src": "",
+      "has_img": false,
+      "img_src": ""
+    }
+  }
+]

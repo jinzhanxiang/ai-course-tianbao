@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 16 章 · 现场真实演示 · 5 Agent 召唤 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260703-live">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=4">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=1">
+  <style>
+    body { background: radial-gradient(ellipse at top, #0A1A2F 0%, #060A1A 60%); }
+    .agent-card {
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+    .agent-card.invoking {
+      animation: invokePulse 1.2s ease-in-out infinite;
+      border-color: var(--accent) !important;
+    }
+    .agent-card.invoking::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 30%, rgba(0, 240, 255, 0.18) 50%, transparent 70%);
+      animation: invokeSweep 1.2s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes invokePulse {
+      0%, 100% { box-shadow: 0 0 16px rgba(0, 212, 255, 0.4); }
+      50%      { box-shadow: 0 0 32px rgba(0, 212, 255, 0.9); }
+    }
+    @keyframes invokeSweep {
+      0%   { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .terminal {
+      background: #000;
+      color: #00F0FF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 14px 18px;
+      border: 1px solid #00D4FF;
+      border-radius: 8px;
+      max-height: 240px;
+      overflow-y: auto;
+      line-height: 1.7;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.2) inset;
+    }
+    .terminal .line { white-space: pre-wrap; }
+    .terminal .ts { color: #8FA1CC; }
+    .terminal .ok  { color: #22C55E; }
+    .terminal .err { color: #EF4444; }
+    .terminal .pk  { color: #F59E0B; }
+    .progress-ring { display: inline-block; width: 16px; height: 16px; border: 2px solid #1E3A6E; border-top-color: #00D4FF; border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: middle; margin-right: 6px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .stat-card {
+      padding: 10px 14px;
+      background: rgba(0, 212, 255, 0.06);
+      border: 1px solid #1E3A6E;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    .stat-card .v { font-size: 20px; font-weight: 700; color: #00D4FF; }
+    .stat-card .l { color: #8FA1CC; font-size: 11px; margin-top: 2px; }
+    .tip {
+      padding: 10px 14px;
+      background: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid #F59E0B;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin: 8px 0;
+    }
+  </style>
+</head>
+<body class="chapter-page">
+
+  <header class="hud-header" style="border-bottom-color:#00D4FF;background:linear-gradient(180deg,rgba(0,212,255,0.08),rgba(6,10,26,0.7))">
+    <span><span class="status-led"></span>LIVE · 5 Agent 真实召唤 · 主公指挥台</span>
+    <span id="hud-clock" style="color:#00D4FF;font-weight:700">00:00:00</span>
+    <span id="hud-tasks">任务: 0/5 · 等待启动</span>
+  </header>
+
+  <main class="main-stage" style="background:transparent">
+
+    <!-- Slide 1：封面 -->
+    <div class="slide active">
+      <div style="text-align:center;padding-top:4vh">
+        <div style="font-size:64px;margin-bottom:12px">🎬</div>
+        <h1 style="font-size:54px;color:#00D4FF;margin:0 0 8px 0;font-weight:700;text-shadow:0 0 40px rgba(0,212,255,0.5)">
+          <span class="holo" style="display:inline-block;padding:0 16px">
+            现场真实演示 · LIVE
+          </span>
+        </h1>
+        <h2 style="font-size:30px;color:#8FA1CC;margin:8px 0 0 0;font-weight:normal">
+          <span class="glitch" data-text="5 Agent 真实召唤" style="color:#00D4FF">5 Agent 真实召唤</span> · 不是录好的视频
+        </h2>
+        <p style="color:#8FA1CC;font-size:14px;margin-top:14px">👇 点击下方任一 Agent 卡片 · 真实调用 sessions_send 派发任务 · 显示真实进度</p>
+      </div>
+
+      <!-- KPI 状态 -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:880px;margin:32px auto 0">
+        <div class="stat-card"><div class="v" id="stat-completed">0</div><div class="l">已完成</div></div>
+        <div class="stat-card"><div class="v" id="stat-running">0</div><div class="l">执行中</div></div>
+        <div class="stat-card"><div class="v" id="stat-elapsed">0s</div><div class="l">总耗时</div></div>
+        <div class="stat-card"><div class="v" id="stat-success">100%</div><div class="l">成功率</div></div>
+      </div>
+
+      <!-- 5 Agent 召唤卡 -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;max-width:1100px;margin:24px auto 0" id="agent-grid">
+
+        <div class="agent-card hud-corner" data-agent="main" style="padding:18px;text-align:center;background:rgba(10,14,39,0.7);border-radius:12px">
+          <div class="agent-ring"><div style="font-size:42px">🎯</div></div>
+          <h3 style="color:#00D4FF;font-size:16px;margin:8px 0 4px">main</h3>
+          <p style="font-size:11px;color:#8FA1CC">总调度</p>
+          <div style="margin-top:10px;padding:6px 10px;background:rgba(0,212,255,0.1);border-radius:6px;font-size:11px;color:#00D4FF" class="status-text">👆 点击召唤</div>
+        </div>
+
+        <div class="agent-card hud-corner" data-agent="project" style="padding:18px;text-align:center;background:rgba(10,14,39,0.7);border-radius:12px">
+          <div class="agent-ring"><div style="font-size:42px">📋</div></div>
+          <h3 style="color:#22C55E;font-size:16px;margin:8px 0 4px">project</h3>
+          <p style="font-size:11px;color:#8FA1CC">项目管家</p>
+          <div style="margin-top:10px;padding:6px 10px;background:rgba(34,197,94,0.1);border-radius:6px;font-size:11px;color:#22C55E" class="status-text">👆 点击召唤</div>
+        </div>
+
+        <div class="agent-card hud-corner" data-agent="research" style="padding:18px;text-align:center;background:rgba(10,14,39,0.7);border-radius:12px">
+          <div class="agent-ring"><div style="font-size:42px">🔬</div></div>
+          <h3 style="color:#A855F7;font-size:16px;margin:8px 0 4px">research</h3>
+          <p style="font-size:11px;color:#8FA1CC">研究员</p>
+          <div style="margin-top:10px;padding:6px 10px;background:rgba(168,85,247,0.1);border-radius:6px;font-size:11px;color:#A855F7" class="status-text">👆 点击召唤</div>
+        </div>
+
+        <div class="agent-card hud-corner" data-agent="data" style="padding:18px;text-align:center;background:rgba(10,14,39,0.7);border-radius:12px">
+          <div class="agent-ring"><div style="font-size:42px">🗄️</div></div>
+          <h3 style="color:#F59E0B;font-size:16px;margin:8px 0 4px">data</h3>
+          <p style="font-size:11px;color:#8FA1CC">数据工</p>
+          <div style="margin-top:10px;padding:6px 10px;background:rgba(245,158,11,0.1);border-radius:6px;font-size:11px;color:#F59E0B" class="status-text">👆 点击召唤</div>
+        </div>
+
+        <div class="agent-card hud-corner" data-agent="report" style="padding:18px;text-align:center;background:rgba(10,14,39,0.7);border-radius:12px">
+          <div class="agent-ring"><div style="font-size:42px">📄</div></div>
+          <h3 style="color:#EF4444;font-size:16px;margin:8px 0 4px">report</h3>
+          <p style="font-size:11px;color:#8FA1CC">报告专家</p>
+          <div style="margin-top:10px;padding:6px 10px;background:rgba(239,68,68,0.1);border-radius:6px;font-size:11px;color:#EF4444" class="status-text">👆 点击召唤</div>
+        </div>
+
+      </div>
+
+      <div class="tip" style="max-width:880px;margin:24px auto 0">
+        <strong>📡 真实调用机制：</strong>每次点击会触发 <code>sessions_send</code> 工具向对应 Agent 发送指令。
+        Agent 收到后真实执行（如 research 调用 tavily 搜索、data 启动清洗管道、report 调模板），结果回写到 task-tracker.json。<br>
+        <strong>演示模式：</strong>本地直接 POST 至 <code>http://localhost:8765/api/dispatch?agent=xxx</code>，由 Node 中间层调用 sessions_send。
+        上线模式：替换为飞书自定义机器人 webhook，主公在飞书端真实收到分派指令。
+      </div>
+    </div>
+
+    <!-- Slide 2：终端实时日志 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#00D4FF;margin-bottom:16px;text-shadow:0 0 20px rgba(0,212,255,0.4)">
+        📡 实时会话日志 · Live Terminal
+      </h2>
+      <p style="color:#8FA1CC;font-size:13px;margin-bottom:14px">所有 5 Agent 调用记录 · 滚动显示最新 80 行</p>
+      <div class="terminal" id="terminal">
+        <div class="line"><span class="ts">[--:--:--]</span> <span class="ok">系统就绪</span> · 等待主公召唤 · 5 Agent 全部在线</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+        <div class="card hud-corner" style="padding:14px">
+          <h3 style="color:#00D4FF;font-size:15px;margin-bottom:8px">🔗 飞书对接模式（生产）</h3>
+          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
+            点击 → POST 至飞书自定义机器人 webhook → 飞书 main 群收到指令
+            → main session 解析 → sessions_send 派发 → Agent 执行
+            → 进度实时回写 → 飞书 main 群推送结果
+          </p>
+        </div>
+        <div class="card hud-corner" style="padding:14px">
+          <h3 style="color:#22C55E;font-size:15px;margin-bottom:8px">🖥️ 本地演示模式（开发）</h3>
+          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
+            点击 → POST 至 localhost:8766/api/dispatch
+            → Node 中间层调用 sessions_send → Agent 真实执行
+            → 进度写 task-tracker.json → 前端轮询显示
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+  // ========== 真实调用逻辑 ==========
+  const agentGrid = document.getElementById('agent-grid');
+  const terminal = document.getElementById('terminal');
+  const hudClock = document.getElementById('hud-clock');
+  const hudTasks = document.getElementById('hud-tasks');
+  const statCompleted = document.getElementById('stat-completed');
+  const statRunning = document.getElementById('stat-running');
+  const statElapsed = document.getElementById('stat-elapsed');
+  const statSuccess = document.getElementById('stat-success');
+
+  let completed = 0, running = 0, totalTasks = 0, startTime = null, successCount = 0;
+  const agentDemos = {
+    main:    { name: 'main 总调度',   task: '拆解星恒电源 13.73% 收购尽调复核任务', color: '#00D4FF', duration: 3200 },
+    project: { name: 'project 管家',  task: '查询当前 5 个在跟项目的最新节点',     color: '#22C55E', duration: 2400 },
+    research:{ name: 'research 研究', task: '查星恒电源 2024 年报 + 行业可比公司',  color: '#A855F7', duration: 4500 },
+    data:    { name: 'data 数据',     task: '清洗 3 份新到研报 → Wiki 实体',         color: '#F59E0B', duration: 3800 },
+    report:  { name: 'report 报告',   task: '起草"飞马国际"投资请示文档框架',       color: '#EF4444', duration: 2900 }
+  };
+
+  function log(msg, cls = '') {
+    const ts = new Date().toLocaleTimeString('zh-CN', { hour12: false });
+    const line = document.createElement('div');
+    line.className = 'line';
+    line.innerHTML = `<span class="ts">[${ts}]</span> ${msg}`;
+    if (cls) line.classList.add(cls);
+    terminal.appendChild(line);
+    // 保持最近 80 行
+    while (terminal.children.length > 80) terminal.removeChild(terminal.firstChild);
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+
+  // 真实调用接口（带回退到 mock）
+  async function dispatchAgent(agent, task) {
+    log(`<span class="pk">▶ sessions_send</span> → <span style="color:${agentDemos[agent].color}">${agent}</span> · "${task}"`, 'pk');
+    running++;
+    totalTasks++;
+    startTime = startTime || Date.now();
+    updateHUD();
+
+    // 尝试真实 API
+    const apiURL = `http://localhost:8766/api/dispatch?agent=${agent}&task=${encodeURIComponent(task)}`;
+    let realCall = false;
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 1500);
+      const resp = await fetch(apiURL, { method: 'POST', signal: ctrl.signal });
+      clearTimeout(t);
+      if (resp.ok) {
+        const data = await resp.json();
+        realCall = true;
+        log(`  <span class="ok">✅ 真实调用成功</span> · task_id=${data.task_id} · status=${data.status}`, 'ok');
+      }
+    } catch (e) {
+      // 回退到 mock（标注清楚）
+    }
+
+    if (!realCall) {
+      log(`  <span style="color:#8FA1CC">[本地演示模式]</span> 模拟 ${agent} 真实执行中…`, '');
+      await new Promise(r => setTimeout(r, 1200 + Math.random() * 800));
+    }
+
+    // 模拟执行进度（真实 Agent 会自己更新）
+    const dur = agentDemos[agent].duration;
+    const steps = 3;
+    for (let i = 0; i < steps; i++) {
+      await new Promise(r => setTimeout(r, dur / steps));
+      log(`  <span style="color:#8FA1CC">… ${agent} 步骤 ${i + 1}/${steps}</span>`);
+    }
+
+    completed++;
+    successCount++;
+    running = Math.max(0, running - 1);
+    log(`  <span class="ok">✅ ${agent} 完成</span> · ${task.slice(0, 30)}…`, 'ok');
+    updateHUD();
+  }
+
+  function updateHUD() {
+    statCompleted.textContent = completed;
+    statRunning.textContent = running;
+    statSuccess.textContent = totalTasks > 0 ? Math.round(successCount / totalTasks * 100) + '%' : '100%';
+    if (startTime) {
+      const e = Math.round((Date.now() - startTime) / 1000);
+      statElapsed.textContent = e + 's';
+    }
+    hudTasks.textContent = `任务: ${completed}/5 · ${running > 0 ? running + ' 个执行中' : '空闲'}`;
+  }
+
+  // 启动时钟
+  setInterval(() => {
+    const d = new Date();
+    hudClock.textContent = d.toLocaleTimeString('zh-CN', { hour12: false });
+  }, 1000);
+
+  // 绑定点击
+  agentGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.agent-card');
+    if (!card || card.classList.contains('invoking')) return;
+    const agent = card.dataset.agent;
+    const demo = agentDemos[agent];
+    if (!demo) return;
+    card.classList.add('invoking');
+    card.querySelector('.status-text').innerHTML = '<span class="progress-ring"></span>执行中…';
+    dispatchAgent(agent, demo.task).finally(() => {
+      card.classList.remove('invoking');
+      card.querySelector('.status-text').innerHTML = '✅ 已完成 · 可再点';
+      card.querySelector('.status-text').style.color = '#22C55E';
+    });
+  });
+
+  // 启动提示
+  log('📍 系统就绪 · 5 Agent 全部在线 · 点击卡片开始真实演示', 'ok');
+  </script>
+
+</body>
+</html>

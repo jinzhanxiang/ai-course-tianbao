@@ -1,0 +1,59 @@
+[
+  {
+    "ch": "02-revolution",
+    "burst": "burst-video-neural",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "02-revolution",
+    "burst": "burst-video-maindash",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-main",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-1platform",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-5plus2plus1",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "01-opening",
+    "burst": "burst-case-xingheng",
+    "ok": false,
+    "reason": "trigger not visible"
+  },
+  {
+    "ch": "04-project",
+    "burst": "burst-project-7",
+    "ok": false,
+    "info": {
+      "class": "burst-stage show",
+      "display": "flex",
+      "opacity": "1",
+      "children": 3,
+      "hasIframe": false,
+      "iframeSrc": "",
+      "iframeReadyState": "no-iframe",
+      "iframeH": 0
+    }
+  },
+  {
+    "ch": "04-project",
+    "burst": "burst-case-xingheng",
+    "ok": false,
+    "reason": "trigger not visible"
+  }
+]

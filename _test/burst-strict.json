@@ -1,0 +1,1605 @@
+{
+  "00-cover": {
+    "error": "Page.goto: Timeout 25000ms exceeded.\nCall log:\n  - navigating to \"https://jinzhanxiang.github.io/ai-"
+  },
+  "01-opening": {
+    "n_triggers": 12,
+    "tested": [
+      {
+        "burst": "burst-5plus2plus1",
+        "trigger_text": "7\n          数字员工在岗",
+        "ok": true,
+        "visible_count": 9,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 + 2 + 1 体系架构\n5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产\n✕ 关闭\n⚙️\n5 大 Agent\n生产单元\nmain + project + research +"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 524,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 + 2 + 1 体系架构\n5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 484,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 + 2 + 1 体系架构"
+          }
+        ]
+      },
+      {
+        "burst": "burst-1platform",
+        "trigger_text": "5,786\n          知识实体沉淀",
+        "ok": true,
+        "visible_count": 4,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "90min\n          一份尽调报告",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-demo-5",
+        "trigger_text": "×5\n          投研效率提升",
+        "ok": true,
+        "visible_count": 8,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-main",
+        "trigger_text": "💼\n          管理者视角\n          \n          ",
+        "ok": true,
+        "visible_count": 8,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-research-7",
+        "trigger_text": "📈\n          投资岗视角\n          \n          ",
+        "ok": true,
+        "visible_count": 9,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-hr-scenarios",
+        "trigger_text": "👥\n          人力岗视角\n          \n          ",
+        "ok": true,
+        "visible_count": 10,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-it-scenarios",
+        "trigger_text": "💻\n          IT/工程岗视角\n          \n       ",
+        "ok": true,
+        "visible_count": 12,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-revolution-team",
+        "trigger_text": "PART 1 · 看懂\n          变革 + 趋势\n          ",
+        "ok": true,
+        "visible_count": 11,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-project-7",
+        "trigger_text": "PART 2 · 拆解\n          5 大 Agent\n        ",
+        "ok": true,
+        "visible_count": 11,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-qiyuanxin",
+        "trigger_text": "PART 3 · 实战\n          案例 + 演示\n          ",
+        "ok": true,
+        "visible_count": 12,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "02-revolution": {
+    "n_triggers": 3,
+    "tested": [
+      {
+        "burst": "burst-revolution-team",
+        "trigger_text": "AI Agent 时代",
+        "ok": true,
+        "visible_count": 1,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-video-neural",
+        "trigger_text": "这里",
+        "ok": true,
+        "visible_count": 2,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-video-maindash",
+        "trigger_text": "main 指挥中心",
+        "ok": true,
+        "visible_count": 3,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "02-revolution-architecture": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-arch-overview",
+        "trigger_text": "🏛️ 5+2+1 体系总览",
+        "ok": true,
+        "visible_count": 1,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "03-main": {
+    "n_triggers": 5,
+    "tested": [
+      {
+        "burst": "burst-main",
+        "trigger_text": "Agent 协同",
+        "ok": true,
+        "visible_count": 11,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "main · 总调度 5 大动作\n接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环\n✕ 关闭\n📥\n1. 接收\n意图解析\n您发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 515,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "main · 总调度 5 大动作\n接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 475,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "main · 总调度 5 大动作"
+          }
+        ]
+      }
+    ]
+  },
+  "04-project": {
+    "n_triggers": 8,
+    "tested": [
+      {
+        "burst": "burst-project-7",
+        "trigger_text": "7",
+        "ok": true,
+        "visible_count": 13,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "项目生命周期 · 7 阶段\n从立项到投后,每阶段的关键产出物\n✕ 关闭\n1️⃣\n立项\n需求识别\n业务部门提需求 → 投资部初筛 → 内部立项会。\n产出:立项申请单 + 初步投资逻辑\n2️⃣\n调研\n宏观"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 482,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "项目生命周期 · 7 阶段\n从立项到投后,每阶段的关键产出物"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 442,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "项目生命周期 · 7 阶段"
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-xingheng-13",
+        "trigger_text": "🔋\n          星恒电源 (13.73% 收购)\n          ",
+        "ok": true,
+        "visible_count": 4,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "🔋\n          星恒电源\n          固态锂电 · 尽调阶段\n",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-jingneng",
+        "trigger_text": "💡\n          晶能光电\n          LED 芯片 · 储备项",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-yingke",
+        "trigger_text": "🔄\n          盈科汇金\n          GP→LP 双线管理\n ",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-zhongzihuan",
+        "trigger_text": "🌱\n          中资环绿色循环\n          5000 万 · ",
+        "ok": true,
+        "visible_count": 8,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "05-research": {
+    "n_triggers": 0
+  },
+  "06-data": {
+    "n_triggers": 0
+  },
+  "07-report": {
+    "n_triggers": 10,
+    "tested": [
+      {
+        "burst": "burst-report-3",
+        "trigger_text": "国企公文规范",
+        "ok": true,
+        "visible_count": 9,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "报告排版 · 3 大管线\nWord / PDF / PPT 三端输出\n✕ 关闭\n📝\nWord 管线\n公文级\n可研报告 / 立项请示 / 投资协议。\n模板:国企公文规范(方正小标宋 + 仿宋)+ 自动"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 440,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "报告排版 · 3 大管线\nWord / PDF / PPT 三端输出"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 400,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "报告排版 · 3 大管线"
+          }
+        ]
+      }
+    ]
+  },
+  "08-ecosystem": {
+    "n_triggers": 2,
+    "tested": [
+      {
+        "burst": "burst-ecosystem",
+        "trigger_text": "共同进化",
+        "ok": true,
+        "visible_count": 10,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5+2+1+1 生态全景\n5 Agent + 2 助手 + 1 中台 + 1 知识体系\n✕ 关闭\n⚙️\n5 Agent\n生产\nmain/project/research/data/report\n🧰\n"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 408,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5+2+1+1 生态全景\n5 Agent + 2 助手 + 1 中台 + 1 知识体系"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 368,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5+2+1+1 生态全景"
+          }
+        ]
+      }
+    ]
+  },
+  "09-case": {
+    "n_triggers": 6,
+    "tested": [
+      {
+        "burst": "burst-case-5",
+        "trigger_text": "第 09 章 · 实战案例",
+        "ok": true,
+        "visible_count": 11,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 个实战案例 · 成效数据\n从被动响应到主动产出的真实转型\n✕ 关闭\n🏭\n飞马国际\n并购尽调\n3 周尽调 → 5 Agent 并行 4 天完成。\n原 200 页报告 → AI 自动生成 + 人工复"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 527,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 个实战案例 · 成效数据\n从被动响应到主动产出的真实转型"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 487,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "5 个实战案例 · 成效数据"
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-xingheng-13",
+        "trigger_text": "🔋\n星恒电源 (13.73% 收购)\n\n动力电池 · 尽调复核阶段\n90 分钟",
+        "ok": true,
+        "visible_count": 4,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "🔋\n星恒电源\n\n固态锂电 · 尽调阶段\ndata 清洗 100 份研报\n→ 实",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-jingneng",
+        "trigger_text": "💡\n晶能光电\n\nLED 芯片 · 储备项目\nresearch V3 行业研究\n",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-yingke",
+        "trigger_text": "💼\n盈科系项目\n\n投资主体优化 · GP→LP\nproject 全周期管理\n→",
+        "ok": true,
+        "visible_count": 6,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      },
+      {
+        "burst": "burst-case-zhongzihuan",
+        "trigger_text": "♻️\n中资环绿色循环\n\n5000 万投资 · 待立项\n风险点全维度排查\n→ 立项",
+        "ok": true,
+        "visible_count": 8,
+        "visible": [
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          },
+          {
+            "cls": "fx-burst-canvas",
+            "tag": "CANVAS",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": ""
+          }
+        ]
+      }
+    ]
+  },
+  "10-methodology": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-method-8",
+        "trigger_text": "纵横分析法",
+        "ok": true,
+        "visible_count": 13,
+        "visible": [
+          {
+            "cls": "burst-stage scaled show",
+            "tag": "DIV",
+            "w": 1566,
+            "h": 881,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "纵横分析法 · 8 维\n横切面 + 纵深线 + 6 子维交叉验证\n✕ 关闭\n↔️\n横线\n横向比较\n同期可比公司 / 同期类似项目 / 同期行业平均。\n问题:相对位置在哪?\n↕️\n纵线\n历史趋势\n过去 "
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 324,
+            "h": 78,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "纵横分析法 · 8 维\n横切面 + 纵深线 + 6 子维交叉验证"
+          },
+          {
+            "cls": "burst-cards",
+            "tag": "DIV",
+            "w": 1142,
+            "h": 934,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "↔️\n横线\n横向比较\n同期可比公司 / 同期类似项目 / 同期行业平均。\n问题:相对位置在哪?\n↕️\n纵线\n历史趋势\n过去 3-5 年财务 / 业务 / 估值变化。\n问题:成长性如何?\n🏭\n行业\n子"
+          }
+        ]
+      }
+    ]
+  },
+  "11-quality": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-quality-1",
+        "trigger_text": "🛡️ 智能体质量提升",
+        "ok": true,
+        "visible_count": 12,
+        "visible": [
+          {
+            "cls": "burst-stage scaled show",
+            "tag": "DIV",
+            "w": 1566,
+            "h": 881,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🛡️ 智能体质量提升 · 全章速览\n三层防御 · 60% → 90%+ · 主公实战方法论\n✕ 关闭\n🎯\n1. 单 Agent 天花板\n60-70%\n认知偏差 + 知识盲区 + 单点脆弱。3 大根"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 515,
+            "h": 78,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🛡️ 智能体质量提升 · 全章速览\n三层防御 · 60% → 90%+ · 主公实战方法论"
+          },
+          {
+            "cls": "burst-cards",
+            "tag": "DIV",
+            "w": 1142,
+            "h": 934,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🎯\n1. 单 Agent 天花板\n60-70%\n认知偏差 + 知识盲区 + 单点脆弱。3 大根因导致单 Agent 质量上限。\n🛡️\n2. 三层防御全景\n体系图\nL1 MoA 提智力 · L2 辩"
+          }
+        ]
+      }
+    ]
+  },
+  "12-train": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-train-1",
+        "trigger_text": "🛠️ 如何训练智能体",
+        "ok": true,
+        "visible_count": 13,
+        "visible": [
+          {
+            "cls": "burst-stage scaled show",
+            "tag": "DIV",
+            "w": 1566,
+            "h": 881,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🛠️ 如何训练智能体 · 全章速览\n训练 vs 编排 · Hermes 案例 · 自我进化\n✕ 关闭\n⚖️\n1. 训练 vs 编排\n90/10\n90% 任务用编排（工具+提示词）即可。10% 才需要"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 515,
+            "h": 78,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🛠️ 如何训练智能体 · 全章速览\n训练 vs 编排 · Hermes 案例 · 自我进化"
+          },
+          {
+            "cls": "burst-cards",
+            "tag": "DIV",
+            "w": 1142,
+            "h": 934,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "⚖️\n1. 训练 vs 编排\n90/10\n90% 任务用编排（工具+提示词）即可。10% 才需要微调。\n🧪\n2. 4 大训练框架\n工具箱\nReAct · Reflexion · AutoGPT · "
+          }
+        ]
+      }
+    ]
+  },
+  "13-workflow": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-workflow-1",
+        "trigger_text": "🌱 个人如何打造 Workflow",
+        "ok": true,
+        "visible_count": 13,
+        "visible": [
+          {
+            "cls": "burst-stage scaled show",
+            "tag": "DIV",
+            "w": 1566,
+            "h": 881,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🌱 个人如何打造 Workflow · 全章速览\n从零基础到团队队长 · 5 阶段升级路径\n✕ 关闭\n🪜\n1. 5 阶段路径\n升级图\nL1 零基础 → L2 用户 → L3 制作者 → L4 训练"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 655,
+            "h": 78,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🌱 个人如何打造 Workflow · 全章速览\n从零基础到团队队长 · 5 阶段升级路径"
+          },
+          {
+            "cls": "burst-cards",
+            "tag": "DIV",
+            "w": 1142,
+            "h": 934,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "🪜\n1. 5 阶段路径\n升级图\nL1 零基础 → L2 用户 → L3 制作者 → L4 训练官 → L5 架构师。\n🛠️\n2. 5 工具栈对比\n选型\nn8n / Dify / Langflow "
+          }
+        ]
+      }
+    ]
+  },
+  "14-demo": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-demo-5",
+        "trigger_text": "现场演示 · Live",
+        "ok": true,
+        "visible_count": 12,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 屏协同 · 90 分钟尽调复核全流程\nmain 调度 4 子 Agent · 实时同步进度\n✕ 关闭\n🎯\n屏 1 main 总调度\n00:00\n您:\"今晚出星恒电源尽调复核\"。\nmain 解析 "
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 727,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 屏协同 · 90 分钟尽调复核全流程\nmain 调度 4 子 Agent · 实时同步进度"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 687,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 屏协同 · 90 分钟尽调复核全流程"
+          }
+        ]
+      }
+    ]
+  },
+  "15-qa": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-qa-6",
+        "trigger_text": "Q&A",
+        "ok": true,
+        "visible_count": 12,
+        "visible": [
+          {
+            "cls": "burst-stage show",
+            "tag": "DIV",
+            "w": 1920,
+            "h": 1080,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 大预判问答\n团队最关心的 6 个问题 + 我们的回答\n✕ 关闭\n🎯\nQ1 准确率\nAI 写的研报能信吗?\nAI 出初稿 + 人工复核。准确率 95%+,比新人第一稿高。\n关键:人工 review"
+          },
+          {
+            "cls": "burst-header",
+            "tag": "DIV",
+            "w": 368,
+            "h": 96,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 大预判问答\n团队最关心的 6 个问题 + 我们的回答"
+          },
+          {
+            "cls": "burst-title",
+            "tag": "DIV",
+            "w": 328,
+            "h": 59,
+            "has_video": false,
+            "video_src": "",
+            "has_iframe": false,
+            "iframe_src": "",
+            "has_img": false,
+            "text": "6 大预判问答"
+          }
+        ]
+      }
+    ]
+  }
+}

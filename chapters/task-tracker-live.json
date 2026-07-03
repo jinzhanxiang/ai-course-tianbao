@@ -1,0 +1,44 @@
+[
+  {
+    "task_id": "live-1783093003138-1",
+    "agent": "main",
+    "task": "test",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:36:43.138Z"
+  },
+  {
+    "task_id": "live-1783093025249-2",
+    "agent": "main",
+    "task": "拆解星恒电源 13.73% 收购尽调复核任务",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:37:05.250Z"
+  },
+  {
+    "task_id": "live-1783093025775-3",
+    "agent": "project",
+    "task": "查询当前 5 个在跟项目的最新节点",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:37:05.776Z"
+  },
+  {
+    "task_id": "live-1783093026300-4",
+    "agent": "research",
+    "task": "查星恒电源 2024 年报 + 行业可比公司",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:37:06.300Z"
+  },
+  {
+    "task_id": "live-1783093026825-5",
+    "agent": "data",
+    "task": "清洗 3 份新到研报 → Wiki 实体",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:37:06.825Z"
+  },
+  {
+    "task_id": "live-1783093027349-6",
+    "agent": "report",
+    "task": "起草\"飞马国际\"投资请示文档框架",
+    "status": "dispatched",
+    "dispatched_at": "2026-07-03T15:37:07.349Z"
+  }
+]

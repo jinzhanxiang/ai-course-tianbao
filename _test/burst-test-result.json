@@ -1,0 +1,477 @@
+{
+  "00-cover": {
+    "error": "goto fail: Page.goto: Timeout 20000ms exceeded.\nCall log:\n  - navigating to \"https://jinzhanxiang.github.io/ai-course-tianbao/chapters/00-cover.html\", waiting until \"domcontentloaded\"\n"
+  },
+  "01-opening": {
+    "n_triggers": 12,
+    "tested": [
+      {
+        "burst": "burst-5plus2plus1",
+        "trigger_text": "7\n          数字员工在岗",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "5 + 2 + 1 体系架构\n5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产\n✕ 关闭\n⚙️\n5 大 Agent\n生产单元\nmain + project + research + data + report 五位一体。从\"接需求 → 调研 → 分析 → 清洗 → 出报告\"全自动流水线,原本 4 小时活压缩到 4 分钟。\n🧰\n2 大助手\n能力延伸\nClaude Code(改代"
+      },
+      {
+        "burst": "burst-1platform",
+        "trigger_text": "5,786\n          知识实体沉淀",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "90min\n          一份尽调报告",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-demo-5",
+        "trigger_text": "×5\n          投研效率提升",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-main",
+        "trigger_text": "💼\n          管理者视角\n          \n            如果你手下 5 ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-research-7",
+        "trigger_text": "📈\n          投资岗视角\n          \n            13 份研报以前",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-hr-scenarios",
+        "trigger_text": "👥\n          人力岗视角\n          \n            JD 撰写、简历",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-it-scenarios",
+        "trigger_text": "💻\n          IT/工程岗视角\n          \n            写代码不再",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-revolution-team",
+        "trigger_text": "PART 1 · 看懂\n          变革 + 趋势\n          \n         ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-project-7",
+        "trigger_text": "PART 2 · 拆解\n          5 大 Agent\n          \n       ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-qiyuanxin",
+        "trigger_text": "PART 3 · 实战\n          案例 + 演示\n          \n         ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      }
+    ]
+  },
+  "02-revolution": {
+    "n_triggers": 3,
+    "tested": [
+      {
+        "burst": "burst-revolution-team",
+        "trigger_text": "AI Agent 时代",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "\n      \n        变革 + 团队 · 三层架构\n        变革思考 × 数字员工 × 资产沉淀 — 一个都不能少\n      \n      ✕ 关闭\n    "
+      },
+      {
+        "burst": "burst-video-neural",
+        "trigger_text": "这里",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": true,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-video-maindash",
+        "trigger_text": "main 指挥中心",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": true,
+        "has_poster": false,
+        "overlay_text": ""
+      }
+    ]
+  },
+  "02-revolution-architecture": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-arch-overview",
+        "trigger_text": "🏛️ 5+2+1 体系总览",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      }
+    ]
+  },
+  "03-main": {
+    "n_triggers": 5,
+    "tested": [
+      {
+        "burst": "burst-main",
+        "trigger_text": "Agent 协同",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "main · 总调度 5 大动作\n接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环\n✕ 关闭\n📥\n1. 接收\n意图解析\n您发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令。\n🔪\n2. 拆解\n5 要素\n任务拆解 · 包含背景/目标/交付物/回传要求/预期完成时间。\n📡\n3. 分派\nsessions_send\n调用 sessions_send 工具 · 发送到对应 A"
+      }
+    ]
+  },
+  "04-project": {
+    "n_triggers": 8,
+    "tested": [
+      {
+        "burst": "burst-project-7",
+        "trigger_text": "7",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "项目生命周期 · 7 阶段\n从立项到投后,每阶段的关键产出物\n✕ 关闭\n1️⃣\n立项\n需求识别\n业务部门提需求 → 投资部初筛 → 内部立项会。\n产出:立项申请单 + 初步投资逻辑\n2️⃣\n调研\n宏观+行业\n行业研究、政策分析、宏观窗口判断、竞品扫描。\n产出:行业研究简报 50 页\n3️⃣\n尽调\n三路并行\n财务尽调 + 法律尽调 + 业务尽调 三线并行。\n产出:尽调报告 200 页 + 风险清单\n"
+      },
+      {
+        "burst": "burst-case-xingheng-13",
+        "trigger_text": "🔋\n          星恒电源 (13.73% 收购)\n          动力电池 · 尽调复",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "🔋\n          星恒电源\n          固态锂电 · 尽调阶段\n        \n ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-jingneng",
+        "trigger_text": "💡\n          晶能光电\n          LED 芯片 · 储备项目\n        ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-yingke",
+        "trigger_text": "🔄\n          盈科汇金\n          GP→LP 双线管理\n        \n  ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-zhongzihuan",
+        "trigger_text": "🌱\n          中资环绿色循环\n          5000 万 · 待立项\n      ",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      }
+    ]
+  },
+  "05-research": {
+    "n_triggers": 0
+  },
+  "06-data": {
+    "n_triggers": 0
+  },
+  "07-report": {
+    "n_triggers": 10,
+    "tested": [
+      {
+        "burst": "burst-report-3",
+        "trigger_text": "国企公文规范",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "报告排版 · 3 大管线\nWord / PDF / PPT 三端输出\n✕ 关闭\n📝\nWord 管线\n公文级\n可研报告 / 立项请示 / 投资协议。\n模板:国企公文规范(方正小标宋 + 仿宋)+ 自动目录 + 页眉页脚 + 章节编号。\n📕\nPDF 管线\n正式版\n最终交付物 / 上会材料 / 存档。\n模板:封面页 + 签字页 + 正文 + 附录。加密 + 不可编辑。\n📊\nPPT 管线\n汇报版\n立"
+      }
+    ]
+  },
+  "08-ecosystem": {
+    "n_triggers": 2,
+    "tested": [
+      {
+        "burst": "burst-ecosystem",
+        "trigger_text": "共同进化",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "5+2+1+1 生态全景\n5 Agent + 2 助手 + 1 中台 + 1 知识体系\n✕ 关闭\n⚙️\n5 Agent\n生产\nmain/project/research/data/report\n🧰\n2 助手\n延伸\nClaude Code/Hermes\n🏛️\n1 中台\n存储\nQdrant+PG+Wiki\n📚\n1 知识体系\n沉淀\n方法论+案例库"
+      }
+    ]
+  },
+  "09-case": {
+    "n_triggers": 6,
+    "tested": [
+      {
+        "burst": "burst-case-5",
+        "trigger_text": "第 09 章 · 实战案例",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "5 个实战案例 · 成效数据\n从被动响应到主动产出的真实转型\n✕ 关闭\n🏭\n飞马国际\n并购尽调\n3 周尽调 → 5 Agent 并行 4 天完成。\n原 200 页报告 → AI 自动生成 + 人工复核。\n效率 ↑ 4 倍,错误率 ↓ 70%。\n📑\n渤化集团\n行业研究\n化工子行业 12 个赛道扫描。\n传统 2 周 → AI 4 小时生成初稿。\n覆盖度 ↑ 3 倍。\n🏗️\n天保基建\n立项请示\n1"
+      },
+      {
+        "burst": "burst-case-xingheng-13",
+        "trigger_text": "🔋\n星恒电源 (13.73% 收购)\n\n动力电池 · 尽调复核阶段\n90 分钟完成 · 6 屏协同",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-xingheng",
+        "trigger_text": "🔋\n星恒电源\n\n固态锂电 · 尽调阶段\ndata 清洗 100 份研报\n→ 实体入库 +186\n\n",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-jingneng",
+        "trigger_text": "💡\n晶能光电\n\nLED 芯片 · 储备项目\nresearch V3 行业研究\n→ 7 维度全梳理\n",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-yingke",
+        "trigger_text": "💼\n盈科系项目\n\n投资主体优化 · GP→LP\nproject 全周期管理\n→ 重组方案落地\n\n�",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      },
+      {
+        "burst": "burst-case-zhongzihuan",
+        "trigger_text": "♻️\n中资环绿色循环\n\n5000 万投资 · 待立项\n风险点全维度排查\n→ 立项材料草稿\n\n🔍 点",
+        "has_overlay": true,
+        "overlay_class": "burst-stage",
+        "overlay_visible": false,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": ""
+      }
+    ]
+  },
+  "10-methodology": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-method-8",
+        "trigger_text": "纵横分析法",
+        "has_overlay": true,
+        "overlay_class": "burst-stage scaled show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "纵横分析法 · 8 维\n横切面 + 纵深线 + 6 子维交叉验证\n✕ 关闭\n↔️\n横线\n横向比较\n同期可比公司 / 同期类似项目 / 同期行业平均。\n问题:相对位置在哪?\n↕️\n纵线\n历史趋势\n过去 3-5 年财务 / 业务 / 估值变化。\n问题:成长性如何?\n🏭\n行业\n子维 1\n行业地位 + 竞品优劣势\n💰\n财务\n子维 2\n三表勾稽 + 盈利质量\n📈\n估值\n子维 3\nDCF + 可比 + "
+      }
+    ]
+  },
+  "11-quality": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-quality-1",
+        "trigger_text": "🛡️ 智能体质量提升",
+        "has_overlay": true,
+        "overlay_class": "burst-stage scaled show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "🛡️ 智能体质量提升 · 全章速览\n三层防御 · 60% → 90%+ · 主公实战方法论\n✕ 关闭\n🎯\n1. 单 Agent 天花板\n60-70%\n认知偏差 + 知识盲区 + 单点脆弱。3 大根因导致单 Agent 质量上限。\n🛡️\n2. 三层防御全景\n体系图\nL1 MoA 提智力 · L2 辩论防幻觉 · L3 交叉验对保可靠。\n🧠\n3. L1 MoA 架构\n65.8%\nTogethe"
+      }
+    ]
+  },
+  "12-train": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-train-1",
+        "trigger_text": "🛠️ 如何训练智能体",
+        "has_overlay": true,
+        "overlay_class": "burst-stage scaled show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "🛠️ 如何训练智能体 · 全章速览\n训练 vs 编排 · Hermes 案例 · 自我进化\n✕ 关闭\n⚖️\n1. 训练 vs 编排\n90/10\n90% 任务用编排（工具+提示词）即可。10% 才需要微调。\n🧪\n2. 4 大训练框架\n工具箱\nReAct · Reflexion · AutoGPT · Tool-Use。各自适用场景。\n🛠️\n3. \"我做智能体\" 4 步\n方法论\n定职责 → 设模"
+      }
+    ]
+  },
+  "13-workflow": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-workflow-1",
+        "trigger_text": "🌱 个人如何打造 Workflow",
+        "has_overlay": true,
+        "overlay_class": "burst-stage scaled show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "🌱 个人如何打造 Workflow · 全章速览\n从零基础到团队队长 · 5 阶段升级路径\n✕ 关闭\n🪜\n1. 5 阶段路径\n升级图\nL1 零基础 → L2 用户 → L3 制作者 → L4 训练官 → L5 架构师。\n🛠️\n2. 5 工具栈对比\n选型\nn8n / Dify / Langflow / Flowise / OpenClaw。能力/门槛/成本 4 维对比。\n🌿\n3. Dify "
+      }
+    ]
+  },
+  "14-demo": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-demo-5",
+        "trigger_text": "现场演示 · Live",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "6 屏协同 · 90 分钟尽调复核全流程\nmain 调度 4 子 Agent · 实时同步进度\n✕ 关闭\n🎯\n屏 1 main 总调度\n00:00\n您:\"今晚出星恒电源尽调复核\"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。\n🕐\n屏 2 指令下达\n00:02\n4 Agent 接到任务 → 启动。\n显示星恒电源 13.73% 收购背景 + 授权范围。\n🔬\n屏 3 resea"
+      }
+    ]
+  },
+  "15-qa": {
+    "n_triggers": 1,
+    "tested": [
+      {
+        "burst": "burst-qa-6",
+        "trigger_text": "Q&A",
+        "has_overlay": true,
+        "overlay_class": "burst-stage show",
+        "overlay_visible": true,
+        "has_video": false,
+        "has_terminal": false,
+        "has_poster": false,
+        "overlay_text": "6 大预判问答\n团队最关心的 6 个问题 + 我们的回答\n✕ 关闭\n🎯\nQ1 准确率\nAI 写的研报能信吗?\nAI 出初稿 + 人工复核。准确率 95%+,比新人第一稿高。\n关键:人工 review 仍是最后一道关。\n🔒\nQ2 数据安全\n敏感项目会不会泄露?\n本地化部署 + 隔离中台 + 审计日志。\n符合国资监管要求。\n📚\nQ3 学习曲线\n老人 vs 新人谁先用?\n都能用。新人获益更大(无需"
+      }
+    ]
+  }
+}
