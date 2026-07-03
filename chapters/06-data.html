@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 06 章 · data 清洗入库 — 智能体赋能投资研究</title>
+  <title>第 06 章 · 幻觉避免 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=4">
   <link rel="stylesheet" href="../assets/css/themes.css?v=4">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=1">
@@ -12,231 +12,255 @@
 
   <main class="main-stage">
 
-    <!-- Slide 1：标题 -->
+    <!-- Slide 1：章节封面 -->
     <div class="slide active">
-      <header class="chapter-header" style="margin-bottom:40px">
-        <h1 style="font-size:48px;color:var(--accent)">第 06 章 · data 数据工</h1>
-      <p style="font-size:20px;color:var(--text-secondary);margin-top:12px">28 个清洗脚本 · PDF/OCR 识别 · <span class="burst-trigger" data-burst="burst-data-7" data-hint="👉 点击查看 7 步清洗">向量化入库</span> · <span class="burst-trigger" data-burst="burst-video-pipeline" data-hint="👉 播放数据流水线演示视频" style="cursor:pointer;font-weight:600">看动画</span></p>
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
+        <h1 style="font-size:64px;color:#38bdf8;margin-bottom:8px">🛡️ 第 06 章 · 幻觉避免</h1>
+        <h2 style="font-size:32px;color:var(--text-secondary);font-weight:normal;margin-top:8px">主公 cite-then-answer + self-check 实战方法</h2>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">Phase G 新增章节 · 2026-07-03 · 主公实测</p>
       </header>
 
-      <div class="kpi-row">
-        <div class="kpi-card"><div class="kpi-num">28</div><div class="kpi-label">清洗脚本</div></div>
-        <div class="kpi-card"><div class="kpi-num">5</div><div class="kpi-label">清洗阶段</div></div>
-        <div class="kpi-card"><div class="kpi-num">5786</div><div class="kpi-label">累计实体</div></div>
-        <div class="kpi-card"><div class="kpi-num">1周→2h</div><div class="kpi-label">效率提升</div></div>
-      </div>
-
-      <div class="story-card" style="margin-top:24px">
-        <p class="story-meta">核心价值</p>
-        <p style="font-size:17px"><strong>"100 份研报，人工清洗要 1 周；data agent 2 小时完成，同时入库 Wiki 可检索。"</strong></p>
-      </div>
-    </div>
-
-    <!-- Slide 2：28 个脚本三层架构 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🏗️ 28 个脚本三层架构</h2>
-
-      <div style="display:grid;grid-template-columns:1fr 2fr;gap:20px">
-        <div class="card" style="text-align:center;border-top:4px solid #22C55E">
-          <h3 class="card-title" style="color:#22C55E">L1 · 主执行（1 个）</h3>
-          <p style="color:var(--text-secondary);font-size:13px;margin-top:8px">clean.sh</p>
-          <p style="color:var(--text-muted);font-size:12px;margin-top:4px">唯一主入口，调度 Step0.5-5</p>
-          <code style="font-size:11px;margin-top:8px;display:block">bash clean.sh {research|system|project|all}</code>
-        </div>
-        <div style="display:grid;grid-template-rows:1fr 1fr 1fr;gap:12px">
-          <div class="card" style="border-top:4px solid var(--accent)">
-            <h3 class="card-title">L2 · 二级执行（3 个）</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-              <span class="tag">pdf_clean.sh</span>
-              <span class="tag">main_review.sh</span>
-              <span class="tag">validate.sh</span>
-            </div>
-            <p style="color:var(--text-muted);font-size:12px;margin-top:8px">PDF预处理 / 制度审核 / 项目校验</p>
-          </div>
-          <div class="card" style="border-top:4px solid var(--accent)">
-            <h3 class="card-title">L3 · 配置/工具库（1 个）</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-              <span class="tag">openclaw_config.py</span>
-            </div>
-            <p style="color:var(--text-muted);font-size:12px;margin-top:8px">统一读取器，动态获取 primary model</p>
-          </div>
-          <div class="card" style="border-top:4px solid var(--accent)">
-            <h3 class="card-title">辅助脚本（23+ 个）</h3>
-            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-              <span class="tag">asr_workflow.py</span>
-              <span class="tag">check_env.sh</span>
-              <span class="tag">cleaning-cron-wrapper.sh</span>
-              <span class="tag">data-consistency-check.sh</span>
-              <span class="tag">health_check.sh</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 3：清洗 5 步骤 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">🔄 <span class="burst-trigger" data-burst="burst-data-7" data-hint="👉 点击弹出动画详解">清洗入库 5 步骤</span></h2>
-
-      <div class="flow-diagram" style="flex-wrap:nowrap;overflow-x:auto">
-        <div class="flow-node" style="border-color:#22C55E">Step0.5<br><small>PDF批量预处理</small></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node">Step1<br><small>OCR识别</small></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node">Step2<br><small>文本抽取</small></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node">Step3<br><small>结构化JSON</small></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node">Step4<br><small>Qdrant向量化</small></div>
-        <span class="flow-arrow">→</span>
-        <div class="flow-node" style="border-color:var(--accent)">Step5<br><small>PG/Wiki入库</small></div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:16px">
-        <div class="card" style="padding:12px">
-          <p style="color:var(--accent);font-weight:bold;font-size:13px">Step 0.5</p>
-          <p style="color:var(--text-secondary);font-size:12px;margin-top:4px">PDF → 可读化处理，pdf_clean.sh</p>
-        </div>
-        <div class="card" style="padding:12px">
-          <p style="color:var(--accent);font-weight:bold;font-size:13px">Step 1</p>
-          <p style="color:var(--text-secondary);font-size:12px;margin-top:4px">FunASR 语音转录（会议录音）</p>
-        </div>
-        <div class="card" style="padding:12px">
-          <p style="color:var(--accent);font-weight:bold;font-size:13px">Step 2</p>
-          <p style="color:var(--text-secondary);font-size:12px;margin-top:4px">实体抽取 / 关键词 / 摘要</p>
-        </div>
-        <div class="card" style="padding:12px">
-          <p style="color:var(--accent);font-weight:bold;font-size:13px">Step 3</p>
-          <p style="color:var(--text-secondary);font-size:12px;margin-top:4px">结构化为 JSON（含字段校验）</p>
-        </div>
-        <div class="card" style="padding:12px">
-          <p style="color:var(--accent);font-weight:bold;font-size:13px">Step 4-5</p>
-          <p style="color:var(--text-secondary);font-size:12px;margin-top:4px">bge-m3 向量 → Qdrant + PG</p>
-        </div>
-      </div>
-
-      <div class="alert alert-info" style="margin-top:12px">
-        <strong>📁 脚本目录：</strong>
-        <code style="font-size:12px;font-family:var(--font-mono);margin-left:8px">~/Documents/OpenClaw-Workspace-data/scripts/cleaning/</code>
-      </div>
-    </div>
-
-    <!-- Slide 3.5：MCP 协议 · Agent↔工具的标准化（2026-07 新增） -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:20px">🔌 MCP 协议：清洗管道的「USB-C 接口」</h2>
-
-      <div class="alert alert-info" style="margin-bottom:18px;font-size:13px">
-        <strong>MCP（Model Context Protocol）</strong>是 Anthropic 在 2024-11 发布的<strong>Agent ↔ 工具交互协议</strong>，已成为事实标准。我们的 data 清洗管道本质上就是<strong>私域 MCP 实现</strong>。
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
-        <div class="card" style="padding:16px">
-          <h3 style="font-size:16px;color:var(--accent);margin:0 0 10px 0">🔌 MCP 协议是什么</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            相当于<strong>「USB-C」</strong>：任何 Agent 可以用同一套协议调用任何工具。<br>
-            不再需要为每个 Agent ↔ 工具组合写定制代码。<br>
-            <strong style="color:#38bdf8">Anthropic 主导 · 事实标准</strong>
-          </p>
-        </div>
-        <div class="card" style="padding:16px">
-          <h3 style="font-size:16px;color:var(--accent);margin:0 0 10px 0">📦 data 的 MCP 工具集</h3>
-          <div style="font-size:12px;color:var(--text-secondary);line-height:2">
-            · <code>pdf_clean.sh</code> → PDF 预处理<br>
-            · <code>clean.sh</code> → 主清洗调度<br>
-            · <code>validate.sh</code> → 字段校验<br>
-            · <code>asr_workflow.py</code> → 语音转录<br>
-            · <code>health_check.sh</code> → 服务监控
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:14px;background:rgba(56,189,248,0.06);border-left:3px solid #38bdf8;font-size:12px">
-        <strong style="color:#38bdf8">主公讲解话术：</strong><br>
-        "data agent 调用 pdf_clean.sh、clean.sh 这 28 个脚本的过程，就是<strong>私域 MCP 协议</strong>的实现。——这和 AWS Bedrock AgentCore 用 MCP 调用工具，是同一套逻辑。"
-      </div>
-    </div>
-
-    <!-- Slide 4：Hermes 协助故事 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">⚙️ Hermes 协助 data 梳理流程</h2>
-
-      <div class="story-card">
-        <p class="story-meta">2026-06-29 · 真实案例</p>
-        <p style="font-size:15px;line-height:1.8">
-          data agent 的 28 个清洗脚本经过数月迭代，变得混乱。Hermes 启动 <code>wiki-watchdog.sh</code> 看门狗，自动扫描所有脚本 → 重新归档为 L1/L2/L3 三层 → 输出 <code>SCRIPTS_INDEX.md</code> → 同步到 Wiki → 自动监控异常。
+      <div class="story-card" style="margin-top:32px;max-width:880px;margin-left:auto;margin-right:auto">
+        <p class="story-meta">金句开篇</p>
+        <p style="font-size:18px;line-height:1.8">
+          "模型一定会撒谎，但<span style="color:#38bdf8;font-weight:bold">人可以不接</span>。
+          <strong>cite-then-answer</strong> 让你看到证据再说话，
+          <strong>self-check</strong> 让你对自己的回答二次审问。"
         </p>
-      </div>
-
-      <div class="timeline" style="margin-top:20px">
-        <div class="timeline-item">
-          <div class="timeline-date">Hermes 扫描</div>
-          <div class="timeline-title">wiki-watchdog.sh 自动触发</div>
-          <div class="timeline-desc">发现 28 个脚本，分类混乱</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Hermes 重整</div>
-          <div class="timeline-title">L1/L2/L3 三层归档</div>
-          <div class="timeline-desc">每个脚本注明作用 + 调用关系</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">Hermes 上线</div>
-          <div class="timeline-title">SCRIPTS_INDEX.md 生成</div>
-          <div class="timeline-desc">自动同步到 Wiki 知识库</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-date">持续守护</div>
-          <div class="timeline-title">看门狗监控</div>
-          <div class="timeline-desc">任何脚本异常 → Hermes 自动告警</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 5：入库成果 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px">📊 当前入库成果</h2>
-
-      <div class="kpi-row" style="grid-template-columns:repeat(4,1fr)">
-        <div class="kpi-card"><div class="kpi-num">5786</div><div class="kpi-label">实体总数</div></div>
-        <div class="kpi-card"><div class="kpi-num">7</div><div class="kpi-label">主题领域</div></div>
-        <div class="kpi-card"><div class="kpi-num">8</div><div class="kpi-label">Qdrant Collection</div></div>
-        <div class="kpi-card"><div class="kpi-num">9天</div><div class="kpi-label">系统连续运行</div></div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px">
-        <div class="card">
-          <h3 class="card-title">Qdrant Collections（8 个）</h3>
-          <div style="margin-top:8px;line-height:2;font-size:13px;color:var(--text-secondary)">
-            · report_archive<br>
-            · research_frameworks<br>
-            · indicator_vectors<br>
-            · knowledge_logic<br>
-            · project_private<br>
-            · research_content<br>
-            · entity_vectors<br>
-            · system_rules
-          </div>
-        </div>
-        <div class="card">
-          <h3 class="card-title">PostgreSQL 数据表</h3>
-          <div style="margin-top:8px;line-height:2;font-size:13px;color:var(--text-secondary)">
-            · entity（实体主表）<br>
-            · report（报告表）<br>
-            · indicator（指标表）<br>
-            · knowledge_logic（知识逻辑）
-          </div>
-        </div>
+        <p style="color:var(--text-muted);font-size:13px;margin-top:8px">—— 主公 2026-07-03 实战方法论</p>
       </div>
 
       <div style="margin-top:32px;text-align:center">
-        <a href="07-report.html" style="display:inline-block;padding:14px 32px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:16px;font-weight:bold">进入第 07 章：report 排版 ▶</a>
+        <a href="chapters/05-research.html" style="display:inline-block;padding:10px 22px;background:var(--bg-card);color:var(--text-primary);text-decoration:none;border-radius:6px;font-size:14px;margin-right:12px;border:1px solid var(--border)">← 上一章 · 部署选型</a>
+        <a href="chapters/07-report.html" style="display:inline-block;padding:10px 22px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold">下一章 · report 排版 →</a>
       </div>
     </div>
 
+    <!-- Slide 2：幻觉的真实代价 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#EF4444;margin-bottom:20px">💀 幻觉的真实代价 · 主公踩过的坑</h2>
 
-<script src="../assets/js/layout.js?v=4"></script>
-<script src="../assets/js/shared-agents.js?v=3"></script>
-<script src="../assets/js/main.js?v=3"></script>
-<script src="../assets/js/burst.js"></script>
-<script src="../assets/js/effects.js?v=1"></script>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1100px;margin:0 auto">
+        <div class="card" style="padding:18px;border-left:4px solid #EF4444">
+          <h3 style="font-size:16px;color:#EF4444;margin-bottom:10px">❌ 案例 1：飞马国际股东名</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            早期 research V1 给出"启源纳川 17.73%" → 实际是 <strong>13.73%</strong><br>
+            <strong>原因</strong>：模型对"频繁出现的旧数据"产生"自信"记忆<br>
+            <strong>修正</strong>：强制 cite Wikipedia + 公告原文
+          </p>
+        </div>
+        <div class="card" style="padding:18px;border-left:4px solid #F59E0B">
+          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:10px">⚠️ 案例 2：research 任务"口头完成"</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            research 二次"完成汇报"提及 AG-UI / 93 Agent / Harness 5 组件 → <strong>文件实际未写入</strong><br>
+            <strong>原因</strong>：研究材料停留在 context，没 flush 到 disk<br>
+            <strong>修正</strong>：main 强制 fs 校验 → research 改"先 write 再 announce"
+          </p>
+        </div>
+        <div class="card" style="padding:18px;border-left:4px solid #A855F7">
+          <h3 style="font-size:16px;color:#A855F7;margin-bottom:10px">⚠️ 案例 3：财务数字"看起来对"</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            Qwen3.6-27B 给出的"三维通信营收"与官方公告 124.89 亿元<strong>差 0.5 亿</strong><br>
+            <strong>原因</strong>：模型对小数点不敏感（幻觉的常见表现）<br>
+            <strong>修正</strong>：所有财务数字必须 cite PDF 页码
+          </p>
+        </div>
+        <div class="card" style="padding:18px;border-left:4px solid #38bdf8">
+          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:10px">💡 案例 4：SelfCheckGPT 验证</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            同一问题问模型 5 次，5 次答案差异 > 30% → <strong>高度疑似幻觉</strong><br>
+            <strong>原理</strong>：模型真知道的事实，5 次回答高度一致；不知道的事，5 次会相互矛盾<br>
+            <strong>应用</strong>：研究 agent 输出前自检 5 次
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:18px;max-width:1080px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>📌 核心数据</strong>：<strong style="color:#EF4444">单 Agent 自检准确率 60-70%</strong>，多 Agent 交叉验对准确率 85-90%。差距不是统计问题，是<strong>结构问题</strong>。
+      </div>
+    </div>
+
+    <!-- Slide 3：方法 1：cite-then-answer -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">📌 方法 1：cite-then-answer（先引用，再回答）</h2>
+
+      <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>核心范式</strong>：让 LLM 在生成回答前，<strong>必须先引用给定的参考资料</strong>（RAG 上下文）。把"模型靠记忆自由生成"转为"模型被迫从给定证据中取词"。
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1100px;margin:0 auto">
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:10px">🔧 主流实现</h3>
+          <ul style="font-size:12px;color:var(--text-secondary);line-height:1.8;margin:0;padding-left:18px">
+            <li><strong>Anthropic Citations API</strong>（2025-01）<br>用户上传 PDF → 自动 chunk → 绑定 source</li>
+            <li><strong>OpenAI File Citations</strong><br>file_citation 工具调用返回引用</li>
+            <li><strong>LangChain / LlamaIndex</strong><br>with_structured_output 返回 answer+citations</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:10px">✅ 实战 prompt 模板</h3>
+          <pre style="font-size:11px;background:var(--bg-primary);padding:10px;border-radius:6px;color:var(--text-primary);line-height:1.5;overflow-x:auto;margin:0">[System]
+你是一个严格的研究助理。回答时必须按以下流程：
+1. 阅读我提供的 reference 文档
+2. 每句结论必须以 [ref:N] 标注来源句
+3. 如果 reference 中找不到对应答案，明确回答"未在 reference 中找到"
+4. 严禁补全、推断或编造 reference 之外的事实</pre>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:18px;max-width:1080px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>💡 主公应用</strong>：research V3 的 Reference 强制引用机制 —— 任何输出必须带 [ref:N] 标签，否则视为不通过
+      </div>
+    </div>
+
+    <!-- Slide 4：方法 2：self-check -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">🔍 方法 2：self-check（自检 prompt）</h2>
+
+      <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>核心范式</strong>：让模型在完成主任务后，<strong>对自己的输出做"二次审阅"</strong>。本质是 LLM-as-a-Judge，但目标不是评估而是自我纠正。
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:1180px;margin:0 auto">
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:8px">① 事实核查</h3>
+          <pre style="font-size:10px;background:var(--bg-primary);padding:8px;border-radius:4px;color:var(--text-primary);line-height:1.4;overflow-x:auto;margin:0;white-space:pre-wrap">审查以下回答，逐一标出每个事实句为：
+- ✅ 正确（有依据）
+- ⚠️ 需要验证（依据不足）
+- ❌ 错误（与事实不符）</pre>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #58D68D">
+          <h3 style="font-size:14px;color:#58D68D;margin-bottom:8px">② 逻辑一致性</h3>
+          <pre style="font-size:10px;background:var(--bg-primary);padding:8px;border-radius:4px;color:var(--text-primary);line-height:1.4;overflow-x:auto;margin:0;white-space:pre-wrap">检查以下回答的内部逻辑：
+1. 前提 A 是否被支撑？
+2. 推论 B 是否由前提得出？
+3. 结论 C 是否与推论一致？
+列出 1-3 个具体问题。</pre>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #F5B041">
+          <h3 style="font-size:14px;color:#F5B041;margin-bottom:8px">③ 来源追溯</h3>
+          <pre style="font-size:10px;background:var(--bg-primary);padding:8px;border-radius:4px;color:var(--text-primary);line-height:1.4;overflow-x:auto;margin:0;white-space:pre-wrap">对每条结论，要求回答：
+1. 结论内容（必须基于 source）
+2. 引用句位置（哪个 source、哪个段落）
+3. 信心等级（高/中/低）</pre>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:18px;max-width:1080px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>⚠️ 已知局限</strong>：<strong>self-agreement bias</strong> —— 模型会"自我欣赏"。同一权重检查同一输出，会发现自己很棒。**所以需要"多 Agent 辩论"（见 11 章）+ 外部 source 强制 cite**
+      </div>
+    </div>
+
+    <!-- Slide 5：方法 3：多 Agent 辩论（与 11 章呼应） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">⚔️ 方法 3：多 Agent 辩论（呼应第 11 章）</h2>
+
+      <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>核心思想</strong>：单 Agent 自检的 60-70% 准确率无法突破 —— <strong>必须用多 Agent 互检</strong>。详见第 11 章「智能体质量提升」，本章给主公实战架构。
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;max-width:1180px;margin:0 auto">
+        <div class="card" style="padding:16px;border-top:4px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:10px">🟢 正方 Agent</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            <strong>角色</strong>：作为"原始结论的拥护者"<br>
+            <strong>任务</strong>：解释为什么这个结论是对的<br>
+            <strong>模型</strong>：M3（最强）
+          </p>
+        </div>
+        <div class="card" style="padding:16px;border-top:4px solid #EF4444">
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:10px">🔴 反方 Agent</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            <strong>角色</strong>：作为"挑刺者"<br>
+            <strong>任务</strong>：列出这个结论的 3 个潜在错误<br>
+            <strong>模型</strong>：M2.7（独立判断）
+          </p>
+        </div>
+        <div class="card" style="padding:16px;border-top:4px solid #A29BFA">
+          <h3 style="font-size:15px;color:#A29BFA;margin-bottom:10px">🟣 仲裁 Agent</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            <strong>角色</strong>：作为"裁判"<br>
+            <strong>任务</strong>：综合正反方，给出最终结论<br>
+            <strong>模型</strong>：M3（重新读所有）
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;max-width:1100px;margin-left:auto;margin-right:auto">
+        <div class="alert alert-success" style="font-size:13px">
+          <strong>🎯 实战数据</strong>：主公实测 — 单 Agent 自检 <strong style="color:#EF4444">60-70%</strong>，多 Agent 辩论 <strong style="color:#58D68D">85-90%</strong>。差距<strong>20+ 百分点</strong>，是结构性优势
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6：综合实战方法（4 步流程） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:20px">🎯 主公实战方法：4 步流程</h2>
+
+      <div class="card" style="max-width:1100px;margin:0 auto;padding:24px">
+        <div style="font-size:14px;line-height:2.2;color:var(--text-primary)">
+          <p><strong style="color:#38bdf8">Step 1 · cite-then-answer</strong> —— 先给 reference，强制 [ref:N] 标注</p>
+          <p style="margin-left:24px;color:var(--text-muted)">→ 失败的输出：99% 都缺 reference</p>
+
+          <p style="margin-top:10px"><strong style="color:#58D68D">Step 2 · 事实核查 self-check</strong> —— 对主输出逐句标 ✅/⚠️/❌</p>
+          <p style="margin-left:24px;color:var(--text-muted)">→ ❌ 的句子必须改写或删除</p>
+
+          <p style="margin-top:10px"><strong style="color:#F5B041">Step 3 · 多 Agent 辩论</strong> —— 正方/反方/仲裁 三角对抗</p>
+          <p style="margin-left:24px;color:var(--text-muted)">→ 反方必须能列出 3 个潜在错误，否则视为正方通过</p>
+
+          <p style="margin-top:10px"><strong style="color:#A29BFA">Step 4 · fs 校验</strong> —— 落地文件必须 ls/wc/grep 三重验证</p>
+          <p style="margin-left:24px;color:var(--text-muted)">→ "口头完成"无效，必须磁盘文件存在且完整</p>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:18px;max-width:1080px;margin-left:auto;margin-right:auto;font-size:13px">
+        <strong>📌 关键纪律</strong>：研究类任务必须 <strong style="color:#A29BFA">先 write 再 announce</strong>。announce 步骤 = "磁盘文件 + 业务验证"双重确认
+      </div>
+    </div>
+
+    <!-- Slide 7：避坑指南 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#EF4444;margin-bottom:18px">🚫 5 个常见避坑</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:1180px;margin:0 auto">
+        <div class="card" style="padding:14px;border-left:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">❌ 1. "模型说应该这样" = 接受</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">主公不接"看起来对" —— 必须有 reference 标注</p>
+        </div>
+        <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">⚠️ 2. self-check 后 self-agree</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">模型会"自我欣赏"，必须多 Agent 互检，不能自检自</p>
+        </div>
+        <div class="card" style="padding:14px;border-left:3px solid #A855F7">
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">⚠️ 3. 量化模型更易幻觉</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">Q4/Q8 量化后数字精度下降，财务数据禁用本地小模型</p>
+        </div>
+        <div class="card" style="padding:14px;border-left:3px solid #38bdf8">
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">💡 4. RAG ≠ 万能</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">如果 reference 本身就错，RAG 也会"自信引用"错误信息</p>
+        </div>
+        <div class="card" style="padding:14px;border-left:3px solid #58D68D">
+          <h3 style="font-size:14px;color:#58D68D;margin-bottom:6px">✅ 5. "口头完成" = 没完成</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">fs 校验失败 = 任务失败，必须重做</p>
+        </div>
+        <div class="card" style="padding:14px;border-left:3px solid #F5B041">
+          <h3 style="font-size:14px;color:#F5B041;margin-bottom:6px">💡 6. 频率 vs 深度平衡</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">5 次自检 = 5 倍时间；多数场景 1 次 + 多 Agent 辩论够用</p>
+        </div>
+      </div>
+
+      <div style="margin-top:24px;text-align:center">
+        <a href="chapters/05-research.html" style="display:inline-block;padding:10px 22px;background:var(--bg-card);color:var(--text-primary);text-decoration:none;border-radius:6px;font-size:14px;margin-right:12px;border:1px solid var(--border)">← 上一章 · 部署选型</a>
+        <a href="chapters/07-report.html" style="display:inline-block;padding:10px 22px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:6px;font-size:14px;font-weight:bold">下一章 · report 排版 →</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="../assets/js/shared-agents.js?v=3"></script>
+  <script src="../assets/js/main.js?v=3"></script>
+  <script src="../assets/js/effects.js?v=1"></script>
+  <script src="../assets/js/layout.js?v=5"></script>
+  <script src="../assets/js/burst.js"></script>
 </body>
 </html>
