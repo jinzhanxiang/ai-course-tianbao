@@ -538,7 +538,8 @@
       case '7star': {
         // 七芒星布局(中心 + 六围)
         // 第 1 张居中,其余 6 张等间距辐射
-        const starRadius = 38;
+        // 半径自适应 - 7张卡时用 26% 避免溢出
+        const starRadius = count <= 3 ? 32 : (count <= 5 ? 30 : 26);
         coords.push({ left: '50%', top: '50%', center: true });
         for (let i = 0; i < count - 1 && i < 6; i++) {
           const angle = (Math.PI * 2 * i / 6) - Math.PI / 2;
