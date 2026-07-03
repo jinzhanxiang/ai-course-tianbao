@@ -189,6 +189,68 @@
       </div>
     </div>
 
+    <!-- Slide 6：企业级 4 层架构图（协议/工具/智能体/应用）-->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:14px">🧱 企业级 Agent 4 层架构</h2>
+
+      <p style="color:var(--text-secondary);margin-bottom:18px;font-size:13px">
+        LangChain 2025 多 Agent 框架白皮书：企业生产环境 Agent 系统遵循 4 层架构。主公 openclaw 完虫<strong style="color:#56d364">含递补实现</strong>。
+      </p>
+
+      <div class="arch-stack" style="max-width:1100px;margin:0 auto">
+        <!-- L4 应用层 -->
+        <div class="arch-layer" style="border-color:rgba(0,212,255,0.5);background:rgba(0,212,255,0.04)">
+          <div class="arch-num">L4</div>
+          <div class="arch-name">应用层 <small>Application</small></div>
+          <div class="arch-vendor">
+            <span class="vendor-tag" style="color:#00D4FF">Claude Code</span>
+            <span class="vendor-tag" style="color:#00D4FF">Codex / Trae</span>
+            <span class="vendor-tag" style="color:#00D4FF">OpenClaw CLI</span>
+          </div>
+          <div class="arch-role">30+ Agent IDE/CLI 调入点</div>
+        </div>
+        <!-- L3 智能体层 -->
+        <div class="arch-layer" style="border-color:rgba(168,85,247,0.5);background:rgba(168,85,247,0.04)">
+          <div class="arch-num">L3</div>
+          <div class="arch-name">智能体层 <small>Agent</small></div>
+          <div class="arch-vendor">
+            <span class="vendor-tag" style="color:#A855F7">LangGraph</span>
+            <span class="vendor-tag" style="color:#A855F7">CrewAI</span>
+            <span class="vendor-tag" style="color:#A855F7">AutoGen</span>
+            <span class="vendor-tag" style="color:#56d364">5+2+1+1</span>
+          </div>
+          <div class="arch-role">Supervisor / Worker 营型</div>
+        </div>
+        <!-- L2 工具层 -->
+        <div class="arch-layer" style="border-color:rgba(245,158,11,0.5);background:rgba(245,158,11,0.04)">
+          <div class="arch-num">L2</div>
+          <div class="arch-name">工具层 <small>Tools</small></div>
+          <div class="arch-vendor">
+            <span class="vendor-tag" style="color:#F59E0B">Function Call</span>
+            <span class="vendor-tag" style="color:#F59E0B">MCP Server</span>
+            <span class="vendor-tag" style="color:#F59E0B">Skill / Plugin</span>
+          </div>
+          <div class="arch-role">能力原子化 · 可复用</div>
+        </div>
+        <!-- L1 协议层 -->
+        <div class="arch-layer" style="border-color:rgba(86,211,100,0.5);background:rgba(86,211,100,0.04)">
+          <div class="arch-num">L1</div>
+          <div class="arch-name">协议层 <small>Protocol</small></div>
+          <div class="arch-vendor">
+            <span class="vendor-tag" style="color:#56d364">MCP</span>
+            <span class="vendor-tag" style="color:#56d364">A2A</span>
+            <span class="vendor-tag" style="color:#56d364">ACP / ANP</span>
+          </div>
+          <div class="arch-role">标准互操作 · 可组可调</div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:14px;font-size:13px;line-height:1.7;max-width:1080px;margin-left:auto;margin-right:auto">
+        <strong style="color:#56d364">主公 takeaway</strong>：项目管家 (project) 的价值不是“写项目管理文档”，是为<strong style="color:#00D4FF">L3 智能体层 + L2 工具层</strong>领航决策模型。
+        openclaw 是<strong style="color:var(--accent)">满分企业级 Agent 4 层架构参考解</strong>。
+      </div>
+    </div>
+
 <script src="../assets/js/layout.js?v=20260704-audit"></script>
 <script src="../assets/js/shared-agents.js?v=20260704-audit"></script>
 <script src="../assets/js/main.js?v=20260704-audit"></script>

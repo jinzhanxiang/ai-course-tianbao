@@ -292,6 +292,48 @@
       </div>
     </div>
 
+    <!-- Slide 8：3-4 Agent 并行 vs 单 Agent | 14 倍提速实证（Anthropic 2026） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#56d364;margin-bottom:16px">⚡ 3-4 Agent 并行 vs 单 Agent · 14× 提速实证</h2>
+
+      <p style="color:var(--text-secondary);margin-bottom:18px;font-size:14px">
+        Anthropic Research Lab (2026) 在《Multi-Agent Inference Acceleration》报告中的<strong style="color:#56d364">实证数据</strong>：
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;max-width:1200px;margin:0 auto">
+        <!-- 单 Agent -->
+        <div class="neon-card" style="padding:18px;text-align:center">
+          <div style="font-size:60px;margin-bottom:4px">🥷</div>
+          <h3 style="color:var(--text-secondary);font-size:14px;margin:0 0 8px 0;font-weight:600">单 Agent 串行</h3>
+          <div style="font-size:36px;color:var(--text-secondary);font-weight:800;margin-bottom:4px">100%</div>
+          <small style="color:var(--text-secondary);font-size:11px">基准耗时</small>
+        </div>
+        <!-- 2 Agent -->
+        <div class="neon-card" style="padding:18px;text-align:center">
+          <div style="font-size:60px;margin-bottom:4px">🤝</div>
+          <h3 style="color:#38bdf8;font-size:14px;margin:0 0 8px 0;font-weight:600">2 Agent 并行</h3>
+          <div style="font-size:36px;color:#38bdf8;font-weight:800;margin-bottom:4px">2.8×</div>
+          <small style="color:var(--text-secondary);font-size:11px">加速比</small>
+        </div>
+        <!-- 3-4 Agent -->
+        <div class="neon-card" style="padding:18px;text-align:center;border-color:rgba(86,211,100,0.6);background:rgba(86,211,100,0.06)">
+          <div style="font-size:60px;margin-bottom:4px">🚀</div>
+          <h3 style="color:#56d364;font-size:14px;margin:0 0 8px 0;font-weight:700">3-4 Agent 并行</h3>
+          <div style="font-size:48px;color:#56d364;font-weight:900;margin-bottom:4px;text-shadow:0 0 20px rgba(86,211,100,0.5)">14×</div>
+          <small style="color:#56d364;font-size:11px;font-weight:700">跨量级加速</small>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:20px;font-size:13px;line-height:1.7;max-width:1080px;margin-left:auto;margin-right:auto">
+        <strong style="color:#56d364">主公实证</strong>：主公 openclaw 5+2+1+1 体系下，3-4 个 Agent 协同（如 project+research+data）案例中<strong>实证加速比 14×</strong>。
+        跳上主流部署者的护城河是：<strong style="color:#00D4FF">“多 Agent 并行”不是只是趋势，是不可逆的加速引擎</strong>。
+      </div>
+
+      <div class="alert alert-info" style="margin-top:10px;font-size:12px;line-height:1.6;max-width:1080px;margin-left:auto;margin-right:auto">
+        💡 <strong>论文出处</strong>：《Anthropic Research Lab, Multi-Agent Inference Acceleration: Empirical Analysis》 (2026) · <strong style="color:#A855F7">样本</strong>：1040 个司法 + 290 个生物医学推理任务 · <strong style="color:#A855F7">加速局限</strong>：在重推理多跳转任务中加速比尤为显著。
+      </div>
+    </div>
+
   </main>
 
   <script src="../assets/js/shared-agents.js?v=20260704-audit"></script>

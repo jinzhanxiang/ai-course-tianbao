@@ -1996,3 +1996,82 @@ code, pre, kbd { font-size: var(--font-code); }
     padding-left: 0;
   }
 }
+
+/* ============================================================================
+   04-project 企业级 4 层架构图（2026-07-04 主公指派微臣深划）
+   ============================================================================ */
+
+.arch-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arch-layer {
+  display: grid;
+  grid-template-columns: 60px 200px 1fr 180px;
+  align-items: center;
+  padding: 12px 16px;
+  border: 1px solid;
+  border-radius: 8px;
+  background: rgba(13, 17, 23, 0.5);
+  transition: all 0.3s ease-out;
+}
+.arch-layer:hover {
+  transform: translateX(4px);
+  box-shadow: 0 0 16px currentColor;
+}
+.arch-num {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--accent);
+  text-align: center;
+  text-shadow: 0 0 8px currentColor;
+}
+.arch-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.arch-name small {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 2px;
+}
+.arch-vendor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.vendor-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(13, 17, 23, 0.6);
+}
+.arch-role {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-style: italic;
+  text-align: right;
+  padding-left: 12px;
+  border-left: 1px dashed rgba(86, 211, 100, 0.2);
+}
+
+@media (max-width: 1300px) {
+  .arch-layer {
+    grid-template-columns: 50px 160px 1fr;
+    gap: 8px;
+  }
+  .arch-role {
+    grid-column: 2 / span 2;
+    text-align: left;
+    border-left: none;
+    padding-left: 0;
+  }
+}
