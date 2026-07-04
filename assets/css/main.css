@@ -3807,11 +3807,6 @@ body::before {
 }
 
 
-/* ==================== 演示模式布局优化 ==================== */
-[data-mode="presentation"] .sidebar {
-  display: none !important;
-}
-
 [data-mode="presentation"] .agent-rail {
   display: none !important;
 }
@@ -3831,4 +3826,25 @@ body::before {
   margin-bottom: 60px;
   margin-left: 0;
   margin-right: 0;
+}
+/* ==================== 演示模式布局（保留侧边栏）==================== */
+[data-mode="presentation"] body {
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+    "top top"
+    "side main"
+    "ctrl ctrl";
+}
+
+[data-mode="presentation"] .main-stage {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: auto !important;
+  left: auto !important;
+}
+
+[data-mode="presentation"] .topbar {
+  margin-left: 240px;
 }
