@@ -71,57 +71,57 @@
       </table>
     </div>
 
-    <!-- Slide 5：本地模型部署 -->
+    <!-- Slide 5：本地模型部署配置 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:18px">🖥️ 本地模型部署方案</h2>
+      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:18px">🖥️ 本地模型部署配置（天保实际）</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto">
         <div class="card" style="padding:20px">
-          <h3 style="font-size:16px;color:#8b5cf6;margin-bottom:12px">💻 推荐配置（天保实际）</h3>
-          <table style="font-size:12px;width:100%">
-            <tr><td style="padding:6px">显卡</td><td>RTX 4090 x2</td></tr>
-            <tr><td style="padding:6px">显存</td><td>48GB</td></tr>
-            <tr><td style="padding:6px">内存</td><td>128GB</td></tr>
-            <tr><td style="padding:6px">硬盘</td><td>4TB NVMe</td></tr>
-            <tr><td style="padding:6px">模型</td><td>Qwen2.5-14B</td></tr>
+          <h3 style="font-size:16px;color:#8b5cf6;margin-bottom:12px">💻 硬件配置</h3>
+          <table style="font-size:13px;width:100%">
+            <tr><td style="padding:8px;border-bottom:1px solid #333">显卡</td><td style="padding:8px;border-bottom:1px solid #333">RTX 4090 x2</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">显存</td><td style="padding:8px;border-bottom:1px solid #333">48GB</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">内存</td><td style="padding:8px;border-bottom:1px solid #333">128GB</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">硬盘</td><td style="padding:8px;border-bottom:1px solid #333">4TB NVMe</td></tr>
           </table>
         </div>
         <div class="card" style="padding:20px">
-          <h3 style="font-size:16px;color:#8b5cf6;margin-bottom:12px">☁️ 云端方案（备用）</h3>
-          <table style="font-size:12px;width:100%">
-            <tr><td style="padding:6px">服务商</td><td>阿里云/腾讯云</td></tr>
-            <tr><td style="padding:6px">实例</td><td>A10 x2</td></tr>
-            <tr><td style="padding:6px">月成本</td><td>约5000元</td></tr>
-            <tr><td style="padding:6px">适用</td><td>开发/测试环境</td></tr>
+          <h3 style="font-size:16px;color:#8b5cf6;margin-bottom:12px">🤖 推荐模型</h3>
+          <table style="font-size:13px;width:100%">
+            <tr><td style="padding:8px;border-bottom:1px solid #333">主力模型</td><td style="padding:8px;border-bottom:1px solid #333">Qwen2.5-14B</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">推理模型</td><td style="padding:8px;border-bottom:1px solid #333">DeepSeek-7B</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">Embedding</td><td style="padding:8px;border-bottom:1px solid #333">bge-m3</td></tr>
+            <tr><td style="padding:8px;border-bottom:1px solid #333">月成本</td><td style="padding:8px;border-bottom:1px solid #333">约3000元（电费）</td></tr>
           </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 6：隐私保护 Checklist -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:18px">✅ 隐私保护 Checklist</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto">
-        <div class="card" style="padding:16px">
-          <h3 style="font-size:14px;color:#22c55e;margin-bottom:10px">上线前必做</h3>
-          <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px">
-            <li>☐ 数据分类分级</li>
-            <li>☐ 敏感字段清单</li>
-            <li>☐ 访问权限配置</li>
-            <li>☐ 审计日志上线</li>
-            <li>☐ 应急预案演练</li>
-          </ul>
-        </div>
-        <div class="card" style="padding:16px">
-          <h3 style="font-size:14px;color:#06b6d4;margin-bottom:10px">日常运营必做</h3>
-          <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px">
-            <li>☐ 定期权限复查</li>
-            <li>☐ 日志分析告警</li>
-            <li>☐ 敏感数据监控</li>
-            <li>☐ 季度安全评估</li>
-            <li>☐ 年度渗透测试</li>
-          </ul>
         </div>
       </div>
     </div>
 
   </main>
+      <!-- 翻页导航 -->
+      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
+        <a href="11-hallucination.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
+        <a href="13-train.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+      </div>
+<script src="../assets/js/main.js"></script>
+<!-- 键盘导航 -->
+<script>
+document.addEventListener("keydown", function(e) {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+  const slides = document.querySelectorAll(".slide");
+  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
+  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex + 1].classList.add("active");
+    e.preventDefault();
+  }
+  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex - 1].classList.add("active");
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
