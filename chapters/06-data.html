@@ -35,50 +35,6 @@
       </div>
     </div>
 
-    <!-- Slide 2：幻觉的真实代价 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#EF4444;margin-bottom:20px">💀 <span class="burst-trigger" data-burst="burst-data-hallucination" data-hint="👉 幻觉代价">💀</span> 幻觉的真实代价 · 主公踩过的坑</h2>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1100px;margin:0 auto">
-        <div class="card" style="padding:18px;border-left:4px solid #EF4444">
-          <h3 style="font-size:16px;color:#EF4444;margin-bottom:10px">❌ 案例 1：飞马国际股东名</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-            早期 research V1 给出"启源纳川 17.73%" → 实际是 <strong>13.73%</strong><br>
-            <strong>原因</strong>：模型对"频繁出现的旧数据"产生"自信"记忆<br>
-            <strong>修正</strong>：强制 cite Wikipedia + 公告原文
-          </p>
-        </div>
-        <div class="card" style="padding:18px;border-left:4px solid #F59E0B">
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:10px">⚠️ 案例 2：research 任务"口头完成"</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-            research 二次"完成汇报"提及 AG-UI / 93 Agent / Harness 5 组件 → <strong>文件实际未写入</strong><br>
-            <strong>原因</strong>：研究材料停留在 context，没 flush 到 disk<br>
-            <strong>修正</strong>：main 强制 fs 校验 → research 改"先 write 再 announce"
-          </p>
-        </div>
-        <div class="card" style="padding:18px;border-left:4px solid #A855F7">
-          <h3 style="font-size:16px;color:#A855F7;margin-bottom:10px">⚠️ 案例 3：财务数字"看起来对"</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-            Qwen3.6-27B 给出的"三维通信营收"与官方公告 124.89 亿元<strong>差 0.5 亿</strong><br>
-            <strong>原因</strong>：模型对小数点不敏感（幻觉的常见表现）<br>
-            <strong>修正</strong>：所有财务数字必须 cite PDF 页码
-          </p>
-        </div>
-        <div class="card" style="padding:18px;border-left:4px solid #38bdf8">
-          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:10px">💡 案例 4：SelfCheckGPT 验证</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-            同一问题问模型 5 次，5 次答案差异 > 30% → <strong>高度疑似幻觉</strong><br>
-            <strong>原理</strong>：模型真知道的事实，5 次回答高度一致；不知道的事，5 次会相互矛盾<br>
-            <strong>应用</strong>：研究 agent 输出前自检 5 次
-          </p>
-        </div>
-      </div>
-
-      <div class="alert alert-warning" style="margin-top:18px;max-width:1080px;margin-left:auto;margin-right:auto;font-size:13px">
-        <strong>📌 核心数据</strong>：<strong style="color:#EF4444">单 Agent 自检准确率 60-70%</strong>，多 Agent 交叉验对准确率 85-90%。差距不是统计问题，是<strong>结构问题</strong>。
-      </div>
-    </div>
-
     <!-- Slide 3：方法 1：cite-then-answer -->
     <div class="slide">
       <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">📌 <span class="burst-trigger" data-burst="burst-data-cite" data-hint="👉 cite-then-answer">📌</span> 方法 1：cite-then-answer（先引用，再回答）</h2>
