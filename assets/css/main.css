@@ -3848,3 +3848,19 @@ body::before {
 [data-mode="presentation"] .topbar {
   margin-left: 240px;
 }
+
+
+/* ==================== 演示模式布局 ==================== */
+[data-mode="presentation"] body {
+  grid-template-columns: 240px 1fr 80px;
+  grid-template-rows: 60px 1fr 60px;
+  grid-template-areas:
+    "top top top"
+    "side main rail"
+    "ctrl ctrl ctrl";
+}
+
+[data-mode="presentation"] .main-stage {
+  margin-top: 60px !important;
+  margin-bottom: 70px !important;
+}
