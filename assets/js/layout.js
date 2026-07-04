@@ -23,7 +23,7 @@
     { num: '05',    file: '05-research.html',                   title: 'research 研究方法',   emoji: '🔬' },
     { num: '06',    file: '06-data.html',                       title: 'data 数据清洗',       emoji: '🧹' },
     { num: '07',    file: '07-report.html',                     title: 'report 排版',         emoji: '📄' },
-    { num: '08',    file: '08-ecosystem.html',                  title: '三智能体协同',        emoji: '🌐' },
+    { num: '08',    file: '08-ecosystem-deploy.html',                  title: '三智能体协同',        emoji: '🌐' },
     { num: '09',    file: '09-case.html',                       title: '实战案例综述',        emoji: '📚' },
     { num: '10',    file: '10-methodology.html',                title: '纵横分析法',          emoji: '🎯' },
     { num: '11',    file: '11-quality.html',                    title: '智能体质量提升',      emoji: '✨' },
