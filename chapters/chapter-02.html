@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 02 章 · 什么是智能体 — 智能体革命与5+2+1体系</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260704-audit">
+</head>
+<body class="chapter-page sci-fi-bg">
+  <main class="main-stage">
+    <!-- Slide 1：章节封面 -->
+    <div class="slide active">
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
+        <h1 style="font-size:56px;color:#a855f7;margin-bottom:8px">🤖 第 02 章 · 什么是智能体？</h1>
+        <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
+          变革对比 · 从问答到行动
+        </h2>
+      </header>
+    </div>
+
+
+    <!-- Slide 2：什么是智能体（变革对比，给刚接触的人） -->
+    <div class="slide">
+      <h2 class="slide-title">🤖 什么是智能体？</h2>
+      <p class="slide-subtitle">先看清楚这场变革 —— 智能体时代 vs 传统时代，到底变了什么？</p>
+
+      <div class="alert alert-info" style="margin-bottom:24px">
+        <strong>变革大背景：</strong>我们正在经历
+        <span style="color:var(--accent);font-weight:700">「软件 2.0」</span>
+        的变革。从「手工生产」→「智能工厂」需要三步：<strong>云计算 (2010s) → 大模型 (2023) → 智能体 (2024+)</strong>。
+      </div>
+
+      <h3>📊 智能体时代 vs 传统时代（5 个核心差异）</h3>
+
+      <table style="margin-bottom:20px">
+        <thead>
+          <tr>
+            <th style="width:12%">维度</th>
+            <th style="background:rgba(255,95,87,0.08);width:32%;color:#ff5f57">传统软件时代（2000-2023）</th>
+            <th style="background:rgba(86,211,100,0.08);width:32%;color:#56d364">智能体 Agent 时代（2024+）</th>
+            <th style="background:rgba(168,85,247,0.08);width:24%;color:#a855f7">变革</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>交互方式</strong></td>
+            <td>点按钮 / 填表单 / 下拉菜单</td>
+            <td>说话下达目标</td>
+            <td><span style="color:#a855f7;font-weight:700">从 UI 到 NL</span></td>
+          </tr>
+          <tr>
+            <td><strong>使用主体</strong></td>
+            <td>人被软件指挥</td>
+            <td>人指挥软件干活</td>
+            <td><span style="color:#a855f7;font-weight:700">主体反转</span></td>
+          </tr>
+          <tr>
+            <td><strong>输出类型</strong></td>
+            <td>信息展示 / 表格汇总</td>
+            <td>执行结果 / 交付物</td>
+            <td><span style="color:#a855f7;font-weight:700">从查到做</span></td>
+          </tr>
+          <tr>
+            <td><strong>调用关系</strong></td>
+            <td>单个软件独立运行</td>
+            <td>多个 Agent 并行协同 + 反向调用人</td>
+            <td><span style="color:#a855f7;font-weight:700">从点到网</span></td>
+          </tr>
+          <tr>
+            <td><strong>能力交付</strong></td>
+            <td>「点击什么出什么」</td>
+            <td>「赋予一个可用的智能能力」</td>
+            <td><span style="color:#a855f7;font-weight:700">从能用到能动</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top:8px">🌍 拿 3 件事看变革</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
+        <div class="card" style="border-top:3px solid #ff5f57;padding:14px">
+          <h4 style="color:#ff5f57">📧 发一封邮件</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>打开 Outlook → 点「新建」→ 输入收件人 → 写主题 → 写正文 → 点「发送」<br>
+            <strong style="color:#56d364">智能体：</strong>说话：「帮我给王总发一封邮件，说明天下午 3 点跟他确认星恒电源尽访谈」
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #febc2e;padding:14px">
+          <h4 style="color:#febc2e">📑 出一份尽调报告</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>50 页 Word → 手工查财报 → 手工录数据 → 手工改格式<br>
+            <strong style="color:#56d364">智能体：</strong>一句话：「出星恒电源尽调报告」→ 7 维度并行 90 分钟出 80 页成稿
+          </p>
+        </div>
+        <div class="card" style="border-top:3px solid #a855f7;padding:14px">
+          <h4 style="color:#a855f7">🧾 清洗 13 份研报</h4>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.65">
+            <strong>传统：</strong>实习生请假 3 天手工 OCR + Excel<br>
+            <strong style="color:#56d364">智能体：</strong>data agent 2 小时 → 79 实体 / 110 指标 / 178 逻辑 / 自动入库
+          </p>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </main>
+      <!-- 翻页导航 -->
+      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
+        <a href="01-cover.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
+        <a href="03-products.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+      </div>
+
+<script src="../assets/js/main.js"></script>
+<!-- 键盘导航 -->
+<script>
+document.addEventListener("keydown", function(e) {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+  const slides = document.querySelectorAll(".slide");
+  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
+  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex + 1].classList.add("active");
+    e.preventDefault();
+  }
+  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex - 1].classList.add("active");
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>

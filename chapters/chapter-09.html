@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 13 章 · 如何训练一个智能体 · 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260704-audit">
+</head>
+<body class="chapter-page sci-fi-bg">
+
+  <main class="main-stage" style="background:#060A1A">
+
+    <!-- Slide 1：章节封面 -->
+    <div class="slide active">
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
+        <h1 style="font-size:64px;color:#A855F7;margin-bottom:8px"><span class="burst-trigger holo" data-burst="burst-train-1" data-hint="👉 训练智能体">🛠️ 如何训练智能体</span></h1>
+        <h2 style="font-size:32px;color:var(--text-secondary);font-weight:normal;margin-top:8px">训练 vs 编排 · Hermes 案例 · 自我进化</h2>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">Phase F 新增章节 · 2026-07-03 · 主公实测</p>
+      </header>
+
+      <div class="story-card" style="margin-top:40px;max-width:880px;margin-left:auto;margin-right:auto">
+        <p class="story-meta">金句开篇</p>
+        <p style="font-size:18px;line-height:1.8">
+          "你不需要训练一个新模型，<br>你需要<span style="color:#A855F7;font-weight:bold">编排一组已有能力</span>。"
+          <span style="color:var(--text-muted);font-size:14px">—— 主公 2026-07-03 训练方法论</span>
+        </p>
+      </div>
+
+      <div style="margin-top:36px;text-align:center">
+        <p style="color:var(--text-muted);font-size:13px">主公金句：智能体是<strong style="color:#A855F7">架构的艺术</strong>，不是参数的堆砌。</p>
+      </div>
+    </div>
+
+    <!-- Slide 2：训练 vs 编排 · 核心区分 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:18px">⚖️ 训练 vs 编排 · 你需要的不是调参</h2>
+
+      <div class="alert alert-warning" style="margin-bottom:18px">
+        <p style="font-size:13px"><strong>📌 核心区分</strong>（K2View）："Fine-tuning helps the model become more accurate in a specific domain, but <strong style="color:#A855F7">prompt engineering offers speed and flexibility with minimal setup</strong>."</p>
+      </div>
+
+      <table class="data-table" style="margin:0 auto;width:100%;font-size:12px">
+        <thead>
+          <tr style="background:var(--bg-card);color:#A855F7">
+            <th>维度</th>
+            <th>🎓 训练（Fine-tuning）</th>
+            <th>🛠️ 编排（Prompt + Tools）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>投入</strong></td>
+            <td>$100K-1M 数据 + GPU</td>
+            <td>$0 + 1 周设计</td>
+          </tr>
+          <tr>
+            <td><strong>迭代速度</strong></td>
+            <td>周/月</td>
+            <td><strong style="color:#22C55E">分钟/小时</strong></td>
+          </tr>
+          <tr>
+            <td><strong>适用场景</strong></td>
+            <td>垂直领域、专业术语</td>
+            <td>通用任务、流程编排</td>
+          </tr>
+          <tr>
+            <td><strong>主公推荐</strong></td>
+            <td>慎用（仅当 99% 通用都失败）</td>
+            <td><strong style="color:#A855F7">首选（90% 场景）</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info" style="margin-top:18px">
+        <p style="font-size:13px"><strong>📌 LinkedIn 名言</strong>："<strong style="color:#A855F7">AI Agents are a result of what RAG and Fine-Tuning couldn't fully solve alone</strong>. RAG bridges knowledge; Agents bridge action."</p>
+      </div>
+    </div>
+
+    <!-- Slide 3：训练方法论 · ReAct/Reflexion/AutoGPT -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">🧪 主流 Agent 训练框架</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px">
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">🔄 ReAct（Reasoning + Acting）</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            思维链 + 工具调用交替：思考→调用→观察→再思考<br>
+            <strong>代表：</strong>LangChain ReAct Agent<br>
+            <strong>主公用法：</strong>5 Agent 的基础调度模式
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🪞 Reflexion（自我反思）</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            执行→错则反思→记入 memory→下次避免<br>
+            <strong>代表：</strong>Reflexion 论文<br>
+            <strong>主公用法：</strong>MEMORY.md 的教训沉淀机制
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🤖 AutoGPT / BabyAGI</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            目标驱动 + 任务自动拆解<br>
+            <strong>代表：</strong>2023 火过、但不稳定<br>
+            <strong>教训：</strong>纯自主 ≠ 优质；需 main 调度
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+          <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🧰 Tool-Use（工具调用）</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            LLM 调用 API / DB / 文件 / 网络<br>
+            <strong>代表：</strong>OpenAI Function Calling / Anthropic Tool Use<br>
+            <strong>主公用法：</strong>MCP 协议（11 章已讲）
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-info">
+        <p style="font-size:12px"><strong>📌 关键事实</strong>：主公 5 Agent + 工具调用，比 AutoGPT 类自主 Agent <strong>稳定 10x</strong>。因为有 main 调度 + 多 Agent 互验。</p>
+      </div>
+    </div>
+
+    <!-- Slide 4：我做一个智能体 · 4 步法 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">🛠️ "我做智能体" 4 步法</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <div style="font-size:14px;color:#38bdf8;font-weight:bold;margin-bottom:4px">STEP 1</div>
+          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">📝 定职责</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+            这个 Agent <strong>做什么</strong>、<strong>不做什么</strong><br>
+            例："data 只清洗，不分析"
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <div style="font-size:14px;color:#22C55E;font-weight:bold;margin-bottom:4px">STEP 2</div>
+          <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🧠 设模型</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+            用哪个模型？降级策略？<br>
+            例："M3 → M2.7 → 公开模型"
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+          <div style="font-size:14px;color:#F59E0B;font-weight:bold;margin-bottom:4px">STEP 3</div>
+          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🛠️ 接工具</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+            MCP / Function Calling / API<br>
+            例：data 接 Qdrant + PG
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+          <div style="font-size:14px;color:#A855F7;font-weight:bold;margin-bottom:4px">STEP 4</div>
+          <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🔁 建回路</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+            记忆/反馈/版本控制<br>
+            例：MEMORY.md + task-tracker
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:13px"><strong>📌 主公金句</strong>："<strong style="color:#A855F7">先做 80 分的 Agent，再迭代到 90 分</strong>。完美主义是智能体项目最大的杀手。"</p>
+      </div>
+    </div>
+
+    <!-- Slide 5：Hermes 案例 · 真实脚本迭代 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">⚙️ Hermes 清洗入库案例 · V0→V3 真实迭代</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 任务背景</strong>：data 代理的清洗入库脚本由 Hermes 主导迭代，从 V0（2026-04-17）到 V3（2026-05-02），共 <strong style="color:#febc2e">140 个 Python + 15 个 Shell 脚本</strong>，<strong>累计 155 个脚本</strong>，处理 <strong style="color:#22C55E">199 份研报 / 33,985 chunks / 5,967 实体</strong>。</p>
+      </div>
+
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📊 V0→V3 四阶段迭代（真实失败记录）</h3>
+
+      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:14px">
+        <div style="display:grid;grid-template-columns:50px 1fr 90px 80px;gap:10px;font-size:12px;color:var(--text-secondary);line-height:1.8;align-items:center">
+          <strong style="color:#38bdf8">V0</strong>
+          <span>core_conclusion 提取率仅 30% → 5 层匹配策略后提升至 90%+</span>
+          <span style="color:#38bdf8">04-17</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#22C55E">V1</strong>
+          <span>calculation_method 仅公式匹配 40% → 扩展文字描述型（"按...计算"）→ 80%+</span>
+          <span style="color:#22C55E">04-21</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#F59E0B">V2</strong>
+          <span>&lt;256 token 切块占 8.5% → 小切块合并逻辑 + 段落完整性 → &lt;5%</span>
+          <span style="color:#F59E0B">04-22</span>
+          <span style="color:#22C55E">✅ 解决</span>
+          <strong style="color:#EC4899">V3</strong>
+          <span>reasoning 覆盖率 31% → backfill_reasoning_v2.py 前置过滤（overlap 0.9→0.75）→ 60-70%</span>
+          <span style="color:#EC4899">05-02</span>
+          <span style="color:#22C55E">✅ 解决</span>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi" style="padding:12px">
+          <div class="kpi-value" style="color:#febc2e;font-size:22px">155</div>
+          <div class="kpi-label">总脚本数</div>
+        </div>
+        <div class="kpi" style="padding:12px">
+          <div class="kpi-value" style="color:#22C55E;font-size:22px">199</div>
+          <div class="kpi-label">入库研报</div>
+        </div>
+        <div class="kpi" style="padding:12px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:22px">33,985</div>
+          <div class="kpi-label">Chunks</div>
+        </div>
+        <div class="kpi" style="padding:12px">
+          <div class="kpi-value" style="color:#A855F7;font-size:22px">5,967</div>
+          <div class="kpi-label">实体入库</div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:12px">
+        <p style="font-size:12px"><strong>💡 核心教训</strong>：LLM 兜底前必须有<strong>前置过滤</strong>（Garbage in → garbage out），<strong>前置过滤 &gt; 后置优化</strong>。</p>
+      </div>
+    </div>
+
+    <!-- Slide 6：基线运用 · 编码规范 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">📐 Hermes 的编码规范（基线）</h2>
+
+      <div class="alert alert-warning" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 主公观察</strong>：Hermes V1.x 之后加入了 <strong>"代码基线"</strong> 概念——每次新增功能前先评估是否复用现有函数，避免脚本无限膨胀。</p>
+      </div>
+
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📋 8 条核心规范（主公实战）</h3>
+
+      <div style="background:#0F172A;padding:18px;border-radius:8px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:1.7">
+        <strong style="color:#febc2e">① 配置集中化：</strong>所有路径/阈值放 YAML，不硬编码<br>
+        <strong style="color:#febc2e">② 日志规范：</strong>每个脚本入口打印版本号 + 参数哈希<br>
+        <strong style="color:#febc2e">③ 增量更新：</strong>支持 --incremental / --full 双模式<br>
+        <strong style="color:#febc2e">④ 原子写入：</strong>tmp → rename，避免半成品<br>
+        <strong style="color:#febc2e">⑤ 幂等设计：</strong>重复执行结果一致<br>
+        <strong style="color:#febc2e">⑥ 备份先于操作：</strong>trash/ 而非 rm<br>
+        <strong style="color:#febc2e">⑦ 异常聚合：</strong>try/except → 写入 error_log，非静默吞<br>
+        <strong style="color:#febc2e">⑧ 版本化输出：</strong>输出目录带日期戳，可回溯
+      </div>
+
+      <div class="alert alert-success" style="margin-top:14px">
+        <p style="font-size:12px"><strong>📌 效果</strong>：V3.x 系列复用率 <strong>78%+</strong>，单次迭代周期从 3 天 → <strong style="color:#22C55E">4 小时</strong>。</p>
+      </div>
+    </div>
+
+    <!-- Slide 7：自我提升反馈机制 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">🔄 Hermes 自我提升反馈机制</h2>
+
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">🔁 4 步反馈循环</h3>
+
+      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:1.8">
+        <strong style="color:#38bdf8">[执行]</strong> Hermes 跑脚本 V3.38<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+<strong style="color:#F59E0B">[观察]</strong> memory/core 检测成功率 87%（异常）<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+<strong style="color:#A855F7">[反思]</strong> 调 main 调 Hermes → "OCR 步骤 3.2% 失败"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+<strong style="color:#22C55E">[进化]</strong> 修改 V3.39 → 加 OCR 重试机制 → 成功率 99%
+      </div>
+
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">💡 关键洞察</h3>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:11px">
+        <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
+          <strong style="color:#38bdf8;font-size:12px">📊 数据驱动</strong><br>
+          自动采集成功率/耗时/异常 → 不靠"感觉"
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
+          <strong style="color:#F59E0B;font-size:12px">🪞 自我反思</strong><br>
+          失败 → 自动修订 MEMORY.md + 编码规范
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <strong style="color:#22C55E;font-size:12px">🔁 闭环进化</strong><br>
+          不只是修 bug，是 V3.38 → V3.39 的质变
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8：训练智能体 vs 编排智能体 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:18px;text-align:center">🎯 训练 vs 编排 · 决策树</h2>
+
+      <div style="background:#0F172A;padding:24px;border-radius:12px;max-width:780px;margin:0 auto;font-family:monospace;font-size:12px;color:var(--text-secondary);line-height:2">
+        <strong style="color:#38bdf8">问：</strong>你想做"判断类"还是"流程类"任务？<br>
+&nbsp;&nbsp;&nbsp;├── 流程类 → <strong style="color:#22C55E">编排（首选）</strong><br>
+&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 数据清洗？n8n + Claude<br>
+&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 报告生成？Dify + GPT<br>
+&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 文档处理？Langflow + Mistral<br>
+&nbsp;&nbsp;&nbsp;│<br>
+&nbsp;&nbsp;&nbsp;└── 判断类 → 专业知识深度？<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 通用判断（够用）→ <strong style="color:#22C55E">编排 + RAG</strong><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 垂直专业（必须）→ <strong style="color:#F59E0B">Fine-tune</strong>（慎用）
+      </div>
+
+      <div class="alert alert-info" style="margin-top:20px">
+        <p style="font-size:13px"><strong>📌 LinkedIn 2026</strong>："<strong style="color:#A855F7">In 2024, we built single AI agents. In 2025, we're orchestrating armies of them.</strong>" 编排 > 训练。</p>
+      </div>
+    </div>
+
+
+    <!-- Slide 8.5：5+2+1+1 同构 · 训练闭环也是同一个数字（13章首发）-->
+    <div class="slide">
+      <h2 class="slide-title">训练闭环 <span style="color:#A855F7">也是</span> 5+2+1+1 = 9</h2>
+      <p class="slide-subtitle">把主公团队的 5+2+1+1 拆解映射到训练闭环，从「方法论」变「同构」</p>
+
+      <div class="isomorphism-map">
+
+        <!-- 5 大 Agent = 5 步训练法 -->
+        <div class="iso-row iso-row-5">
+          <div class="iso-tag">5 大 Agent</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">5 步训练法 <span style="font-size:11px;color:var(--text-secondary)">(ReAct 自反思循环)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill iso-pill-1">① 部署</span>
+            <span class="iso-pill iso-pill-2">② 执行</span>
+            <span class="iso-pill iso-pill-3">③ 观察</span>
+            <span class="iso-pill iso-pill-4">④ 反思</span>
+            <span class="iso-pill iso-pill-5">⑤ 升级</span>
+          </div>
+        </div>
+
+        <!-- 2 大助手 = 内外双闭环 -->
+        <div class="iso-row iso-row-2">
+          <div class="iso-tag">2 大助手</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">内外双闭环 <span style="font-size:11px;color:var(--text-secondary)">(Claude Code + Hermes)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(0,212,255,0.1);border-color:#00D4FF;color:#00D4FF">内环 Claude Code：编辑 → 跑测试 → 修补</span>
+            <span class="iso-pill" style="background:rgba(168,85,247,0.1);border-color:#A855F7;color:#A855F7">外环 Hermes：抓运行日志 → 触发重训</span>
+          </div>
+        </div>
+
+        <!-- 1 套知识中台 = 1 套红线 -->
+        <div class="iso-row iso-row-1-1">
+          <div class="iso-tag">1 套中台</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">1 套训练红线 <span style="font-size:11px;color:var(--text-secondary)">(AGENTS.md + CODING_STANDARDS.md)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(86,211,100,0.1);border-color:#56d364;color:#56d364">
+              失败即规则：每次训练异常，必须立即把「失败原因+规则」写进 MEMORY.md
+            </span>
+          </div>
+        </div>
+
+        <!-- 1 主公 = 1 验收人 -->
+        <div class="iso-row iso-row-1-2">
+          <div class="iso-tag">1 主公</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">1 验收人 <span style="font-size:11px;color:var(--text-secondary)">(训练闭环的最终判官)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(245,158,11,0.1);border-color:#F59E0B;color:#F59E0B">
+              主公拍板：训练是否上线 / 是否回滚 / 是否扩展
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="iso-summary">
+        <strong>关键洞察：</strong>训练智能体<strong style="color:#A855F7">没有新方法论</strong> — 它就是「把编排数字 (5+2+1+1) 套用到自反思循环上」
+      </div>
+    </div>
+
+    <!-- Slide 9：本章小结 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:24px;text-align:center">🌟 章节金句</h2>
+
+      <div style="max-width:780px;margin:0 auto">
+        <div class="story-card" style="margin-bottom:18px">
+          <p class="story-meta">主公总结</p>
+          <p style="font-size:18px;line-height:1.8;color:var(--text-primary)">
+            "<strong style="color:#A855F7">训练 AI 不是调参</strong>，<br>是<strong style="color:#febc2e">编排一组能力</strong>。<br>
+            <br>28 个版本，<strong style="color:#22C55E">4 步闭环</strong>。<br>
+            <br>Hermes 的进化 = <strong style="color:#A855F7">企业的进化</strong>。"
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:10px;text-align:center">
+          <div class="card" style="padding:10px">
+            <div style="font-size:20px;margin-bottom:4px">📝</div>
+            <strong style="color:#A855F7">定职责</strong>
+          </div>
+          <div class="card" style="padding:10px">
+            <div style="font-size:20px;margin-bottom:4px">🧠</div>
+            <strong style="color:#A855F7">设模型</strong>
+          </div>
+          <div class="card" style="padding:10px">
+            <div style="font-size:20px;margin-bottom:4px">🛠️</div>
+            <strong style="color:#A855F7">接工具</strong>
+          </div>
+          <div class="card" style="padding:10px">
+            <div style="font-size:20px;margin-bottom:4px">🔁</div>
+            <strong style="color:#A855F7">建回路</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+      <!-- 翻页导航 -->
+      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
+        <a href="12-data-security.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
+        <a href="14-workflow.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+      </div>
+
+
+  <script src="../assets/js/layout.js?v=20260704-audit"></script>
+  <script src="../assets/js/shared-agents.js?v=20260704-audit"></script>
+  <script src="../assets/js/main.js?v=20260704-audit"></script>
+  <script src="../assets/js/burst.js?v=20260704-audit"></script>
+  <script src="../assets/js/effects.js?v=20260704-audit"></script>
+
+<!-- 键盘导航 -->
+<script>
+document.addEventListener("keydown", function(e) {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+  const slides = document.querySelectorAll(".slide");
+  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
+  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex + 1].classList.add("active");
+    e.preventDefault();
+  }
+  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex - 1].classList.add("active");
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
