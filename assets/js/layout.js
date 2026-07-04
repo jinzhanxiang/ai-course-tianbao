@@ -16,6 +16,7 @@
     { num: '00',    file: '00-cover.html',                      title: '封面',                emoji: '🎯' },
     { num: '01',    file: '01-opening.html',                    title: '开场破题',            emoji: '🚀' },
     { num: '02',    file: '02-revolution.html',                 title: '智能体革命',          emoji: '⚡' },
+    { num: '02a',   file: '02a-agent-overview.html',             title: '主流智能体汇总 ⭐',   emoji: '🌐' },
     { num: '02.5',  file: '02-revolution-architecture.html',    title: '5+2+1 体系总览 ⭐',   emoji: '🧠' },
     { num: '03',    file: '03-main.html',                       title: 'main 总调度 ⭐',      emoji: '🎯' },
     { num: '04',    file: '04-project.html',                    title: 'project 项目管家',    emoji: '📋' },
