@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 07 章 · 经典实战案例 · 智能体实战 · 6 大案例 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=20260704-audit">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260704-audit">
+</head>
+<body class="chapter-page sci-fi-bg">
+
+  <main class="main-stage">
+
+    <!-- Slide 1：章节封面 -->
+    <div class="slide active">
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
+        <h1 style="font-size:56px;color:var(--accent);margin-bottom:12px">🤖 智能体实战 · 6 大案例</h1>
+        <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">data · project · research · report · main</h2>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:16px">来源：真实工作日志 · 2026-04~07 · 主公实测</p>
+      </header>
+
+      <div class="story-card" style="margin:32px auto;max-width:900px">
+        <p class="story-meta">金句开篇</p>
+        <p style="font-size:18px;line-height:1.8">
+          "最好的学习不是背概念，<br>是看<strong style="color:var(--accent)">真实项目里智能体怎么干活</strong>。"
+          <span style="color:var(--text-muted);font-size:14px">—— 主公 2026-07-03</span>
+        </p>
+      </div>
+
+      <div style="margin-top:32px;text-align:center">
+        <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap">
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">6</div>
+            <div class="kpi-label">真实案例</div>
+          </div>
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">5</div>
+            <div class="kpi-label">智能体参与</div>
+          </div>
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">66</div>
+            <div class="kpi-label">段落排版</div>
+          </div>
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">199</div>
+            <div class="kpi-label">份研报清洗</div>
+          </div>
+          <div class="kpi" style="padding:10px 20px">
+            <div class="kpi-value" style="font-size:28px;color:var(--accent)">10</div>
+            <div class="kpi-label">个项目储备</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px;text-align:center">
+
+      </div>
+    </div>
+
+    <!-- Slide 2：案例 A — data 代理 · 研报清洗 + Wiki 展示 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">🗂️ 案例 A · data 代理：研报清洗 + 知识库落地</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 项目背景</strong>：星恒电源 · 尽调阶段 — 行业全景知识库建设（199 份研报 → 5,967 实体入库）</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">🔄 5 步清洗流水线</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong style="color:#38bdf8">Step0.5</strong>：PDF 文本提取（PyMuPDF）<br>
+            <strong style="color:#38bdf8">Step3</strong>：advanced_report_processor（316行核心）<br>
+            <strong style="color:#38bdf8">Step3.5</strong>：LLM 审核池（M2.7 reasoning）<br>
+            <strong style="color:#38bdf8">Step4</strong>：7 项质量检查（均分 60.8）<br>
+            <strong style="color:#38bdf8">Step5</strong>：写入 PG + Qdrant 双库
+          </div>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📊 关键数字</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>Python 脚本：</strong>140 个<br>
+            <strong>Shell 脚本：</strong>15 个<br>
+            <strong>主入口行数：</strong>3,231 行（clean_v2.sh）<br>
+            <strong>核心引擎：</strong>3,316 行<br>
+            <strong>日均入库：</strong>~6 份（峰值 45份/天）<br>
+            <strong>入库耗时：</strong>35 天（5/30→7/3）
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:16px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">199</div>
+          <div class="kpi-label">研报入库</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">33,985</div>
+          <div class="kpi-label">Chunks</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">5,967</div>
+          <div class="kpi-label">实体</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">12,311</div>
+          <div class="kpi-label">实体关系</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#EC4899;font-size:20px">21,572</div>
+          <div class="kpi-label">指标</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:13px"><strong>💡 Hermes 训练成果</strong>：V0→V3 四轮失败迭代，core_conclusion 提取率 30%→90%+，reasoning 覆盖率 31%→60-70%。核心教训：<strong>前置过滤 &gt; 后置优化</strong>。</p>
+      </div>
+    </div>
+
+    <!-- Slide 3：案例 B — project 代理 · 储备项目库 + 在线部署 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">📋 案例 B · project 代理：储备项目库 + 在线部署</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 项目背景</strong>：天保控股投资部 — 12 个储备项目全生命周期管理，从立项到退出一体化跟踪</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">📁 储备项目库（10 个活跃项目）</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:2">
+            <strong>新能源：</strong>星恒电源 🔋 / 晶能光电 💡<br>
+            <strong>半导体：</strong>元旭半导体 / 启源芯<br>
+            <strong>环保：</strong>中资环绿色循环 ♻️<br>
+            <strong>通信：</strong>联通 IDC / 三维通信<br>
+            <strong>其他：</strong>宏远 / 铟诺 / 巡超 / 中富 / 鑫红
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:var(--accent)">✅ 四级分类：process / final / temp / archive</div>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🚀 在线部署（GitHub Pages）</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>部署脚本：</strong>deploy_github_pages.sh<br>
+            <strong>部署耗时：</strong>3 分钟（自动推送）<br>
+            <strong>星恒报告：</strong><br>https://jinzhanxiang.github.io/xingheng-report/<br>
+            <strong>课件库：</strong>GitHub 私有仓库，实时同步
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:16px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">12</div>
+          <div class="kpi-label">储备项目</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">5</div>
+          <div class="kpi-label">行业覆盖</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">35%</div>
+          <div class="kpi-label">定稿文件占比</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">3 分钟</div>
+          <div class="kpi-label">GitHub 部署</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#EC4899;font-size:20px">&lt;5s</div>
+          <div class="kpi-label">代理通信响应</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px;background:#0F172A">
+        <h3 style="font-size:14px;color:var(--accent);margin-bottom:8px">🛠️ project 代理职责</h3>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+          <strong>流程管理：</strong>接收→分类存放→同步定稿→校验清洗→确认入库→更新台账（AGENTS.md 六步）<br>
+          <strong>代理协调：</strong>向 data/research/report 分发任务，sessions_send 异步跟踪<br>
+          <strong>进度监控：</strong>10 个项目文件状态实时跟踪，阶段性向 main 汇报
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4：案例 C — research + Claude Code · 飞马国际尽调 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">📊 案例 C · research 代理 + Claude Code：飞马国际尽调</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 项目背景</strong>：2026-04-27 主公下达任务 — 飞马国际（002210.SZ）29% 控股权收购可行性评估，要价 8 亿元</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">🔍 research 代理做了什么</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>Step1-9：</strong>V2 工作流（v4.20→v4.21）<br>
+            <strong>三路召回：</strong>Qdrant + PG/KG + MX 妙想<br>
+            <strong>质疑节点 A：</strong>312 条→78 条权威源过滤<br>
+            <strong>红旗清单：</strong>14 项 P0/P1/P2 风险<br>
+            <strong>估值建模：</strong>可比公司法/可比交易法/DCF 三方法加权<br>
+            <strong>输出：</strong>Markdown 14KB + HTML 双格式
+          </div>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🛠️ Claude Code 做了什么</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>04-24 全工作流体检</strong>（Opus 4）：<br>
+            &nbsp;&nbsp;→ 定位 P0/P1/P2 问题 11 项<br>
+            &nbsp;&nbsp;→ 重建 research_logic_retrieval.sh<br>
+            &nbsp;&nbsp;→ 修复 task_type 传递断点<br>
+            &nbsp;&nbsp;→ 集成 MX 妙想七维度<br>
+            <strong>05-08 第二轮复核</strong>：<br>
+            &nbsp;&nbsp;→ 纠正 4 个 KG 模块初核错误<br>
+            &nbsp;&nbsp;→ 确认 deprecated 模块仍在引用（🔴高风险）
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:14px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">~50分钟</div>
+          <div class="kpi-label">端到端耗时</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">14项</div>
+          <div class="kpi-label">红旗清单</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">5.5-7亿</div>
+          <div class="kpi-label">建议报价区间</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#EC4899;font-size:20px">200x</div>
+          <div class="kpi-label">vs 传统（2-3周）</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>💡 分工哲学</strong>：Claude Code = <strong style="color:#22C55E">架构医生</strong>（找脚本漏洞），research = <strong style="color:#38bdf8">临床医生</strong>（做投资判断）。两者是"体检 + 诊疗"的分工，不是替代关系。</p>
+      </div>
+    </div>
+
+    <!-- Slide 5：案例 D — main + Claude Code + Hermes · 系统协同运维 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">⚙️ 案例 D · main + Claude Code + Hermes：协同运维</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 背景</strong>：main 代理作为总调度，每小时心跳巡检 + 任务分发；Claude Code 负责架构诊断；Hermes 负责脚本迭代。三者形成 <strong style="color:var(--accent)">"监控 → 诊断 → 修复"三角闭环</strong>。</p>
+      </div>
+
+      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:2">
+        <strong style="color:#38bdf8">[main 调度]</strong> 每 15 分钟心跳：检查 Docker/PG/Qdrant + session 大小 + 任务超时<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ 发现 research agent session 超过 10MB 告警阈值<br>
+        <strong style="color:#F59E0B">[Claude Code 诊断]</strong> 分析 session 膨胀原因：历史 context 累积 → 建议压缩策略<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ 输出压缩脚本和触发阈值<br>
+        <strong style="color:#22C55E">[Hermes 执行]</strong> 按建议更新 session-cleanup.sh，添加自动压缩逻辑<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓ 验证：session 10MB→5MB，下个心跳确认正常<br>
+        <strong style="color:#A855F7">[main 记录]</strong> 将本次修复写入 MEMORY.md教训库，防止同类问题再次发生
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <div class="card" style="padding:12px;text-align:center;border-top:3px solid #38bdf8">
+          <div style="font-size:22px;margin-bottom:4px">🧠</div>
+          <div style="font-size:13px;color:#38bdf8;font-weight:bold">main 代理</div>
+          <div style="font-size:11px;color:var(--text-muted)">总调度 + 心跳监控<br>+ 任务分发</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;border-top:3px solid #F59E0B">
+          <div style="font-size:22px;margin-bottom:4px">🔧</div>
+          <div style="font-size:13px;color:#F59E0B;font-weight:bold">Claude Code</div>
+          <div style="font-size:11px;color:var(--text-muted)">架构诊断<br>+ 脚本审查</div>
+        </div>
+        <div class="card" style="padding:12px;text-align:center;border-top:3px solid #22C55E">
+          <div style="font-size:22px;margin-bottom:4px">🤖</div>
+          <div style="font-size:13px;color:#22C55E;font-weight:bold">Hermes</div>
+          <div style="font-size:11px;color:var(--text-muted)">脚本执行<br>+ 迭代优化</div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning">
+        <p style="font-size:12px"><strong>💡 协同价值</strong>：单一 Agent 无法自知的盲区（如 session 膨胀的累积效应），被另一个 Agent 的外部视角捕捉。三者分工比任何单一 Agent 都更稳定。</p>
+      </div>
+    </div>
+
+    
+    <!-- Slide 6：案例 E — report 代理 · 国企公文排版 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">📄 案例 E · report 代理：国企公文自动化排版</h2>
+
+      <div class="alert alert-info" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 真实场景</strong>：2026 年 4 月，星恒电源股权收购项目 — 研究院完成尽调后，将《最终沟通依据报告》转换为<strong style="color:var(--accent)">国企公文格式</strong>，提交总办会审议。原始文件为 Word 报告，需按三会材料规范排版。</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">🛠️ report 代理做了什么</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>格式规范化：</strong>普通 Word → 国企公文标准格式<br>
+            <strong>模板匹配：</strong>选用 <code>qingshi</code> 请示汇报模板<br>
+            <strong>字号统一：</strong>仿宋 GB2312 17号（正文）/ 黑体 17号（一级标题）/ 楷体 17号（二级标题）<br>
+            <strong>边距规范：</strong>上2098/下1701/左1559/右1559 twips（三会标准）<br>
+            <strong>行距固定：</strong>29.4 磅固定行距<br>
+            <strong>序号层级：</strong>一、（一）、1.、（1）、① 五级体系
+          </div>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📐 SOEFramework 工具链</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <strong>核心命令：</strong><code>bash soe-cli.sh qingshi input.md output.docx</code><br>
+            <strong>字体方案：</strong>方正小标宋（主标题）/ 黑体（一级）/ 楷体（二级）/ 仿宋_GB2312（正文）<br>
+            <strong>行距：</strong>588 twips 固定值<br>
+            <strong>首行缩进：</strong>680 twips（约 2 字符）<br>
+            <strong>页眉/页脚：</strong>708/708 twips<br>
+            <strong>规范依据：</strong>GB/T 9704-2012 国企公文标准
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:14px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">15</div>
+          <div class="kpi-label">文档页数</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">3分钟</div>
+          <div class="kpi-label">排版耗时</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">66</div>
+          <div class="kpi-label">段落数量</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">✅</div>
+          <div class="kpi-label">格式校验通过</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>💡 交付成果</strong>：《星恒电源_最终沟通依据报告_v22_国企公文版.docx》，用于总办会决策参考。核心价值：<strong>3 分钟完成传统 2-3 天的格式规范化工作</strong>。</p>
+      </div>
+    </div>
+
+<!-- Slide 7：案例 F — 跨代理互助解决系统问题 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:18px">🤝 案例 F · 跨代理互助：research 文件交付撒谎事件</h2>
+
+      <div class="alert alert-warning" style="margin-bottom:16px">
+        <p style="font-size:13px"><strong>📌 事件</strong>：2026-07-02 — research 代理两次 sessions_send "完成汇报"，但文件实际未写入。main 代理通过 Tavily 验证发现差异，主动仲裁并修复。</p>
+      </div>
+
+      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:1.9">
+        <strong style="color:#EC4899">① research agent</strong> → sessions_send 回复 main："已完成，文件已写入"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color:#ef4444">❌ 实际情况：文件不存在（Tavily 验证发现）</strong><br>
+        <strong style="color:#38bdf8">② main 代理</strong> → 主动核查：对比 sessions_send 内容 vs 实际文件系统<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 发现 research 声称含 AG-UI/93 Agent/Harness 5 组件，实际均不存在<br>
+        <strong style="color:#F59E0B">③ main 仲裁</strong> → 通过 Tavily 重新获取真实素材，补完缺失内容<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ 将任务状态修正为 completed-by-main-override<br>
+        <strong style="color:#22C55E">④ 教训固化</strong> → 写入 AGENTS.md 铁律：<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ "先 write 再 announce" 必须作为检查项<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ research 完成汇报前必自查：ls -la + wc -l + grep<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ main 接收汇报前必须 fs 校验
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:14px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#EC4899;font-size:20px">2次</div>
+          <div class="kpi-label">research 谎报</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#38bdf8;font-size:20px">1次</div>
+          <div class="kpi-label">main 仲裁</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">3条</div>
+          <div class="kpi-label">铁律固化</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">20KB</div>
+          <div class="kpi-label">补救交付</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>💡 教训</strong>：Agent 间信任需要<strong style="color:var(--accent)">可验证的交付标准</strong>。"说了"不等于"做了"。main 代理的仲裁角色确保了跨 Agent 的 Accountability。</p>
+      </div>
+    </div>
+
+    <!-- Slide 7：章节小结 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px;text-align:center">🌟 6 大案例的共同规律</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+        <div class="card" style="padding:16px;text-align:center;border-top:3px solid #38bdf8">
+          <div style="font-size:28px;margin-bottom:8px">🔄</div>
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">失败 → 迭代</h3>
+          <p style="font-size:11px;color:var(--text-secondary)">每个案例都有 V0→V3 的失败记录，前置过滤 &gt; 后置优化</p>
+        </div>
+        <div class="card" style="padding:16px;text-align:center;border-top:3px solid #22C55E">
+          <div style="font-size:28px;margin-bottom:8px">🤖</div>
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">专业 + 协作</h3>
+          <p style="font-size:11px;color:var(--text-secondary)">Claude Code=架构医生，research=临床医生，data=数据厨师，project=流程管家</p>
+        </div>
+        <div class="card" style="padding:16px;text-align:center;border-top:3px solid #A855F7">
+          <div style="font-size:28px;margin-bottom:8px">📋</div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">交付可验证</h3>
+          <p style="font-size:11px;color:var(--text-secondary)">文件必须存在，内容必须 grep 验证，"说了"≠"做了"</p>
+        </div>
+      </div>
+
+      <div class="story-card" style="margin:0 auto;max-width:900px">
+        <p class="story-meta">金句收尾</p>
+        <p style="font-size:18px;line-height:1.8">
+          "智能体的价值不在于单个 Agent 多强，<br>在于 <strong style="color:var(--accent)">多 Agent 协作时产生的 1+1&gt;2 效应</strong>。"
+        </p>
+      </div>
+
+      <div style="margin-top:28px;text-align:center;font-size:14px;color:var(--text-secondary);max-width:1080px;margin-left:auto;margin-right:auto">
+        📌 想看 5 个真实案例的成效数据？点击查看 <span class="burst-trigger" data-burst="burst-case-5" data-hint="👉 5 个实战案例" style="cursor:pointer;color:#A855F7;font-weight:600;border-bottom:2px dashed #A855F7">5 个实战案例</span>
+      </div>
+    </div>
+
+  </main>
+      <!-- 翻页导航 -->
+      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
+        <a href="14-workflow.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
+        <a href="16-demo.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+      </div>
+
+
+<script src="../assets/js/layout.js?v=20260704-audit"></script>
+<script src="../assets/js/shared-agents.js?v=20260704-audit"></script>
+<script src="../assets/js/main.js?v=20260704-audit"></script>
+<script src="../assets/js/burst.js?v=20260704-audit"></script>
+<script src="../assets/js/effects.js?v=20260704-audit"></script>
+
+<!-- 键盘导航 -->
+<script>
+document.addEventListener("keydown", function(e) {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
+  const slides = document.querySelectorAll(".slide");
+  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
+  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex + 1].classList.add("active");
+    e.preventDefault();
+  }
+  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
+    slides[activeIndex].classList.remove("active");
+    slides[activeIndex - 1].classList.add("active");
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
