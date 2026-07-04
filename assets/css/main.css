@@ -3550,3 +3550,10 @@ body::before {
   animation: glow-pulse-ring 1.5s ease-out infinite;
 }
 
+
+
+/* 演示模式禁用底部翻页控制 */
+[data-mode="presentation"] .controls {
+  display: none !important;
+}
+
