@@ -99,11 +99,18 @@
 .story-card {
   position: relative;
   padding: 24px;
-  background: var(--bg-card);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 212, 255, 0.06) 100%);
   border-left: 4px solid var(--accent);
   border-radius: 0 12px 12px 0;
   margin-bottom: 16px;
+  transition: all 0.3s ease;
 }
+
+.story-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.2);
+}
+
 .story-card::before {
   content: '“';
   position: absolute;
