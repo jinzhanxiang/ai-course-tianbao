@@ -18,13 +18,14 @@
     { num: '02',    file: '02-5plus2plus1.html',                title: '5+2+1 体系 ⭐',       emoji: '🧠' },
     { num: '03',    file: '03-ecosystem-deploy.html',           title: '生态协同与部署',      emoji: '🌐' },
     { num: '04',    file: '04-quality.html',                    title: '幻觉防御+质量提升',   emoji: '✨' },
-    { num: '05',    file: '05-train.html',                      title: '训练 vs 编排',        emoji: '🎓' },
-    { num: '06',    file: '06-workflow.html',                   title: '个人 Workflow',       emoji: '🔄' },
-    { num: '07',    file: '07-agent-cases.html',                title: '6大实战案例',         emoji: '🤖' },
-    { num: '08',    file: '08-demo.html',                       title: '现场演示 90分钟',     emoji: '🎬' },
-    { num: '09',    file: '09-qa.html',                         title: 'Q&A 预判',            emoji: '❓' },
-    { num: '10',    file: '10-live-demo.html',                  title: '真实召唤 LIVE',       emoji: '🎥' },
-    { num: '11',    file: '11-case.html',                       title: '实战案例综述',        emoji: '📚' },
+    { num: '05',    file: '05-data-security.html',              title: '数据安全+本地化部署', emoji: '🔒' },
+    { num: '06',    file: '06-train.html',                      title: '训练 vs 编排',        emoji: '🎓' },
+    { num: '07',    file: '07-workflow.html',                   title: '个人 Workflow',       emoji: '🔄' },
+    { num: '08',    file: '08-agent-cases.html',                title: '6大实战案例',         emoji: '🤖' },
+    { num: '09',    file: '09-demo.html',                       title: '现场演示 90分钟',     emoji: '🎬' },
+    { num: '10',    file: '10-qa.html',                         title: 'Q&A 预判',            emoji: '❓' },
+    { num: '11',    file: '11-live-demo.html',                  title: '真实召唤 LIVE',       emoji: '🎥' },
+    { num: '12',    file: '12-case.html',                       title: '实战案例综述',        emoji: '📚' },
   ];
 
   // 当前章节信息（从 URL 推断）
