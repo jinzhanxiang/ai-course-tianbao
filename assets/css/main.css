@@ -670,16 +670,32 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
 }
 th, td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid var(--border);
+  transition: all 0.2s ease;
 }
 th {
-  background: var(--bg-card);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,212,255,0.1) 100%);
   color: var(--accent);
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+}
+
+/* 表格行悬停效果 */
+tr:hover td {
+  background: rgba(0, 212, 255, 0.08);
+}
+
+tr:hover td:first-child {
+  border-left: 3px solid var(--accent);
+  padding-left: 9px;
 }
 
 .tag {
