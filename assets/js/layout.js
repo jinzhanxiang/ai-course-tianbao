@@ -23,7 +23,7 @@
     { num: '05',    file: '05-research.html',                   title: 'research 研究方法',   emoji: '🔬' },
     { num: '06',    file: '06-data.html',                       title: 'data 数据清洗',       emoji: '🧹' },
     { num: '07',    file: '07-report.html',                     title: 'report 排版',         emoji: '📄' },
-    { num: '08',    file: '08-ecosystem-deploy.html',                  title: '三智能体协同',        emoji: '🌐' },
+    { num: '08',    file: '08-ecosystem-deploy.html',           title: '生态协同与部署 ⭐',   emoji: '🌐' },
     { num: '09',    file: '09-case.html',                       title: '实战案例综述',        emoji: '📚' },
     { num: '10',    file: '10-methodology.html',                title: '纵横分析法',          emoji: '🎯' },
     { num: '11',    file: '11-quality.html',                    title: '智能体质量提升',      emoji: '✨' },
@@ -33,7 +33,6 @@
     { num: '15',    file: '15-demo.html',                       title: '现场演示 90 分钟',    emoji: '🎬' },
     { num: '16',    file: '16-qa.html',                         title: 'Q&A 预判',            emoji: '❓' },
     { num: '17',    file: '17-live-demo.html',                  title: '真实召唤 LIVE',       emoji: '🎥' },
-    { num: '18',    file: '18-deployment-barriers.html',        title: '落地 4 大门槛',       emoji: '🛠️' },
   ];
 
   // 当前章节信息（从 URL 推断）
