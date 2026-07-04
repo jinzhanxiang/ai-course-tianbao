@@ -135,18 +135,19 @@
 }
 .agent-card {
   padding: 20px;
-  background: var(--bg-card);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(168, 85, 247, 0.08) 100%);
   border: 1px solid var(--border);
   border-radius: 12px;
   text-align: center;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .agent-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px) scale(1.02);
   border-color: var(--accent);
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
 }
+
 .agent-card .emoji {
   font-size: 48px;
   display: block;

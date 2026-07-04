@@ -2045,11 +2045,18 @@ kbd {
   border-collapse: separate;
   border-spacing: 0;
   font-size: 12px;
-  background: rgba(13, 17, 23, 0.6);
+  background: linear-gradient(135deg, rgba(13, 17, 23, 0.8) 0%, rgba(30, 32, 40, 0.8) 100%);
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
 }
+
+.loop-comparison-table:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+
 .loop-comparison-table thead th {
   padding: 12px 14px;
   background: rgba(168, 85, 247, 0.12);
