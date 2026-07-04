@@ -1925,6 +1925,20 @@ h1, .h1 { font-size: var(--font-h1); line-height: var(--lh-tight); }
 h2, .h2 { font-size: var(--font-h2); line-height: var(--lh-tight); }
 h3, .h3 { font-size: var(--font-h3); line-height: var(--lh-normal); }
 p, li, dd { font-size: var(--font-body); line-height: var(--lh-normal); }
+
+/* 图片通用样式 */
+.slide img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.slide img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.25);
+  cursor: pointer;
+}
 small, .small { font-size: var(--font-small); }
 code, pre, kbd { font-size: var(--font-code); }
 
@@ -2941,4 +2955,30 @@ kbd {
 
 ::-webkit-scrollbar-corner {
   background: rgba(0, 0, 0, 0.3);
+}
+
+/* ========== Slide 内容元素依次淡入 ========== */
+.slide.active > * {
+  animation: contentFadeIn 0.5s ease-out both;
+}
+
+/* 延迟动画 - 依次出现 */
+.slide.active > *:nth-child(1) { animation-delay: 0.05s; }
+.slide.active > *:nth-child(2) { animation-delay: 0.1s; }
+.slide.active > *:nth-child(3) { animation-delay: 0.15s; }
+.slide.active > *:nth-child(4) { animation-delay: 0.2s; }
+.slide.active > *:nth-child(5) { animation-delay: 0.25s; }
+.slide.active > *:nth-child(6) { animation-delay: 0.3s; }
+.slide.active > *:nth-child(7) { animation-delay: 0.35s; }
+.slide.active > *:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
