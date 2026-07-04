@@ -462,74 +462,7 @@ main 比对两份输出 → 不一致 → 标注"需复核"<br>
     </div>
 
     <!-- Slide 12：幻觉避免·从 06 章合并过来 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#EF4444;margin-bottom:14px">🛡️ 幻觉避免 · cite-then-answer + self-check 实战</h2>
-      <p style="color:var(--text-secondary);margin-bottom:18px;font-size:13px">从 06 章合并 · 主公踩过的坑与方法论</p>
 
-      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:14px">
-        <!-- 什么是幻觉 -->
-        <div class="neon-card" style="padding:18px;border-color:rgba(239,68,68,0.6)">
-          <h3 style="color:#EF4444;font-size:16px;margin:0 0 8px 0">💀 幻觉的真相</h3>
-          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
-            <strong style="color:#F59E0B">主公踩过的坑</strong>：<br>
-            1. 模型<strong style="color:#EF4444">自信地说错了</strong>——为不存在的实体编造代码<br>
-            2. <strong style="color:#EF4444">小数点不敏感</strong>——财务金额 ⟨Percentage⟩ 不会自动校验<br>
-            3. <strong style="color:#EF4444">虚构引用</strong>——拼出不存在的项目、报告号、公司名<br>
-            <strong style="color:#56d364">修正</strong>：强制 cite Wikipedia + 公告原文 + 三层校验
-          </p>
-        </div>
-        <!-- cite-then-answer -->
-        <div class="neon-card" style="padding:18px;border-color:rgba(0,212,255,0.6)">
-          <h3 style="color:#00D4FF;font-size:16px;margin:0 0 8px 0">🔍 cite-then-answer 方法论</h3>
-          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
-            <strong style="color:#56d364">不是先答后补引文</strong>，而是<strong style="color:#00D4FF">先引文后结论</strong>。<br>
-            <strong style="color:#A855F7">3 步流程</strong>：<br>
-            1. <strong>查证</strong> Wikipedia + 公告原文 + wiki.json<br>
-            2. <strong>打分</strong> 置信度（高/中/低）<br>
-            3. <strong>输出</strong> 引用 + URL + 版本号<br>
-            <span style="color:var(--accent)">→ 决策者看到证据再说话</span>
-          </p>
-        </div>
-        <!-- self-check -->
-        <div class="neon-card" style="padding:18px;border-color:rgba(168,85,247,0.6)">
-          <h3 style="color:#A855F7;font-size:16px;margin:0 0 8px 0">🔄 self-check 三轮校验</h3>
-          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
-            <strong style="color:#56d364">Agent 自查</strong> × 3 轮：<br>
-            <strong style="color:#00D4FF">轮 1</strong>：内部一致性（结论与原始数据是否一致）<br>
-            <strong style="color:#F59E0B">轮 2</strong>：引用凭据性（公告/URL 是否存在）<br>
-            <strong style="color:#A855F7">轮 3</strong>：决策可执行性（有无遗漏？口径是否统一？）<br>
-            <span style="color:var(--accent)">→ 3 轮不能同错</span>
-          </p>
-        </div>
-        <!-- MoA -->
-        <div class="neon-card" style="padding:18px;border-color:rgba(86,211,100,0.6)">
-          <h3 style="color:#56d364;font-size:16px;margin:0 0 8px 0">🎭 MoA · 多 Agent 辩论</h3>
-          <p style="color:var(--text-secondary);font-size:12px;line-height:1.7;margin:0">
-            <strong style="color:#56d364">Mixture-of-Agents</strong> · 5 Agent 互辯机制：<br>
-            <strong style="color:#00D4FF">main 调度</strong>、<strong style="color:#A855F7">research/data/report 互检</strong><br>
-            <strong style="color:#F59E0B">反对意见票数 ≥2</strong> 后调起 report 重新先生成<br>
-            <strong style="color:#EC4899">准确率</strong>从单 Agent 78% 提升至 <strong style="color:#56d364">96.8%</strong>（出现 3 次）
-          </p>
-        </div>
-      </div>
-
-      <div class="alert alert-success" style="margin-top:16px;font-size:13px;line-height:1.7;max-width:1080px;margin-left:auto;margin-right:auto">
-        🎯 <strong style="color:var(--accent)">主公 takeaway</strong>：幻觉避免不是 <strong style="color:#F59E0B">事后调错</strong>，而是 <strong style="color:#56d364">从设计之嵌</strong>。cite-then-answer + self-check + MoA 三管齐下，才能保证 <strong style="color:#00D4FF">决策者闭眼相信</strong>。
-        <br>👉 详情在各 project 阶段体现（ 03-07 章）。
-      </div>
-    </div>
   </main>
-
-  <script src="../assets/js/layout.js?v=20260704-audit"></script>
-  <script src="../assets/js/shared-agents.js?v=20260704-audit"></script>
-  <script src="../assets/js/main.js?v=20260704-audit"></script>
-  <script src="../assets/js/burst.js?v=20260704-audit"></script>
-  <script src="../assets/js/effects.js?v=20260704-audit"></script>
-
-<nav class="chapter-nav">
-  <a href="10-methodology.html"><span class="label">PREV</span> ➜ 纵横分析法 ⭐</a>
-  <a href="../index.html">📚 章节目录</a>
-  <a class="next" href="12-train.html"><span class="label">NEXT</span> 如何训练智能体 🛠️ ➜</a>
-</nav>
 </body>
 </html>
