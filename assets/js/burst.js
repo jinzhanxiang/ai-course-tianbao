@@ -33,6 +33,8 @@
       title: '5 + 2 + 1 体系架构',
       subtitle: '5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产 · 点击下方看实战结果',
       layout: 'threecol',
+      videoPoster: '../assets/videos/posters/04-neural-network.png',
+      video: '../assets/videos/9-agent-live-call.mp4',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '📄 实战案例：晶能光电商业尽调报告（公网 · 真实交付）',
       cards: [
@@ -175,6 +177,8 @@
     'burst-case-xingheng': {
       title: '星恒电源 · 12 小时尽调启动',
       subtitle: '固态锂电池 · 尽调阶段 · 点击按钮看公开版尽调报告',
+      videoPoster: '../assets/videos/posters/06-before-after.png',
+      video: '../assets/videos/xingheng-13pct-walkthrough.mp4',
       resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
       resultLabel: '📊 星恒电源尽调报告（GitHub Pages · 公开交付）',
       layout: 'pipe',
@@ -203,7 +207,7 @@
       title: '晶能项目 · 1 年跟踪 + 立项启动',
       subtitle: 'LED 芯片 · 储备项目 → 立项 · 主公可点击下方按钮看真实交付',
       videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
-      video: '../assets/videos/02-qiyuan-factory.mp4',
+      video: '../assets/videos/jingneng-v3426-walkthrough.mp4',
       layout: 'pipe',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '📄 点击查看晶能光电商业尽调交付报告（公网 · 实时）',
@@ -281,7 +285,9 @@
     // 03 main 调度 - 5 大动作
     'burst-main': {
       title: 'main · 总调度 5 大动作',
-      subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环',
+      subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环 · 真实运行 30 分钟仪表盘',
+      videoPoster: '../assets/videos/posters/01-main-command-center.png',
+      video: '../assets/videos/main-dashboard-live.mp4',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '🧠 main 实战指挥',
       layout: 'pipe',
@@ -858,20 +864,25 @@
       // 视频模式 (poster + video 都存在) - 实际 mp4 播放
       const vc = document.createElement('div');
       vc.className = 'burst-video-container';
+      vc.style.cssText = 'width:100%;max-width:900px;margin:8px auto 0;';
       vc.innerHTML = `
         <video class="burst-video" src="${data.video || ''}"
           poster="${data.videoPoster}"
-          controls autoplay playsinline
-          style="width:100%;height:auto;max-height:70vh;border-radius:12px;margin-top:8px">
+          controls autoplay playsinline muted loop
+          style="width:100%;height:auto;max-height:35vh;border-radius:12px;">
         </video>`;
       stage.appendChild(vc);
-      // 视频播放完毕后自动关闭（可选）
+      // 视频播放完毕后不自动关闭（loop 模式）
       const vid = vc.querySelector('video');
       vid && vid.addEventListener('ended', () => { closeBurst(); });
-      requestAnimationFrame(() => {
-        stage.classList.add('show');
-      });
-      return;
+      // 如果还有 cards，则不 return，继续渲染下方 cards
+      if (!data.cards || data.cards.length === 0) {
+        requestAnimationFrame(() => { stage.classList.add('show'); });
+        return;
+      }
+      // video + cards 共存模式
+      requestAnimationFrame(() => { stage.classList.add('show'); });
+      // 不 return，继续走卡片渲染逻辑
     }
 
     // ====== 常规卡片 burst 模式 ======

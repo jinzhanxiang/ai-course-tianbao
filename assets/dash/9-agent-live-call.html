@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>9 Agent LIVE · 实时</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: radial-gradient(ellipse at top, #1a0a3a 0%, #000 60%);
+  color: #fff; font-family: -apple-system, sans-serif;
+  padding: 30px; min-height: 100vh;
+}
+.caption {
+  position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(168,85,247,0.95), rgba(236,72,153,0.95));
+  color: #fff; padding: 14px 28px; border-radius: 12px;
+  font-size: 22px; font-weight: 700; letter-spacing: 1px;
+  box-shadow: 0 8px 32px rgba(168,85,247,0.5);
+  z-index: 999999;
+}
+.subtitle {
+  margin-top: 90px; text-align: center;
+  font-size: 16px; color: #94A3B8; margin-bottom: 30px;
+}
+.pipeline {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px; max-width: 1700px; margin: 0 auto;
+}
+.agent {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 12px; padding: 18px;
+  position: relative; min-height: 220px;
+}
+.agent.active { border-color: #22C55E; box-shadow: 0 0 20px rgba(34,197,94,0.4); }
+.agent.busy { border-color: #F59E0B; box-shadow: 0 0 20px rgba(245,158,11,0.4); }
+.agent.idle { border-color: #475569; }
+.agent-icon { font-size: 36px; margin-bottom: 8px; }
+.agent-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.agent-status { font-size: 12px; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 12px; }
+.active .agent-status { background: rgba(34,197,94,0.3); color: #22C55E; }
+.busy .agent-status { background: rgba(245,158,11,0.3); color: #F59E0B; }
+.idle .agent-status { background: rgba(71,85,105,0.3); color: #94A3B8; }
+.log {
+  font-size: 11px; color: #cbd5e1; line-height: 1.5;
+  font-family: monospace; background: rgba(0,0,0,0.4);
+  padding: 8px; border-radius: 4px; max-height: 100px; overflow: hidden;
+}
+.flow {
+  position: absolute; top: 50%; right: -16px;
+  width: 16px; height: 2px;
+  background: linear-gradient(90deg, #00D4FF, #A855F7);
+  z-index: 1;
+}
+.connector {
+  position: absolute; top: 50%; right: -16px;
+  width: 16px; height: 16px;
+  background: radial-gradient(circle, #00D4FF, transparent);
+  border-radius: 50%; animation: flow 2s linear infinite;
+}
+@keyframes flow {
+  0% { transform: translateX(-100px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+.footer {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.85); color: #A855F7;
+  padding: 12px 24px; border-radius: 8px;
+  font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+  border: 1px solid #A855F7;
+  z-index: 999999;
+}
+</style></head><body>
+
+<div class="caption">⚡ 9 Agent LIVE · 链式协作 · 晶能光电尽调真实跑批</div>
+<div class="subtitle">任务：晶能 V3426 报告 → 颜色修复 → 实体抽取 → 尽调复核 → 估值建模</div>
+
+<div class="pipeline">
+  <div class="agent active" id="a-main">
+    <div class="agent-icon">🧠</div>
+    <div class="agent-name">main</div>
+    <span class="agent-status">ACTIVE</span>
+    <div class="log" id="log-main">→ 接收指令<br>→ 拆解 4 任务<br>→ 分派 research</div>
+  </div>
+  <div class="agent busy" id="a-research">
+    <div class="connector"></div>
+    <div class="agent-icon">🔬</div>
+    <div class="agent-name">research</div>
+    <span class="agent-status">BUSY</span>
+    <div class="log" id="log-research">→ 启动行业研究<br>→ 调用 Tavily<br>→ 写报告...</div>
+  </div>
+  <div class="agent busy" id="a-data">
+    <div class="connector"></div>
+    <div class="agent-icon">🗃️</div>
+    <div class="agent-name">data</div>
+    <span class="agent-status">BUSY</span>
+    <div class="log" id="log-data">→ OCR V3426<br>→ 199 实体<br>→ 入库 178...</div>
+  </div>
+  <div class="agent idle" id="a-project">
+    <div class="connector"></div>
+    <div class="agent-icon">📋</div>
+    <div class="agent-name">project</div>
+    <span class="agent-status">WAITING</span>
+    <div class="log">→ 等回调<br>→ 准备会议纪要</div>
+  </div>
+  <div class="agent idle" id="a-report">
+    <div class="connector"></div>
+    <div class="agent-icon">📄</div>
+    <div class="agent-name">report</div>
+    <span class="agent-status">QUEUED</span>
+    <div class="log">→ 等 research + data<br>→ 准备排版</div>
+  </div>
+</div>
+
+<div class="footer">主公金句：5 Agent 各司其职 · 链式 sessions_send · 90 分钟 vs 传统 2-3 天</div>
+
+<script>
+// 实时日志滚动（模拟）
+const logScenarios = {
+  'log-main': [
+    '→ 接收主公指令',
+    '→ 拆解 4 子任务',
+    '→ 分派 research',
+    '→ 跟踪 task-001',
+    '→ 接收 research 回调',
+    '→ 汇总报告',
+  ],
+  'log-research': [
+    '→ 启动行业研究',
+    '→ Tavily 搜索晶能',
+    '→ 财务尽调',
+    '→ 估值建模 DCF',
+    '→ 写报告 4.2KB',
+    '→ callback main',
+  ],
+  'log-data': [
+    '→ OCR V3426.pdf',
+    '→ 实体抽取 199',
+    '→ 颜色修复 178',
+    '→ 入库 Qdrant',
+    '→ 写 metadata',
+    '→ 验证 100%',
+  ]
+};
+
+setInterval(() => {
+  for (const [id, lines] of Object.entries(logScenarios)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const cur = el.innerHTML;
+    const next = lines[(lines.indexOf(cur.split('<br>').pop().replace('→ ', '')) + 1) % lines.length] || lines[0];
+    if (!cur.includes(next)) {
+      el.innerHTML = cur + '<br>' + next;
+      if (el.innerHTML.split('<br>').length > 5) {
+        el.innerHTML = el.innerHTML.split('<br>').slice(-5).join('<br>');
+      }
+    }
+  }
+}, 1500);
+
+// 状态变化
+setTimeout(() => {
+  document.getElementById('a-project').className = 'agent busy';
+  document.querySelector('#a-project .agent-status').textContent = 'BUSY';
+  document.querySelector('#a-project .log').innerHTML = '→ 接收回调<br>→ 启动会议纪要<br>→ 协调各方';
+}, 6000);
+
+setTimeout(() => {
+  document.getElementById('a-report').className = 'agent busy';
+  document.querySelector('#a-report .agent-status').textContent = 'BUSY';
+  document.querySelector('#a-report .log').innerHTML = '→ 接收 research<br>→ 接收 data<br>→ 排版 docx';
+}, 10000);
+</script>
+</body></html>

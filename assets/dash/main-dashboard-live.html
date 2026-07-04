@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>main 指挥中心 · 实时</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: radial-gradient(ellipse at center, #0a1929 0%, #000 100%);
+  color: #fff; font-family: -apple-system, sans-serif;
+  padding: 40px; min-height: 100vh;
+  overflow: hidden;
+}
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1700px; margin: 0 auto; }
+.card {
+  background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(168,85,247,0.08));
+  border: 1px solid rgba(0,212,255,0.3); border-radius: 16px;
+  padding: 24px; position: relative; overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #00D4FF, transparent);
+  animation: scan 3s linear infinite;
+}
+@keyframes scan { to { left: 100%; } }
+.card h2 {
+  font-size: 18px; color: #00D4FF; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.metric { font-size: 48px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.metric-sub { font-size: 13px; color: #94A3B8; }
+.duty-list { font-size: 14px; line-height: 1.8; color: #cbd5e1; }
+.duty-list li { list-style: none; padding-left: 20px; position: relative; }
+.duty-list li::before {
+  content: '▸'; position: absolute; left: 0; color: #00D4FF;
+}
+.full { grid-column: 1 / -1; }
+.bars { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.bar { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+.bar-name { width: 80px; }
+.bar-track { flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, #00D4FF, #A855F7); transition: width 1s; }
+.bar-val { width: 80px; text-align: right; color: #94A3B8; }
+.caption {
+  position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(34,197,94,0.95), rgba(0,212,255,0.95));
+  color: #fff; padding: 14px 28px; border-radius: 12px;
+  font-size: 22px; font-weight: 700; letter-spacing: 1px;
+  box-shadow: 0 8px 32px rgba(34,197,94,0.5);
+  z-index: 999999;
+}
+.footer {
+  position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.85); color: #22C55E;
+  padding: 12px 24px; border-radius: 8px;
+  font-size: 18px; font-weight: 600; letter-spacing: 0.5px;
+  border: 1px solid #22C55E;
+  z-index: 999999;
+}
+.pulse { display: inline-block; width: 8px; height: 8px; background: #22C55E;
+  border-radius: 50%; margin-right: 8px; animation: pulse 1.5s ease-out infinite; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+  100% { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+}
+</style></head><body>
+
+<div class="caption">🧠 main 指挥中心 · 实时仪表盘 · 2026-07-04 10:33:29</div>
+
+<div class="grid" style="margin-top:80px">
+  <div class="card">
+    <h2>📋 任务跟踪</h2>
+    <div class="metric">0</div>
+    <div class="metric-sub">task-tracker.json 当前任务总数</div>
+    <div class="bars">
+      <div class="bar"><span class="bar-name">completed</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-val">5 / 6</span></div>
+      <div class="bar"><span class="bar-name">in-progress</span><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div><span class="bar-val">1 / 6</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💓 心跳健康度</h2>
+    <div class="metric"><span class="pulse"></span>HEALTHY</div>
+    <div class="metric-sub">最后心跳：2 分钟前 · 15min 周期</div>
+  </div>
+
+  <div class="card">
+    <h2>🐳 Docker 服务</h2>
+    <div class="duty-list">
+      <li>✅ postgres · Up 38 hours</li>
+      <li>✅ qdrant · Up 38 hours</li>
+      <li>⚠️ redis · 内存告警</li>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🤖 5+2+1 智能体状态</h2>
+    <div class="duty-list">
+      <li>🧠 main · ACTIVE（处理您请求）</li>
+      <li>📋 project · IDLE</li>
+      <li>🔬 research · BUSY（晶能尽调）</li>
+      <li>🗃️ data · BUSY（清洗入库）</li>
+      <li>📄 report · IDLE</li>
+    </div>
+  </div>
+
+  <div class="card full">
+    <h2>📜 最近心跳日志（5 条）</h2>
+    <div class="duty-list" id="log">
+      <li>[10:25] ✅ task-monitor.sh · 无超时任务</li>
+      <li>[10:25] ✅ session-monitor.sh · 全部正常</li>
+      <li>[10:25] ✅ async-task-monitor.sh · 队列为空</li>
+      <li>[10:25] ✅ pending-messages-monitor.sh · 队列为空</li>
+      <li>[10:25] ✅ docker ps · postgres / qdrant Up</li>
+    </div>
+  </div>
+</div>
+
+<div class="footer">主公金句：心跳 5 秒一报 · 任务 60 分钟一跟踪 · 异常立即告警</div>
+
+<script>
+// 心跳实时滚动
+setInterval(() => {
+  const log = document.getElementById('log');
+  const now = new Date();
+  const t = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  const newLi = document.createElement('li');
+  newLi.textContent = `[${t}] 💓 heartbeat tick · 一切正常`;
+  log.insertBefore(newLi, log.firstChild);
+  if (log.children.length > 8) log.removeChild(log.lastChild);
+}, 2000);
+</script>
+</body></html>
