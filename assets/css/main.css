@@ -2556,3 +2556,56 @@ code, pre, kbd { font-size: var(--font-code); }
   color: #A855F7;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   00-Cover · 嵌入 AI 生成 9 字符号阵列图
+   ========================================================================== */
+.cover-hero-img {
+  position: relative;
+  width: 60vw;
+  max-width: 720px;
+  margin: 6vh auto 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.4),
+    0 0 60px rgba(168, 85, 247, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  z-index: 2;
+}
+
+.cover-hero-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: brightness(1.05) contrast(1.05);
+}
+
+.cover-hero-caption {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 10px;
+  color: rgba(0, 212, 255, 0.7);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+
+.cap-dot {
+  width: 6px; height: 6px;
+  background: #56d364;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #56d364;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
