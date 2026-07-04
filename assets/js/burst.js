@@ -29,8 +29,10 @@
     // 01 开场 - 5+2+1 体系(原 trigger 已展示 5 Agent+2 助手+1 中台,扩写每类)
     'burst-5plus2plus1': {
       title: '5 + 2 + 1 体系架构',
-      subtitle: '5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产',
+      subtitle: '5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产 · 点击下方看实战结果',
       layout: 'threecol',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📄 实战案例：晶能光电商业尽调报告（公网 · 真实交付）',
       cards: [
         { icon: '⚙️', name: '5 大 Agent', tag: '生产单元', detail: 'main + project + research + data + report 五位一体。从"接需求 → 调研 → 分析 → 清洗 → 出报告"全自动流水线,原本 4 小时活压缩到 4 分钟。', color: '#00D4FF', pos: 'left' },
         { icon: '🧰', name: '2 大助手', tag: '能力延伸', detail: 'Claude Code(改代码/写脚本/调试) + Hermes(知识检索/归档)。助手不直接产出,但让 5 Agent 的边界扩 10 倍。', color: '#22C55E', pos: 'center' },
@@ -175,13 +177,15 @@
     },
     'burst-case-jingneng': {
       title: '晶能项目 · 1 年跟踪 + 立项启动',
-      subtitle: 'LED 芯片 · 储备项目 → 立项',
+      subtitle: 'LED 芯片 · 储备项目 → 立项 · 主公可点击下方按钮看真实交付',
       layout: 'pipe',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📄 点击查看晶能光电商业尽调交付报告（公网 · 实时）',
       cards: [
         { icon: '📡', name: '跟踪期', tag: '1 年', detail: '每月跟踪公司动态 · 行业政策 · 竞品动作。\ndata:每次公告入库 + Wiki 记录 365 条', color: '#00D4FF', pos: 0 },
         { icon: '🎯', name: '立项启动', tag: 'T0', detail: '您判断时机成熟 → 下令启动立项。\nmain:拆解 5 子任务 · 召集 5 Agent', color: '#22C55E', pos: 1 },
         { icon: '📋', name: '项目立项', tag: '3 天', detail: 'project:立项申请单 · 投资逻辑 · 风险初判。\nresearch:赛道二次扫描 · 财务初筛', color: '#F59E0B', pos: 2 },
-        { icon: '📄', name: '立项决议', tag: '7 天', detail: '立项决议书 + 5 Agent 协同产出。\n进入正式尽调阶段', color: '#EC4899', pos: 3 }
+        { icon: '📄', name: '立项决议', tag: '7 天', detail: '立项决议书 + 5 Agent 协同产出。\n进入正式尽调阶段。\n🔗 点击下方按钮看完整商业尽调报告', color: '#EC4899', pos: 3 }
       ]
     },
     'burst-case-yingke': {
@@ -701,10 +705,20 @@
     currentTrigger = triggerEl;
 
     // 标题区
+    let resultBtnHtml = '';
+    if (data.resultLink) {
+      resultBtnHtml = `
+        <a class="burst-result-link" href="${data.resultLink}" target="_blank" rel="noopener">
+          ${data.resultLabel || '📄 点击查看最终交付物'}
+          <span class="burst-result-arrow">→</span>
+        </a>`;
+    }
+
     stage.innerHTML = `
       <div class="burst-header">
         <div class="burst-title">${data.title}</div>
         <div class="burst-subtitle">${data.subtitle}</div>
+        ${resultBtnHtml}
       </div>
       <button class="burst-close" type="button">✕ 关闭</button>
     `;

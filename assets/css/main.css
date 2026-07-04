@@ -2203,7 +2203,7 @@ code, pre, kbd { font-size: var(--font-code); }
 
 .agent-cell-5   { color: #00D4FF; box-shadow: 0 0 18px rgba(0, 212, 255, 0.4); }
 .agent-cell-2   { color: #A855F7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.4); }
-.agent-cell-1-1 { color: #56d364; box-shadow: 0 0 18px rgba(86, 211, 100, 0.4); }
+.agent-cell-1-1 { color: #56d364; box-shadow: 0 0 18px rgba(86, 211, 100, 0.8); }
 .agent-cell-1-2 { color: #F59E0B; box-shadow: 0 0 18px rgba(245, 158, 11, 0.4); }
 .agent-cell-eq  { opacity: 0.5; transform: scale(0.85); }
 .agent-cell-9 {
@@ -2499,7 +2499,7 @@ code, pre, kbd { font-size: var(--font-code); }
   background: rgba(86, 211, 100, 0.18);
   border-color: #56d364;
   color: #56d364;
-  box-shadow: 0 0 14px rgba(86, 211, 100, 0.4);
+  box-shadow: 0 0 14px rgba(86, 211, 100, 0.8);
 }
 
 .pipe-arrow {
@@ -2608,4 +2608,59 @@ code, pre, kbd { font-size: var(--font-code); }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* ==========================================================================
+   Burst · 最终交付物链接按钮（真结果弹出）
+   ========================================================================== */
+.burst-result-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, rgba(86, 211, 100, 0.55), rgba(0, 212, 255, 0.55));
+  border: 2px solid #56d364;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 0 20px rgba(86, 211, 100, 0.8);
+  transition: all 0.25s ease;
+  animation: result-pulse 2.4s ease-in-out infinite;
+}
+
+.burst-result-link:hover {
+  background: linear-gradient(135deg, rgba(86, 211, 100, 1.0), rgba(0, 212, 255, 0.7));
+  box-shadow: 0 0 36px rgba(86, 211, 100, 1.0);
+  transform: translateY(-2px);
+}
+
+.burst-result-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.burst-result-link:hover .burst-result-arrow {
+  transform: translateX(6px);
+}
+
+@keyframes result-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(86, 211, 100, 0.8); }
+  50% { box-shadow: 0 0 32px rgba(86, 211, 100, 1.0); }
+}
+
+/* burst-header 自适应高度（含 result-link 时） */
+.burst-header {
+  flex-shrink: 0;
+}
+.burst-header:has(.burst-result-link) {
+  margin-bottom: 24px;
+}
+
+/* 让 result-link 在 stack 中置顶（解决被 cards 遮挡） */
+.burst-result-link {
+  position: relative;
+  z-index: 10;
 }
