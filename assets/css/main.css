@@ -3500,3 +3500,53 @@ body::before {
   animation: swing-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+
+
+/* ========== 创意光效动画 ========== */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+  background: linear-gradient(-45deg, #00d4ff, #a855f7, #22c55e, #f59e0b);
+  background-size: 400% 400%;
+  animation: gradient-shift 5s ease infinite;
+}
+
+@keyframes border-dance {
+  0%, 100% { border-color: #00d4ff; }
+  25% { border-color: #a855f7; }
+  50% { border-color: #22c55e; }
+  75% { border-color: #f59e0b; }
+}
+
+.border-dance {
+  animation: border-dance 3s linear infinite;
+}
+
+@keyframes glow-pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.glow-ring {
+  position: relative;
+}
+
+.glow-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--accent);
+  animation: glow-pulse-ring 1.5s ease-out infinite;
+}
+
