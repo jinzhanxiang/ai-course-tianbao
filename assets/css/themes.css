@@ -369,3 +369,18 @@
   padding: 2px 0;
   border-bottom: 1px dashed var(--border);
 }
+
+
+/* ========== 暗色模式增强 ========== */
+[data-theme="dark"] .slide {
+  background: linear-gradient(180deg, #0a0e17 0%, #0f1419 100%);
+}
+
+[data-theme="dark"] .slide:hover {
+  box-shadow: inset 0 0 60px rgba(0, 212, 255, 0.03);
+}
+
+[data-theme="dark"] code {
+  background: rgba(56, 189, 248, 0.15);
+}
+
