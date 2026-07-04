@@ -71,6 +71,8 @@ html, body {
   overflow: hidden;
   font-family: var(--font-main);
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   color: var(--text-primary);
   transition: background 0.4s, color 0.4s;
 }
@@ -89,19 +91,16 @@ body {
 .topbar {
   grid-area: top;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 24px;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
 }
 
 .topbar-left { display: flex; align-items: center; gap: 16px; }
@@ -230,6 +229,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -265,6 +266,8 @@ body {
   position: relative;
   overflow: hidden;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .slide {
@@ -305,6 +308,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -362,6 +367,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -378,6 +385,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -446,6 +455,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -693,6 +704,8 @@ body {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -859,6 +872,8 @@ tr:hover td:first-child {
 .expand-card {
   padding: 14px;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border: 1px solid var(--border);
   border-left: 3px solid var(--accent);
   border-radius: 8px;
@@ -907,6 +922,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
 }
@@ -939,6 +956,8 @@ tr:hover td:first-child {
   height: 36px;
   border-radius: 50%;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border: 1px solid var(--border);
   color: var(--text-primary);
   font-size: 18px;
@@ -950,6 +969,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -1111,6 +1132,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -1324,6 +1347,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -1386,6 +1411,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -1891,6 +1918,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
@@ -1909,6 +1938,8 @@ tr:hover td:first-child {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
@@ -2210,6 +2241,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -2248,6 +2281,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
@@ -2307,6 +2342,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -2353,6 +2390,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
@@ -2492,6 +2531,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   gap: 8px;
@@ -2507,6 +2548,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -2590,6 +2633,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   gap: 10px;
@@ -2714,6 +2759,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   flex-wrap: wrap;
@@ -2803,6 +2850,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -2830,6 +2879,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -2950,6 +3001,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -3047,6 +3100,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: flex-end;
@@ -3062,6 +3117,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   gap: 10px;
@@ -3230,6 +3287,8 @@ kbd {
   right: 0;
   z-index: 1000;
   background: var(--bg-primary);
+  margin-top: 60px;
+  margin-bottom: 60px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
