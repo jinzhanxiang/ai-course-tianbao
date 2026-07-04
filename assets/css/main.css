@@ -3806,3 +3806,27 @@ body::before {
   animation: glow-pulse-ring 1.5s ease-out infinite;
 }
 
+
+/* ==================== 演示模式布局优化 ==================== */
+[data-mode="presentation"] .sidebar {
+  display: none;
+}
+
+[data-mode="presentation"] .agent-rail {
+  display: none;
+}
+
+[data-mode="presentation"] body {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "top"
+    "main"
+    "ctrl";
+}
+
+[data-mode="presentation"] .main-stage {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: 0;
+  margin-right: 0;
+}
