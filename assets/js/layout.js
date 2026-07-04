@@ -15,8 +15,8 @@
   const CHAPTERS = [
     { num: '00',    file: '00-cover.html',                  title: '封面',                emoji: '🎯' },
     { num: '01',    file: '01-opening.html',                title: '开场破题',            emoji: '🚀' },
-    { num: '02',    file: '02-5plus2plus1.html',            title: '智能体革命与5+2+1体系', emoji: '🧠' },
-    { num: '03',    file: '03-ecosystem-deploy.html',       title: '生态协同与部署',      emoji: '🌐' },
+    { num: '02',    file: '02-revolution.html',             title: '智能体革命与5+2+1体系', emoji: '🧠' },
+    { num: '03',    file: '03-ecosystem.html',              title: '生态协同与部署',      emoji: '🌐' },
     { num: '04',    file: '04-hallucination-quality.html',  title: '幻觉防御+质量提升',   emoji: '🛡️' },
     { num: '05',    file: '05-data-security.html',          title: '数据安全+本地化部署', emoji: '🔒' },
     { num: '06',    file: '06-train.html',                  title: '训练 vs 编排',        emoji: '🎓' },
@@ -25,13 +25,6 @@
     { num: '09',    file: '09-demo.html',                   title: '现场演示 90分钟',     emoji: '🎬' },
     { num: '10',    file: '10-qa.html',                     title: 'Q&A 预判',            emoji: '❓' },
     { num: '11',    file: '11-live-demo.html',              title: '真实召唤 LIVE',       emoji: '🎥' },
-    { num: '12',    file: '12-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '13',    file: '13-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '14',    file: '14-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '15',    file: '15-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '16',    file: '16-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '17',    file: '17-placeholder.html',            title: '待完善',              emoji: '📝' },
-    { num: '18',    file: '18-placeholder.html',            title: '待完善',              emoji: '📝' },
   ];
 
   // 当前章节信息（从 URL 推断）
