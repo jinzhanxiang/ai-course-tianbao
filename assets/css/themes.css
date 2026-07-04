@@ -64,15 +64,32 @@
 .kpi-card {
   text-align: center;
   padding: 24px;
-  background: var(--bg-card);
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,212,255,0.08) 100%);
   border-radius: 12px;
   border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 }
+
+.kpi-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 212, 255, 0.25), 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
 .kpi-num {
   font-size: 36px;
   font-weight: bold;
   color: var(--accent);
+  text-shadow: 0 0 20px rgba(201, 169, 97, 0.5);
+  animation: kpiGlow 2s ease-in-out infinite;
 }
+
+@keyframes kpiGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(201, 169, 97, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(201, 169, 97, 0.8), 0 0 40px rgba(0, 212, 255, 0.3); }
+}
+
 .kpi-label {
   font-size: 13px;
   color: var(--text-secondary);
