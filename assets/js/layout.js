@@ -7,27 +7,32 @@
 
   // ============ 章节注册表（核心数据）============
   // 新增章节：仅需在此处加一行
+  // 编号说明：02 革命 → 02.5 5+2+1+1 体系 → 03 main
+  //           05 research → 06 data → 07 report（5 Agent 完整闭环）
+  //           08-13 进阶（生态/案例/纵横/质量/训练/Workflow）
+  //           14-17 演示（6 案例 / 现场 / Q&A / 真实召唤）
+  //           18 落地门槛
   const CHAPTERS = [
-    { num: '00', file: '00-cover.html',        title: '封面',         emoji: '🎯' },
-    { num: '01', file: '01-opening.html',      title: '开场破题',     emoji: '🚀' },
-    { num: '02', file: '02-revolution.html',   title: '智能体革命',   emoji: '⚡' },
-    { num: '02.5', file: '02-revolution-architecture.html', title: '5+2+1 体系总览 ⭐', emoji: '🧠' },
-    { num: '03', file: '03-main.html',         title: 'main 调度 ⭐', emoji: '🎯' },
-    { num: '04', file: '04-project.html',      title: 'project 项目管家', emoji: '📋' },
-    { num: '05', file: '05-research.html',     title: '部署选型 🚀', emoji: '🚀' },
-    { num: '06', file: '06-data.html',         title: '幻觉避免 🛡️', emoji: '🛡️' },
-    { num: '07', file: '07-report.html',       title: 'report 排版',  emoji: '📄' },
-    { num: '08', file: '08-ecosystem.html',    title: '三智能体生态', emoji: '🌐' },
-    { num: '09', file: '09-case.html',         title: '实战案例',     emoji: '📚' },
-    { num: '10', file: '10-methodology.html',  title: '纵横分析法',   emoji: '🎯' },
-    { num: '11', file: '11-quality.html',      title: '质量提升',     emoji: '✨' },
-    { num: '12', file: '12-train.html',        title: '训练 vs 编排', emoji: '🎓' },
-    { num: '13', file: '13-workflow.html',     title: '工作流协同',   emoji: '🔄' },
-    { num: '14', file: '14-agent-cases.html', title: '智能体实战 ⭐', emoji: '🤖' },
-    { num: '15', file: '15-demo.html',         title: '现场演示',     emoji: '🎬' },
-    { num: '16', file: '16-qa.html',           title: 'Q&A',          emoji: '❓' },
-    { num: '17', file: '17-live-demo.html',     title: '\uD83C\uDFAC 真实召唤 LIVE',  emoji: '\uD83C\uDFAC' },
-    { num: '18', file: '18-deployment-barriers.html', title: '落地 4 大门槛 \uD83D\uDEE0\uD83D\uDCB0', emoji: '\uD83D\uDEE0' },
+    { num: '00',    file: '00-cover.html',                      title: '封面',                emoji: '🎯' },
+    { num: '01',    file: '01-opening.html',                    title: '开场破题',            emoji: '🚀' },
+    { num: '02',    file: '02-revolution.html',                 title: '智能体革命',          emoji: '⚡' },
+    { num: '02.5',  file: '02-revolution-architecture.html',    title: '5+2+1 体系总览 ⭐',   emoji: '🧠' },
+    { num: '03',    file: '03-main.html',                       title: 'main 总调度 ⭐',      emoji: '🎯' },
+    { num: '04',    file: '04-project.html',                    title: 'project 项目管家',    emoji: '📋' },
+    { num: '05',    file: '05-research.html',                   title: 'research 研究方法',   emoji: '🔬' },
+    { num: '06',    file: '06-data.html',                       title: 'data 数据清洗',       emoji: '🧹' },
+    { num: '07',    file: '07-report.html',                     title: 'report 排版',         emoji: '📄' },
+    { num: '08',    file: '08-ecosystem.html',                  title: '三智能体协同',        emoji: '🌐' },
+    { num: '09',    file: '09-case.html',                       title: '实战案例综述',        emoji: '📚' },
+    { num: '10',    file: '10-methodology.html',                title: '纵横分析法',          emoji: '🎯' },
+    { num: '11',    file: '11-quality.html',                    title: '智能体质量提升',      emoji: '✨' },
+    { num: '12',    file: '12-train.html',                      title: '训练 vs 编排',        emoji: '🎓' },
+    { num: '13',    file: '13-workflow.html',                   title: '个人 Workflow 5 阶段', emoji: '🔄' },
+    { num: '14',    file: '14-agent-cases.html',                title: '6 大实战案例 ⭐',     emoji: '🤖' },
+    { num: '15',    file: '15-demo.html',                       title: '现场演示 90 分钟',    emoji: '🎬' },
+    { num: '16',    file: '16-qa.html',                         title: 'Q&A 预判',            emoji: '❓' },
+    { num: '17',    file: '17-live-demo.html',                  title: '真实召唤 LIVE',       emoji: '🎥' },
+    { num: '18',    file: '18-deployment-barriers.html',        title: '落地 4 大门槛',       emoji: '🛠️' },
   ];
 
   // 当前章节信息（从 URL 推断）
