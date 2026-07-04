@@ -2326,3 +2326,233 @@ code, pre, kbd { font-size: var(--font-code); }
   .holo-scan, .entry-arrow { animation: none; }
   .agent-cell { transition: opacity 0.1s linear; }
 }
+
+/* ==========================================================================
+   12-Train · 5+2+1+1 同构图（Slide 8.5）
+   ========================================================================== */
+.isomorphism-map {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.iso-row {
+  display: grid;
+  grid-template-columns: 110px 30px 1fr 1.6fr;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 10px;
+  border-left: 3px solid var(--text-secondary);
+}
+
+.iso-row-5 { border-left-color: #00D4FF; box-shadow: 0 0 18px rgba(0, 212, 255, 0.08); }
+.iso-row-2 { border-left-color: #A855F7; box-shadow: 0 0 18px rgba(168, 85, 247, 0.08); }
+.iso-row-1-1 { border-left-color: #56d364; box-shadow: 0 0 18px rgba(86, 211, 100, 0.08); }
+.iso-row-1-2 { border-left-color: #F59E0B; box-shadow: 0 0 18px rgba(245, 158, 11, 0.08); }
+
+.iso-tag {
+  font-weight: 700;
+  font-family: 'Orbitron', monospace;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+}
+
+.iso-eq {
+  font-size: 24px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.iso-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary, #fff);
+}
+
+.iso-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.iso-pill {
+  padding: 4px 10px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.iso-pill-1 { color: #00D4FF; border-color: #00D4FF; }
+.iso-pill-2 { color: #38bdf8; border-color: #38bdf8; }
+.iso-pill-3 { color: #fbbf24; border-color: #fbbf24; }
+.iso-pill-4 { color: #A855F7; border-color: #A855F7; }
+.iso-pill-5 { color: #f472b6; border-color: #f472b6; }
+
+.iso-summary {
+  margin-top: 22px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08), rgba(0, 212, 255, 0.08));
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 17px;
+  color: #fff;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   17-LIVE-DEMO · 5 Agent LIVE + 演讲者脚本
+   ========================================================================== */
+.live5-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 12px;
+  max-width: 1080px;
+  margin: 0 auto 22px auto;
+}
+
+.live5-card {
+  padding: 16px 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 10px;
+  border-top: 3px solid var(--accent, #00D4FF);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.live5-card:hover {
+  transform: translateY(-3px);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.live5-main {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(168, 85, 247, 0.12));
+  border: 1px solid #00D4FF;
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.3);
+}
+
+.live5-num {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.live5-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 10px;
+  font-family: 'Orbitron', monospace;
+}
+
+.live5-cmd {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.live5-action {
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+.live5-result {
+  font-size: 11px;
+  color: #56d364;
+  font-weight: 600;
+}
+
+/* pipeline */
+.live5-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.pipe-step {
+  padding: 8px 16px;
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid #00D4FF;
+  border-radius: 18px;
+  color: #00D4FF;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pipe-step-final {
+  background: rgba(86, 211, 100, 0.18);
+  border-color: #56d364;
+  color: #56d364;
+  box-shadow: 0 0 14px rgba(86, 211, 100, 0.4);
+}
+
+.pipe-arrow {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+/* 演讲者脚本表格 */
+.script-table-wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  max-height: 60vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.script-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.script-table th {
+  padding: 10px 12px;
+  background: linear-gradient(90deg, #00D4FF22, #A855F722);
+  color: #fff;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-weight: 700;
+  border-bottom: 2px solid #00D4FF;
+}
+
+.script-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-primary, #fff);
+}
+
+.script-table tr:nth-child(even) td {
+  background: rgba(0, 212, 255, 0.02);
+}
+
+.script-time {
+  font-family: 'JetBrains Mono', monospace;
+  color: #00D4FF;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.script-table td:nth-child(2) {
+  color: #A855F7;
+  font-weight: 600;
+}

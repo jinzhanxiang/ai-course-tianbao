@@ -308,6 +308,70 @@
       </div>
     </div>
 
+
+    <!-- Slide 8.5：5+2+1+1 同构 · 训练闭环也是同一个数字（13章首发）-->
+    <div class="slide">
+      <h2 class="slide-title">训练闭环 <span style="color:#A855F7">也是</span> 5+2+1+1 = 9</h2>
+      <p class="slide-subtitle">把主公团队的 5+2+1+1 拆解映射到训练闭环，从「方法论」变「同构」</p>
+
+      <div class="isomorphism-map">
+
+        <!-- 5 大 Agent = 5 步训练法 -->
+        <div class="iso-row iso-row-5">
+          <div class="iso-tag">5 大 Agent</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">5 步训练法 <span style="font-size:11px;color:var(--text-secondary)">(ReAct 自反思循环)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill iso-pill-1">① 部署</span>
+            <span class="iso-pill iso-pill-2">② 执行</span>
+            <span class="iso-pill iso-pill-3">③ 观察</span>
+            <span class="iso-pill iso-pill-4">④ 反思</span>
+            <span class="iso-pill iso-pill-5">⑤ 升级</span>
+          </div>
+        </div>
+
+        <!-- 2 大助手 = 内外双闭环 -->
+        <div class="iso-row iso-row-2">
+          <div class="iso-tag">2 大助手</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">内外双闭环 <span style="font-size:11px;color:var(--text-secondary)">(Claude Code + Hermes)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(0,212,255,0.1);border-color:#00D4FF;color:#00D4FF">内环 Claude Code：编辑 → 跑测试 → 修补</span>
+            <span class="iso-pill" style="background:rgba(168,85,247,0.1);border-color:#A855F7;color:#A855F7">外环 Hermes：抓运行日志 → 触发重训</span>
+          </div>
+        </div>
+
+        <!-- 1 套知识中台 = 1 套红线 -->
+        <div class="iso-row iso-row-1-1">
+          <div class="iso-tag">1 套中台</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">1 套训练红线 <span style="font-size:11px;color:var(--text-secondary)">(AGENTS.md + CODING_STANDARDS.md)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(86,211,100,0.1);border-color:#56d364;color:#56d364">
+              失败即规则：每次训练异常，必须立即把「失败原因+规则」写进 MEMORY.md
+            </span>
+          </div>
+        </div>
+
+        <!-- 1 主公 = 1 验收人 -->
+        <div class="iso-row iso-row-1-2">
+          <div class="iso-tag">1 主公</div>
+          <div class="iso-eq">=</div>
+          <div class="iso-name">1 验收人 <span style="font-size:11px;color:var(--text-secondary)">(训练闭环的最终判官)</span></div>
+          <div class="iso-detail">
+            <span class="iso-pill" style="background:rgba(245,158,11,0.1);border-color:#F59E0B;color:#F59E0B">
+              主公拍板：训练是否上线 / 是否回滚 / 是否扩展
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="iso-summary">
+        <strong>关键洞察：</strong>训练智能体<strong style="color:#A855F7">没有新方法论</strong> — 它就是「把编排数字 (5+2+1+1) 套用到自反思循环上」
+      </div>
+    </div>
+
     <!-- Slide 9：本章小结 -->
     <div class="slide">
       <h2 style="font-size:32px;color:#A855F7;margin-bottom:24px;text-align:center">🌟 章节金句</h2>
