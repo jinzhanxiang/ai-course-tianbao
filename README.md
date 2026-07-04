@@ -3,6 +3,28 @@
 > **从天保实践到团队跃迁** · 主公亲述 · 2026.07
 > 主讲：金战祥（天保控股投资部）
 
+![Version](https://img.shields.io/badge/version-2f4f032-blue?style=flat-square)
+![Burst](https://img.shields.io/badge/burst-36/36-brightgreen?style=flat-square)
+![Result](https://img.shields.io/badge/result_link-100%25-success?style=flat-square)
+![AI Video](https://img.shields.io/badge/AI_video-minimax--Hailuo--2.3-purple?style=flat-square)
+
+---
+
+## 🎬 5 分钟完整端到端演示视频（19 章节串讲 · 含 burst 真结果弹出）
+
+<!-- 替换为 GitHub Pages 可访问的相对路径 -->
+<video width="100%" controls autoplay loop muted playsinline poster="./assets/img/cover-7agents.png">
+  <source src="./assets/videos/course-demo-5min.mp4" type="video/mp4">
+  您的浏览器不支持 HTML5 video 标签。
+</video>
+
+> 📹 视频内容：00-cover AI 视频开场 → 19 章节串讲（每章 6-10s）→ 全部 0 错误
+> 📹 **短版（30s）**：[course-demo-30s.mp4](./assets/videos/course-demo-30s.mp4)
+> 🎨 AI 配图 / 视频均使用 `minimax-portal/image-01` + `minimax-portal/MiniMax-Hailuo-2.3` 生成
+> 🎬 3 段 AI 视频（agents-9 / data-stream / war-room）已嵌入 burst-data-7 / burst-video-warroom
+
+---
+
 ## 🌐 立即访问（同事直接打开）
 
 ```
@@ -124,3 +146,27 @@ git add . && git commit -m "v1.x 更新说明" && git push origin main
 - Wiki 静态站：`http://localhost:19000/`（本机）
 - Wiki API：`http://localhost:19001/`（本机）
 - Qdrant：`http://localhost:6333/`（本机）
+
+
+---
+
+## ✨ 最新一轮深划（2026-07-04 · commit 2f4f032）
+
+### 🎬 真实结果贯通
+- **36/36 burst 全部配 resultLink** — 点开任一 burst 即看真实交付
+- 晶能光电报告：https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html
+- 星恒电源报告：https://jinzhanxiang.github.io/xingheng-report/
+
+### 🎨 AI 视频生成（minimax-portal/MiniMax-Hailuo-2.3）
+- `assets/videos/agents-9-cinematic.mp4`（6s 开场）
+- `assets/videos/course-demo-30s.mp4`（30s 端到端演示）
+
+### 🎯 美学升级
+- burst 标题渐变 + 副标题 + 绿色脉冲按钮
+- burst-header 顶部扫描光线动画
+- 7 个 HTML 模拟器嵌入（war-room / radar-8d / data-pipeline 等）
+
+### 📊 演示流畅度
+- 键盘导航：← → 翻页 / Space 触发 / Esc 关闭
+- 进度条：topbar 实时显示当前章节
+- 烟雾测试：19/19 PASS · 0 错误
