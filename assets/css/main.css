@@ -3557,3 +3557,40 @@ body::before {
   display: none !important;
 }
 
+
+/* =====================================================
+   Presentation 模式全屏布局
+   ===================================================== */
+[data-mode="presentation"] html,
+[data-mode="presentation"] body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+[data-mode="presentation"] {
+  display: block !important;
+  grid-template-columns: 1fr !important;
+  grid-template-areas: "main" !important;
+}
+
+[data-mode="presentation"] .sidebar,
+[data-mode="presentation"] .agent-rail,
+[data-mode="presentation"] .top-bar,
+[data-mode="presentation"] .controls {
+  display: none !important;
+}
+
+[data-mode="presentation"] .main-stage {
+  grid-area: main;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+[data-mode="presentation"] .slide {
+  padding: 40px 80px !important;
+}
