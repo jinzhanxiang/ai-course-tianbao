@@ -2702,3 +2702,81 @@ code, pre, kbd { font-size: var(--font-code); }
   font-weight: 600;
   letter-spacing: 0.5px;
 }
+
+/* ==========================================================================
+   Phase 5 · burst 美学升级 · 2026-07-04
+   ========================================================================== */
+
+/* burst-header 加科幻背景层 */
+.burst-header {
+  position: relative;
+  padding: 24px 28px 22px;
+  background: linear-gradient(180deg, rgba(0, 212, 255, 0.05), transparent);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+  overflow: hidden;
+}
+
+.burst-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00D4FF, transparent);
+  animation: burst-header-scan 3s ease-in-out infinite;
+}
+
+@keyframes burst-header-scan {
+  0%, 100% { opacity: 0.3; transform: translateX(-30%); }
+  50% { opacity: 1; transform: translateX(30%); }
+}
+
+/* burst-title 加渐变光晕描边 */
+.burst-title {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #fff 0%, #00D4FF 50%, #A855F7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px rgba(0, 212, 255, 0.4);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.burst-subtitle {
+  font-size: 14px !important;
+  color: #94A3B8 !important;
+  letter-spacing: 0.3px;
+}
+
+/* burst-result-link 加心跳脉冲 */
+.burst-result-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.burst-result-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 0 0 rgba(86, 211, 100, 0.7);
+  animation: burst-link-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes burst-link-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(86, 211, 100, 0.7); }
+  70% { box-shadow: 0 0 0 14px rgba(86, 211, 100, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(86, 211, 100, 0); }
+}
+
+/* burst-card 升级 hover 效果 */
+.burst-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.burst-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 212, 255, 0.35), inset 0 0 0 1px rgba(0, 212, 255, 0.4);
+}

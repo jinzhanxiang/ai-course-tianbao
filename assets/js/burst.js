@@ -14,6 +14,8 @@
     'burst-7agents': {
       title: '7 大智能体 · 角色矩阵',
       subtitle: '从单兵作战到 5 Agent + 2 助手 + 1 中台协同',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🤖 9 智能体实战战例（晶能光电）',
       layout: '7star',
       cards: [
         { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。解析任务、判断分发、跟踪进度、汇总反馈。所有子 Agent 的汇报先到 main,再统一回您。', color: '#00D4FF', pos: 0 },
@@ -44,6 +46,8 @@
     'burst-revolution': {
       title: '三层变革',
       subtitle: '生产关系 + 协同方式 + 知识资产',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '⚡ 三层变革实战案例',
       layout: 'vert',
       cards: [
         { icon: '⚡', name: '生产关系革命', tag: '从人到 Agent', detail: '从"研究员手敲 4 小时"到"5 Agent 跑 4 分钟"。人从执行者变成决策者,Agent 从工具变成同事。10× 提效不是口号,是每天的实际工作节奏。', color: '#00D4FF', pos: 'top' },
@@ -56,6 +60,8 @@
     'burst-project-7': {
       title: '项目生命周期 · 7 阶段',
       subtitle: '从立项到投后,每阶段的关键产出物',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📋 7 阶段项目实战',
       layout: 'pipe',
       cards: [
         { icon: '1️⃣', name: '立项', tag: '需求识别', detail: '业务部门提需求 → 投资部初筛 → 内部立项会。\n产出:立项申请单 + 初步投资逻辑', color: '#22C55E', pos: 0 },
@@ -72,6 +78,8 @@
     'burst-research-7': {
       title: '研究分析 · 7 维度',
       subtitle: '宏观 → 行业 → 模式 → 财务 → 估值 → 风险 → 结论',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🔬 7 维度研究实战',
       layout: '7star',
       cards: [
         { icon: '🌐', name: '宏观环境', tag: 'PEST', detail: '政策窗口 + 经济周期 + 社会趋势 + 技术变革。判断现在是不是入场好时机。\n核心问题:现在是顺风还是逆风?', color: '#F59E0B', pos: 0 },
@@ -88,6 +96,10 @@
     'burst-data-7': {
       title: '数据清洗 · 7 步流水线',
       subtitle: '从原始材料到结构化入库',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🗃️ 7 步数据清洗实战',
+      videoPoster: '../assets/videos/posters/03-data-cleaning.png',
+      video: '../assets/videos/03-data-pipeline.mp4',
       layout: 'grid',
       cards: [
         { icon: '📥', name: '1. 采集', tag: '多源输入', detail: 'PDF 研报 / Word 纪要 / 录音 / Excel 财务表 / 网页快照。统一进入 inputs/ 目录。', color: '#A855F7', pos: 0 },
@@ -104,6 +116,8 @@
     'burst-report-3': {
       title: '报告排版 · 3 大管线',
       subtitle: 'Word / PDF / PPT 三端输出',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📄 3 大管线实战报告',
       layout: 'threecol',
       cards: [
         { icon: '📝', name: 'Word 管线', tag: '公文级', detail: '可研报告 / 立项请示 / 投资协议。\n模板:国企公文规范(方正小标宋 + 仿宋)+ 自动目录 + 页眉页脚 + 章节编号。', color: '#00D4FF', pos: 'left' },
@@ -131,6 +145,8 @@
     'burst-case-5': {
       title: '5 个实战案例 · 成效数据',
       subtitle: '从被动响应到主动产出的真实转型',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🎯 5 个实战案例总览',
       layout: 'pentagon',
       cards: [
         { icon: '🏭', name: '飞马国际', tag: '并购尽调', detail: '3 周尽调 → 5 Agent 并行 4 天完成。\n原 200 页报告 → AI 自动生成 + 人工复核。\n效率 ↑ 4 倍,错误率 ↓ 70%。', color: '#00D4FF', pos: 0 },
@@ -145,6 +161,8 @@
     'burst-case-qiyuanxin': {
       title: '⚠️ 已废弃 · 参见 burst-case-xingheng-13',
       subtitle: '本 burst 已重定向至星恒电源 13.73% 收购案例',
+            resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '🔋 星恒电源 · 12 小时尽调实战报告（GitHub Pages）',
       layout: 'pipe',
       cards: [
         { icon: '🔋', name: '案例已更换', tag: '📢', detail: '原启源芯案例（与 SiC 衬底/功率半导体混淆）已被主公识别为错误。\n请参见：星恒电源 13.73% 收购方案 B 商业尽调复核。', color: '#EF4444', pos: 0 },
@@ -170,6 +188,8 @@
     'burst-case-xingheng-13': {
       title: '星恒电源 · 13.73% 收购方案 B 尽调复核',
       subtitle: '动力电池 · 尽调复核阶段 · 6 屏协同 90 分钟',
+            resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '🔋 星恒电源 · 13.73% 尽调复核实战报告（GitHub Pages）',
       layout: 'pipe',
       cards: [
         { icon: '🔋', name: '股权扫描', tag: '0min', detail: 'data:50 家股东名册 OCR + 分类入库。\n启源纳川 17.73% · 实控人方志刚 · 业务伙伴另外', color: '#00D4FF', pos: 0 },
@@ -182,6 +202,8 @@
     'burst-case-jingneng': {
       title: '晶能项目 · 1 年跟踪 + 立项启动',
       subtitle: 'LED 芯片 · 储备项目 → 立项 · 主公可点击下方按钮看真实交付',
+      videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
+      video: '../assets/videos/02-qiyuan-factory.mp4',
       layout: 'pipe',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '📄 点击查看晶能光电商业尽调交付报告（公网 · 实时）',
@@ -195,6 +217,8 @@
     'burst-case-yingke': {
       title: '盈科系项目 · GP→LP 架构优化',
       subtitle: '原 GP 管理人 → 调整为 LP 投资人',
+            resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📊 实战案例视频 — 股权架构图（晶能光电实例）',
       layout: 'pipe',
       cards: [
         { icon: '⚖️', name: '监管分析', tag: 'D0', detail: '研究资管新规 + 私募基金监管条例变化。\n识别对 GP 管理人模式的冲击', color: '#00D4FF', pos: 0 },
@@ -206,6 +230,8 @@
     'burst-case-zhongzihuan': {
       title: '中资环项目 · 5000 万绿色循环',
       subtitle: '待立项决策',
+            resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '♻️ 实战案例视频 — 循环经济链路（晶能光电实例）',
       layout: 'pipe',
       cards: [
         { icon: '🌱', name: '行业概览', tag: 'D0', detail: '绿色循环产业 + 政策导向 + 市场容量。\nAI:3 小时出行业简报(传统 3 周)', color: '#00D4FF', pos: 0 },
@@ -219,6 +245,8 @@
     'burst-method-8': {
       title: '纵横分析法 · 8 维',
       subtitle: '横切面 + 纵深线 + 6 子维交叉验证',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🧮 8 维分析法实战',
       layout: 'grid',
       cards: [
         { icon: '↔️', name: '横线', tag: '横向比较', detail: '同期可比公司 / 同期类似项目 / 同期行业平均。\n问题:相对位置在哪?', color: '#A855F7', pos: 0 },
@@ -236,6 +264,8 @@
     'burst-demo-5': {
       title: '6 屏协同 · 90 分钟尽调复核全流程',
       subtitle: 'main 调度 4 子 Agent · 实时同步进度',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '⚙️ 6 屏协同 90 分钟实战',
       layout: 'pipe',
       cards: [
         { icon: '🎯', name: '屏 1 main 总调度', tag: '00:00', detail: '您:"今晚出星恒电源尽调复核"。\nmain 解析 → 拆 5 子任务 → 分发 4 Agent。', color: '#00D4FF', pos: 0 },
@@ -252,6 +282,8 @@
     'burst-main': {
       title: 'main · 总调度 5 大动作',
       subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🧠 main 实战指挥',
       layout: 'pipe',
       cards: [
         { icon: '📥', name: '1. 接收', tag: '意图解析', detail: '您发送指令 → main 解析意图。\n识别三类：提问 / 分派 / 命令。', color: '#00D4FF', pos: 0 },
@@ -266,6 +298,8 @@
     'burst-5agents': {
       title: '5 大 Agent · 角色矩阵',
       subtitle: '从单兵作战到 5 Agent 流水线协同',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🤖 5 大 Agent 实战矩阵',
       layout: '5star',
       cards: [
         { icon: '🧠', name: 'main', tag: '总调度', detail: '指挥中枢。接收指令、拆任务、分派子 Agent、跟踪进度、汇总反馈。所有子 Agent 汇报先到 main,再统一回您。', color: '#00D4FF', pos: 'top' },
@@ -280,6 +314,8 @@
     'burst-2helpers': {
       title: '2 大助手 · 能力延伸',
       subtitle: 'Claude Code + Hermes · 助手不直接产出但让 5 Agent 边界扩 10 倍',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '⌨️ 2 大助手实战延伸',
       layout: 'twocol',
       cards: [
         { icon: '🛠️', name: 'Claude Code', tag: '工程助手', detail: '写代码 / 改 prompt / 跑脚本 / 调配置。能改项目、改论文、改报告中的工程细节,工程师的延伸。\n\n真实用途:WACC 敏感性脚本、Monte Carlo 模拟、可研报告模板自动生成。', color: '#00D4FF', pos: 'left' },
@@ -291,6 +327,8 @@
     'burst-1platform': {
       title: '1 套知识中台 · 三层架构',
       subtitle: '关系数据 + 向量检索 + 静态 Wiki · 所有智能体的记忆层',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🏛️ 1 套中台实战架构',
       layout: 'threecol',
       cards: [
         { icon: '🗄️', name: 'PostgreSQL', tag: '关系数据', detail: '4 张表(entity / report / indicator / knowledge_logic),存实体关系与指标。\n\n规模:6,098 实体 · 5,786 报告 · 20,599 指标 · 6,577 知识逻辑。', color: '#F59E0B', pos: 'left' },
@@ -303,6 +341,8 @@
     'burst-hr-scenarios': {
       title: '人力岗 · AI 帮你干掉重复活',
       subtitle: 'JD · 简历 · 面试纪要 · 培训文档 · 薪酬报告 · 7 个场景全部干掉',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '👥 人力岗 AI 实战',
       layout: 'grid',
       cards: [
         { icon: '📝', name: 'JD 撰写', tag: '岗位说明书', detail: '输入岗位+部门+职级。\nAI 输出:职责 / 资格 / 薪酬 / 路径。\n2 小时 → 5 分钟。', color: '#EC4899', pos: 'left' },
@@ -318,6 +358,8 @@
     'burst-it-scenarios': {
       title: 'IT/工程岗 · 你的 10× 程序员同事上线',
       subtitle: '结对编程 · 脚本生成 · Debug · 单元测试 · 部署脚本 · 工程能力全提 10 倍',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '💻 IT 岗 AI 实战',
       layout: 'grid',
       cards: [
         { icon: '⚙️', name: 'Claude Code', tag: '结对编程', detail: '你负责设计/架构/决策。\n它负责:模板代码/文档/翻译。\n1 周 1 模块 → 1 天。', color: '#00D4FF', pos: 'left' },
@@ -333,6 +375,8 @@
     'burst-revolution-team': {
       title: '变革 + 团队 · 三层架构',
       subtitle: '变革思考 × 数字员工 × 资产沉淀 — 一个都不能少',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '⚡ 变革+团队三层架构实战',
       layout: 'vert',
       cards: [
         { icon: '⚡', name: '第一层 · 生产关系变革', tag: '人从执行者 → 决策者', detail: '过去：研究员手敲 4 小时 → 现在：5 Agent 跑 4 分钟，人只做判断与决策。\n\n1 个项目人员可以同时跟 8 个项目，过去最多 2 个。\n\n本质：执行环节被 Agent 接管，人专注价值判断。', color: '#00D4FF', pos: 'top' },
@@ -345,6 +389,8 @@
     'burst-qa-6': {
       title: '6 大预判问答',
       subtitle: '团队最关心的 6 个问题 + 我们的回答',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '❓ 6 大预判问答实战',
       layout: 'grid',
       cards: [
         { icon: '🎯', name: 'Q1 准确率', tag: 'AI 写的研报能信吗?', detail: 'AI 出初稿 + 人工复核。准确率 95%+,比新人第一稿高。\n关键:人工 review 仍是最后一道关。', color: '#00D4FF', pos: 0 },
@@ -360,24 +406,32 @@
     'burst-video-warroom': {
       title: '💹 投资作战室',
       subtitle: '7 维度 WS 并行 · 30 秒得到星恒电源估值区间',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '💹 投资作战室模拟器',
       terminalSrc: '../assets/videos/war-room.html',
       layout: 'terminal'
     },
     'burst-video-beforeafter': {
       title: '✨ 研报清洗前后对比',
       subtitle: '80 页 PDF → 79 个实体 / 110 个指标 / 178 个逻辑链',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '✨ 研报清洗前后对比模拟器',
       terminalSrc: '../assets/videos/before-after.html',
       layout: 'terminal'
     },
     'burst-video-radar': {
       title: '🎯 8 维企业雷达图',
       subtitle: '财务·产业·估值·风险·治理·ESG·政策·团队',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '🎯 8 维企业雷达图模拟器',
       terminalSrc: '../assets/videos/radar-8d.html',
       layout: 'terminal'
     },
     'burst-video-maindash': {
       title: '🧠 main 指挥中心',
       subtitle: 'sessions_send + task-tracker + 心跳日志 实时仪表盘',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🧠 main 指挥中心模拟器',
       terminalSrc: '../assets/videos/main-dash.html',
       layout: 'terminal'
     },
@@ -386,19 +440,27 @@
     'burst-video-neural': {
       title: '🕸️ 7 节点神经网络',
       subtitle: 'main → project/research/data/report → 一同起势',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🕸️ 神经网络模拟器',
       terminalSrc: '../assets/videos/terminal-simulator.html',
       // video: '../assets/videos/04-neural-network.mp4',  // 暂不使用
+      videoPoster: '../assets/videos/posters/04-neural-network.png',
+      video: '../assets/videos/04-neural-network.mp4',
       layout: 'terminal'
     },
     'burst-video-qiyuan': {
       title: '⚠️ 已下线 · 参见 burst-video-xingheng',
       subtitle: '原启源芯·投决现场动画（6 屏日志）已下架，请参考星恒电源 14-demo',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '🔋 星恒电源收购现场模拟器',
       terminalSrc: '../assets/videos/qiyuan-investment.html',
       layout: 'terminal'
     },
     'burst-video-pipeline': {
       title: '🌊 研报数据清洗流水线',
       subtitle: '5 阶段：OCR → 实体 → 指标 → 逻辑 → 向量入库',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🌊 数据流水线模拟器',
       terminalSrc: '../assets/videos/data-pipeline.html',
       layout: 'terminal'
     },
@@ -408,6 +470,8 @@
       title: '🏛️ 5+2+1 体系 · 主公亲测全景图',
       subtitle: '9 模型协同层叠 · 5 Agent + 2 助手 + 1 中台 · 2026-07-03 主公实战',
       layout: 'grid',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🏛️ 实战案例视频 — 9 智能体协同（晶能光电实例）',
       cards: [
         // ===== 5 大 Agent =====
         { icon: '🧠', name: '1. main', tag: '总调度', detail: '接收指令 · 拆解任务 · 分派子代理 · 跟踪进度 · 汇总回主公。所有汇报先到 main，再统一回您。', color: '#00D4FF', pos: 0 },
@@ -427,6 +491,8 @@
     'burst-quality-1': {
       title: '🛡️ 智能体质量提升 · 全章速览',
       subtitle: '三层防御 · 60% → 90%+ · 主公实战方法论',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🛡️ 智能体质量提升实战',
       layout: 'grid',
       cards: [
         { icon: '🎯', name: '1. 单 Agent 天花板', tag: '60-70%', detail: '认知偏差 + 知识盲区 + 单点脆弱。3 大根因导致单 Agent 质量上限。', color: '#EF4444', pos: 0 },
@@ -442,6 +508,8 @@
     'burst-train-1': {
       title: '🛠️ 如何训练智能体 · 全章速览',
       subtitle: '训练 vs 编排 · Hermes 案例 · 自我进化',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🛠️ 智能体训练实战',
       layout: 'grid',
       cards: [
         { icon: '⚖️', name: '1. 训练 vs 编排', tag: '90/10', detail: '90% 任务用编排（工具+提示词）即可。10% 才需要微调。', color: '#A855F7', pos: 0 },
@@ -457,6 +525,8 @@
     'burst-workflow-1': {
       title: '🌱 个人如何打造 Workflow · 全章速览',
       subtitle: '从零基础到团队队长 · 5 阶段升级路径',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '🌱 Workflow 打造实战',
       layout: 'grid',
       cards: [
         { icon: '🪜', name: '1. 5 阶段路径', tag: '升级图', detail: 'L1 零基础 → L2 用户 → L3 制作者 → L4 训练官 → L5 架构师。', color: '#22C55E', pos: 0 },
@@ -935,9 +1005,11 @@
     const stage = document.getElementById(currentBurstId);
     if (stage) {
       stage.classList.remove('show');
+      const savedId = currentBurstId;
       setTimeout(() => {
-        if (stage && !stage.classList.contains('show')) {
-          stage.innerHTML = '';
+        const s = document.getElementById(savedId);
+        if (s && !s.classList.contains('show')) {
+          s.innerHTML = '';
         }
       }, 400);
     }
