@@ -3176,3 +3176,72 @@ body::before {
   background: rgba(168, 85, 247, 0.4);
   color: #fff;
 }
+
+
+/* ========== 响应式适配 ========== */
+@media (max-width: 768px) {
+  .slide {
+    padding: 24px 20px;
+  }
+  
+  .slide-title {
+    font-size: 22px !important;
+  }
+  
+  h1 { font-size: 24px !important; }
+  h2 { font-size: 20px !important; }
+  h3 { font-size: 17px !important; }
+  
+  .kpi-card {
+    padding: 16px;
+  }
+  
+  .kpi-num {
+    font-size: 28px;
+  }
+  
+  .story-card {
+    padding: 16px;
+  }
+  
+  .agent-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline {
+    padding-left: 24px;
+  }
+  
+  table {
+    font-size: 12px;
+  }
+  
+  .alert {
+    padding: 12px;
+    font-size: 12px;
+  }
+  
+  .slide-hint,
+  .progress-bar {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    padding: 16px 12px;
+  }
+  
+  .slide-title {
+    font-size: 18px !important;
+  }
+  
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .loop-comparison-table {
+    font-size: 10px;
+  }
+}
+
