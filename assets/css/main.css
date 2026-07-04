@@ -1922,6 +1922,12 @@ h1.slide-title,
 
 /* 全局应用：让标题跟随 CSS 变量 */
 h1, .h1 { font-size: var(--font-h1); line-height: var(--lh-tight); }
+
+/* 标题悬停效果 */
+h1:hover, .h1:hover, h2:hover, .h2:hover, h3:hover, .h3:hover {
+  color: #a855f7;
+  transition: color 0.3s ease;
+}
 h2, .h2 { font-size: var(--font-h2); line-height: var(--lh-tight); }
 h3, .h3 { font-size: var(--font-h3); line-height: var(--lh-normal); }
 p, li, dd { font-size: var(--font-body); line-height: var(--lh-normal); }
@@ -3043,4 +3049,46 @@ kbd {
 /* 有序列表数字样式 */
 ol.slide-content li::before {
   content: none;
+}
+
+/* ========== 引用块增强 ========== */
+blockquote {
+  position: relative;
+  margin: 20px 0;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(0, 212, 255, 0.08) 100%);
+  border-left: 4px solid #a855f7;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  transition: all 0.3s ease;
+}
+
+blockquote:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 48px;
+  color: rgba(168, 85, 247, 0.3);
+  font-family: Georgia, serif;
+}
+
+/* ========== 分隔线增强 ========== */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 32px 0;
+  opacity: 0.6;
+}
+
+hr:hover {
+  opacity: 1;
+  height: 3px;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
