@@ -62,6 +62,48 @@
     const btn = document.getElementById('modeBtn');
     if (!btn) return;
     btn.addEventListener('click', toggleMode);
+    // 初始化时根据模式控制元素显示
+    updateLayoutForMode();
+  }
+
+  // 根据模式控制布局元素显示/隐藏
+  function updateLayoutForMode() {
+    const sidebar = document.querySelector('.sidebar');
+    const agentRail = document.querySelector('.agent-rail');
+    const topbar = document.querySelector('.topbar');
+    const controls = document.querySelector('.controls');
+    
+    if (state.mode === 'presentation') {
+      // 演示模式：隐藏侧边栏和控制条
+      if (sidebar) sidebar.style.display = 'none';
+      if (agentRail) agentRail.style.display = 'none';
+      if (topbar) topbar.style.display = 'none';
+      if (controls) controls.style.display = 'none';
+      // 确保 main-stage 全屏
+      const mainStage = document.querySelector('.main-stage');
+      if (mainStage) {
+        mainStage.style.position = 'fixed';
+        mainStage.style.top = '0';
+        mainStage.style.left = '0';
+        mainStage.style.width = '100vw';
+        mainStage.style.height = '100vh';
+      }
+    } else {
+      // 探索模式：显示所有元素
+      if (sidebar) sidebar.style.display = '';
+      if (agentRail) agentRail.style.display = '';
+      if (topbar) topbar.style.display = '';
+      if (controls) controls.style.display = '';
+      // 恢复 main-stage 默认样式
+      const mainStage = document.querySelector('.main-stage');
+      if (mainStage) {
+        mainStage.style.position = '';
+        mainStage.style.top = '';
+        mainStage.style.left = '';
+        mainStage.style.width = '';
+        mainStage.style.height = '';
+      }
+    }
   }
 
   function toggleMode() {
@@ -82,6 +124,8 @@
         s.classList.toggle('active', i === state.slide);
       });
     }
+    // 更新布局
+    updateLayoutForMode();
   }
 
   // ============ 导航 ============
