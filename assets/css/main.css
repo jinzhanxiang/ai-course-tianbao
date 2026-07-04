@@ -3019,3 +3019,28 @@ kbd {
   box-shadow: 0 0 50px rgba(0, 212, 255, 0.6), 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
+
+/* ========== 列表增强 ========== */
+.slide li {
+  position: relative;
+  padding-left: 8px;
+  transition: all 0.2s ease;
+}
+
+.slide li:hover {
+  transform: translateX(4px);
+}
+
+.slide li::marker {
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.slide li:hover::marker {
+  color: #a855f7;
+}
+
+/* 有序列表数字样式 */
+ol.slide-content li::before {
+  content: none;
+}
