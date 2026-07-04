@@ -13,18 +13,24 @@
   //           14-17 演示（6 案例 / 现场 / Q&A / 真实召唤）
   //           18 落地门槛
   const CHAPTERS = [
-    { num: '00',    file: '00-cover.html',                  title: '封面',                emoji: '🎯' },
-    { num: '01',    file: '01-opening.html',                title: '开场破题',            emoji: '🚀' },
-    { num: '02',    file: '02-revolution.html',             title: '智能体革命与5+2+1体系', emoji: '🧠' },
-    { num: '03',    file: '03-ecosystem.html',              title: '生态协同与部署',      emoji: '🌐' },
-    { num: '04',    file: '04-hallucination-quality.html',  title: '幻觉防御+质量提升',   emoji: '🛡️' },
-    { num: '05',    file: '05-data-security.html',          title: '数据安全+本地化部署', emoji: '🔒' },
-    { num: '06',    file: '06-train.html',                  title: '训练 vs 编排',        emoji: '🎓' },
-    { num: '07',    file: '07-workflow.html',               title: '个人 Workflow',       emoji: '🔄' },
-    { num: '08',    file: '08-cases.html',                  title: '6大实战案例',         emoji: '🤖' },
-    { num: '09',    file: '09-demo.html',                   title: '现场演示 90分钟',     emoji: '🎬' },
-    { num: '10',    file: '10-qa.html',                     title: 'Q&A 预判',            emoji: '❓' },
-    { num: '11',    file: '11-live-demo.html',              title: '真实召唤 LIVE',       emoji: '🎥' },
+    { num: '01',    file: '01-cover.html',                  title: '封面：智能体革命与5+2+1体系', emoji: '🎯' },
+    { num: '02',    file: '02-what-is-agent.html',          title: '什么是智能体？',             emoji: '🤖' },
+    { num: '03',    file: '03-products.html',               title: '主流智能体产品',             emoji: '🌍' },
+    { num: '04',    file: '04-evolution.html',              title: 'AI演化五阶段+工业化',        emoji: '🚀' },
+    { num: '05',    file: '05-maturity.html',               title: '橄榄型成熟度三梯队',         emoji: '🫒' },
+    { num: '06',    file: '06-architecture.html',           title: '智能体最小架构',             emoji: '🏗️' },
+    { num: '07',    file: '07-overview.html',               title: '5+2+1+1体系总览',            emoji: '🧠' },
+    { num: '08',    file: '08-agents.html',                 title: '5大Agent职责定位',           emoji: '👥' },
+    { num: '09',    file: '09-helpers.html',                title: '2大助手+1套中台',            emoji: '🦾' },
+    { num: '10',    file: '10-ecosystem.html',              title: '生态协同与部署',             emoji: '🌐' },
+    { num: '11',    file: '11-hallucination.html',          title: '幻觉防御+质量提升',          emoji: '🛡️' },
+    { num: '12',    file: '12-data-security.html',          title: '数据安全+本地化',            emoji: '🔒' },
+    { num: '13',    file: '13-train.html',                  title: '训练 vs 编排',               emoji: '🎓' },
+    { num: '14',    file: '14-workflow.html',               title: '个人 Workflow',              emoji: '🔄' },
+    { num: '15',    file: '15-cases.html',                  title: '6大实战案例',                emoji: '🤖' },
+    { num: '16',    file: '16-demo.html',                   title: '现场演示 90分钟',            emoji: '🎬' },
+    { num: '17',    file: '17-qa.html',                     title: 'Q&A 预判',                   emoji: '❓' },
+    { num: '18',    file: '18-live-demo.html',              title: '真实召唤 LIVE',              emoji: '🎥' },
   ];
 
   // 当前章节信息（从 URL 推断）

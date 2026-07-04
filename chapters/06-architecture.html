@@ -1,0 +1,40 @@
+    <!-- Slide 3：智能体最小架构 -->
+    <div class="slide">
+      <h2 class="slide-title">🏗️ 智能体的最小架构</h2>
+      <p class="slide-subtitle">一个智能体 = 大脑 + 双手 + 记忆 + 计划 —— 缺一不可</p>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:18px">
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">🧠</span>
+            <h3 style="margin:0">大脑（LLM）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">负责推理、决策、规划。<br>MiniMax / Kimi / Claude / Deepseek / 小米 Mimo，多模型融合。</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">🔧</span>
+            <h3 style="margin:0">双手（Tools）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">读 PDF、写文件、跑 Python、调数据库。<br>Function Call 协议。</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">📝</span>
+            <h3 style="margin:0">记忆（Memory）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">短期上下文 + 长期向量库。<br>OpenClaw 用 Qdrant + bge-m3。</p>
+        </div>
+        <div class="card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:24px">📋</span>
+            <h3 style="margin:0">计划（Planning）</h3>
+          </div>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">CoT 思维链 + ToT 思维树 + ReAct 推理-行动循环。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4：智能体协同体系 -->
+    <div class="slide">
+      <h2 class="slide-title">🎯 智能体协同体系 · 9 模型层叠（5+2+1+1）全景图</h2>
