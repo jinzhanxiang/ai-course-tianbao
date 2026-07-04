@@ -37,7 +37,7 @@
 
     <!-- Slide 2：幻觉的真实代价 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#EF4444;margin-bottom:20px">💀 幻觉的真实代价 · 主公踩过的坑</h2>
+      <h2 style="font-size:32px;color:#EF4444;margin-bottom:20px">💀 <span class="burst-trigger" data-burst="burst-data-hallucination" data-hint="👉 幻觉代价">💀</span> 幻觉的真实代价 · 主公踩过的坑</h2>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1100px;margin:0 auto">
         <div class="card" style="padding:18px;border-left:4px solid #EF4444">
@@ -81,7 +81,7 @@
 
     <!-- Slide 3：方法 1：cite-then-answer -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">📌 方法 1：cite-then-answer（先引用，再回答）</h2>
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">📌 <span class="burst-trigger" data-burst="burst-data-cite" data-hint="👉 cite-then-answer">📌</span> 方法 1：cite-then-answer（先引用，再回答）</h2>
 
       <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
         <strong>核心范式</strong>：让 LLM 在生成回答前，<strong>必须先引用给定的参考资料</strong>（RAG 上下文）。把"模型靠记忆自由生成"转为"模型被迫从给定证据中取词"。
@@ -114,7 +114,7 @@
 
     <!-- Slide 4：方法 2：self-check -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">🔍 方法 2：self-check（自检 prompt）</h2>
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">🔍 <span class="burst-trigger" data-burst="burst-data-check" data-hint="👉 self-check">🔍</span> 方法 2：self-check（自检 prompt）</h2>
 
       <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
         <strong>核心范式</strong>：让模型在完成主任务后，<strong>对自己的输出做"二次审阅"</strong>。本质是 LLM-as-a-Judge，但目标不是评估而是自我纠正。
@@ -152,7 +152,7 @@
 
     <!-- Slide 5：方法 3：多 Agent 辩论（与 11 章呼应） -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">⚔️ 方法 3：多 Agent 辩论（呼应第 11 章）</h2>
+      <h2 style="font-size:32px;color:#38bdf8;margin-bottom:18px">⚔️ <span class="burst-trigger" data-burst="burst-data-debate" data-hint="👉 多 Agent 辩论">⚔️</span> 方法 3：多 Agent 辩论（呼应第 11 章）</h2>
 
       <div class="alert alert-info" style="margin-bottom:18px;max-width:960px;margin-left:auto;margin-right:auto;font-size:13px">
         <strong>核心思想</strong>：单 Agent 自检的 60-70% 准确率无法突破 —— <strong>必须用多 Agent 互检</strong>。详见第 11 章「智能体质量提升」，本章给主公实战架构。
