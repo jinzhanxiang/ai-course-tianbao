@@ -259,7 +259,30 @@ body {
   display: none;
   padding: 40px 60px;
   overflow-y: auto;
-  animation: slideIn 0.5s ease;
+  animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slide 切换增强效果 */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
 }
 .slide.active {
   display: flex;
@@ -594,7 +617,26 @@ body {
 }
 .card:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 40px rgba(0, 212, 255, 0.25);
+  transform: translateY(-4px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 卡片悬停光晕效果 */
+.card:hover::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), transparent, var(--accent));
+  opacity: 0.15;
+  z-index: -1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.2; }
 }
 .card-title {
   color: var(--accent);
@@ -1475,11 +1517,19 @@ th {
 
 .burst-trigger:hover {
   color: #fff !important;
-  background: var(--accent, #00D4FF) !important;
+  background: linear-gradient(180deg, var(--accent, #00D4FF) 0%, #00D4FF 100%) !important;
   border-bottom: 2px solid var(--accent, #00D4FF) !important;
-  border-radius: 4px !important;
-  padding: 0 6px !important;
-  transform: translateY(-1px) !important;
+  border-radius: 6px !important;
+  padding: 0 8px !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4), 0 0 20px rgba(0, 212, 255, 0.3) !important;
+  animation: burstPulse 0.6s ease-out !important;
+}
+
+@keyframes burstPulse {
+  0% { transform: translateY(-2px) scale(1.02); }
+  50% { transform: translateY(-4px) scale(1.05); }
+  100% { transform: translateY(-2px) scale(1.02); }
 }
 
 .burst-trigger:hover::before {
@@ -1791,17 +1841,37 @@ h1.slide-title,
 /* 升级章节标签 */
 .chapter-tag {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 6px 14px;
   font-size: 12px;
   font-family: 'JetBrains Mono', monospace;
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid #00D4FF;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(0, 212, 255, 0.05) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.5);
   color: #00D4FF;
-  border-radius: 4px;
-  letter-spacing: 1px;
+  border-radius: 6px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-right: 12px;
   vertical-align: middle;
+  animation: tagPulse 2s ease-in-out infinite;
+}
+
+@keyframes tagPulse {
+  0%, 100% { box-shadow: 0 0 8px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 16px rgba(0, 212, 255, 0.5); }
+}
+
+/* 过渡页提示动画 */
+.slide-hint {
+  text-align: center;
+  padding: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  animation: hintFade 3s ease-in-out infinite;
+}
+
+@keyframes hintFade {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* ============================================================================
