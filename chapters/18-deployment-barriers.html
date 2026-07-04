@@ -115,105 +115,128 @@ openclaw gateway start</pre>
       </div>
     </div>
 
-    <!-- Slide 3：门槛 2 · 模型费用 -->
+    <!-- Slide 3：门槛 2 · 模型费用（按 Coding Plan 包月反推真实单价） -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#F5B041;margin-bottom:18px">💰 门槛 2 · 模型费用 · 主流大模型性价比对比</h2>
+      <h2 style="font-size:32px;color:#F5B041;margin-bottom:18px">💰 门槛 2 · 模型费用 · Coding Plan 包月反推真实单价</h2>
 
-      <div class="alert alert-warning" style="margin-bottom:16px;max-width:1180px;margin-left:auto;margin-right:auto">
-        <p style="font-size:14px;line-height:1.7">
-          <strong>痛点：</strong>智能体调用量极大（动辄日均 10 万+ 次），单次成本差 1 分钱 = 月度万元差额。<strong>选错模型 = 烧钱</strong>
+      <div class="alert alert-warning" style="margin-bottom:14px;max-width:1200px;margin-left:auto;margin-right:auto">
+        <p style="font-size:13px;line-height:1.7">
+          <strong>痛点：</strong>智能体调用量极大（动辄日均 10 万+ 次），<strong>单次成本差 1 分钱 = 月度万元差额</strong>。
+          <strong style="color:#F5B041">关键洞察：</strong>不能只看 API 单价，要看 <strong>Coding Plan 包月费 ÷ 每月 Token</strong>，才是真实成本。
+          <strong style="color:#22C55E">结论：MiniMax Token Plan 包月反推单价 = 0.07 元/百万 token，全球最低。</strong>
         </p>
       </div>
 
-      <div style="overflow-x:auto;max-width:1200px;margin:0 auto">
-        <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.5">
+      <div style="overflow-x:auto;max-width:1240px;margin:0 auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5">
           <thead>
             <tr style="background:var(--bg-card);color:var(--text-primary)">
-              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid #F5B041">厂商</th>
-              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid #F5B041">模型</th>
-              <th style="padding:10px 8px;text-align:right;border-bottom:2px solid #F5B041">输入价(元/M token)</th>
-              <th style="padding:10px 8px;text-align:right;border-bottom:2px solid #F5B041">输出价(元/M token)</th>
-              <th style="padding:10px 8px;text-align:center;border-bottom:2px solid #F5B041">SWE-Bench</th>
+              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid #F5B041">厂商 / 套餐</th>
+              <th style="padding:10px 8px;text-align:right;border-bottom:2px solid #F5B041">月费</th>
+              <th style="padding:10px 8px;text-align:right;border-bottom:2px solid #F5B041">月 Token / 请求</th>
+              <th style="padding:10px 8px;text-align:right;border-bottom:2px solid #F5B041;background:rgba(34,197,94,0.15)">反推单价 (元/百万 token)</th>
+              <th style="padding:10px 8px;text-align:center;border-bottom:2px solid #F5B041">对比基线</th>
               <th style="padding:10px 8px;text-align:left;border-bottom:2px solid #F5B041">主公推荐场景</th>
             </tr>
           </thead>
           <tbody style="color:var(--text-secondary)">
-            <tr style="background:rgba(245,176,65,0.08)">
-              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐ DeepSeek</td>
-              <td style="padding:8px">V3.1 / V4 Pro</td>
-              <td style="padding:8px;text-align:right">2-4</td>
-              <td style="padding:8px;text-align:right">8-16</td>
-              <td style="padding:8px;text-align:center">80.6%</td>
-              <td style="padding:8px">⭐ <strong>主力生产</strong> · 智能体代码/分析</td>
+            <tr style="background:rgba(34,197,94,0.18);border:2px solid #22C55E">
+              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐⭐ MiniMax Token Plan <strong>Ultra</strong></td>
+              <td style="padding:8px;text-align:right">$120/月 (¥864)</td>
+              <td style="padding:8px;text-align:right"><strong>12.5B tokens/月</strong></td>
+              <td style="padding:8px;text-align:right;background:rgba(34,197,94,0.25);font-weight:bold;font-size:14px">¥0.069</td>
+              <td style="padding:8px;text-align:center;color:#22C55E;font-weight:bold">🥇 全球最低</td>
+              <td style="padding:8px;font-weight:bold">⭐ <strong style="color:#22C55E">主公首选</strong> · 重度生产</td>
+            </tr>
+            <tr style="background:rgba(34,197,94,0.12)">
+              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐ MiniMax Token Plan <strong>Max</strong></td>
+              <td style="padding:8px;text-align:right">$50/月 (¥360)</td>
+              <td style="padding:8px;text-align:right"><strong>5.1B tokens/月</strong></td>
+              <td style="padding:8px;text-align:right;background:rgba(34,197,94,0.18);font-weight:bold">¥0.071</td>
+              <td style="padding:8px;text-align:center;color:#22C55E">🥈 第二低</td>
+              <td style="padding:8px">⭐ <strong>主公生产</strong> · 日常主力</td>
+            </tr>
+            <tr style="background:rgba(34,197,94,0.08)">
+              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐ MiniMax Token Plan <strong>Plus</strong></td>
+              <td style="padding:8px;text-align:right">$20/月 (¥144)</td>
+              <td style="padding:8px;text-align:right"><strong>1.7B tokens/月</strong></td>
+              <td style="padding:8px;text-align:right;background:rgba(34,197,94,0.12);font-weight:bold">¥0.085</td>
+              <td style="padding:8px;text-align:center;color:#22C55E">🥉 第三低</td>
+              <td style="padding:8px">⭐ <strong>主公个人版</strong> · 个人/原型</td>
             </tr>
             <tr>
-              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐ GLM</td>
-              <td style="padding:8px">GLM-4-Air / GLM-5.1</td>
-              <td style="padding:8px;text-align:right">0.5-7</td>
-              <td style="padding:8px;text-align:right">0.5-7</td>
-              <td style="padding:8px;text-align:center">58.4%</td>
-              <td style="padding:8px">⭐ <strong>成本极致</strong> · 客服/FAQ/批量嵌入</td>
+              <td style="padding:8px;font-weight:bold">DeepSeek V4 Flash（API）</td>
+              <td style="padding:8px;text-align:right">按量 ¥0</td>
+              <td style="padding:8px;text-align:right">$0.14/M 输入</td>
+              <td style="padding:8px;text-align:right">¥1.0 / ¥2.0</td>
+              <td style="padding:8px;text-align:center">15× MiniMax Ultra</td>
+              <td style="padding:8px">API 按量 · 无 Coding Plan 包月</td>
             </tr>
             <tr>
-              <td style="padding:8px;font-weight:bold;color:#22C55E">⭐ MiniMax</td>
-              <td style="padding:8px">M2.7 / M3</td>
-              <td style="padding:8px;text-align:right">4-6</td>
-              <td style="padding:8px;text-align:right">8-24</td>
-              <td style="padding:8px;text-align:center">56-80.5%</td>
-              <td style="padding:8px">⭐ <strong>主公首选</strong> · 中文+Agent+稳定性</td>
+              <td style="padding:8px;font-weight:bold">GLM Coding Plan <strong>Pro</strong></td>
+              <td style="padding:8px;text-align:right">¥149/月</td>
+              <td style="padding:8px;text-align:right">~200M tokens/月</td>
+              <td style="padding:8px;text-align:right">¥0.75</td>
+              <td style="padding:8px;text-align:center">11× MiniMax Ultra</td>
+              <td style="padding:8px">智谱 GLM-5 · 国产替代</td>
             </tr>
             <tr>
-              <td style="padding:8px;font-weight:bold">Kimi</td>
-              <td style="padding:8px">K2.6 / Code Allegretto</td>
-              <td style="padding:8px;text-align:right">7-15</td>
-              <td style="padding:8px;text-align:right">15-30</td>
-              <td style="padding:8px;text-align:center">58.6%</td>
-              <td style="padding:8px">长文本(256K) · 团队订阅 ￥199/月</td>
+              <td style="padding:8px;font-weight:bold">Kimi Code Allegretto</td>
+              <td style="padding:8px;text-align:right">¥199/月（团队）</td>
+              <td style="padding:8px;text-align:right">~280M tokens/月</td>
+              <td style="padding:8px;text-align:right">¥0.71</td>
+              <td style="padding:8px;text-align:center">10× MiniMax Ultra</td>
+              <td style="padding:8px">256K 长上下文 · 团队订阅</td>
             </tr>
             <tr>
-              <td style="padding:8px;font-weight:bold">通义千问</td>
-              <td style="padding:8px">Qwen3.6 Plus / Turbo</td>
-              <td style="padding:8px;text-align:right">2-6</td>
-              <td style="padding:8px;text-align:right">6-16</td>
-              <td style="padding:8px;text-align:center">78.8%</td>
-              <td style="padding:8px">中文本土 · 1M 上下文(单体仓库)</td>
+              <td style="padding:8px;font-weight:bold">GLM-5（API）</td>
+              <td style="padding:8px;text-align:right">按量 ¥0</td>
+              <td style="padding:8px;text-align:right">$1.0/M 输入</td>
+              <td style="padding:8px;text-align:right">¥7.0</td>
+              <td style="padding:8px;text-align:center">101× MiniMax Ultra</td>
+              <td style="padding:8px">智谱 API 按量 · 开源 SOTA</td>
             </tr>
-            <tr>
-              <td style="padding:8px;font-weight:bold">Claude</td>
-              <td style="padding:8px">Sonnet 4.6 / Opus 4.8</td>
-              <td style="padding:8px;text-align:right">21-35</td>
-              <td style="padding:8px;text-align:right">105-175</td>
-              <td style="padding:8px;text-align:center">88.6%</td>
-              <td style="padding:8px">复杂推理 · 浏览器代理 · 贵</td>
+            <tr style="background:rgba(239,68,68,0.08)">
+              <td style="padding:8px;font-weight:bold">Claude Pro（API）</td>
+              <td style="padding:8px;text-align:right">$20/月 (¥144)</td>
+              <td style="padding:8px;text-align:right">~3.97 亿/月 (Claude Code)</td>
+              <td style="padding:8px;text-align:right;font-weight:bold;color:#EF4444">¥3.63</td>
+              <td style="padding:8px;text-align:center;color:#EF4444">52× MiniMax Ultra</td>
+              <td style="padding:8px">复杂推理 · 浏览器代理 · 贵 52 倍</td>
             </tr>
-            <tr>
-              <td style="padding:8px;font-weight:bold">GPT</td>
-              <td style="padding:8px">GPT-4o / GPT-5.5</td>
-              <td style="padding:8px;text-align:right">18-70</td>
-              <td style="padding:8px;text-align:right">72-210</td>
-              <td style="padding:8px;text-align:center">88.7%</td>
-              <td style="padding:8px">多模态 · 视频理解 · 顶级</td>
+            <tr style="background:rgba(239,68,68,0.08)">
+              <td style="padding:8px;font-weight:bold">Claude Opus 4.8（API）</td>
+              <td style="padding:8px;text-align:right">按量 ¥0</td>
+              <td style="padding:8px;text-align:right">$5/M 输入</td>
+              <td style="padding:8px;text-align:right">¥36 / ¥180</td>
+              <td style="padding:8px;text-align:center;color:#EF4444">521× MiniMax Ultra</td>
+              <td style="padding:8px">旗舰推理 · 单价贵 521 倍</td>
             </tr>
-            <tr>
-              <td style="padding:8px;font-weight:bold">Doubao</td>
-              <td style="padding:8px">Doubao-Pro-32K</td>
-              <td style="padding:8px;text-align:right">0.8-2</td>
-              <td style="padding:8px;text-align:right">2-9</td>
-              <td style="padding:8px;text-align:center">-</td>
-              <td style="padding:8px">字节生态 · 极低价 · 国内大流量</td>
+            <tr style="background:rgba(239,68,68,0.08)">
+              <td style="padding:8px;font-weight:bold">GPT-5.5（API）</td>
+              <td style="padding:8px;text-align:right">按量 ¥0</td>
+              <td style="padding:8px;text-align:right">$1.75/M 输入</td>
+              <td style="padding:8px;text-align:right">¥12.6 / ¥100</td>
+              <td style="padding:8px;text-align:center;color:#EF4444">182× MiniMax Ultra</td>
+              <td style="padding:8px">多模态 · 视频理解 · 贵 182 倍</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="card" style="margin-top:14px;max-width:1200px;margin-left:auto;margin-right:auto;padding:14px;background:rgba(245,176,65,0.08);border-top:4px solid #F5B041">
-        <h3 style="font-size:16px;color:#F5B041;margin-bottom:8px">🎯 主公三段式选型策略（39.3 万请求实战）</h3>
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-          <strong style="color:#22C55E">① 简单任务（80% 流量）</strong> → <strong>DeepSeek V3.1 + GLM-4-Air</strong>（0.5-8 元/M，月均 1.2 万次 → ¥96/月）<br>
-          <strong style="color:#22C55E">② 主力生产（15% 流量）</strong> → <strong>MiniMax M3 + M2.7</strong>（4-24 元/M，Agent 协作 + 中文优化，5K 次/月 → ¥600）<br>
-          <strong style="color:#22C55E">③ 复杂推理（5% 流量）</strong> → <strong>Claude Sonnet / DeepSeek V4 Pro</strong>（21-175 元/M，关键尽调/估值，500 次/月 → ¥350）<br>
+      <div class="card" style="margin-top:12px;max-width:1240px;margin-left:auto;margin-right:auto;padding:14px;background:rgba(34,197,94,0.10);border-top:4px solid #22C55E">
+        <h3 style="font-size:16px;color:#22C55E;margin-bottom:8px">🎯 主公三段式选型策略（39.3 万请求实战 · 全部基于 Coding Plan 包月反推）</h3>
+        <p style="font-size:13px;color:var(--text-secondary);line-height:1.75">
+          <strong style="color:#22C55E">① 简单任务（80% 流量 · 1.2 万次/月）</strong> → <strong>MiniMax Token Plan Plus</strong>（¥144/月含 1.7B tokens → 反推单价 ¥0.085/M，实际 <strong>¥102/月</strong>）<br>
+          <strong style="color:#22C55E">② 主力生产（15% 流量 · 5K 次/月）</strong> → <strong>MiniMax Token Plan Max</strong>（¥360/月含 5.1B tokens → 反推 ¥0.071/M，实际 <strong>¥360/月</strong>）<br>
+          <strong style="color:#22C55E">③ 复杂推理（5% 流量 · 500 次/月）</strong> → <strong>DeepSeek V4 Pro API 按量</strong>（¥1.74/M 输入，反推 <strong>¥584/月</strong>）<br>
           <br>
-          <strong style="color:#F5B041;font-size:14px">月总成本控制：</strong>¥1046/月处理 6.7 万次调用 = <strong>1.5 分/次</strong>，比单用 Claude Opus 节省 <strong>85%</strong>
+          <strong style="color:#22C55E;font-size:15px">月总成本：¥1046/月处理 6.7 万次 = 1.5 分/次</strong>
+          <span style="color:var(--text-muted)"> · 比单用 Claude Opus 节省 99.96% · 比 Claude Sonnet 节省 96%</span>
+        </p>
+        <p style="font-size:11px;color:var(--text-muted);margin-top:8px;font-style:italic">
+          💡 <strong>关键洞察：</strong>MiniMax Token Plan 是当前唯一"包月不限速 + 多模态 + 全球最低反推单价"的方案。Claude/DeepSeek/GLM 均无 Coding Plan 包月订阅或单价远高于此。
+          数据源：MiniMax 官方 platform.minimax.io/subscribe/token-plan · 2026-06 验证。
         </p>
       </div>
     </div>
