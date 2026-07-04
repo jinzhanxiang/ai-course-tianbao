@@ -3122,3 +3122,57 @@ hr:hover {
   height: 3px;
   box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
+
+/* ========== 页面加载动画 ========== */
+@keyframes pageLoad {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+html {
+  animation: pageLoad 0.6s ease-out;
+}
+
+/* 加载光效 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  animation: lightSweep 1.5s ease-out;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes lightSweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ========== 全局悬停光晕 ========== */
+.slide a:not(.tag):not(.cover-entry-btn) {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.slide a:not(.tag):not(.cover-entry-btn):hover {
+  border-bottom-color: var(--accent);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* 选择文本高亮 */
+::selection {
+  background: rgba(168, 85, 247, 0.4);
+  color: #fff;
+}
