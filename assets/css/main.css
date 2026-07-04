@@ -2664,3 +2664,41 @@ code, pre, kbd { font-size: var(--font-code); }
   position: relative;
   z-index: 10;
 }
+
+/* ==========================================================================
+   00-Cover · AI 视频主视觉
+   ========================================================================== */
+.cover-hero-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  filter: brightness(1.05) contrast(1.05);
+}
+
+.cover-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+  padding-bottom: 22px;
+}
+
+.cover-hero-stats {
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.stat-pill {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

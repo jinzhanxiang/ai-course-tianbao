@@ -115,8 +115,10 @@
     // 08 生态 - 5+2+1+1(原 trigger 已展示"5+2+1+1 生态",扩写)
     'burst-ecosystem': {
       title: '5+2+1+1 生态全景',
-      subtitle: '5 Agent + 2 助手 + 1 中台 + 1 知识体系',
+      subtitle: '5 Agent + 2 助手 + 1 中台 + 1 知识体系 · 点击下方按钮看实战结果',
       layout: 'grid',
+      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLabel: '📄 实战案例视频 — 神经网终柔面（晶能光电报告实例）',
       cards: [
         { icon: '⚙️', name: '5 Agent', tag: '生产', detail: 'main/project/research/data/report', color: '#00D4FF', pos: 0 },
         { icon: '🧰', name: '2 助手', tag: '延伸', detail: 'Claude Code/Hermes', color: '#22C55E', pos: 1 },
@@ -154,7 +156,9 @@
     },
     'burst-case-xingheng': {
       title: '星恒电源 · 12 小时尽调启动',
-      subtitle: '固态锂电池 · 尽调阶段',
+      subtitle: '固态锂电池 · 尽调阶段 · 点击按钮看公开版尽调报告',
+      resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
+      resultLabel: '📊 星恒电源尽调报告（GitHub Pages · 公开交付）',
       layout: 'pipe',
       cards: [
         { icon: '🏭', name: '行业扫描', tag: '0-2h', detail: 'research:固态锂电池赛道扫描。\n国内外 23 家企业 + 3 大技术路径(氧化物/聚合物/卤化物)', color: '#00D4FF', pos: 0 },
