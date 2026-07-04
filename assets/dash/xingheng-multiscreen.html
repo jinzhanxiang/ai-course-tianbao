@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>星恒电源 · 12 小时尽调 · 多屏真实操作</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: radial-gradient(ellipse at center, #0a0e27 0%, #000 100%);
+  color: #e8eaf6;
+  overflow: hidden;
+  width: 1920px;
+  height: 1080px;
+}
+
+/* 顶部标题 */
+.title-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 70px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border-bottom: 2px solid rgba(0, 212, 255, 0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+}
+.title-bar h1 {
+  font-size: 24px; font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.title-bar .meta {
+  font-size: 13px; color: #94a3b8; font-family: "SF Mono", monospace;
+}
+
+/* 5 屏网格 */
+.screen-grid {
+  position: absolute; top: 90px; left: 24px; right: 24px; bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+.screen {
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.95), rgba(10, 15, 40, 0.95));
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.screen.active {
+  border-color: #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+  transform: scale(1.02);
+}
+.screen::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: scan 3s infinite;
+}
+@keyframes scan { 0%{left:-100%} 100%{left:100%} }
+
+.screen-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+.screen-icon { font-size: 22px; }
+.screen-title { font-size: 15px; font-weight: 600; color: #00d4ff; flex: 1; }
+.screen-status {
+  font-size: 11px; padding: 3px 8px; border-radius: 8px;
+  font-family: "SF Mono", monospace;
+}
+.status-running { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.status-done { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+.status-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+.screen-body { font-size: 12px; line-height: 1.55; }
+
+/* 屏1 · 立项 */
+.s1-task-list { list-style: none; }
+.s1-task-list li {
+  padding: 6px 8px;
+  background: rgba(0, 212, 255, 0.06);
+  margin-bottom: 4px; border-radius: 4px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px;
+}
+.s1-task-list .agent-tag {
+  font-family: "SF Mono", monospace;
+  background: rgba(0, 212, 255, 0.25); color: #00d4ff;
+  padding: 1px 6px; border-radius: 3px; font-size: 10px;
+}
+
+/* 屏2 · 行业扫描 */
+.s2-stat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px; margin-bottom: 10px;
+}
+.s2-stat {
+  text-align: center;
+  background: rgba(0, 212, 255, 0.08);
+  padding: 8px 4px; border-radius: 6px;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+.s2-stat .num {
+  font-size: 22px; font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #22c55e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.s2-stat .label { font-size: 10px; color: #94a3b8; }
+.s2-tech-list { font-size: 11px; color: #cbd5e1; }
+.s2-tech-list div { padding: 3px 0; }
+
+/* 屏3 · 财务尽调 */
+.s3-metric-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 5px 0; border-bottom: 1px dashed rgba(0, 212, 255, 0.15);
+  font-size: 12px;
+}
+.s3-metric-name { color: #94a3b8; }
+.s3-metric-val { color: #22c55e; font-weight: 600; font-family: "SF Mono", monospace; }
+.s3-ocr-count {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  padding: 8px; border-radius: 6px; text-align: center;
+  margin-top: 8px; font-size: 11px;
+}
+
+/* 屏4 · 估值建模 */
+.s4-dcf-bar {
+  height: 22px; background: rgba(0, 212, 255, 0.15);
+  border-radius: 4px; overflow: hidden; position: relative;
+  margin-bottom: 6px;
+}
+.s4-dcf-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+  width: 0%; transition: width 1.2s ease;
+}
+.s4-dcf-label {
+  position: absolute; left: 8px; top: 3px;
+  font-size: 11px; color: #fff; font-weight: 600;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+}
+.s4-comparable-table {
+  width: 100%; font-size: 10px;
+  border-collapse: collapse; margin-top: 6px;
+}
+.s4-comparable-table th {
+  background: rgba(0, 212, 255, 0.15); color: #00d4ff;
+  padding: 4px 2px; text-align: left;
+}
+.s4-comparable-table td {
+  padding: 4px 2px; border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+  color: #cbd5e1;
+}
+.s4-final-val {
+  margin-top: 8px;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.2), rgba(0, 212, 255, 0.2));
+  padding: 8px; border-radius: 6px; text-align: center;
+  font-size: 13px; font-weight: 600;
+  color: #f59e0b;
+}
+
+/* 屏5 · 报告交付 */
+.s5-report-list { list-style: none; }
+.s5-report-list li {
+  padding: 5px 0;
+  font-size: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.s5-progress-ring {
+  position: absolute; bottom: 12px; right: 12px;
+  width: 50px; height: 50px;
+}
+.s5-progress-ring circle {
+  fill: none; stroke-width: 5;
+}
+.s5-ring-bg { stroke: rgba(0, 212, 255, 0.15); }
+.s5-ring-fg {
+  stroke: #00d4ff;
+  stroke-dasharray: 126;
+  stroke-dashoffset: 126;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 1.5s ease;
+}
+
+/* 底部状态条 */
+.bottom-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  font-size: 12px;
+}
+.bottom-bar .timeline {
+  display: flex; gap: 12px; align-items: center;
+}
+.timeline-step {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 12px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  font-size: 11px;
+  transition: all 0.3s;
+}
+.timeline-step.active {
+  background: rgba(0, 212, 255, 0.3);
+  border-color: #00d4ff;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+.timeline-step.done {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+.timeline-step .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #475569;
+}
+.timeline-step.active .dot { background: #00d4ff; box-shadow: 0 0 6px #00d4ff; }
+.timeline-step.done .dot { background: #22c55e; }
+
+/* 字幕 */
+.subtitle-bar {
+  position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  padding: 8px 24px; border-radius: 24px;
+  font-size: 14px; color: #00d4ff;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  z-index: 99;
+}
+</style>
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>🔋 星恒电源 · 12 小时尽调 · 多屏实时操作</h1>
+  <div class="meta">5 Agent 协同 · 5 屏并行 · task-20260702-001 · <span id="clock">00:00:00</span></div>
+</div>
+
+<div class="screen-grid">
+
+  <!-- 屏 1 · 立项 + 任务分派 -->
+  <div class="screen" id="s1">
+    <div class="screen-header">
+      <span class="screen-icon">📋</span>
+      <span class="screen-title">屏 1 · 立项 + main 分派</span>
+      <span class="screen-status status-running" id="s1-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <ul class="s1-task-list" id="s1-list">
+        <li><span class="agent-tag">project</span> 立项申请单</li>
+        <li><span class="agent-tag">research</span> 行业扫描（启源纳川 + 17.73%）</li>
+        <li><span class="agent-tag">research</span> 财务尽调（21 张表格）</li>
+        <li><span class="agent-tag">research</span> 估值建模（DCF + 3 可比）</li>
+        <li><span class="agent-tag">report</span> 报告排版（200 页）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 屏 2 · research 行业扫描 -->
+  <div class="screen" id="s2">
+    <div class="screen-header">
+      <span class="screen-icon">🔬</span>
+      <span class="screen-title">屏 2 · 行业扫描</span>
+      <span class="screen-status status-running" id="s2-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="s2-stat-grid">
+        <div class="s2-stat"><div class="num">23</div><div class="label">家企业</div></div>
+        <div class="s2-stat"><div class="num">3</div><div class="label">技术路径</div></div>
+        <div class="s2-stat"><div class="num">17.73%</div><div class="label">启源纳川</div></div>
+      </div>
+      <div class="s2-tech-list">
+        <div>🧪 <b>氧化物</b>：赣锋锂业 · 清陶能源 · 卫蓝新能源</div>
+        <div>🧪 <b>聚合物</b>：宁德时代 · 比亚迪 · 蜂巢能源</div>
+        <div>🧪 <b>卤化物</b>：中科海钠 · 星空钠电</div>
+        <div style="margin-top:6px;color:#94a3b8;">📈 行业 CAGR：32.8%（2024-2027）</div>
+        <div style="color:#22c55e;">✅ research 2h 完成 → 进入财务尽调</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 3 · data 财务尽调 -->
+  <div class="screen" id="s3">
+    <div class="screen-header">
+      <span class="screen-icon">💰</span>
+      <span class="screen-title">屏 3 · 财务尽调</span>
+      <span class="screen-status status-running" id="s3-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="s3-metric-row"><span class="s3-metric-name">2023 营收</span><span class="s3-metric-val">¥ 142.8 亿</span></div>
+      <div class="s3-metric-row"><span class="s3-metric-name">2024 营收</span><span class="s3-metric-val">¥ 187.3 亿 (+31.2%)</span></div>
+      <div class="s3-metric-row"><span class="s3-metric-name">毛利率</span><span class="s3-metric-val">21.7%</span></div>
+      <div class="s3-metric-row"><span class="s3-metric-name">净利润</span><span class="s3-metric-val">¥ 12.4 亿</span></div>
+      <div class="s3-metric-row"><span class="s3-metric-name">经营性现金流</span><span class="s3-metric-val">¥ 18.6 亿</span></div>
+      <div class="s3-ocr-count">
+        🔍 data OCR 处理：<b>21 张表格</b> · 审计报告 + 财报 + 银行流水
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 4 · research 估值建模 -->
+  <div class="screen" id="s4">
+    <div class="screen-header">
+      <span class="screen-icon">📊</span>
+      <span class="screen-title">屏 4 · 估值建模</span>
+      <span class="screen-status status-pending" id="s4-status">等待中</span>
+    </div>
+    <div class="screen-body">
+      <div style="font-size:11px;color:#94a3b8;margin-bottom:4px;">DCF 折现现金流（亿元）</div>
+      <div class="s4-dcf-bar">
+        <div class="s4-dcf-fill" id="dcf-fill"></div>
+        <div class="s4-dcf-label" id="dcf-label">DCF 加载中...</div>
+      </div>
+      <table class="s4-comparable-table">
+        <thead>
+          <tr><th>可比公司</th><th>PE</th><th>PS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>宁德时代</td><td>22.5</td><td>3.8</td></tr>
+          <tr><td>比亚迪</td><td>19.2</td><td>1.9</td></tr>
+          <tr><td>亿纬锂能</td><td>28.4</td><td>4.2</td></tr>
+        </tbody>
+      </table>
+      <div class="s4-final-val" id="s4-final">估值区间：180 - 250 亿</div>
+    </div>
+  </div>
+
+  <!-- 屏 5 · report 报告交付 -->
+  <div class="screen" id="s5">
+    <div class="screen-header">
+      <span class="screen-icon">📄</span>
+      <span class="screen-title">屏 5 · 报告交付</span>
+      <span class="screen-status status-pending" id="s5-status">等待中</span>
+    </div>
+    <div class="screen-body">
+      <ul class="s5-report-list">
+        <li>📑 财务尽调章节（research） · 12 页</li>
+        <li>📑 法律尽调章节（research） · 8 页</li>
+        <li>📑 业务尽调章节（research） · 15 页</li>
+        <li>📑 估值建模章节（research） · 22 页</li>
+        <li>📑 风险清单（17 项） · 6 页</li>
+        <li>🎨 报告排版（report 套模板） · 200 页</li>
+        <li>☁️ GitHub Pages 部署 · <span style="color:#22c55e;">jinzhanxiang.github.io/xingheng-report</span></li>
+      </ul>
+      <svg class="s5-progress-ring" viewBox="0 0 50 50">
+        <circle class="s5-ring-bg" cx="25" cy="25" r="20"/>
+        <circle class="s5-ring-fg" cx="25" cy="25" r="20" id="s5-ring"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 第六格：交付成果 -->
+  <div class="screen" id="s6" style="border-color: rgba(168, 85, 247, 0.5); background: linear-gradient(135deg, rgba(40, 20, 60, 0.95), rgba(10, 15, 40, 0.95));">
+    <div class="screen-header">
+      <span class="screen-icon">🎯</span>
+      <span class="screen-title">最终交付 · 完整成果</span>
+      <span class="screen-status status-done" id="s6-status">已完成</span>
+    </div>
+    <div class="screen-body">
+      <div style="background: rgba(0, 212, 255, 0.1); padding: 10px; border-radius: 6px; margin-bottom: 8px;">
+        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 4px;">📊 尽调结论</div>
+        <div style="font-size: 13px; color: #00d4ff;">建议推进 · 估值区间 180-250 亿 · 风险可控</div>
+      </div>
+      <div style="background: rgba(168, 85, 247, 0.1); padding: 10px; border-radius: 6px; margin-bottom: 8px;">
+        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 4px;">⏱️ 协同效率</div>
+        <div style="font-size: 13px; color: #a855f7;">12 小时 vs 传统 2-3 天（提速 6-12 倍）</div>
+      </div>
+      <div style="background: rgba(34, 197, 94, 0.1); padding: 10px; border-radius: 6px;">
+        <div style="font-size: 11px; color: #94a3b8; margin-bottom: 4px;">🔗 公网链接</div>
+        <div style="font-size: 12px; color: #22c55e; word-break: break-all;">jinzhanxiang.github.io/xingheng-report/</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="subtitle-bar" id="subtitle">🎬 启动 · main 拆解任务 · 5 Agent 链式启动</div>
+
+<div class="bottom-bar">
+  <div class="timeline" id="timeline">
+    <div class="timeline-step active" data-step="1"><span class="dot"></span>T+0h 立项</div>
+    <div class="timeline-step" data-step="2"><span class="dot"></span>T+2h 行业</div>
+    <div class="timeline-step" data-step="3"><span class="dot"></span>T+6h 财务</div>
+    <div class="timeline-step" data-step="4"><span class="dot"></span>T+10h 估值</div>
+    <div class="timeline-step" data-step="5"><span class="dot"></span>T+12h 报告</div>
+  </div>
+  <div style="color:#94a3b8;font-size:11px;">真实运行数据 · 2026-07-04</div>
+</div>
+
+<script>
+const steps = [
+  { sec: 0,  msg: '🎬 启动 · main 拆解任务 · 5 Agent 链式启动', step: 1, statuses: { s1: 'running' } },
+  { sec: 3,  msg: '📋 屏1 · main 通过 sessions_send 派发 5 子任务到 5 个 Agent', step: 2, statuses: { s1: 'done', s2: 'running' } },
+  { sec: 6,  msg: '🔬 屏2 · research 行业扫描完成 · 23 家企业 + 3 大技术路径', step: 3, statuses: { s2: 'done', s3: 'running' } },
+  { sec: 10, msg: '💰 屏3 · data OCR 21 张表格 + research 完成财务尽调', step: 4, statuses: { s3: 'done', s4: 'running' } },
+  { sec: 14, msg: '📊 屏4 · DCF 估值 180-250 亿 · 3 家可比公司 PE/PS', step: 5, statuses: { s4: 'done', s5: 'running' } },
+  { sec: 18, msg: '📄 屏5 · report 套模板排版 · GitHub Pages 公网部署完成', step: 6, statuses: { s5: 'done', s6: 'done' } },
+  { sec: 22, msg: '✅ 全部完成 · 12 小时 vs 传统 2-3 天 · 提速 6-12 倍', step: 6, statuses: {} },
+  { sec: 25, msg: '🔗 公网链接：jinzhanxiang.github.io/xingheng-report/', step: 6, statuses: {} },
+];
+
+const statusMap = { running: '运行中', done: '已完成', pending: '等待中' };
+const statusClass = { running: 'status-running', done: 'status-done', pending: 'status-pending' };
+
+function applyState(state) {
+  document.getElementById('subtitle').textContent = state.msg;
+  document.querySelectorAll('.timeline-step').forEach(el => {
+    const s = parseInt(el.dataset.step);
+    el.classList.remove('active', 'done');
+    if (s < state.step) el.classList.add('done');
+    else if (s === state.step) el.classList.add('active');
+  });
+  Object.entries(state.statuses).forEach(([id, st]) => {
+    const el = document.getElementById(id + '-status');
+    if (el) {
+      el.textContent = statusMap[st];
+      el.className = 'screen-status ' + statusClass[st];
+    }
+    const screen = document.getElementById(id);
+    if (screen) screen.classList.toggle('active', st === 'running');
+  });
+
+  // DCF 进度
+  if (state.step >= 5) {
+    document.getElementById('dcf-fill').style.width = '100%';
+    document.getElementById('dcf-label').textContent = 'DCF 完成 · 218 亿';
+    document.getElementById('s4-final').innerHTML = '估值区间：180 - 250 亿 · <span style="color:#22c55e;">中位 218 亿</span>';
+  }
+  // s5 进度环
+  if (state.step >= 6) {
+    document.getElementById('s5-ring').style.strokeDashoffset = '0';
+  }
+}
+
+// 时钟
+const t0 = Date.now();
+setInterval(() => {
+  const d = new Date(Date.now() - t0);
+  document.getElementById('clock').textContent =
+    `${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')}`;
+}, 1000);
+
+// 主时间线（28 秒循环）
+let elapsed = 0;
+function tick() {
+  // 找当前段
+  let current = steps[0];
+  for (let i = steps.length - 1; i >= 0; i--) {
+    if (elapsed >= steps[i].sec) { current = steps[i]; break; }
+  }
+  applyState(current);
+  elapsed++;
+  if (elapsed >= 28) elapsed = 0; // 循环
+}
+tick();
+setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

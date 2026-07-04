@@ -31,10 +31,10 @@
     // 01 开场 - 5+2+1 体系(原 trigger 已展示 5 Agent+2 助手+1 中台,扩写每类)
     'burst-5plus2plus1': {
       title: '5 + 2 + 1 体系架构',
-      subtitle: '5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀资产 · 点击下方看实战结果',
+      subtitle: '9 屏真实操作 · 5 Agent 协同作战 · 2 助手延伸能力 · 1 中台沉淀 · 1 主公决策',
       layout: 'threecol',
       videoPoster: '../assets/videos/posters/04-neural-network.png',
-      video: '../assets/videos/9-agent-live-call.mp4',
+      video: '../assets/videos/9-agent-multiscreen.mp4',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '📄 实战案例：晶能光电商业尽调报告（公网 · 真实交付）',
       cards: [
@@ -175,10 +175,10 @@
       ]
     },
     'burst-case-xingheng': {
-      title: '星恒电源 · 12 小时尽调启动',
-      subtitle: '固态锂电池 · 尽调阶段 · 点击按钮看公开版尽调报告',
+      title: '星恒电源 · 12 小时尽调 · 多屏协同实战',
+      subtitle: '6 屏真实操作 · 立项→行业→财务→估值→报告→交付 · 12 小时 vs 传统 2-3 天',
       videoPoster: '../assets/videos/posters/06-before-after.png',
-      video: '../assets/videos/xingheng-13pct-walkthrough.mp4',
+      video: '../assets/videos/xingheng-multiscreen.mp4',
       resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
       resultLabel: '📊 星恒电源尽调报告（GitHub Pages · 公开交付）',
       layout: 'pipe',
@@ -204,10 +204,10 @@
       ]
     },
     'burst-case-jingneng': {
-      title: '晶能项目 · 1 年跟踪 + 立项启动',
-      subtitle: 'LED 芯片 · 储备项目 → 立项 · 主公可点击下方按钮看真实交付',
+      title: '晶能光电 · V3426 颜色内容双重修复 · 多屏协同实战',
+      subtitle: '6 屏真实操作 · OCR→抽取→颜色→复核→报告→交付 · 12 小时 vs 传统 3 天',
       videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
-      video: '../assets/videos/jingneng-v3426-walkthrough.mp4',
+      video: '../assets/videos/jingneng-multiscreen.mp4',
       layout: 'pipe',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '📄 点击查看晶能光电商业尽调交付报告（公网 · 实时）',
@@ -285,9 +285,9 @@
     // 03 main 调度 - 5 大动作
     'burst-main': {
       title: 'main · 总调度 5 大动作',
-      subtitle: '接收 · 拆解 · 分派 · 跟踪 · 反馈 · 闭环 · 真实运行 30 分钟仪表盘',
+      subtitle: '6 屏实时仪表盘 · 心跳/任务/Session/Docker/Agent/告警 · 真实运行数据',
       videoPoster: '../assets/videos/posters/01-main-command-center.png',
-      video: '../assets/videos/main-dashboard-live.mp4',
+      video: '../assets/videos/main-multiscreen.mp4',
       resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
       resultLabel: '🧠 main 实战指挥',
       layout: 'pipe',

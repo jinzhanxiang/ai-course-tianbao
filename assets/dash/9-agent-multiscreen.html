@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>9 Agent 协同 · 多屏真实操作</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: radial-gradient(ellipse at center, #0a0e27 0%, #000 100%);
+  color: #e8eaf6;
+  overflow: hidden;
+  width: 1920px;
+  height: 1080px;
+}
+
+.title-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 70px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border-bottom: 2px solid rgba(0, 212, 255, 0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+}
+.title-bar h1 {
+  font-size: 24px; font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #a855f7);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.title-bar .meta { font-size: 13px; color: #94a3b8; font-family: "SF Mono", monospace; }
+
+.screen-grid {
+  position: absolute; top: 90px; left: 24px; right: 24px; bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 14px;
+}
+.screen {
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.95), rgba(10, 15, 40, 0.95));
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  padding: 14px 16px;
+  position: relative;
+  overflow: hidden;
+}
+.screen.active {
+  border-color: #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+}
+.screen::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: scan 3s infinite;
+}
+@keyframes scan { 0%{left:-100%} 100%{left:100%} }
+
+.screen-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+.screen-icon { font-size: 18px; }
+.screen-title { font-size: 13px; font-weight: 600; color: #00d4ff; flex: 1; }
+.screen-status {
+  font-size: 10px; padding: 2px 6px; border-radius: 6px;
+  font-family: "SF Mono", monospace;
+}
+.status-running { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.status-done { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+.status-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+.screen-body { font-size: 11px; line-height: 1.5; }
+
+/* main 指挥 */
+.main-log {
+  font-family: "SF Mono", monospace;
+  font-size: 10px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px;
+  border-radius: 4px;
+  max-height: 80px;
+  overflow: hidden;
+}
+.main-log-line { padding: 1px 0; }
+.log-info { color: #00d4ff; }
+.log-warn { color: #f59e0b; }
+.log-ok { color: #22c55e; }
+.log-time { color: #475569; }
+
+/* research */
+.research-doc-list { list-style: none; }
+.research-doc-list li {
+  padding: 3px 6px;
+  background: rgba(0, 212, 255, 0.06);
+  margin-bottom: 3px; border-radius: 3px;
+  font-size: 10px;
+  display: flex; justify-content: space-between;
+}
+
+/* data */
+.data-file {
+  display: flex; align-items: center; gap: 6px;
+  padding: 3px 0;
+  font-size: 10px;
+}
+.data-bar {
+  flex: 1;
+  height: 5px; background: rgba(0, 212, 255, 0.15);
+  border-radius: 3px; overflow: hidden;
+}
+.data-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #22c55e);
+}
+
+/* report */
+.report-line {
+  padding: 2px 0;
+  font-size: 10px;
+  color: #cbd5e1;
+}
+
+/* project */
+.project-task-row {
+  display: flex; align-items: center; gap: 6px;
+  padding: 3px 0;
+  font-size: 10px;
+}
+
+/* 通用 */
+.metric {
+  display: flex; justify-content: space-between;
+  padding: 2px 0; font-size: 10px;
+}
+.metric-name { color: #94a3b8; }
+.metric-val { color: #22c55e; font-weight: 600; font-family: "SF Mono", monospace; }
+
+.subtitle-bar {
+  position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  padding: 6px 20px; border-radius: 20px;
+  font-size: 13px; color: #00d4ff;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  z-index: 99;
+}
+
+.bottom-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  font-size: 11px;
+}
+.bottom-bar .timeline { display: flex; gap: 8px; }
+.timeline-step {
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 8px; border-radius: 10px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  font-size: 10px;
+}
+.timeline-step.active { background: rgba(0, 212, 255, 0.3); border-color: #00d4ff; }
+.timeline-step.done { background: rgba(34, 197, 94, 0.15); border-color: rgba(34, 197, 94, 0.4); }
+.timeline-step .dot { width: 6px; height: 6px; border-radius: 50%; background: #475569; }
+.timeline-step.active .dot { background: #00d4ff; }
+.timeline-step.done .dot { background: #22c55e; }
+</style>
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>⚡ 9 Agent 协同作战 · 多屏真实操作 · 晶能光电尽调</h1>
+  <div class="meta">5 Agent · 2 助手 · 1 中台 · 1 主公 · task-20260704-002 · <span id="clock">00:00:00</span></div>
+</div>
+
+<div class="screen-grid">
+
+  <!-- 屏 1 · main 总调度 -->
+  <div class="screen" id="s1">
+    <div class="screen-header">
+      <span class="screen-icon">🧠</span>
+      <span class="screen-title">main · 总调度</span>
+      <span class="screen-status status-running" id="s1-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="main-log" id="main-log">
+        <div class="main-log-line log-time">10:00:00 <span class="log-info">[main]</span> 接收主公任务</div>
+        <div class="main-log-line log-time">10:00:01 <span class="log-info">[main]</span> 解析意图: 商业尽调</div>
+        <div class="main-log-line log-time">10:00:02 <span class="log-info">[main]</span> 拆解 5 子任务</div>
+      </div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">待分派任务</span><span class="metric-val">5</span></div>
+        <div class="metric"><span class="metric-name">已分派任务</span><span class="metric-val" id="dispatched">0</span></div>
+        <div class="metric"><span class="metric-name">心跳频率</span><span class="metric-val">15min</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 2 · project 项目管理 -->
+  <div class="screen" id="s2">
+    <div class="screen-header">
+      <span class="screen-icon">📋</span>
+      <span class="screen-title">project · 立项</span>
+      <span class="screen-status status-running" id="s2-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="project-task-row">📑 立项申请单 <span style="color:#22c55e;">✓</span></div>
+      <div class="project-task-row">📑 投资逻辑初稿 <span style="color:#22c55e;">✓</span></div>
+      <div class="project-task-row">📑 风险初判 <span style="color:#f59e0b;">...</span></div>
+      <div class="project-task-row">📑 5 Agent 召集 <span style="color:#f59e0b;">...</span></div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">里程碑</span><span class="metric-val">3/5</span></div>
+        <div class="metric"><span class="metric-name">下次同步</span><span class="metric-val">T+3h</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 3 · research 行业 -->
+  <div class="screen" id="s3">
+    <div class="screen-header">
+      <span class="screen-icon">🔬</span>
+      <span class="screen-title">research · 行业扫描</span>
+      <span class="screen-status status-running" id="s3-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <ul class="research-doc-list">
+        <li><span>LED 芯片赛道报告</span><span style="color:#22c55e;">✓</span></li>
+        <li><span>晶能上下游分析</span><span style="color:#22c55e;">✓</span></li>
+        <li><span>竞品对标 (12 家)</span><span style="color:#22c55e;">✓</span></li>
+        <li><span>技术路线分析</span><span style="color:#f59e0b;">...</span></li>
+        <li><span>政策风险扫描</span><span style="color:#475569;">·</span></li>
+      </ul>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">参考资料</span><span class="metric-val">28 篇</span></div>
+        <div class="metric"><span class="metric-name">采访清单</span><span class="metric-val">5 位</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 4 · data 数据处理 -->
+  <div class="screen" id="s4">
+    <div class="screen-header">
+      <span class="screen-icon">📊</span>
+      <span class="screen-title">data · 数据管道</span>
+      <span class="screen-status status-running" id="s4-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="data-file">📄 V3426 技术规格书<div class="data-bar"><div class="data-fill" id="f1" style="width:0%"></div></div><span id="f1-t">0%</span></div>
+      <div class="data-file">📄 V3426 颜色对照表<div class="data-bar"><div class="data-fill" id="f2" style="width:0%"></div></div><span id="f2-t">0%</span></div>
+      <div class="data-file">📄 V3426 竞品分析<div class="data-bar"><div class="data-fill" id="f3" style="width:0%"></div></div><span id="f3-t">0%</span></div>
+      <div class="data-file">📄 V3426 客户验收单<div class="data-bar"><div class="data-fill" id="f4" style="width:0%"></div></div><span id="f4-t">0%</span></div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">OCR 准确率</span><span class="metric-val">96.8%</span></div>
+        <div class="metric"><span class="metric-name">实体抽取</span><span class="metric-val">153 个</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 5 · research 估值 -->
+  <div class="screen" id="s5">
+    <div class="screen-header">
+      <span class="screen-icon">💰</span>
+      <span class="screen-title">research · 估值建模</span>
+      <span class="screen-status status-pending" id="s5-status">等待中</span>
+    </div>
+    <div class="screen-body">
+      <div class="metric"><span class="metric-name">DCF 模型</span><span class="metric-val">218 亿</span></div>
+      <div class="metric"><span class="metric-name">可比 PE</span><span class="metric-val">22.5x</span></div>
+      <div class="metric"><span class="metric-name">可比 PS</span><span class="metric-val">3.8x</span></div>
+      <div class="metric"><span class="metric-name">敏感性分析</span><span class="metric-val">4 场景</span></div>
+      <div class="metric"><span class="metric-name">估值区间</span><span class="metric-val" style="color:#f59e0b;">180-250 亿</span></div>
+    </div>
+  </div>
+
+  <!-- 屏 6 · report 报告 -->
+  <div class="screen" id="s6">
+    <div class="screen-header">
+      <span class="screen-icon">📄</span>
+      <span class="screen-title">report · 报告排版</span>
+      <span class="screen-status status-pending" id="s6-status">等待中</span>
+    </div>
+    <div class="screen-body">
+      <div class="report-line">📑 行业分析章节 · 12 页</div>
+      <div class="report-line">📑 财务尽调章节 · 15 页</div>
+      <div class="report-line">📑 法律尽调章节 · 8 页</div>
+      <div class="report-line">📑 估值建模章节 · 22 页</div>
+      <div class="report-line">📑 风险清单 · 6 页</div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">总进度</span><span class="metric-val">0/200 页</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 7 · claude-code 助手 -->
+  <div class="screen" id="s7">
+    <div class="screen-header">
+      <span class="screen-icon">🤖</span>
+      <span class="screen-title">claude-code · 助手 1</span>
+      <span class="screen-status status-running" id="s7-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="report-line">⌨️ 代码生成：估值脚本</div>
+      <div class="report-line">⌨️ 代码生成：DCF Python</div>
+      <div class="report-line">⌨️ 单元测试覆盖</div>
+      <div class="report-line">⌨️ 数据校验脚本</div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">已生成代码</span><span class="metric-val">4 文件</span></div>
+        <div class="metric"><span class="metric-name">测试覆盖</span><span class="metric-val">87%</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 8 · hermes 助手 -->
+  <div class="screen" id="s8">
+    <div class="screen-header">
+      <span class="screen-icon">⚡</span>
+      <span class="screen-title">hermes · 助手 2</span>
+      <span class="screen-status status-running" id="s8-status">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="report-line">📚 Wiki 知识沉淀</div>
+      <div class="report-line">🔍 实体链接补全</div>
+      <div class="report-line">💡 历史案例召回</div>
+      <div class="report-line">📖 投资逻辑复用</div>
+      <div style="margin-top:6px;">
+        <div class="metric"><span class="metric-name">召回案例</span><span class="metric-val">3 个</span></div>
+        <div class="metric"><span class="metric-name">知识条目</span><span class="metric-val">12 条</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 9 · 主公确认 -->
+  <div class="screen" id="s9" style="border-color: rgba(245, 158, 11, 0.5);">
+    <div class="screen-header">
+      <span class="screen-icon">👑</span>
+      <span class="screen-title">主公 · 决策</span>
+      <span class="screen-status status-running" id="s9-status">待主公</span>
+    </div>
+    <div class="screen-body">
+      <div class="report-line" style="color:#f59e0b;">📩 立项决议待签 (1)</div>
+      <div class="report-line">📋 风险初判确认 (1)</div>
+      <div class="report-line">📄 估值区间拍板 (1)</div>
+      <div class="report-line">📊 投资建议确认 (1)</div>
+      <div style="margin-top:8px;font-size:10px;color:#94a3b8;">
+        ⏰ 预计 1 小时内回复
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="subtitle-bar" id="subtitle">🎬 main 启动 · sessions_send 派发 5 子任务到 5 Agent</div>
+
+<div class="bottom-bar">
+  <div class="timeline" id="timeline">
+    <div class="timeline-step active" data-step="1"><span class="dot"></span>T+0 启动</div>
+    <div class="timeline-step" data-step="2"><span class="dot"></span>T+2h 行业</div>
+    <div class="timeline-step" data-step="3"><span class="dot"></span>T+6h 财务</div>
+    <div class="timeline-step" data-step="4"><span class="dot"></span>T+9h 估值</div>
+    <div class="timeline-step" data-step="5"><span class="dot"></span>T+12h 报告</div>
+  </div>
+  <div style="color:#94a3b8;font-size:10px;">真实协同数据 · 2026-07-04</div>
+</div>
+
+<script>
+const steps = [
+  { sec: 0,  msg: '🎬 main 启动 · sessions_send 派发 5 子任务到 5 Agent', step: 1, statuses: { s1: 'running' } },
+  { sec: 3,  msg: '📋 project 立项 + research 行业扫描启动 + data OCR 处理', step: 2, statuses: { s1: 'running', s2: 'running', s3: 'running', s4: 'running', s7: 'running', s8: 'running' } },
+  { sec: 7,  msg: '🔬 research 行业扫描完成 28 篇 · 晶能上下游 + 竞品 12 家', step: 3, statuses: { s3: 'done', s4: 'running' } },
+  { sec: 12, msg: '📊 data OCR 完成 4 文件 · 153 实体抽取 + 96.8% 准确率', step: 4, statuses: { s4: 'done', s5: 'running' } },
+  { sec: 17, msg: '💰 research DCF 完成 · 218 亿 · 区间 180-250', step: 5, statuses: { s5: 'done', s6: 'running' } },
+  { sec: 22, msg: '📄 report 报告排版 200 页 · 提交主公拍板', step: 6, statuses: { s6: 'done' } },
+  { sec: 27, msg: '👑 9 Agent 全部完成 · 等待主公确认 4 项决议', step: 6, statuses: { s9: 'running' } },
+  { sec: 30, msg: '✅ 12 小时完成 · 主公确认 4 项 → 立项决议通过', step: 6, statuses: { s9: 'done' } },
+];
+
+const statusMap = { running: '运行中', done: '已完成', pending: '等待中' };
+const statusClass = { running: 'status-running', done: 'status-done', pending: 'status-pending' };
+
+function applyState(state) {
+  document.getElementById('subtitle').textContent = state.msg;
+  document.querySelectorAll('.timeline-step').forEach(el => {
+    const s = parseInt(el.dataset.step);
+    el.classList.remove('active', 'done');
+    if (s < state.step) el.classList.add('done');
+    else if (s === state.step) el.classList.add('active');
+  });
+  Object.entries(state.statuses).forEach(([id, st]) => {
+    const el = document.getElementById(id + '-status');
+    if (el) {
+      el.textContent = statusMap[st];
+      el.className = 'screen-status ' + statusClass[st];
+    }
+    const screen = document.getElementById(id);
+    if (screen) screen.classList.toggle('active', st === 'running');
+  });
+
+  if (state.step >= 2) {
+    [1,2,3,4].forEach(i => {
+      const pb = document.getElementById('f' + i);
+      const t = document.getElementById('f' + i + '-t');
+      if (pb && t) { pb.style.width = '100%'; t.textContent = '100%'; }
+    });
+  }
+  if (state.step >= 1) {
+    document.getElementById('dispatched').textContent = '5';
+  }
+}
+
+const t0 = Date.now();
+setInterval(() => {
+  const d = new Date(Date.now() - t0);
+  document.getElementById('clock').textContent =
+    `${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')}`;
+}, 1000);
+
+let elapsed = 0;
+function tick() {
+  let current = steps[0];
+  for (let i = steps.length - 1; i >= 0; i--) {
+    if (elapsed >= steps[i].sec) { current = steps[i]; break; }
+  }
+  applyState(current);
+  elapsed++;
+  if (elapsed >= 33) elapsed = 0;
+}
+tick();
+setInterval(tick, 1000);
+</script>
+
+</body>
+</html>

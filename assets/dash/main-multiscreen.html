@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>main 指挥中心 · 多屏实时仪表盘</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: radial-gradient(ellipse at center, #0a0e27 0%, #000 100%);
+  color: #e8eaf6;
+  overflow: hidden;
+  width: 1920px;
+  height: 1080px;
+}
+
+.title-bar {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 70px;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.15), rgba(34, 197, 94, 0.15));
+  border-bottom: 2px solid rgba(0, 212, 255, 0.4);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  z-index: 100;
+}
+.title-bar h1 {
+  font-size: 24px; font-weight: 700;
+  background: linear-gradient(90deg, #00d4ff, #22c55e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.title-bar .meta { font-size: 13px; color: #94a3b8; font-family: "SF Mono", monospace; }
+
+.screen-grid {
+  position: absolute; top: 90px; left: 24px; right: 24px; bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+}
+.screen {
+  background: linear-gradient(135deg, rgba(20, 30, 60, 0.95), rgba(10, 15, 40, 0.95));
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 12px;
+  padding: 16px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.screen.active { border-color: #00d4ff; box-shadow: 0 0 30px rgba(0, 212, 255, 0.4); }
+.screen::before {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  animation: scan 3s infinite;
+}
+@keyframes scan { 0%{left:-100%} 100%{left:100%} }
+
+.screen-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px; padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+.screen-icon { font-size: 20px; }
+.screen-title { font-size: 14px; font-weight: 600; color: #00d4ff; flex: 1; }
+.screen-status {
+  font-size: 11px; padding: 2px 8px; border-radius: 6px;
+  font-family: "SF Mono", monospace;
+}
+.status-running { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.status-done { background: rgba(168, 85, 247, 0.2); color: #a855f7; }
+.status-pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+
+.screen-body { font-size: 11px; line-height: 1.55; }
+
+/* 屏1 · 心跳 */
+.heart-pulse {
+  width: 80px; height: 80px;
+  margin: 8px auto;
+  position: relative;
+}
+.heart-pulse::before {
+  content: '💗';
+  font-size: 50px;
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 8px #22c55e);
+  animation: heartBeat 1.2s ease-in-out infinite;
+}
+@keyframes heartBeat { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.15)} }
+
+.heartbeat-log {
+  font-family: "SF Mono", monospace;
+  font-size: 9px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px;
+  border-radius: 4px;
+  max-height: 80px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.log-line { padding: 1px 0; }
+.log-time { color: #475569; }
+.log-info { color: #00d4ff; }
+.log-ok { color: #22c55e; }
+
+/* 屏2 · 任务 */
+.task-list { list-style: none; }
+.task-row {
+  padding: 5px 8px;
+  background: rgba(0, 212, 255, 0.06);
+  margin-bottom: 4px; border-radius: 4px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px;
+}
+.task-tag {
+  font-family: "SF Mono", monospace;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+}
+.status-completed { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.status-progress { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+
+/* 屏3 · session */
+.session-row {
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 0;
+  font-size: 11px;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.1);
+}
+.session-bar {
+  flex: 1;
+  height: 6px; background: rgba(0, 212, 255, 0.15);
+  border-radius: 3px; overflow: hidden;
+}
+.session-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #22c55e);
+}
+.session-fill.warn { background: linear-gradient(90deg, #f59e0b, #ec4899); }
+
+/* 屏4 · docker */
+.docker-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 0;
+  font-size: 11px;
+}
+.docker-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.dot-up { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.dot-down { background: #ef4444; }
+.dot-warn { background: #f59e0b; }
+
+/* 屏5 · agent */
+.agent-card {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 8px;
+  background: rgba(168, 85, 247, 0.06);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+.agent-status {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* 屏6 · 告警 */
+.alert-row {
+  padding: 5px 8px;
+  border-left: 3px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.06);
+  margin-bottom: 4px;
+  font-size: 10px;
+}
+.alert-row.critical { border-color: #ef4444; background: rgba(239, 68, 68, 0.06); }
+.alert-row.info { border-color: #00d4ff; background: rgba(0, 212, 255, 0.06); }
+
+.subtitle-bar {
+  position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  padding: 6px 20px; border-radius: 20px;
+  font-size: 13px; color: #00d4ff;
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  z-index: 99;
+}
+
+.bottom-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px;
+  font-size: 11px;
+}
+.bottom-bar .timeline { display: flex; gap: 10px; }
+.timeline-step {
+  display: flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 12px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  font-size: 11px;
+}
+.timeline-step.active { background: rgba(0, 212, 255, 0.3); border-color: #00d4ff; }
+.timeline-step .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #475569;
+}
+.timeline-step.active .dot { background: #00d4ff; box-shadow: 0 0 6px #00d4ff; }
+</style>
+</head>
+<body>
+
+<div class="title-bar">
+  <h1>🧠 main 指挥中心 · 多屏实时仪表盘</h1>
+  <div class="meta">心跳 · 任务 · Session · Docker · Agent · 告警 · <span id="clock">00:00:00</span></div>
+</div>
+
+<div class="screen-grid">
+
+  <!-- 屏 1 · 心跳机制 -->
+  <div class="screen" id="s1">
+    <div class="screen-header">
+      <span class="screen-icon">💗</span>
+      <span class="screen-title">屏 1 · 心跳机制</span>
+      <span class="screen-status status-running">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="heart-pulse"></div>
+      <div style="text-align:center;font-size:13px;color:#22c55e;font-weight:600;">
+        15 分钟 / 次
+      </div>
+      <div style="text-align:center;font-size:10px;color:#94a3b8;">
+        上次心跳：<span id="last-hb">12:25:00</span>
+      </div>
+      <div class="heartbeat-log" id="hb-log">
+        <div class="log-line log-time">12:25:00 <span class="log-info">[HEARTBEAT]</span> 巡检启动</div>
+        <div class="log-line log-time">12:25:01 <span class="log-ok">✓</span> docker: postgres Up</div>
+        <div class="log-line log-time">12:25:01 <span class="log-ok">✓</span> docker: qdrant Up</div>
+        <div class="log-line log-time">12:25:02 <span class="log-info">[OK]</span> 全部正常</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 2 · 任务跟踪 -->
+  <div class="screen" id="s2">
+    <div class="screen-header">
+      <span class="screen-icon">📊</span>
+      <span class="screen-title">屏 2 · 任务跟踪</span>
+      <span class="screen-status status-running">运行中</span>
+    </div>
+    <div class="screen-body">
+      <ul class="task-list" id="task-list">
+        <li class="task-row"><span class="task-tag status-completed">completed</span> task-20260703-001</li>
+        <li class="task-row"><span class="task-tag status-completed">completed</span> task-20260703-002</li>
+        <li class="task-row"><span class="task-tag status-completed">completed</span> task-20260704-001</li>
+        <li class="task-row"><span class="task-tag status-progress">in-progress</span> task-20260704-002</li>
+        <li class="task-row"><span class="task-tag status-progress">in-progress</span> task-20260704-003</li>
+        <li class="task-row"><span class="task-tag status-progress">in-progress</span> task-20260704-004</li>
+      </ul>
+      <div style="margin-top:8px;font-size:10px;color:#94a3b8;">
+        共 6 任务 · 3 完成 · 3 进行中
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 3 · Session 监控 -->
+  <div class="screen" id="s3">
+    <div class="screen-header">
+      <span class="screen-icon">📂</span>
+      <span class="screen-title">屏 3 · Session 监控</span>
+      <span class="screen-status status-running">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="session-row">main <div class="session-bar"><div class="session-fill" style="width:18%"></div></div><span style="color:#22c55e;">1.8MB</span></div>
+      <div class="session-row">research <div class="session-bar"><div class="session-fill" style="width:12%"></div></div><span style="color:#22c55e;">1.2MB</span></div>
+      <div class="session-row">project <div class="session-bar"><div class="session-fill" style="width:9%"></div></div><span style="color:#22c55e;">0.9MB</span></div>
+      <div class="session-row">data <div class="session-bar"><div class="session-fill warn" style="width:28%"></div></div><span style="color:#f59e0b;">2.8MB</span></div>
+      <div class="session-row">report <div class="session-bar"><div class="session-fill" style="width:8%"></div></div><span style="color:#22c55e;">0.8MB</span></div>
+      <div style="margin-top:8px;font-size:10px;color:#94a3b8;">
+        阈值：1.5MB 警告 · 3MB 强制压缩
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 4 · Docker 服务 -->
+  <div class="screen" id="s4">
+    <div class="screen-header">
+      <span class="screen-icon">🐳</span>
+      <span class="screen-title">屏 4 · Docker 服务</span>
+      <span class="screen-status status-running">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="docker-row"><span class="docker-dot dot-up"></span>postgres <span style="color:#22c55e;">Up 38h</span></div>
+      <div class="docker-row"><span class="docker-dot dot-up"></span>qdrant <span style="color:#22c55e;">Up 38h</span></div>
+      <div class="docker-row"><span class="docker-dot dot-up"></span>redis <span style="color:#22c55e;">Up 38h</span></div>
+      <div class="docker-row"><span class="docker-dot dot-warn"></span>litellm <span style="color:#f59e0b;">Restarting</span></div>
+      <div style="margin-top:10px;font-size:10px;color:#94a3b8;">
+        4 容器 · 3 健康 · 1 重启中
+      </div>
+    </div>
+  </div>
+
+  <!-- 屏 5 · Agent 状态 -->
+  <div class="screen" id="s5">
+    <div class="screen-header">
+      <span class="screen-icon">🤖</span>
+      <span class="screen-title">屏 5 · Agent 状态</span>
+      <span class="screen-status status-running">运行中</span>
+    </div>
+    <div class="screen-body">
+      <div class="agent-card">🧠 main <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+      <div class="agent-card">🔬 research <span class="agent-status status-progress" style="background:rgba(245,158,11,0.2);color:#f59e0b;">忙</span></div>
+      <div class="agent-card">📋 project <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+      <div class="agent-card">📊 data <span class="agent-status status-progress" style="background:rgba(245,158,11,0.2);color:#f59e0b;">忙</span></div>
+      <div class="agent-card">📄 report <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+      <div class="agent-card">🤖 claude-code <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+      <div class="agent-card">⚡ hermes <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+    </div>
+  </div>
+
+  <!-- 屏 6 · 告警 -->
+  <div class="screen" id="s6">
+    <div class="screen-header">
+      <span class="screen-icon">🔔</span>
+      <span class="screen-title">屏 6 · 异常告警</span>
+      <span class="screen-status status-running">1 条</span>
+    </div>
+    <div class="screen-body">
+      <div class="alert-row critical">🔴 <b>CRITICAL</b> · data session 超 2.8MB · 已自动压缩</div>
+      <div class="alert-row info">🔵 <b>INFO</b> · task-20260704-002 启动 · research 行业扫描</div>
+      <div class="alert-row info">🔵 <b>INFO</b> · 9 Agent 协同作战 · 晶能尽调真实跑批</div>
+      <div class="alert-row">🟡 <b>WARN</b> · litellm 容器重启中（已自动恢复）</div>
+      <div style="margin-top:8px;font-size:10px;color:#94a3b8;">
+        异常自动告警主公 · 30 分钟追问 · 2 小时升级
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="subtitle-bar" id="subtitle">🎬 main 心跳启动 · 6 屏并行巡检 · 全部健康</div>
+
+<div class="bottom-bar">
+  <div class="timeline" id="timeline">
+    <div class="timeline-step active" data-step="1"><span class="dot"></span>心跳启动</div>
+    <div class="timeline-step" data-step="2"><span class="dot"></span>任务检查</div>
+    <div class="timeline-step" data-step="3"><span class="dot"></span>Session 巡检</div>
+    <div class="timeline-step" data-step="4"><span class="dot"></span>Docker 健康</div>
+    <div class="timeline-step" data-step="5"><span class="dot"></span>Agent 状态</div>
+    <div class="timeline-step" data-step="6"><span class="dot"></span>异常处理</div>
+  </div>
+  <div style="color:#94a3b8;font-size:10px;">实时数据 · 2026-07-04</div>
+</div>
+
+<script>
+const steps = [
+  { sec: 0,  msg: '🎬 main 心跳启动 · 6 屏并行巡检 · 全部健康', step: 1 },
+  { sec: 3,  msg: '💗 屏1 · 心跳 15 分钟周期 · 上次 12:25 · 下次 12:40', step: 1 },
+  { sec: 7,  msg: '📊 屏2 · 任务跟踪：6 任务 · 3 完成 · 3 进行中', step: 2 },
+  { sec: 11, msg: '📂 屏3 · Session 监控 · data 2.8MB 已自动压缩', step: 3 },
+  { sec: 16, msg: '🐳 屏4 · Docker · postgres/qdrant/redis 健康 · litellm 重启', step: 4 },
+  { sec: 21, msg: '🤖 屏5 · 7 Agent 在线 · research/data 忙 · 其余就绪', step: 5 },
+  { sec: 26, msg: '🔔 屏6 · 1 CRITICAL + 2 INFO + 1 WARN · 全部自动处理', step: 6 },
+  { sec: 30, msg: '✅ 巡检完成 · 心跳结束 · 异常已通知主公', step: 6 },
+];
+
+function applyState(state) {
+  document.getElementById('subtitle').textContent = state.msg;
+  document.querySelectorAll('.timeline-step').forEach(el => {
+    const s = parseInt(el.dataset.step);
+    el.classList.toggle('active', s === state.step);
+  });
+}
+
+const t0 = Date.now();
+setInterval(() => {
+  const d = new Date(Date.now() - t0);
+  document.getElementById('clock').textContent =
+    `${String(d.getUTCHours()).padStart(2,'0')}:${String(d.getUTCMinutes()).padStart(2,'0')}:${String(d.getUTCSeconds()).padStart(2,'0')}`;
+}, 1000);
+
+let elapsed = 0;
+function tick() {
+  let current = steps[0];
+  for (let i = steps.length - 1; i >= 0; i--) {
+    if (elapsed >= steps[i].sec) { current = steps[i]; break; }
+  }
+  applyState(current);
+  elapsed++;
+  if (elapsed >= 33) elapsed = 0;
+}
+tick();
+setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
