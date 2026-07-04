@@ -164,7 +164,7 @@
       title: '⚠️ 已废弃 · 参见 burst-case-xingheng-13',
       subtitle: '本 burst 已重定向至星恒电源 13.73% 收购案例',
             resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
-      resultLabel: '🔋 星恒电源 · 12 小时尽调实战报告（GitHub Pages）',
+      resultLabel: '🔋 星恒电源 · 90 分钟尽调实战报告（GitHub Pages）',
       layout: 'pipe',
       cards: [
         { icon: '🔋', name: '案例已更换', tag: '📢', detail: '原启源芯案例（与 SiC 衬底/功率半导体混淆）已被主公识别为错误。\n请参见：星恒电源 13.73% 收购方案 B 商业尽调复核。', color: '#EF4444', pos: 0 },
@@ -175,8 +175,8 @@
       ]
     },
     'burst-case-xingheng': {
-      title: '星恒电源 · 12 小时尽调 · 多屏协同实战',
-      subtitle: '6 屏真实操作 · 立项→行业→财务→估值→报告→交付 · 12 小时 vs 传统 2-3 天',
+      title: '星恒电源 · 90 分钟尽调 · 多屏协同实战',
+      subtitle: '6 屏真实操作 · 立项→行业→财务→估值→报告→交付 · 90 分钟 vs 传统 2-3 天',
       videoPoster: '../assets/videos/posters/06-before-after.png',
       video: '../assets/videos/xingheng-multiscreen.mp4',
       resultLink: 'https://jinzhanxiang.github.io/xingheng-report/',
@@ -1045,6 +1045,8 @@
   // ============== 5. 全局关闭 ==============
   document.addEventListener('click', (e) => {
     if (!currentBurstId) return;
+    // 点击在 burst-trigger 本身不关闭（避免点击trigger被全局监听立即关闭）
+    if (e.target.closest('.burst-trigger')) return;
     const stage = document.getElementById(currentBurstId);
     if (!stage) return;
     // 点击在 burst-card、burst-close、burst-header 内部不关闭
