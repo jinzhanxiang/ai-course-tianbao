@@ -27,6 +27,7 @@
     { num: '15', file: '15-demo.html',         title: '现场演示',     emoji: '🎬' },
     { num: '16', file: '16-qa.html',           title: 'Q&A',          emoji: '❓' },
     { num: '17', file: '17-live-demo.html',     title: '\uD83C\uDFAC 真实召唤 LIVE',  emoji: '\uD83C\uDFAC' },
+    { num: '18', file: '18-deployment-barriers.html', title: '落地 4 大门槛 \uD83D\uDEE0\uD83D\uDCB0', emoji: '\uD83D\uDEE0' },
   ];
 
   // 当前章节信息（从 URL 推断）
