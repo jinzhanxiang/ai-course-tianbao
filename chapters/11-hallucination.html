@@ -28,32 +28,87 @@
       <h3 style="font-size:24px;color:var(--text-secondary);font-weight:normal">可追溯 → 可验证 → 可干预</h3>
     </div>
 
-  </main>
-      <!-- 翻页导航 -->
-      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
-        <a href="10-ecosystem.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
-        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
-        <a href="12-data-security.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
-      </div>
-<script src="../assets/js/main.js"></script>
-<!-- 键盘导航 -->
-<script>
-document.addEventListener("keydown", function(e) {
-  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-  const slides = document.querySelectorAll(".slide");
-  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
-  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
-    slides[activeIndex].classList.remove("active");
-    slides[activeIndex + 1].classList.add("active");
-    e.preventDefault();
-  }
-  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
-    slides[activeIndex].classList.remove("active");
-    slides[activeIndex - 1].classList.add("active");
-    e.preventDefault();
-  }
-});
-</script>
 
-</body>
-</html>
+    <!-- Slide 3：幻觉的危害 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#f97316;margin-bottom:18px">⚠️ 幻觉有多可怕？</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto">
+        <div class="card" style="padding:20px;border-left:4px solid #ef4444">
+          <h3 style="font-size:16px;color:#ef4444;margin-bottom:10px">📰 真实案例</h3>
+          <p style="font-size:13px;color:var(--text-secondary)">某投行AI生成报告中引用了不存在的"2024年净利润增长200%"，导致投资决策失误</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid #f97316">
+          <h3 style="font-size:16px;color:#f97316;margin-bottom:10px">🎯 核心问题</h3>
+          <p style="font-size:13px;color:var(--text-secondary)">大模型擅长"编造"合理的回答，而不是承认"我不知道"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4：三层防御体系 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#f97316;margin-bottom:18px">🛡️ 三层幻觉防御体系</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto">
+        <div style="padding:20px;background:rgba(249,115,22,0.1);border-radius:12px;border-top:4px solid #f97316;text-align:center">
+          <div style="font-size:32px;margin-bottom:12px">🔍</div>
+          <h3 style="font-size:18px;margin-bottom:8px">第一层：可追溯</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">每个结论标注来源<br>引用原文片段<br>建立事实库</p>
+        </div>
+        <div style="padding:20px;background:rgba(249,115,22,0.1);border-radius:12px;border-top:4px solid #f97316;text-align:center">
+          <div style="font-size:32px;margin-bottom:12px">✅</div>
+          <h3 style="font-size:18px;margin-bottom:8px">第二层：可验证</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">交叉比对多源数据<br>设置置信度阈值<br>关键数据人工复核</p>
+        </div>
+        <div style="padding:20px;background:rgba(249,115,22,0.1);border-radius:12px;border-top:4px solid #f97316;text-align:center">
+          <div style="font-size:32px;margin-bottom:12px">⚡</div>
+          <h3 style="font-size:18px;margin-bottom:8px">第三层：可干预</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">不确定时不乱说<br>主动提示"需确认"<br>支持人工纠正</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5：技术实现方案 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#f97316;margin-bottom:18px">🔧 技术实现方案</h2>
+      <table style="width:100%;max-width:900px;margin:0 auto;font-size:13px;border-collapse:collapse">
+        <thead>
+          <tr style="background:rgba(249,115,22,0.1)">
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f97316">技术</th>
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f97316">作用</th>
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f97316">工具</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="padding:10px;border-bottom:1px solid #333">RAG检索增强</td><td style="padding:10px;border-bottom:1px solid #333">基于知识库回答</td><td style="padding:10px;border-bottom:1px solid #333">Qdrant + bge-m3</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333">CoT思维链</td><td style="padding:10px;border-bottom:1px solid #333">展示推理过程</td><td style="padding:10px;border-bottom:1px solid #333">Prompt工程</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333">事实校验</td><td style="padding:10px;border-bottom:1px solid #333">交叉验证关键数据</td><td style="padding:10px;border-bottom:1px solid #333">Python脚本</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333">置信度评分</td><td style="padding:10px;border-bottom:1px solid #333">量化回答可靠性</td><td style="padding:10px;border-bottom:1px solid #333">LLM评分API</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Slide 6：质量提升实践 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#22c55e;margin-bottom:18px">📈 质量提升实践</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto">
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:14px;color:#22c55e;margin-bottom:8px">✅ 正确做法</h3>
+          <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px">
+            <li>先检索知识库，再回答</li>
+            <li>引用时标注【来源1】</li>
+            <li>不确定时回答"需进一步核实"</li>
+            <li>关键数据用公式展示计算过程</li>
+          </ul>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="font-size:14px;color:#ef4444;margin-bottom:8px">❌ 避免做法</h3>
+          <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px">
+            <li>直接凭记忆回答专业问题</li>
+            <li>编造不存在的数据</li>
+            <li>使用"据报道"等模糊表述</li>
+            <li>跳过验证环节</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
