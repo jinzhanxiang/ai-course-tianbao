@@ -14,7 +14,7 @@
     'burst-7agents': {
       title: '7 大智能体 · 角色矩阵',
       subtitle: '从单兵作战到 5 Agent + 2 助手 + 1 中台协同',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🤖 9 智能体实战战例（晶能光电）',
       layout: '7star',
       cards: [
@@ -35,7 +35,7 @@
       layout: 'threecol',
       videoPoster: '../assets/videos/posters/04-neural-network.png',
       video: '../assets/videos/9-agent-multiscreen.mp4',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📄 实战案例：晶能光电商业尽调报告（公网 · 真实交付）',
       cards: [
         { icon: '⚙️', name: '5 大 Agent', tag: '生产单元', detail: 'main + project + research + data + report 五位一体。从"接需求 → 调研 → 分析 → 清洗 → 出报告"全自动流水线,原本 4 小时活压缩到 4 分钟。', color: '#00D4FF', pos: 'left' },
@@ -48,7 +48,7 @@
     'burst-revolution': {
       title: '三层变革',
       subtitle: '生产关系 + 协同方式 + 知识资产',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '⚡ 三层变革实战案例',
       layout: 'vert',
       cards: [
@@ -62,7 +62,7 @@
     'burst-project-7': {
       title: '项目生命周期 · 7 阶段',
       subtitle: '从立项到投后,每阶段的关键产出物',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📋 7 阶段项目实战',
       layout: 'pipe',
       cards: [
@@ -80,7 +80,7 @@
     'burst-research-7': {
       title: '研究分析 · 7 维度',
       subtitle: '宏观 → 行业 → 模式 → 财务 → 估值 → 风险 → 结论',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🔬 7 维度研究实战',
       layout: '7star',
       cards: [
@@ -98,7 +98,7 @@
     'burst-data-7': {
       title: '数据清洗 · 7 步流水线',
       subtitle: '从原始材料到结构化入库',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🗃️ 7 步数据清洗实战',
       videoPoster: '../assets/videos/posters/03-data-cleaning.png',
       video: '../assets/videos/03-data-pipeline.mp4',
@@ -118,7 +118,7 @@
     'burst-report-3': {
       title: '报告排版 · 3 大管线',
       subtitle: 'Word / PDF / PPT 三端输出',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📄 3 大管线实战报告',
       layout: 'threecol',
       cards: [
@@ -133,7 +133,7 @@
       title: '5+2+1+1 生态全景',
       subtitle: '5 Agent + 2 助手 + 1 中台 + 1 知识体系 · 点击下方按钮看实战结果',
       layout: 'grid',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📄 实战案例视频 — 神经网终柔面（晶能光电报告实例）',
       cards: [
         { icon: '⚙️', name: '5 Agent', tag: '生产', detail: 'main/project/research/data/report', color: '#00D4FF', pos: 0 },
@@ -147,7 +147,7 @@
     'burst-case-5': {
       title: '5 个实战案例 · 成效数据',
       subtitle: '从被动响应到主动产出的真实转型',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🎯 5 个实战案例总览',
       layout: 'pentagon',
       cards: [
@@ -209,7 +209,7 @@
       videoPoster: '../assets/videos/posters/02-qiyuan-semiconductor.png',
       video: '../assets/videos/jingneng-multiscreen.mp4',
       layout: 'pipe',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📄 点击查看晶能光电商业尽调交付报告（公网 · 实时）',
       cards: [
         { icon: '📡', name: '跟踪期', tag: '1 年', detail: '每月跟踪公司动态 · 行业政策 · 竞品动作。\ndata:每次公告入库 + Wiki 记录 365 条', color: '#00D4FF', pos: 0 },
@@ -221,7 +221,7 @@
     'burst-case-yingke': {
       title: '盈科系项目 · GP→LP 架构优化',
       subtitle: '原 GP 管理人 → 调整为 LP 投资人',
-            resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+            resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '📊 实战案例视频 — 股权架构图（晶能光电实例）',
       layout: 'pipe',
       cards: [
@@ -234,7 +234,7 @@
     'burst-case-zhongzihuan': {
       title: '中资环项目 · 5000 万绿色循环',
       subtitle: '待立项决策',
-            resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+            resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '♻️ 实战案例视频 — 循环经济链路（晶能光电实例）',
       layout: 'pipe',
       cards: [
@@ -249,7 +249,7 @@
     'burst-method-8': {
       title: '纵横分析法 · 8 维',
       subtitle: '横切面 + 纵深线 + 6 子维交叉验证',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🧮 8 维分析法实战',
       layout: 'grid',
       cards: [
@@ -268,7 +268,7 @@
     'burst-demo-5': {
       title: '6 屏协同 · 90 分钟尽调复核全流程',
       subtitle: 'main 调度 4 子 Agent · 实时同步进度',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '⚙️ 6 屏协同 90 分钟实战',
       layout: 'pipe',
       cards: [
@@ -288,7 +288,7 @@
       subtitle: '6 屏实时仪表盘 · 心跳/任务/Session/Docker/Agent/告警 · 真实运行数据',
       videoPoster: '../assets/videos/posters/01-main-command-center.png',
       video: '../assets/videos/main-multiscreen.mp4',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🧠 main 实战指挥',
       layout: 'pipe',
       cards: [
@@ -304,7 +304,7 @@
     'burst-5agents': {
       title: '5 大 Agent · 角色矩阵',
       subtitle: '从单兵作战到 5 Agent 流水线协同',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🤖 5 大 Agent 实战矩阵',
       layout: '5star',
       cards: [
@@ -320,7 +320,7 @@
     'burst-2helpers': {
       title: '2 大助手 · 能力延伸',
       subtitle: 'Claude Code + Hermes · 助手不直接产出但让 5 Agent 边界扩 10 倍',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '⌨️ 2 大助手实战延伸',
       layout: 'twocol',
       cards: [
@@ -333,7 +333,7 @@
     'burst-1platform': {
       title: '1 套知识中台 · 三层架构',
       subtitle: '关系数据 + 向量检索 + 静态 Wiki · 所有智能体的记忆层',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🏛️ 1 套中台实战架构',
       layout: 'threecol',
       cards: [
@@ -381,7 +381,7 @@
     'burst-revolution-team': {
       title: '变革 + 团队 · 三层架构',
       subtitle: '变革思考 × 数字员工 × 资产沉淀 — 一个都不能少',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '⚡ 变革+团队三层架构实战',
       layout: 'vert',
       cards: [
@@ -395,7 +395,7 @@
     'burst-qa-6': {
       title: '6 大预判问答',
       subtitle: '团队最关心的 6 个问题 + 我们的回答',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '❓ 6 大预判问答实战',
       layout: 'grid',
       cards: [
@@ -420,7 +420,7 @@
     'burst-video-beforeafter': {
       title: '✨ 研报清洗前后对比',
       subtitle: '80 页 PDF → 79 个实体 / 110 个指标 / 178 个逻辑链',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '✨ 研报清洗前后对比模拟器',
       terminalSrc: '../assets/videos/before-after.html',
       layout: 'terminal'
@@ -436,7 +436,7 @@
     'burst-video-maindash': {
       title: '🧠 main 指挥中心',
       subtitle: 'sessions_send + task-tracker + 心跳日志 实时仪表盘',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🧠 main 指挥中心模拟器',
       terminalSrc: '../assets/videos/main-dash.html',
       layout: 'terminal'
@@ -446,7 +446,7 @@
     'burst-video-neural': {
       title: '🕸️ 7 节点神经网络',
       subtitle: 'main → project/research/data/report → 一同起势',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🕸️ 神经网络模拟器',
       terminalSrc: '../assets/videos/terminal-simulator.html',
       // video: '../assets/videos/04-neural-network.mp4',  // 暂不使用
@@ -465,7 +465,7 @@
     'burst-video-pipeline': {
       title: '🌊 研报数据清洗流水线',
       subtitle: '5 阶段：OCR → 实体 → 指标 → 逻辑 → 向量入库',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🌊 数据流水线模拟器',
       terminalSrc: '../assets/videos/data-pipeline.html',
       layout: 'terminal'
@@ -476,7 +476,7 @@
       title: '🏛️ 5+2+1 体系 · 主公亲测全景图',
       subtitle: '9 模型协同层叠 · 5 Agent + 2 助手 + 1 中台 · 2026-07-03 主公实战',
       layout: 'grid',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🏛️ 实战案例视频 — 9 智能体协同（晶能光电实例）',
       cards: [
         // ===== 5 大 Agent =====
@@ -497,7 +497,7 @@
     'burst-quality-1': {
       title: '🛡️ 智能体质量提升 · 全章速览',
       subtitle: '三层防御 · 60% → 90%+ · 主公实战方法论',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🛡️ 智能体质量提升实战',
       layout: 'grid',
       cards: [
@@ -514,7 +514,7 @@
     'burst-train-1': {
       title: '🛠️ 如何训练智能体 · 全章速览',
       subtitle: '训练 vs 编排 · Hermes 案例 · 自我进化',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🛠️ 智能体训练实战',
       layout: 'grid',
       cards: [
@@ -531,7 +531,7 @@
     'burst-workflow-1': {
       title: '🌱 个人如何打造 Workflow · 全章速览',
       subtitle: '从零基础到团队队长 · 5 阶段升级路径',
-      resultLink: 'https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html',
+      resultLink: 'https://jinzhanxiang.github.io/ai-course-tianbao/',
       resultLabel: '🌱 Workflow 打造实战',
       layout: 'grid',
       cards: [
