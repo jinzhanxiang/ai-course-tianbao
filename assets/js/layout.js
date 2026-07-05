@@ -13,24 +13,14 @@
   //           14-17 演示（6 案例 / 现场 / Q&A / 真实召唤）
   //           18 落地门槛
   const CHAPTERS = [
-    { num: '01',    file: '01-cover.html',                  title: '封面：智能体革命与5+2+1体系', emoji: '🎯' },
-    { num: '02',    file: '02-what-is-agent.html',          title: '什么是智能体？',             emoji: '🤖' },
-    { num: '03',    file: '03-products.html',               title: '主流智能体产品',             emoji: '🌍' },
-    { num: '04',    file: '04-evolution.html',              title: 'AI演化五阶段+工业化',        emoji: '🚀' },
-    { num: '05',    file: '05-maturity.html',               title: '橄榄型成熟度三梯队',         emoji: '🫒' },
-    { num: '06',    file: '06-architecture.html',           title: '智能体最小架构',             emoji: '🏗️' },
-    { num: '07',    file: '07-overview.html',               title: '5+2+1+1体系总览',            emoji: '🧠' },
-    { num: '08',    file: '08-agents.html',                 title: '5大Agent职责定位',           emoji: '👥' },
-    { num: '09',    file: '09-helpers.html',                title: '2大助手+1套中台',            emoji: '🦾' },
-    { num: '10',    file: '10-ecosystem.html',              title: '生态协同与部署',             emoji: '🌐' },
-    { num: '11',    file: '11-hallucination.html',          title: '幻觉防御+质量提升',          emoji: '🛡️' },
-    { num: '12',    file: '12-data-security.html',          title: '数据安全+本地化',            emoji: '🔒' },
-    { num: '13',    file: '13-train.html',                  title: '训练 vs 编排',               emoji: '🎓' },
-    { num: '14',    file: '14-workflow.html',               title: '个人 Workflow',              emoji: '🔄' },
-    { num: '15',    file: '15-cases.html',                  title: '6大实战案例',                emoji: '🤖' },
-    { num: '16',    file: '16-demo.html',                   title: '现场演示 90分钟',            emoji: '🎬' },
-    { num: '17',    file: '17-qa.html',                     title: 'Q&A 预判',                   emoji: '❓' },
-    { num: '18',    file: '18-live-demo.html',              title: '真实召唤 LIVE',              emoji: '🎥' },
+    { num: '01', file: 'final-chapter-01.html', title: '封面：智能体革命与5+2+1体系', emoji: '🎯' },
+    { num: '02', file: 'final-chapter-02.html', title: '什么是智能体？',             emoji: '🤖' },
+    { num: '03', file: 'final-chapter-03.html', title: '主流智能体产品',             emoji: '🌍' },
+    { num: '04', file: 'final-chapter-04.html', title: 'AI演化五阶段+工业化',        emoji: '🚀' },
+    { num: '05', file: 'final-chapter-05.html', title: '橄榄型成熟度三梯队',         emoji: '🫒' },
+    { num: '06', file: 'final-chapter-06.html', title: '智能体最小架构',             emoji: '🏗️' },
+    { num: '07', file: 'final-chapter-07.html', title: '5+2+1+1体系总览',            emoji: '🧠' },
+    { num: '08', file: 'final-chapter-08.html', title: '5大Agent职责+实战演示',      emoji: '👥' },
   ];
 
   // 当前章节信息（从 URL 推断）
@@ -46,10 +36,8 @@
     const nextChapter = currentIdx < CHAPTERS.length - 1 ? CHAPTERS[currentIdx + 1] : null;
     const activeTheme = document.documentElement.dataset.theme || 'tianjin';
 
-    // 进度：当前章节在 13 中的位置（不含 00-cover）
-    // 00-cover 不计入进度
-    const totalActive = CHAPTERS.length - 1; // 12
-    const currentActive = currentIdx === 0 ? 0 : currentIdx;
+    const totalActive = CHAPTERS.length;
+    const currentActive = currentIdx + 1;
     const rightPct = 100 - ((currentActive / totalActive) * 100);
 
     return `
@@ -61,7 +49,7 @@
   <div class="topbar-center">
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill" style="right:${rightPct}%"></div>
-      <span class="progress-text" id="progressText">${currentIdx} / ${totalActive}</span>
+      <span class="progress-text" id="progressText">${currentActive} / ${totalActive}</span>
     </div>
   </div>
   <div class="topbar-right">
@@ -80,18 +68,21 @@
   }
 
 
-  // ============ 渲染 footer（翻页按钮）============
+  // ============ 渲染 footer（章节翻页）============
   function renderFooter() {
     if (!current) return '';
     const prevChapter = currentIdx > 0 ? CHAPTERS[currentIdx - 1] : null;
     const nextChapter = currentIdx < CHAPTERS.length - 1 ? CHAPTERS[currentIdx + 1] : null;
-    const prevLink = prevChapter ? prevChapter.file : current.file;
-    const nextLink = nextChapter ? nextChapter.file : current.file;
 
     return `
 <footer class="controls">
-  <button id="prevBtn" class="ctrl-btn" ${prevChapter ? '' : 'disabled'}>◀</button>
-  <button id="nextBtn" class="ctrl-btn" ${nextChapter ? '' : 'disabled'}>▶</button>
+  ${prevChapter
+    ? `<a href="${prevChapter.file}" class="ctrl-btn" title="上一章：${prevChapter.title}">◀ 上一章</a>`
+    : `<span class="ctrl-btn disabled">◀</span>`}
+  <span class="ctrl-info">← / → 翻页 · P 备注 · T 主题 · M 模式</span>
+  ${nextChapter
+    ? `<a href="${nextChapter.file}" class="ctrl-btn" title="下一章：${nextChapter.title}">下一章 ▶</a>`
+    : `<span class="ctrl-btn disabled">▶</span>`}
 </footer>`;
   }
 

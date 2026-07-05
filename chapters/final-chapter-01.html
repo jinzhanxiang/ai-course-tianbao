@@ -360,24 +360,7 @@
   </main>
 
 
-  <script src="../assets/js/main.js"></script>
-  <!-- 键盘导航 -->
-  <script>
-  document.addEventListener("keydown", function(e) {
-    if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-    var slides = document.querySelectorAll(".slide");
-    var idx = Array.from(slides).findIndex(function(s) { return s.classList.contains("active"); });
-    if (["ArrowRight","PageDown","ArrowDown"," "].indexOf(e.key) !== -1 && idx < slides.length - 1) {
-      slides[idx].classList.remove("active");
-      slides[idx + 1].classList.add("active");
-      e.preventDefault();
-    }
-    if (["ArrowLeft","PageUp","ArrowUp"].indexOf(e.key) !== -1 && idx > 0) {
-      slides[idx].classList.remove("active");
-      slides[idx - 1].classList.add("active");
-      e.preventDefault();
-    }
-  });
-  </script>
+  <script src="../assets/js/layout.js?v=20260705-fix"></script>
+  <script src="../assets/js/main.js?v=20260705-fix"></script>
 </body>
 </html>

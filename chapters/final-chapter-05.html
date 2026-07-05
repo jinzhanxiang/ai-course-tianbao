@@ -418,24 +418,7 @@
   <script src="../assets/js/burst.js?v=20260705-fix"></script>
   <script src="../assets/js/effects.js?v=20260705-fix"></script>
 
-<!-- 键盘导航 -->
-<script>
-document.addEventListener("keydown", function(e) {
-  if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-  const slides = document.querySelectorAll(".slide");
-  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
-  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
-    slides[activeIndex].classList.remove("active");
-    slides[activeIndex + 1].classList.add("active");
-    e.preventDefault();
-  }
-  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
-    slides[activeIndex].classList.remove("active");
-    slides[activeIndex - 1].classList.add("active");
-    e.preventDefault();
-  }
-});
-</script>
+
 
 </body>
 </html>
