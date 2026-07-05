@@ -15,12 +15,12 @@
   const CHAPTERS = [
     { num: '01', file: 'final-chapter-01.html', title: '封面：智能体革命与5+2+1体系', emoji: '🎯' },
     { num: '02', file: 'final-chapter-02.html', title: '什么是智能体？',             emoji: '🤖' },
-    { num: '03', file: 'final-chapter-03.html', title: '主流智能体产品',             emoji: '🌍' },
-    { num: '04', file: 'final-chapter-04.html', title: 'AI演化五阶段+工业化',        emoji: '🚀' },
-    { num: '05', file: 'final-chapter-05.html', title: '橄榄型成熟度三梯队',         emoji: '🫒' },
-    { num: '06', file: 'final-chapter-06.html', title: '智能体最小架构',             emoji: '🏗️' },
-    { num: '07', file: 'final-chapter-07.html', title: '5+2+1+1体系总览',            emoji: '🧠' },
-    { num: '08', file: 'final-chapter-08.html', title: '5大Agent职责+实战演示',      emoji: '👥' },
+    { num: '03', file: 'final-chapter-03.html', title: '5+2+1+1 体系总览',          emoji: '🧠' },
+    { num: '04', file: 'final-chapter-04.html', title: '生态协同与部署方案',         emoji: '🌐' },
+    { num: '05', file: 'final-chapter-05.html', title: '从零到一：打造你的第一个智能体', emoji: '🛠️' },
+    { num: '06', file: 'final-chapter-06.html', title: '个人 Workflow 升级路径',     emoji: '🌱' },
+    { num: '07', file: 'final-chapter-07.html', title: '6 大实战案例',               emoji: '📊' },
+    { num: '08', file: 'final-chapter-08.html', title: '现场演示 + Q&A + 落地',      emoji: '🎬' },
   ];
 
   // 当前章节信息（从 URL 推断）

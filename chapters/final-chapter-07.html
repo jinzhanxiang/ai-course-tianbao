@@ -385,9 +385,84 @@
       </div>
     </div>
 
-    <!-- Slide 7：章节小结 -->
+    <!-- Slide 8：案例 G — project 代理 · 浏览器自动化爬取 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px;text-align:center">🌟 6 大案例的共同规律</h2>
+      <h2 style="font-size:32px;color:#F59E0B;margin-bottom:14px">🕷️ 案例 G · project 代理：浏览器自动化爬取</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        <strong style="color:#F59E0B">project Agent 通过 Chrome 浏览器自动化</strong>，登录天眼查 → 爬取股东信息 → 穿透多层股权 → 生成结构图
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px">
+        <div class="card" style="padding:14px;border-top:3px solid #00D4FF">
+          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:8px">🌐 Firecrawl · 网站爬取</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px">
+            输入一个 URL，自动爬取全站内容，输出结构化 Markdown 供 LLM 分析
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:#8FA1CC;line-height:1.6">
+            <div style="color:#00D4FF"># 爬取目标公司官网</div>
+            <div>firecrawl.crawl(</div>
+            <div>  url="https://target.com",</div>
+            <div>  maxPages=50</div>
+            <div>)</div>
+            <div style="color:#22C55E;margin-top:4px">→ 输出 Markdown 全文</div>
+          </div>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:8px">🔍 天眼查 · 股权穿透</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px">
+            Chrome 浏览器自动登录 → 搜索公司 → 抓取股东名册 → 穿透多层股权
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:#8FA1CC;line-height:1.6">
+            <div style="color:#F59E0B"># 浏览器自动操作</div>
+            <div>browser({ action:"navigate",</div>
+            <div>  url:"tianyancha.com/</div>
+            <div>  company/2354678" })</div>
+            <div>browser({ action:"snapshot" })</div>
+            <div style="color:#22C55E;margin-top:4px">→ 50 家股东完整名册</div>
+          </div>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:8px">📊 股权图 · 一键生成</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.7;margin-bottom:8px">
+            爬取的结构化数据 → Python Matplotlib → 专业股权结构图 PNG
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:#8FA1CC;line-height:1.6">
+            <div style="color:#22C55E"># 生成股权结构图</div>
+            <div>python3 equity_chart.py \</div>
+            <div>  --json gdlt_data.json \</div>
+            <div>  -o equity.png</div>
+            <div style="color:#22C55E;margin-top:4px">→ 多层穿透股权图</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kpi-row" style="margin-bottom:14px">
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#F59E0B;font-size:20px">3</div>
+          <div class="kpi-label">数据源（天眼查+Firecrawl+微信）</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#22C55E;font-size:20px">50</div>
+          <div class="kpi-label">股东穿透层数上限</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#00D4FF;font-size:20px">&lt;30s</div>
+          <div class="kpi-label">单次爬取耗时</div>
+        </div>
+        <div class="kpi" style="padding:10px">
+          <div class="kpi-value" style="color:#A855F7;font-size:20px">100%</div>
+          <div class="kpi-label">结构化输出</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="font-size:12px">
+        <strong>🔗 真实战例：</strong>星恒电源尽调中，project Agent 自动爬取天眼查 50 家股东 → 穿透至第 4 层 → 发现 A/B 组结构 → 生成股权穿透图 → 直接用于投决汇报。
+      </div>
+    </div>
+
+    <!-- Slide 9：章节小结 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:var(--accent);margin-bottom:24px;text-align:center">🌟 7 大案例的共同规律</h2>
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
         <div class="card" style="padding:16px;text-align:center;border-top:3px solid #38bdf8">

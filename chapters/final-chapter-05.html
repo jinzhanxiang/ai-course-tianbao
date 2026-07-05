@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 05 章 · 如何训练一个智能体 · 如何训练一个智能体 · 智能体赋能投资研究</title>
+  <title>第 05 章 · 从零到一：打造你的第一个智能体 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
@@ -12,413 +12,397 @@
 
   <main class="main-stage" style="background:#060A1A">
 
-    <!-- Slide 1：章节封面 -->
+    <!-- Slide 1：封面 -->
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
-        <h1 style="font-size:64px;color:#A855F7;margin-bottom:8px"><span class="burst-trigger holo" data-burst="burst-train-1" data-hint="👉 训练智能体">🛠️ 如何训练一个智能体</span></h1>
-        <h2 style="font-size:32px;color:var(--text-secondary);font-weight:normal;margin-top:8px">训练 vs 编排 · Hermes 案例 · 自我进化</h2>
-        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">Phase F 新增章节 · 2026-07-03 · 实战验证</p>
+        <h1 style="font-size:56px;color:#22C55E;margin-bottom:8px">🛠️ 从零到一：打造你的第一个智能体</h1>
+        <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">注册 → 安装 → 连接 → 运行 · 今天就能开始</h2>
       </header>
 
-      <div class="story-card" style="margin-top:40px;max-width:880px;margin-left:auto;margin-right:auto">
+      <div class="story-card" style="margin-top:36px;max-width:880px;margin-left:auto;margin-right:auto">
         <p class="story-meta">金句开篇</p>
         <p style="font-size:18px;line-height:1.8">
-          "你不需要训练一个新模型，<br>你需要<span style="color:#A855F7;font-weight:bold">编排一组已有能力</span>。"
-          <span style="color:var(--text-muted);font-size:14px">—— 实战经验 2026-07-03 训练方法论</span>
+          "你不需要训练一个新模型，<br>你需要<span style="color:#22C55E;font-weight:bold">编排一组已有能力</span>。"
         </p>
       </div>
 
       <div style="margin-top:36px;text-align:center">
-        <p style="color:var(--text-muted);font-size:13px">实战金句：智能体是<strong style="color:#A855F7">架构的艺术</strong>，不是参数的堆砌。</p>
+        <p style="color:var(--text-muted);font-size:14px">本讲目标：90 分钟后，你带走一个<strong style="color:#22C55E">明天就能用的智能体</strong></p>
       </div>
     </div>
 
-    <!-- Slide 2：训练 vs 编排 · 核心区分 -->
+    <!-- Slide 2：破除迷思 — 训练 vs 编排 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#A855F7;margin-bottom:18px">⚖️ 训练 vs 编排 · 你需要的不是调参</h2>
+      <h2 style="font-size:32px;color:#22C55E;margin-bottom:14px">⚡ 破除迷思：训练 vs 编排</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:18px">大多数人以为需要训练模型，实际上<strong style="color:#22C55E">编排已有能力</strong>才是 90% 的真实场景</p>
 
-      <div class="alert alert-warning" style="margin-bottom:18px">
-        <p style="font-size:13px"><strong>📌 核心区分</strong>（K2View）："Fine-tuning helps the model become more accurate in a specific domain, but <strong style="color:#A855F7">prompt engineering offers speed and flexibility with minimal setup</strong>."</p>
-      </div>
-
-      <table class="data-table" style="margin:0 auto;width:100%;font-size:12px">
+      <table class="data-table" style="margin:0 auto;width:100%;font-size:13px">
         <thead>
-          <tr style="background:var(--bg-card);color:#A855F7">
+          <tr style="background:var(--bg-card);color:#22C55E">
             <th>维度</th>
             <th>🎓 训练（Fine-tuning）</th>
             <th>🛠️ 编排（Prompt + Tools）</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><strong>投入</strong></td>
-            <td>$100K-1M 数据 + GPU</td>
-            <td>$0 + 1 周设计</td>
-          </tr>
-          <tr>
-            <td><strong>迭代速度</strong></td>
-            <td>周/月</td>
-            <td><strong style="color:#22C55E">分钟/小时</strong></td>
-          </tr>
-          <tr>
-            <td><strong>适用场景</strong></td>
-            <td>垂直领域、专业术语</td>
-            <td>通用任务、流程编排</td>
-          </tr>
-          <tr>
-            <td><strong>实践推荐</strong></td>
-            <td>慎用（仅当 99% 通用都失败）</td>
-            <td><strong style="color:#A855F7">首选（90% 场景）</strong></td>
-          </tr>
+          <tr><td><strong>投入</strong></td><td>$100K-1M 数据 + GPU</td><td><strong style="color:#22C55E">免费开始</strong></td></tr>
+          <tr><td><strong>周期</strong></td><td>周/月</td><td><strong style="color:#22C55E">1 小时</strong></td></tr>
+          <tr><td><strong>技能要求</strong></td><td>ML 工程师</td><td><strong style="color:#22C55E">会用电脑即可</strong></td></tr>
+          <tr><td><strong>适用场景</strong></td><td>专业领域术语、安全合规</td><td><strong style="color:#22C55E">日报/爬取/分析/摘要</strong></td></tr>
+          <tr><td><strong>维护成本</strong></td><td>持续数据标注</td><td><strong style="color:#22C55E">改 Prompt 即可</strong></td></tr>
         </tbody>
       </table>
 
-      <div class="alert alert-info" style="margin-top:18px">
-        <p style="font-size:13px"><strong>📌 LinkedIn 名言</strong>："<strong style="color:#A855F7">AI Agents are a result of what RAG and Fine-Tuning couldn't fully solve alone</strong>. RAG bridges knowledge; Agents bridge action."</p>
+      <div class="alert alert-success" style="margin-top:18px">
+        <p style="font-size:13px"><strong>结论：</strong>编排是性价比最高的起点。只有当你有了明确的专业术语库、大量标注数据、且 Prompt 优化已经到天花板时，才考虑训练。</p>
       </div>
     </div>
 
-    <!-- Slide 3：训练方法论 · ReAct/Reflexion/AutoGPT -->
+    <!-- Slide 3：4 步全景路线图 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">🧪 主流 Agent 训练框架</h2>
+      <h2 style="font-size:32px;color:#22C55E;margin-bottom:18px">🗺️ 4 步拥有你的第一个智能体</h2>
 
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">🔄 ReAct（Reasoning + Acting）</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            思维链 + 工具调用交替：思考→调用→观察→再思考<br>
-            <strong>代表：</strong>LangChain ReAct Agent<br>
-            <strong>实战用法：</strong>5 Agent 的基础调度模式
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px">
+        <div class="card" style="padding:18px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:36px;margin-bottom:8px">1️⃣</div>
+          <h3 style="font-size:18px;color:#F59E0B;margin-bottom:8px">获取模型</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            注册商汤大模型<br>
+            免费领取 API Key<br>
+            DeepSeek V4 Flash
           </p>
+          <p style="font-size:13px;color:#F59E0B;margin-top:8px"><strong>5 分钟</strong></p>
         </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🪞 Reflexion（自我反思）</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            执行→错则反思→记入 memory→下次避免<br>
-            <strong>代表：</strong>Reflexion 论文<br>
-            <strong>实战用法：</strong>MEMORY.md 的教训沉淀机制
+        <div class="card" style="padding:18px;border-top:3px solid #00D4FF;text-align:center">
+          <div style="font-size:36px;margin-bottom:8px">2️⃣</div>
+          <h3 style="font-size:18px;color:#00D4FF;margin-bottom:8px">安装框架</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            Hermes 一键安装包<br>
+            解压即用<br>
+            Windows 原生支持
           </p>
+          <p style="font-size:13px;color:#00D4FF;margin-top:8px"><strong>3 分钟</strong></p>
         </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🤖 AutoGPT / BabyAGI</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            目标驱动 + 任务自动拆解<br>
-            <strong>代表：</strong>2023 火过、但不稳定<br>
-            <strong>教训：</strong>纯自主 ≠ 优质；需 main 调度
+        <div class="card" style="padding:18px;border-top:3px solid #A855F7;text-align:center">
+          <div style="font-size:36px;margin-bottom:8px">3️⃣</div>
+          <h3 style="font-size:18px;color:#A855F7;margin-bottom:8px">连接工具</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            关联飞书群<br>
+            @机器人 即可调用<br>
+            消息 → Agent → 回复
           </p>
+          <p style="font-size:13px;color:#A855F7;margin-top:8px"><strong>10 分钟</strong></p>
         </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🧰 Tool-Use（工具调用）</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            LLM 调用 API / DB / 文件 / 网络<br>
-            <strong>代表：</strong>OpenAI Function Calling / Anthropic Tool Use<br>
-            <strong>实战用法：</strong>MCP 协议（11 章已讲）
+        <div class="card" style="padding:18px;border-top:3px solid #22C55E;text-align:center">
+          <div style="font-size:36px;margin-bottom:8px">4️⃣</div>
+          <h3 style="font-size:18px;color:#22C55E;margin-bottom:8px">定义工作流</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
+            写一段 Prompt<br>
+            配一个工具<br>
+            完成第一个任务
           </p>
+          <p style="font-size:13px;color:#22C55E;margin-top:8px"><strong>15 分钟</strong></p>
         </div>
       </div>
 
-      <div class="alert alert-info">
-        <p style="font-size:12px"><strong>📌 关键事实</strong>：我们的 5 Agent + 工具调用，比 AutoGPT 类自主 Agent <strong>稳定 10x</strong>。因为有 main 调度 + 多 Agent 互验。</p>
+      <div class="alert alert-info" style="margin-top:24px;text-align:center">
+        <p style="font-size:14px"><strong>总计 30 分钟</strong>，从零到运行。演讲结束后，拷贝安装包即可开始。</p>
       </div>
     </div>
 
-    <!-- Slide 4：我做一个智能体 · 4 步法 -->
+    <!-- Slide 4：Step 1 — 获取免费模型 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">🛠️ "我做智能体" 4 步法</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px">（区别于第 4 章的「系统部署四步法」——那里讲的是基础设施怎么搭，这里讲的是<strong style="color:#A855F7">单个 Agent 怎么做</strong>）</p>
+      <h2 style="font-size:32px;color:#F59E0B;margin-bottom:14px">1️⃣ Step 1：注册商汤，获取免费模型</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:18px">商汤大模型平台（<strong>sensenova.cn</strong>）— 免费额度，国内直连，无需翻墙</p>
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
-          <div style="font-size:14px;color:#38bdf8;font-weight:bold;margin-bottom:4px">STEP 1</div>
-          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">📝 定职责</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
-            这个 Agent <strong>做什么</strong>、<strong>不做什么</strong><br>
-            例："data 只清洗，不分析"
-          </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#F59E0B;margin-bottom:12px">📋 注册流程（3 步）</h3>
+            <ol style="font-size:13px;color:var(--text-secondary);line-height:2.2;padding-left:18px">
+              <li>打开 <strong>https://sensenova.cn</strong></li>
+              <li>手机号注册 → 实名认证</li>
+              <li>控制台 → API Key 管理 → 创建 Key</li>
+            </ol>
+          </div>
+          <div class="alert alert-success" style="margin-top:12px">
+            <p style="font-size:12px"><strong>免费额度：</strong>DeepSeek V4 Flash 模型，每分钟 60 次调用，日常使用足够。</p>
+          </div>
         </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <div style="font-size:14px;color:#22C55E;font-weight:bold;margin-bottom:4px">STEP 2</div>
-          <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🧠 设模型</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
-            用哪个模型？降级策略？<br>
-            例："M3 → M2.7 → 公开模型"
-          </p>
-        </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
-          <div style="font-size:14px;color:#F59E0B;font-weight:bold;margin-bottom:4px">STEP 3</div>
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🛠️ 接工具</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
-            MCP / Function Calling / API<br>
-            例：data 接 Qdrant + PG
-          </p>
-        </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <div style="font-size:14px;color:#A855F7;font-weight:bold;margin-bottom:4px">STEP 4</div>
-          <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🔁 建回路</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
-            记忆/反馈/版本控制<br>
-            例：MEMORY.md + task-tracker
-          </p>
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#F59E0B;margin-bottom:12px">🔑 拿到 API Key 后</h3>
+            <div style="background:#0A0E27;padding:14px;border-radius:8px;font-family:var(--font-mono);font-size:11px;color:#00D4FF;line-height:1.8">
+              <div>API Endpoint:</div>
+              <div style="color:#F0F4FF">https://token.sensenova.cn/v1</div>
+              <div style="margin-top:8px">API Key:</div>
+              <div style="color:#8FA1CC">sk-xxxxxxxxxxxxxxxx</div>
+              <div style="margin-top:8px">Model:</div>
+              <div style="color:#22C55E">deepseek-v4-flash</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="alert alert-success">
-        <p style="font-size:13px"><strong>📌 实战金句</strong>："<strong style="color:#A855F7">先做 80 分的 Agent，再迭代到 90 分</strong>。完美主义是智能体项目最大的杀手。"</p>
+      <div class="alert alert-warning" style="margin-top:14px">
+        <p style="font-size:12px"><strong>⚠️ 为什么推荐商汤而不是直接用 DeepSeek 官方？</strong>商汤提供 OpenAI 兼容接口，Hermes 原生支持；DeepSeek 官方 API 申请排队周期长。</p>
       </div>
     </div>
 
-    <!-- Slide 5：Hermes 案例 · 真实脚本迭代 -->
+    <!-- Slide 5：Step 2 — 安装 Hermes（Windows 一键包）-->
     <div class="slide">
-      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">⚙️ Hermes 清洗入库案例 · V0→V3 真实迭代</h2>
+      <h2 style="font-size:32px;color:#00D4FF;margin-bottom:14px">2️⃣ Step 2：安装 Hermes — Windows 一键包</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:18px">演讲结束后，拷贝 <strong style="color:#00D4FF">hermes-installer.zip</strong>，回家解压即用</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#00D4FF;margin-bottom:12px">📦 安装包包含</h3>
+            <table style="font-size:12px;width:100%;color:var(--text-secondary)">
+              <tr><td style="padding:4px 8px">🖥️</td><td>Hermes 主程序（Windows exe）</td></tr>
+              <tr><td style="padding:4px 8px">📝</td><td>配置文件模板（config.yaml）</td></tr>
+              <tr><td style="padding:4px 8px">🔧</td><td>setup.bat — 双击自动配置</td></tr>
+              <tr><td style="padding:4px 8px">🪶</td><td>飞书插件（lark-messenger）</td></tr>
+              <tr><td style="padding:4px 8px">📋</td><td>3 个预置工作流模板</td></tr>
+              <tr><td style="padding:4px 8px">📖</td><td>README.html — 图文教程</td></tr>
+            </table>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#00D4FF;margin-bottom:12px">⚡ 安装步骤</h3>
+            <ol style="font-size:13px;color:var(--text-secondary);line-height:2.4;padding-left:18px">
+              <li>解压 <code>hermes-installer.zip</code></li>
+              <li>双击 <strong>setup.bat</strong></li>
+              <li>输入商汤 API Key</li>
+              <li>输入飞书 Webhook 地址</li>
+              <li>完成！<code>hermes start</code> 启动</li>
+            </ol>
+          </div>
+          <div class="alert alert-success" style="margin-top:12px">
+            <p style="font-size:12px"><strong>无需 Python 环境、无需命令行基础。</strong>setup.bat 自动检测环境、自动安装依赖。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6：Step 3 — 连接飞书 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">3️⃣ Step 3：连接飞书 — @机器人 即可调用</h2>
 
       <div class="alert alert-info" style="margin-bottom:16px">
-        <p style="font-size:13px"><strong>📌 任务背景</strong>：data 代理的清洗入库脚本由 Hermes 主导迭代，从 V0（2026-04-17）到 V3（2026-05-02），共 <strong style="color:#febc2e">140 个 Python + 15 个 Shell 脚本</strong>，<strong>累计 155 个脚本</strong>，处理 <strong style="color:#22C55E">199 份研报 / 33,985 chunks / 5,967 实体</strong>。</p>
+        <p style="font-size:13px"><strong>核心思路：</strong>在飞书群里创建一个自定义机器人 → Hermes 监听消息 → 自动回复。所有同事都能用。</p>
       </div>
 
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📊 V0→V3 四阶段迭代（真实失败记录）</h3>
-
-      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:14px">
-        <div style="display:grid;grid-template-columns:50px 1fr 90px 80px;gap:10px;font-size:12px;color:var(--text-secondary);line-height:1.8;align-items:center">
-          <strong style="color:#38bdf8">V0</strong>
-          <span>core_conclusion 提取率仅 30% → 5 层匹配策略后提升至 90%+</span>
-          <span style="color:#38bdf8">04-17</span>
-          <span style="color:#22C55E">✅ 解决</span>
-          <strong style="color:#22C55E">V1</strong>
-          <span>calculation_method 仅公式匹配 40% → 扩展文字描述型（"按...计算"）→ 80%+</span>
-          <span style="color:#22C55E">04-21</span>
-          <span style="color:#22C55E">✅ 解决</span>
-          <strong style="color:#F59E0B">V2</strong>
-          <span>&lt;256 token 切块占 8.5% → 小切块合并逻辑 + 段落完整性 → &lt;5%</span>
-          <span style="color:#F59E0B">04-22</span>
-          <span style="color:#22C55E">✅ 解决</span>
-          <strong style="color:#EC4899">V3</strong>
-          <span>reasoning 覆盖率 31% → backfill_reasoning_v2.py 前置过滤（overlap 0.9→0.75）→ 60-70%</span>
-          <span style="color:#EC4899">05-02</span>
-          <span style="color:#22C55E">✅ 解决</span>
-        </div>
-      </div>
-
-      <div class="kpi-row">
-        <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#febc2e;font-size:22px">155</div>
-          <div class="kpi-label">总脚本数</div>
-        </div>
-        <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#22C55E;font-size:22px">199</div>
-          <div class="kpi-label">入库研报</div>
-        </div>
-        <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#38bdf8;font-size:22px">33,985</div>
-          <div class="kpi-label">Chunks</div>
-        </div>
-        <div class="kpi" style="padding:12px">
-          <div class="kpi-value" style="color:#A855F7;font-size:22px">5,967</div>
-          <div class="kpi-label">实体入库</div>
-        </div>
-      </div>
-
-      <div class="alert alert-warning" style="margin-top:12px">
-        <p style="font-size:12px"><strong>💡 核心教训</strong>：LLM 兜底前必须有<strong>前置过滤</strong>（Garbage in → garbage out），<strong>前置过滤 &gt; 后置优化</strong>。</p>
-      </div>
-    </div>
-
-    <!-- Slide 6：基线运用 · 编码规范 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">📐 Hermes 的编码规范（基线）</h2>
-
-      <div class="alert alert-warning" style="margin-bottom:16px">
-        <p style="font-size:13px"><strong>📌 实战观察</strong>：Hermes V1.x 之后加入了 <strong>"代码基线"</strong> 概念——每次新增功能前先评估是否复用现有函数，避免脚本无限膨胀。</p>
-      </div>
-
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📋 8 条核心规范（实战总结）</h3>
-
-      <div style="background:#0F172A;padding:18px;border-radius:8px;font-family:monospace;font-size:13px;color:var(--text-secondary);line-height:1.7">
-        <strong style="color:#febc2e">① 配置集中化：</strong>所有路径/阈值放 YAML，不硬编码<br>
-        <strong style="color:#febc2e">② 日志规范：</strong>每个脚本入口打印版本号 + 参数哈希<br>
-        <strong style="color:#febc2e">③ 增量更新：</strong>支持 --incremental / --full 双模式<br>
-        <strong style="color:#febc2e">④ 原子写入：</strong>tmp → rename，避免半成品<br>
-        <strong style="color:#febc2e">⑤ 幂等设计：</strong>重复执行结果一致<br>
-        <strong style="color:#febc2e">⑥ 备份先于操作：</strong>trash/ 而非 rm<br>
-        <strong style="color:#febc2e">⑦ 异常聚合：</strong>try/except → 写入 error_log，非静默吞<br>
-        <strong style="color:#febc2e">⑧ 版本化输出：</strong>输出目录带日期戳，可回溯
-      </div>
-
-      <div class="alert alert-success" style="margin-top:14px">
-        <p style="font-size:12px"><strong>📌 效果</strong>：V3.x 系列复用率 <strong>78%+</strong>，单次迭代周期从 3 天 → <strong style="color:#22C55E">4 小时</strong>。</p>
-      </div>
-    </div>
-
-    <!-- Slide 7：自我提升反馈机制 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">🔄 Hermes 自我提升反馈机制</h2>
-
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">🔁 4 步反馈循环</h3>
-
-      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:13px;color:var(--text-secondary);line-height:1.8">
-        <strong style="color:#38bdf8">[执行]</strong> Hermes 跑脚本 V3.38<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
-<strong style="color:#F59E0B">[观察]</strong> memory/core 检测成功率 87%（异常）<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
-<strong style="color:#A855F7">[反思]</strong> 调 main 调 Hermes → "OCR 步骤 3.2% 失败"<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
-<strong style="color:#22C55E">[进化]</strong> 修改 V3.39 → 加 OCR 重试机制 → 成功率 99%
-      </div>
-
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">💡 关键洞察</h3>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:13px">
-        <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
-          <strong style="color:#38bdf8;font-size:12px">📊 数据驱动</strong><br>
-          自动采集成功率/耗时/异常 → 不靠"感觉"
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
-          <strong style="color:#F59E0B;font-size:12px">🪞 自我反思</strong><br>
-          失败 → 自动修订 MEMORY.md + 编码规范
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
-          <strong style="color:#22C55E;font-size:12px">🔁 闭环进化</strong><br>
-          不只是修 bug，是 V3.38 → V3.39 的质变
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 8：训练智能体 vs 编排智能体 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#A855F7;margin-bottom:18px;text-align:center">🎯 训练 vs 编排 · 决策树</h2>
-
-      <div style="background:#0F172A;padding:24px;border-radius:12px;max-width:780px;margin:0 auto;font-family:monospace;font-size:12px;color:var(--text-secondary);line-height:2">
-        <strong style="color:#38bdf8">问：</strong>你想做"判断类"还是"流程类"任务？<br>
-&nbsp;&nbsp;&nbsp;├── 流程类 → <strong style="color:#22C55E">编排（首选）</strong><br>
-&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 数据清洗？n8n + Claude<br>
-&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;├── 报告生成？Dify + GPT<br>
-&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;└── 文档处理？Langflow + Mistral<br>
-&nbsp;&nbsp;&nbsp;│<br>
-&nbsp;&nbsp;&nbsp;└── 判断类 → 专业知识深度？<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 通用判断（够用）→ <strong style="color:#22C55E">编排 + RAG</strong><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 垂直专业（必须）→ <strong style="color:#F59E0B">Fine-tune</strong>（慎用）
-      </div>
-
-      <div class="alert alert-info" style="margin-top:20px">
-        <p style="font-size:13px"><strong>📌 LinkedIn 2026</strong>："<strong style="color:#A855F7">In 2024, we built single AI agents. In 2025, we're orchestrating armies of them.</strong>" 编排 > 训练。</p>
-      </div>
-    </div>
-
-
-    <!-- Slide 8.5：5+2+1+1 同构 · 训练闭环也是同一个数字（13章首发）-->
-    <div class="slide">
-      <h2 class="slide-title">训练闭环 <span style="color:#A855F7">也是</span> 5+2+1+1 = 9</h2>
-      <p class="slide-subtitle">把团队的 5+2+1+1 拆解映射到训练闭环，从「方法论」变「同构」</p>
-
-      <div class="isomorphism-map">
-
-        <!-- 5 大 Agent = 5 步训练法 -->
-        <div class="iso-row iso-row-5">
-          <div class="iso-tag">5 大 Agent</div>
-          <div class="iso-eq">=</div>
-          <div class="iso-name">5 步训练法 <span style="font-size:13px;color:var(--text-secondary)">(ReAct 自反思循环)</span></div>
-          <div class="iso-detail">
-            <span class="iso-pill iso-pill-1">① 部署</span>
-            <span class="iso-pill iso-pill-2">② 执行</span>
-            <span class="iso-pill iso-pill-3">③ 观察</span>
-            <span class="iso-pill iso-pill-4">④ 反思</span>
-            <span class="iso-pill iso-pill-5">⑤ 升级</span>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#A855F7;margin-bottom:12px">🔗 配置步骤</h3>
+            <ol style="font-size:13px;color:var(--text-secondary);line-height:2.2;padding-left:18px">
+              <li>飞书群 → 设置 → 群机器人</li>
+              <li>添加自定义机器人 → 复制 Webhook URL</li>
+              <li>在 Hermes 配置中填入 Webhook</li>
+              <li><code>hermes plugin enable lark</code></li>
+            </ol>
           </div>
         </div>
-
-        <!-- 2 大助手 = 内外双闭环 -->
-        <div class="iso-row iso-row-2">
-          <div class="iso-tag">2 大助手</div>
-          <div class="iso-eq">=</div>
-          <div class="iso-name">内外双闭环 <span style="font-size:13px;color:var(--text-secondary)">(Claude Code + Hermes)</span></div>
-          <div class="iso-detail">
-            <span class="iso-pill" style="background:rgba(0,212,255,0.1);border-color:#00D4FF;color:#00D4FF">内环 Claude Code：编辑 → 跑测试 → 修补</span>
-            <span class="iso-pill" style="background:rgba(168,85,247,0.1);border-color:#A855F7;color:#A855F7">外环 Hermes：抓运行日志 → 触发重训</span>
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#A855F7;margin-bottom:12px">💬 使用方式</h3>
+            <div style="background:#0A0E27;padding:14px;border-radius:8px;font-size:12px;line-height:2">
+              <div style="color:#8FA1CC">群里 @机器人：</div>
+              <div style="color:#F0F4FF;margin-top:4px">"帮我总结今天的重要消息"</div>
+              <div style="color:#8FA1CC;margin-top:12px">机器人回复：</div>
+              <div style="color:#22C55E;margin-top:4px">"📋 今日摘要（共 23 条消息）：</div>
+              <div style="color:#22C55E">1. 张总：下周路演材料需更新...</div>
+              <div style="color:#22C55E">2. 技术团队：demo 已部署...</div>
+              <div style="color:#22C55E">..."</div>
+            </div>
           </div>
         </div>
-
-        <!-- 1 套知识中台 = 1 套红线 -->
-        <div class="iso-row iso-row-1-1">
-          <div class="iso-tag">1 套中台</div>
-          <div class="iso-eq">=</div>
-          <div class="iso-name">1 套训练红线 <span style="font-size:13px;color:var(--text-secondary)">(AGENTS.md + CODING_STANDARDS.md)</span></div>
-          <div class="iso-detail">
-            <span class="iso-pill" style="background:rgba(86,211,100,0.1);border-color:#56d364;color:#56d364">
-              失败即规则：每次训练异常，必须立即把「失败原因+规则」写进 MEMORY.md
-            </span>
-          </div>
-        </div>
-
-        <!-- 1 验收人 = 1 验收人 -->
-        <div class="iso-row iso-row-1-2">
-          <div class="iso-tag">1 验收人</div>
-          <div class="iso-eq">=</div>
-          <div class="iso-name">1 验收人 <span style="font-size:13px;color:var(--text-secondary)">(训练闭环的最终判官)</span></div>
-          <div class="iso-detail">
-            <span class="iso-pill" style="background:rgba(245,158,11,0.1);border-color:#F59E0B;color:#F59E0B">
-              最终拍板：训练是否上线 / 是否回滚 / 是否扩展
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="iso-summary">
-        <strong>关键洞察：</strong>训练智能体<strong style="color:#A855F7">没有新方法论</strong> — 它就是「把编排数字 (5+2+1+1) 套用到自反思循环上」
       </div>
     </div>
 
-    <!-- Slide 9：本章小结 -->
+    <!-- Slide 7：Step 4 — 定义你的第一个工作流 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#A855F7;margin-bottom:24px;text-align:center">🌟 章节金句</h2>
+      <h2 style="font-size:32px;color:#22C55E;margin-bottom:14px">4️⃣ Step 4：定义你的第一个工作流</h2>
 
-      <div style="max-width:780px;margin:0 auto">
-        <div class="story-card" style="margin-bottom:18px">
-          <p class="story-meta">实战总结</p>
-          <p style="font-size:18px;line-height:1.8;color:var(--text-primary)">
-            "<strong style="color:#A855F7">训练 AI 不是调参</strong>，<br>是<strong style="color:#febc2e">编排一组能力</strong>。<br>
-            <br>28 个版本，<strong style="color:#22C55E">4 步闭环</strong>。<br>
-            <br>Hermes 的进化 = <strong style="color:#A855F7">企业的进化</strong>。"
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px">
+        <div class="card" style="padding:18px;border-left:4px solid #F59E0B">
+          <h3 style="font-size:17px;color:#F59E0B;margin-bottom:10px">📋 日报生成器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px">
+            飞书群消息 → 智能体摘要 → 自动推送日报
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
+            <strong style="color:#F59E0B">Prompt:</strong><br>
+            "读取最近 24 小时群消息，按主题分类摘要，不超过 500 字，Markdown 格式输出"
+          </div>
+          <p style="font-size:11px;color:#F59E0B;margin-top:8px">⏱ 搭建时间：10 分钟</p>
+        </div>
+        <div class="card" style="padding:18px;border-left:4px solid #00D4FF">
+          <h3 style="font-size:17px;color:#00D4FF;margin-bottom:10px">🕷️ 信息爬取器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px">
+            输入 URL → 自动爬取 → 结构化输出 → 飞书推送
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
+            <strong style="color:#00D4FF">Prompt:</strong><br>
+            "爬取指定网页内容，提取关键数据和表格，输出结构化 JSON 并推送飞书"
+          </div>
+          <p style="font-size:11px;color:#00D4FF;margin-top:8px">⏱ 搭建时间：15 分钟</p>
+        </div>
+        <div class="card" style="padding:18px;border-left:4px solid #A855F7">
+          <h3 style="font-size:17px;color:#A855F7;margin-bottom:10px">📊 数据清洗器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px">
+            上传 Excel → 自动清洗去重 → 输出分析报告
+          </p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:11px;color:var(--text-muted);line-height:1.6">
+            <strong style="color:#A855F7">Prompt:</strong><br>
+            "读取上传的 Excel，去重、标准化日期格式、检测异常值，输出清洗报告"
+          </div>
+          <p style="font-size:11px;color:#A855F7;margin-top:8px">⏱ 搭建时间：20 分钟</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:18px">
+        <p style="font-size:13px"><strong>工作流本质 = Input → Agent（Prompt + Tools）→ Output。</strong>你定义的是"输入什么、怎么处理、输出什么"。</p>
+      </div>
+    </div>
+
+    <!-- Slide 8：迭代进化 — Hermes 真实案例 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#A855F7;margin-bottom:14px">🔁 迭代进化：从"能用"到"好用"</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">真实案例：Hermes 的自我进化路径（2026.03-07）</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div class="card" style="padding:14px;border-top:3px solid #8FA1CC;text-align:center">
+          <div style="font-size:14px;color:#8FA1CC;font-weight:bold;margin-bottom:6px">V1 · 3月</div>
+          <div style="font-size:24px;margin-bottom:6px">🦎</div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            单模型调用<br>
+            无工具链<br>
+            "高级 ChatBot"
           </p>
         </div>
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:14px;color:#F59E0B;font-weight:bold;margin-bottom:6px">V2 · 4月</div>
+          <div style="font-size:24px;margin-bottom:6px">🐒</div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            加入工具调用<br>
+            Python 脚本执行<br>
+            "能干活了"
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #00D4FF;text-align:center">
+          <div style="font-size:14px;color:#00D4FF;font-weight:bold;margin-bottom:6px">V3 · 5月</div>
+          <div style="font-size:24px;margin-bottom:6px">🦅</div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            多模型协作<br>
+            MOA 聚合<br>
+            "质量飞跃"
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E;text-align:center">
+          <div style="font-size:14px;color:#22C55E;font-weight:bold;margin-bottom:6px">V4 · 7月</div>
+          <div style="font-size:24px;margin-bottom:6px">🐉</div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            飞书联动<br>
+            自我迭代<br>
+            "团队标配"
+          </p>
+        </div>
+      </div>
 
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:12px;text-align:center">
-          <div class="card" style="padding:10px">
-            <div style="font-size:20px;margin-bottom:4px">📝</div>
-            <strong style="color:#A855F7">定职责</strong>
-          </div>
-          <div class="card" style="padding:10px">
-            <div style="font-size:20px;margin-bottom:4px">🧠</div>
-            <strong style="color:#A855F7">设模型</strong>
-          </div>
-          <div class="card" style="padding:10px">
-            <div style="font-size:20px;margin-bottom:4px">🛠️</div>
-            <strong style="color:#A855F7">接工具</strong>
-          </div>
-          <div class="card" style="padding:10px">
-            <div style="font-size:20px;margin-bottom:4px">🔁</div>
-            <strong style="color:#A855F7">建回路</strong>
+      <div class="alert alert-info" style="margin-top:18px">
+        <p style="font-size:13px"><strong>关键经验：</strong>不要追求一步到位。先用最简单的配置跑通，再逐步加工具、调 Prompt、优化输出。每次迭代成本几乎为零。</p>
+      </div>
+    </div>
+
+    <!-- Slide 9：现场实操 — 请观众提需求 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#F59E0B;margin-bottom:14px">🎤 现场实操：请提一个需求</h2>
+      <p style="font-size:16px;color:var(--text-secondary);margin-bottom:20px;text-align:center">我们来<strong style="color:#F59E0B">现场搭建</strong>一个智能体</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+        <div>
+          <div class="card" style="padding:18px">
+            <h3 style="font-size:16px;color:#F59E0B;margin-bottom:12px">🙋 你可以提这样的需求</h3>
+            <ul style="font-size:13px;color:var(--text-secondary);line-height:2.2;padding-left:18px">
+              <li>"帮我每天自动汇总部门周报"</li>
+              <li>"自动监测竞品官网变化并推送"</li>
+              <li>"输入项目名称，自动生成立项框架"</li>
+              <li>"群里的会议纪要自动整理成待办"</li>
+              <li>"把 PDF 合同关键条款提取成表格"</li>
+            </ul>
           </div>
         </div>
+        <div>
+          <div class="card" style="padding:18px;background:rgba(245,158,11,0.05);border:2px solid #F59E0B">
+            <h3 style="font-size:16px;color:#F59E0B;margin-bottom:12px">🪄 现场 5 步搭建</h3>
+            <ol style="font-size:13px;color:var(--text-secondary);line-height:2.4;padding-left:18px">
+              <li>明确输入（消息/文件/URL）</li>
+              <li>写一段 Prompt 描述任务</li>
+              <li>选择需要的工具（搜索/爬取/文件）</li>
+              <li>定义输出格式（文本/表格/飞书消息）</li>
+              <li>测试 → 调整 → 展示结果</li>
+            </ol>
+          </div>
+          <div class="alert alert-success" style="margin-top:12px">
+            <p style="font-size:12px"><strong>⏱ 目标：</strong>5 分钟内完成从需求到运行的全过程。</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Slide 10：带走清单 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#22C55E;margin-bottom:18px">✅ 今天带走的 4 件东西</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px">
+        <div class="card" style="padding:20px;border-left:4px solid #F59E0B">
+          <h3 style="font-size:18px;color:#F59E0B;margin-bottom:8px">🔑 商汤 API Key</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            现场指导注册<br>
+            免费额度足够日常使用<br>
+            5 分钟开通
+          </p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid #00D4FF">
+          <h3 style="font-size:18px;color:#00D4FF;margin-bottom:8px">💿 Hermes 安装包</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            拷贝 hermes-installer.zip<br>
+            Windows 双击即用<br>
+            内置飞书插件
+          </p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid #A855F7">
+          <h3 style="font-size:18px;color:#A855F7;margin-bottom:8px">📋 3 个工作流模板</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            日报生成器 · 信息爬取器 · 数据清洗器<br>
+            复制 Prompt 即可用<br>
+            明天上班就能跑
+          </p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid #22C55E">
+          <h3 style="font-size:18px;color:#22C55E;margin-bottom:8px">🔄 迭代方法论</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+            先跑通 → 再加工具 → 再调质量<br>
+            每次改进成本几乎为零<br>
+            1 个月从 ChatBot 到 Agent
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:20px;text-align:center">
+        <p style="font-size:15px"><strong>🚀 明天上班：</strong>注册商汤 → 安装 Hermes → 连接飞书 → 跑通第一个工作流。30 分钟搞定。</p>
       </div>
     </div>
 
   </main>
-
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/shared-agents.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
   <script src="../assets/js/burst.js?v=20260705-fix"></script>
   <script src="../assets/js/effects.js?v=20260705-fix"></script>
-
-
-
 </body>
 </html>
