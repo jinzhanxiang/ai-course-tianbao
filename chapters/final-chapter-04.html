@@ -16,147 +16,17 @@
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
         <h1 style="font-size:52px;color:#a855f7;margin-bottom:8px">🔑 第 04 章 · 生态与方案</h1>
         <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
-          部署选型 · 幻觉防御 · 数据安全
+          数据安全 · 部署模型 · 幻觉防御 · 迭代优化 · 系统维护
         </h2>
       </header>
     </div>
 
-    <!-- Slide 2：部署选型三方对比 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#f59e0b;margin-bottom:14px">☁️ 部署选型 · 三方铁律</h2>
-      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:16px">
-        云端模型做主力 · 本地模型做兜底 · 降级链路保底 —— 实战验证的最佳实践
-      </p>
-
-      <table style="width:100%;max-width:960px;margin:0 auto;font-size:13px;border-collapse:collapse">
-        <thead>
-          <tr style="background:rgba(245,158,11,0.1)">
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">维度</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">☁️ 云端（首选）</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">🏠 本地（兜底）</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">🔄 混合（实际）</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>模型</strong></td><td style="padding:10px;border-bottom:1px solid #333">MiniMax-M3 / Kimi / Claude</td><td style="padding:10px;border-bottom:1px solid #333">Qwen2.5 / DeepSeek / bge-m3</td><td style="padding:10px;border-bottom:1px solid #333">云端主力 + 本地兜底</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>推理框架</strong></td><td style="padding:10px;border-bottom:1px solid #333">API 直连</td><td style="padding:10px;border-bottom:1px solid #333"><strong>oMLX</strong>（Apple Silicon）</td><td style="padding:10px;border-bottom:1px solid #333">oMLX + API fallback</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>并发上限</strong></td><td style="padding:10px;border-bottom:1px solid #333">数百并发</td><td style="padding:10px;border-bottom:1px solid #333"><strong style="color:#EF4444">3 并发</strong>（软肋）</td><td style="padding:10px;border-bottom:1px solid #333">云端扛主力、本地高峰期</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>请求量（实测）</strong></td><td style="padding:10px;border-bottom:1px solid #333">主力任务调用</td><td style="padding:10px;border-bottom:1px solid #333"><strong>39.3 万次</strong>（bge-m3 占 91%）</td><td style="padding:10px;border-bottom:1px solid #333">embedding 全走本地</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>硬件</strong></td><td style="padding:10px;border-bottom:1px solid #333">—</td><td style="padding:10px;border-bottom:1px solid #333">M5 Pro 64GB · Metal 4</td><td style="padding:10px;border-bottom:1px solid #333">单机全栈</td></tr>
-        </tbody>
-      </table>
-
-      <div class="alert alert-info" style="margin-top:16px">
-        <p style="font-size:13px"><strong>📌 关键结论：</strong>oMLX 是 Apple Silicon 上最佳本地推理框架。但 3 并发限制使其无法作为生产主力，必须配合云端降级链路。本地主打 embedding + 兜底推理，云端主力处理复杂任务。</p>
-      </div>
-    </div>
-
-    <!-- Slide 3：9 模型清单 + 降级链路 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:14px">🤖 9 模型清单 · 降级链路</h2>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:8px">☁️ 云端 4 模型</h3>
-          <table style="width:100%;font-size:12px">
-            <tr><td style="padding:4px 0">MiniMax-M3</td><td style="color:#22C55E">主力（总调度+研究）</td></tr>
-            <tr><td style="padding:4px 0">MiniMax-M2.7</td><td style="color:#38bdf8">降级备用</td></tr>
-            <tr><td style="padding:4px 0">Kimi Coding</td><td style="color:#F59E0B">代码场景</td></tr>
-            <tr><td style="padding:4px 0">CM Code Latest</td><td style="color:#A855F7">工程任务</td></tr>
-          </table>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
-          <h3 style="font-size:16px;color:#22C55E;margin-bottom:8px">🏠 本地 oMLX 9 模型</h3>
-          <table style="width:100%;font-size:12px">
-            <tr><td style="padding:4px 0">bge-m3</td><td style="color:#22C55E">91% 请求量（embedding）</td></tr>
-            <tr><td style="padding:4px 0">Qwen2.5 7B</td><td>通用对话兜底</td></tr>
-            <tr><td style="padding:4px 0">DeepSeek 7B</td><td>推理代码兜底</td></tr>
-            <tr><td style="padding:4px 0">LLaMA3 8B</td><td>英文任务</td></tr>
-            <tr><td style="padding:4px 0">Yi 6B</td><td>中文优化</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="alert alert-warning" style="margin-top:8px">
-        <p style="font-size:13px"><strong>📌 降级链路：</strong>M3 → M2.7 → CM Code → Kimi Coding → 本地 oMLX（Qwen/DeepSeek）。确保任何时候 Agent 都不会因模型不可用而挂死。</p>
-      </div>
-    </div>
-
-    <!-- Slide 4：幻觉防御 · 4 个真实案例 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#EC4899;margin-bottom:14px">🛡️ 幻觉防御 · 4 个真实案例</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
-        LLM 会说谎——不是故意的，但结果一样严重。以下全部来自实战记录。
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
-        <div class="card" style="padding:14px;border-left:3px solid #EF4444">
-          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">🔴 案例 1：股东比例造假</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            LLM 声称飞马国际某股东持股 <strong>17.73%</strong>。Tavily 验证发现实际无此数据——LLM 将一个案例中的数字"迁移"到了另一个公司。
-          </p>
-          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>数字类输出必须交叉验证，不可直接引用。</p>
-        </div>
-        <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">🟡 案例 2：research 声称"已完成"</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            research 代理两次 sessions_send "已完成"汇报，但文件实际未写入。main 通过 <strong>fs 校验</strong> 发现差异并仲裁。
-          </p>
-          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>"说了"不等于"做了"，必须 ls + wc -l 验证。</p>
-        </div>
-        <div class="card" style="padding:14px;border-left:3px solid #A855F7">
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">🟣 案例 3：财务数字年份错配</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            星恒电源尽调中，LLM 将 2022 年营收 35.99 亿错误标注为 2024 年。原始数据源标记模糊导致。
-          </p>
-          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>年份标注是硬指标，每条数据需带 source year。</p>
-        </div>
-        <div class="card" style="padding:14px;border-left:3px solid #38bdf8">
-          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:6px">🔵 案例 4：SelfCheckGPT 一致性验证</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            用 SelfCheckGPT 对 10 个 LLM 输出做事实一致性检查，发现 <strong>3/10 存在偏差</strong>。自检是第一道防线。
-          </p>
-          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>LLM 自检 + 交叉验证 = 双重保障。</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Slide 5：cite-then-answer 方法论 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#22C55E;margin-bottom:14px">📋 cite-then-answer · 先引用再回答</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
-        核心原则：<strong>先锁定来源，再给出结论</strong>。不是"答完再找证据"，而是"找到证据再回答"。
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:6px">1. 来源锁定</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            每条关键数据必须标注<strong>来源文件 + 段落</strong>。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"
-          </p>
-        </div>
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">2. 双重验证</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            关键数字必须<strong>两个独立源交叉验证</strong>。一个来自 LLM 检索，一个来自 Tavily / 外部 API。
-          </p>
-        </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">3. self-check 自检</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            输出后执行三项检查：事实核查 / 逻辑一致性 / 来源可追溯。<strong>三项通过才算"完成"</strong>。
-          </p>
-        </div>
-      </div>
-
-      <div class="alert alert-success">
-        <p style="font-size:13px"><strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是"更聪明的模型"，而是<strong>更严格的流程</strong>。</p>
-      </div>
-    </div>
-
-    <!-- Slide 6：数据安全 + 本地化 -->
+    <!-- Slide 2：数据安全 · 本地化架构（放在第一位） -->
     <div class="slide">
       <h2 style="font-size:32px;color:#06b6d4;margin-bottom:14px">🔒 数据安全 · 本地化架构</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        投资行业数据敏感性极高——尽调底稿、审计报告、估值模型一旦外泄，后果不可逆。
+      </p>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
         <div class="card" style="padding:16px;border-top:3px solid #06b6d4">
@@ -173,13 +43,193 @@
             <tr><td style="padding:4px 0"><strong>Qdrant 向量库</strong></td><td>本地 Docker，数据不出机器</td></tr>
             <tr><td style="padding:4px 0"><strong>PostgreSQL</strong></td><td>本地 Docker，结构化数据</td></tr>
             <tr><td style="padding:4px 0"><strong>Wiki 知识库</strong></td><td>localhost:19000，仅内网可访问</td></tr>
-            <tr><td style="padding:4px 0"><strong>oMLX 推理</strong></td><td>100% 本地，0 数据外传</td></tr>
+            <tr><td style="padding:4px 0"><strong>MEMORY.md</strong></td><td>持久化记忆，跨会话上下文</td></tr>
           </table>
         </div>
       </div>
 
       <div class="alert alert-warning" style="margin-top:8px">
-        <p style="font-size:13px"><strong>⚠️ 铁律：</strong>涉及企业核心经营数据的处理，<strong style="color:#EF4444">必须走本地链路</strong>。云端仅用于公开信息检索和通用对话。敏感数据不上云。</p>
+        <p style="font-size:13px"><strong>⚠️ 铁律：</strong>涉及企业核心经营数据的处理，<strong style="color:#EF4444">必须走本地链路</strong>。云端仅用于公开信息检索和通用对话。敏感数据不上云，这是不可妥协的安全底线。</p>
+      </div>
+    </div>
+
+    <!-- Slide 3：部署模型（合并原部署选型 + 模型清单，结合本地安全） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#f59e0b;margin-bottom:14px">☁️ 部署模型 · 云端主力 + 本地兜底</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        云端模型做主力 · 本地模型做兜底 · 降级链路保底 —— 安全与效率兼顾的最佳实践
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px">
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">☁️ 云端主力（首选）</h3>
+          <table style="width:100%;font-size:11px">
+            <tr><td style="padding:3px 0">MiniMax-M3</td><td style="color:#22C55E">总调度+研究</td></tr>
+            <tr><td style="padding:3px 0">MiniMax-M2.7</td><td style="color:#38bdf8">降级备用</td></tr>
+            <tr><td style="padding:3px 0">Kimi Coding</td><td style="color:#F59E0B">代码场景</td></tr>
+            <tr><td style="padding:3px 0">CM Code Latest</td><td style="color:#A855F7">工程任务</td></tr>
+          </table>
+          <p style="font-size:11px;color:var(--text-secondary);margin-top:6px">数百并发 · API 直连 · 公开数据</p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🏠 本地兜底（安全）</h3>
+          <table style="width:100%;font-size:11px">
+            <tr><td style="padding:3px 0">bge-m3</td><td style="color:#22C55E">91% 请求量</td></tr>
+            <tr><td style="padding:3px 0">Qwen2.5 7B</td><td>通用对话兜底</td></tr>
+            <tr><td style="padding:3px 0">DeepSeek 7B</td><td>推理代码兜底</td></tr>
+            <tr><td style="padding:3px 0">LLaMA3/Yi 6B</td><td>多语言补充</td></tr>
+          </table>
+          <p style="font-size:11px;color:var(--text-secondary);margin-top:6px"><strong>oMLX</strong> · M5 Pro 64GB · 3 并发 · 0 数据外传</p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #ec4899">
+          <h3 style="font-size:15px;color:#ec4899;margin-bottom:8px">🔄 降级链路</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
+            <div>M3 → M2.7 → CM Code → Kimi Coding</div>
+            <div style="margin-top:6px;padding-top:6px;border-top:1px dashed #555">↓ 全部不可用</div>
+            <div style="margin-top:6px"><strong style="color:#22C55E">本地 oMLX 接管</strong></div>
+            <div style="color:var(--text-secondary)">Qwen / DeepSeek 兜底</div>
+          </div>
+          <p style="font-size:11px;color:#EF4444;margin-top:8px"><strong>确保 Agent 永不挂死</strong></p>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:8px">
+        <p style="font-size:13px"><strong>📌 实测数据：</strong>本地 oMLX 累计处理 <strong>39.3 万次</strong>请求（bge-m3 embedding 占 91%）。云端主力处理复杂推理任务，本地主打 embedding + 兜底推理。敏感数据 100% 走本地链路。</p>
+      </div>
+    </div>
+
+    <!-- Slide 4：幻觉防御（合并原 4 案例 + cite-then-answer） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#EC4899;margin-bottom:14px">🛡️ 幻觉防御 · 从案例到方法论</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">
+        LLM 会说谎——不是故意的，但结果一样严重。以下全部来自实战记录。
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+        <div class="card" style="padding:10px;border-left:3px solid #EF4444">
+          <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 股东比例造假</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
+        </div>
+        <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
+          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 research 声称"已完成"</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过 fs 校验发现差异并仲裁。</p>
+        </div>
+        <div class="card" style="padding:10px;border-left:3px solid #A855F7">
+          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🟣 财务数字年份错配</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">星恒尽调中，LLM 将 2022 年营收 35.99 亿错误标注为 2024 年。原始数据源标记模糊导致。</p>
+        </div>
+        <div class="card" style="padding:10px;border-left:3px solid #38bdf8">
+          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 SelfCheckGPT 一致性验证</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px;color:#22C55E;margin-bottom:10px">📋 cite-then-answer · 先引用再回答</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">1. 来源锁定</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">2. 双重验证</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #A855F7">
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">3. self-check 自检</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是"更聪明的模型"，而是<strong>更严格的流程</strong>。</p>
+      </div>
+    </div>
+
+    <!-- Slide 5：迭代优化（NEW - Skillhub 下载 + Hermes 调试迭代） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:14px">🔄 迭代优化 · 从技能安装到持续进化</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        智能体不是"装好就完了"——需要持续下载技能、调试接口、迭代优化。以下是真实迭代路径。
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">📦 技能商店下载</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">
+            通过 <strong>Skillhub</strong>（skillhub.cn）安装社区技能，按需扩展 Agent 能力：
+          </p>
+          <table style="width:100%;font-size:11px">
+            <tr><td style="padding:3px 0">tushare-finance</td><td style="color:var(--text-secondary)">A 股财务数据</td></tr>
+            <tr><td style="padding:3px 0">akshare-finance</td><td style="color:var(--text-secondary)">多源金融数据</td></tr>
+            <tr><td style="padding:3px 0">multi-search-engine</td><td style="color:var(--text-secondary)">多引擎搜索聚合</td></tr>
+            <tr><td style="padding:3px 0">wechat-article-search</td><td style="color:var(--text-secondary)">微信公众号文章检索</td></tr>
+          </table>
+          <p style="font-size:11px;color:#22C55E;margin-top:6px"><strong>技能共享：</strong>技能与配置分离，更新技能不丢笔记，分享技能不泄露基础设施。</p>
+        </div>
+
+        <div class="card" style="padding:16px;border-top:3px solid #ec4899">
+          <h3 style="font-size:15px;color:#ec4899;margin-bottom:8px">🔧 Hermes 工具 · V0 → V3 迭代</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">
+            <strong>Hermes</strong> 是另一个 AI 工具实例，通过小米 token-plan API（兼容 Anthropic 协议）接入：
+          </p>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
+            <div><strong style="color:#F59E0B">V0：</strong>初始安装 → 网关冲突，飞书无响应</div>
+            <div><strong style="color:#F59E0B">V1：</strong>排查端口冲突 → 配置 API endpoint</div>
+            <div><strong style="color:#F59E0B">V2：</strong>连接 Xiaomi token-plan API 成功</div>
+            <div><strong style="color:#22C55E">V3：</strong>稳定运行 + LLM 执行脚本优化</div>
+          </div>
+          <p style="font-size:11px;color:#22C55E;margin-top:6px"><strong>经验沉淀：</strong>每次调试都是一次系统理解的深化，debug 日志即为最佳教材。</p>
+        </div>
+      </div>
+
+      <div class="alert alert-info">
+        <p style="font-size:13px"><strong>📌 迭代心法：</strong>装得上 → 跑得通 → 调得优 → 稳得住。技能下载只是起点，持续的接口调试和脚本优化才是智能体真正"好用"的关键。</p>
+      </div>
+    </div>
+
+    <!-- Slide 6：系统维护（NEW） -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:14px">⚙️ 系统维护 · 多系统协同与心跳监控</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        5 Agent + Hermes + Docker 服务 + 知识库 —— 多系统长期运行需要体系化的监控与维护。
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+        <div class="card" style="padding:16px;border-top:3px solid #f59e0b">
+          <h3 style="font-size:15px;color:#f59e0b;margin-bottom:8px">🫀 HEARTBEAT 心跳机制</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px">
+            Main 代理每 <strong>15 分钟</strong>执行一次全局心跳检查，覆盖 <strong>9 项清单</strong>：
+          </p>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
+            <div>1. Docker 服务状态（PostgreSQL + Qdrant）</div>
+            <div>2. 任务跟踪（in-progress > 2h 告警）</div>
+            <div>3. 异步任务超时重试（最多 3 次）</div>
+            <div>4. Session 状态巡检（> 3MB 自动压缩）</div>
+            <div>5. 内存使用监控</div>
+            <div>6. 配置文件审定</div>
+            <div>7. 知识库一致性校验</div>
+            <div>8. API 配额余量检查</div>
+            <div>9. 日志异常模式扫描</div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🛡️ 多系统协同维护</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px">
+            多个智能体系统并行运行时的关键维护点：
+          </p>
+          <table style="width:100%;font-size:11px">
+            <tr><td style="padding:3px 0"><strong>端口管理</strong></td><td>OpenClaw: 18789 · Hermes: 独立端口</td></tr>
+            <tr><td style="padding:3px 0"><strong>API 网关</strong></td><td>Xiaomi token-plan · Anthropic 兼容</td></tr>
+            <tr><td style="padding:3px 0"><strong>免打扰窗口</strong></td><td>23:00-08:00 静默但继续检查</td></tr>
+            <tr><td style="padding:3px 0"><strong>告警升级</strong></td><td>pending → in-progress → overdue 三级</td></tr>
+            <tr><td style="padding:3px 0"><strong>日志审计</strong></td><td>gateway.log 持续异常模式扫描</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:8px">
+        <p style="font-size:13px"><strong>⚠️ 维护原则：</strong>免打扰 ≠ 不检查。23:00-08:00 期间心跳照常执行，异常写入 <strong>pending-alerts.json</strong>，解静默后统一汇报。Session 超过 3MB 自动触发压缩，兼顾性能与上下文保留。</p>
       </div>
     </div>
 
