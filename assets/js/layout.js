@@ -79,18 +79,6 @@
 </header>`;
   }
 
-  // ============ 渲染 sidebar ============
-  function renderSidebar() {
-    return `
-<aside class="sidebar">
-  <h3>📑 ${CHAPTERS.length - 1} 章节</h3>
-  <ol class="chapter-list">
-    ${CHAPTERS.map(c => `
-    <li><a href="${c.file}" ${c.file === currentFile ? 'class="active"' : ''}>${c.num} · ${c.title}</a></li>
-    `).join('')}
-  </ol>
-</aside>`;
-  }
 
   // ============ 渲染 footer（翻页按钮）============
   function renderFooter() {
