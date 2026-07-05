@@ -469,30 +469,31 @@
           <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">💻 Claude Code</h3>
           <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>引擎：</strong>DeepSeek V4 Pro<br>
-            <strong>角色：</strong>架构医生 + 纵深分析<br>
-            <strong>亮点：</strong>Monte Carlo 10000 次模拟，P10/P50/P90 全分布<br>
-            <strong>成本：</strong>API 费用远低于 Anthropic 原生<br>
+            <strong>角色：</strong>架构医生 + 纵深研究<br>
+            <strong>核心洞察：</strong>代码的复杂与研究的复杂同源<br>
+            <strong>1+1>2：</strong>赋予编程 Agent 正确研究方法 → Monte Carlo 10000 次模拟，P10/P50/P90 全分布<br>
             <strong>技能：</strong>Skillhub 社区技能生态
           </p>
         </div>
         <div class="card" style="padding:14px;border-left:3px solid #22C55E">
           <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">⚙️ Hermes</h3>
           <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-            <strong>引擎：</strong>小米 Token-Plan API<br>
-            <strong>角色：</strong>脚本执行 + 自我进化<br>
+            <strong>引擎：</strong>商汤大模型 + DeepSeek V4 Flash（免费）<br>
+            <strong>角色：</strong>脚本执行 + 自我迭代进化<br>
+            <strong>专长：</strong>复杂项目编程中的持续性迭代<br>
             <strong>亮点：</strong>V0→V3 四轮迭代，提取率 30%→90%+<br>
-            <strong>编码规范：</strong>8 条基线，复用率 78%+<br>
-            <strong>闭环：</strong>失败→反思→MEMORY.md→升级
+            <strong>心法：</strong>赋予正确编程思维，迭代效果远超预期
           </p>
         </div>
         <div class="card" style="padding:14px;border-left:3px solid #A855F7">
           <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">🧠 oMLX 本地推理</h3>
           <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>硬件：</strong>M5 Pro 64GB<br>
-            <strong>模型：</strong>9 模型 serving（bge-m3/Qwen/DeepSeek/LLaMA/Yi）<br>
-            <strong>累计：</strong>39.3 万次请求<br>
-            <strong>主力：</strong>bge-m3 embedding 占 91%<br>
-            <strong>价值：</strong>敏感数据 0 外传
+            <strong>Embedding 模型：</strong>bge-m3（文本→向量，语义检索基础）<br>
+            <strong>Reranker 模型：</strong>重排序（对召回结果精排，提升准确率）<br>
+            <strong>累计：</strong>39.3 万次请求 · bge-m3 占 91%<br>
+            <strong>价值：</strong>清洗入库全链路本地化，敏感数据 0 外传<br>
+            <strong style="color:#A855F7">未来方向：</strong>本地大模型微调 → 高度定制化的领域模型
           </p>
         </div>
         <div class="card" style="padding:14px;border-left:3px solid #EC4899">
@@ -621,24 +622,24 @@
         <div class="card" style="padding:18px;border-top:3px solid #8FA1CC">
           <h3 style="font-size:16px;color:#8FA1CC;margin-bottom:8px">🏭 大厂通用工具</h3>
           <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px">
-            微软 Copilot Studio · Google Agent Development Kit · AWS PartyRock · 字节 Coze · 阿里百炼 · 百度千帆
+            字节 Coze · 飞书 Claw · Kimi Claw · 阿里百炼 · 百度千帆 · 微软 Copilot Studio · Google ADK
           </p>
           <div style="padding:10px;background:rgba(143,161,204,0.08);border-radius:6px;font-size:12px;color:var(--text-secondary);line-height:1.7">
             <strong style="color:#8FA1CC">它们能给你的：</strong><br>
-            • 拖拽式编排 + 预置模板<br>
+            • 拖拽式编排 + 预置模板 + 零代码入门<br>
             • 通用场景覆盖（客服/营销/数据分析）<br>
-            • 零代码入门，快速 Demo<br>
-            <strong style="color:#EF4444">它们给不了的：</strong><br>
-            • 你行业独有的数据管道<br>
-            • 你团队积累的业务 Know-how<br>
-            • 你公司特有的审批流程<br>
-            • 你自己领域的纵深判断力
+            • 快速 Demo，上手友好<br><br>
+            <strong style="color:#EF4444">它们的短板：</strong><br>
+            • <strong>费用高</strong>：按调用次数/Token 计费，规模化后成本不可控<br>
+            • <strong>定制化差</strong>：你行业独有的数据管道、业务逻辑无法嵌入<br>
+            • <strong>数据不可控</strong>：敏感数据上云，合规风险不可逆<br>
+            • <strong>浅层化</strong>：停留在「工具使用」层面，无法形成你的竞争壁垒
           </div>
         </div>
         <div class="card" style="padding:18px;border-top:3px solid #A855F7">
           <h3 style="font-size:16px;color:#A855F7;margin-bottom:8px">🎯 你自建的纵深 Agent</h3>
           <p style="font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:10px">
-            把你自己/团队的能力 AI 化 → 纵深化 → 差异化。这是通用工具永远做不到的。
+            <strong>先解放自己</strong>——把自己的工作流 AI 化 → <strong>再提升自己</strong>——高度定制化 → <strong>最终差异化</strong>。这是大厂工具给不了你的。
           </p>
           <div style="padding:10px;background:rgba(168,85,247,0.08);border-radius:6px;font-size:12px;color:var(--text-secondary);line-height:1.7">
             <strong style="color:#A855F7">你能构建的差异化壁垒：</strong><br>
@@ -654,11 +655,12 @@
       <div class="card" style="padding:18px;background:linear-gradient(90deg,rgba(168,85,247,0.06),rgba(34,197,94,0.06));border-radius:10px;text-align:center;margin-bottom:14px">
         <h3 style="font-size:18px;color:#A855F7;margin-bottom:10px">💡 这就是今天这节课的价值</h3>
         <p style="font-size:14px;color:var(--text-primary);line-height:1.8;max-width:780px;margin:0 auto">
-          大厂给你的是<strong style="color:#8FA1CC">「一台电脑」</strong>——每个人都能拿到。<br>
-          但能不能用好这台电脑，取决于你<strong style="color:#A855F7">在上面装了什么软件、存了什么数据、建了什么流程</strong>。<br><br>
-          <strong style="color:#22C55E">通用工具解决的是「从 0 到 1」的问题。</strong><br>
-          <strong style="color:#A855F7">纵深自建解决的是「从 1 到 100」的问题。</strong><br><br>
-          在当前 AI 浪潮中，<strong style="color:#EC4899">真正的护城河不是你用了什么模型——是你把自己的行业 Know-how 做成了模型能调用的资产</strong>。
+          大厂给你的是<strong style="color:#8FA1CC">「一台电脑」</strong>——每个人都能拿到，但费用高、定制差、数据不可控。<br><br>
+          你能不能用好这台电脑，取决于你<strong style="color:#A855F7">在上面装了什么软件、存了什么数据、建了什么流程</strong>。<br><br>
+          <strong style="color:#22C55E">第一步：解放自己。</strong>把自己的重复性工作 AI 化，先让 Agent 替你干活。<br>
+          <strong style="color:#A855F7">第二步：提升自己。</strong>高度定制化，把你的行业 Know-how 嵌入 Agent 的工作流。<br>
+          <strong style="color:#EC4899">第三步：差异化定位。</strong>当别人还在用通用工具时，你已经有了自己的纵深 Agent 体系。<br><br>
+          在当前 AI 浪潮中，<strong style="color:#EC4899">真正的护城河不是你用了什么模型——是你把自己的行业 Know-how 做成了模型能调用的资产，实现了自己能力的 AI 化、纵深化、差异化</strong>。
         </p>
       </div>
 
