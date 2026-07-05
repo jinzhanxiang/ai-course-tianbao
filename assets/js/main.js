@@ -154,6 +154,8 @@
       slides[state.slide].classList.add('active');
       updateProgress();
       adjustSlideLayout();
+    } else {
+      goNextChapter();
     }
   }
 
@@ -165,6 +167,26 @@
       slides[state.slide].classList.add('active');
       updateProgress();
       adjustSlideLayout();
+    } else {
+      goPrevChapter();
+    }
+  }
+
+  function goNextChapter() {
+    if (!window.LAYOUT || !window.LAYOUT.current) return;
+    var chapters = window.LAYOUT.CHAPTERS;
+    var idx = chapters.findIndex(function(c) { return c.file === window.LAYOUT.current.file; });
+    if (idx >= 0 && idx < chapters.length - 1) {
+      window.location.href = chapters[idx + 1].file;
+    }
+  }
+
+  function goPrevChapter() {
+    if (!window.LAYOUT || !window.LAYOUT.current) return;
+    var chapters = window.LAYOUT.CHAPTERS;
+    var idx = chapters.findIndex(function(c) { return c.file === window.LAYOUT.current.file; });
+    if (idx > 0) {
+      window.location.href = chapters[idx - 1].file;
     }
   }
 
