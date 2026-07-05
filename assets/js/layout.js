@@ -132,16 +132,6 @@
       body.insertBefore(tempTopbar.firstChild, body.firstChild);
     }
 
-    // 中部：sidebar（插入到 topbar 之后）
-    const sidebarHtml = renderSidebar();
-    const topbar = body.querySelector('.topbar');
-    const mainEl = body.querySelector('main');
-    if (topbar && mainEl) {
-      mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
-    } else if (mainEl) {
-      mainEl.insertAdjacentHTML('beforebegin', sidebarHtml);
-    }
-
     // 底部：footer（append 到 body 末尾）
     const footerHtml = renderFooter();
     const tempFooter = document.createElement('div');
