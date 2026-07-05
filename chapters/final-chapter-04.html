@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 04 章 · 生态与方案 · 生态协同 · 幻觉防御 · 数据安全 — 智能体赋能投资研究</title>
-  <link rel="stylesheet" href="../assets/css/main.css?v=20260704-audit">
-  <link rel="stylesheet" href="../assets/css/themes.css?v=20260704-audit">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260704-audit">
+  <title>第 04 章 · 生态与方案 — 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
 </head>
 <body class="chapter-page sci-fi-bg">
   <main class="main-stage">
@@ -14,182 +14,237 @@
     <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
-        <h1 style="font-size:56px;color:#a855f7;margin-bottom:8px">🔑 第 04 章 · 生态与方案 · 生态协同 · 幻觉防御 · 数据安全</h1>
-        <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
-          生态协同 · 幻觉防御 · 数据安全 · 幻觉防御+质量提升 · 数据安全+本地化
+        <h1 style="font-size:52px;color:#a855f7;margin-bottom:8px">🔑 第 04 章 · 生态与方案</h1>
+        <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
+          部署选型 · 幻觉防御 · 数据安全
         </h2>
-        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">主公实战方案 · 2026-07-05</p>
       </header>
     </div>
 
-    <!-- Slide 2：方案一封面 -->
+    <!-- Slide 2：部署选型三方对比 -->
     <div class="slide">
-      <h2 style="font-size:36px;color:#22C55E;margin-bottom:18px">🧩 方案一：生态协同 · 幻觉防御 · 数据安全</h2>
-      <h3 style="font-size:24px;color:var(--text-secondary);font-weight:normal">装得上 → 用得起 → 调得动 → 养得活</h3>
-    </div>
+      <h2 style="font-size:32px;color:#f59e0b;margin-bottom:14px">☁️ 部署选型 · 三方铁律</h2>
+      <p style="font-size:15px;color:var(--text-secondary);margin-bottom:16px">
+        云端模型做主力 · 本地模型做兜底 · 降级链路保底 —— 实战验证的最佳实践
+      </p>
 
-    <!-- Slide 8：本地模型选型 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:18px">🤖 本地模型选型</h2>
-      <table style="width:100%;max-width:900px;margin:0 auto;font-size:13px">
-        <thead><tr><th>模型</th><th>参数</th><th>场景</th><th>推荐度</th></tr></thead>
+      <table style="width:100%;max-width:960px;margin:0 auto;font-size:13px;border-collapse:collapse">
+        <thead>
+          <tr style="background:rgba(245,158,11,0.1)">
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">维度</th>
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">☁️ 云端（首选）</th>
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">🏠 本地（兜底）</th>
+            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">🔄 混合（实际）</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>Qwen2.5</td><td>7B/14B/72B</td><td>通用对话</td><td>⭐⭐⭐⭐⭐</td></tr>
-          <tr><td>DeepSeek</td><td>7B/67B</td><td>推理/代码</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>模型</strong></td><td style="padding:10px;border-bottom:1px solid #333">MiniMax-M3 / Kimi / Claude</td><td style="padding:10px;border-bottom:1px solid #333">Qwen2.5 / DeepSeek / bge-m3</td><td style="padding:10px;border-bottom:1px solid #333">云端主力 + 本地兜底</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>推理框架</strong></td><td style="padding:10px;border-bottom:1px solid #333">API 直连</td><td style="padding:10px;border-bottom:1px solid #333"><strong>oMLX</strong>（Apple Silicon）</td><td style="padding:10px;border-bottom:1px solid #333">oMLX + API fallback</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>并发上限</strong></td><td style="padding:10px;border-bottom:1px solid #333">数百并发</td><td style="padding:10px;border-bottom:1px solid #333"><strong style="color:#EF4444">3 并发</strong>（软肋）</td><td style="padding:10px;border-bottom:1px solid #333">云端扛主力、本地高峰期</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>请求量（实测）</strong></td><td style="padding:10px;border-bottom:1px solid #333">主力任务调用</td><td style="padding:10px;border-bottom:1px solid #333"><strong>39.3 万次</strong>（bge-m3 占 91%）</td><td style="padding:10px;border-bottom:1px solid #333">embedding 全走本地</td></tr>
+          <tr><td style="padding:10px;border-bottom:1px solid #333"><strong>硬件</strong></td><td style="padding:10px;border-bottom:1px solid #333">—</td><td style="padding:10px;border-bottom:1px solid #333">M5 Pro 64GB · Metal 4</td><td style="padding:10px;border-bottom:1px solid #333">单机全栈</td></tr>
         </tbody>
       </table>
+
+      <div class="alert alert-info" style="margin-top:16px">
+        <p style="font-size:13px"><strong>📌 关键结论：</strong>oMLX 是 Apple Silicon 上最佳本地推理框架。但 3 并发限制使其无法作为生产主力，必须配合云端降级链路。本地主打 embedding + 兜底推理，云端主力处理复杂任务。</p>
+      </div>
     </div>
 
-
-    <!-- Slide 3：为什么需要生态协同 -->
+    <!-- Slide 3：9 模型清单 + 降级链路 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#22C55E;margin-bottom:18px">🌐 为什么需要生态协同？</h2>
-      <p style="font-size:16px;color:var(--text-secondary);margin-bottom:24px">
-        单打独斗的智能体走不远，生态协同才能形成闭环
+      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:14px">🤖 9 模型清单 · 降级链路</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:16px;color:#38bdf8;margin-bottom:8px">☁️ 云端 4 模型</h3>
+          <table style="width:100%;font-size:12px">
+            <tr><td style="padding:4px 0">MiniMax-M3</td><td style="color:#22C55E">主力（总调度+研究）</td></tr>
+            <tr><td style="padding:4px 0">MiniMax-M2.7</td><td style="color:#38bdf8">降级备用</td></tr>
+            <tr><td style="padding:4px 0">Kimi Coding</td><td style="color:#F59E0B">代码场景</td></tr>
+            <tr><td style="padding:4px 0">CM Code Latest</td><td style="color:#A855F7">工程任务</td></tr>
+          </table>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
+          <h3 style="font-size:16px;color:#22C55E;margin-bottom:8px">🏠 本地 oMLX 9 模型</h3>
+          <table style="width:100%;font-size:12px">
+            <tr><td style="padding:4px 0">bge-m3</td><td style="color:#22C55E">91% 请求量（embedding）</td></tr>
+            <tr><td style="padding:4px 0">Qwen2.5 7B</td><td>通用对话兜底</td></tr>
+            <tr><td style="padding:4px 0">DeepSeek 7B</td><td>推理代码兜底</td></tr>
+            <tr><td style="padding:4px 0">LLaMA3 8B</td><td>英文任务</td></tr>
+            <tr><td style="padding:4px 0">Yi 6B</td><td>中文优化</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:8px">
+        <p style="font-size:13px"><strong>📌 降级链路：</strong>M3 → M2.7 → CM Code → Kimi Coding → 本地 oMLX（Qwen/DeepSeek）。确保任何时候 Agent 都不会因模型不可用而挂死。</p>
+      </div>
+    </div>
+
+    <!-- Slide 4：幻觉防御 · 4 个真实案例 -->
+    <div class="slide">
+      <h2 style="font-size:32px;color:#EC4899;margin-bottom:14px">🛡️ 幻觉防御 · 4 个真实案例</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        LLM 会说谎——不是故意的，但结果一样严重。以下全部来自实战记录。
       </p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto">
-        <div class="card" style="padding:16px;text-align:center">
-          <div style="font-size:32px;margin-bottom:8px">🔗</div>
-          <h3 style="font-size:14px;color:#22C55E">能力互补</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">每个Agent专注所长</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+        <div class="card" style="padding:14px;border-left:3px solid #EF4444">
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">🔴 案例 1：股东比例造假</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            LLM 声称飞马国际某股东持股 <strong>17.73%</strong>。Tavily 验证发现实际无此数据——LLM 将一个案例中的数字"迁移"到了另一个公司。
+          </p>
+          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>数字类输出必须交叉验证，不可直接引用。</p>
         </div>
-        <div class="card" style="padding:16px;text-align:center">
-          <div style="font-size:32px;margin-bottom:8px">🔄</div>
-          <h3 style="font-size:14px;color:#22C55E">数据流转</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">产出自动传递给下游</p>
+        <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">🟡 案例 2：research 声称"已完成"</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            research 代理两次 sessions_send "已完成"汇报，但文件实际未写入。main 通过 <strong>fs 校验</strong> 发现差异并仲裁。
+          </p>
+          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>"说了"不等于"做了"，必须 ls + wc -l 验证。</p>
         </div>
-        <div class="card" style="padding:16px;text-align:center">
-          <div style="font-size:32px;margin-bottom:8px">📊</div>
-          <h3 style="font-size:14px;color:#22C55E">版本一致</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">共享知识库状态</p>
+        <div class="card" style="padding:14px;border-left:3px solid #A855F7">
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">🟣 案例 3：财务数字年份错配</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            星恒电源尽调中，LLM 将 2022 年营收 35.99 亿错误标注为 2024 年。原始数据源标记模糊导致。
+          </p>
+          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>年份标注是硬指标，每条数据需带 source year。</p>
         </div>
-        <div class="card" style="padding:16px;text-align:center">
-          <div style="font-size:32px;margin-bottom:8px">🛡️</div>
-          <h3 style="font-size:14px;color:#22C55E">质量保障</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">多重校验机制</p>
+        <div class="card" style="padding:14px;border-left:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:6px">🔵 案例 4：SelfCheckGPT 一致性验证</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            用 SelfCheckGPT 对 10 个 LLM 输出做事实一致性检查，发现 <strong>3/10 存在偏差</strong>。自检是第一道防线。
+          </p>
+          <p style="font-size:13px;color:#22C55E;margin-top:6px"><strong>教训：</strong>LLM 自检 + 交叉验证 = 双重保障。</p>
         </div>
       </div>
     </div>
 
-    <!-- Slide 4：5+2+1+1 协同架构 -->
+    <!-- Slide 5：cite-then-answer 方法论 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:18px">🏗️ 5+2+1+1 协同架构</h2>
-      <table style="width:100%;max-width:900px;margin:0 auto;font-size:13px;border-collapse:collapse">
-        <thead>
-          <tr style="background:rgba(139,92,246,0.1)">
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #8b5cf6">组件</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #8b5cf6">职责</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #8b5cf6">协同方式</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🎯 main</td><td style="padding:10px;border-bottom:1px solid #333">总调度</td><td style="padding:10px;border-bottom:1px solid #333">任务分派、结果汇总</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">📋 project</td><td style="padding:10px;border-bottom:1px solid #333">项目管理</td><td style="padding:10px;border-bottom:1px solid #333">流程协调、进度跟踪</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🔍 research</td><td style="padding:10px;border-bottom:1px solid #333">研究分析</td><td style="padding:10px;border-bottom:1px solid #333">行业/财务分析</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">💾 data</td><td style="padding:10px;border-bottom:1px solid #333">数据处理</td><td style="padding:10px;border-bottom:1px solid #333">清洗、入库、OCR</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">📝 report</td><td style="padding:10px;border-bottom:1px solid #333">报告生成</td><td style="padding:10px;border-bottom:1px solid #333">排版、格式化</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🦄 Claude Code</td><td style="padding:10px;border-bottom:1px solid #333">编程助手</td><td style="padding:10px;border-bottom:1px solid #333">代码开发、技术纵深</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🐙 Hermes</td><td style="padding:10px;border-bottom:1px solid #333">运维助手</td><td style="padding:10px;border-bottom:1px solid #333">系统运维、部署</td></tr>
-        </tbody>
-      </table>
+      <h2 style="font-size:32px;color:#22C55E;margin-bottom:14px">📋 cite-then-answer · 先引用再回答</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
+        核心原则：<strong>先锁定来源，再给出结论</strong>。不是"答完再找证据"，而是"找到证据再回答"。
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px">
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:6px">1. 来源锁定</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            每条关键数据必须标注<strong>来源文件 + 段落</strong>。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">2. 双重验证</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            关键数字必须<strong>两个独立源交叉验证</strong>。一个来自 LLM 检索，一个来自 Tavily / 外部 API。
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">3. self-check 自检</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+            输出后执行三项检查：事实核查 / 逻辑一致性 / 来源可追溯。<strong>三项通过才算"完成"</strong>。
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:13px"><strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是"更聪明的模型"，而是<strong>更严格的流程</strong>。</p>
+      </div>
     </div>
 
-    <!-- Slide 5：部署方案对比 -->
+    <!-- Slide 6：数据安全 + 本地化 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#f59e0b;margin-bottom:18px">☁️ 部署方案对比</h2>
-      <table style="width:100%;max-width:900px;margin:0 auto;font-size:13px;border-collapse:collapse">
-        <thead>
-          <tr style="background:rgba(245,158,11,0.1)">
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">方案</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">优点</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">缺点</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #f59e0b">适用场景</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">☁️ 纯云端</td><td style="padding:10px;border-bottom:1px solid #333">零运维、成本低</td><td style="padding:10px;border-bottom:1px solid #333">数据上报、隐私风险</td><td style="padding:10px;border-bottom:1px solid #333">非敏感场景</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🏠 纯本地</td><td style="padding:10px;border-bottom:1px solid #333">数据安全、完全可控</td><td style="padding:10px;border-bottom:1px solid #333">硬件成本高、算力有限</td><td style="padding:10px;border-bottom:1px solid #333">金融/政务等高敏感</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">🔄 混合部署</td><td style="padding:10px;border-bottom:1px solid #333">平衡安全与成本</td><td style="padding:10px;border-bottom:1px solid #333">架构复杂</td><td style="padding:10px;border-bottom:1px solid #333">主流选择</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:14px">🔒 数据安全 · 本地化架构</h2>
 
-    <!-- Slide 6：本地模型选型 -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:18px">🤖 本地模型选型指南</h2>
-      <table style="width:100%;max-width:900px;margin:0 auto;font-size:13px;border-collapse:collapse">
-        <thead>
-          <tr style="background:rgba(6,182,212,0.1)">
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #06b6d4">模型</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #06b6d4">参数</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #06b6d4">场景</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #06b6d4">显存需求</th>
-            <th style="padding:12px;text-align:left;border-bottom:2px solid #06b6d4">推荐度</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">Qwen2.5</td><td style="padding:10px;border-bottom:1px solid #333">7B/14B/72B</td><td style="padding:10px;border-bottom:1px solid #333">通用对话</td><td style="padding:10px;border-bottom:1px solid #333">14GB/28GB/150GB</td><td style="padding:10px;border-bottom:1px solid #333">⭐⭐⭐⭐⭐</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">DeepSeek</td><td style="padding:10px;border-bottom:1px solid #333">7B/67B</td><td style="padding:10px;border-bottom:1px solid #333">推理/代码</td><td style="padding:10px;border-bottom:1px solid #333">14GB/130GB</td><td style="padding:10px;border-bottom:1px solid #333">⭐⭐⭐⭐⭐</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">LLaMA3</td><td style="padding:10px;border-bottom:1px solid #333">8B/70B</td><td style="padding:10px;border-bottom:1px solid #333">通用</td><td style="padding:10px;border-bottom:1px solid #333">16GB/140GB</td><td style="padding:10px;border-bottom:1px solid #333">⭐⭐⭐⭐</td></tr>
-          <tr><td style="padding:10px;border-bottom:1px solid #333">Yi</td><td style="padding:10px;border-bottom:1px solid #333">6B/34B</td><td style="padding:10px;border-bottom:1px solid #333">中文优化</td><td style="padding:10px;border-bottom:1px solid #333">12GB/68GB</td><td style="padding:10px;border-bottom:1px solid #333">⭐⭐⭐⭐</td></tr>
-        </tbody>
-      </table>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
+        <div class="card" style="padding:16px;border-top:3px solid #06b6d4">
+          <h3 style="font-size:15px;color:#06b6d4;margin-bottom:8px">🔐 数据分级策略</h3>
+          <table style="width:100%;font-size:12px">
+            <tr style="color:#EF4444"><td style="padding:4px 0"><strong>🔴 核心数据</strong></td><td>尽调底稿、审计报告、估值模型</td><td>仅本地</td></tr>
+            <tr style="color:#F59E0B"><td style="padding:4px 0"><strong>🟡 业务数据</strong></td><td>项目进度、谈判纪要、内部评审</td><td>本地 + 加密云端</td></tr>
+            <tr style="color:#22C55E"><td style="padding:4px 0"><strong>🟢 公开数据</strong></td><td>研报、新闻、行业报告</td><td>云端 OK</td></tr>
+          </table>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #A855F7">
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">🏠 本地化基础设施</h3>
+          <table style="width:100%;font-size:12px">
+            <tr><td style="padding:4px 0"><strong>Qdrant 向量库</strong></td><td>本地 Docker，数据不出机器</td></tr>
+            <tr><td style="padding:4px 0"><strong>PostgreSQL</strong></td><td>本地 Docker，结构化数据</td></tr>
+            <tr><td style="padding:4px 0"><strong>Wiki 知识库</strong></td><td>localhost:19000，仅内网可访问</td></tr>
+            <tr><td style="padding:4px 0"><strong>oMLX 推理</strong></td><td>100% 本地，0 数据外传</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:8px">
+        <p style="font-size:13px"><strong>⚠️ 铁律：</strong>涉及企业核心经营数据的处理，<strong style="color:#EF4444">必须走本地链路</strong>。云端仅用于公开信息检索和通用对话。敏感数据不上云。</p>
+      </div>
     </div>
 
     <!-- Slide 7：落地四步法 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#ec4899;margin-bottom:18px">🚀 落地四步法</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto">
-        <div style="padding:20px;background:rgba(236,72,153,0.1);border-radius:12px;border-top:4px solid #ec4899">
-          <div style="font-size:36px;font-weight:bold;color:#ec4899;margin-bottom:12px">01</div>
-          <h3 style="font-size:18px;margin-bottom:8px">装得上</h3>
-          <p style="font-size:13px;color:var(--text-secondary)">选择适配的模型与框架，搭建基础设施</p>
+      <h2 style="font-size:32px;color:#ec4899;margin-bottom:14px">🚀 落地四步法</h2>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto 20px">
+        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
+          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">01</div>
+          <h3 style="font-size:16px;margin-bottom:8px">装得上</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">选模型 + 框架，搭基础设施</p>
+          <p style="font-size:13px;color:#ec4899;margin-top:4px">oMLX + Docker + PG</p>
         </div>
-        <div style="padding:20px;background:rgba(236,72,153,0.1);border-radius:12px;border-top:4px solid #ec4899">
-          <div style="font-size:36px;font-weight:bold;color:#ec4899;margin-bottom:12px">02</div>
-          <h3 style="font-size:18px;margin-bottom:8px">用得起</h3>
-          <p style="font-size:13px;color:var(--text-secondary)">优化推理效率，控制算力成本</p>
+        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
+          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">02</div>
+          <h3 style="font-size:16px;margin-bottom:8px">用得起</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">优化推理效率，控制算力成本</p>
+          <p style="font-size:13px;color:#ec4899;margin-top:4px">降级链路 + 配额管理</p>
         </div>
-        <div style="padding:20px;background:rgba(236,72,153,0.1);border-radius:12px;border-top:4px solid #ec4899">
-          <div style="font-size:36px;font-weight:bold;color:#ec4899;margin-bottom:12px">03</div>
-          <h3 style="font-size:18px;margin-bottom:8px">调得动</h3>
-          <p style="font-size:13px;color:var(--text-secondary)">工作流编排，让Agent能干活</p>
+        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
+          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">03</div>
+          <h3 style="font-size:16px;margin-bottom:8px">调得动</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">工作流编排，Agent 能干活</p>
+          <p style="font-size:13px;color:#ec4899;margin-top:4px">MCP + sessions_send</p>
         </div>
-        <div style="padding:20px;background:rgba(236,72,153,0.1);border-radius:12px;border-top:4px solid #ec4899">
-          <div style="font-size:36px;font-weight:bold;color:#ec4899;margin-bottom:12px">04</div>
-          <h3 style="font-size:18px;margin-bottom:8px">养得活</h3>
-          <p style="font-size:13px;color:var(--text-secondary)">持续运营，知识库迭代优化</p>
+        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
+          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">04</div>
+          <h3 style="font-size:16px;margin-bottom:8px">养得活</h3>
+          <p style="font-size:12px;color:var(--text-secondary)">持续运营，知识库迭代优化</p>
+          <p style="font-size:13px;color:#ec4899;margin-top:4px">MEMORY.md + 心跳巡检</p>
         </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:13px"><strong>📌 一句话：</strong>装得上 → 用得起 → 调得动 → 养得活。四步缺一不可，每一步都有真实踩坑记录。</p>
       </div>
     </div>
 
-
   </main>
-      <!-- 翻页导航 -->
-      <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
-        <a href="09-helpers.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
-        <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
-        <a href="11-hallucination.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
-      </div>
-<script src="../assets/js/main.js"></script>
-<!-- 键盘导航 -->
+
+  <!-- 翻页导航 -->
+  <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
+    <a href="final-chapter-03.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+    <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
+    <a href="final-chapter-05.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+  </div>
+
+<script src="../assets/js/main.js?v=20260705-fix"></script>
 <script>
 document.addEventListener("keydown", function(e) {
   if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA") return;
-  const slides = document.querySelectorAll(".slide");
-  const activeIndex = Array.from(slides).findIndex(s => s.classList.contains("active"));
-  if (["ArrowRight", "PageDown", "ArrowDown", " "].includes(e.key) && activeIndex < slides.length - 1) {
+  var slides = document.querySelectorAll(".slide");
+  var activeIndex = Array.from(slides).findIndex(function(s) { return s.classList.contains("active"); });
+  if (["ArrowRight", "PageDown", "ArrowDown", " "].indexOf(e.key) !== -1 && activeIndex < slides.length - 1) {
     slides[activeIndex].classList.remove("active");
     slides[activeIndex + 1].classList.add("active");
     e.preventDefault();
   }
-  if (["ArrowLeft", "PageUp", "ArrowUp"].includes(e.key) && activeIndex > 0) {
+  if (["ArrowLeft", "PageUp", "ArrowUp"].indexOf(e.key) !== -1 && activeIndex > 0) {
     slides[activeIndex].classList.remove("active");
     slides[activeIndex - 1].classList.add("active");
     e.preventDefault();
   }
 });
 </script>
-
 </body>
 </html>

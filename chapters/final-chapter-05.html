@@ -17,19 +17,19 @@
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
         <h1 style="font-size:64px;color:#A855F7;margin-bottom:8px"><span class="burst-trigger holo" data-burst="burst-train-1" data-hint="👉 训练智能体">🛠️ 如何训练一个智能体</span></h1>
         <h2 style="font-size:32px;color:var(--text-secondary);font-weight:normal;margin-top:8px">训练 vs 编排 · Hermes 案例 · 自我进化</h2>
-        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">Phase F 新增章节 · 2026-07-03 · 主公实测</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:14px">Phase F 新增章节 · 2026-07-03 · 实战验证</p>
       </header>
 
       <div class="story-card" style="margin-top:40px;max-width:880px;margin-left:auto;margin-right:auto">
         <p class="story-meta">金句开篇</p>
         <p style="font-size:18px;line-height:1.8">
           "你不需要训练一个新模型，<br>你需要<span style="color:#A855F7;font-weight:bold">编排一组已有能力</span>。"
-          <span style="color:var(--text-muted);font-size:14px">—— 主公 2026-07-03 训练方法论</span>
+          <span style="color:var(--text-muted);font-size:14px">—— 实战经验 2026-07-03 训练方法论</span>
         </p>
       </div>
 
       <div style="margin-top:36px;text-align:center">
-        <p style="color:var(--text-muted);font-size:13px">主公金句：智能体是<strong style="color:#A855F7">架构的艺术</strong>，不是参数的堆砌。</p>
+        <p style="color:var(--text-muted);font-size:13px">实战金句：智能体是<strong style="color:#A855F7">架构的艺术</strong>，不是参数的堆砌。</p>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
             <td>通用任务、流程编排</td>
           </tr>
           <tr>
-            <td><strong>主公推荐</strong></td>
+            <td><strong>实践推荐</strong></td>
             <td>慎用（仅当 99% 通用都失败）</td>
             <td><strong style="color:#A855F7">首选（90% 场景）</strong></td>
           </tr>
@@ -85,25 +85,25 @@
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px">
         <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
           <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">🔄 ReAct（Reasoning + Acting）</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
             思维链 + 工具调用交替：思考→调用→观察→再思考<br>
             <strong>代表：</strong>LangChain ReAct Agent<br>
-            <strong>主公用法：</strong>5 Agent 的基础调度模式
+            <strong>实战用法：</strong>5 Agent 的基础调度模式
           </p>
         </div>
 
         <div class="card" style="padding:14px;border-top:3px solid #22C55E">
           <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🪞 Reflexion（自我反思）</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
             执行→错则反思→记入 memory→下次避免<br>
             <strong>代表：</strong>Reflexion 论文<br>
-            <strong>主公用法：</strong>MEMORY.md 的教训沉淀机制
+            <strong>实战用法：</strong>MEMORY.md 的教训沉淀机制
           </p>
         </div>
 
         <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
           <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🤖 AutoGPT / BabyAGI</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
             目标驱动 + 任务自动拆解<br>
             <strong>代表：</strong>2023 火过、但不稳定<br>
             <strong>教训：</strong>纯自主 ≠ 优质；需 main 调度
@@ -112,16 +112,16 @@
 
         <div class="card" style="padding:14px;border-top:3px solid #A855F7">
           <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🧰 Tool-Use（工具调用）</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6">
             LLM 调用 API / DB / 文件 / 网络<br>
             <strong>代表：</strong>OpenAI Function Calling / Anthropic Tool Use<br>
-            <strong>主公用法：</strong>MCP 协议（11 章已讲）
+            <strong>实战用法：</strong>MCP 协议（11 章已讲）
           </p>
         </div>
       </div>
 
       <div class="alert alert-info">
-        <p style="font-size:12px"><strong>📌 关键事实</strong>：主公 5 Agent + 工具调用，比 AutoGPT 类自主 Agent <strong>稳定 10x</strong>。因为有 main 调度 + 多 Agent 互验。</p>
+        <p style="font-size:12px"><strong>📌 关键事实</strong>：我们的 5 Agent + 工具调用，比 AutoGPT 类自主 Agent <strong>稳定 10x</strong>。因为有 main 调度 + 多 Agent 互验。</p>
       </div>
     </div>
 
@@ -133,7 +133,7 @@
         <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
           <div style="font-size:14px;color:#38bdf8;font-weight:bold;margin-bottom:4px">STEP 1</div>
           <h3 style="font-size:16px;color:#38bdf8;margin-bottom:6px">📝 定职责</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
             这个 Agent <strong>做什么</strong>、<strong>不做什么</strong><br>
             例："data 只清洗，不分析"
           </p>
@@ -142,7 +142,7 @@
         <div class="card" style="padding:14px;border-top:3px solid #22C55E">
           <div style="font-size:14px;color:#22C55E;font-weight:bold;margin-bottom:4px">STEP 2</div>
           <h3 style="font-size:16px;color:#22C55E;margin-bottom:6px">🧠 设模型</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
             用哪个模型？降级策略？<br>
             例："M3 → M2.7 → 公开模型"
           </p>
@@ -151,7 +151,7 @@
         <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
           <div style="font-size:14px;color:#F59E0B;font-weight:bold;margin-bottom:4px">STEP 3</div>
           <h3 style="font-size:16px;color:#F59E0B;margin-bottom:6px">🛠️ 接工具</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
             MCP / Function Calling / API<br>
             例：data 接 Qdrant + PG
           </p>
@@ -160,7 +160,7 @@
         <div class="card" style="padding:14px;border-top:3px solid #A855F7">
           <div style="font-size:14px;color:#A855F7;font-weight:bold;margin-bottom:4px">STEP 4</div>
           <h3 style="font-size:16px;color:#A855F7;margin-bottom:6px">🔁 建回路</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5">
             记忆/反馈/版本控制<br>
             例：MEMORY.md + task-tracker
           </p>
@@ -168,7 +168,7 @@
       </div>
 
       <div class="alert alert-success">
-        <p style="font-size:13px"><strong>📌 主公金句</strong>："<strong style="color:#A855F7">先做 80 分的 Agent，再迭代到 90 分</strong>。完美主义是智能体项目最大的杀手。"</p>
+        <p style="font-size:13px"><strong>📌 实战金句</strong>："<strong style="color:#A855F7">先做 80 分的 Agent，再迭代到 90 分</strong>。完美主义是智能体项目最大的杀手。"</p>
       </div>
     </div>
 
@@ -232,12 +232,12 @@
       <h2 style="font-size:32px;color:#febc2e;margin-bottom:14px">📐 Hermes 的编码规范（基线）</h2>
 
       <div class="alert alert-warning" style="margin-bottom:16px">
-        <p style="font-size:13px"><strong>📌 主公观察</strong>：Hermes V1.x 之后加入了 <strong>"代码基线"</strong> 概念——每次新增功能前先评估是否复用现有函数，避免脚本无限膨胀。</p>
+        <p style="font-size:13px"><strong>📌 实战观察</strong>：Hermes V1.x 之后加入了 <strong>"代码基线"</strong> 概念——每次新增功能前先评估是否复用现有函数，避免脚本无限膨胀。</p>
       </div>
 
-      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📋 8 条核心规范（主公实战）</h3>
+      <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">📋 8 条核心规范（实战总结）</h3>
 
-      <div style="background:#0F172A;padding:18px;border-radius:8px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:1.7">
+      <div style="background:#0F172A;padding:18px;border-radius:8px;font-family:monospace;font-size:13px;color:var(--text-secondary);line-height:1.7">
         <strong style="color:#febc2e">① 配置集中化：</strong>所有路径/阈值放 YAML，不硬编码<br>
         <strong style="color:#febc2e">② 日志规范：</strong>每个脚本入口打印版本号 + 参数哈希<br>
         <strong style="color:#febc2e">③ 增量更新：</strong>支持 --incremental / --full 双模式<br>
@@ -259,7 +259,7 @@
 
       <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">🔁 4 步反馈循环</h3>
 
-      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:11px;color:var(--text-secondary);line-height:1.8">
+      <div style="background:#0F172A;padding:18px;border-radius:8px;margin-bottom:16px;font-family:monospace;font-size:13px;color:var(--text-secondary);line-height:1.8">
         <strong style="color:#38bdf8">[执行]</strong> Hermes 跑脚本 V3.38<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↓<br>
 <strong style="color:#F59E0B">[观察]</strong> memory/core 检测成功率 87%（异常）<br>
@@ -271,7 +271,7 @@
 
       <h3 style="font-size:16px;color:#febc2e;margin:14px 0 10px">💡 关键洞察</h3>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:11px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:13px">
         <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
           <strong style="color:#38bdf8;font-size:12px">📊 数据驱动</strong><br>
           自动采集成功率/耗时/异常 → 不靠"感觉"
@@ -312,7 +312,7 @@
     <!-- Slide 8.5：5+2+1+1 同构 · 训练闭环也是同一个数字（13章首发）-->
     <div class="slide">
       <h2 class="slide-title">训练闭环 <span style="color:#A855F7">也是</span> 5+2+1+1 = 9</h2>
-      <p class="slide-subtitle">把主公团队的 5+2+1+1 拆解映射到训练闭环，从「方法论」变「同构」</p>
+      <p class="slide-subtitle">把团队的 5+2+1+1 拆解映射到训练闭环，从「方法论」变「同构」</p>
 
       <div class="isomorphism-map">
 
@@ -320,7 +320,7 @@
         <div class="iso-row iso-row-5">
           <div class="iso-tag">5 大 Agent</div>
           <div class="iso-eq">=</div>
-          <div class="iso-name">5 步训练法 <span style="font-size:11px;color:var(--text-secondary)">(ReAct 自反思循环)</span></div>
+          <div class="iso-name">5 步训练法 <span style="font-size:13px;color:var(--text-secondary)">(ReAct 自反思循环)</span></div>
           <div class="iso-detail">
             <span class="iso-pill iso-pill-1">① 部署</span>
             <span class="iso-pill iso-pill-2">② 执行</span>
@@ -334,7 +334,7 @@
         <div class="iso-row iso-row-2">
           <div class="iso-tag">2 大助手</div>
           <div class="iso-eq">=</div>
-          <div class="iso-name">内外双闭环 <span style="font-size:11px;color:var(--text-secondary)">(Claude Code + Hermes)</span></div>
+          <div class="iso-name">内外双闭环 <span style="font-size:13px;color:var(--text-secondary)">(Claude Code + Hermes)</span></div>
           <div class="iso-detail">
             <span class="iso-pill" style="background:rgba(0,212,255,0.1);border-color:#00D4FF;color:#00D4FF">内环 Claude Code：编辑 → 跑测试 → 修补</span>
             <span class="iso-pill" style="background:rgba(168,85,247,0.1);border-color:#A855F7;color:#A855F7">外环 Hermes：抓运行日志 → 触发重训</span>
@@ -345,7 +345,7 @@
         <div class="iso-row iso-row-1-1">
           <div class="iso-tag">1 套中台</div>
           <div class="iso-eq">=</div>
-          <div class="iso-name">1 套训练红线 <span style="font-size:11px;color:var(--text-secondary)">(AGENTS.md + CODING_STANDARDS.md)</span></div>
+          <div class="iso-name">1 套训练红线 <span style="font-size:13px;color:var(--text-secondary)">(AGENTS.md + CODING_STANDARDS.md)</span></div>
           <div class="iso-detail">
             <span class="iso-pill" style="background:rgba(86,211,100,0.1);border-color:#56d364;color:#56d364">
               失败即规则：每次训练异常，必须立即把「失败原因+规则」写进 MEMORY.md
@@ -353,14 +353,14 @@
           </div>
         </div>
 
-        <!-- 1 主公 = 1 验收人 -->
+        <!-- 1 验收人 = 1 验收人 -->
         <div class="iso-row iso-row-1-2">
-          <div class="iso-tag">1 主公</div>
+          <div class="iso-tag">1 验收人</div>
           <div class="iso-eq">=</div>
-          <div class="iso-name">1 验收人 <span style="font-size:11px;color:var(--text-secondary)">(训练闭环的最终判官)</span></div>
+          <div class="iso-name">1 验收人 <span style="font-size:13px;color:var(--text-secondary)">(训练闭环的最终判官)</span></div>
           <div class="iso-detail">
             <span class="iso-pill" style="background:rgba(245,158,11,0.1);border-color:#F59E0B;color:#F59E0B">
-              主公拍板：训练是否上线 / 是否回滚 / 是否扩展
+              最终拍板：训练是否上线 / 是否回滚 / 是否扩展
             </span>
           </div>
         </div>
@@ -378,7 +378,7 @@
 
       <div style="max-width:780px;margin:0 auto">
         <div class="story-card" style="margin-bottom:18px">
-          <p class="story-meta">主公总结</p>
+          <p class="story-meta">实战总结</p>
           <p style="font-size:18px;line-height:1.8;color:var(--text-primary)">
             "<strong style="color:#A855F7">训练 AI 不是调参</strong>，<br>是<strong style="color:#febc2e">编排一组能力</strong>。<br>
             <br>28 个版本，<strong style="color:#22C55E">4 步闭环</strong>。<br>
@@ -386,7 +386,7 @@
           </p>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:10px;text-align:center">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:12px;text-align:center">
           <div class="card" style="padding:10px">
             <div style="font-size:20px;margin-bottom:4px">📝</div>
             <strong style="color:#A855F7">定职责</strong>
@@ -411,9 +411,9 @@
   </main>
       <!-- 翻页导航 -->
       <div style="position:fixed;bottom:30px;left:0;right:0;text-align:center;z-index:9999">
-        <a href="12-data-security.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
+        <a href="final-chapter-04.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">◀ 上一章</a>
         <a href="../index.html" style="display:inline-block;padding:10px 20px;background:rgba(0,0,0,0.6);color:#fff;border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px">📋 目录</a>
-        <a href="14-workflow.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
+        <a href="final-chapter-06.html" style="display:inline-block;padding:10px 20px;background:var(--accent);color:var(--bg-primary);border-radius:6px;margin:0 10px;text-decoration:none;font-size:14px;font-weight:bold">下一章 ▶</a>
       </div>
 
 
