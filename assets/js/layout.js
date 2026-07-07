@@ -19,8 +19,8 @@
     { num: '04', file: 'final-chapter-04.html', title: '生态协同与部署方案',         emoji: '🌐' },
     { num: '05', file: 'final-chapter-05.html', title: '从零到一：打造你的第一个智能体', emoji: '🛠️' },
     { num: '06', file: 'final-chapter-06.html', title: '个人 Workflow 升级路径',     emoji: '🌱' },
-    { num: '07', file: 'final-chapter-07.html', title: '6 大实战案例',               emoji: '📊' },
-    { num: '08', file: 'final-chapter-08.html', title: '现场演示 + Q&A + 落地',      emoji: '🎬' },
+    { num: '07', file: 'final-chapter-07.html', title: '现场互动演示',               emoji: '🎬' },
+    { num: '08', file: 'final-chapter-08.html', title: '总结与展望',                  emoji: '📋' },
   ];
 
   // 当前章节信息（从 URL 推断）

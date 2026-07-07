@@ -32,7 +32,7 @@
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:18px">
         <div class="card" style="padding:18px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">🧠</span><h3 style="margin:0">大脑（大模型）</h3></div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">负责推理、决策、规划。MiniMax / Kimi / Claude / DeepSeek / 小米 Mimo，多模型融合。</p>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">负责推理、决策、规划。云端主力模型 + 本地模型兜底，多模型融合保障稳定。</p>
         </div>
         <div class="card" style="padding:18px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">🔧</span><h3 style="margin:0">双手（Tools）</h3></div>
@@ -40,11 +40,11 @@
         </div>
         <div class="card" style="padding:18px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">📝</span><h3 style="margin:0">记忆（Memory）</h3></div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">短期上下文 + 长期向量库。本体系用 Qdrant + bge-m3。</p>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">短期上下文 + 长期向量库，每次任务自动积累，越用越聪明。</p>
         </div>
         <div class="card" style="padding:18px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">📋</span><h3 style="margin:0">计划（Planning）</h3></div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">CoT 思维链 + ToT 思维树 + ReAct 推理-行动循环。</p>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">逐步推理 + 多路径探索 + 反思-行动循环，确保输出经过审慎推敲。</p>
         </div>
       </div>
 
@@ -94,7 +94,7 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
         <div class="card" style="padding:14px;border-left:4px solid #febc2e">
           <h3 style="font-size:15px;color:#febc2e;margin-bottom:4px">💻 Claude Code</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6"><strong>架构师。</strong>写代码 · 深度计算 · Monte Carlo 模拟。10 分钟完成研究员 1 周工作量。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6"><strong>架构师。</strong>写代码 · 深度计算 · Monte Carlo 模拟。大幅压缩计算时间，研究员聚焦专业判断。</p>
         </div>
         <div class="card" style="padding:14px;border-left:4px solid #56d364">
           <h3 style="font-size:15px;color:#56d364;margin-bottom:4px">⚙️ Hermes</h3>
@@ -102,12 +102,12 @@
         </div>
         <div class="card" style="padding:14px;border-left:4px solid #A855F7">
           <h3 style="font-size:15px;color:#A855F7;margin-bottom:4px">📚 Wiki 知识库</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6"><strong>中台。</strong>5,886 实体 · 8 collections · Qdrant + PostgreSQL 双库。每次任务自动入库。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6"><strong>中台。</strong>近 6000 条结构化知识 · 8 大知识域。每次任务自动入库沉淀。</p>
         </div>
       </div>
 
       <div class="alert alert-success" style="margin-top:14px;font-size:13px">
-        <strong>📌 一个公式：</strong>5 Agent 协同 = 专业分工 × 并行执行 × 记忆沉淀。不是人头叠加，是能力乘积。
+        <strong>📌 一个公式：</strong>5 Agent 协同 = 专业分工 × 并行执行 × 记忆沉淀。不是数量叠加，是能力乘积。
       </div>
     </div>
 
@@ -156,7 +156,7 @@
       </div>
 
       <div class="alert alert-info" style="font-size:12px">
-        <strong>💡 一句话：</strong>不是因为 5 Agent 架构更「先进」，而是因为<strong style="color:#22C55E">专业技能需要持久身份来承载</strong>。临时工永远成不了专家。
+        <strong>💡 一句话：</strong>不是因为 5 Agent 架构更「先进」，而是因为<strong style="color:#22C55E">专业技能需要持久身份来承载</strong>。持续积累才能形成真正的专业能力。
       </div>
     </div>
 
@@ -216,7 +216,7 @@
           <h3 style="font-size:14px;color:#f59e0b;margin-bottom:8px">🫀 HEARTBEAT 心跳机制</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
             Main 代理每 <strong>15 分钟</strong>执行一次全局心跳检查，覆盖 <strong>9 项清单</strong>：<br>
-            1. Docker 服务状态（PostgreSQL + Qdrant）<br>
+            1. 底层服务状态（数据库 + 知识库）<br>
             2. 任务跟踪（in-progress > 2h 告警）<br>
             3. 异步任务超时重试（最多 3 次）<br>
             4. Session 状态巡检（> 3MB 自动压缩）<br>

@@ -35,23 +35,20 @@ https://jinzhanxiang.github.io/ai-course-tianbao/index.html
 - 仓库：https://github.com/jinzhanxiang/ai-course-tianbao
 - 部署方式：GitHub Pages（main 分支根目录）
 
-## 📚 课程目录（12 章节）
+## 📚 课程目录（8 章节）
 
-```
-00 · 封面            https://jinzhanxiang.github.io/ai-course-tianbao/chapters/00-cover.html
-01 · 开场破题       https://jinzhanxiang.github.io/ai-course-tianbao/chapters/01-opening.html
-02 · 智能体革命     https://jinzhanxiang.github.io/ai-course-tianbao/chapters/02-revolution.html
-03 · main 调度      https://jinzhanxiang.github.io/ai-course-tianbao/chapters/03-main.html
-04 · project 项目   https://jinzhanxiang.github.io/ai-course-tianbao/chapters/04-project.html
-05 · research V3    https://jinzhanxiang.github.io/ai-course-tianbao/chapters/05-research.html
-06 · data 清洗      https://jinzhanxiang.github.io/ai-course-tianbao/chapters/06-data.html
-07 · report 排版    https://jinzhanxiang.github.io/ai-course-tianbao/chapters/07-report.html
-08 · 三智能体生态   https://jinzhanxiang.github.io/ai-course-tianbao/chapters/08-ecosystem.html
-09 · 实战案例       https://jinzhanxiang.github.io/ai-course-tianbao/chapters/09-case.html
-10 · 纵横分析法     https://jinzhanxiang.github.io/ai-course-tianbao/chapters/10-methodology.html
-11 · 现场演示 ⭐    https://jinzhanxiang.github.io/ai-course-tianbao/chapters/11-demo.html
-12 · Q&A           https://jinzhanxiang.github.io/ai-course-tianbao/chapters/12-qa.html
-```
+| 章节 | 文件 |
+|------|------|
+| 01 · 开场破题 | `chapters/final-chapter-01.html` |
+| 02 · 什么是智能体 | `chapters/final-chapter-02.html` |
+| 03 · 5+2+1+1 体系总览 | `chapters/final-chapter-03.html` |
+| 04 · 生态与部署方案 | `chapters/final-chapter-04.html` |
+| 05 · 从零到一：打造智能体 | `chapters/final-chapter-05.html` |
+| 06 · 个人 Workflow 路径 | `chapters/final-chapter-06.html` |
+| 07 · 现场互动演示 | `chapters/final-chapter-07.html` |
+| 08 · 总结与展望 | `chapters/final-chapter-08.html` |
+
+> 入口：`index.html` → 左侧边栏选择章节，或直接访问 `https://jinzhanxiang.github.io/ai-course-tianbao/index.html`
 
 ## 🎯 部署说明
 
@@ -135,7 +132,8 @@ git add . && git commit -m "v1.x 更新说明" && git push origin main
 
 | 版本 | 日期 | 内容 |
 |------|------|------|
-| **v1.2** | 2026-07-01 | 9 章节全员铺可点击 + 精细动画 + 共享 modal 池 |
+| **v2.0** | 2026-07-05 | 重构为 8 章节 final 版 + 全课件逻辑审计 + P0/P1 修复 |
+| v1.2 | 2026-07-01 | 9 章节全员铺可点击 + 精细动画 + 共享 modal 池 |
 | v1.1 | 2026-07-01 | 主页 Slide 2 可点击总览 + 5 大案例弹窗 + 6 问展开 |
 | v1.0 | 2026-07-01 | 12 章节完整交付 + Wiki API 实时接入 + README 操作手册 |
 
@@ -150,23 +148,10 @@ git add . && git commit -m "v1.x 更新说明" && git push origin main
 
 ---
 
-## ✨ 最新一轮深划（2026-07-04 · commit 2f4f032）
+## ✨ 最新更新（2026-07-05 · v2.0）
 
-### 🎬 真实结果贯通
-- **36/36 burst 全部配 resultLink** — 点开任一 burst 即看真实交付
-- 晶能光电报告：https://pull-shipment-por-associates.trycloudflare.com/V3426_颜色内容双重修复_交付报告_20260704.html
-- 星恒电源报告：https://jinzhanxiang.github.io/xingheng-report/
-
-### 🎨 AI 视频生成（minimax-portal/MiniMax-Hailuo-2.3）
-- `assets/videos/agents-9-cinematic.mp4`（6s 开场）
-- `assets/videos/course-demo-30s.mp4`（30s 端到端演示）
-
-### 🎯 美学升级
-- burst 标题渐变 + 副标题 + 绿色脉冲按钮
-- burst-header 顶部扫描光线动画
-- 7 个 HTML 模拟器嵌入（war-room / radar-8d / data-pipeline 等）
-
-### 📊 演示流畅度
-- 键盘导航：← → 翻页 / Space 触发 / Esc 关闭
-- 进度条：topbar 实时显示当前章节
-- 烟雾测试：19/19 PASS · 0 错误
+### 🔍 全课件逻辑审计
+- 8 章节交叉审查：修复跨章矛盾、角色描述统一、数据口径一致
+- P0 修复：Ch06 智能引号导致 HTML 解析异常（160 处替换）
+- P1 修复：效率数字统一（×200→×16-32）、Hermes 角色描述统一、产能公式修正
+- P2 优化：Ivan Zhao 引语简化、McKinsey 页面精简、README 同步更新

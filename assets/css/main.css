@@ -3638,3 +3638,484 @@ html[data-mode="presentation"] .slide {
   padding: 40px 80px !important;
   box-sizing: border-box !important;
 }
+
+/* =====================================================
+   Interactive Demo System Styles
+   ===================================================== */
+
+/* Demo run button */
+.demo-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #00D4FF, #0098CC);
+  color: #0A0E27;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.3);
+}
+.demo-run-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.5);
+}
+.demo-run-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.demo-run-btn.orange {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
+}
+.demo-run-btn.green {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  box-shadow: 0 0 16px rgba(34, 197, 94, 0.3);
+}
+.demo-run-btn.purple {
+  background: linear-gradient(135deg, #A855F7, #7C3AED);
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.3);
+}
+
+/* Status indicator bar */
+.demo-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid #1E3A6E;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  font-size: 12px;
+}
+.demo-status-indicator {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Demo output panel */
+.demo-output {
+  display: none;
+  margin-top: 14px;
+  border: 1px solid #1E3A6E;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0A0E27;
+}
+.demo-output.active {
+  display: block;
+}
+.demo-output-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(0, 212, 255, 0.06);
+  border-bottom: 1px solid #1E3A6E;
+}
+.demo-output-title {
+  color: #00D4FF;
+  font-size: 13px;
+  font-weight: 600;
+}
+.demo-output-status {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 2px 10px;
+  border-radius: 4px;
+}
+.demo-status-success {
+  color: #22C55E;
+  background: rgba(34, 197, 94, 0.1);
+}
+.demo-status-error {
+  color: #EF4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+.demo-output-close {
+  background: none;
+  border: none;
+  color: #8FA1CC;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+.demo-output-close:hover { color: #EF4444; }
+.demo-output-content {
+  padding: 14px 16px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Terminal-style output */
+.demo-terminal {
+  margin: 0;
+  padding: 12px 16px;
+  background: #060A1A;
+  border: 1px solid #1E3A6E;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #E8EEFF;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.demo-stderr {
+  margin: 8px 0 0;
+  padding: 10px 14px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #EF4444;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.demo-error {
+  margin: 0;
+  padding: 10px 14px;
+  color: #EF4444;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* Loading spinner */
+.demo-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  color: #8FA1CC;
+  font-size: 13px;
+}
+.demo-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #1E3A6E;
+  border-top-color: #00D4FF;
+  border-radius: 50%;
+  animation: demo-spin 0.8s linear infinite;
+}
+@keyframes demo-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* KPI row in demo output */
+.demo-kpi-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #1E3A6E;
+}
+.demo-kpi-item {
+  flex: 1;
+  text-align: center;
+  padding: 8px;
+  background: rgba(0, 212, 255, 0.04);
+  border-radius: 6px;
+}
+.demo-kpi-value {
+  display: block;
+  color: #00D4FF;
+  font-size: 18px;
+  font-weight: bold;
+}
+.demo-kpi-label {
+  display: block;
+  color: #8FA1CC;
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+/* Image result */
+.demo-image-result {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* Demo button group */
+.demo-btn-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+/* Full-width demo showcase (for ch05 live demo) */
+.demo-showcase {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(10, 14, 39, 0.4);
+  border: 1px solid #1E3A6E;
+  border-radius: 12px;
+}
+.demo-showcase h3 {
+  color: #F59E0B;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.demo-live-request {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.demo-live-request input {
+  flex: 1;
+  padding: 10px 14px;
+  background: #0A0E27;
+  border: 1px solid #1E3A6E;
+  border-radius: 8px;
+  color: #F0F4FF;
+  font-size: 14px;
+  font-family: var(--font-main);
+}
+.demo-live-request input::placeholder {
+  color: #5A6A8A;
+}
+.demo-live-request input:focus {
+  outline: none;
+  border-color: #F59E0B;
+}
+
+/* =====================================================
+   Demo v2 — SSE Streaming Interactive Components
+   ===================================================== */
+
+/* Server status indicator */
+.demo-status-indicator {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* Run button */
+.demo-run-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, #00D4FF, #0090FF);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+}
+.demo-run-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+}
+.demo-run-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  filter: grayscale(30%);
+}
+
+/* Output panel */
+.demo-output {
+  display: none;
+  margin-top: 16px;
+}
+.demo-output.active {
+  display: block;
+}
+.demo-output-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(0, 212, 255, 0.04);
+  border: 1px solid #1E3A6E;
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+.demo-output-title {
+  color: #00D4FF;
+  font-size: 13px;
+  font-weight: bold;
+}
+.demo-output-status {
+  color: #8FA1CC;
+  font-size: 11px;
+  transition: color 0.3s ease;
+}
+.demo-output-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #8FA1CC;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s;
+}
+.demo-output-close:hover {
+  color: #EF4444;
+}
+.demo-output-content {
+  border: 1px solid #1E3A6E;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 12px;
+}
+
+/* Log stream */
+.demo-log-stream {
+  max-height: 380px;
+  overflow-y: auto;
+  background: #060A1A;
+  border: 1px solid #1E3A6E;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.6;
+  color: #E8EEFF;
+}
+.demo-log-line {
+  animation: logSlideIn 0.12s ease-out;
+}
+@keyframes logSlideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Progress heartbeat bar */
+.demo-progress-heartbeat {
+  height: 3px;
+  background: linear-gradient(90deg, #00D4FF, #0090FF, #00D4FF);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  animation: heartbeatPulse 1.2s ease-in-out infinite;
+}
+@keyframes heartbeatPulse {
+  0%   { opacity: 0.4; background-position: 0% 50%; }
+  50%  { opacity: 1;   background-position: 100% 50%; }
+  100% { opacity: 0.4; background-position: 0% 50%; }
+}
+
+/* Panic button */
+.demo-panic-btn {
+  padding: 4px 10px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 4px;
+  color: #EF4444;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.demo-panic-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #EF4444;
+}
+
+/* Prerecorded badge */
+.demo-prerecorded-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: rgba(168, 85, 247, 0.12);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 4px;
+  color: #A855F7;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Upload zone */
+.demo-upload-zone {
+  margin-top: 12px;
+}
+.demo-drop-area {
+  padding: 32px 20px;
+  border: 2px dashed #1E3A6E;
+  border-radius: 10px;
+  text-align: center;
+  color: #8FA1CC;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: rgba(0, 212, 255, 0.02);
+}
+.demo-drop-area:hover,
+.demo-drop-area.dragover {
+  border-color: #00D4FF;
+  background: rgba(0, 212, 255, 0.06);
+  color: #00D4FF;
+}
+.demo-upload-progress {
+  display: none;
+  margin-top: 8px;
+  height: 4px;
+  background: linear-gradient(90deg, #F59E0B, #EF4444);
+  background-size: 200% 100%;
+  border-radius: 2px;
+  animation: uploadPulse 0.8s ease-in-out infinite;
+}
+@keyframes uploadPulse {
+  0%   { opacity: 0.4; background-position: 0% 50%; }
+  50%  { opacity: 1;   background-position: 100% 50%; }
+  100% { opacity: 0.4; background-position: 0% 50%; }
+}
+
+/* Result area */
+.demo-result-area {
+  margin-top: 8px;
+}
+
+/* Terminal-style pre output */
+.demo-terminal {
+  background: #020617;
+  border: 1px solid #1E3A6E;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.7;
+  color: #E8EEFF;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+/* Loading state */
+.demo-loading {
+  text-align: center;
+  padding: 20px;
+  color: #F59E0B;
+  font-size: 14px;
+}
+
+/* Error state */
+.demo-error {
+  color: #EF4444;
+  font-size: 13px;
+  padding: 12px;
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 6px;
+}
+
+/* Result preview image */
+.demo-result-preview {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 8px;
+  border: 1px solid #1E3A6E;
+}
