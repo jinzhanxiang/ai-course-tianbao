@@ -1,664 +1,222 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<html lang="zh-CN" data-theme="dark" data-mode="presentation">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 04 章 · 生态与方案 — 智能体赋能投资研究</title>
+  <title>第 04 章 · 我能用吗？门槛在哪？ — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
 </head>
 <body class="chapter-page sci-fi-bg">
-  <main class="main-stage">
+  <main class="main-stage" style="background:#060A1A">
 
     <!-- Slide 1：章节封面 -->
     <div class="slide active">
-      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
-        <h1 style="font-size:52px;color:#a855f7;margin-bottom:8px">🔑 第 04 章 · 生态与方案</h1>
-        <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
-          数据安全 · 部署模型 · 幻觉防御 · 迭代优化 · 系统维护
-        </h2>
-        <p style="font-size:14px;color:var(--text-muted);margin-top:32px;max-width:800px;margin-left:auto;margin-right:auto">
-          第 03 章讲清了 5+2+1+1 体系「是什么」，本章聚焦「怎么跑得安全、跑得稳」——从数据安全到部署模型，从幻觉防御到持续迭代，这是生产环境落地的完整保障。
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
+        <h1 style="font-size:52px;color:#22C55E;margin-bottom:8px">🛠️ 第 04 章 · 我能用吗？门槛在哪？</h1>
+        <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">30 分钟跑通第一个智能体 · 6 个月升级到架构师</h2>
+        <p style="font-size:14px;color:var(--text-muted);margin-top:28px;max-width:800px;margin-left:auto;margin-right:auto">
+          第 03 章讲清了体系原理。现在回答最实际的问题：<strong style="color:#22C55E">你作为一个非程序员，能不能用？怎么开始？多久能见效？</strong>
         </p>
       </header>
     </div>
 
-    <!-- Slide 2：数据安全 · 本地化架构（放在第一位） -->
+    <!-- Slide 2：破除迷思 — 训练 vs 编排 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:14px">🔒 数据安全 · 本地化架构</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
-        投资行业数据敏感性极高——尽调底稿、审计报告、估值模型一旦外泄，后果不可逆。
-      </p>
+      <h2 style="font-size:30px;color:#22C55E;margin-bottom:12px">⚡ 破除迷思：你不需要训练模型</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">大多数人以为需要训练模型，实际上<strong style="color:#22C55E">编排已有能力</strong>才是 90% 的真实场景</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
-        <div class="card" style="padding:16px;border-top:3px solid #06b6d4">
-          <h3 style="font-size:15px;color:#06b6d4;margin-bottom:8px">🔐 数据分级策略</h3>
-          <table style="width:100%;font-size:12px">
-            <tr style="color:#EF4444"><td style="padding:4px 0"><strong>🔴 核心数据</strong></td><td>尽调底稿、审计报告、估值模型</td><td>仅本地</td></tr>
-            <tr style="color:#F59E0B"><td style="padding:4px 0"><strong>🟡 业务数据</strong></td><td>项目进度、谈判纪要、内部评审</td><td>本地 + 加密云端</td></tr>
-            <tr style="color:#22C55E"><td style="padding:4px 0"><strong>🟢 公开数据</strong></td><td>研报、新闻、行业报告</td><td>云端 OK</td></tr>
-          </table>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #A855F7">
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">🏠 本地化基础设施</h3>
-          <table style="width:100%;font-size:12px">
-            <tr><td style="padding:4px 0"><strong>Qdrant 向量库</strong></td><td>本地 Docker，数据不出机器</td></tr>
-            <tr><td style="padding:4px 0"><strong>PostgreSQL</strong></td><td>本地 Docker，结构化数据</td></tr>
-            <tr><td style="padding:4px 0"><strong>Wiki 知识库</strong></td><td>localhost:19000，仅内网可访问</td></tr>
-            <tr><td style="padding:4px 0"><strong>MEMORY.md</strong></td><td>持久化记忆，跨会话上下文</td></tr>
-          </table>
-        </div>
-      </div>
+      <table class="data-table" style="margin:0 auto;width:100%;font-size:12px">
+        <thead><tr style="background:var(--bg-card);color:#22C55E"><th>维度</th><th>🎓 训练（模型微调）</th><th>🛠️ 编排（提示词 + 工具）</th></tr></thead>
+        <tbody>
+          <tr><td><strong>投入</strong></td><td>$100K-1M 数据 + GPU</td><td><strong style="color:#22C55E">免费开始</strong></td></tr>
+          <tr><td><strong>周期</strong></td><td>周/月</td><td><strong style="color:#22C55E">1 小时</strong></td></tr>
+          <tr><td><strong>技能要求</strong></td><td>ML 工程师</td><td><strong style="color:#22C55E">会用电脑即可</strong></td></tr>
+          <tr><td><strong>适用场景</strong></td><td>专业领域术语、安全合规</td><td><strong style="color:#22C55E">日报/爬取/分析/摘要</strong></td></tr>
+          <tr><td><strong>维护成本</strong></td><td>持续数据标注</td><td><strong style="color:#22C55E">改提示词即可</strong></td></tr>
+        </tbody>
+      </table>
 
-      <div class="alert alert-warning" style="margin-top:8px">
-        <p style="font-size:13px"><strong>⚠️ 铁律：</strong>涉及企业核心经营数据的处理，<strong style="color:#EF4444">必须走本地链路</strong>。云端仅用于公开信息检索和通用对话。敏感数据不上云，这是不可妥协的安全底线。</p>
+      <div class="alert alert-success" style="margin-top:16px;font-size:12px">
+        <strong>结论：</strong>编排是性价比最高的起点。只有当你有了明确的专业术语库、大量标注数据、且提示词优化已经到天花板时，才考虑训练。
       </div>
     </div>
 
-    <!-- Slide 3：部署模型（合并原部署选型 + 模型清单，结合本地安全） -->
+    <!-- Slide 3：4 步拥有第一个智能体 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#f59e0b;margin-bottom:14px">☁️ 部署模型 · 云端主力 + 本地兜底</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
-        云端模型做主力 · 本地模型做兜底 · 降级链路保底 —— 安全与效率兼顾的最佳实践
-      </p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:14px">🗺️ 4 步拥有你的第一个智能体（总计约 30 分钟）</h2>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">☁️ 云端主力（首选）</h3>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0">MiniMax-M3</td><td style="color:#22C55E">总调度+研究</td></tr>
-            <tr><td style="padding:3px 0">MiniMax-M2.7</td><td style="color:#38bdf8">降级备用</td></tr>
-            <tr><td style="padding:3px 0">Kimi Coding</td><td style="color:#F59E0B">代码场景</td></tr>
-            <tr><td style="padding:3px 0">CM Code Latest</td><td style="color:#A855F7">工程任务</td></tr>
-          </table>
-          <p style="font-size:11px;color:var(--text-secondary);margin-top:6px">数百并发 · API 直连 · 公开数据</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px">
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:32px;margin-bottom:6px">1️⃣</div>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:4px">获取模型</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">注册商汤大模型<br>免费领取 API Key<br>DeepSeek V4 Flash</p>
+          <p style="font-size:12px;color:#F59E0B;margin-top:6px"><strong>5 分钟</strong></p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🏠 本地兜底（安全）</h3>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0">bge-m3</td><td style="color:#22C55E">91% 请求量</td></tr>
-            <tr><td style="padding:3px 0">Qwen2.5 7B</td><td>通用对话兜底</td></tr>
-            <tr><td style="padding:3px 0">DeepSeek 7B</td><td>推理代码兜底</td></tr>
-            <tr><td style="padding:3px 0">LLaMA3/Yi 6B</td><td>多语言补充</td></tr>
-          </table>
-          <p style="font-size:11px;color:var(--text-secondary);margin-top:6px"><strong>oMLX</strong> · M5 Pro 64GB · 3 并发 · 0 数据外传</p>
+        <div class="card" style="padding:14px;border-top:3px solid #00D4FF;text-align:center">
+          <div style="font-size:32px;margin-bottom:6px">2️⃣</div>
+          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:4px">安装框架</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">Hermes 一键安装包<br>解压即用<br>Windows 原生支持</p>
+          <p style="font-size:12px;color:#00D4FF;margin-top:6px"><strong>3 分钟</strong></p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #ec4899">
-          <h3 style="font-size:15px;color:#ec4899;margin-bottom:8px">🔄 降级链路</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
-            <div>M3 → M2.7 → CM Code → Kimi Coding</div>
-            <div style="margin-top:6px;padding-top:6px;border-top:1px dashed #555">↓ 全部不可用</div>
-            <div style="margin-top:6px"><strong style="color:#22C55E">本地 oMLX 接管</strong></div>
-            <div style="color:var(--text-secondary)">Qwen / DeepSeek 兜底</div>
-          </div>
-          <p style="font-size:11px;color:#EF4444;margin-top:8px"><strong>确保 Agent 永不挂死</strong></p>
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7;text-align:center">
+          <div style="font-size:32px;margin-bottom:6px">3️⃣</div>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:4px">连接飞书</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">关联飞书群<br>@机器人 即可调用<br>消息 → Agent → 回复</p>
+          <p style="font-size:12px;color:#A855F7;margin-top:6px"><strong>10 分钟</strong></p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E;text-align:center">
+          <div style="font-size:32px;margin-bottom:6px">4️⃣</div>
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:4px">定义工作流</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">写一段提示词<br>配一个工具<br>完成第一个任务</p>
+          <p style="font-size:12px;color:#22C55E;margin-top:6px"><strong>15 分钟</strong></p>
         </div>
       </div>
 
-      <div class="alert alert-info" style="margin-top:8px">
-        <p style="font-size:13px"><strong>📌 实测数据：</strong>本地 oMLX 累计处理 <strong>39.3 万次</strong>请求（bge-m3 embedding 占 91%）。云端主力处理复杂推理任务，本地主打 embedding + 兜底推理。敏感数据 100% 走本地链路。</p>
-        <p style="font-size:12px;color:#22C55E;margin-top:6px"><strong>💡 对你的意义：</strong>你不需要关心"现在用的是哪个模型"——系统自动选择最优路径。公开数据走云端（快），敏感数据走本地（安全），模型挂了自动切换（稳）。</p>
+      <div class="alert alert-info" style="margin-top:16px;text-align:center;font-size:13px">
+        <strong>演讲结束后，拷贝安装包即可开始。</strong>不需要 Python 环境、不需要联网下载。依赖包已全部预下载内置。
       </div>
     </div>
 
-    <!-- Slide 4：幻觉防御（合并原 4 案例 + cite-then-answer） -->
+    <!-- Slide 4：3 个工作流模板 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#EC4899;margin-bottom:14px">🛡️ 我们踩过的坑 · 幻觉防御实录</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">
-        LLM 会说谎——不是故意的，但结果一样严重。以下 4 个坑全部来自<strong style="color:#EC4899">星恒电源项目的真实记录</strong>。先看坑，再看怎么防。
-      </p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">📋 3 个预置模板，明天就能用</h2>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-        <div class="card" style="padding:10px;border-left:3px solid #EF4444">
-          <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 股东比例造假</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px">
+        <div class="card" style="padding:16px;border-left:4px solid #F59E0B">
+          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px">📋 日报生成器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">飞书群消息 → Agent 摘要 → 自动推送日报</p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#F59E0B">提示词：</strong>"读取最近 24 小时群消息，按主题分类摘要，不超过 500 字，Markdown 格式输出"
+          </div>
+          <p style="font-size:10px;color:#F59E0B;margin-top:6px">⏱ 搭建时间：10 分钟</p>
         </div>
-        <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
-          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 research 声称"已完成"</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过 fs 校验发现差异并仲裁。</p>
+        <div class="card" style="padding:16px;border-left:4px solid #00D4FF">
+          <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px">🕷️ 信息爬取器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">输入 URL → 自动爬取 → 结构化输出</p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#00D4FF">提示词：</strong>"爬取指定网页内容，提取关键数据和表格，输出结构化 JSON 并推送飞书"
+          </div>
+          <p style="font-size:10px;color:#00D4FF;margin-top:6px">⏱ 搭建时间：15 分钟</p>
         </div>
-        <div class="card" style="padding:10px;border-left:3px solid #A855F7">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🟣 财务数字年份错配</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">星恒尽调中，LLM 将 2022 年营收 35.99 亿错误标注为 2024 年。原始数据源标记模糊导致。</p>
-        </div>
-        <div class="card" style="padding:10px;border-left:3px solid #38bdf8">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 SelfCheckGPT 一致性验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
+        <div class="card" style="padding:16px;border-left:4px solid #A855F7">
+          <h3 style="font-size:16px;color:#A855F7;margin-bottom:8px">📊 数据清洗器</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">上传 Excel → 自动清洗去重 → 输出报告</p>
+          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#A855F7">提示词：</strong>"读取上传的 Excel，去重、标准化日期格式、检测异常值，输出清洗报告"
+          </div>
+          <p style="font-size:10px;color:#A855F7;margin-top:6px">⏱ 搭建时间：20 分钟</p>
         </div>
       </div>
 
-      <h3 style="font-size:18px;color:#22C55E;margin-bottom:10px">📋 cite-then-answer · 先引用再回答</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
-        <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">1. 来源锁定</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">2. 双重验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #A855F7">
-          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">3. self-check 自检</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
-        </div>
-      </div>
-
-      <div class="alert alert-success">
-        <p style="font-size:12px"><strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是"更聪明的模型"，而是<strong>更严格的流程</strong>。</p>
+      <div class="alert alert-success" style="margin-top:16px;font-size:12px">
+        <strong>工作流本质 = 输入 → Agent（提示词 + 工具）→ 输出。</strong>你定义的是「输入什么、怎么处理、输出什么」。换项目名称，流程不变。
       </div>
     </div>
 
-    <!-- Slide 5：星恒项目真实迭代之旅（替换原 Skillhub 通用内容） -->
+    <!-- Slide 5：L1-L5 升级路径 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#8b5cf6;margin-bottom:10px">🔄 一个项目的真实迭代 · 星恒电源 30+ 次进化</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px">
-        智能体不是"一键出报告就完事了"——以下是<strong style="color:#8b5cf6">星恒电源项目</strong>从第一版到最终交付的完整迭代链路。
-      </p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">🪜 从零基础到架构师 · 5 阶段升级路径</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">如果你已跑通第一个智能体，恭喜——你已经站在 <strong style="color:#38bdf8">L2</strong> 的门槛上。下面是完整成长路线。</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <!-- Phase 1 -->
-        <div class="card" style="padding:14px;border-left:4px solid #EF4444">
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 Phase 1 · 05.14 首次启动（前 4 轮系统未校准）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.65">
-            <strong>AI 做了什么：</strong>Research Agent（纵横分析法）自动运行——Phase 0 本地文件消化 → Phase 1 纵向分析 → 多源数据检索 → LLM 生成初稿。<br>
-            <strong style="color:#EF4444">暴露的问题：</strong><br>
-            • API Key 全部缺失 → 15 个搜索维度门控 score=0，全部失败<br>
-            • KG 数据库 schema 不匹配 → 检索完全失效<br>
-            • LLM 全部超时 → 降级模块缺失<br>
-            • <strong style="color:#EF4444">致命缺陷：基于公开信息的营收高估约 100%</strong>
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(239,68,68,0.08);border-radius:4px;font-size:11px;color:#EF4444">
-            <strong>💡 人的判断介入：</strong>拿到 v1 报告后，立即发现营收数字与其他尽调材料矛盾 → 触发审计数据修正流程。
-          </div>
-        </div>
-
-        <!-- Phase 2 -->
-        <div class="card" style="padding:14px;border-left:4px solid #F59E0B">
-          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 Phase 2 · 05.15 审计突破 + 当日 8 轮迭代（v2）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.65">
-            <strong>AI 做了什么：</strong><br>
-            • 修复 API Key → 搜索恢复 → 天眼查数据源集成<br>
-            • Claude Code 介入：基于审计报告重新建模<br>
-            • Monte Carlo 10000 次模拟 → P10/P50/P90 全分布<br>
-            • 管理层声称交叉验证：发现预测偏差 -35%，产能规划高估 67%<br>
-            <strong style="color:#F59E0B">关键突破：</strong>v1（公开数据）→ v2（审计数据），营收修正至准确值。
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(245,158,11,0.08);border-radius:4px;font-size:11px;color:#F59E0B">
-            <strong>💡 人的判断介入：</strong>Claude Code 10 分钟完成研究员 1 周的 Monte Carlo 模拟——但估值假设的合理性仍需投资团队确认。
-          </div>
-        </div>
-
-        <!-- Phase 3 -->
-        <div class="card" style="padding:14px;border-left:4px solid #38bdf8">
-          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">🔵 Phase 3 · 06.11-12 dd1→dd11 质量打磨（11轮/15h）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.65">
-            <strong>AI 做了什么：</strong><br>
-            • 11 轮 data 质量迭代（dd1→dd11）：每轮 Challenge A 数据完整性校验 + Challenge B 逻辑一致性门控<br>
-            • dd6（06.12 09:14）首次注入真实财务数据（营收 29.49 亿、净利润 2,163 万）<br>
-            • 天眼查 v2 集成：50 家股东信息提取 → 股权穿透图自动生成<br>
-            • Hermes V0→V3 四轮进化：OCR 提取率 30%→90%+<br>
-            • data Agent：155 个清洗脚本 → 5,967 实体入库 Wiki
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(56,189,248,0.08);border-radius:4px;font-size:11px;color:#38bdf8">
-            <strong>💡 人的判断介入：</strong>每轮 dd 迭代后人工抽检关键数据点——发现 dd5 的产能数据与审计报告不一致 → 触发 dd6 全量财务数据校准。
-          </div>
-        </div>
-
-        <!-- Phase 4 -->
-        <div class="card" style="padding:14px;border-left:4px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 Phase 4 · 06.20-22 Claude Code 纵深 + 交付部署</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.65">
-            <strong>AI 做了什么：</strong><br>
-            • Claude Code v1（06.20 21:20）基于公开信息初稿 → v2（21:30）引入审计数据修正 → v3（06.22）产业链上下游全景分析<br>
-            • 17 家股东逐一穿透（司法拍卖、外资准入、对赌回购等）+ 9 附件自动生成<br>
-            • Monte Carlo 10000 次模拟：P10/P50/P90 全分布估值<br>
-            • project Agent：GitHub Pages 一键部署 → 桌面版+手机版双版本<br>
-            • <strong>最终交付：272KB 主报告 + 9 附件 + 交互式 HTML</strong>
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(34,197,94,0.08);border-radius:4px;font-size:11px;color:#22C55E">
-            <strong>💡 人的判断介入：</strong>最终投资决策（不建议收购，估值亏 68%）由投资团队做出——AI 提供数据和模型，人不做甩手掌柜。
-          </div>
-        </div>
-      </div>
-
-      <div class="alert alert-success" style="margin-top:10px">
-        <p style="font-size:13px"><strong>📌 这条迭代链的核心启示：</strong>AI 不是"一键出报告"，而是<strong style="color:#22C55E">人机协同的持续打磨</strong>。30+ 次迭代中，AI 负责体力活（搜索/清洗/计算/排版），人负责判断活（发现数据矛盾/验证假设/做最终决策）。<strong style="color:#F59E0B">每一次迭代，AI 都在积累记忆——下次同类项目直接复用。</strong></p>
-      </div>
-    </div>
-
-    <!-- Slide 5.5：20+次失败才换来第一次成功 -->
-    <div class="slide">
-      <h2 style="font-size:30px;color:#EF4444;margin-bottom:10px">💀 20+ 次失败，才换来第一次成功</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">
-        星恒项目 Research Agent 的<strong style="color:#EF4444">真实迭代日志</strong>——前 4 轮系统完全未校准，第 5 轮首次突破，累计 26 轮才稳定交付。
-      </p>
-
-      <!-- Iteration timeline visual -->
-      <div style="margin-bottom:14px;padding:12px 16px;background:rgba(0,0,0,0.2);border-radius:8px">
-        <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px 0;text-align:center">每次迭代 ≈ 一次完整流水线运行（搜索→提取→分析→生成），彩色框 = 产出可用报告</p>
-        <div style="display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin-bottom:10px">
-          <span style="font-size:10px;color:var(--text-muted);margin-right:8px;align-self:center">05.14</span>
-          <span style="width:18px;height:18px;background:#EF4444;border-radius:3px;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center" title="equity_001">1</span>
-          <span style="width:18px;height:18px;background:#EF4444;border-radius:3px;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center" title="20260514">2</span>
-          <span style="width:18px;height:18px;background:#EF4444;border-radius:3px;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center" title="v331">3</span>
-          <span style="width:18px;height:18px;background:#EF4444;border-radius:3px;font-size:8px;color:#fff;display:flex;align-items:center;justify-content:center" title="restructured">4</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 6px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:4px;align-self:center">05.15</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold" title="audit 05:18 首次突破">5</span>
-          <span style="width:18px;height:18px;background:#F59E0B;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="fixverify">6</span>
-          <span style="width:18px;height:18px;background:#F59E0B;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="p0fix">7</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="v3_primary">8</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="tianyancha_v2">9</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="v4_fix">10</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="v332">11</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:8px;color:#000;display:flex;align-items:center;justify-content:center" title="test">12</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 6px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:4px;align-self:center">06.11-12</span>
-          <span style="width:18px;height:18px;background:#38bdf8;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd1">13</span>
-          <span style="width:18px;height:18px;background:#38bdf8;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd2">14</span>
-          <span style="width:18px;height:18px;background:#38bdf8;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd3">15</span>
-          <span style="width:18px;height:18px;background:#38bdf8;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd4">16</span>
-          <span style="width:18px;height:18px;background:#F59E0B;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd5">17</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold" title="dd6 首次注入真实财务数据">18</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd7">19</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd8">20</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd9">21</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="dd10">22</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold" title="dd11 最终版">23</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 6px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:4px;align-self:center">06.20-22</span>
-          <span style="width:18px;height:18px;background:#F59E0B;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="Claude Code v1">24</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center" title="Claude Code v2">25</span>
-          <span style="width:18px;height:18px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold" title="Claude Code v3">26</span>
-        </div>
-        <div style="display:flex;gap:16px;justify-content:center;font-size:10px">
-          <span><span style="display:inline-block;width:10px;height:10px;background:#EF4444;border-radius:2px;vertical-align:middle;margin-right:4px"></span>失败/未校准</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#F59E0B;border-radius:2px;vertical-align:middle;margin-right:4px"></span>部分可用</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#38bdf8;border-radius:2px;vertical-align:middle;margin-right:4px"></span>DD 质量打磨</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#22C55E;border-radius:2px;vertical-align:middle;margin-right:4px"></span>可用/突破</span>
-        </div>
-      </div>
-
-      <!-- 3 breakthrough moments -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E;text-align:center">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">🚀 第 1 次突破</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
-            <strong>05.15 05:18</strong><br>
-            审计数据首次接入成功<br>
-            7 维度搜索全部返回结果<br>
-            <span style="color:#22C55E">从 0 → 1 的关键转折</span>
-          </p>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
+        <div class="card" style="padding:12px;border-top:3px solid #56d364;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🌱</div>
+          <h3 style="font-size:14px;color:#56d364;margin-bottom:4px">L1 · 零基础</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">用 ChatGPT 聊天<br>发指令就能用</p>
+          <p style="font-size:12px;color:#56d364;margin-top:6px"><strong>1 天</strong></p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #38bdf8;text-align:center">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">📊 第 1 次质量达标</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
-            <strong>06.12 09:14（dd6）</strong><br>
-            首次注入真实财务数据<br>
-            营收 29.49 亿 / 净利 2,163 万<br>
-            <span style="color:#38bdf8">Challenge A+B 双通过</span>
-          </p>
+          <div style="font-size:24px;margin-bottom:4px">🔧</div>
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">L2 · 用户</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">用 AI 助手做专业工作<br>写报告/做研究/整数据</p>
+          <p style="font-size:12px;color:#38bdf8;margin-top:6px"><strong>1 周</strong></p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🎨</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:4px">L3 · 制作者</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">搭 n8n / Dify 流程<br>多步自动化</p>
+          <p style="font-size:12px;color:#F59E0B;margin-top:6px"><strong>1 月</strong></p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #A855F7;text-align:center">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🏁 最终交付</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
-            <strong>06.22 + 07.02</strong><br>
-            Claude Code v3 产业链全景<br>
-            GitHub Pages 线上部署<br>
-            <span style="color:#A855F7">272KB 主报告 + 9 附件</span>
-          </p>
+          <div style="font-size:24px;margin-bottom:4px">👥</div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">L4 · 训练官</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">培训新人使用<br>沉淀标准流程</p>
+          <p style="font-size:12px;color:#A855F7;margin-top:6px"><strong>3 月</strong></p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #EC4899;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🏛️</div>
+          <h3 style="font-size:14px;color:#EC4899;margin-bottom:4px">L5 · 架构师</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">设计 Agent 体系<br>跨部门流程</p>
+          <p style="font-size:12px;color:#EC4899;margin-top:6px"><strong>6 月+</strong></p>
         </div>
       </div>
 
-      <div class="alert alert-warning">
-        <p style="font-size:12px"><strong>📌 讲这个不是为了晒失败——是为了让你放心：</strong>系统不会一上来就完美，但<strong style="color:#F59E0B">每次失败都会变成记忆和校验规则</strong>。第一个项目踩了 20+ 次坑，第二个项目启动时这些坑全部被自动跳过。AI 系统的真正价值不在"一次做对"，而在<strong style="color:#22C55E">"同样的错不犯第二次"</strong>。</p>
-      </div>
-    </div>
-
-    <!-- Slide 5.6：晶能光电实验 · 叠加质疑Agent的回归问题 -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#f59e0b;margin-bottom:8px">⚠️ 实战案例 · 叠加质疑Agent反而导致质量下降</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
-        以下是一个<strong style="color:#f59e0b">真实发生的"升级反而倒退"案例</strong>——在纵横分析法（HV Analysis）基础上叠加V3质疑Agent后，报告质量不升反降。
-      </p>
-
-      <!-- Experiment design -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">📐 基线：HV Analysis（纵横分析法）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>实验对象：</strong>晶能光电（非上市LED芯片企业）<br>
-            <strong>方法：</strong>HV Analysis V3.43.0 深度模式<br>
-            <strong>架构：</strong>纵向（21年时间轴）+ 横向（6家可比公司）+ 交叉洞察<br>
-            <strong>数据源：</strong>桌面文件 + iFind + AKShare + Tavily + arXiv API
-          </div>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #f59e0b">
-          <h3 style="font-size:14px;color:#f59e0b;margin-bottom:6px">🔬 增强版：+ V3 Challenge/质疑Agent</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>叠加模块：</strong><br>
-            ① 数据溯源标注（源文件/来源类型/可信度A/B/C/D）<br>
-            ② 5级置信度校准（multi_source → contradiction）<br>
-            ③ Challenge B V3.0 防幻觉引擎（141数据点验证）<br>
-            ④ 论证/论点/论据三方质疑<br>
-            <strong>预期：</strong>在保持基线质量的同时，每条数据有源可查
-          </div>
-        </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
+        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #56d364"><div style="font-size:24px;color:#56d364;font-weight:900">1.0×</div><small style="color:var(--text-secondary);font-size:10px">基线</small></div>
+        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #38bdf8"><div style="font-size:24px;color:#38bdf8;font-weight:900">3×</div><small style="color:var(--text-secondary);font-size:10px">AI 助手提效</small></div>
+        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #F59E0B"><div style="font-size:24px;color:#F59E0B;font-weight:900">7×</div><small style="color:var(--text-secondary);font-size:10px">Dify 自动化</small></div>
+        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #A855F7"><div style="font-size:24px;color:#A855F7;font-weight:900">14×</div><small style="color:var(--text-secondary);font-size:10px">多 Agent 协同</small></div>
+        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #EC4899"><div style="font-size:24px;color:#EC4899;font-weight:900">40×</div><small style="color:var(--text-secondary);font-size:10px">企业级体系</small></div>
       </div>
 
-      <!-- Quantitative comparison table -->
-      <div style="margin-bottom:10px">
-        <p style="font-size:12px;color:var(--text-muted);margin:0 0 6px 0;text-align:center">▼ 对比结果：预期提升 → 实际大幅下降</p>
-        <table style="width:100%;font-size:11px">
-          <tr style="background:rgba(255,255,255,0.03)">
-            <td style="padding:6px 8px"><strong>对比维度</strong></td>
-            <td style="padding:6px 8px;color:#22C55E"><strong>基线（HV Analysis）</strong></td>
-            <td style="padding:6px 8px;color:#f59e0b"><strong>增强版（+ 质疑Agent）</strong></td>
-            <td style="padding:6px 8px;color:#EF4444"><strong>差距</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">正文字数</td>
-            <td style="padding:5px 8px;color:#22C55E">65,265 字</td>
-            <td style="padding:5px 8px;color:#f59e0b">11,136 字（MD）</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-83%</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">H2 章节</td>
-            <td style="padding:5px 8px;color:#22C55E">49 个</td>
-            <td style="padding:5px 8px;color:#f59e0b">14 个</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-35 个</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">Insight 洞察</td>
-            <td style="padding:5px 8px;color:#22C55E">11 个</td>
-            <td style="padding:5px 8px;color:#f59e0b">0 个</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-100%</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">数据点覆盖</td>
-            <td style="padding:5px 8px;color:#22C55E">445 个</td>
-            <td style="padding:5px 8px;color:#f59e0b">~50 个</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-89%</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">PE 估值引用</td>
-            <td style="padding:5px 8px;color:#22C55E">13 处</td>
-            <td style="padding:5px 8px;color:#f59e0b">0 处</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-100%</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">横向对标公司</td>
-            <td style="padding:5px 8px;color:#22C55E">6 家 × 12 维度</td>
-            <td style="padding:5px 8px;color:#f59e0b">1 节简略提及</td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>-92%</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:5px 8px">来源标注率</td>
-            <td style="padding:5px 8px;color:#22C55E">部分标注</td>
-            <td style="padding:5px 8px;color:#22C55E"><strong>100%（141/141）</strong></td>
-            <td style="padding:5px 8px;color:#22C55E"><strong>✅ 唯一提升项</strong></td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- Root cause diagnosis -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
-        <div style="padding:12px;background:rgba(239,68,68,0.06);border-radius:8px;border-left:3px solid #EF4444">
-          <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">🔴 根本原因：工作流被"腰斩"</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>指令：</strong>"直接OCR阅读 + 不走data代理"<br>
-            <strong>正确理解：</strong>不依赖外部数据库，只用本地文件<br>
-            <strong style="color:#EF4444">错误理解：</strong>不进行LLM深度分析，跳过工作流<br><br>
-            <strong>被跳过的关键步骤：</strong><br>
-            • Step6 检索层（无横向对标数据采集）<br>
-            • Step8 逻辑重组（无深度Insight生成）<br>
-            • 纵向时间轴分析（无21年技术/财务时间线）<br>
-            • 6维度对标模板（无结构化横向对比）
-          </div>
-        </div>
-        <div style="padding:12px;background:rgba(34,197,94,0.06);border-radius:8px;border-left:3px solid #22C55E">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">🟢 修复方案：本地文件模式≠跳过分析</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>代码级修复（hv_full_research.py）：</strong><br>
-            ① 新增 <code style="background:rgba(255,255,255,0.05);padding:1px 4px;border-radius:2px">--input-dir</code> 参数指定本地文件目录<br>
-            ② 新增 <code style="background:rgba(255,255,255,0.05);padding:1px 4px;border-radius:2px">local_context</code> 注入到LLM prompt<br>
-            ③ 保留完整工作流：纵向→横向→交叉→估值→风险<br>
-            ④ 本地文件作为context（不替代分析步骤）<br><br>
-            <strong>预期修复后：</strong>字数 30K+ | H2 30+ | Insight 8+
-          </div>
-        </div>
-      </div>
-
-      <!-- Lesson -->
-      <div class="alert alert-warning" style="margin-top:8px">
-        <p style="font-size:12px"><strong>📌 这个案例的核心启示：</strong>AI Agent 的"升级"不是搭积木——不是把质疑Agent往上一叠就自动变好。<strong style="color:#f59e0b">新模块的加入会改变工作流的执行路径</strong>，如果集成方式不对，新功能会把原有功能"吃掉"。真正有效的做法是：<strong style="color:#22C55E">在框架层面（代码参数 + prompt注入）集成新模块</strong>，而不是在流程外做后置处理。这和你的日常工作没有本质区别——引入新工具要先改造流程，而不是把新工具硬塞进旧流程里。</p>
+      <div class="alert alert-info" style="font-size:12px">
+        <strong>📌 实战观察：</strong>从 L1 到 L5，真实路径是 <strong style="color:#22C55E">6 个月</strong>（不是 6 年）。因为工具代差 = 数量级跃迁。一个企业谁先拥有 L4·训练官，产出就跨过线性坎。
       </div>
     </div>
 
-    <!-- Slide 5.7：方法论进化案例 · 从 V3 流水线到纵横分析法 -->
+    <!-- Slide 6：工具栈 + 12月里程碑 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px">🧬 案例 · 研究方法的范式转移：从「管Agent」到「帮Agent」</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
-        以下案例发生在<strong style="color:#22C55E">2026年7月6日</strong>——从发现问题到完成范式转换，<strong>仅用了一天</strong>。这不是计划好的升级，而是一次「架构诊断→认知转变→方法重构」的完整闭环。
-      </p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">🛠️ 推荐工具栈 + 12 个月里程碑</h2>
 
-      <!-- 三阶段对比 -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
-        <div class="card" style="padding:12px;border-top:3px solid #EF4444">
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 阶段一：V3 的结构性缺陷</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>17 phase × 70 模块 × 64K 行 Python</strong><br>
-            • Phase 1 输出被 Phase 2 忽略（架构断层）<br>
-            • 数据源路由刚性预设（MX → Qdrant → KG 必须全走）<br>
-            • 单向 12 步，不能回退补充检索<br>
-            • 质疑节点是外部门禁（Agent 不知道为什么被打回）<br>
-            <strong style="color:#EF4444">核心问题：64K 行代码实现的是一个僵硬的流水线</strong>
-          </div>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
-          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 阶段二：关键认知转折</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>一个朴素的问题：</strong><br>
-            为什么老分析师比年轻分析师强？<br><br>
-            不是因为「步骤更多」或「模板更全」：<br>
-            ① 知道<strong>什么时候该用什么数据源</strong><br>
-            ② 能<strong>识别数据缺口</strong>并主动补充<br>
-            ③ 会<strong>交叉验证</strong>而不是照单全收<br>
-            ④ 经验是<strong>原则</strong>而不是<strong>清单</strong><br>
-            <strong style="color:#F59E0B">核心认知：数据源应该服务 Agent，而非框死 Agent</strong>
-          </div>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 阶段三：纵横分析法诞生</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>1 个 SKILL.md，0 行代码</strong><br>
-            • Phase 0 前置：先读本地一手文件，再搜<br>
-            • 自适应闭环：每章 Q1-Q4 自检 → 补缺口 → 循环<br>
-            • 数据源路由规则：告诉「用什么/禁止用什么」，不规定调用顺序<br>
-            • 警醒信号 S1-S7：教 Agent「如何发现自己的偏见」<br>
-            • 降级链：MX → iFind → SearXNG（失败不退出）<br>
-            <strong style="color:#22C55E">核心公式：原则 > 清单，自检 > 门禁</strong>
-          </div>
-        </div>
-      </div>
-
-      <!-- 关键对比表 -->
-      <div style="margin-bottom:10px">
-        <table style="width:100%;font-size:11px">
-          <tr style="background:rgba(255,255,255,0.03)">
-            <td style="padding:5px 8px"><strong>维度</strong></td>
-            <td style="padding:5px 8px;color:#EF4444"><strong>V3 工作流</strong></td>
-            <td style="padding:5px 8px;color:#22C55E"><strong>纵横分析法</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">定位</td>
-            <td style="padding:4px 8px">给流水线的配置文件（17 phase × 70 模块）</td>
-            <td style="padding:4px 8px;color:#22C55E">给 Agent 的方法论（1 个 SKILL.md）</td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">数据源</td>
-            <td style="padding:4px 8px">刚性路由：固定调用 MX → Qdrant → KG</td>
-            <td style="padding:4px 8px;color:#22C55E">自适应路由：Agent 识别缺口后自主选择</td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">反馈</td>
-            <td style="padding:4px 8px">单向 12 步，不可回退</td>
-            <td style="padding:4px 8px;color:#22C55E">闭环循环：每章自检 → 补缺口</td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">质控</td>
-            <td style="padding:4px 8px">质疑节点 A/B（固定阈值 60%/70%，外部门禁）</td>
-            <td style="padding:4px 8px;color:#22C55E">Q1-Q4 自检 + S1-S7 警醒信号（内嵌自检）</td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">代码量</td>
-            <td style="padding:4px 8px;color:#EF4444">64K 行 Python</td>
-            <td style="padding:4px 8px;color:#22C55E"><strong>0 行（纯方法论文件）</strong></td>
-          </tr>
-          <tr>
-            <td style="padding:4px 8px">输出</td>
-            <td style="padding:4px 8px">自由格式</td>
-            <td style="padding:4px 8px;color:#22C55E">25 章固定模板（研究+决策）</td>
-          </tr>
-        </table>
-      </div>
-
-      <!-- 验证结果 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
-        <div class="card" style="padding:12px;border-left:3px solid #22C55E">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">✅ 晶能光电实战验证</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>方法报告 vs 基线报告（人工+AI 协作）：</strong><br>
-            • 总字数：27,629 vs 14,586（+89%）<br>
-            • 数据来源标注：49 处、28 种 vs 少数<br>
-            • 自检覆盖：26 处 Q1-Q4 vs 无<br>
-            • 警醒信号：S1-S7 全激活 vs 无<br>
-            • <strong style="color:#22C55E">方法报告独有 6 个决策维度</strong>（基线缺失）：<br>
-            交易结构分析 · 退出路径分析 · 约束条件建模 · 情景推演+IRR分级 · 6维竞品对标 · 估值三锚校验
-          </div>
-        </div>
-        <div class="card" style="padding:12px;border-left:3px solid #A855F7">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:6px">💡 4 个关键启示</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>1. Agent 需要「原则」而不是「清单」</strong><br>
-            清单越细，Agent 越蠢。给它路由规则+自检问题+降级链，让它自己判断。<br>
-            <strong>2. 数据源为 Agent 服务，不是反过来</strong><br>
-            Agent 读本地文件→识别缺口→选择工具→循环。数据源是可选工具，不是必经之路。<br>
-            <strong>3. 质控是「自检」不是「门禁」</strong><br>
-            不是「你写完了我来审」，而是「你写的时候问自己四个问题」。<br>
-            <strong>4. 方法论演进速度快于工程实现</strong><br>
-            3 段文字、2 个模板 = 数周的工程排期。方法论就是产品。
-          </div>
-        </div>
-      </div>
-
-      <div class="alert alert-success" style="margin-top:8px">
-        <p style="font-size:12px"><strong>📌 这个案例的核心启示：</strong>在 AI 辅助投资研究领域，<strong style="color:#22C55E">最高杠杆的改进点不是工程自动化，而是给 Agent 一个好方法</strong>。从 64K 行 Python 到 1 个 SKILL.md，代码量降为 0，输出质量系统性超越基线——这就是方法论的力量。这和你的日常工作一样：<strong style="color:#F59E0B">工具很重要，但方法论才是天花板。</strong></p>
-      </div>
-    </div>
-
-    <!-- Slide 6：系统维护（NEW） -->
-    <div class="slide">
-      <h2 style="font-size:32px;color:#06b6d4;margin-bottom:14px">⚙️ 系统维护 · 多系统协同与心跳监控</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px">
-        5 Agent + Hermes + Docker 服务 + 知识库 —— 多系统长期运行需要体系化的监控与维护。
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px">
-        <div class="card" style="padding:16px;border-top:3px solid #f59e0b">
-          <h3 style="font-size:15px;color:#f59e0b;margin-bottom:8px">🫀 HEARTBEAT 心跳机制</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px">
-            Main 代理每 <strong>15 分钟</strong>执行一次全局心跳检查，覆盖 <strong>9 项清单</strong>：
-          </p>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-            <div>1. Docker 服务状态（PostgreSQL + Qdrant）</div>
-            <div>2. 任务跟踪（in-progress > 2h 告警）</div>
-            <div>3. 异步任务超时重试（最多 3 次）</div>
-            <div>4. Session 状态巡检（> 3MB 自动压缩）</div>
-            <div>5. 内存使用监控</div>
-            <div>6. 配置文件审定</div>
-            <div>7. 知识库一致性校验</div>
-            <div>8. API 配额余量检查</div>
-            <div>9. 日志异常模式扫描</div>
-          </div>
-        </div>
-
-        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">🛡️ 多系统协同维护</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:6px">
-            多个智能体系统并行运行时的关键维护点：
-          </p>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0"><strong>端口管理</strong></td><td>主控平台: 18789 · Hermes: 独立端口</td></tr>
-            <tr><td style="padding:3px 0"><strong>API 网关</strong></td><td>统一 token 管理 · 多模型兼容</td></tr>
-            <tr><td style="padding:3px 0"><strong>免打扰窗口</strong></td><td>23:00-08:00 静默但继续检查</td></tr>
-            <tr><td style="padding:3px 0"><strong>告警升级</strong></td><td>pending → in-progress → overdue 三级</td></tr>
-            <tr><td style="padding:3px 0"><strong>日志审计</strong></td><td>gateway.log 持续异常模式扫描</td></tr>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div>
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📊 各阶段推荐工具</h3>
+          <table class="data-table" style="font-size:11px;width:100%">
+            <tr><td><strong>L2 入门</strong></td><td>Flowise（拖拽式，30K+⭐）</td></tr>
+            <tr><td><strong>L3 首选</strong></td><td><strong style="color:#22C55E">Dify</strong>（AI 原生，15K+⭐）</td></tr>
+            <tr><td><strong>L3 备选</strong></td><td>n8n（通用自动化，10K+⭐）</td></tr>
+            <tr><td><strong>L3 开发</strong></td><td>Langflow（LangChain 可视化）</td></tr>
+            <tr><td><strong>L4-L5</strong></td><td><strong style="color:#A855F7">本课程 5+2+1+1 体系</strong></td></tr>
           </table>
+          <div class="alert alert-info" style="margin-top:8px;font-size:11px">
+            <strong>Dify 1 周上手 = 过去半年开发量。</strong>工具换代的红利期非常短，抓紧学。
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">📅 12 个月升级里程碑</h3>
+          <div style="background:#0F172A;padding:12px;border-radius:6px;font-size:11px;color:var(--text-secondary);line-height:1.7;font-family:monospace">
+            <strong style="color:#56d364">第 1 月（零基础→用户）：</strong>注册 ChatGPT/Claude，学 5 种提示词模式，让 AI 写出 ≥80% 可用初稿<br>
+            <strong style="color:#38bdf8">第 2-3 月（用户→制作者）：</strong>学 Dify/n8n，搭 3 个工作流，接入 1 个外部 API<br>
+            <strong style="color:#F59E0B">第 4-6 月（制作者→训练官）：</strong>沉淀 5 个标准流程，团队培训，团队整体效率 2x<br>
+            <strong style="color:#A855F7">第 7-12 月（训练官→架构师）：</strong>设计 5+ Agent 协同体系，跨部门流程，人均产值 3x
+          </div>
         </div>
       </div>
 
-      <div class="alert alert-warning" style="margin-top:8px">
-        <p style="font-size:13px"><strong>⚠️ 维护原则：</strong>免打扰 ≠ 不检查。23:00-08:00 期间心跳照常执行，异常写入 <strong>pending-alerts.json</strong>，解静默后统一汇报。Session 超过 3MB 自动触发压缩，兼顾性能与上下文保留。</p>
-      </div>
-
-      <div style="margin-top:8px;padding:10px 14px;background:rgba(6,182,212,0.06);border-radius:8px;border-left:3px solid #06b6d4">
-        <p style="font-size:12px;color:var(--text-secondary);margin:0;line-height:1.7">
-          <strong style="color:#06b6d4">🛠️ 今日实战 · Claude Code 系统维护验证（2026.07.05）：</strong>
-          OpenClaw 尝试自升级未完成（2026.6.8 → 2026.6.11 待升级）→ Claude Code 检测 → 诊断（无失败日志，是根本没执行升级动作）→ 执行升级（19.34s，含 doctor 校验）→ 验证版本号 → 重启网关 → 2 插件更新 + 3 缺失插件自动补装（kimi/searxng/tavily）。<strong style="color:#22C55E">AI 维护 AI 基础设施，不用人操心。</strong>
-        </p>
-      </div>
-
-      <div class="alert alert-success" style="margin-top:8px">
-        <p style="font-size:12px"><strong>💡 这对你的日常工作意味着什么：</strong>你早上 9 点打开飞书，main 已经在昨晚自动完成了 9 项系统检查。你看到的消息是「系统正常，3 个 Agent 在线」——而不是「某某服务挂了，请手动重启」。<strong style="color:#22C55E">你不用管运维，你只管用。</strong></p>
+      <div class="alert alert-success" style="font-size:12px;text-align:center">
+        <strong>🚀 今天带走：</strong>商汤 API Key + Hermes 安装包 + 3 个工作流模板 + 迭代方法论。明天上班就能跑。
       </div>
     </div>
 
-    <!-- Slide 7：落地四步法 -->
+    <!-- Slide 7：过渡 -->
     <div class="slide">
-      <h2 style="font-size:32px;color:#ec4899;margin-bottom:14px">🚀 落地四步法</h2>
-
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto 20px">
-        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
-          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">01</div>
-          <h3 style="font-size:16px;margin-bottom:8px">装得上</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">选模型 + 框架，搭基础设施</p>
-          <p style="font-size:13px;color:#ec4899;margin-top:4px">oMLX + Docker + PG</p>
-        </div>
-        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
-          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">02</div>
-          <h3 style="font-size:16px;margin-bottom:8px">用得起</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">优化推理效率，控制算力成本</p>
-          <p style="font-size:13px;color:#ec4899;margin-top:4px">降级链路 + 配额管理</p>
-        </div>
-        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
-          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">03</div>
-          <h3 style="font-size:16px;margin-bottom:8px">调得动</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">工作流编排，Agent 能干活</p>
-          <p style="font-size:13px;color:#ec4899;margin-top:4px">MCP + sessions_send</p>
-        </div>
-        <div style="padding:18px;background:rgba(236,72,153,0.1);border-radius:10px;border-top:4px solid #ec4899;text-align:center">
-          <div style="font-size:32px;font-weight:bold;color:#ec4899;margin-bottom:10px">04</div>
-          <h3 style="font-size:16px;margin-bottom:8px">养得活</h3>
-          <p style="font-size:12px;color:var(--text-secondary)">持续运营，知识库迭代优化</p>
-          <p style="font-size:13px;color:#ec4899;margin-top:4px">MEMORY.md + 心跳巡检</p>
+      <div style="text-align:center;padding-top:8vh">
+        <div style="font-size:48px;margin-bottom:16px">🛠️</div>
+        <h2 style="font-size:36px;color:#22C55E;margin-bottom:16px">你能用。而且比你想象的容易。</h2>
+        <div style="max-width:780px;margin:0 auto;font-size:15px;color:var(--text-secondary);line-height:1.8">
+          <p>30 分钟跑通第一个智能体，6 个月从零基础到架构师。</p>
+          <p>但——<strong style="color:#F59E0B">路上有很多坑</strong>。</p>
+          <p style="margin-top:16px">我们在星恒项目中踩过的坑、叠加 Agent 反而质量下降的教训、5 条决策者最该避免的错误……</p>
+          <p style="margin-top:16px;color:var(--text-muted)">第 05 章，把风险说在前面，让你少走弯路。</p>
         </div>
       </div>
-
-      <div class="alert alert-success">
-        <p style="font-size:13px"><strong>📌 一句话：</strong>装得上 → 用得起 → 调得动 → 养得活。四步缺一不可，每一步都有真实踩坑记录。</p>
-      </div>
-
-      <p style="text-align:center;margin-top:20px;font-size:14px;color:var(--text-muted)">
-        以上是体系级的运行保障。接下来第 05 章，我们<strong style="color:#22C55E">从个人视角出发</strong>，手把手教你打造第一个智能体——注册 → 安装 → 连接 → 运行，30 分钟搞定。
-      </p>
     </div>
 
   </main>
 
-
-<script src="../assets/js/layout.js?v=20260705-fix"></script>
-<script src="../assets/js/main.js?v=20260705-fix"></script>
+  <script src="../assets/js/layout.js?v=20260705-fix"></script>
+  <script src="../assets/js/main.js?v=20260705-fix"></script>
 </body>
 </html>

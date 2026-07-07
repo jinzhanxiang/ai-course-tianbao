@@ -1,0 +1,18 @@
+# Hermes Agent 配置模板
+# 复制此文件为 config.yaml 并填入你的信息
+
+model:
+  provider: sensenova
+  api_base: "https://token.sensenova.cn/v1"
+  api_key: "sk-你的商汤API密钥"
+  model: "deepseek-v4-flash"
+  max_tokens: 4096
+  temperature: 0.7
+
+feishu:
+  enabled: true
+  webhook_url: "https://open.feishu.cn/open-apis/bot/v2/hook/你的webhook地址"
+
+workflows:
+  templates_dir: "workflows"
+  auto_save: true

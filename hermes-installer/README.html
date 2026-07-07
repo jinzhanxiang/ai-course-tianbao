@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermes Agent — 安装和使用指南</title>
+  <style>
+    body {
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+      max-width: 780px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #0A0E27;
+      color: #E8EEFF;
+      line-height: 1.8;
+    }
+    h1 { color: #00D4FF; font-size: 28px; border-bottom: 2px solid #1E3A6E; padding-bottom: 12px; }
+    h2 { color: #22C55E; font-size: 20px; margin-top: 28px; }
+    h3 { color: #F59E0B; font-size: 16px; margin-top: 20px; }
+    code {
+      background: #1A1F3F;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: "JetBrains Mono", "Consolas", monospace;
+      font-size: 13px;
+      color: #00D4FF;
+    }
+    pre {
+      background: #0F1330;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid #1E3A6E;
+      overflow-x: auto;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .step {
+      background: rgba(0, 212, 255, 0.04);
+      border-left: 3px solid #00D4FF;
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .step-num {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      background: #00D4FF;
+      color: #0A0E27;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 13px;
+      margin-right: 8px;
+    }
+    .warning {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: #F59E0B;
+      font-size: 13px;
+    }
+    .tip {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 12px 16px;
+      border-radius: 8px;
+      color: #22C55E;
+      font-size: 13px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+      font-size: 13px;
+    }
+    th {
+      background: #1A1F3F;
+      color: #00D4FF;
+      padding: 8px 12px;
+      text-align: left;
+      border-bottom: 1px solid #1E3A6E;
+    }
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #0F1330;
+      color: #8FA1CC;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🤖 Hermes Agent — 安装和使用指南</h1>
+
+<p>版本 v2.0 · 商汤大模型 + 飞书连接 · 完全离线安装 · Windows 原生支持</p>
+
+<div class="tip">
+  <strong>✅ 无需联网安装！</strong>内置 Python 3.11.9 + 全部依赖包（29 个 wheels）
+  <br><strong>✅ 无需安装 Python！</strong>无需编程基础，双击运行即可
+  <br><strong>✅ 安装包大小：</strong>20MB（解压后约 80MB）
+</div>
+
+<div class="warning">
+  <strong>⚠️ 注意：</strong>安装过程完全离线。使用阶段需要网络访问 <code>sensenova.cn</code>（调用商汤大模型 API）。
+</div>
+
+<h2>📋 系统要求</h2>
+
+<table>
+  <tr><th>项目</th><th>要求</th><th>说明</th></tr>
+  <tr><td>操作系统</td><td>Windows 10/11</td><td>64 位系统</td></tr>
+  <tr><td>磁盘空间</td><td>200MB+</td><td>安装后约 80MB</td></tr>
+  <tr><td>使用网络</td><td>可访问 sensenova.cn</td><td>调用商汤大模型 API（安装无需联网）</td></tr>
+  <tr><td>商汤账号</td><td>免费注册</td><td><a href="https://sensenova.cn" style="color:#00D4FF">sensenova.cn</a> 注册后获取 API Key</td></tr>
+  <tr><td>飞书（可选）</td><td>有群管理权限</td><td>用于添加自定义机器人</td></tr>
+</table>
+
+<h2>🚀 安装步骤（完全离线）</h2>
+
+<div class="step">
+  <span class="step-num">1</span> <strong>获取商汤 API Key（需联网完成，一次性）</strong>
+  <p>访问 <a href="https://sensenova.cn" style="color:#00D4FF">sensenova.cn</a> → 注册 → 控制台 → API Key 管理 → 创建 Key</p>
+  <p>免费额度：DeepSeek V4 Flash 模型，每分钟 60 次调用，每天 10000 次</p>
+</div>
+
+<div class="step">
+  <span class="step-num">2</span> <strong>解压安装包</strong>
+  <p>将 <code>hermes-installer/</code> 文件夹复制到你的电脑上（如 <code>D:\hermes-agent\</code>）</p>
+  <p><strong>安装包已内含：</strong>Python 3.11.9 嵌入式版 + 29 个 Python 依赖包 + pip</p>
+</div>
+
+<div class="step">
+  <span class="step-num">3</span> <strong>双击运行 setup.bat</strong>
+  <p>脚本自动完成：解压内置 Python → 安装 pip → 创建虚拟环境 → 安装所有依赖 → 创建启动脚本</p>
+  <p><strong>全程无需联网！</strong>所有依赖包已预下载在 <code>wheels/</code> 目录中。</p>
+  <p>安装完成后会自动打开 <code>config.yaml</code> 供你填入 API Key。</p>
+</div>
+
+<div class="step">
+  <span class="step-num">4</span> <strong>编辑 config.yaml，填入商汤 API Key</strong>
+  <pre>model:
+  api_key: "sk-你的商汤API密钥"  # 改这里</pre>
+</div>
+
+<div class="step">
+  <span class="step-num">5</span> <strong>双击 "启动Hermes.bat" 开始使用</strong>
+  <p>进入交互式对话界面，输入问题即可获得回复。</p>
+</div>
+
+<h2>🪶 连接飞书（可选）</h2>
+
+<ol>
+  <li>打开飞书 → 目标群聊 → 设置 → 群机器人</li>
+  <li>添加自定义机器人 → 复制 Webhook URL</li>
+  <li>编辑 <code>config.yaml</code>，将 Webhook URL 填入 <code>feishu.webhook_url</code></li>
+  <li>在 Hermes 对话中生成内容后，输入 <code>/feishu</code> 即可推送到群里</li>
+</ol>
+
+<div class="warning">
+  <strong>⚠️ 注意：</strong>飞书自定义机器人仅支持向群内推送消息。如需接收消息并自动回复，需要创建飞书应用并配置事件订阅。详见飞书开放平台文档。
+</div>
+
+<h2>📋 3 个工作流模板</h2>
+
+<table>
+  <tr><th>工作流</th><th>命令</th><th>功能</th></tr>
+  <tr><td>日报生成器</td><td>/日报</td><td>自动汇总工作内容，生成结构化日报</td></tr>
+  <tr><td>信息爬取器</td><td>/爬取</td><td>提取网页关键数据，结构化输出</td></tr>
+  <tr><td>数据清洗器</td><td>/清洗</td><td>识别数据质量问题，生成清洗报告</td></tr>
+</table>
+
+<h2>💡 使用技巧</h2>
+
+<div class="tip">
+  <strong>进阶用法：</strong>
+  <ul>
+    <li>输入 <code>python hermes_lite.py --workflow "日报生成器"</code> 直接运行工作流</li>
+    <li>输入 <code>python hermes_lite.py --once "分析这段文本"</code> 单次问答</li>
+    <li>输入 <code>python hermes_lite.py --feishu</code> 飞书模式</li>
+    <li>编辑 <code>workflows/</code> 目录下的 .md 文件可以自定义工作流 Prompt</li>
+  </ul>
+</div>
+
+<h2>🔧 常见问题</h2>
+
+<h3>Q: 安装时需要联网吗？</h3>
+<p><strong>不需要！</strong>安装包已内置 Python 3.11.9 和全部 29 个依赖包。安装过程完全离线。<br>
+<strong>使用时</strong>需要网络访问 <code>token.sensenova.cn</code>（商汤 API 地址，国内可直接访问）。</p>
+
+<h3>Q: Python 未找到 / 需要安装 Python 吗？</h3>
+<p><strong>不需要！</strong>安装包内置了完整的 Python 3.11.9 嵌入式版（python-embed.zip），setup.bat 会自动解压和配置。<br>
+<strong>整个安装过程不需要你系统上有 Python</strong>，也不需要联网下载任何东西。</p>
+
+<h3>Q: 解压失败怎么办？</h3>
+<p>Windows 7 或旧版 Windows 10 可能没有 PowerShell 5.0+。请手动：</p>
+<pre>1. 右键 python-embed.zip → 解压到当前文件夹 → 重命名文件夹为 python
+2. 编辑 python\python311._pth，取消 #import site 的注释（删掉 #）
+3. 在文件末尾加一行: Lib\site-packages
+4. 重新双击 setup.bat</pre>
+
+<h3>Q: 商汤 API 调用失败？</h3>
+<p>检查 <code>config.yaml</code> 中的 <code>api_key</code> 是否正确。登录 <a href="https://sensenova.cn" style="color:#00D4FF">sensenova.cn</a> 控制台确认 Key 状态。<br>
+API 地址: <code>https://token.sensenova.cn/v1</code>（国内访问无障碍）</p>
+
+<h3>Q: 安装包太大，有没有精简版？</h3>
+<p>当前 23MB 已是最小版本。如果你已安装 Python 3.11+，可以只用 <code>hermes_lite.py</code> + <code>requirements.txt</code>，手动 pip install（需要使用国内镜像加速）：</p>
+<pre>pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple</pre>
+
+<h3>Q: 如何升级到新版本？</h3>
+<p>替换 <code>hermes_lite.py</code> 和 <code>config.yaml.template</code> 即可。如 <code>requirements.txt</code> 有变化，重新运行 setup.bat。</p>
+
+<hr style="border-color:#1E3A6E;margin-top:28px">
+
+<p style="color:#8FA1CC;font-size:12px;text-align:center">
+  Hermes Agent v1.0 · 智能体内训课件配套工具 · 2026.07
+</p>
+
+</body>
+</html>

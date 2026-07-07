@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="tianjin" data-mode="presentation">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第 01 章 · 开场破题 — 智能体革命与5+2+1+1体系</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <style>
+    /* 流光大标题 */
+    .glow-text {
+      background: linear-gradient(90deg, #00d4ff 0%, #a855f7 35%, #56d364 70%, #febc2e 100%);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow-shift 6s ease-in-out infinite;
+    }
+    @keyframes glow-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* 终端命令框 */
+    .sci-terminal {
+      background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
+      border: 1px solid rgba(0, 212, 255, 0.45);
+      border-radius: 10px;
+      padding: 18px 22px;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+      color: #00d4ff;
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    .sci-terminal::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+      animation: scan 3s infinite;
+    }
+    .sci-terminal::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 212, 255, 0.03) 0px,
+        rgba(0, 212, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+    }
+    @keyframes scan {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+    .sci-line { margin: 4px 0; font-size: 13px; line-height: 1.6; position: relative; z-index: 1; }
+    .sci-prompt { color: #56d364; margin-right: 8px; }
+    .sci-ok { color: #56d364; }
+    .sci-warn { color: #febc2e; }
+    .sci-online {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #56d364;
+      box-shadow: 0 0 10px #56d364;
+      animation: pulse 1.5s infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+    .sci-cursor {
+      display: inline-block;
+      width: 8px; height: 14px;
+      background: #00d4ff;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    /* 岗位卡片 */
+    .role-card {
+      padding: 22px 20px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      height: 100%;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+    }
+    .role-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 36px rgba(0, 212, 255, 0.35), 0 0 0 1px rgba(0,212,255,0.8);
+      border-color: rgba(0, 212, 255, 0.8);
+      background: rgba(15, 23, 42, 0.85);
+    }
+    .role-emoji { font-size: 40px; margin-bottom: 10px; }
+    .role-title { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+    .role-hook { font-size: 14px; color: var(--text-primary); line-height: 1.7; }
+
+    /* 路线图节点 */
+    .route-card {
+      padding: 20px 18px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: all 0.3s;
+      cursor: pointer;
+      height: 100%;
+    }
+    .route-card:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    /* slide 切换提示 */
+    .slide-hint {
+      position: absolute;
+      bottom: 18px;
+      right: 24px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      opacity: 0.6;
+      animation: hint-pulse 2s infinite;
+    }
+    @keyframes hint-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+  </style>
+</head>
+<body class="chapter-page sci-fi-bg">
+  <main class="main-stage">
+
+    <!-- ====== Slide 1：科幻开场 ====== -->
+    <div class="slide active">
+      <div style="text-align:center;padding:50px 20px 20px">
+        <div style="font-size:64px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6))">⚡</div>
+        <h1 style="font-size:52px;margin:0 0 18px 0;font-weight:800;letter-spacing:-1.5px;line-height:1.15" class="glow-text">
+          你好，我是你的数字化同行者
+        </h1>
+        <p style="font-size:19px;color:var(--text-secondary);margin:0;line-height:1.7">
+          今天不讲 AI 概念，只讲一件事 ——<br>
+          <strong style="color:var(--accent)">我和我的 7 个数字员工（5+2），过去 12 个月做对了什么。</strong>
+        </p>
+      </div>
+
+      <div class="sci-terminal" style="margin:28px auto 0;max-width:820px;position:relative;z-index:1">
+        <div class="sci-line">
+          <span class="sci-prompt">$</span>agent-system --boot --mode=live
+        </div>
+        <div class="sci-line">
+          <span class="sci-online"></span><span class="sci-ok">[ONLINE]</span>&nbsp;&nbsp;5 agents · 2 helpers · 1 wiki · 1 local-model
+        </div>
+        <div class="sci-line">
+          <span class="sci-prompt">&gt;</span>main, project, research, data, report<span class="sci-cursor"></span>
+        </div>
+        <div class="sci-line">
+          <span class="sci-prompt">&gt;</span>claude-code, hermes
+        </div>
+        <div class="sci-line">
+          <span class="sci-prompt">&gt;</span>wiki · <span class="sci-ok">5,786 entities</span> · 8 collections · uptime <span class="sci-warn">99.7%</span>
+        </div>
+        <div class="sci-line">
+          <span class="sci-prompt">&gt;</span>security · <span class="sci-ok">敏感数据 100% 本地</span> · 0 外传
+        </div>
+        <div class="sci-line" style="margin-top:10px;color:#fff;font-size:14px">
+          <strong>系统就绪。准备开始 90 分钟的实战演示 →</strong>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="max-width:820px;margin:24px auto 0;font-size:14px;padding:14px 20px">
+        <strong>核心命题：</strong>2024 年起，大模型从「对话」转向「行动」。智能体 = 大模型 + 工具 + 记忆 + 规划。
+      </div>
+      <div style="max-width:820px;margin:10px auto 0;font-size:12px;color:var(--text-muted);text-align:center">
+        这不仅是技术升级，更是响应国家<strong style="color:#F59E0B">新质生产力</strong>战略、推动央国企<strong style="color:#22C55E">数字化转型</strong>的实战探索。
+      </div>
+    </div>
+
+    <!-- ====== Slide 1.5：每一次变革都被嘲笑过 ====== -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">🫢 每一次变革，都被嘲笑过</h2>
+      <p class="slide-subtitle">历史不会重复，但总会押韵 —— AI 时代也不例外</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px">
+
+        <!-- 莱特兄弟 -->
+        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+          <div style="font-size:28px;margin-bottom:6px">✈️</div>
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">莱特兄弟 · 1903</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
+            <em>"把时间浪费在荒谬的事情上，像傻子一样"</em><br>
+            —— 当时邻居的评价
+          </div>
+          <div style="font-size:11px;color:#22C55E;line-height:1.5;padding-top:6px;border-top:1px dashed rgba(34,197,94,0.3)">
+            100 年后 → 全球航空业年运送 <strong>40 亿人次</strong>
+          </div>
+        </div>
+
+        <!-- 汽车 vs 红旗法案 -->
+        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+          <div style="font-size:28px;margin-bottom:6px">🚗</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:4px">汽车 · 1865 红旗法案</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
+            <em>"没有马车安全"</em><br>
+            —— 英国立法：汽车前须有人举红旗步行，时速 ≤ 4 英里
+          </div>
+          <div style="font-size:11px;color:#22C55E;line-height:1.5;padding-top:6px;border-top:1px dashed rgba(34,197,94,0.3)">
+            30 年后 → 马车消失，汽车工业成为<strong>万亿级产业</strong>
+          </div>
+        </div>
+
+        <!-- 珍妮纺织机 -->
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <div style="font-size:28px;margin-bottom:6px">🧵</div>
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:4px">珍妮纺织机 · 1760s</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
+            <em>"机器会抢走工人饭碗"</em><br>
+            —— 暴徒闯入哈格里夫斯家中砸毁机器、纵火焚屋
+          </div>
+          <div style="font-size:11px;color:#22C55E;line-height:1.5;padding-top:6px;border-top:1px dashed rgba(34,197,94,0.3)">
+            最终 → 纺织效率提升 <strong>100 倍</strong>，农民转型产业工人
+          </div>
+        </div>
+
+        <!-- 计算机 -->
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+          <div style="font-size:28px;margin-bottom:6px">💻</div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">计算机 · 1940s</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
+            <em>"那么大的设备怎么可能代替算盘"</em><br>
+            —— "普通人根本不会用，耗电量大，不实用"
+          </div>
+          <div style="font-size:11px;color:#22C55E;line-height:1.5;padding-top:6px;border-top:1px dashed rgba(34,197,94,0.3)">
+            80 年后 → <strong>人手一台</strong>智能手机，运算速度提升万亿倍
+          </div>
+        </div>
+
+      </div>
+
+      <!-- AI 对比：现在的嘲笑 -->
+      <div style="margin-top:16px;padding:16px 20px;background:linear-gradient(90deg,rgba(0,212,255,0.06),rgba(168,85,247,0.06));border:1px solid rgba(0,212,255,0.25);border-radius:10px">
+        <h3 style="font-size:15px;color:#00D4FF;margin:0 0 10px 0">🔮 现在，轮到 AI 了——听听这些声音熟不熟悉？</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:11px">
+          <div style="line-height:1.6">
+            <span style="color:#EF4444">❌</span> "AI 就是个高级鹦鹉"<br>
+            <span style="color:#8FA1CC;font-size:10px">← 1903："飞机只是娱乐工具"</span>
+          </div>
+          <div style="line-height:1.6">
+            <span style="color:#EF4444">❌</span> "AI 会导致大规模失业"<br>
+            <span style="color:#8FA1CC;font-size:10px">← 1760s："机器会抢走工人饭碗"</span>
+          </div>
+          <div style="line-height:1.6">
+            <span style="color:#EF4444">❌</span> "AI 不可靠，会出错"<br>
+            <span style="color:#8FA1CC;font-size:10px">← 1890s："汽车没有马车安全"</span>
+          </div>
+          <div style="line-height:1.6">
+            <span style="color:#EF4444">❌</span> "AI 成本高，不实用"<br>
+            <span style="color:#8FA1CC;font-size:10px">← 1940s："计算机耗电量大"</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 金句结尾 -->
+      <div style="margin-top:14px;padding:14px 20px;background:rgba(168,85,247,0.08);border-left:3px solid #A855F7;border-radius:6px">
+        <div style="display:flex;gap:16px;align-items:flex-start">
+          <div style="font-size:24px">💡</div>
+          <div>
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.7;margin:0">
+              <strong style="color:#A855F7">"1865 年英国《红旗法案》规定汽车前须有人举红旗步行——担心新技术不安全，用旧规则卡死新事物。</strong><br>
+              <span style="color:var(--text-secondary)">30 年后英国汽车工业被法国德国全面反超。过度管制，就是最大的风险。"</span>
+            </p>
+            <p style="font-size:13px;color:#22C55E;line-height:1.6;margin:10px 0 0 0">
+              <strong>技术革命不以人的意志为转移。拥抱变革的人，才能赢得未来。</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== Slide 2：震撼数字 ====== -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">📊 过去 12 个月，我们做到了什么？</h2>
+      <p class="slide-subtitle">不讲未来画饼，看真实数字</p>
+
+      <div class="kpi-row" style="margin:36px 0">
+        <div class="kpi-card">
+          <div class="kpi-num">7</div>
+          <div class="kpi-label">数字员工在岗（5+2）</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">5,786</div>
+          <div class="kpi-label">知识实体沉淀</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">90<span style="font-size:22px">min</span></div>
+          <div class="kpi-label">一份尽调报告</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">×5</div>
+          <div class="kpi-label">投研效率提升</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="max-width:780px;margin:0 auto;font-size:15px">
+        <strong>今天的核心命题：</strong>当每一个普通员工都拥有「7 个数字员工（5+2）」，组织会发生什么？
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px;max-width:900px;margin-left:auto;margin-right:auto;font-size:14px">
+        <div class="alert alert-info" style="margin:0;padding:12px 14px">
+          <strong>🟢 5 Agent</strong><br>main · project · research · data · report
+        </div>
+        <div class="alert alert-info" style="margin:0;padding:12px 14px">
+          <strong>🔵 2 助手</strong><br>Claude Code · Hermes
+        </div>
+        <div class="alert alert-info" style="margin:0;padding:12px 14px">
+          <strong>🟡 1 中台</strong><br>Wiki 知识库 · 5,786 实体
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:16px;max-width:780px;margin-left:auto;margin-right:auto;font-size:14px;text-align:center">
+        <strong>数据安全底线：</strong>尽调底稿、审计报告、估值模型等敏感数据 <strong style="color:#22C55E">100% 本地处理，0 外传</strong>。云端仅用于公开信息检索。
+      </div>
+    </div>
+
+    <!-- ====== Slide 3：分岗位抓眼 ====== -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">🎯 不管你坐在哪个位置，这场分享都跟你有关</h2>
+      <p class="slide-subtitle">4 类岗位 · 4 个视角 · 悬停查看每个岗位的具体场景</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px">
+        <div class="role-card">
+          <div class="role-emoji">💼</div>
+          <div class="role-title">管理者视角</div>
+          <div class="role-hook">
+            如果你手下 5 个人的活，<strong style="color:var(--accent)">1 个人 + 5 个数字员工</strong>能干完，你要不要换打法？
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">📈</div>
+          <div class="role-title">投资岗视角</div>
+          <div class="role-hook">
+            13 份研报以前要 <strong>3 天</strong>，现在 <strong>2 小时</strong>，你多出来的时间干嘛？
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">👥</div>
+          <div class="role-title">人力岗视角</div>
+          <div class="role-hook">
+            JD 撰写、简历筛选、面试纪要、入职文档，<strong style="color:var(--accent)">AI 帮你把重复活全部干掉</strong>。
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-emoji">💻</div>
+          <div class="role-title">IT/工程岗视角</div>
+          <div class="role-hook">
+            写代码不再从 0 开始，<strong>Agent 和你结对编程</strong>，你的 10x 程序员同事上线了。
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top:22px;max-width:880px;margin-left:auto;margin-right:auto;font-size:14px">
+        <strong>如果你不属于以上岗位 ——</strong>也没关系。今天你只要记住一件事：<strong style="color:var(--accent)">「数字员工」不是科幻，是已经发生的事实。</strong>
+      </div>
+    </div>
+
+    <!-- ====== Slide 4：单项目全流程看板（星恒电源主线） ====== -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">🚀 一个项目看全貌 · 星恒电源 13.73% 收购尽调</h2>
+      <p class="slide-subtitle">5 Agent 协同 × 90 分钟 × 80 页成稿 — 这个项目串起整个体系，今天所有章节都围绕它展开</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;max-width:1100px;margin-left:auto;margin-right:auto">
+        <div class="kpi-card">
+          <div class="kpi-num">90<span style="font-size:22px">min</span></div>
+          <div class="kpi-label">一份完整尽调报告</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">5</div>
+          <div class="kpi-label">Agent 并行协同</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">67<span style="font-size:22px">页</span></div>
+          <div class="kpi-label">尽调复核意见</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-num">30<span style="font-size:22px">+</span></div>
+          <div class="kpi-label">次迭代打磨（v1→最终版）</div>
+        </div>
+      </div>
+
+      <p style="text-align:center;font-size:14px;color:var(--accent);margin:18px 0 12px 0;font-weight:700">📐 一个项目，四个 Agent 各司其职</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1100px;margin-left:auto;margin-right:auto">
+        <div class="card" style="padding:16px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:28px;margin-bottom:6px">🔬</div>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">research + Claude Code</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
+            <strong>行业+财务+估值</strong><br>
+            动力电池产业链深度研究<br>
+            Monte Carlo 10000 次模拟<br>
+            历史基准 IRR 模型<br>
+            <span style="color:#F59E0B">10 分钟完成研究员 1 周工作量</span>
+          </p>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #A855F7;text-align:center">
+          <div style="font-size:28px;margin-bottom:6px">🗄️</div>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">data + Hermes</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
+            <strong>行业数据清洗+入库</strong><br>
+            50 家股东信息提取<br>
+            动力电池产业链实体入库<br>
+            竞品研报 OCR → 结构化<br>
+            <span style="color:#A855F7">+98 实体，下次同类项目直接检索</span>
+          </p>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #38bdf8;text-align:center">
+          <div style="font-size:28px;margin-bottom:6px">📋</div>
+          <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">project</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
+            <strong>全流程资料+线上部署</strong><br>
+            尽调底稿集中管理<br>
+            项目节点跟踪+版本控制<br>
+            GitHub Pages 一键部署<br>
+            <span style="color:#38bdf8">报告链接直接发同事</span>
+          </p>
+        </div>
+        <div class="card" style="padding:16px;border-top:3px solid #EC4899;text-align:center">
+          <div style="font-size:28px;margin-bottom:6px">📄</div>
+          <h3 style="font-size:15px;color:#EC4899;margin-bottom:8px">report</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
+            <strong>80 页 Word + PPT 展示</strong><br>
+            国企公文标准排版<br>
+            股权穿透图自动生成<br>
+            关键数据可视化图表<br>
+            <span style="color:#EC4899">3 分钟完成 2-3 天排版工作</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:14px;max-width:1100px;margin-left:auto;margin-right:auto;font-size:14px">
+        <strong>📌 这条主线贯穿全场：</strong>后面每一章讲到某个 Agent 时，你都可以回想这个项目——<strong style="color:#22C55E">research 在哪一步介入？data 洗了哪些数据？report 输出了什么？</strong>一个项目，把 5+2+1+1 体系全部串起来。
+      </div>
+    </div>
+
+    <!-- ====== Slide 5：今日路线图 ====== -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">🗺️ 今天 90 分钟的路线图</h2>
+      <p class="slide-subtitle">8 章 · 3 大板块 · 从「看懂」到「会做」</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px">
+        <div class="route-card" style="border-left:4px solid #00d4ff">
+          <div style="font-size:13px;color:#00d4ff;font-weight:700;letter-spacing:1px;margin-bottom:8px">板块一 · 看懂</div>
+          <h3 style="margin:0 0 12px 0;font-size:17px;color:var(--text-primary)">变革 + 体系总览</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin:0">
+            第 01 章 · 开场破题<br>
+            第 02 章 · 什么是智能体<br>
+            第 03 章 · 5+2+1+1 体系总览
+          </p>
+          <div style="margin-top:16px;font-size:12px;color:var(--text-secondary);text-align:right">约 20 分钟</div>
+        </div>
+        <div class="route-card" style="border-left:4px solid #a855f7">
+          <div style="font-size:13px;color:#a855f7;font-weight:700;letter-spacing:1px;margin-bottom:8px">板块二 · 拆解</div>
+          <h3 style="margin:0 0 12px 0;font-size:17px;color:var(--text-primary)">生态 + 训练 + 工作流</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin:0">
+            第 04 章 · 生态与部署方案<br>
+            第 05 章 · 从零到一：打造智能体<br>
+            第 06 章 · 个人 Workflow 路径
+          </p>
+          <div style="margin-top:16px;font-size:12px;color:var(--text-secondary);text-align:right">约 40 分钟</div>
+        </div>
+        <div class="route-card" style="border-left:4px solid #56d364">
+          <div style="font-size:13px;color:#56d364;font-weight:700;letter-spacing:1px;margin-bottom:8px">板块三 · 实战</div>
+          <h3 style="margin:0 0 12px 0;font-size:17px;color:var(--text-primary)">案例 + 现场演示</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin:0">
+            第 07 章 · 现场互动演示<br>
+            第 08 章 · 总结展望 + Q&A
+          </p>
+          <div style="margin-top:16px;font-size:12px;color:var(--text-secondary);text-align:right">约 30 分钟</div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:28px;max-width:780px;margin-left:auto;margin-right:auto;text-align:center;font-size:15px">
+        <strong>承诺：</strong>90 分钟后，你会带走 <strong>一个明天就能用的智能体</strong> + 3 个工作流模板 + 安装包。
+      </div>
+    </div>
+
+  </main>
+
+
+  <script src="../assets/js/layout.js?v=20260705-fix"></script>
+  <script src="../assets/js/main.js?v=20260705-fix"></script>
+</body>
+</html>
