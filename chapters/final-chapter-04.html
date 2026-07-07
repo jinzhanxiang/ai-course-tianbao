@@ -115,6 +115,155 @@
       </div>
     </div>
 
+    <!-- Slide 4.5：Prompt 工程入门 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:2px">💬 Prompt 工程入门：如何与智能体高效对话</h2>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">最大的使用障碍不是技术——是不会<strong style="color:#22C55E">「问问题」</strong></p>
+
+      <!-- Row 1: 5 Patterns + 3 Errors (2-col) -->
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin-bottom:10px">
+
+        <!-- Left: 5 种核心提示词模式 -->
+        <div class="card" style="padding:10px 12px;border-left:4px solid #22C55E">
+          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">📐 5 种核心提示词模式</h3>
+          <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.65">
+            <p style="margin:0 0 2px 0"><strong style="color:#F59E0B">1. 指令模式：</strong>「请用三段话总结以下内容...」</p>
+            <p style="margin:0 0 2px 0"><strong style="color:#00D4FF">2. 角色模式：</strong>「你是一位有 10 年经验的新能源行业分析师...」</p>
+            <p style="margin:0 0 2px 0"><strong style="color:#A855F7">3. 示例模式：</strong>「参考以下格式输出：1.公司概况 2.财务分析 3.估值判断」</p>
+            <p style="margin:0 0 2px 0"><strong style="color:#EC4899">4. 步骤模式：</strong>「第一步：读取文件 第二步：提取关键数据 第三步：对比行业均值」</p>
+            <p style="margin:0"><strong style="color:#22C55E">5. 约束模式：</strong>「不超过 500 字 · 使用表格对比 · 每个数据标注来源」</p>
+          </div>
+        </div>
+
+        <!-- Right: 3 个常见 Prompt 错误 -->
+        <div class="card" style="padding:10px 12px;border-left:4px solid #EF4444">
+          <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">⚠️ 3 个常见 Prompt 错误</h3>
+          <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6">
+            <div style="margin-bottom:5px">
+              <strong style="color:#EF4444">❌ 问题太模糊</strong><br>
+              <span style="color:#22C55E">→ 加角色 + 加约束，明确范围和深度</span>
+            </div>
+            <div style="margin-bottom:5px">
+              <strong style="color:#EF4444">❌ 一次塞太多</strong><br>
+              <span style="color:#22C55E">→ 拆成多个子问题，逐个追问</span>
+            </div>
+            <div>
+              <strong style="color:#EF4444">❌ 不说输出格式</strong><br>
+              <span style="color:#22C55E">→ 给模板/示例/字数限制</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Before/After 对比 (2 cards) -->
+      <div style="margin-bottom:10px">
+        <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📊 实战对比：差 Prompt vs 好 Prompt（星恒电源投资分析）</h3>
+        <div style="display:grid;grid-template-columns:1fr 2fr;gap:10px">
+          <div class="card" style="padding:10px 12px;border-left:4px solid #EF4444;background:rgba(239,68,68,0.06)">
+            <h4 style="font-size:12px;color:#EF4444;margin-bottom:4px">❌ 差 Prompt</h4>
+            <p style="font-size:10.5px;color:#EF4444;margin:0;line-height:1.6">「帮我分析一下星恒电源」</p>
+            <div style="margin-top:6px;font-size:9.5px;color:var(--text-muted);line-height:1.5">
+              <span style="color:#EF4444">✗</span> 无角色定位<br>
+              <span style="color:#EF4444">✗</span> 无分析维度<br>
+              <span style="color:#EF4444">✗</span> 无输出格式<br>
+              <span style="color:#EF4444">✗</span> 无数据来源要求
+            </div>
+          </div>
+          <div class="card" style="padding:10px 12px;border-left:4px solid #22C55E;background:rgba(34,197,94,0.06)">
+            <h4 style="font-size:12px;color:#22C55E;margin-bottom:4px">✅ 好 Prompt（角色 + 步骤 + 约束）</h4>
+            <p style="font-size:10px;color:#22C55E;margin:0;line-height:1.6">
+              「你是一位<strong style="color:#22C55E">新能源行业分析师</strong>。请基于星恒电源 FY24 审计报告（已上传），从以下三个维度分析其投资价值：<br>
+              <strong>1. 行业地位</strong>（与宁德时代/比亚迪/中创新航对比）<br>
+              <strong>2. 财务健康度</strong>（营收增速、毛利率、负债率）<br>
+              <strong>3. 估值合理性</strong>（PE 对比、DCF 关键假设）<br>
+              每个维度不超过 200 字，数据必须<strong>标注来源页数</strong>。」
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: 3 个可复制模板 -->
+      <div>
+        <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">📋 可复制的 Prompt 模板（投资行业专用）</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div class="card" style="padding:10px;border-top:3px solid #F59E0B">
+            <h4 style="font-size:12px;color:#F59E0B;margin-bottom:5px">🔬 行业研究</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+              「你是一位<span style="color:#F59E0B">[XX行业]</span>分析师。请分析<span style="color:#F59E0B">[行业名称]</span>的竞争格局：<br>1. 市场规模与增速<br>2. 前5名企业市场份额<br>3. 技术替代风险<br>数据来源标注具体出处。」
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-top:3px solid #00D4FF">
+            <h4 style="font-size:12px;color:#00D4FF;margin-bottom:5px">💰 财务分析</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+              「请基于<span style="color:#00D4FF">[公司名]</span>最新财报，从盈利能力、偿债能力、营运能力、成长能力四维度分析财务状况。用表格展示关键指标及同比变化，异常指标单独标注。」
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-top:3px solid #A855F7">
+            <h4 style="font-size:12px;color:#A855F7;margin-bottom:5px">📝 会议纪要</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+              「请将以下会议录音/文字转为结构化纪要：<br>1. 会议主题<br>2. 参会方<br>3. 核心结论（3-5条）<br>4. 分歧点<br>5. 待办事项（含责任人和截止日期）<br>总字数不超过 800 字。」
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4.6：常见使用障碍与破解 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🔧 常见使用障碍与破解</h2>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">三个新人最容易卡住的地方，以及最简单的破解方法</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 1</span>
+            <strong style="font-size:13px;color:#22C55E">数据从哪来？</strong>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">公开数据</strong><br>研报客API · Tavily搜索 · 天眼查</div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">本地文件</strong><br>PDF/Excel 拖拽上传 → OCR 提取</div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">数据库</strong><br>iFind · AKShare（A股/港股）</div>
+            <div class="alert alert-warning" style="font-size:10px;padding:6px 8px;margin-top:auto">
+              Agent 不会"自己找数据"——你需要告诉它去哪找
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 2</span>
+            <strong style="font-size:13px;color:#22C55E">自动化怎么起步？</strong>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 1 入门</strong><br>日报/周报自动生成（一段 Prompt）</div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 2 进阶</strong><br>URL 爬取 → 结构化 → 推送飞书</div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 3 深化</strong><br>Excel → 去重/标准化/异常检测 → 报告</div>
+            <div class="alert alert-success" style="font-size:10px;padding:6px 8px;margin-top:auto">
+              原则：一次只自动化一个环节，跑通再加下一个
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 3</span>
+            <strong style="font-size:13px;color:#22C55E">模型怎么选？</strong>
+          </div>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">简单任务</strong><br>摘要/翻译/格式转换<br><code style="font-size:10px">DeepSeek / GLM（免费）</code></div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">主力任务</strong><br>研究/分析/报告<br><code style="font-size:10px">MiniMax M3 / M2.7</code></div>
+            <div style="margin-bottom:6px"><strong style="color:#22C55E">复杂任务</strong><br>估值建模 / Monte Carlo<br><code style="font-size:10px">Claude Sonnet / DeepSeek V4 Pro</code></div>
+            <div><strong style="color:#22C55E">敏感数据</strong><br><code style="font-size:10px">oMLX 本地部署（数据不出机器）</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:10px 14px;border-left:3px solid #22C55E;font-size:11px;color:var(--text-secondary);line-height:1.6">
+        <strong style="color:#22C55E">三个障碍的本质：</strong>
+        数据源 = 知道"去哪找"而非等模型自己找 · 自动化 = 渐进式，从一段 Prompt 开始 · 模型选择 = 按任务复杂度分级匹配
+      </div>
+    </div>
+
     <!-- Slide 5：L1-L5 升级路径 -->
     <div class="slide">
       <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">🪜 从零基础到架构师 · 5 阶段升级路径</h2>

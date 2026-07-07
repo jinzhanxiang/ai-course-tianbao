@@ -263,6 +263,72 @@
       </div>
     </div>
 
+    <!-- Slide 7.5：记忆管理 · Agent 的长期竞争力 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#EF4444;margin-bottom:8px">🧠 记忆管理：Agent 的长期竞争力</h2>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">
+        <strong style="color:#EF4444">核心认知：</strong>智能体的竞争，短期看模型能力，长期看<strong style="color:#EF4444">记忆管理</strong>。谁能让 Agent 记住更多、忘得更少、检索更快，谁就拥有更强的 AI 劳动力。
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">Agent 级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            data-agent → 管清洗<br>
+            research-agent → 管分析<br>
+            report-agent → 管排版
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            每个 Agent 独立记忆文件，职责分离。<br>
+            <strong style="color:#EF4444">5 个 Agent = 5 倍有效上下文</strong>
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">会话级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            空闲检测 → 摘要压缩<br>
+            模式提取 → 知识提炼<br>
+            Session > 3MB 自动触发
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            休眠时自动对历史会话压缩提炼。<br>
+            <strong style="color:#EF4444">上下文不浪费，经验不丢失</strong>
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">存储级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            Qdrant 向量库 + PostgreSQL<br>
+            检索命中率 > 95%<br>
+            5,786 → 5,886 实体持续增长
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            双库互补，每次任务自动入库。<br>
+            <strong style="color:#EF4444">知识资产持续沉淀</strong>
+          </p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">MEM0</strong> <span style="font-size:9px;color:var(--text-muted)">(60K+ Stars)</span><br>
+          通用记忆层：自动提取关键信息 → 分层存储（工作/短期/长期）→ 向量语义检索
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">Obsidian 集成</strong><br>
+          双向链接 + Graph View 实现知识关联可视化，Agent 工作成果自动同步到知识库
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">行业趋势</strong><br>
+          记忆正从"附属功能"升级为 Agent 的<strong style="color:#EF4444">"一等架构组件"</strong>，决定长期生产力天花板
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="font-size:11px">
+        <strong>📌 实践建议：</strong>从第一天上手就建立记忆习惯——每个 Agent 配独立的身份文件，每个任务结束后追加经验教训。记忆的复利效应会在 3 个月后显著拉开差距。
+      </div>
+    </div>
+
     <!-- Slide 8：章节过渡 -->
     <div class="slide">
       <div style="text-align:center;padding-top:8vh">
