@@ -732,6 +732,125 @@
       </div>
     </div>
 
+    <!-- Slide 5.7：方法论进化案例 · 从 V3 流水线到纵横分析法 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px">🧬 案例 · 研究方法的范式转移：从「管 Agent」到「帮 Agent」</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
+        以下案例发生在<strong style="color:#22C55E">2026年7月6日</strong>——从发现问题到完成范式转换，<strong>仅用了一天</strong>。这不是计划好的升级，而是一次「架构诊断→认知转变→方法重构」的完整闭环。
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+        <div class="card" style="padding:12px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 阶段一：V3 的结构性缺陷</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong>17 phase × 70 模块 × 64K 行 Python</strong><br>
+            · Phase 1 输出被 Phase 2 忽略（架构断层）<br>
+            · 数据源路由刚性预设（MX → Qdrant → KG 必须全走）<br>
+            · 单向 12 步，不能回退补充检索<br>
+            · 质疑节点是外部门禁（Agent 不知道为什么被打回）<br>
+            <strong style="color:#EF4444">核心问题：64K 行代码实现的是一个僵硬的流水线</strong>
+          </div>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 阶段二：关键认知转折</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong>一个朴素的问题：</strong><br>
+            为什么老分析师比年轻分析师强？<br><br>
+            不是因为「步骤更多」或「模板更全」：<br>
+            1. 知道<strong>什么时候该用什么数据源</strong><br>
+            2. 能<strong>识别数据缺口</strong>并主动补充<br>
+            3. 会<strong>交叉验证</strong>而不是照单全收<br>
+            4. 经验是<strong>原则</strong>而不是<strong>清单</strong><br>
+            <strong style="color:#F59E0B">核心认知：数据源应该服务 Agent，而非框死 Agent</strong>
+          </div>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 阶段三：纵横分析法诞生</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong>1 个 SKILL.md，0 行代码</strong><br>
+            · Phase 0 前置：先读本地一手文件，再搜<br>
+            · 自适应闭环：每章 Q1-Q4 自检 → 补缺口 → 循环<br>
+            · 数据源路由规则：告诉「用什么/禁止用什么」，不规定调用顺序<br>
+            · 警醒信号 S1-S7：教 Agent「如何发现自己的偏见」<br>
+            · 降级链：MX → iFind → SearXNG（失败不退出）<br>
+            <strong style="color:#22C55E">核心公式：原则 > 清单，自检 > 门禁</strong>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:10px">
+        <table style="width:100%;font-size:11px">
+          <tr style="background:rgba(255,255,255,0.03)">
+            <td style="padding:5px 8px"><strong>维度</strong></td>
+            <td style="padding:5px 8px;color:#EF4444"><strong>V3 工作流</strong></td>
+            <td style="padding:5px 8px;color:#22C55E"><strong>纵横分析法</strong></td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">定位</td>
+            <td style="padding:4px 8px">给流水线的配置文件（17 phase × 70 模块）</td>
+            <td style="padding:4px 8px;color:#22C55E">给 Agent 的方法论（1 个 SKILL.md）</td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">数据源</td>
+            <td style="padding:4px 8px">刚性路由：固定调用 MX → Qdrant → KG</td>
+            <td style="padding:4px 8px;color:#22C55E">自适应路由：Agent 识别缺口后自主选择</td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">反馈</td>
+            <td style="padding:4px 8px">单向 12 步，不可回退</td>
+            <td style="padding:4px 8px;color:#22C55E">闭环循环：每章自检 → 补缺口</td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">质控</td>
+            <td style="padding:4px 8px">质疑节点 A/B（固定阈值 60%/70%，外部门禁）</td>
+            <td style="padding:4px 8px;color:#22C55E">Q1-Q4 自检 + S1-S7 警醒信号（内嵌自检）</td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">代码量</td>
+            <td style="padding:4px 8px;color:#EF4444">64K 行 Python</td>
+            <td style="padding:4px 8px;color:#22C55E"><strong>0 行（纯方法论文件）</strong></td>
+          </tr>
+          <tr>
+            <td style="padding:4px 8px">输出</td>
+            <td style="padding:4px 8px">自由格式</td>
+            <td style="padding:4px 8px;color:#22C55E">25 章固定模板（研究+决策）</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+        <div class="card" style="padding:12px;border-left:3px solid #22C55E">
+          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">✅ 晶能光电实战验证</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong>方法报告 vs 基线报告（人工+AI 协作）：</strong><br>
+            · 总字数：27,629 vs 14,586（+89%）<br>
+            · 数据来源标注：49 处、28 种 vs 少数<br>
+            · 自检覆盖：26 处 Q1-Q4 vs 无<br>
+            · 警醒信号：S1-S7 全激活 vs 无<br>
+            · <strong style="color:#22C55E">方法报告独有 6 个决策维度</strong>（基线缺失）：<br>
+            交易结构分析 · 退出路径分析 · 约束条件建模 · 情景推演+IRR分级 · 6维竞品对标 · 估值三锚校验
+          </div>
+        </div>
+        <div class="card" style="padding:12px;border-left:3px solid #A855F7">
+          <h3 style="font-size:13px;color:#A855F7;margin-bottom:6px">💡 4 个关键启示</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong>1. Agent 需要「原则」而不是「清单」</strong><br>
+            清单越细，Agent 越蠢。给它路由规则+自检问题+降级链，让它自己判断。<br>
+            <strong>2. 数据源为 Agent 服务，不是反过来</strong><br>
+            Agent 读本地文件→识别缺口→选择工具→循环。数据源是可选工具，不是必经之路。<br>
+            <strong>3. 质控是「自检」不是「门禁」</strong><br>
+            不是「你写完了我来审」，而是「你写的时候问自己四个问题」。<br>
+            <strong>4. 方法论演进速度快于工程实现</strong><br>
+            3 段文字、2 个模板 = 数周的工程排期。方法论就是产品。
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:8px">
+        <p style="font-size:12px"><strong>📌 这个案例的核心启示：</strong>在 AI 辅助投资研究领域，<strong style="color:#22C55E">最高杠杆的改进点不是工程自动化，而是给 Agent 一个好方法</strong>。从 64K 行 Python 到 1 个 SKILL.md，代码量降为 0，输出质量系统性超越基线——这就是方法论的力量。这和你的日常工作一样：<strong style="color:#F59E0B">工具很重要，但方法论才是天花板。</strong></p>
+      </div>
+    </div>
+
     <!-- ====== Slide 5A：前两个安装包（Overview Page） ====== -->
     <div class="slide">
       <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🎁 落地保障 · 前两个包：环境 + Agent</h2>
