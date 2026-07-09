@@ -319,111 +319,96 @@
       </div>
     </div>
 
-    <!-- Slide 4A：七步投资分析全链路 · 步骤 1-3（背景/流程展开） -->
+    <!-- Slide 4：七步投资分析全链路 · step-sequencer 交互式 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#F59E0B;margin-bottom:4px;text-align:center">🔬 从立项到过会 · 七步投资分析全链路（上）</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;text-align:center">步骤 1-3：立项收集 → 商业分析 → 产业链纵深——<strong style="color:#F59E0B">哪个 Agent 做了什么</strong>、产出了<strong style="color:#22C55E">哪份具体报告</strong></p>
+      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:4px;text-align:center">🔬 从立项到过会 · 七步投资分析全链路</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:10px;text-align:center"><strong style="color:#F59E0B">哪个 Agent 做了什么</strong>、产出了<strong style="color:#22C55E">哪份具体报告</strong>——点击步骤或圆点切换，支持键盘 ← → 导航</p>
 
-      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;position:relative;padding:0 4px">
-
-        <!-- 步骤 1 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #F59E0B;position:relative">
-          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.4)">1</span>
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">立项与信息收集</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">专班指令 → main 拆解为行业/财务/法律/估值 4 条工作线，sessions_send 并行下发</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#22C55E">main Agent 拆解任务：</strong>「做星恒尽调」→ 4 线并行<br>
-            <strong style="color:#F59E0B">research Agent 启动搜索：</strong>7 维度 × 3+ 来源，多引擎交叉验证<br>
-            <span style="color:#38bdf8">→ 主报告 §1 联网信息收集汇总</span>
+      <div class="step-sequencer">
+        <div class="seq-steps">
+          <!-- Step 1 -->
+          <div class="seq-step active" data-step="1" style="border-top:3px solid #F59E0B">
+            <span class="seq-step-badge" style="background:#F59E0B;color:#000">1</span>
+            <h3 style="font-size:14px;color:#F59E0B;margin:0 0 6px 0">立项与信息收集</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">专班指令 → main 拆解为行业/财务/法律/估值 4 条工作线，sessions_send 并行下发</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#22C55E">main Agent：</strong>「做星恒尽调」→ 4 线并行<br>
+              <strong style="color:#F59E0B">research Agent：</strong>7 维度 × 3+ 来源交叉验证<br>
+              <span style="color:#38bdf8">→ 主报告 §1 联网信息收集汇总</span>
+            </div>
+          </div>
+          <!-- Step 2 -->
+          <div class="seq-step" data-step="2" style="border-top:3px solid #EF4444">
+            <span class="seq-step-badge" style="background:#EF4444;color:#fff">2</span>
+            <h3 style="font-size:14px;color:#EF4444;margin:0 0 6px 0">商业纵横分析 → 发现核心矛盾</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">市占率 72.5% 但净利仅 4,509 万，净利率 1.2%——市占率这么高，为什么不赚钱？</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#EF4444">四层护城河侵蚀：</strong>OEM 瓦解(80%→6.38%) · 产品结构 · 前驱体体外循环 · 合规市场萎缩(-45.8%)<br>
+              <strong style="color:#A855F7">关键洞察：</strong>ATL 新能安从 5% 追至 18.5%<br>
+              <span style="color:#38bdf8">→ 附件C 竞争力纵横 + 附件D 财务健康度</span>
+            </div>
+          </div>
+          <!-- Step 3 -->
+          <div class="seq-step" data-step="3" style="border-top:3px solid #A855F7">
+            <span class="seq-step-badge" style="background:#A855F7;color:#fff">3</span>
+            <h3 style="font-size:14px;color:#A855F7;margin:0 0 6px 0">产业链纵深分析</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">前驱体体外循环 + 客户结构安全风险 + 磷酸锰铁锂渗透率趋势</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#A855F7">data Agent：</strong>50+ 家股东信息提取 + 审计 vs 管理口径比对<br>
+              <strong style="color:#EF4444">风险发现：</strong>斯科兰德关联交易 + 客户集中度（雅迪+爱玛仅 6.38%）<br>
+              <span style="color:#38bdf8">→ 附件E 前驱体体外循环 + 附件G 客户结构 + 附件I 产业链标的</span>
+            </div>
+          </div>
+          <!-- Step 4 -->
+          <div class="seq-step" data-step="4" style="border-top:3px solid #00D4FF">
+            <span class="seq-step-badge" style="background:#00D4FF;color:#000">4</span>
+            <h3 style="font-size:14px;color:#00D4FF;margin:0 0 6px 0">估值分析 · 独立 vs 券商正面碰撞</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">PS/PB/PE 三方法 → 期望约 2.72 亿 → 收购对价 5 亿 → 期望回报 -45.6%</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#00D4FF">research Agent 三方法估值：</strong>PS 三情景(14.9-28亿) + PB 下限(26亿) + PE 辅助<br>
+              <strong style="color:#EC4899">智能编程助手发现缺陷：</strong>券商 PE 含宁德时代(116x)结构不可比<br>
+              <span style="color:#38bdf8">→ 附件H 估值分析专项——多方法交叉验证</span>
+            </div>
+          </div>
+          <!-- Step 5 -->
+          <div class="seq-step" data-step="5" style="border-top:3px solid #EC4899">
+            <span class="seq-step-badge" style="background:#EC4899;color:#fff">5</span>
+            <h3 style="font-size:14px;color:#EC4899;margin:0 0 6px 0">并购方式对比 · 三方案收敛</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">老股收购 vs 增资扩股 vs 上市公司并购——收敛至最优路径</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#22C55E">收敛结论：</strong>上市公司并购为最优路径（天保基建 A 股平台）<br>
+              <strong style="color:#F59E0B">同步分析：</strong>允公律所发现 6 家标的公司 31 个问题<br>
+              <span style="color:#38bdf8">→ 附件B 收并购路径分析 + proposal_analysis</span>
+            </div>
+          </div>
+          <!-- Step 6 -->
+          <div class="seq-step" data-step="6" style="border-top:3px solid #22C55E">
+            <span class="seq-step-badge" style="background:#22C55E;color:#000">6</span>
+            <h3 style="font-size:14px;color:#22C55E;margin:0 0 6px 0">专题会汇报 · 从分析到决策</h3>
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.55;margin:0">三方案对比 + 估值对比表 + 风险清单 → 管理层 5 分钟理解核心结论</p>
+            <div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:6px">
+              <strong style="color:#22C55E">report Agent：</strong>国企公文标准 HTML 排版<br>
+              <strong style="color:#38bdf8">project Agent：</strong>16 份报告在线可查，任何质疑当场验证<br>
+              <strong style="color:#EF4444">决策结论：</strong>不建议以当前对价收购<br>
+              <span style="color:#38bdf8">→ meeting_briefing 专题会汇报（2026-06-15）</span>
+            </div>
           </div>
         </div>
-
-        <!-- 步骤 2 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #EF4444;position:relative">
-          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.4)">2</span>
-          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">商业纵横分析 → 发现核心矛盾</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">市占率 72.5% 但净利仅 4,509 万，净利率 1.2%——市占率这么高，为什么不赚钱？</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#EF4444">四层护城河侵蚀：</strong>OEM 关系瓦解(80%→6.38%) · 产品结构 · 前驱体体外循环 · 合规市场萎缩(-45.8%)<br>
-            <strong style="color:#A855F7">关键洞察：</strong>ATL 新能安从 5% 追至 18.5%，星恒市场地位正在被侵蚀<br>
-            <span style="color:#38bdf8">→ 附件C 竞争力纵横 + 附件D 财务健康度纵横</span>
-          </div>
+        <div class="seq-nav">
+          <span class="seq-dot active" data-step="1"></span>
+          <span class="seq-dot" data-step="2"></span>
+          <span class="seq-dot" data-step="3"></span>
+          <span class="seq-dot" data-step="4"></span>
+          <span class="seq-dot" data-step="5"></span>
+          <span class="seq-dot" data-step="6"></span>
         </div>
-
-        <!-- 步骤 3 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #A855F7;position:relative">
-          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.4)">3</span>
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">产业链纵深分析</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">前驱体体外循环 + 客户结构安全风险 + 磷酸锰铁锂渗透率趋势</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#A855F7">data Agent 数据支撑：</strong>50+ 家股东信息提取 + 审计 vs 管理口径比对<br>
-            <strong style="color:#EF4444">关键风险发现：</strong>斯科兰德关联交易 + 客户集中度（雅迪+爱玛收入仅 6.38%）<br>
-            <span style="color:#38bdf8">→ 附件E 前驱体体外循环 + 附件G 客户结构 + 附件I 产业链标的</span>
-          </div>
-        </div>
-
       </div>
 
-      <div style="text-align:center;margin-top:20px">
-        <div class="story-split-arrow">⬇</div>
-        <p style="font-size:13px;color:var(--text-muted)">步骤 4-6：估值碰撞 → 并购方案收敛 → 专题会汇报决策</p>
-      </div>
-    </div>
-
-    <!-- Slide 4B：七步投资分析全链路 · 步骤 4-6（AI 映射/结论） -->
-    <div class="slide">
-      <span class="split-continuation-badge">↑ 接上一页 · 七步分析链路</span>
-      <h2 style="font-size:28px;color:#EC4899;margin-bottom:4px;text-align:center">🔬 从立项到过会 · 七步投资分析全链路（下）</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;text-align:center">步骤 4-6：估值碰撞 → 方案收敛 → 决策输出——<strong style="color:#EC4899">AI 算数，人做判断</strong></p>
-
-      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;position:relative;padding:0 4px">
-
-        <!-- 步骤 4 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #00D4FF;position:relative">
-          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.4)">4</span>
-          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:6px">估值分析 · 独立 vs 券商正面碰撞</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">PS/PB/PE 三方法 → 期望约 2.72 亿 → 收购对价 5 亿 → 期望回报 -45.6%</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#00D4FF">research Agent 三方法估值：</strong>PS 法三情景(14.9-28 亿) + PB 法下限(26 亿) + PE 辅助<br>
-            <strong style="color:#EC4899">智能编程助手发现关键缺陷：</strong>券商 PE 含宁德时代(116x)结构不可比；FY2027 净利 2 亿需营收 167 亿<br>
-            <span style="color:#38bdf8">→ 附件H 估值分析专项——多方法交叉验证</span>
-          </div>
-        </div>
-
-        <!-- 步骤 5 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #EC4899;position:relative">
-          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.4)">5</span>
-          <h3 style="font-size:15px;color:#EC4899;margin-bottom:6px">并购方式对比 · 三方案收敛</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">老股收购 vs 增资扩股 vs 上市公司并购——收敛至最优路径</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#22C55E">收敛结论：</strong>上市公司并购为最优路径（天保基建 A 股平台）<br>
-            <strong style="color:#F59E0B">同步分析：</strong>允公律所发现 6 家标的公司 31 个问题，进一步支持并购路径<br>
-            <span style="color:#38bdf8">→ 附件B 收并购路径分析 + proposal_analysis</span>
-          </div>
-        </div>
-
-        <!-- 步骤 6 -->
-        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #22C55E;position:relative">
-          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.4)">6</span>
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">专题会汇报 · 从分析到决策</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">三方案对比 + 估值对比表 + 风险清单 → 管理层 5 分钟理解核心结论</p>
-          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#22C55E">report Agent 生成专题汇报：</strong>国企公文标准 HTML 排版<br>
-            <strong style="color:#38bdf8">project Agent 交付保障：</strong>16 份报告在线可查，任何质疑当场验证<br>
-            <strong style="color:#EF4444">决策结论：</strong>不建议以当前对价收购<br>
-            <span style="color:#38bdf8">→ meeting_briefing 专题会汇报（2026-06-15）</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 底部总结 -->
-      <div style="margin-top:14px;padding:10px 14px;background:linear-gradient(90deg,rgba(245,158,11,0.06),rgba(34,197,94,0.06));border-radius:8px;text-align:center">
-        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.8">
+      <div style="margin-top:10px;padding:10px 14px;background:linear-gradient(90deg,rgba(245,158,11,0.06),rgba(34,197,94,0.06));border-radius:8px;text-align:center">
+        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.7">
           <strong style="color:#F59E0B">⏱ 全流程：</strong>
           05.15 首版 → 06.10 审计数据 → 06.15 专题会 → 06.21 产业链 → <strong style="color:#22C55E">06.22 第 6 版终稿交付</strong>
-          &nbsp;·&nbsp;
-          <strong style="color:#EC4899">核心启示：</strong>AI 把数据搜集、多源验证、估值计算、报告排版压缩到 90 分钟，人把时间花在<strong style="color:#F59E0B">判断假设合理性、发现数据矛盾、做最终决策</strong>上。
+          · <strong style="color:#EC4899">核心启示：</strong>AI 把数据搜集、多源验证、估值计算、报告排版压缩到 90 分钟，人把时间花在<strong style="color:#F59E0B">判断假设合理性、发现数据矛盾、做最终决策</strong>上。
         </p>
       </div>
     </div>

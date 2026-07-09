@@ -558,4 +558,37 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
+
+  // -------- step-sequencer 交互控制器 --------
+  document.querySelectorAll('.step-sequencer').forEach(function(seq) {
+    var steps = seq.querySelectorAll('.seq-step');
+    var dots  = seq.querySelectorAll('.seq-dot');
+
+    function activate(idx) {
+      steps.forEach(function(s, i) { s.classList.toggle('active', i === idx); });
+      dots.forEach(function(d, i)  { d.classList.toggle('active', i === idx); });
+    }
+
+    steps.forEach(function(step, i) {
+      step.addEventListener('click', function() { activate(i); });
+    });
+
+    dots.forEach(function(dot, i) {
+      dot.addEventListener('click', function() { activate(i); });
+    });
+
+    // keyboard navigation: arrow keys cycle through steps
+    seq.setAttribute('tabindex', '0');
+    seq.addEventListener('keydown', function(e) {
+      var activeIdx = Array.from(steps).findIndex(function(s) { return s.classList.contains('active'); });
+      if (activeIdx < 0) activeIdx = 0;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        activate((activeIdx + 1) % steps.length);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        activate((activeIdx - 1 + steps.length) % steps.length);
+      }
+    });
+  });
 });
