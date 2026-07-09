@@ -382,10 +382,10 @@ body {
   justify-content: center;
 }
 .hero-image img {
-  max-width: 580px;
-  max-height: 60vh;
-  width: auto;
-  height: auto;
+  max-width: 580px !important;
+  max-height: 60vh !important;
+  width: auto !important;
+  height: auto !important;
   object-fit: contain;
   border-radius: 14px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(201, 169, 97, 0.2);
@@ -403,6 +403,7 @@ body {
   padding: 0;
   background: transparent;
   flex: 1;
+  min-width: 420px;
 }
 .hero-title {
   font-size: 48px;
