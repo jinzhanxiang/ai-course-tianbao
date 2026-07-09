@@ -36,100 +36,130 @@
       </header>
     </div>
 
-    <!-- Slide 2：幻觉风险 + 防线（精简，Ch02 已有详细案例） -->
+    <!-- Slide 2：幻觉防御实录 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#EF4444;margin-bottom:10px"🛡️ 风险一：LLM 会产生事实错误（幻觉）—— 可防可控</h2>
+      <h2 style="font-size:30px;color:#EF4444;margin-bottom:10px">🛡️ 第一大风险：LLM 会产生事实错误（幻觉）</h2>
       <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
-        第 02 章已用星恒项目的 4 个真实案例展示过幻觉。这里直接讲<strong style="color:#22C55E">怎么防</strong>和<strong style="color:#F59E0B">重点关注什么</strong>。
+        不是故意的，但结果一样严重。以下 4 个坑全部来自<strong style="color:#EF4444">星恒电源项目的真实记录</strong>。
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
-        <div>
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📋 三道防线</h3>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div class="card" style="padding:10px;border-top:3px solid #38bdf8">
-              <strong style="font-size:13px;color:#38bdf8">1. 来源锁定</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">每条关键数据标注来源文件 + 段落。例："（FY24 审计报告 P23 营收 36.36 亿）"</p>
-            </div>
-            <div class="card" style="padding:10px;border-top:3px solid #22C55E">
-              <strong style="font-size:13px;color:#22C55E">2. 双重验证</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">关键数字必须两个独立源交叉验证——LLM 检索 + 外部 API，两源一致才采信。</p>
-            </div>
-            <div class="card" style="padding:10px;border-top:3px solid #A855F7">
-              <strong style="font-size:13px;color:#A855F7">3. self-check 自检</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算完成。</p>
-            </div>
-          </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+        <div class="card" style="padding:10px;border-left:3px solid #EF4444">
+          <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 股东比例造假</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
         </div>
-        <div>
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">🔍 3 类高风险场景，重点关注</h3>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div class="card" style="padding:10px;border-left:3px solid #EF4444">
-              <strong style="font-size:14px;color:#EF4444">🔴 财务数字</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">营收、净利、估值倍数——最容易"迁移"。必须交叉验证两个独立源。</p>
-            </div>
-            <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
-              <strong style="font-size:14px;color:#F59E0B">🟡 股权/股东信息</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">持股比例、关联方——LLM 倾向"合理推测"。必须工商登记核对。</p>
-            </div>
-            <div class="card" style="padding:10px;border-left:3px solid #A855F7">
-              <strong style="font-size:14px;color:#A855F7">🟣 Agent 状态声称</strong>
-              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">说"已完成"不代表真的完成。必须用文件校验而非信任消息。</p>
-            </div>
-          </div>
+        <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
+          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 research 声称"已完成"</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过文件校验发现差异并仲裁。</p>
+        </div>
+        <div class="card" style="padding:10px;border-left:3px solid #A855F7">
+          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🟣 财务数字年份错配</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 将 2022 年营收 35.99 亿标注为 2024 年。原始数据源标记模糊导致。</p>
+        </div>
+        <div class="card" style="padding:10px;border-left:3px solid #38bdf8">
+          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 SelfCheckGPT 一致性验证</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
         </div>
       </div>
 
-      <div class="alert alert-success" style="font-size:14px">
-        <strong>📌 实测数据：</strong>引入三道防线后，幻觉率从 ~15% 降至 &lt;3%。关键不是「更聪明的模型」，而是<strong>更严格的流程</strong>。
+      <h3 style="font-size:17px;color:#22C55E;margin-bottom:10px">📋 防线：cite-then-answer · 先引用再回答</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+        <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">1. 来源锁定</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">2. 双重验证</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #A855F7">
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">3. self-check 自检</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是"更聪明的模型"，而是<strong>更严格的流程</strong>。</p>
       </div>
     </div>
 
-    <!-- Slide 3：过度工程化 + 方法论陷阱（合并） -->
+    
+<!-- Slide 3：第二大风险 — 过度工程化（晶能光电实验） -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:8px"⚠️ 风险二 + 三：过度工程化，越做越复杂，反而更差</h2>
+      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:8px">⚠️ 第二大风险：以为"加功能就是变好"</h2>
       <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">
-        两个真实案例，同一个教训——<strong style="color:#EF4444">加功能不等于变好，代码多不等于可靠</strong>。
+        真实案例：在纵横分析法（HV Analysis）基础上叠加 V3 质疑 Agent 后，报告质量<strong style="color:#EF4444">不升反降</strong>。
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 案例 1：叠加质疑 Agent → 质量暴跌</h3>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            <p style="margin:0">晶能光电报告：叠加质疑 Agent 后 → 字数 -83%（6.5万→1.1万）、Insight -100%、数据点 -89%。</p>
-            <p style="margin:4px 0 0 0;color:#EF4444"><strong>根因：</strong>新模块把原有分析步骤"吃掉"了。集成方式不对，新功能会破坏旧流程。</p>
-          </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">📐 基线：HV Analysis</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">晶能光电 · 65,265 字 · 49 个 H2 · 11 个 Insight · 445 数据点 · 6 家对标公司</p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">🟣 案例 2：64K 行代码 → 1 个方法文件</h3>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">
-            <p style="margin:0">V3：64K 行 Python · 42 模块 · 9 步外挂式 QC 链 → 单向流水线，Phase 间断层。</p>
-            <p style="margin:4px 0 0 0;color:#22C55E"><strong>改后：</strong>hv-analysis：0 行代码 · 2401 行方法文件 · 内嵌自检替代外部门禁。质量反超。</p>
-          </div>
+        <div class="card" style="padding:12px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:4px">🔬 增强版：+ 质疑 Agent</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">叠加上去后 → 11,136 字（-83%）· 14 个 H2（-35）· 0 个 Insight（-100%）· ~50 数据点（-89%）</p>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;text-align:center">
-        <div style="padding:8px;background:rgba(239,68,68,0.06);border-radius:4px">
-          <div style="font-size:13px;font-weight:700;color:#EF4444">代码 ≠ 可靠</div>
-          <div style="font-size:14px;color:var(--text-muted)">代码越多耦合越深，改一处牵动全身</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+        <div style="padding:12px;background:rgba(239,68,68,0.06);border-radius:8px;border-left:3px solid #EF4444">
+          <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">🔴 根本原因：工作流被"腰斩"</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">指令"不走 data 代理"被误解为"不进行 LLM 深度分析"→ 检索层被跳过 → 对标分析被跳过 → 只做了数据溯源标注（唯一提升项）。<strong style="color:#EF4444">新模块把原有功能"吃掉"了。</strong></p>
         </div>
-        <div style="padding:8px;background:rgba(245,158,11,0.06);border-radius:4px">
-          <div style="font-size:13px;font-weight:700;color:#F59E0B">质控要内嵌</div>
-          <div style="font-size:14px;color:var(--text-muted)">让 Agent 写的时候就检查，不是写完了再打回</div>
-        </div>
-        <div style="padding:8px;background:rgba(34,197,94,0.06);border-radius:4px">
-          <div style="font-size:13px;font-weight:700;color:#22C55E">方法论 > 工程</div>
-          <div style="font-size:14px;color:var(--text-muted)">给 Agent 一个好方法，胜过写一万行代码</div>
+        <div style="padding:12px;background:rgba(34,197,94,0.06);border-radius:8px;border-left:3px solid #22C55E">
+          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">🟢 修复：框架层面集成，不是流程外打补丁</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">新增 <code>--input-dir</code> 参数 + <code>local_context</code> 注入到 LLM prompt → 保留完整工作流。本地文件作为 context，不替代分析步骤。</p>
         </div>
       </div>
 
-      <div class="alert alert-warning" style="font-size:14px">
-        <strong>📌 判断标准：</strong>如果你的 Agent 系统维护成本随时间<strong style="color:#EF4444">上升</strong>——说明方法有问题。正确的范式：维护成本随时间<strong style="color:#22C55E">下降</strong>，每次迭代都在沉淀原则而非堆积代码。完整对比见第 06 章 Demo 2。
+      <div class="alert alert-warning">
+        <p style="font-size:12px"><strong>📌 核心启示：</strong>AI Agent 的升级不是搭积木。新模块会改变工作流执行路径，集成方式不对，新功能会把原有功能"吃掉"。<strong style="color:#F59E0B">引入新工具要先改造流程，而不是把新工具硬塞进旧流程。</strong></p>
       </div>
     </div>
 
-    <!-- Slide 4：踩坑清单 + 成本对比（精简） -->
+    
+<!-- Slide 4：第三大风险 — 方法论陷阱（V3→hv-analysis） -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:8px">🧬 第三大风险：以为"代码越多越可靠"</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
+        从 64K 行 Python 的刚性流水线 → 1 个方法论文件的范式转移。一天之内完成的认知跃迁。
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+        <div class="card" style="padding:12px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 V3 流水线</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">17 phase × 70 模块 × 64K 行 Python。Phase 1 输出被 Phase 2 忽略（架构断层）。数据源路由刚性预设。单向 12 步不可回退。<strong style="color:#EF4444">代码越多，越僵硬。</strong></p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 认知转折</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">为什么老分析师比年轻分析师强？不是步骤更多，而是：知道什么时候用什么数据源 / 能识别数据缺口 / 会交叉验证 / 经验是<strong>原则</strong>不是<strong>清单</strong>。</p>
+        </div>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E">
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 hv-analysis</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">1 个方法文件 · 0 行代码 · 自适应闭环（每章自检 → 补缺口 → 循环）· 内置警醒信号 · 降级链。核心公式：<strong style="color:#22C55E">原则 > 清单，自检 > 门禁</strong>。</p>
+        </div>
+      </div>
+
+      <table style="width:100%;font-size:11px;margin-bottom:10px">
+        <tr style="background:rgba(255,255,255,0.03)">
+          <td style="padding:5px 8px"><strong>维度</strong></td>
+          <td style="padding:5px 8px;color:#EF4444"><strong>V3 工作流</strong></td>
+          <td style="padding:5px 8px;color:#22C55E"><strong>纵横分析法</strong></td>
+        </tr>
+        <tr><td style="padding:4px 8px">定位</td><td style="padding:4px 8px">给流水线的配置文件</td><td style="padding:4px 8px;color:#22C55E">给 Agent 的方法论</td></tr>
+        <tr><td style="padding:4px 8px">数据源</td><td style="padding:4px 8px">刚性路由：固定调用顺序</td><td style="padding:4px 8px;color:#22C55E">自适应路由：Agent 自主选择</td></tr>
+        <tr><td style="padding:4px 8px">质控</td><td style="padding:4px 8px">外部门禁（不知道为何被打回）</td><td style="padding:4px 8px;color:#22C55E">内嵌自检（写的时候问自己）</td></tr>
+        <tr><td style="padding:4px 8px">代码量</td><td style="padding:4px 8px;color:#EF4444">64K 行 Python</td><td style="padding:4px 8px;color:#22C55E"><strong>0 行（纯方法论文件）</strong></td></tr>
+      </table>
+
+      <div class="alert alert-success">
+        <p style="font-size:12px"><strong>📌 核心启示：</strong>在 AI 辅助投资研究领域，<strong style="color:#22C55E">最高杠杆的改进点不是工程自动化，而是给 Agent 一个好方法</strong>。工具很重要，但方法论才是天花板。</p>
+      </div>
+    </div>
+
+    
+<!-- Slide 4：踩坑清单 + 成本对比（精简） -->
     <div class="slide">
       <h2 style="font-size:28px;color:#EF4444;margin-bottom:10px">📋 5 条踩坑教训 + 成本真相</h2>
 
@@ -208,7 +238,74 @@
       </div>
     </div>
 
-    <!-- Slide 6：章节过渡（含 Agent 边界 + 总结） -->
+    <!-- Slide 7.5：记忆管理 · Agent 的长期竞争力 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#EF4444;margin-bottom:8px">🧠 记忆管理：Agent 的长期竞争力</h2>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">
+        <strong style="color:#EF4444">核心认知：</strong>智能体的竞争，短期看模型能力，长期看<strong style="color:#EF4444">记忆管理</strong>。谁能让 Agent 记住更多、忘得更少、检索更快，谁就拥有更强的 AI 劳动力。
+      </p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">Agent 级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            data-agent → 管清洗<br>
+            research-agent → 管分析<br>
+            report-agent → 管排版
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            每个 Agent 独立记忆文件，职责分离。<br>
+            <strong style="color:#EF4444">5 个 Agent = 5 倍有效上下文</strong>
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">会话级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            空闲检测 → 摘要压缩<br>
+            模式提取 → 知识提炼<br>
+            Session > 3MB 自动触发
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            休眠时自动对历史会话压缩提炼。<br>
+            <strong style="color:#EF4444">上下文不浪费，经验不丢失</strong>
+          </p>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">存储级记忆</h3>
+          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+            Qdrant 向量库 + PostgreSQL<br>
+            检索命中率 > 95%<br>
+            5,786 → 5,886 实体持续增长
+          </div>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+            双库互补，每次任务自动入库。<br>
+            <strong style="color:#EF4444">知识资产持续沉淀</strong>
+          </p>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">MEM0</strong> <span style="font-size:9px;color:var(--text-muted)">(60K+ Stars)</span><br>
+          通用记忆层：自动提取关键信息 → 分层存储（工作/短期/长期）→ 向量语义检索
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">Obsidian 集成</strong><br>
+          双向链接 + Graph View 实现知识关联可视化，Agent 工作成果自动同步到知识库
+        </div>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">行业趋势</strong><br>
+          记忆正从"附属功能"升级为 Agent 的<strong style="color:#EF4444">"一等架构组件"</strong>，决定长期生产力天花板
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="font-size:11px">
+        <strong>📌 实践建议：</strong>从第一天上手就建立记忆习惯——每个 Agent 配独立的身份文件，每个任务结束后追加经验教训。记忆的复利效应会在 3 个月后显著拉开差距。
+      </div>
+    </div>
+
+    
+<!-- Slide 6：章节过渡（含 Agent 边界 + 总结） -->
     <div class="slide">
       <div style="text-align:center;padding-top:4vh">
         <h2 style="font-size:30px;color:#EF4444;margin-bottom:16px">风险可控，边界清晰</h2>
