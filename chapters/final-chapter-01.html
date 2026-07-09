@@ -1357,65 +1357,6 @@ h3 {
 })();
 </script>
 
-<script>
-// 追加 1：D-plan Burst 数据可视化注入器
-(function() {
-  var origHandler;
-  // 拦截 burst trigger 点击
-  document.querySelectorAll('.burst-trigger').forEach(function(trigger) {
-    trigger.addEventListener('click', function() {
-      // 延迟注入，等 DOM 更新
-      setTimeout(function() {
-        injectBurstViz();
-      }, 50);
-    });
-  });
-  
-  function injectBurstViz() {
-    var contentEl = document.getElementById('burst-content');
-    var titleEl = document.getElementById('burst-title');
-    if (!contentEl) return;
-    var title = titleEl ? titleEl.textContent : '';
-    var ch = detectChapter();
-    var viz = getChapterViz(ch, title);
-    if (viz && !contentEl.querySelector('.burst-viz')) {
-      contentEl.insertAdjacentHTML('afterbegin', viz);
-    }
-  }
-  
-  function detectChapter() {
-    var h1 = document.querySelector('h1');
-    var h2s = document.querySelectorAll('h2');
-    var txt = h1 ? h1.textContent : '';
-    h2s.forEach(function(h) { txt += h.textContent; });
-    if (txt.includes('你好') || txt.includes('数字化同行者')) return 1;
-    if (txt.includes('你们') || txt.includes('project') || txt.includes('星恒')) return 2;
-    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
-    if (txt.includes('门槛') || txt.includes('安装') || txt.includes('部署')) return 4;
-    if (txt.includes('风险') || txt.includes('坑') || txt.includes('幻觉')) return 5;
-    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('数据底座')) return 6;
-    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
-    if (txt.includes('回顾') || txt.includes('90 分钟')) return 8;
-    return 1;
-  }
-  
-  function getChapterViz(ch, title) {
-    var vizs = {
-      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div></div>',
-      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
-      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div></div>',
-      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
-      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div></div>',
-      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
-      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div></div>',
-      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
-    };
-    return vizs[ch] || '';
-  }
-  
-  console.log('[D-plan] Burst viz injector ready');
-})();
-</script>
 
 </body>
 </html>
