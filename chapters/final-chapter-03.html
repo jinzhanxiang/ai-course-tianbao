@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/sci-fi.css?v=20260710-v1">
+  <link rel="stylesheet" href="../assets/css/visuals.css?v=20260710-v1">
 
 </head>
 <body class="chapter-page"><script>
@@ -393,10 +395,10 @@
       <h2 class="slide-title">🎯 5+2+1 体系全景图 · 协同架构</h2>
       <p class="slide-subtitle">工程基座提供基础设施，中台沉淀知识与管理——5 大 Agent 在此之上协同运转</p>
 
-      <div class="arch-diagram" style="margin:16px 0">
+      <div class="arch-diagram" data-visual="arch-diagram" style="margin:16px 0">
 
         <!-- Layer 4: 5 Agents (top level) -->
-        <div class="arch-layer" data-layer="4">
+        <div class="arch-layer" data-layer="4" data-label="5 Agent 协同层">
           <div class="arch-node" style="border-left:4px solid #22C55E">
             <span class="arch-icon">🧠</span>
             <div class="arch-title" style="color:#22C55E">main</div>
@@ -425,7 +427,7 @@
         </div>
 
         <!-- Layer 3: 2 Assistants + 2 Middle Platforms -->
-        <div class="arch-layer" data-layer="3">
+        <div class="arch-layer" data-layer="3" data-label="2 助手 + 2 中台">
           <div class="arch-node" style="border-left:4px solid #febc2e">
             <span class="arch-icon">💻</span>
             <div class="arch-title" style="color:#febc2e">智能编程助手</div>
@@ -449,7 +451,7 @@
         </div>
 
         <!-- Layer 2: Knowledge Middle Platform -->
-        <div class="arch-layer" data-layer="2">
+        <div class="arch-layer" data-layer="2" data-label="知识中台">
           <div class="arch-node" style="border-left:4px solid #06b6d4">
             <span class="arch-icon">🗄️</span>
             <div class="arch-title" style="color:#06b6d4">知识中台</div>
@@ -458,7 +460,7 @@
         </div>
 
         <!-- Layer 1: Local Model -->
-        <div class="arch-layer" data-layer="1">
+        <div class="arch-layer" data-layer="1" data-label="本地模型">
           <div class="arch-node" style="border-left:4px solid #22C55E">
             <span class="arch-icon">🖥️</span>
             <div class="arch-title" style="color:#22C55E">本地模型</div>
@@ -609,6 +611,7 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+  <script src="../assets/js/visuals.js?v=20260710-v1"></script>
 
 </body>
 </html>

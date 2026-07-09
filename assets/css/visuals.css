@@ -1,0 +1,438 @@
+/* =====================================================
+   visuals.css — 6 种可视化组件样式
+   配合 visuals.js 控制器使用
+   所有组件通过 data-visual="xxx" 激活
+   ===================================================== */
+
+/* ========== 1. Radar Chart 雷达图 ========== */
+[data-visual="radar"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+.radar-chart-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  flex-shrink: 0;
+}
+.radar-chart-wrap svg {
+  width: 100%;
+  height: 100%;
+}
+.radar-axis {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+.radar-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1;
+}
+.radar-poly {
+  fill: rgba(0, 212, 255, 0.15);
+  stroke: var(--accent, #00d4ff);
+  stroke-width: 2;
+  transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.radar-poly-alt {
+  fill: rgba(168, 85, 247, 0.12);
+  stroke: var(--accent-2, #a855f7);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+.radar-label {
+  font-size: 11px;
+  fill: var(--text-secondary, #8fa8cc);
+  text-anchor: middle;
+}
+.radar-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+.radar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.radar-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ========== 2. Architecture Diagram 架构图 ========== */
+[data-visual="arch-diagram"] {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 8px 0;
+  position: relative;
+}
+.arch-layer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: all 0.35s;
+}
+.arch-layer:hover {
+  border-color: var(--accent, #00d4ff);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.15);
+}
+.arch-layer-label {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 4px;
+  background: var(--accent, #00d4ff);
+  color: #000;
+  letter-spacing: 0.5px;
+}
+.arch-node {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  font-size: 13px;
+  text-align: center;
+  min-width: 70px;
+  transition: all 0.3s;
+}
+.arch-node:hover {
+  background: rgba(0, 212, 255, 0.16);
+  border-color: var(--accent, #00d4ff);
+  transform: translateY(-2px);
+}
+.arch-node.core {
+  background: rgba(0, 212, 255, 0.18);
+  border-color: var(--accent, #00d4ff);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+/* SVG 连接线层 */
+.arch-svg-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.arch-svg-layer line,
+.arch-svg-layer path {
+  stroke: rgba(0, 212, 255, 0.25);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 3;
+  animation: archLineFlow 1.5s linear infinite;
+}
+@keyframes archLineFlow {
+  to { stroke-dashoffset: -16; }
+}
+
+/* ========== 3. Compare Slider 对比滑动器 ========== */
+[data-visual="compare-slider"] {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 4px 1fr;
+  gap: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 260px;
+}
+.compare-before,
+.compare-after {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.compare-before {
+  background: rgba(15, 23, 42, 0.5);
+  border-right: none;
+}
+.compare-after {
+  background: rgba(0, 212, 255, 0.06);
+  border-left: none;
+}
+.compare-divider {
+  width: 4px;
+  background: linear-gradient(
+    180deg,
+    var(--accent, #00d4ff) 0%,
+    var(--accent-2, #a855f7) 50%,
+    var(--accent, #00d4ff) 100%
+  );
+  cursor: col-resize;
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 2px;
+  transition: box-shadow 0.3s;
+}
+.compare-divider:hover {
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.5);
+}
+.compare-divider::after {
+  content: '⟨⟩';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.compare-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted, #5a6b95);
+  margin-bottom: 4px;
+}
+
+/* ========== 4. Dashboard Grid 仪表盘 ========== */
+[data-visual="dashboard"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+.dash-card {
+  text-align: center;
+  padding: 22px 18px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+.dash-card:hover {
+  border-color: var(--accent, #00d4ff);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+.dash-gauge {
+  display: block;
+  margin: 0 auto 10px;
+}
+.dash-gauge-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 6;
+}
+.dash-gauge-fill {
+  fill: none;
+  stroke: var(--accent, #00d4ff);
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.dash-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent, #00d4ff);
+}
+.dash-label {
+  font-size: 12px;
+  color: var(--text-secondary, #8fa8cc);
+  margin-top: 4px;
+}
+.dash-sub {
+  font-size: 11px;
+  color: var(--text-muted, #5a6b95);
+  margin-top: 2px;
+}
+
+/* ========== 5. Pipeline 流程管道 ========== */
+[data-visual="pipeline"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  align-items: stretch;
+  justify-content: center;
+  padding: 16px 0;
+  overflow-x: auto;
+}
+.pipeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 14px;
+  min-width: 120px;
+  max-width: 160px;
+  position: relative;
+  transition: all 0.35s;
+}
+.pipeline-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  right: -8px;
+  width: 20px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent, #00d4ff),
+    var(--accent-2, #a855f7)
+  );
+  animation: pipeFlow 1.2s ease-in-out infinite;
+}
+@keyframes pipeFlow {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+.pipeline-step-num {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 50%;
+  background: var(--accent, #00d4ff);
+  color: #000;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+.pipeline-step-content {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pipeline-step-content strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+  color: var(--text-primary);
+}
+
+/* ========== 6. Timeline Road 时间线道路 ========== */
+[data-visual="timeline-road"] {
+  position: relative;
+  padding: 24px 0;
+  overflow-x: auto;
+}
+.timeline-track {
+  position: relative;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin: 60px 20px 40px;
+  min-width: 600px;
+}
+.timeline-track::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--accent, #00d4ff),
+    var(--accent-2, #a855f7)
+  );
+  border-radius: inherit;
+  animation: timelineGlow 3s ease-in-out infinite;
+}
+@keyframes timelineGlow {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+.timeline-node {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.timeline-node:hover {
+  z-index: 2;
+}
+.timeline-node-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent, #00d4ff);
+  border: 3px solid var(--bg-primary, #0a0f2c);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+  transition: all 0.3s;
+}
+.timeline-node:hover .timeline-node-dot {
+  transform: scale(1.4);
+  box-shadow: 0 0 24px rgba(0, 212, 255, 0.8);
+}
+.timeline-node.alt .timeline-node-dot {
+  background: var(--accent-2, #a855f7);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+.timeline-node-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  text-align: center;
+}
+.timeline-node-year {
+  font-size: 11px;
+  color: var(--text-muted, #5a6b95);
+  position: absolute;
+  top: -24px;
+  white-space: nowrap;
+}
+/* 上下交错 */
+.timeline-node:nth-child(odd)  { margin-top: -56px; }
+.timeline-node:nth-child(even) { margin-top: 56px; }
+.timeline-node:nth-child(odd) .timeline-node-year  { top: auto; bottom: -22px; }
+.timeline-node:nth-child(even) .timeline-node-year { top: -24px; bottom: auto; }
+
+/* ========== 响应式 ========== */
+@media (max-width: 1024px) {
+  [data-visual="compare-slider"] {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  .compare-divider {
+    width: 100%;
+    height: 4px;
+    cursor: row-resize;
+  }
+  [data-visual="pipeline"] {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pipeline-step {
+    flex-direction: row;
+    min-width: 0;
+    max-width: none;
+    gap: 12px;
+    text-align: left;
+  }
+  .pipeline-step:not(:last-child)::after {
+    top: auto;
+    bottom: -8px;
+    left: 18px;
+    right: auto;
+    width: 2px;
+    height: 20px;
+  }
+  [data-visual="timeline-road"] .timeline-track {
+    min-width: 400px;
+  }
+}

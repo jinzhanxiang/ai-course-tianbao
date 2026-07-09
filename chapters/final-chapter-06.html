@@ -6,7 +6,10 @@
   <title>第 06 章 · 现场演示 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">  <style>
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/sci-fi.css?v=20260710-v1">
+  <link rel="stylesheet" href="../assets/css/visuals.css?v=20260710-v1">
+  <style>
     .demo-log-line { animation: logSlideIn 0.12s ease-out; white-space: pre-wrap; word-break: break-all; }
     @keyframes logSlideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
     .demo-run-btn {
@@ -88,67 +91,62 @@
         这不是概念演示——<strong style="color:#A855F7">已经建成、持续运行</strong>的知识底座系统
       </p>
 
-      <div data-unroll-delay="250" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;position:relative;padding:0 4px">
+      <div data-visual="pipeline" style="margin-top:20px">
 
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EF4444;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.5)">1</span>
-          <div style="font-size:28px;margin-bottom:8px">📄</div>
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">PDF → TXT</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">pdftotext + PyMuPDF<br>双引擎提取</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.5)">1</div>
+          <div class="pipeline-step-content">
+            <strong>PDF → TXT</strong>
+            pdftotext + PyMuPDF<br>双引擎提取
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5);color:#000">2</span>
-          <div style="font-size:28px;margin-bottom:8px">🧠</div>
-          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">LLM 核心提取</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体/指标/关系/逻辑链<br>3 并发审查</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">2</div>
+          <div class="pipeline-step-content">
+            <strong>LLM 核心提取</strong>
+            实体/指标/关系/逻辑链<br>3 并发审查
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #38bdf8;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#38bdf8;box-shadow:0 0 12px rgba(56,189,248,0.5);color:#000">3</span>
-          <div style="font-size:28px;margin-bottom:8px">📋</div>
-          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">中间 JSON</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">术语统一 + 错别字修正<br>512-1024 token 分块</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#38bdf8;box-shadow:0 0 12px rgba(56,189,248,0.5)">3</div>
+          <div class="pipeline-step-content">
+            <strong>中间 JSON</strong>
+            术语统一 + 错别字修正<br>512-1024 token 分块
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">4</span>
-          <div style="font-size:28px;margin-bottom:8px">🗄️</div>
-          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">PostgreSQL 入库</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">entity / indicator / chunk<br>relation / logic 7 表</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">4</div>
+          <div class="pipeline-step-content">
+            <strong>PostgreSQL 入库</strong>
+            entity / indicator / chunk<br>relation / logic 7 表
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EC4899;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">5</span>
-          <div style="font-size:28px;margin-bottom:8px">🔢</div>
-          <h3 style="font-size:14px;color:#EC4899;margin-bottom:6px">BGE-M3 向量化</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">本地 MLX 推理<br>Qdrant 3 集合入库</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">5</div>
+          <div class="pipeline-step-content">
+            <strong>BGE-M3 向量化</strong>
+            本地 MLX 推理<br>Qdrant 3 集合入库
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5);color:#000">6</span>
-          <div style="font-size:28px;margin-bottom:8px">✅</div>
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">质量门控</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">5 层审计：Schema → Wiki<br>全链路质量保障</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">6</div>
+          <div class="pipeline-step-content">
+            <strong>质量门控</strong>
+            5 层审计：Schema → Wiki<br>全链路质量保障
+          </div>
         </div>
 
-        <div class="pipeline-connector"></div>
-
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative;grid-column:span 1">
-          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5);color:#000">7</span>
-          <div style="font-size:28px;margin-bottom:8px">📚</div>
-          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:6px">Wiki 生成</h3>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体 1055 + 框架 190<br>指标 3279 + 逻辑链 988</p>
+        <div class="pipeline-step">
+          <div class="pipeline-step-num" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">7</div>
+          <div class="pipeline-step-content">
+            <strong>Wiki 生成</strong>
+            实体 1055 + 框架 190<br>指标 3279 + 逻辑链 988
+          </div>
         </div>
 
       </div>
@@ -166,6 +164,26 @@
       <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px">
         193 份深度研报完成入库——这是 Agent 做投资研究的<strong style="color:#22C55E">第一大信息来源</strong>
       </p>
+
+      <div data-visual="dashboard" style="margin-bottom:14px">
+        <div class="dash-card" data-value="193" data-max="200" style="border-top:4px solid #22C55E">
+          <div class="dash-value">193</div>
+          <div class="dash-label">深度研报</div>
+          <div class="dash-sub">覆盖 25 个行业</div>
+        </div>
+
+        <div class="dash-card" data-value="5894" data-max="6000" style="border-top:4px solid #00D4FF">
+          <div class="dash-value">5,894</div>
+          <div class="dash-label">知识实体</div>
+          <div class="dash-sub">实体识别与关系抽取</div>
+        </div>
+
+        <div class="dash-card" data-value="11075" data-max="12000" style="border-top:4px solid #A855F7">
+          <div class="dash-value">11,075</div>
+          <div class="dash-label">语义关系</div>
+          <div class="dash-sub">知识图谱关系网络</div>
+        </div>
+      </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
         <div class="card popup-trigger" data-popup-title="🧬 知识图谱规模" style="padding:18px 16px;cursor:pointer;border-top:4px solid #22C55E;text-align:center">
@@ -213,28 +231,31 @@
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px">
 
-        <!-- 左：4 Phase 卡片概览 -->
-        <div>
+        <!-- 左：4 Phase 卡片概览 — arch-diagram -->
+        <div data-visual="arch-diagram">
           <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📐 4 Phase 流水线（单向，无反馈回路）</h3>
-          <div style="display:flex;flex-direction:column;gap:5px">
-            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8;font-size:14px">
+          <div class="arch-layer" data-layer="1" data-label="Phase 0">
+            <div class="arch-node" style="border-left:3px solid #38bdf8">
               <strong style="color:#38bdf8">Phase 0 · 识别与分派</strong>
-              <span style="color:var(--text-secondary)">— 判断任务类型（尽调/研究/行业）→ 识别公司类型 → 选择数据源</span>
+              <span style="font-size:12px;color:var(--text-secondary);display:block">判断任务类型 → 识别公司类型 → 选择数据源</span>
             </div>
-            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;font-size:14px">
+          </div>
+          <div class="arch-layer" data-layer="2" data-label="Phase 1">
+            <div class="arch-node" style="border-left:3px solid #F59E0B">
               <strong style="color:#F59E0B">Phase 1 · 并行数据采集</strong>
-              <span style="color:var(--text-secondary)">— 4 个 Work Stream 同时启动：财务 / 商业 / 法务 / 运营，各自调用不同数据源</span>
+              <span style="font-size:12px;color:var(--text-secondary);display:block">4 个 Work Stream 同时启动：财务 / 商业 / 法务 / 运营</span>
             </div>
-            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;font-size:14px">
+          </div>
+          <div class="arch-layer" data-layer="3" data-label="Phase 2">
+            <div class="arch-node" style="border-left:3px solid #A855F7">
               <strong style="color:#A855F7">Phase 2 · 并行单流分析</strong>
-              <span style="color:var(--text-secondary)">— 每个 WS 独立推理：财务评分 / 竞争格局 / 合规风险 / 运营风险</span>
+              <span style="font-size:12px;color:var(--text-secondary);display:block">每个 WS 独立推理：财务评分 / 竞争格局 / 合规风险 / 运营风险</span>
             </div>
-            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899;font-size:14px">
+          </div>
+          <div class="arch-layer" data-layer="4" data-label="Phase 3+4">
+            <div class="arch-node" style="border-left:3px solid #EC4899">
               <strong style="color:#EC4899">Phase 3+4 · 交叉合成 + 报告生成</strong>
-              <span style="color:var(--text-secondary)">— 串行等待全部上游 → 估值/风险/协同 3 项交叉 → 按框架整合输出报告</span>
+              <span style="font-size:12px;color:var(--text-secondary);display:block">串行等待上游 → 估值/风险/协同 3 项交叉 → 按框架输出报告</span>
             </div>
           </div>
         </div>
@@ -303,10 +324,10 @@
       </p>
 
       <!-- 7 维雷达图 -->
-      <div class="radar-chart" style="margin-bottom:20px"
-        data-radar-labels='["代码量","架构","质控","深度","幻觉率","估值","输出质量"]'
-        data-radar-values='[15,15,25,30,15,35,15]'
-        data-radar-values2='[95,95,90,85,97,90,95]'
+      <div class="radar-chart" data-visual="radar" style="margin-bottom:20px"
+        data-radar-labels="代码量,架构,质控,深度,幻觉率,估值,输出质量"
+        data-radar-values="15,15,25,30,15,35,15"
+        data-radar-values2="95,95,90,85,97,90,95"
         data-radar-max="100">
         <div class="radar-legend">
           <div class="radar-legend-item"><span class="radar-legend-circle"></span> V3 架构</div>
@@ -558,6 +579,7 @@
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/shared-agents.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+  <script src="../assets/js/visuals.js?v=20260710-v1"></script>
   <script src="../assets/js/demo_v2.js?v=20260705-v2"></script>
   <script src="../assets/js/effects.js?v=20260705-v2"></script>
 

@@ -1,0 +1,478 @@
+/* =====================================================
+   sci-fi.css — 科幻美学基础层
+   零 HTML 改动即可全局生效，使用 var(--accent) 兼容 4 主题
+   加载顺序：main.css → themes.css → cyber.css → sci-fi.css
+   ===================================================== */
+
+/* ========== 全局：所有 slide 标题自动霓虹辉光 ========== */
+[data-theme="tianjin"] .slide-title,
+[data-theme="dark"] .slide-title,
+[data-theme="cyber"] .slide-title {
+  text-shadow:
+    0 0 7px var(--accent, #00d4ff),
+    0 0 20px rgba(0, 212, 255, 0.4),
+    0 0 40px rgba(0, 212, 255, 0.15);
+}
+
+/* ========== 1. Animated Gradient Borders — 旋转渐变边框 ========== */
+.sci-fi-border {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.sci-fi-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--accent, #00d4ff),
+    var(--accent-2, #a855f7),
+    var(--accent-3, #febc2e),
+    var(--accent, #00d4ff)
+  );
+  animation: sciFiBorderSpin 4s linear infinite;
+  z-index: -1;
+  opacity: 0.6;
+}
+.sci-fi-border::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 10px;
+  background: var(--bg-primary, #0a0f2c);
+  z-index: -1;
+}
+.sci-fi-border > * { position: relative; z-index: 1; }
+
+@keyframes sciFiBorderSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* 悬停加速 */
+.sci-fi-border:hover::before {
+  animation-duration: 1.5s;
+  opacity: 0.85;
+}
+
+/* ========== 2. Particle Background — 纯 CSS 浮动粒子层 ========== */
+.sci-fi-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.sci-fi-particles::before {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent, #00d4ff);
+  box-shadow:
+    120px 80px 0 var(--accent, #00d4ff),
+    340px 200px 0 var(--accent-2, #a855f7),
+    560px 120px 0 var(--accent, #00d4ff),
+    780px 340px 0 var(--accent-2, #a855f7),
+    200px 400px 0 var(--accent, #00d4ff),
+    450px 500px 0 var(--accent-3, #febc2e),
+    680px 450px 0 var(--accent-2, #a855f7),
+    900px 280px 0 var(--accent, #00d4ff),
+    150px 550px 0 var(--accent-2, #a855f7),
+    380px 620px 0 var(--accent, #00d4ff),
+    620px 580px 0 var(--accent-3, #febc2e),
+    850px 500px 0 var(--accent, #00d4ff),
+    50px 300px 0 var(--accent-2, #a855f7),
+    500px 60px 0 var(--accent, #00d4ff),
+    720px 180px 0 var(--accent-3, #febc2e);
+  animation: sciFiParticlesFloat 20s linear infinite;
+}
+.sci-fi-particles::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--accent-2, #a855f7);
+  box-shadow:
+    80px 150px 0 var(--accent-2, #a855f7),
+    280px 350px 0 var(--accent, #00d4ff),
+    480px 90px 0 var(--accent-2, #a855f7),
+    650px 420px 0 var(--accent-3, #febc2e),
+    820px 150px 0 var(--accent, #00d4ff),
+    100px 480px 0 var(--accent-2, #a855f7),
+    420px 550px 0 var(--accent, #00d4ff),
+    700px 380px 0 var(--accent-2, #a855f7),
+    920px 450px 0 var(--accent-3, #febc2e),
+    180px 100px 0 var(--accent, #00d4ff),
+    550px 250px 0 var(--accent-2, #a855f7);
+  animation: sciFiParticlesFloat 28s linear infinite reverse;
+}
+@keyframes sciFiParticlesFloat {
+  0%   { transform: translateY(0) translateX(0); opacity: 0.4; }
+  25%  { opacity: 0.7; }
+  50%  { transform: translateY(-30px) translateX(10px); opacity: 0.5; }
+  75%  { opacity: 0.8; }
+  100% { transform: translateY(0) translateX(0); opacity: 0.4; }
+}
+
+/* ========== 3. Holographic Glassmorphism — 全息玻璃态 ========== */
+.holo-glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0.06) 60%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+}
+/* 扫描光扫过 */
+.holo-glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 40%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.06) 60%,
+    transparent 100%
+  );
+  animation: holoScan 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes holoScan {
+  0%   { left: -100%; }
+  100% { left: 120%; }
+}
+
+/* ========== 4. Glitch Text Effect — 毛刺文字效果 ========== */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text:hover {
+  animation: glitchSkew 0.4s ease-in-out;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+.glitch-text:hover::before {
+  opacity: 0.7;
+  color: var(--accent-2, #ff00e5);
+  animation: glitchSlice1 0.3s steps(2) forwards;
+  clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+.glitch-text:hover::after {
+  opacity: 0.7;
+  color: var(--accent, #00d4ff);
+  animation: glitchSlice2 0.3s steps(2) forwards;
+  clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+@keyframes glitchSkew {
+  0%   { transform: skew(0deg); }
+  20%  { transform: skew(-2deg); }
+  40%  { transform: skew(1deg); }
+  60%  { transform: skew(-1deg); }
+  80%  { transform: skew(0.5deg); }
+  100% { transform: skew(0deg); }
+}
+@keyframes glitchSlice1 {
+  0%   { transform: translate(0); }
+  50%  { transform: translate(-4px, 2px); }
+  100% { transform: translate(0); }
+}
+@keyframes glitchSlice2 {
+  0%   { transform: translate(0); }
+  50%  { transform: translate(4px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* ========== 5. Neon Text Shadows — 霓虹辉光文字 ========== */
+.neon-text {
+  text-shadow:
+    0 0 7px var(--accent, #00d4ff),
+    0 0 20px var(--accent, #00d4ff),
+    0 0 40px var(--accent, #00d4ff),
+    0 0 80px rgba(0, 212, 255, 0.4);
+  animation: neonPulse 2.5s ease-in-out infinite;
+}
+.neon-text-alt {
+  text-shadow:
+    0 0 7px var(--accent-2, #a855f7),
+    0 0 20px var(--accent-2, #a855f7),
+    0 0 40px rgba(168, 85, 247, 0.6),
+    0 0 80px rgba(168, 85, 247, 0.3);
+  animation: neonPulse 3s ease-in-out 0.5s infinite;
+}
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow:
+      0 0 7px var(--accent, #00d4ff),
+      0 0 20px var(--accent, #00d4ff),
+      0 0 40px var(--accent, #00d4ff);
+  }
+  50% {
+    text-shadow:
+      0 0 14px var(--accent, #00d4ff),
+      0 0 35px var(--accent, #00d4ff),
+      0 0 60px var(--accent, #00d4ff),
+      0 0 100px rgba(0, 212, 255, 0.5);
+  }
+}
+
+/* ========== 6. Hexagonal Grid — 六边形蜂巢布局 ========== */
+.hex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+}
+.hex-grid > * {
+  width: 180px;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  padding: 28px 20px;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(168, 85, 247, 0.05));
+  border: none;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hex-grid > *:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(168, 85, 247, 0.12));
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
+
+/* ========== 7. Circuit Trace Decorations — 电路线扫描装饰 ========== */
+.circuit-trace {
+  position: relative;
+}
+.circuit-trace::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent, #00d4ff) 20%,
+    var(--accent, #00d4ff) 80%,
+    transparent 100%
+  );
+  animation: circuitScan 3s ease-in-out infinite;
+}
+.circuit-trace::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent-2, #a855f7) 20%,
+    var(--accent-2, #a855f7) 80%,
+    transparent 100%
+  );
+  animation: circuitScan 3s ease-in-out 1.5s infinite;
+}
+@keyframes circuitScan {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* ========== 8. Vignette Overlay — 暗角覆盖层 ========== */
+.sci-fi-vignette {
+  position: relative;
+}
+.sci-fi-vignette::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.25) 80%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+/* ========== 9. Breathing Icons — 图标呼吸浮动动画 ========== */
+.breathe {
+  animation: breatheFloat 3s ease-in-out infinite;
+}
+.breathe-slow {
+  animation: breatheFloat 4.5s ease-in-out infinite;
+}
+.breathe-fast {
+  animation: breatheFloat 1.8s ease-in-out infinite;
+}
+@keyframes breatheFloat {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+  50%      { transform: translateY(-6px) scale(1.06); opacity: 1; }
+}
+
+/* ========== 10. Enhanced Scanline Overlay — 增强扫描线 ========== */
+.sci-fi-scanlines {
+  position: relative;
+}
+.sci-fi-scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 1px,
+    rgba(0, 212, 255, 0.015) 1px,
+    rgba(0, 212, 255, 0.015) 2px
+  );
+  animation: scanlineDrift 10s linear infinite;
+}
+@keyframes scanlineDrift {
+  from { transform: translateY(0); }
+  to   { transform: translateY(4px); }
+}
+
+/* ========== 脉冲环 — 卡片焦点指示器 ========== */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--accent, #00d4ff);
+  animation: pulseRing 2s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulseRing {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.06); }
+}
+
+/* ========== 数据流装饰线（卡片侧边） ========== */
+.data-stream-left {
+  border-left: 2px solid transparent;
+  border-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--accent, #00d4ff) 30%,
+    var(--accent-2, #a855f7) 70%,
+    transparent 100%
+  ) 1;
+}
+.data-stream-top {
+  border-top: 2px solid transparent;
+  border-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--accent, #00d4ff) 30%,
+    var(--accent-2, #a855f7) 70%,
+    transparent 100%
+  ) 1;
+}
+
+/* ========== 终端光标闪烁 ========== */
+.cursor-blink::after {
+  content: '▊';
+  display: inline;
+  color: var(--accent, #00d4ff);
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* ========== 全息投影光柱 ========== */
+.holo-beam {
+  position: relative;
+  overflow: hidden;
+}
+.holo-beam::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 200%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--accent, #00d4ff) 20%,
+    rgba(0, 212, 255, 0.3) 50%,
+    var(--accent, #00d4ff) 80%,
+    transparent 100%
+  );
+  animation: holoBeamPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes holoBeamPulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.7; }
+}
+
+/* ========== 网格地板（透视效果，仅大屏） ========== */
+@media (min-width: 1440px) {
+  .grid-floor {
+    position: relative;
+  }
+  .grid-floor::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      linear-gradient(
+        0deg,
+        rgba(0, 212, 255, 0.06) 0%,
+        transparent 100%
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(0, 212, 255, 0.08) 0px,
+        rgba(0, 212, 255, 0.08) 1px,
+        transparent 1px,
+        transparent 40px
+      );
+    transform: perspective(600px) rotateX(60deg);
+    transform-origin: center bottom;
+  }
+}
