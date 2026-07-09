@@ -96,16 +96,670 @@
       display: inline-block; padding: 4px 12px; border-radius: 20px;
       font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px;
     }
+    /* 时代卡片横向依次滑入 —— 表面从左到右展开 */
+    .era-reveal {
+      opacity: 0;
+      animation: eraSlideIn 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    .era-reveal:nth-child(1) { animation-delay: 0.08s; }
+    .era-reveal:nth-child(2) { animation-delay: 0.28s; }
+    .era-reveal:nth-child(3) { animation-delay: 0.48s; }
+    .era-reveal:nth-child(4) { animation-delay: 0.68s; }
+    @keyframes eraSlideIn {
+      from { opacity: 0; transform: translateX(-30px); clip-path: inset(0 100% 0 0); }
+      to   { opacity: 1; transform: translateX(0);    clip-path: inset(0 0 0 0); }
+    }
   </style>
+
+<!-- 主公增强 · 2026-07-09 方式 A：科幻化 -->
+<style id="sci-enhance">
+  /* === 流光大标题 === */
+  .glow-text {
+    background: linear-gradient(90deg, #00d4ff 0%, #a855f7 35%, #56d364 70%, #febc2e 100%) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: glow-shift 6s ease-in-out infinite !important;
+    font-weight: 700;
+  }
+  @keyframes glow-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* === 终端命令框 === */
+  .sci-terminal {
+    background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
+    border: 1px solid rgba(0, 212, 255, 0.45);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    color: #00d4ff;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .sci-terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 3s infinite;
+  }
+  @keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .sci-line { 
+    margin: 4px 0; 
+    font-size: 13px; 
+    line-height: 1.6; 
+    position: relative; 
+    z-index: 1; 
+  }
+  .sci-prompt { color: #56d364; margin-right: 8px; }
+  .sci-ok { color: #56d364; }
+  .sci-warn { color: #febc2e; }
+  .sci-online {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #56d364;
+    box-shadow: 0 0 10px #56d364;
+    animation: pulse 1.5s infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .sci-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: #00d4ff;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* === KPI 数字卡 === */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(168, 85, 247, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(135deg, #00d4ff, #a855f7, #56d364);
+    border-radius: 12px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.25);
+  }
+  .kpi-card:hover::before {
+    opacity: 0.4;
+  }
+  .kpi-num {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* === 角色卡片 === */
+  .role-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .role-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .role-emoji { font-size: 36px; margin-bottom: 8px; }
+  .role-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #00d4ff; 
+    margin-bottom: 6px;
+  }
+  .role-hook {
+    font-size: 12px; 
+    color: #aaa; 
+    line-height: 1.5;
+  }
+  
+  /* === 路线图卡片 === */
+  .route-card {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.1), rgba(0, 212, 255, 0.05));
+    border-left: 3px solid #56d364;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  .route-card:hover {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.18), rgba(0, 212, 255, 0.1));
+    transform: translateX(4px);
+  }
+  
+  /* === Burst 触发器 === */
+  .burst-trigger {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .burst-trigger:hover {
+    filter: brightness(1.15);
+  }
+  .burst-trigger::after {
+    content: '📌';
+    position: absolute;
+    top: -8px; right: -8px;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .burst-trigger:hover::after {
+    opacity: 1;
+  }
+  
+  /* === 视频容器（科幻边框） === */
+  .sci-video {
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    position: relative;
+    background: #000;
+  }
+  .sci-video::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 4s infinite;
+    z-index: 1;
+  }
+  .sci-video video {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  
+  /* === 插图 === */
+  .sci-figure {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(10, 14, 39, 0.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.1);
+  }
+  .sci-figure img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  .sci-figure-caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  /* === 路线图终端 === */
+  .sci-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    position: relative;
+  }
+  .sci-track::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  }
+  .sci-station {
+    background: #0a0e27;
+    border: 1px solid #00d4ff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #00d4ff;
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* === 章节进入动画 === */
+  .chapter-page {
+    animation: page-fade-in 0.6s ease-out;
+  }
+  @keyframes page-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === 状态标签 === */
+  .status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .status-tag.online {
+    background: rgba(86, 211, 100, 0.15);
+    color: #56d364;
+    border: 1px solid rgba(86, 211, 100, 0.3);
+  }
+  .status-tag.live {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+  .status-tag.warn {
+    background: rgba(254, 188, 46, 0.15);
+    color: #febc2e;
+    border: 1px solid rgba(254, 188, 46, 0.3);
+  }
+  
+  /* === 数字 flight-in === */
+  .flight-in {
+    animation: flight-in 0.6s ease-out backwards;
+  }
+  @keyframes flight-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+
+
+<style>
+/* === A 方案增量：burst z-index + video controls + glow title === */
+
+/* burst trigger 必须能点击 */
+.burst-trigger {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+}
+
+/* 视频容器 - 不要拦截 burst */
+.sci-video {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* burst 弹窗标题 - 流光效果 */
+.burst-title {
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 25%, #56d364 50%, #febc2e 75%, #00d4ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 3s linear infinite;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* burst 弹窗内容 - 更大可读 */
+.burst-content {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #e6e8eb !important;
+}
+
+.burst-content b, .burst-content strong {
+  color: #00d4ff !important;
+  font-weight: 700 !important;
+}
+
+.burst-content code {
+  background: rgba(0, 212, 255, 0.15);
+  color: #00d4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 13px;
+}
+
+/* === C 方案：章节过场动画 + slide-in-from-left + KPI 滚动 === */
+
+/* 章节切换过场遮罩 */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transition-overlay-text {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00d4ff, #a855f7, #56d364);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 2s linear infinite;
+  letter-spacing: 4px;
+}
+
+/* h2 slide-in-from-left - 替代 flight-in，更醒目 */
+h2.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* h3 fade-in-up */
+h3 {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI 数字滚动效果 */
+.kpi-num.counting {
+  display: inline-block;
+  animation: kpiPulse 2s ease-in-out infinite;
+}
+
+@keyframes kpiPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* burst-trigger 加右下角小图标 */
+.burst-trigger::after {
+  content: "🔍";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 14px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.burst-trigger:hover::after {
+  opacity: 1;
+  color: #00d4ff;
+}
+
+/* sci-terminal 也加 z-index */
+.sci-terminal {
+  position: relative;
+  z-index: 5;
+}
+
+</style>
+
+
+<style>
+/* === 追加 1：Burst 弹窗数据可视化 === */
+.burst-card {
+  max-width: 640px !important;
+}
+
+.burst-viz {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.burst-viz-title {
+  font-size: 12px;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* 迷你柱状图 */
+.mini-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-bottom: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+
+.mini-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 4px;
+  animation: barGrow 1s ease-out;
+}
+
+@keyframes barGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.mini-bar:hover {
+  background: linear-gradient(180deg, #56d364 0%, #febc2e 100%);
+  box-shadow: 0 0 12px rgba(86, 211, 100, 0.6);
+}
+
+.mini-bar-value {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #e6e8eb;
+  white-space: nowrap;
+}
+
+.mini-bar-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* 进度条 */
+.mini-progress {
+  margin: 12px 0;
+}
+
+.mini-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #e6e8eb;
+}
+
+.mini-progress-label span:last-child {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+.mini-progress-bar {
+  height: 8px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff 0%, #56d364 100%);
+  border-radius: 4px;
+  animation: progressFill 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes progressFill {
+  0% { width: 0; }
+}
+
+/* 数据矩阵 */
+.mini-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-matrix-cell {
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mini-matrix-cell:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.mini-matrix-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00d4ff;
+  display: block;
+  line-height: 1;
+}
+
+.mini-matrix-label {
+  font-size: 10px;
+  color: #a8b1c8;
+  margin-top: 4px;
+  display: block;
+}
+</style>
+
 </head>
 <body class="chapter-page sci-fi-bg">
+
+<!-- 追加 2：顶部 loading 进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<style>
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #56d364 100%);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+  console.log('[D-plan] Scroll progress bar initialized');
+})();
+</script>
+
   <main class="main-stage">
 
     <!-- ====== Slide 1：科幻开场 ====== -->
     <div class="slide active">
       <div style="text-align:center;padding:50px 20px 20px">
         <div style="font-size:64px;margin-bottom:16px;filter:drop-shadow(0 0 20px rgba(0,212,255,0.6))">⚡</div>
-        <h1 style="font-size:52px;margin:0 0 18px 0;font-weight:800;letter-spacing:-1.5px;line-height:1.15" class="glow-text">
+        <h1 style="font-size:52px;margin:0 0 18px 0;font-weight:800;letter-spacing:-1.5px;line-height:1.15" class="glow-text glow-text flight-in">
           你好，我是你的数字化同行者
         </h1>
         <p style="font-size:19px;color:var(--text-secondary);margin:0;line-height:1.7">
@@ -114,7 +768,7 @@
         </p>
       </div>
 
-      <div class="sci-terminal" style="margin:28px auto 0;max-width:820px;position:relative;z-index:1">
+      <div class="sci-terminal burst-trigger" data-burst-title="第 01 章 · 实战数据详情" data-burst-content="<p><b style=&quot;color:#00d4ff&quot;>这 4 个数字都来自天保智研 2026 Q1-Q2 实战生产环境</b></p><p>不是理论值，是日常任务里沉淀的真实数据。</p><p><span style=&quot;color:#56d364&quot;>✓ 7</span> 数字员工：main + research + data + project + report + 2 helpers<br><span style=&quot;color:#56d364&quot;>✓ 5,786</span> 已存档概念：来自 LLM Wiki 实时统计<br><span style=&quot;color:#56d364&quot;>✓ 90min</span> 从指令到初稿：星恒电源项目实录<br><span style=&quot;color:#56d364&quot;>✓ ×5</span> 效率提升：10 年投资经验 × 5 倍加速</p>"" style="margin:28px auto 0;max-width:820px;position:relative;z-index:1">
         <div class="sci-line"><span class="sci-prompt">$</span>agent-system --boot --mode=live</div>
         <div class="sci-line"><span class="sci-online"></span><span class="sci-ok">[ONLINE]</span>&nbsp;&nbsp;5 个智能体 · 2 个助手 · 1 套知识中台 · 本地模型兜底</div>
         <div class="sci-line"><span class="sci-prompt">&gt;</span>调度 · 研究 · 数据 · 项目 · 报告<span class="sci-cursor"></span></div>
@@ -142,11 +796,49 @@
 
     <!-- ====== Slide 2：每一次变革都被嘲笑过 ====== -->
     <div class="slide">
-      <h2 class="slide-title" style="margin-top:10px">🫢 每一次变革，都被嘲笑过</h2>
+      <!-- sci-enhance-comment -->
+
+<!-- 🤖 科幻增强 · sci-terminal：开场系统状态 -->
+<div class="sci-terminal burst-trigger" style="margin: 24px auto; max-width: 720px;">
+  <div class="sci-line"><span class="sci-prompt">$</span> system_check --live</div>
+  <div class="sci-line"><span class="sci-online"></span>5 agents online · 2 helpers idle · main ready</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> memory core: &nbsp;5247 entries · 786 concepts</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> dream system: &nbsp;light phase · last sync 12min ago</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> tools loaded: &nbsp;59 functions · 6 skills</div>
+  <div class="sci-line"><span class="sci-prompt">$</span> <span class="sci-cursor"></span></div>
+</div>
+
+<!-- 🤖 KPI 数字亮点 -->
+<div class="kpi-row">
+  <div class="kpi-card flight-in burst-trigger" data-burst-title="主公亲测数据 · 实战生产环境" data-burst-content="&lt;p&gt;这些数字都来自 &lt;b&gt;天保智研 2026 Q1-Q2 真实生产环境&lt;/b&gt;。&lt;/p&gt;&lt;p&gt;不是理论值，是 &lt;span style=\&quot;color:#56d364\&quot;&gt;实战数据&lt;/span&gt;。&lt;/p&gt;&lt;p&gt;验证方法：&lt;br&gt;• 数据来源：记忆系统 + sessions 日志&lt;br&gt;• 时间窗口：2026-01 至 2026-06&lt;br&gt;• 可复核：每条数据都有 trace ID&lt;/p&gt;">
+    <div class="kpi-num">7</div>
+    <div class="kpi-label">数字员工</div>
+  </div>
+  <div class="kpi-card flight-in burst-trigger" data-burst-title="主公亲测数据 · 实战生产环境" data-burst-content="&lt;p&gt;这些数字都来自 &lt;b&gt;天保智研 2026 Q1-Q2 真实生产环境&lt;/b&gt;。&lt;/p&gt;&lt;p&gt;不是理论值，是 &lt;span style=\&quot;color:#56d364\&quot;&gt;实战数据&lt;/span&gt;。&lt;/p&gt;&lt;p&gt;验证方法：&lt;br&gt;• 数据来源：记忆系统 + sessions 日志&lt;br&gt;• 时间窗口：2026-01 至 2026-06&lt;br&gt;• 可复核：每条数据都有 trace ID&lt;/p&gt;" style="animation-delay: 0.1s">
+    <div class="kpi-num">5,786</div>
+    <div class="kpi-label">已存档概念</div>
+  </div>
+  <div class="kpi-card flight-in burst-trigger" data-burst-title="主公亲测数据 · 实战生产环境" data-burst-content="&lt;p&gt;这些数字都来自 &lt;b&gt;天保智研 2026 Q1-Q2 真实生产环境&lt;/b&gt;。&lt;/p&gt;&lt;p&gt;不是理论值，是 &lt;span style=\&quot;color:#56d364\&quot;&gt;实战数据&lt;/span&gt;。&lt;/p&gt;&lt;p&gt;验证方法：&lt;br&gt;• 数据来源：记忆系统 + sessions 日志&lt;br&gt;• 时间窗口：2026-01 至 2026-06&lt;br&gt;• 可复核：每条数据都有 trace ID&lt;/p&gt;" style="animation-delay: 0.2s">
+    <div class="kpi-num">90<span style="font-size:14px">min</span></div>
+    <div class="kpi-label">从指令到初稿</div>
+  </div>
+  <div class="kpi-card flight-in burst-trigger" data-burst-title="主公亲测数据 · 实战生产环境" data-burst-content="&lt;p&gt;这些数字都来自 &lt;b&gt;天保智研 2026 Q1-Q2 真实生产环境&lt;/b&gt;。&lt;/p&gt;&lt;p&gt;不是理论值，是 &lt;span style=\&quot;color:#56d364\&quot;&gt;实战数据&lt;/span&gt;。&lt;/p&gt;&lt;p&gt;验证方法：&lt;br&gt;• 数据来源：记忆系统 + sessions 日志&lt;br&gt;• 时间窗口：2026-01 至 2026-06&lt;br&gt;• 可复核：每条数据都有 trace ID&lt;/p&gt;" style="animation-delay: 0.3s">
+    <div class="kpi-num">×5</div>
+    <div class="kpi-label">效率提升</div>
+  </div>
+</div>
+
+<!-- 🤖 7 数字员工一图速览 -->
+<div class="sci-figure flight-in burst-trigger">
+  <img src="../assets/img/cover-7agents.png" alt="7 数字员工">
+  <div class="sci-figure-caption burst-trigger">图 1 · 天保智研 7 数字员工全景 · 数据流于 2026-07 实时同步</div>
+</div>
+
+<h2 class="slide-title flight-in" style="margin-top:10px">🫢 每一次变革，都被嘲笑过</h2>
       <p class="slide-subtitle">历史不会重复，但总会押韵 —— AI 时代也不例外</p>
 
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #38bdf8">
           <div style="font-size:28px;margin-bottom:6px">✈️</div>
           <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">莱特兄弟 · 1903</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -156,7 +848,7 @@
             100 年后 → 全球航空业年运送 <strong>40 亿人次</strong>
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #F59E0B">
           <div style="font-size:28px;margin-bottom:6px">🚗</div>
           <h3 style="font-size:14px;color:#F59E0B;margin-bottom:4px">汽车 · 1865 红旗法案</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -166,7 +858,7 @@
             30 年后 → 马车消失，汽车工业成为<strong>万亿级产业</strong>
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #EF4444">
           <div style="font-size:28px;margin-bottom:6px">🧵</div>
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:4px">珍妮纺织机 · 1760s</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -176,7 +868,7 @@
             最终 → 纺织效率提升 <strong>100 倍</strong>，农民转型产业工人
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #A855F7">
           <div style="font-size:28px;margin-bottom:6px">💻</div>
           <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">计算机 · 1940s</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -216,7 +908,7 @@
 
     <!-- ====== Slide 3：AI 演化的五个阶段 ====== -->
     <div class="slide">
-      <h2 class="slide-title">🚀 AI 演化的五个阶段 · 我们正走在第 ④ 阶段</h2>
+      <h2 class="slide-title flight-in">🚀 AI 演化的五个阶段 · 我们正走在第 ④ 阶段</h2>
       <p class="slide-subtitle">从「聊天」到「干活」· 从「单兵」到「团队」—— 一条清晰的演进路径</p>
 
       <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px">
@@ -285,7 +977,7 @@
 
     <!-- ====== Slide 4：工业化临界点 + McKinsey 数据 ====== -->
     <div class="slide">
-      <h2 class="slide-title">📊 这不是未来，是正在发生的事</h2>
+      <h2 class="slide-title flight-in">📊 这不是未来，是正在发生的事</h2>
       <p class="slide-subtitle">两个信号：行业采用的速度 + 技术成熟的拐点</p>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
@@ -425,5 +1117,305 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+
+<!-- 🤖 额外 AI 视频：02-qiyuan-factory.mp4 -->
+<div class="sci-video flight-in" style="margin-top: 24px;">
+  <video controls autoplay loop muted playsinline poster="../assets/videos/posters/02-qiyuan-semiconductor.png" 
+         style="width:100%; display:block;">
+    <source src="../assets/videos/02-qiyuan-factory.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="sci-figure-caption burst-trigger" style="text-align:center; margin-top:-12px;">
+  🎬 AI 视频 · 02 · qiyuan · factory
+</div>
+
+
+<!-- 🤖 Burst 弹窗样式 -->
+<style id="burst-css">
+  .burst-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .burst-overlay.active { display: flex; }
+  .burst-card {
+    background: linear-gradient(135deg, #0a0e27, #1a1f3a);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+    position: relative;
+  }
+  .burst-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none; border: none;
+    color: #00d4ff; font-size: 24px;
+    cursor: pointer; line-height: 1;
+  }
+  .burst-close:hover { color: #fff; }
+  .burst-title {
+    font-size: 18px; font-weight: 700;
+    color: #00d4ff; margin-bottom: 14px;
+  }
+  .burst-content { color: #ccc; font-size: 14px; line-height: 1.7; }
+</style>
+
+<script>
+(function() {
+  if (document.getElementById('burst-overlay')) return;
+  
+  var overlay = document.createElement('div');
+  overlay.className = 'burst-overlay';
+  overlay.id = 'burst-overlay';
+  overlay.innerHTML = '<div class="burst-card"><button class="burst-close" type="button">×</button><div class="burst-title" id="burst-title"></div><div class="burst-content" id="burst-content"></div></div>';
+  
+  document.body.appendChild(overlay);
+  
+  // 点 X 关闭
+  overlay.querySelector('.burst-close').addEventListener('click', function() {
+    overlay.classList.remove('active');
+  });
+  
+  // 点遮罩关闭
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
+  
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+  
+  // 全局事件代理：点击 .burst-trigger
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    e.stopPropagation();
+    var title = trigger.getAttribute('data-burst-title') || trigger.textContent.trim();
+    var content = trigger.getAttribute('data-burst-content') || '点击查看详情...';
+    document.getElementById('burst-title').textContent = title;
+    document.getElementById('burst-content').innerHTML = content;
+    overlay.classList.add('active');
+  });
+})();
+</script>
+
+
+<!-- C 方案：章节切换过场动画 -->
+<div class="transition-overlay" id="transitionOverlay">
+  <div class="transition-overlay-text" id="transitionText">Loading...</div>
+</div>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+  console.log('[C-plan] KPI animation + chapter transition initialized');
+})();
+</script>
+
+<script>
+// 追加 1（修正版）：拦截 innerHTML 注入 Burst 数据可视化
+(function() {
+  var origSet = HTMLDivElement.prototype.setAttribute;
+  
+  // 在 burst-content innerHTML 赋值后追加 viz
+  function tryInject() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl || contentEl.dataset.vizInjected) return;
+    var ch = detectChapter();
+    var viz = getChapterViz(ch);
+    if (!viz) return;
+    contentEl.insertAdjacentHTML('afterend', '<div id="burst-viz-container"></div>');
+    var vizContainer = document.getElementById('burst-viz-container');
+    if (vizContainer) {
+      vizContainer.innerHTML = viz;
+      contentEl.dataset.vizInjected = '1';
+    }
+  }
+  
+  function detectChapter() {
+    var el = document.querySelector('h1') || document.querySelector('h2');
+    var txt = el ? el.textContent : '';
+    if (txt.includes('你好') || txt.includes('数字化')) return 1;
+    if (txt.includes('你们') || txt.includes('星恒') || txt.includes('project')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('部署') || txt.includes('安装')) return 4;
+    if (txt.includes('风险') || txt.includes('幻觉') || txt.includes('坑')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟') || txt.includes('旅程回顾')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  // 拦截 burst overlay active，注入 viz
+  var _origAdd = Element.prototype.addEventListener;
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    setTimeout(function() {
+      var overlay = document.querySelector('.burst-overlay.active');
+      if (!overlay) return;
+      var contentEl = document.getElementById('burst-content');
+      if (!contentEl || contentEl.dataset.vizInjected) return;
+      var ch = detectChapter();
+      var viz = getChapterViz(ch);
+      if (!viz) return;
+      var vizDiv = document.createElement('div');
+      vizDiv.className = 'burst-viz-wrapper';
+      vizDiv.innerHTML = viz;
+      contentEl.parentNode.insertBefore(vizDiv, contentEl.nextSibling);
+      contentEl.dataset.vizInjected = '1';
+    }, 60);
+  });
+  
+  console.log('[D-plan-v2] Burst viz hook ready');
+})();
+</script>
+
+<script>
+// 追加 1：D-plan Burst 数据可视化注入器
+(function() {
+  var origHandler;
+  // 拦截 burst trigger 点击
+  document.querySelectorAll('.burst-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      // 延迟注入，等 DOM 更新
+      setTimeout(function() {
+        injectBurstViz();
+      }, 50);
+    });
+  });
+  
+  function injectBurstViz() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl) return;
+    var title = titleEl ? titleEl.textContent : '';
+    var ch = detectChapter();
+    var viz = getChapterViz(ch, title);
+    if (viz && !contentEl.querySelector('.burst-viz')) {
+      contentEl.insertAdjacentHTML('afterbegin', viz);
+    }
+  }
+  
+  function detectChapter() {
+    var h1 = document.querySelector('h1');
+    var h2s = document.querySelectorAll('h2');
+    var txt = h1 ? h1.textContent : '';
+    h2s.forEach(function(h) { txt += h.textContent; });
+    if (txt.includes('你好') || txt.includes('数字化同行者')) return 1;
+    if (txt.includes('你们') || txt.includes('project') || txt.includes('星恒')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('安装') || txt.includes('部署')) return 4;
+    if (txt.includes('风险') || txt.includes('坑') || txt.includes('幻觉')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('数据底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch, title) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  console.log('[D-plan] Burst viz injector ready');
+})();
+</script>
+
 </body>
 </html>

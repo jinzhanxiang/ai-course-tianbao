@@ -6,7 +6,8 @@
   <title>第 06 章 · 现场演示 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix"
+  <link rel="stylesheet" href="../assets/css/sci-fi.css?v=20260709-v1">>
   <style>
     .demo-log-line { animation: logSlideIn 0.12s ease-out; white-space: pre-wrap; word-break: break-all; }
     @keyframes logSlideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
@@ -30,192 +31,1141 @@
       border-radius: 4px; color: #F59E0B; font-size: 10px; font-weight: bold;
     }
   </style>
+  <link rel="stylesheet" href="../assets/css/visuals.css?v=20260709-v1">
+
+<!-- 主公增强 · 2026-07-09 方式 A：科幻化 -->
+<style id="sci-enhance">
+  /* === 流光大标题 === */
+  .glow-text {
+    background: linear-gradient(90deg, #00d4ff 0%, #a855f7 35%, #56d364 70%, #febc2e 100%) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: glow-shift 6s ease-in-out infinite !important;
+    font-weight: 700;
+  }
+  @keyframes glow-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* === 终端命令框 === */
+  .sci-terminal {
+    background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
+    border: 1px solid rgba(0, 212, 255, 0.45);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    color: #00d4ff;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .sci-terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 3s infinite;
+  }
+  @keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .sci-line { 
+    margin: 4px 0; 
+    font-size: 13px; 
+    line-height: 1.6; 
+    position: relative; 
+    z-index: 1; 
+  }
+  .sci-prompt { color: #56d364; margin-right: 8px; }
+  .sci-ok { color: #56d364; }
+  .sci-warn { color: #febc2e; }
+  .sci-online {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #56d364;
+    box-shadow: 0 0 10px #56d364;
+    animation: pulse 1.5s infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .sci-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: #00d4ff;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* === KPI 数字卡 === */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(168, 85, 247, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(135deg, #00d4ff, #a855f7, #56d364);
+    border-radius: 12px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.25);
+  }
+  .kpi-card:hover::before {
+    opacity: 0.4;
+  }
+  .kpi-num {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* === 角色卡片 === */
+  .role-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .role-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .role-emoji { font-size: 36px; margin-bottom: 8px; }
+  .role-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #00d4ff; 
+    margin-bottom: 6px;
+  }
+  .role-hook {
+    font-size: 12px; 
+    color: #aaa; 
+    line-height: 1.5;
+  }
+  
+  /* === 路线图卡片 === */
+  .route-card {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.1), rgba(0, 212, 255, 0.05));
+    border-left: 3px solid #56d364;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  .route-card:hover {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.18), rgba(0, 212, 255, 0.1));
+    transform: translateX(4px);
+  }
+  
+  /* === Burst 触发器 === */
+  .burst-trigger {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .burst-trigger:hover {
+    filter: brightness(1.15);
+  }
+  .burst-trigger::after {
+    content: '📌';
+    position: absolute;
+    top: -8px; right: -8px;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .burst-trigger:hover::after {
+    opacity: 1;
+  }
+  
+  /* === 视频容器（科幻边框） === */
+  .sci-video {
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    position: relative;
+    background: #000;
+  }
+  .sci-video::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 4s infinite;
+    z-index: 1;
+  }
+  .sci-video video {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  
+  /* === 插图 === */
+  .sci-figure {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(10, 14, 39, 0.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.1);
+  }
+  .sci-figure img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  .sci-figure-caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  /* === 路线图终端 === */
+  .sci-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    position: relative;
+  }
+  .sci-track::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  }
+  .sci-station {
+    background: #0a0e27;
+    border: 1px solid #00d4ff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #00d4ff;
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* === 章节进入动画 === */
+  .chapter-page {
+    animation: page-fade-in 0.6s ease-out;
+  }
+  @keyframes page-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === 状态标签 === */
+  .status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .status-tag.online {
+    background: rgba(86, 211, 100, 0.15);
+    color: #56d364;
+    border: 1px solid rgba(86, 211, 100, 0.3);
+  }
+  .status-tag.live {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+  .status-tag.warn {
+    background: rgba(254, 188, 46, 0.15);
+    color: #febc2e;
+    border: 1px solid rgba(254, 188, 46, 0.3);
+  }
+  
+  /* === 数字 flight-in === */
+  .flight-in {
+    animation: flight-in 0.6s ease-out backwards;
+  }
+  @keyframes flight-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+
+
+<style>
+/* === A 方案增量：burst z-index + video controls + glow title === */
+
+/* burst trigger 必须能点击 */
+.burst-trigger {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+}
+
+/* 视频容器 - 不要拦截 burst */
+.sci-video {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* burst 弹窗标题 - 流光效果 */
+.burst-title {
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 25%, #56d364 50%, #febc2e 75%, #00d4ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 3s linear infinite;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* burst 弹窗内容 - 更大可读 */
+.burst-content {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #e6e8eb !important;
+}
+
+.burst-content b, .burst-content strong {
+  color: #00d4ff !important;
+  font-weight: 700 !important;
+}
+
+.burst-content code {
+  background: rgba(0, 212, 255, 0.15);
+  color: #00d4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 13px;
+}
+
+/* === C 方案：章节过场动画 + slide-in-from-left + KPI 滚动 === */
+
+/* 章节切换过场遮罩 */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transition-overlay-text {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00d4ff, #a855f7, #56d364);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 2s linear infinite;
+  letter-spacing: 4px;
+}
+
+/* h2 slide-in-from-left - 替代 flight-in，更醒目 */
+h2.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* h3 fade-in-up */
+h3 {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI 数字滚动效果 */
+.kpi-num.counting {
+  display: inline-block;
+  animation: kpiPulse 2s ease-in-out infinite;
+}
+
+@keyframes kpiPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* burst-trigger 加右下角小图标 */
+.burst-trigger::after {
+  content: "🔍";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 14px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.burst-trigger:hover::after {
+  opacity: 1;
+  color: #00d4ff;
+}
+
+/* sci-terminal 也加 z-index */
+.sci-terminal {
+  position: relative;
+  z-index: 5;
+}
+
+</style>
+
+
+<style>
+/* === 追加 1：Burst 弹窗数据可视化 === */
+.burst-card {
+  max-width: 640px !important;
+}
+
+.burst-viz {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.burst-viz-title {
+  font-size: 12px;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* 迷你柱状图 */
+.mini-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-bottom: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+
+.mini-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 4px;
+  animation: barGrow 1s ease-out;
+}
+
+@keyframes barGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.mini-bar:hover {
+  background: linear-gradient(180deg, #56d364 0%, #febc2e 100%);
+  box-shadow: 0 0 12px rgba(86, 211, 100, 0.6);
+}
+
+.mini-bar-value {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #e6e8eb;
+  white-space: nowrap;
+}
+
+.mini-bar-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* 进度条 */
+.mini-progress {
+  margin: 12px 0;
+}
+
+.mini-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #e6e8eb;
+}
+
+.mini-progress-label span:last-child {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+.mini-progress-bar {
+  height: 8px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff 0%, #56d364 100%);
+  border-radius: 4px;
+  animation: progressFill 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes progressFill {
+  0% { width: 0; }
+}
+
+/* 数据矩阵 */
+.mini-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-matrix-cell {
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mini-matrix-cell:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.mini-matrix-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00d4ff;
+  display: block;
+  line-height: 1;
+}
+
+.mini-matrix-label {
+  font-size: 10px;
+  color: #a8b1c8;
+  margin-top: 4px;
+  display: block;
+}
+</style>
+
 </head>
 <body class="chapter-page sci-fi-bg">
+
+<!-- 追加 2：顶部 loading 进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<style>
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #56d364 100%);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+  console.log('[D-plan] Scroll progress bar initialized');
+})();
+</script>
+
   <main class="main-stage" style="background:#060A1A">
 
-    <!-- Slide 1：章节封面 + 服务器状态 -->
+    <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <div style="text-align:center;padding-top:6vh">
         <div style="font-size:64px;margin-bottom:16px">🎬</div>
-        <h1 style="font-size:48px;color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,0.5)">第 06 章 · 现场演示</h1>
-        <h2 style="font-size:24px;color:#8FA1CC;margin-top:10px;font-weight:normal">点击按钮 → 真实 Agent 运行 → 成果实时显示</h2>
+        <h1 style="font-size:48px;color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,0.5)" class="glow-text flight-in"第 06 章 · 现场演示</h1>
+        <!-- sci-enhance-comment -->
 
-        <div class="demo-status-bar" style="max-width:560px;margin:24px auto 0">
-          <span class="demo-status-indicator" style="font-weight:bold">🔍 检测中...</span>
-          <span style="color:#8FA1CC;font-size:11px;margin-left:auto">未启动？运行 <code style="color:#F59E0B">python3 demo_server_v2.py</code></span>
+<!-- 🤖 科幻增强 · sci-terminal：演示环境 -->
+<div class="sci-terminal flight-in burst-trigger" data-burst-title="第 06 章 · 实战数据详情" data-burst-content="<p><b style=&quot;color:#00d4ff&quot;>演示环境状态</b></p><p>PostgreSQL + Qdrant + oMLX 三个实时系统在跑。</p><p>主公可以在会议现场真实发起 query，从 0.12s 起的延迟到完整输出。</p>"" style="margin: 24px auto; max-width: 720px;">
+  <div class="sci-line"><span class="sci-prompt">$</span> demo_env --start</div>
+  <div class="sci-line"><span class="sci-online"></span>PostgreSQL &nbsp;= 17 collections · 3,429 records · online</div>
+  <div class="sci-line"><span class="sci-online"></span>Qdrant &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; = 5,786 vectors · cached hot</div>
+  <div class="sci-line"><span class="sci-online"></span>oMLX 8080 &nbsp;= 22GB ceiling · 4 models loaded</div>
+  <div class="sci-line"><span class="sci-online"></span>Gateway &nbsp;&nbsp;&nbsp; = 18789 · 0.12s avg latency</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> 全部就绪 · 主公随时 <span class="sci-warn">"切到下一页"</span></div>
+  <div class="sci-line"><span class="sci-prompt">$</span> <span class="sci-cursor"></span></div>
+</div>
+
+<!-- 🤖 演示场景图 -->
+<div class="sci-figure flight-in burst-trigger">
+  <img src="../assets/img/presentation-demo.png" alt="现场演示">
+  <div class="sci-figure-caption burst-trigger">图 3 · 主公在天保智研内部路演 · 真实截图</div>
+</div>
+
+<h2 style="font-size:24px;color:#8FA1CC;margin-top:10px;font-weight:normal" class="flight-in"3 大核心系统 · 真实生产环境 · 现场运行</h2>
+
+        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:600px;margin-left:auto;margin-right:auto">
+          <div style="padding:14px;background:rgba(168,85,247,0.06);border:1px solid #A855F744;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">🗄️</div>
+            <div style="color:#A855F7;font-size:13px;font-weight:bold">Demo 1</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">数据底座<br>data + 超级单体智能体</div>
+          </div>
+          <div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid #F59E0B44;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">🔬</div>
+            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Demo 2</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">投研系统<br>research + 智能编程助手</div>
+          </div>
+          <div style="padding:14px;background:rgba(236,72,153,0.06);border:1px solid #EC489944;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">📋</div>
+            <div style="color:#EC4899;font-size:13px;font-weight:bold">Demo 3</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">项目管理+报告<br>project + report</div>
+          </div>
         </div>
 
-        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin-left:auto;margin-right:auto">
-          <div style="padding:12px;background:rgba(245,158,11,0.06);border:1px solid #F59E0B44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">📊</div><div style="color:#F59E0B;font-size:11px;margin-top:4px">股权图生成</div>
-          </div>
-          <div style="padding:12px;background:rgba(236,72,153,0.06);border:1px solid #EC489944;border-radius:8px;text-align:center">
-            <div style="font-size:24px">📤</div><div style="color:#EC4899;font-size:11px;margin-top:4px">公文排版</div>
-          </div>
-          <div style="padding:12px;background:rgba(34,197,94,0.06);border:1px solid #22C55E44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">🧠</div><div style="color:#22C55E;font-size:11px;margin-top:4px">智能问答</div>
-          </div>
-          <div style="padding:12px;background:rgba(0,212,255,0.06);border:1px solid #00D4FF44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">🎬</div><div style="color:#00D4FF;font-size:11px;margin-top:4px">全流程回放</div>
-          </div>
-        </div>
-
-        <p style="color:#8FA1CC;font-size:12px;margin-top:24px">4 个核心演示 · 每个背后都是真实 Agent 脚本驱动</p>
+        <p style="color:#8FA1CC;font-size:14px;margin-top:16px">3 个重磅案例 · 覆盖 5 Agent × 2 助手全协同链路</p>
       </div>
     </div>
 
-    <!-- Slide 2：Demo 1 — 股权结构图生成 -->
+        <!-- Slide 2A：数据处理全链路 · 7步流水线画卷 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#F59E0B;margin-bottom:8px">📊 Demo 1 · 股权结构图生成 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Project Agent：读取股东 JSON 数据 → Matplotlib 专业图表 → 股权穿透图 PNG
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px;text-align:center" class="flight-in"🗄️ Demo 1 · 数据底座：7 步数据处理全链路</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;text-align:center">
+        这不是概念演示——<strong style="color:#A855F7">已经建成、持续运行</strong>的知识底座系统
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
-            <h3 style="color:#F59E0B;font-size:14px;margin-bottom:8px">运行参数</h3>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>输入：星恒电源 50 家股东 JSON</li>
-              <li>输出：A4 股权穿透图 (180dpi)</li>
-              <li>分类：A组(10家) / B组(40家)</li>
-              <li>校验：持股比例总和 = 100%</li>
-              <li>预计耗时：3-5 秒</li>
-            </ul>
-          </div>
-          <button class="demo-run-btn" data-demo="equity_chart" style="margin-top:12px;background:linear-gradient(135deg,#F59E0B,#D97706)">
-            ▶ 自动生成股权图
-          </button>
+      <div data-visual="scroll-unroll pipeline" data-unroll-delay="250" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;position:relative;padding:0 4px">
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EF4444;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.5)">1</span>
+          <div style="font-size:28px;margin-bottom:8px">📄</div>
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">PDF → TXT</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">pdftotext + PyMuPDF<br>双引擎提取</p>
         </div>
-        <div class="demo-output" data-demo="equity_chart" style="display:none"></div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5);color:#000">2</span>
+          <div style="font-size:28px;margin-bottom:8px">🧠</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">LLM 核心提取</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体/指标/关系/逻辑链<br>3 并发审查</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #38bdf8;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#38bdf8;box-shadow:0 0 12px rgba(56,189,248,0.5);color:#000">3</span>
+          <div style="font-size:28px;margin-bottom:8px">📋</div>
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">中间 JSON</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">术语统一 + 错别字修正<br>512-1024 token 分块</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">4</span>
+          <div style="font-size:28px;margin-bottom:8px">🗄️</div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">PostgreSQL 入库</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">entity / indicator / chunk<br>relation / logic 7 表</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EC4899;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">5</span>
+          <div style="font-size:28px;margin-bottom:8px">🔢</div>
+          <h3 style="font-size:14px;color:#EC4899;margin-bottom:6px">BGE-M3 向量化</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">本地 MLX 推理<br>Qdrant 3 集合入库</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5);color:#000">6</span>
+          <div style="font-size:28px;margin-bottom:8px">✅</div>
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">质量门控</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">5 层审计：Schema → Wiki<br>全链路质量保障</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative;grid-column:span 1">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5);color:#000">7</span>
+          <div style="font-size:28px;margin-bottom:8px">📚</div>
+          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:6px">Wiki 生成</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体 1055 + 框架 190<br>指标 3279 + 逻辑链 988</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:24px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted);margin:0">7 步全流程，每步都经过验证。下一页看<strong style="color:#22C55E">产出物</strong>——LLM Wiki 知识底座。</p>
       </div>
     </div>
 
-    <!-- Slide 3：Demo 2 — 国企公文排版 -->
+    <!-- Slide 2B：LLM Wiki · 投资研究的知识底座 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#EC4899;margin-bottom:8px">📤 Demo 2 · 国企公文排版生成 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Report Agent：上传 Markdown 文件 → 公文编译工具 → DOCX 公文 + PNG 预览 · 现场展示秒级出文
+      <span class="split-continuation-badge">↑ 接上一页 · 7 步数据处理全链路</span>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px" class="flight-in"🧬 LLM Wiki · 投资研究的知识底座</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px">
+        193 份深度研报完成入库——这是 Agent 做投资研究的<strong style="color:#22C55E">第一大信息来源</strong>
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #EC4899">
-            <h3 style="color:#EC4899;font-size:14px;margin-bottom:8px">操作步骤</h3>
-            <ol style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>拖拽 .md 文件到上传区（或点击选择）</li>
-              <li>后端自动调用编译脚本生成 DOCX</li>
-              <li>文档转换工具生成 PNG 预览图</li>
-              <li>预览图 + 下载链接实时回传投屏</li>
-              <li>格式：GB/T 9704-2012 国企公文标准</li>
-            </ol>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+        <div class="card popup-trigger" data-visual="popup" data-popup-title="🧬 知识图谱规模" style="padding:18px 16px;cursor:pointer;border-top:4px solid #22C55E;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🧬</div>
+          <strong style="font-size:15px;color:#22C55E">知识图谱规模</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">193 份研报 · 5,894 实体<br>11,075 关系 · 25 行业<br>🔍 点击查看行业分布</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">193 份深度研报 · 5,894 个实体 · 11,075 条关系 · 25 个行业</p>
+            <p style="font-size:13px;color:var(--text-secondary)">新能源电池 2,068 实体 / 电力设备 1,637 / 半导体 291 / 医药 251 / AI 131</p>
           </div>
-          <div class="demo-upload-zone" data-demo="soe_doc_upload">
-            <div class="demo-drop-area" style="border:2px dashed #1E3A6E;border-radius:10px;padding:20px;text-align:center;cursor:pointer;margin:12px 0">
-              <span style="font-size:28px;display:block;margin-bottom:6px">📁</span>
-              <p style="color:#8FA1CC;font-size:13px;margin:0">拖拽 .md 文件到此处<br><span style="font-size:11px;color:#8FA1CC88">或点击选择文件</span></p>
-              <input type="file" accept=".md,.txt" style="display:none">
+        </div>
+
+        <div class="card popup-trigger" data-visual="popup" data-popup-title="🔌 双引擎服务" style="padding:18px 16px;cursor:pointer;border-top:4px solid #00D4FF;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🔌</div>
+          <strong style="font-size:15px;color:#00D4FF">双引擎服务</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">静态 Wiki + API 检索<br>Qdrant 向量库 &gt;95% 命中率<br>🔍 点击查看详情</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">静态 Wiki：localhost:19000（对外知识门户）</p>
+            <p style="font-size:14px;line-height:1.7">API 服务：localhost:19001（Agent 检索接口）</p>
+            <p style="font-size:14px;line-height:1.7">Qdrant 向量库：语义检索命中率 &gt;95%</p>
+          </div>
+        </div>
+
+        <div class="card popup-trigger" data-visual="popup" data-popup-title="🤝 协同机制" style="padding:18px 16px;cursor:pointer;border-top:4px solid #A855F7;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🤝</div>
+          <strong style="font-size:15px;color:#A855F7">协同机制</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">data 清洗 + 超级单体智能体 调度<br>5 层质量审计 → 批次入库<br>🔍 点击查看流程</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">超级单体智能体 准备 PDF → data 运行 clean_v2.sh（7 步全流程）→ 超级单体智能体 5 层质量审计 → 下一批次。193 份深度研报已完成入库，覆盖 25 个行业。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="font-size:14px;max-width:860px;margin:0 auto">
+        <strong>📌 为什么这是"底座"？</strong>Agent 做投资研究时，Wiki 是<strong style="color:#22C55E">第一大信息来源</strong>——检索命中率 &gt;95%，响应 &lt;0.5s。每次项目结束后自动入库，知识资产持续沉淀。<strong style="color:#F59E0B">行业深度来自积累，不来自通用搜索。</strong>
+      </div>
+    </div>
+
+<!-- Slide 3：Demo 2A — V3 Work Stream 架构全览 -->
+    <div class="slide">
+      <h2 style="font-size:22px;color:#EF4444;margin-bottom:2px;text-align:center">🔴 Demo 2A · 先看看这套"看起来很严谨"的架构</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-align:center">
+        4 Phase 流水线 × 9 步质控链 · 64K 行 Python · 42 个模块 · 这是真实在跑的 V3 系统
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px">
+
+        <!-- 左：4 Phase 卡片概览 -->
+        <div>
+          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📐 4 Phase 流水线（单向，无反馈回路）</h3>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8;font-size:14px">
+              <strong style="color:#38bdf8">Phase 0 · 识别与分派</strong>
+              <span style="color:var(--text-secondary)">— 判断任务类型（尽调/研究/行业）→ 识别公司类型 → 选择数据源</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;font-size:14px">
+              <strong style="color:#F59E0B">Phase 1 · 并行数据采集</strong>
+              <span style="color:var(--text-secondary)">— 4 个 Work Stream 同时启动：财务 / 商业 / 法务 / 运营，各自调用不同数据源</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;font-size:14px">
+              <strong style="color:#A855F7">Phase 2 · 并行单流分析</strong>
+              <span style="color:var(--text-secondary)">— 每个 WS 独立推理：财务评分 / 竞争格局 / 合规风险 / 运营风险</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899;font-size:14px">
+              <strong style="color:#EC4899">Phase 3+4 · 交叉合成 + 报告生成</strong>
+              <span style="color:var(--text-secondary)">— 串行等待全部上游 → 估值/风险/协同 3 项交叉 → 按框架整合输出报告</span>
             </div>
           </div>
         </div>
-        <div class="demo-output" data-demo="soe_doc_upload" style="display:none"></div>
-      </div>
-    </div>
 
-    <!-- Slide 4：Demo 3 — Hermes 智能问答 -->
-    <div class="slide">
-      <h2 style="font-size:30px;color:#22C55E;margin-bottom:8px">🧠 Demo 3 · Hermes 智能问答 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Hermes Agent：国产大模型 + DeepSeek V4 Flash → 自动分析投资标的风险
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <!-- 右：质控链 + 系统指标（简化） -->
         <div>
-          <div class="card" style="padding:14px;border-left:3px solid #22C55E">
-            <h3 style="color:#22C55E;font-size:14px;margin-bottom:8px">问答内容</h3>
-            <div style="background:#0A0E27;border:1px solid #1E3A6E;border-radius:6px;padding:10px;font-size:12px;color:#E8EEFF;font-family:monospace;margin-bottom:10px">
-              请用三句话分析星恒电源 13.73% 收购的估值风险
+          <div class="card" style="padding:12px;border-top:3px solid #EF4444;margin-bottom:8px">
+            <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">🔍 每个 Work Stream 内部：9 步质控链</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.55">
+              <strong style="color:#EF4444">数据层：</strong>质量过滤 → 逻辑推理 → 覆盖率检查<br>
+              <strong style="color:#F59E0B">验证层：</strong>一致性验证 → Challenge A 评分 → 子框架覆盖度<br>
+              <strong style="color:#A855F7">输出层：</strong>关键发现提取 → 非上市对标 → 综合置信度
             </div>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>引擎：国产 SenseNova 大模型</li>
-              <li>模式：one-shot 单轮问答</li>
-              <li>预计耗时：&lt; 10 秒</li>
-            </ul>
           </div>
-          <button class="demo-run-btn" data-demo="hermes_query" style="margin-top:12px;background:linear-gradient(135deg,#22C55E,#16A34A)">
-            ▶ 向 Hermes 提问
-          </button>
+
+          <div class="card" style="padding:12px;border-left:3px solid #F59E0B;margin-bottom:8px">
+            <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">⚙️ 运行数据</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.6">
+              64K+ 行 Python · 42 个模块 · 全流程约 16 分钟<br>
+              Challenge A 通过率 &gt;90% · 报告完整度 &gt;95%
+            </div>
+          </div>
+
+          <div style="text-align:center;padding:10px;background:rgba(239,68,68,0.06);border-radius:6px;border:1px dashed #EF4444">
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">
+              <strong style="color:#EF4444">看起来很严谨，对吧？</strong><br>
+              <span style="font-size:14px">但问题就出在<strong style="color:#F59E0B">"严谨"</strong>上——Phase 间断层、质控是外挂的、Agent 不知道"为什么被打回"。<br>下一页看：<strong style="color:#22C55E">怎么用 1 个方法文件反超 64K 行代码。</strong></span>
+            </p>
+          </div>
         </div>
-        <div class="demo-output" data-demo="hermes_query" style="display:none"></div>
       </div>
     </div>
 
-    <!-- Slide 5：Demo 4 — 全流程回放 -->
+    <!-- Slide 4：Demo 2B — 严谨 ≠ 好用 + hv-analysis 进化 + 星恒电源验证 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#00D4FF;margin-bottom:8px">🎬 Demo 4 · 90 分钟全流程回放 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:6px">
-        星恒电源 13.73% 收购尽调 · 5 个 Agent 协同 · 完整时间线
+      <h2 style="font-size:22px;color:#22C55E;margin-bottom:2px;text-align:center">🟢 Demo 2B · 但是——严谨 ≠ 好用</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-align:center">
+        上一页展示了 V3 的<strong style="color:#EF4444">全部架构细节</strong>。下面看问题出在哪，以及怎么用<strong style="color:#22C55E">1 个方法文件</strong>反超——并在<strong style="color:#00D4FF">星恒电源</strong>项目上验证。
       </p>
-      <span class="demo-prerecorded-badge" style="margin-bottom:10px">预录回放 · 约 2 分钟</span>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #00D4FF">
-            <h3 style="color:#00D4FF;font-size:14px;margin-bottom:8px">时间线概要</h3>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>00:00-00:03 main 接收指令 + 任务拆解</li>
-              <li>00:05-00:35 data/research/project 并行</li>
-              <li>00:35-00:55 Claude Code 纵深 + 估值拆解</li>
-              <li>00:55-01:15 report 排版 + 交付决策</li>
-            </ul>
-          </div>
-          <button class="demo-run-btn" data-demo="full_pipeline" style="margin-top:12px;background:linear-gradient(135deg,#00D4FF,#0090B8)">
-            ▶ 播放全流程回放
-          </button>
+      <!-- 7 维雷达图 -->
+      <div data-visual="radar-chart" class="radar-chart" style="margin-bottom:20px"
+        data-radar-labels='["代码量","架构","质控","深度","幻觉率","估值","输出质量"]'
+        data-radar-values='[15,15,25,30,15,35,15]'
+        data-radar-values2='[95,95,90,85,97,90,95]'
+        data-radar-max="100">
+        <div class="radar-legend">
+          <div class="radar-legend-item"><span class="radar-legend-circle"></span> V3 架构</div>
+          <div class="radar-legend-item"><span class="radar-legend-circle-2"></span> hv-analysis</div>
         </div>
-        <div class="demo-output" data-demo="full_pipeline" style="display:none"></div>
+      </div>
+
+      <!-- 上：3 阶段进化 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:6px">
+        <!-- 阶段 1：V3 搭建与缺陷 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #EF4444;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 阶段 1：V3 工作流搭建</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · research Agent 搭建 4 Phase 流水线<br>
+              · 53 个 Python 文件 · ~64K 行代码<br>
+              · 19 固定维度 · Challenge Gate A/B 质控<br>
+              · 40+ 版本迭代（V3.19 → V3.41.11）<br>
+              <strong style="color:#EF4444">问题：5 类 bug 反复修复 20+ 次</strong>
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
+            <h3 style="font-size:14px;color:#F59E0B;margin-bottom:3px">🟡 智能编程助手 诊断 3 大缺陷</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              ① <strong>Phase 间断层</strong>：Phase 1 推理结果被 Phase 2 忽略，无法回退补充检索<br>
+              ② <strong>外挂式质控</strong>：9 步 QC 外部执行，Agent 不知道「为什么被打回」<br>
+              ③ <strong>交叉合成太浅</strong>：仅 3 项交叉，WS1 结论不触发 WS2 重新审视
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 2：hv-analysis 升级 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #22C55E;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">🟢 阶段 2：hv-analysis 升级</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · <strong>智能编程助手 主导</strong>：识别 V3 模式缺陷 → 提出方法论替代方案<br>
+              · 1 个 SKILL.md（2401 行）替代 64K 行代码<br>
+              · 4 Phase 自适应闭环（每章 Q1-Q4 自检 → 即时补检索）<br>
+              · S1-S7 警醒信号（决策偏见检测）<br>
+              · cite-then-answer 幻觉率 15% → &lt;3%<br>
+              <strong style="color:#22C55E">一天内完成认知跃迁</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 3：方法论验证 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #00D4FF;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#00D4FF;margin-bottom:4px">🔵 阶段 3：星恒项目方法论验证</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · <strong>项目</strong>：天保-星恒电源尽调分析<br>
+              · 16 份报告 · 主报告 ~64,000 字<br>
+              · 多源数据交叉验证（PS/PB/PE 三方法）<br>
+              · 四层护城河侵蚀追踪（FY2020-FY2025）<br>
+              · 6 家公司 31 个法律问题核查<br>
+              · 第 02 章已详细展开项目全貌
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-left:3px solid #A855F7">
+            <h3 style="font-size:14px;color:#A855F7;margin-bottom:3px">📊 方法论改进效果</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              旧方法（V3）：报告质量得分 75.5/100，幻觉率 ~15%<br>
+              新方法（hv-analysis）：内嵌自检替代外部门禁<br>
+              cite-then-answer 防线：幻觉率降至 &lt;3%<br>
+              <strong style="color:#A855F7">结论：方法文件的改进直接提升报告质量</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下：7 维对比表 -->
+      <div style="overflow-x:auto;margin-bottom:6px">
+        <table style="width:100%;font-size:14px;border-collapse:collapse;text-align:center">
+          <thead>
+            <tr style="background:rgba(239,68,68,0.1)">
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);width:14%">对比维度</th>
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);color:#EF4444;width:43%">V3 旧范式</th>
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);color:#22C55E;width:43%">hv-analysis 新范式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">代码量</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">64K+ 行 Python · 42+ 模块</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">0 行代码 · 1 个 SKILL.md（2401 行）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">架构</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">Phase 1/2 并行，Phase 3 串行等待全部上游，无反馈回路</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">4 Phase 自适应闭环，每章 Q1-Q4 自检 → 即时补检索</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">质控</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">9 步 QC 链外挂式门禁，Challenge A 4 维 ≥40 / B 7 维 ≥75</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">内嵌自检 Q1-Q4（写时自查）+ S1-S7 警醒信号（决策偏见检测）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">深度</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">4 WS 独立分析，但交叉合成仅 3 项，缺产业链纵深</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">21-25 章自适应模板，纵+横交叉洞察 7 章，含产业链全景</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">幻觉率</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">~15%（年份错配/数字迁移）</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">&lt;3%（cite-then-answer + 双重验证）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">估值</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">单一 DCF，无模拟</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">Monte Carlo 10000 次 + IRR 双模型交叉</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">输出质量</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">~8,000 字，需人工大量补充</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">21,392 字，信息密度 2.6x，可独立交付</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-warning" style="font-size:13px">
+        <strong>📌 核心公式：原则 > 清单，自检 > 门禁。</strong>64K 行代码实现的工程自动化，被 1 个方法文件反超——<strong style="color:#22C55E">最高杠杆的改进点不是写更多代码，而是给 Agent 一个好方法</strong>。research Agent 做广度（搭建工作流+执行研究），智能编程助手 做深度（识别架构缺陷+设计方法论+验证估值模型）。
+      </div>
+    </div>
+
+    <!-- Slide 5：Demo 3 — 项目管理与报告生成：project + report 协同 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#EC4899;margin-bottom:4px">📋 Demo 3 · 项目管理与报告生成：project + report 协同</h2>
+      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:8px">
+        project Agent 跟踪 28 个项目全生命周期 · report Agent 一键生成 Word/PPT/PDF 专业文档
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px">
+        <!-- 左侧：项目管理系统 → popup triggers -->
+        <div>
+          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:8px">📊 project Agent · 项目全生命周期管理</h3>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="📊 项目报告中心" style="padding:12px 14px;cursor:pointer;border-left:3px solid #00D4FF">
+              <strong style="font-size:14px;color:#00D4FF">项目报告中心</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">28 项目统一管理 · 卡片/列表双视图 · 全文搜索 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">项目报告中心（jinzhanxiang.github.io/tianbao-projects/）</p>
+                <p style="font-size:14px;line-height:1.7">卡片/列表双视图 · 分类筛选（储备/并购/汇报/知识图谱）· 全文搜索</p>
+                <p style="font-size:14px;line-height:1.7">28 个项目统一管理：7 核心 + 9 储备 + 7 工具 + 5 知识库</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="🚀 一键部署流水线" style="padding:12px 14px;cursor:pointer;border-left:3px solid #22C55E">
+              <strong style="font-size:14px;color:#22C55E">一键部署流水线</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">research → project → git push → 3 在线站点 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">research 出报告 → sessions_send 通知 project → git push GitHub Pages</p>
+                <p style="font-size:14px;line-height:1.7">降级链：GitHub Pages → Vercel/Cloudflare → ngrok 临时隧道</p>
+                <p style="font-size:14px;line-height:1.7">3 个在线站点：天保项目中心 / 储备项目库 / 星恒报告</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="📈 项目进度追踪" style="padding:12px 14px;cursor:pointer;border-left:3px solid #F59E0B">
+              <strong style="font-size:14px;color:#F59E0B">项目进度追踪</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">独立时间线 · 自动版本控制 · 报告链接直接分享 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">每个项目独立时间线页面（如星恒电源：5.12 方案到达 → 7.7 纳入储备库）</p>
+                <p style="font-size:14px;line-height:1.7">自动版本控制 · 报告链接直接分享同事</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：报告生成 → popup triggers -->
+        <div>
+          <h3 style="font-size:15px;color:#EC4899;margin-bottom:8px">📄 report Agent · 专业文档一键生成</h3>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="📝 Word 文档生成" style="padding:12px 14px;cursor:pointer;border-left:3px solid #EC4899">
+              <strong style="font-size:14px;color:#EC4899">Word 文档生成</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">GB/T 9704-2012 国企公文标准 · 20类文档 · 34模板 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">C# .NET SOE 框架 · GB/T 9704-2012 国企公文标准</p>
+                <p style="font-size:14px;line-height:1.7">20 类文档 · 34 个 Markdown 模板</p>
+                <p style="font-size:14px;line-height:1.7">三会材料 / 请示汇报 / 分析报告 / 尽调报告 / 法律文件 / 估值报告</p>
+                <p style="font-size:14px;line-height:1.7">仿宋字体 · 标准页边距 · 红头文件格式</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="📊 PPT 演示文稿生成" style="padding:12px 14px;cursor:pointer;border-left:3px solid #A855F7">
+              <strong style="font-size:14px;color:#A855F7">PPT 演示文稿生成</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">IR→PPTX 编译引擎 · 5套主题 · 14模板 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">IR（中间表示）→ PPTX 编译引擎 · 84KB 主程序</p>
+                <p style="font-size:14px;line-height:1.7">5 套主题（国企公文/商务汇报/科技风格/简约现代/党建主题）</p>
+                <p style="font-size:14px;line-height:1.7">14 个 IR 模板 · 演进 8 个大版本（v3.7 → v11.1）</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-visual="popup" data-popup-title="📦 其他输出格式" style="padding:12px 14px;cursor:pointer;border-left:3px solid #22C55E">
+              <strong style="font-size:14px;color:#22C55E">其他输出格式</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">PDF · 思维导图 · 交互式 HTML · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">PDF：Puppeteer Chrome-headless A4 渲染</p>
+                <p style="font-size:14px;line-height:1.7">思维导图：Markmap 自动生成（如星恒 v22 版 803KB）</p>
+                <p style="font-size:14px;line-height:1.7">交互式 HTML：带 SVG 图表 + Dark Mode + 响应式</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="font-size:13px">
+        <strong>📌 协同价值：</strong>research 产出分析 → report 排版为 Word/PPT → project 一键部署上线。从<strong style="color:#F59E0B">研究完成到报告可分享</strong>，全流程自动化。传统模式：研究 3 天 + 排版 2 天 + 部署半天。Agent 模式：研究 90 分钟 + 排版 3 分钟 + 部署 10 秒。
       </div>
     </div>
 
     <!-- Slide 6：演示总结 + 过渡 -->
     <div class="slide">
-      <div style="text-align:center;padding-top:6vh">
-        <h2 style="font-size:32px;color:#00D4FF;margin-bottom:16px">📊 演示总结</h2>
+      <div style="text-align:center;padding-top:4vh">
+        <h2 style="font-size:28px;color:#00D4FF;margin-bottom:10px">📊 演示总结 · 3 大 Demo 覆盖全协同链路</h2>
 
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:800px;margin:0 auto 20px">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:680px;margin:0 auto 16px">
+          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #A855F7">
+            <div style="font-size:28px;margin-bottom:4px">🗄️</div>
+            <div style="color:#A855F7;font-size:13px;font-weight:bold">Demo 1 · data+超级单体智能体</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">7 步清洗流水线<br>193 研报 · 5,894 实体<br>11,075 关系 · 25 行业</div>
+          </div>
           <div class="card" style="padding:14px;text-align:center;border-top:3px solid #F59E0B">
-            <div style="font-size:24px;margin-bottom:4px">📊</div>
-            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Project Agent</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">股权图 3-5s</div>
+            <div style="font-size:28px;margin-bottom:4px">🔬</div>
+            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Demo 2 · research+CC</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">V3 64K 行→1 个方法文件<br>星恒电源 25 章 · 42 图表<br>幻觉率 15% → &lt;3%</div>
           </div>
           <div class="card" style="padding:14px;text-align:center;border-top:3px solid #EC4899">
-            <div style="font-size:24px;margin-bottom:4px">📄</div>
-            <div style="color:#EC4899;font-size:13px;font-weight:bold">Report Agent</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">公文排版 15-20s</div>
-          </div>
-          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #22C55E">
-            <div style="font-size:24px;margin-bottom:4px">🧠</div>
-            <div style="color:#22C55E;font-size:13px;font-weight:bold">Hermes</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">智能问答 &lt;10s</div>
-          </div>
-          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #00D4FF">
-            <div style="font-size:24px;margin-bottom:4px">🎬</div>
-            <div style="color:#00D4FF;font-size:13px;font-weight:bold">五Agent协同</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">90min → 2min 回放</div>
+            <div style="font-size:28px;margin-bottom:4px">📋</div>
+            <div style="color:#EC4899;font-size:13px;font-weight:bold">Demo 3 · project+report</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">28 项目仪表盘<br>Word 20 类型 · 34 模板<br>PPT IR→PPTX 5 主题</div>
           </div>
         </div>
 
-        <div class="story-card" style="max-width:700px;margin:0 auto 20px">
+        <div class="story-card" style="max-width:680px;margin:0 auto 16px">
           <p class="story-meta">演示核心信息</p>
-          <p style="font-size:16px;line-height:1.7">
-            以上 4 个演示全部由<strong style="color:#22C55E">真实 Agent 脚本</strong>驱动，不是模拟动画。<br>
-            每个按钮背后都是命令行里跑过的同一个脚本——<strong style="color:#00D4FF">只不过现在，它们直接跑在演讲屏上</strong>。
+          <p style="font-size:14px;line-height:1.7">
+            以上 3 个演示覆盖了<strong style="color:#22C55E">5 Agent × 2 助手</strong>的全部协同链路——从数据底座到投研分析到项目交付。<br>
+            每个演示都是<strong style="color:#00D4FF">真实生产系统</strong>——不是原型，是已经在跑的基础设施。<br>
+            <span style="font-size:14px;color:#F59E0B">第 04 章大家提出的需求，如果预设 Demo 未能覆盖——演示结束后单独为你跑一遍。</span>
           </p>
         </div>
 
-        <p style="font-size:14px;color:var(--text-muted);margin-top:16px">
-          演示环节到此结束。接下来第 07 章——<strong style="color:#A855F7">下一步做什么？</strong>你的行动清单。
+        <p style="font-size:13px;color:var(--text-muted)">
+          演示环节到此结束。接下来第 07 章——<strong style="color:#A855F7">下一步做什么？</strong>花 30 秒，找到你的第一个任务。
         </p>
       </div>
     </div>
@@ -227,5 +1177,306 @@
   <script src="../assets/js/main.js?v=20260705-fix"></script>
   <script src="../assets/js/demo_v2.js?v=20260705-v2"></script>
   <script src="../assets/js/effects.js?v=20260705-v2"></script>
+  <script src="../assets/js/visuals.js?v=20260709-v1"></script>
+
+<!-- 🤖 额外 AI 视频：jingneng-multiscreen.mp4 -->
+<div class="sci-video flight-in" style="margin-top: 24px;">
+  <video controls autoplay loop muted playsinline poster="../assets/videos/posters/05-war-room.png" 
+         style="width:100%; display:block;">
+    <source src="../assets/videos/jingneng-multiscreen.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="sci-figure-caption burst-trigger" style="text-align:center; margin-top:-12px;">
+  🎬 AI 视频 · jingneng · multiscreen
+</div>
+
+
+<!-- 🤖 Burst 弹窗样式 -->
+<style id="burst-css">
+  .burst-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .burst-overlay.active { display: flex; }
+  .burst-card {
+    background: linear-gradient(135deg, #0a0e27, #1a1f3a);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+    position: relative;
+  }
+  .burst-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none; border: none;
+    color: #00d4ff; font-size: 24px;
+    cursor: pointer; line-height: 1;
+  }
+  .burst-close:hover { color: #fff; }
+  .burst-title {
+    font-size: 18px; font-weight: 700;
+    color: #00d4ff; margin-bottom: 14px;
+  }
+  .burst-content { color: #ccc; font-size: 14px; line-height: 1.7; }
+</style>
+
+<script>
+(function() {
+  if (document.getElementById('burst-overlay')) return;
+  
+  var overlay = document.createElement('div');
+  overlay.className = 'burst-overlay';
+  overlay.id = 'burst-overlay';
+  overlay.innerHTML = '<div class="burst-card"><button class="burst-close" type="button">×</button><div class="burst-title" id="burst-title"></div><div class="burst-content" id="burst-content"></div></div>';
+  
+  document.body.appendChild(overlay);
+  
+  // 点 X 关闭
+  overlay.querySelector('.burst-close').addEventListener('click', function() {
+    overlay.classList.remove('active');
+  });
+  
+  // 点遮罩关闭
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
+  
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+  
+  // 全局事件代理：点击 .burst-trigger
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    e.stopPropagation();
+    var title = trigger.getAttribute('data-burst-title') || trigger.textContent.trim();
+    var content = trigger.getAttribute('data-burst-content') || '点击查看详情...';
+    document.getElementById('burst-title').textContent = title;
+    document.getElementById('burst-content').innerHTML = content;
+    overlay.classList.add('active');
+  });
+})();
+</script>
+
+
+<!-- C 方案：章节切换过场动画 -->
+<div class="transition-overlay" id="transitionOverlay">
+  <div class="transition-overlay-text" id="transitionText">Loading...</div>
+</div>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+  console.log('[C-plan] KPI animation + chapter transition initialized');
+})();
+</script>
+
+<script>
+// 追加 1（修正版）：拦截 innerHTML 注入 Burst 数据可视化
+(function() {
+  var origSet = HTMLDivElement.prototype.setAttribute;
+  
+  // 在 burst-content innerHTML 赋值后追加 viz
+  function tryInject() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl || contentEl.dataset.vizInjected) return;
+    var ch = detectChapter();
+    var viz = getChapterViz(ch);
+    if (!viz) return;
+    contentEl.insertAdjacentHTML('afterend', '<div id="burst-viz-container"></div>');
+    var vizContainer = document.getElementById('burst-viz-container');
+    if (vizContainer) {
+      vizContainer.innerHTML = viz;
+      contentEl.dataset.vizInjected = '1';
+    }
+  }
+  
+  function detectChapter() {
+    var el = document.querySelector('h1') || document.querySelector('h2');
+    var txt = el ? el.textContent : '';
+    if (txt.includes('你好') || txt.includes('数字化')) return 1;
+    if (txt.includes('你们') || txt.includes('星恒') || txt.includes('project')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('部署') || txt.includes('安装')) return 4;
+    if (txt.includes('风险') || txt.includes('幻觉') || txt.includes('坑')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟') || txt.includes('旅程回顾')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  // 拦截 burst overlay active，注入 viz
+  var _origAdd = Element.prototype.addEventListener;
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    setTimeout(function() {
+      var overlay = document.querySelector('.burst-overlay.active');
+      if (!overlay) return;
+      var contentEl = document.getElementById('burst-content');
+      if (!contentEl || contentEl.dataset.vizInjected) return;
+      var ch = detectChapter();
+      var viz = getChapterViz(ch);
+      if (!viz) return;
+      var vizDiv = document.createElement('div');
+      vizDiv.className = 'burst-viz-wrapper';
+      vizDiv.innerHTML = viz;
+      contentEl.parentNode.insertBefore(vizDiv, contentEl.nextSibling);
+      contentEl.dataset.vizInjected = '1';
+    }, 60);
+  });
+  
+  console.log('[D-plan-v2] Burst viz hook ready');
+})();
+</script>
+
+<script>
+// 追加 1：D-plan Burst 数据可视化注入器
+(function() {
+  var origHandler;
+  // 拦截 burst trigger 点击
+  document.querySelectorAll('.burst-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      // 延迟注入，等 DOM 更新
+      setTimeout(function() {
+        injectBurstViz();
+      }, 50);
+    });
+  });
+  
+  function injectBurstViz() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl) return;
+    var title = titleEl ? titleEl.textContent : '';
+    var ch = detectChapter();
+    var viz = getChapterViz(ch, title);
+    if (viz && !contentEl.querySelector('.burst-viz')) {
+      contentEl.insertAdjacentHTML('afterbegin', viz);
+    }
+  }
+  
+  function detectChapter() {
+    var h1 = document.querySelector('h1');
+    var h2s = document.querySelectorAll('h2');
+    var txt = h1 ? h1.textContent : '';
+    h2s.forEach(function(h) { txt += h.textContent; });
+    if (txt.includes('你好') || txt.includes('数字化同行者')) return 1;
+    if (txt.includes('你们') || txt.includes('project') || txt.includes('星恒')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('安装') || txt.includes('部署')) return 4;
+    if (txt.includes('风险') || txt.includes('坑') || txt.includes('幻觉')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('数据底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch, title) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  console.log('[D-plan] Burst viz injector ready');
+})();
+</script>
+
 </body>
 </html>

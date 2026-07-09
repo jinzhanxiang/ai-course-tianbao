@@ -6,127 +6,1288 @@
   <title>第 04 章 · 我能用吗？门槛在哪？ — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix"
+  <link rel="stylesheet" href="../assets/css/sci-fi.css?v=20260709-v1">>
+  <link rel="stylesheet" href="../assets/css/visuals.css?v=20260709-v1">
+
+<!-- 主公增强 · 2026-07-09 方式 A：科幻化 -->
+<style id="sci-enhance">
+  /* === 流光大标题 === */
+  .glow-text {
+    background: linear-gradient(90deg, #00d4ff 0%, #a855f7 35%, #56d364 70%, #febc2e 100%) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: glow-shift 6s ease-in-out infinite !important;
+    font-weight: 700;
+  }
+  @keyframes glow-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* === 终端命令框 === */
+  .sci-terminal {
+    background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
+    border: 1px solid rgba(0, 212, 255, 0.45);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    color: #00d4ff;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .sci-terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 3s infinite;
+  }
+  @keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .sci-line { 
+    margin: 4px 0; 
+    font-size: 13px; 
+    line-height: 1.6; 
+    position: relative; 
+    z-index: 1; 
+  }
+  .sci-prompt { color: #56d364; margin-right: 8px; }
+  .sci-ok { color: #56d364; }
+  .sci-warn { color: #febc2e; }
+  .sci-online {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #56d364;
+    box-shadow: 0 0 10px #56d364;
+    animation: pulse 1.5s infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .sci-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: #00d4ff;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* === KPI 数字卡 === */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(168, 85, 247, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(135deg, #00d4ff, #a855f7, #56d364);
+    border-radius: 12px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.25);
+  }
+  .kpi-card:hover::before {
+    opacity: 0.4;
+  }
+  .kpi-num {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* === 角色卡片 === */
+  .role-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .role-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .role-emoji { font-size: 36px; margin-bottom: 8px; }
+  .role-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #00d4ff; 
+    margin-bottom: 6px;
+  }
+  .role-hook {
+    font-size: 12px; 
+    color: #aaa; 
+    line-height: 1.5;
+  }
+  
+  /* === 路线图卡片 === */
+  .route-card {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.1), rgba(0, 212, 255, 0.05));
+    border-left: 3px solid #56d364;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  .route-card:hover {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.18), rgba(0, 212, 255, 0.1));
+    transform: translateX(4px);
+  }
+  
+  /* === Burst 触发器 === */
+  .burst-trigger {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .burst-trigger:hover {
+    filter: brightness(1.15);
+  }
+  .burst-trigger::after {
+    content: '📌';
+    position: absolute;
+    top: -8px; right: -8px;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .burst-trigger:hover::after {
+    opacity: 1;
+  }
+  
+  /* === 视频容器（科幻边框） === */
+  .sci-video {
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    position: relative;
+    background: #000;
+  }
+  .sci-video::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 4s infinite;
+    z-index: 1;
+  }
+  .sci-video video {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  
+  /* === 插图 === */
+  .sci-figure {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(10, 14, 39, 0.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.1);
+  }
+  .sci-figure img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  .sci-figure-caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  /* === 路线图终端 === */
+  .sci-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    position: relative;
+  }
+  .sci-track::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  }
+  .sci-station {
+    background: #0a0e27;
+    border: 1px solid #00d4ff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #00d4ff;
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* === 章节进入动画 === */
+  .chapter-page {
+    animation: page-fade-in 0.6s ease-out;
+  }
+  @keyframes page-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === 状态标签 === */
+  .status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .status-tag.online {
+    background: rgba(86, 211, 100, 0.15);
+    color: #56d364;
+    border: 1px solid rgba(86, 211, 100, 0.3);
+  }
+  .status-tag.live {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+  .status-tag.warn {
+    background: rgba(254, 188, 46, 0.15);
+    color: #febc2e;
+    border: 1px solid rgba(254, 188, 46, 0.3);
+  }
+  
+  /* === 数字 flight-in === */
+  .flight-in {
+    animation: flight-in 0.6s ease-out backwards;
+  }
+  @keyframes flight-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+
+
+<style>
+/* === A 方案增量：burst z-index + video controls + glow title === */
+
+/* burst trigger 必须能点击 */
+.burst-trigger {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+}
+
+/* 视频容器 - 不要拦截 burst */
+.sci-video {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* burst 弹窗标题 - 流光效果 */
+.burst-title {
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 25%, #56d364 50%, #febc2e 75%, #00d4ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 3s linear infinite;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* burst 弹窗内容 - 更大可读 */
+.burst-content {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #e6e8eb !important;
+}
+
+.burst-content b, .burst-content strong {
+  color: #00d4ff !important;
+  font-weight: 700 !important;
+}
+
+.burst-content code {
+  background: rgba(0, 212, 255, 0.15);
+  color: #00d4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 13px;
+}
+
+/* === C 方案：章节过场动画 + slide-in-from-left + KPI 滚动 === */
+
+/* 章节切换过场遮罩 */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transition-overlay-text {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00d4ff, #a855f7, #56d364);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 2s linear infinite;
+  letter-spacing: 4px;
+}
+
+/* h2 slide-in-from-left - 替代 flight-in，更醒目 */
+h2.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* h3 fade-in-up */
+h3 {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI 数字滚动效果 */
+.kpi-num.counting {
+  display: inline-block;
+  animation: kpiPulse 2s ease-in-out infinite;
+}
+
+@keyframes kpiPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* burst-trigger 加右下角小图标 */
+.burst-trigger::after {
+  content: "🔍";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 14px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.burst-trigger:hover::after {
+  opacity: 1;
+  color: #00d4ff;
+}
+
+/* sci-terminal 也加 z-index */
+.sci-terminal {
+  position: relative;
+  z-index: 5;
+}
+
+</style>
+
+
+<style>
+/* === 追加 1：Burst 弹窗数据可视化 === */
+.burst-card {
+  max-width: 640px !important;
+}
+
+.burst-viz {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.burst-viz-title {
+  font-size: 12px;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* 迷你柱状图 */
+.mini-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-bottom: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+
+.mini-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 4px;
+  animation: barGrow 1s ease-out;
+}
+
+@keyframes barGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.mini-bar:hover {
+  background: linear-gradient(180deg, #56d364 0%, #febc2e 100%);
+  box-shadow: 0 0 12px rgba(86, 211, 100, 0.6);
+}
+
+.mini-bar-value {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #e6e8eb;
+  white-space: nowrap;
+}
+
+.mini-bar-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* 进度条 */
+.mini-progress {
+  margin: 12px 0;
+}
+
+.mini-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #e6e8eb;
+}
+
+.mini-progress-label span:last-child {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+.mini-progress-bar {
+  height: 8px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff 0%, #56d364 100%);
+  border-radius: 4px;
+  animation: progressFill 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes progressFill {
+  0% { width: 0; }
+}
+
+/* 数据矩阵 */
+.mini-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-matrix-cell {
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mini-matrix-cell:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.mini-matrix-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00d4ff;
+  display: block;
+  line-height: 1;
+}
+
+.mini-matrix-label {
+  font-size: 10px;
+  color: #a8b1c8;
+  margin-top: 4px;
+  display: block;
+}
+</style>
+
 </head>
 <body class="chapter-page sci-fi-bg">
+
+<!-- 追加 2：顶部 loading 进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<style>
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #56d364 100%);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+  console.log('[D-plan] Scroll progress bar initialized');
+})();
+</script>
+
   <main class="main-stage" style="background:#060A1A">
 
     <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
-        <h1 style="font-size:52px;color:#22C55E;margin-bottom:8px">🛠️ 第 04 章 · 我能用吗？门槛在哪？</h1>
-        <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">快速上手第一个智能体 · 6 个月从入门到熟练</h2>
+        <h1 style="font-size:52px;color:#22C55E;margin-bottom:8px" class="glow-text flight-in"🛠️ 第 04 章 · 我能用吗？门槛在哪？</h1>
+        <!-- sci-enhance-comment -->
+
+<!-- 🤖 科幻增强 · sci-terminal：上手状态 -->
+<div class="sci-terminal flight-in burst-trigger" data-burst-title="第 04 章 · 实战数据详情" data-burst-content="<p><b style=&quot;color:#00d4ff&quot;>5 步上手 · 16 分钟</b></p><p>不需要编程。</p><p>复制 SKILL.md，看懂 README，会打字就行。</p><p>真实记录：从零到第一个跑通的任务，平均 16 分钟。</p>"" style="margin: 24px auto; max-width: 720px;">
+  <div class="sci-line"><span class="sci-prompt">$</span> quickstart --guide</div>
+  <div class="sci-line"><span class="sci-warn">●</span> Step 1 · 装环境 &nbsp;= OpenClaw + Python · 5 min</div>
+  <div class="sci-line"><span class="sci-warn">●</span> Step 2 · 装 Agent · = Claude Code / Hermes · 5 min</div>
+  <div class="sci-line"><span class="sci-warn">●</span> Step 3 · 选模型 &nbsp;= 主+备切换 · 3 min</div>
+  <div class="sci-line"><span class="sci-warn">●</span> Step 4 · 装技能 · = 复制 SKILL.md · 2 min</div>
+  <div class="sci-line"><span class="sci-warn">●</span> Step 5 · 学对话 · = 看懂 README · 1 min</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> 总计 &nbsp;= <span class="sci-warn">16 min 后上手</span></div>
+  <div class="sci-line"><span class="sci-prompt">$</span> <span class="sci-cursor"></span></div>
+</div>
+
+<!-- 🤖 插图：前后对比（不编程 vs 用 Agent）-->
+<div class="sci-figure flight-in burst-trigger">
+  <img src="../assets/img/before-after.png" alt="前后对比">
+  <div class="sci-figure-caption burst-trigger">图 2 · 不编程 vs 用 Agent · 天保内部真实数据（2026-Q2）</div>
+</div>
+
+<h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px" class="flight-in"5 步上手：装环境 → 装 Agent → 选模型 → 装技能 → 学对话</h2>
         <p style="font-size:14px;color:var(--text-muted);margin-top:28px;max-width:800px;margin-left:auto;margin-right:auto">
-          第 03 章讲清了体系原理。现在回答最实际的问题：<strong style="color:#22C55E">你作为一个非程序员，能不能用？怎么开始？多久能见效？</strong>
+          第 03 章讲清了体系原理。现在回答最实际的问题：<strong style="color:#22C55E">你不会编程，能不能用？答案是：不但能用，而且比你想象的简单。</strong>在智能体时代，编程的门槛已被 Agent 抹平——从装环境到跑通第一个任务，5 步约 1 小时。
         </p>
       </header>
     </div>
 
-    <!-- Slide 2：破除迷思 — 训练 vs 编排 -->
+    <!-- ============================================================ -->
+    <!-- Slide 2A：破除迷思 · 第一件事：清晰表达诉求（Overview Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#22C55E;margin-bottom:12px">⚡ 破除迷思：你不需要训练模型</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">大多数人以为需要训练模型，实际上<strong style="color:#22C55E">编排已有能力</strong>才是 90% 的真实场景</p>
+      <h2 style="font-size:30px;color:#22C55E;margin-bottom:4px" class="flight-in"⚡ 破除迷思：你不需要会编程</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">Agent 会自己写代码、自己执行——在智能体时代，<strong style="color:#22C55E">人人都是程序员</strong></p>
 
-      <table class="data-table" style="margin:0 auto;width:100%;font-size:12px">
-        <thead><tr style="background:var(--bg-card);color:#22C55E"><th>维度</th><th>🎓 训练（模型微调）</th><th>🛠️ 编排（提示词 + 工具）</th></tr></thead>
-        <tbody>
-          <tr><td><strong>投入</strong></td><td>$100K-1M 数据 + GPU</td><td><strong style="color:#22C55E">免费开始</strong></td></tr>
-          <tr><td><strong>周期</strong></td><td>周/月</td><td><strong style="color:#22C55E">1 小时</strong></td></tr>
-          <tr><td><strong>技能要求</strong></td><td>ML 工程师</td><td><strong style="color:#22C55E">会用电脑即可</strong></td></tr>
-          <tr><td><strong>适用场景</strong></td><td>专业领域术语、安全合规</td><td><strong style="color:#22C55E">日报/爬取/分析/摘要</strong></td></tr>
-          <tr><td><strong>维护成本</strong></td><td>持续数据标注</td><td><strong style="color:#22C55E">改提示词即可</strong></td></tr>
-        </tbody>
-      </table>
+      <!-- 旧范式 vs 新范式 对比 -->
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;max-width:880px;margin:0 auto 16px;align-items:center">
+        <!-- 旧：没有 Agent -->
+        <div class="card" style="padding:16px;border-top:3px solid #8FA1CC;background:rgba(143,161,204,0.04)">
+          <h3 style="font-size:15px;color:#8FA1CC;margin-bottom:8px;text-align:center">📜 旧范式：没有 Agent</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:2.0;text-align:center">
+            <div>学编程语言（3-6 个月）</div>
+            <div style="color:#8FA1CC">↓</div>
+            <div>自己写代码</div>
+            <div style="color:#8FA1CC">↓</div>
+            <div>自己调试排错</div>
+            <div style="color:#8FA1CC">↓</div>
+            <div>自己部署运行</div>
+          </div>
+          <div style="margin-top:10px;text-align:center;font-size:13px;color:#EF4444"><strong>门槛：编程能力</strong></div>
+        </div>
 
-      <div class="alert alert-success" style="margin-top:16px;font-size:12px">
-        <strong>结论：</strong>编排是性价比最高的起点。只有当你有了明确的专业术语库、大量标注数据、且提示词优化已经到天花板时，才考虑训练。
+        <!-- 箭头 -->
+        <div style="font-size:32px;color:#22C55E;padding:0 12px;font-weight:700">→</div>
+
+        <!-- 新：有 Agent -->
+        <div class="card" style="padding:16px;border-top:3px solid #22C55E;background:rgba(34,197,94,0.04);box-shadow:0 0 0 1px rgba(34,197,94,0.3)">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px;text-align:center">🚀 新范式：有 Agent</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:2.0;text-align:center">
+            <div><strong style="color:#22C55E">你</strong>：清晰表达诉求</div>
+            <div style="color:#22C55E">↓</div>
+            <div><strong style="color:#F59E0B">Agent</strong>：自动生成代码</div>
+            <div style="color:#22C55E">↓</div>
+            <div><strong style="color:#F59E0B">Agent</strong>：自动执行 + 排错</div>
+            <div style="color:#22C55E">↓</div>
+            <div><strong style="color:#22C55E">你</strong>：审查结果 → 迭代优化</div>
+          </div>
+          <div style="margin-top:10px;text-align:center;font-size:13px;color:#22C55E"><strong>门槛：表达诉求 + 迭代标准</strong></div>
+        </div>
+      </div>
+
+      <!-- Section title -->
+      <h3 style="font-size:20px;color:#F59E0B;margin-bottom:10px;text-align:center">🎯 第一件事：清晰表达诉求</h3>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto">就像你给实习生布置任务——说清楚你要什么，Agent 负责怎么做到。</p>
+
+      <!-- Scroll-Unroll: 4 principles for clear expression -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
+          <div style="font-size:24px;margin-bottom:6px">🎯</div>
+          <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">明确目标</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">说清楚你要什么结果，不是怎么做</p>
+        </div>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">2</span>
+          <div style="font-size:24px;margin-bottom:6px">📐</div>
+          <h4 style="font-size:15px;color:#00D4FF;margin-bottom:6px">具体维度</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">营收、净利、估值——给分析框架</p>
+        </div>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">3</span>
+          <div style="font-size:24px;margin-bottom:6px">📊</div>
+          <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">对比参照</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">跟行业均值/可比公司对比</p>
+        </div>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EC4899;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">4</span>
+          <div style="font-size:24px;margin-bottom:6px">🔍</div>
+          <h4 style="font-size:15px;color:#EC4899;margin-bottom:6px">标注异常</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">指出需要特别关注的异常点</p>
+        </div>
+      </div>
+
+      <!-- Example card -->
+      <div class="popup-trigger card" data-visual="popup" data-popup-title="表达诉求示例" style="padding:14px;border-top:3px solid #F59E0B;text-align:center;cursor:pointer;max-width:780px;margin:16px auto 0">
+        <div class="popup-trigger-preview">
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6">
+            <strong style="color:#F59E0B">示例：</strong>「帮我查一下星恒电源最近三年的营收和净利，跟行业均值做个对比，标注异常点。」<br>
+            <strong style="color:#22C55E">说清楚你要什么，Agent 负责怎么做到。</strong>
+          </p>
+        </div>
+        <div class="popup-detail" style="display:none">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0">
+            就像你给实习生布置任务——<br>
+            「帮我查一下星恒电源最近三年的营收和净利，跟行业均值做个对比，标注异常点。」<br>
+            <strong style="color:#22C55E">说清楚你要什么，Agent 负责怎么做到。</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Page transition arrow -->
+      <div style="text-align:center;margin-top:16px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">表达清楚了，下一步是迭代优化——跟 Agent 来回打磨出高质量结果</p>
       </div>
     </div>
 
-    <!-- Slide 3：4 步拥有第一个智能体 -->
+    <!-- ============================================================ -->
+    <!-- Slide 2B：第二件事：按规则迭代优化（Continuation Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:14px">🗺️ 4 步拥有你的第一个智能体（总计约 30 分钟）</h2>
+      <span class="split-continuation-badge">↑ 接上一页 · 表达诉求</span>
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px">
-        <div class="card" style="padding:14px;border-top:3px solid #F59E0B;text-align:center">
-          <div style="font-size:32px;margin-bottom:6px">1️⃣</div>
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:4px">获取模型</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">注册国产大模型平台<br>免费领取 API Key<br>获取模型访问权限</p>
-          <p style="font-size:12px;color:#F59E0B;margin-top:6px"><strong>5 分钟</strong></p>
+      <h2 style="font-size:30px;color:#A855F7;margin-bottom:8px" class="flight-in"🔄 第二件事：按规则迭代优化</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto">Agent 写出代码后，你来审查结果——来回 2-3 轮迭代，质量超过你手写。</p>
+
+      <!-- Iteration flow as scroll-unroll -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:16px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
+          <div style="font-size:24px;margin-bottom:6px">📝</div>
+          <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">下发任务</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Agent 自动生成初版代码和结果</p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #00D4FF;text-align:center">
-          <div style="font-size:32px;margin-bottom:6px">2️⃣</div>
-          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:4px">安装框架</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">内部工具包<br>开箱即用<br>Windows / Mac 支持</p>
-          <p style="font-size:12px;color:#00D4FF;margin-top:6px"><strong>3 分钟</strong></p>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">2</span>
+          <div style="font-size:24px;margin-bottom:6px">🔍</div>
+          <h4 style="font-size:15px;color:#00D4FF;margin-bottom:6px">审查结果</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">用你的专业能力判断结果好不好</p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7;text-align:center">
-          <div style="font-size:32px;margin-bottom:6px">3️⃣</div>
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:4px">连接飞书</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">关联飞书群<br>@机器人 即可调用<br>消息 → Agent → 回复</p>
-          <p style="font-size:12px;color:#A855F7;margin-top:6px"><strong>10 分钟</strong></p>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">3</span>
+          <div style="font-size:24px;margin-bottom:6px">🔧</div>
+          <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">反馈修正</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">「这个口径不对，改成审计口径」</p>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E;text-align:center">
-          <div style="font-size:32px;margin-bottom:6px">4️⃣</div>
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:4px">定义工作流</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">写一段提示词<br>配一个工具<br>完成第一个任务</p>
-          <p style="font-size:12px;color:#22C55E;margin-top:6px"><strong>15 分钟</strong></p>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">4</span>
+          <div style="font-size:24px;margin-bottom:6px">✅</div>
+          <h4 style="font-size:15px;color:#22C55E;margin-bottom:6px">交付定稿</h4>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">2-3 轮后质量超过手写</p>
         </div>
       </div>
 
-      <div class="alert alert-info" style="margin-top:16px;text-align:center;font-size:13px">
-        <strong>演讲结束后，可获取内部工具包开始体验。</strong>环境已预配置，无需额外安装依赖。
+      <!-- Original popup card for detail -->
+      <div class="popup-trigger card" data-visual="popup" data-popup-title="迭代示例" style="padding:14px;border-top:3px solid #A855F7;text-align:center;cursor:pointer;max-width:780px;margin:16px auto 0">
+        <div class="popup-trigger-preview">
+          <div style="font-size:24px;margin-bottom:4px">🔄</div>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">典型迭代对话</h3>
+          <p style="font-size:13px;color:var(--text-secondary);margin:0">Agent 写出代码后，来回 2-3 轮迭代，质量超过你手写。</p>
+        </div>
+        <div class="popup-detail" style="display:none">
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0">
+            Agent 写出代码后——<br>
+            「这个数据口径不对，改成审计口径」「加上可比公司对比，按 PS 法重算」<br>
+            <strong style="color:#22C55E">跟 Agent 来回 2-3 轮，质量超过你手写。</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:16px;font-size:13px;max-width:860px;margin-left:auto;margin-right:auto">
+        <strong>核心认知：</strong>编程的门槛已经被 Agent 抹平。你不用学 Python，不用学命令行——你只需要<strong style="color:#F59E0B">会提需求、会判断结果好不好</strong>。这和你看一份研报、审一个估值模型用的是<strong style="color:#22C55E">同一套专业能力</strong>。<br>
+        <span style="font-size:13px;color:var(--text-muted)">后面的「技能商店」和「从零开始动手」slides 将继续展开这个逻辑——每一步都不需要你写代码。</span>
       </div>
     </div>
 
-    <!-- Slide 4：3 个工作流模板 -->
+    <!-- ============================================================ -->
+    <!-- Slide 3A：第一步：安装基础环境（Overview Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">📋 3 个预置模板，明天就能用</h2>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px">🗺️ 从零开始 · 第一步：装环境</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px">刚才说了——你不需要会编程。下面这些步骤，Agent 会帮你完成。你要做的只是走一遍流程。</p>
+      <div class="alert alert-info" style="font-size:13px;margin-bottom:14px">
+        <strong>💡 提示：</strong>下面的内容看起来像技术配置，但你要做的只是<strong style="color:#22C55E">按步骤操作</strong>——不需要理解每一项的含义。就像你不需要懂发动机原理也能开车一样。记住：<strong style="color:#F59E0B">Agent 才是你的司机</strong>。
+      </div>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px">
-        <div class="card" style="padding:16px;border-left:4px solid #F59E0B">
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px">📋 日报生成器</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">飞书群消息 → Agent 摘要 → 自动推送日报</p>
-          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#F59E0B">提示词：</strong>"读取最近 24 小时群消息，按主题分类摘要，不超过 500 字，Markdown 格式输出"
+      <h3 style="font-size:20px;color:#F59E0B;margin-bottom:10px;text-align:center">1️⃣ 安装基础环境（Mac + Windows 均适用）</h3>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">四条路径，一次性安装，以后不再需要</p>
+
+      <!-- Scroll-Unroll: 4 infrastructure items -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="Python 3.10+" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:6px">🐍</div>
+            <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">Python 3.10+</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Mac 自带 / Windows 下载安装 · 勾选 Add to PATH</p>
           </div>
-          <p style="font-size:10px;color:#F59E0B;margin-top:6px">⏱ 搭建时间：10 分钟</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+              <p style="margin:0">Mac 自带 Python 3 · Windows：python.org 下载 → 勾选"Add to PATH" → 一路下一步</p>
+            </div>
+          </div>
         </div>
-        <div class="card" style="padding:16px;border-left:4px solid #00D4FF">
-          <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px">🕷️ 信息爬取器</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">输入 URL → 自动爬取 → 结构化输出</p>
-          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#00D4FF">提示词：</strong>"爬取指定网页内容，提取关键数据和表格，输出结构化 JSON 并推送飞书"
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="Git" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">2</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:6px">📂</div>
+            <h4 style="font-size:15px;color:#00D4FF;margin-bottom:6px">Git</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Mac 终端输入 git --version · Windows git-scm.com 下载</p>
           </div>
-          <p style="font-size:10px;color:#00D4FF;margin-top:6px">⏱ 搭建时间：15 分钟</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+              <p style="margin:0">Mac：终端输入 <code>git --version</code> 按提示安装 · Windows：git-scm.com 下载</p>
+            </div>
+          </div>
         </div>
-        <div class="card" style="padding:16px;border-left:4px solid #A855F7">
-          <h3 style="font-size:16px;color:#A855F7;margin-bottom:8px">📊 数据清洗器</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">上传 Excel → 自动清洗去重 → 输出报告</p>
-          <div style="background:#0A0E27;padding:10px;border-radius:6px;font-size:10px;color:var(--text-muted);line-height:1.5">
-            <strong style="color:#A855F7">提示词：</strong>"读取上传的 Excel，去重、标准化日期格式、检测异常值，输出清洗报告"
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="Node.js 18+" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">3</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:6px">🟢</div>
+            <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">Node.js 18+</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">nodejs.org 下载 LTS 版本 · 一路下一步</p>
           </div>
-          <p style="font-size:10px;color:#A855F7;margin-top:6px">⏱ 搭建时间：20 分钟</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+              <p style="margin:0">nodejs.org 下载 LTS 版本 → 一路下一步</p>
+            </div>
+          </div>
+        </div>
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="Docker Desktop" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">4</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:6px">🐳</div>
+            <h4 style="font-size:15px;color:#22C55E;margin-bottom:6px">Docker Desktop</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">可选 · 安装 SearXNG 搜索需要 · docker.com 下载</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+              <p style="margin:0">docker.com 下载 → 安装后启动即可（可选，安装 SearXNG 搜索需要）</p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="alert alert-success" style="margin-top:16px;font-size:12px">
-        <strong>工作流本质 = 输入 → Agent（提示词 + 工具）→ 输出。</strong>你定义的是「输入什么、怎么处理、输出什么」。换项目名称，流程不变。
+      <p style="text-align:center;font-size:14px;color:#F59E0B;margin-top:16px"><strong>⏱ 约 15 分钟 · 一次性安装，以后不再需要</strong></p>
+
+      <!-- Page transition arrow -->
+      <div style="text-align:center;margin-top:14px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">环境就绪，下一步安装 Agent——三条命令，约 5 分钟</p>
       </div>
     </div>
 
-    <!-- Slide 4.5：Prompt 工程入门 -->
+    <!-- ============================================================ -->
+    <!-- Slide 3B：第二步：安装 Agent（Continuation Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:2px">💬 Prompt 工程入门：如何与智能体高效对话</h2>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">使用智能体的关键，在于学会<strong style="color:#22C55E">「问对问题」</strong>——这是一项可以快速掌握的技能</p>
+      <span class="split-continuation-badge">↑ 接上一页 · 安装基础环境</span>
+
+      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:8px">🤖 第二步：安装 Agent</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto">超级单体智能体 CLI 一键安装——三条命令，约 5 分钟</p>
+
+      <!-- Agent install steps as scroll-unroll -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
+          <div style="font-size:24px;margin-bottom:6px">📥</div>
+          <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">克隆仓库</h4>
+          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+            git clone https://github.com/jeffijoe/hermes-agent<br>
+            cd hermes-agent
+          </div>
+        </div>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">2</span>
+          <div style="font-size:24px;margin-bottom:6px">📦</div>
+          <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">安装依赖</h4>
+          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+            pip install -e .
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin:6px 0 0 0">pip 自动处理所有依赖</p>
+        </div>
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">3</span>
+          <div style="font-size:24px;margin-bottom:6px">🚀</div>
+          <h4 style="font-size:15px;color:#22C55E;margin-bottom:6px">启动网关</h4>
+          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+            python -m hermes_cli.main gateway run --replace
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin:6px 0 0 0">Agent 后台常驻 · 端口 19000</p>
+        </div>
+      </div>
+
+      <!-- Platform note -->
+      <div class="card" style="padding:12px;background:rgba(0,212,255,0.04);border:1px solid #00D4FF44;border-radius:8px;margin-top:14px;text-align:center">
+        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6">
+          <strong>Windows 用户注意：</strong>PowerShell 或 CMD 均可运行。如遇到权限问题，PowerShell 以管理员身份运行。<strong>Mac/Linux 用户</strong>直接用终端。启动后 Agent 在后台常驻，默认端口 19000。
+        </p>
+      </div>
+
+      <p style="text-align:center;font-size:14px;color:#00D4FF;margin-top:12px"><strong>⏱ 约 5 分钟 · pip 自动处理所有依赖</strong></p>
+
+      <div class="alert alert-success" style="font-size:14px;margin-top:14px">
+        <strong>前两步总计约 20 分钟。</strong>装完这两步，你就有了一个运行中的 Agent 环境。接下来是给它配「大脑」（模型）和「技能包」。
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- Slide 4A：第三步：选择模型（Overview Page） -->
+    <!-- ============================================================ -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🧠 第三步：选模型——免费模型足够起步</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Agent 的大脑——选对模型，事半功倍。以下四款均可免费开始使用。</p>
+
+      <!-- Skill intro card (context from original slide) -->
+      <div class="card" style="padding:12px;background:rgba(168,85,247,0.04);border:1px solid #A855F744;border-radius:8px;margin-bottom:14px">
+        <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">📦 先搞清楚：什么是「技能」？</h3>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+          <p style="margin:0 0 6px 0"><strong style="color:#A855F7">技能 = Agent 的「可安装能力包」。</strong>就像手机安装 App 获得新功能——装微信就能聊天，装地图就能导航。Agent 也一样：装「SearXNG 搜索」技能 → 能搜索网页，装「MX 金融数据」技能 → 能查财务指标。</p>
+          <p style="margin:0 0 6px 0"><strong style="color:#F59E0B">技能商店（SkillHub）= Agent 的 App Store。</strong>浏览 → 搜索 → 看评价 → 一键安装。不写一行代码，就像你在手机上下载应用一样。</p>
+          <p style="margin:0"><strong style="color:#22C55E">核心架构：</strong>每个技能就是一个独立的 Markdown 文件（SKILL.md），定义了这个技能「能做什么、怎么调用、需要什么参数」。Agent 读取 SKILL.md → 学会这项技能 → 下次遇到相关任务自动调用。简单、透明、可复用。</p>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px;color:#F59E0B;margin-bottom:10px;text-align:center">3️⃣ 选择模型：免费模型足够起步</h3>
+
+      <!-- Scroll-Unroll: 4 model cards with popups preserved -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="商汤 SenseNova" style="padding:16px 12px;border-top:4px solid #00D4FF;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">1</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:4px">🧠</div>
+            <h4 style="font-size:15px;color:#00D4FF;margin-bottom:4px">商汤 SenseNova</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">6.7 flash lite · 128K 上下文 · 注册即送免费额度</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>6.7 flash lite</strong><br>
+              128K 上下文窗口<br>
+              注册即送免费额度<br>
+              <span style="color:#22C55E">日常推理+文档处理</span>
+            </p>
+          </div>
+        </div>
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="阿里百炼 Qwen" style="padding:16px 12px;border-top:4px solid #A855F7;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">2</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:4px">☁️</div>
+            <h4 style="font-size:15px;color:#A855F7;margin-bottom:4px">阿里百炼 Qwen</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Qwen3.5-plus · 200K 上下文 · 百万 token 免费额度</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>Qwen3.5-plus</strong><br>
+              200K 上下文窗口<br>
+              百万 token 免费额度<br>
+              <span style="color:#22C55E">长文档分析+研究</span>
+            </p>
+          </div>
+        </div>
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="本地 Ollama" style="padding:16px 12px;border-top:4px solid #22C55E;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">3</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:4px">💻</div>
+            <h4 style="font-size:15px;color:#22C55E;margin-bottom:4px">本地 Ollama</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">qwen3 / deepseek-r1 · 完全离线 · 0 费用 · 数据不出本机</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>qwen3 / deepseek-r1</strong><br>
+              完全离线 · 0 费用<br>
+              数据不出本机<br>
+              <span style="color:#22C55E">敏感数据 · 兜底备份</span>
+            </p>
+          </div>
+        </div>
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="更多免费模型" style="padding:16px 12px;border-top:4px solid #EC4899;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">4</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:24px;margin-bottom:4px">🔥</div>
+            <h4 style="font-size:15px;color:#EC4899;margin-bottom:4px">更多免费模型</h4>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">cm-code-latest · MiMo · kimi-coding — 按任务选择最优模型</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>cm-code-latest</strong> 204K<br>
+              <strong>MiMo</strong> 200K 窗口<br>
+              <strong>kimi-coding</strong> 代码<br>
+              <span style="color:#22C55E">按任务选择最优模型</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Page transition arrow -->
+      <div style="text-align:center;margin-top:14px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">模型选好了，接下来装技能——让 Agent 有搜索、查数据、抓信息的能力</p>
+      </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- Slide 4B：第四步：安装技能（Continuation Page） -->
+    <!-- ============================================================ -->
+    <div class="slide">
+      <span class="split-continuation-badge">↑ 接上一页 · 选择模型</span>
+
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:6px">📦 第四步：安装技能——SkillHub 技能商店 + 信息搜索三件套</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">技能商店 = Agent 的 App Store。浏览 → 搜索 → 一键安装。不写一行代码。</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:12px;margin-bottom:14px">
+        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+          <h4 style="font-size:15px;color:#A855F7;margin-bottom:8px">🛒 去哪里找技能？SkillHub 技能商店</h4>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+            <p style="margin:0 0 8px 0">访问 <a href="https://skillhub.cn" style="color:#A855F7;font-weight:700" target="_blank">skillhub.cn</a> → 浏览技能市场 → 找到需要的技能 → 一键安装到 Agent</p>
+            <p style="margin:0 0 4px 0">类似手机应用商店：搜索、筛选、看评价、一键安装。不写一行代码。</p>
+            <p style="margin:0;color:#A855F7;font-size:14px"><strong>技能商店 = Agent 的 App Store</strong></p>
+          </div>
+        </div>
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
+          <h4 style="font-size:15px;color:#22C55E;margin-bottom:8px">📦 推荐首装：信息搜索三件套（一键安装包）</h4>
+          <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div class="scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="SearXNG 搜索" style="padding:10px;background:rgba(0,212,255,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
+              <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 10px rgba(0,212,255,0.5)">1</span>
+              <div class="popup-trigger-preview">
+                <div style="font-size:18px;margin-bottom:3px">🔍</div>
+                <strong style="font-size:14px;color:#00D4FF">SearXNG 搜索</strong>
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">多引擎元搜索 · 无 API 配额限制</p>
+              </div>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">自建元搜索引擎<br>多引擎聚合<br>无 API 配额限制</p>
+              </div>
+            </div>
+            <div class="scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="MX 金融数据" style="padding:10px;background:rgba(245,158,11,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
+              <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 10px rgba(245,158,11,0.5)">2</span>
+              <div class="popup-trigger-preview">
+                <div style="font-size:18px;margin-bottom:3px">📊</div>
+                <strong style="font-size:14px;color:#F59E0B">MX 金融数据</strong>
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">财务指标查询 · 行情数据 · 产业链图谱</p>
+              </div>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">财务指标查询<br>行情数据获取<br>产业链图谱</p>
+              </div>
+            </div>
+            <div class="scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="浏览器自动化" style="padding:10px;background:rgba(168,85,247,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
+              <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 10px rgba(168,85,247,0.5)">3</span>
+              <div class="popup-trigger-preview">
+                <div style="font-size:18px;margin-bottom:3px">🌐</div>
+                <strong style="font-size:14px;color:#A855F7">浏览器自动化</strong>
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">天眼查抓取 · 网页采集 · 竞品监控</p>
+              </div>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">天眼查工商抓取<br>网页数据采集<br>竞品信息监控</p>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-top:10px;text-align:center">三个技能覆盖了投资研究 90% 的信息获取需求——搜索、金融数据、工商信息。</p>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="font-size:14px;margin-top:8px">
+        <strong>后两步总计约 15 分钟。</strong>四条路径加起来不到 1 小时，你就有了一个能搜索、能查数据、能自动抓取信息的 AI Agent。
+      </div>
+    </div>
+
+    <!-- Slide 4.3：深入理解 — 一个 Skill 到底是什么？ -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px">🔍 深入理解：一个 Skill 到底是什么？</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">刚才说了技能是「可安装能力包」。现在用一个真实案例，让你看清<strong style="color:#F59E0B">Skill ≠ 高级 Prompt</strong></p>
+
+      <!-- 两栏对比：你以为 vs 实际上是 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+
+        <!-- 左：你以为 -->
+        <div class="card" style="padding:14px;border-top:3px solid #EF4444;background:rgba(239,68,68,0.03)">
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:8px">❌ 你以为的 Skill</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+            <p style="margin:0 0 8px 0">就是一段高级提示词，像这样：</p>
+            <div style="padding:8px;background:rgba(0,0,0,0.2);border-radius:4px;font-family:SF Mono,Monaco,monospace;font-size:13px;color:#8FA1CC;line-height:1.6">
+              "你是一位资深投资分析师，请帮我分析一下宁德时代的投资价值，包括估值、财务和行业竞争格局。"
+            </div>
+            <p style="margin:8px 0 0 0;color:#EF4444">结果：Agent 自由发挥，可能查几个网页就"分析"了——没有专业数据、没有估值模型、结论不可复现。</p>
+          </div>
+        </div>
+
+        <!-- 右：实际上是 -->
+        <div class="card" style="padding:14px;border-top:3px solid #22C55E;background:rgba(34,197,94,0.03)">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">✅ 实际上的 Skill</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
+            <p style="margin:0 0 8px 0">是一份<strong style="color:#22C55E">完整的 SOP（标准作业程序）</strong>，以 iFind 投研技能为例：</p>
+            <div style="padding:8px;background:rgba(0,0,0,0.2);border-radius:4px;font-family:SF Mono,Monaco,monospace;font-size:13px;color:#8FA1CC;line-height:1.6">
+              SKILL.md 中定义了：<br>
+              · 11 个触发词自动匹配（"目标价""值得投资吗"等）<br>
+              · 必须走异步任务中心，不允许 Agent 自己生成报告<br>
+              · 提交 → 轮询状态（30s等待）→ 读取结果 → 保存文件<br>
+              · 成功直接输出原文，禁止总结改写<br>
+              · 失败输出 errorMessage，不重试
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 真实案例：ifind 投研技能 -->
+      <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">📖 真实案例：iFind 公司投研 Skill 的执行流程</h3>
+      <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:8px">来源：~/.openclaw/workspace-research/skills/ifind-company-investment-research/SKILL.md（153行）</p>
+      <div data-visual="stagger" class="reveal-stagger" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px">
+        <div class="popup-trigger card" data-visual="popup" data-popup-title="Step 1 · 提交任务" style="padding:10px 12px;border-top:3px solid #38bdf8;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:18px;margin-bottom:4px">📤</div>
+            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:4px">Step 1 · 提交任务</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">匹配触发词 → 调用脚本提交异步任务</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
+              用户说"宁德时代值得投资吗"<br>
+              匹配触发词 → 调用脚本提交异步任务<br>
+              <span style="color:#8FA1CC">不手写 HTTP，不走捷径</span>
+            </p>
+          </div>
+        </div>
+        <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
+        <div class="popup-trigger card" data-visual="popup" data-popup-title="Step 2 · 轮询状态" style="padding:10px 12px;border-top:3px solid #A855F7;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:18px;margin-bottom:4px">⏳</div>
+            <div style="font-size:13px;font-weight:700;color:#A855F7;margin-bottom:4px">Step 2 · 轮询状态</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">每 30 秒查一次状态，SUCCEEDED → 结果处理</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
+              每 30 秒查一次状态<br>
+              SUCCEEDED → 进入结果处理<br>
+              FAILED → 输出错误，不重试
+            </p>
+          </div>
+        </div>
+        <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
+        <div class="popup-trigger card" data-visual="popup" data-popup-title="Step 3 · 读取结果" style="padding:10px 12px;border-top:3px solid #F59E0B;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:18px;margin-bottom:4px">📋</div>
+            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:4px">Step 3 · 读取结果</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">直接输出原文，禁止总结改写，Agent 不参与内容生成</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
+              直接输出 result 原文<br>
+              <span style="color:#EF4444">禁止总结、改写、补充</span><br>
+              Agent 不参与内容生成
+            </p>
+          </div>
+        </div>
+        <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
+        <div class="popup-trigger card" data-visual="popup" data-popup-title="Step 4 · 保存文件" style="padding:10px 12px;border-top:3px solid #22C55E;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:18px;margin-bottom:4px">💾</div>
+            <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:4px">Step 4 · 保存文件</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">写入指定目录，不解压、不改名、不加料</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
+              写入用户指定目录<br>
+              文件名: company-investment-research-{taskId}.md<br>
+              不解压、不改名、不加料
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 关键规则卡片 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+        <div class="card" style="padding:8px 10px;border-left:3px solid #EF4444;background:rgba(239,68,68,0.03)">
+          <div style="font-size:13px;font-weight:700;color:#EF4444;margin-bottom:2px">🚫 绝对禁止</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
+            手写 HTTP 请求<br>
+            绕过异步任务中心<br>
+            失败后重试
+          </div>
+        </div>
+        <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;background:rgba(245,158,11,0.03)">
+          <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:2px">⚡ 必须遵守</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
+            优先调用自带脚本<br>
+            成功时不二次总结<br>
+            Markdown 原样输出
+          </div>
+        </div>
+        <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.03)">
+          <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:2px">✅ 设计意图</div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
+            模型只做调度，不做生成<br>
+            报告内容来自专业数据源<br>
+            每次结果可复现
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:14px;background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(245,158,11,0.06));border:1px solid #A855F744;border-radius:10px;text-align:center">
+        <p style="font-size:13px;color:var(--text-primary);line-height:1.7;margin:0">
+          <strong style="color:#A855F7">Skill ≠ 高级 Prompt。Skill 写的是「怎么做」，不是「做什么」。</strong><br>
+          <span style="color:var(--text-secondary);font-size:13px">
+            一份好的 Skill = 触发条件（11个词）+ 工具选择（Python脚本）+ 步骤顺序（提交→轮询→结果→保存）+ 错误处理（失败不重试）+ 交付标准（原样输出，不加料）。<br>
+            <strong style="color:#F59E0B">这是 Agent 和「高级提示词」之间最本质的区别。</strong>
+            没有 Skill 的 Agent 是一个聪明但散漫的实习生；有 Skill 的 Agent 是一个<strong style="color:#22C55E">按 SOP 执行的专家</strong>。
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 4.5：Prompt 工程入门（Step 5） -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:2px">💬 第五步：学会与智能体高效对话（Prompt 工程）</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:10px">环境装好了、模型配好了、技能装好了——最后一步，学会<strong style="color:#22C55E">「问对问题」</strong></p>
 
       <!-- Row 1: 5 Patterns + 3 Errors (2-col) -->
       <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin-bottom:10px">
 
         <!-- Left: 5 种核心提示词模式 -->
         <div class="card" style="padding:10px 12px;border-left:4px solid #22C55E">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">📐 5 种核心提示词模式</h3>
-          <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.65">
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">📐 5 种核心提示词模式</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
             <p style="margin:0 0 2px 0"><strong style="color:#F59E0B">1. 指令模式：</strong>「请用三段话总结以下内容...」</p>
             <p style="margin:0 0 2px 0"><strong style="color:#00D4FF">2. 角色模式：</strong>「你是一位有 10 年经验的新能源行业分析师...」</p>
             <p style="margin:0 0 2px 0"><strong style="color:#A855F7">3. 示例模式：</strong>「参考以下格式输出：1.公司概况 2.财务分析 3.估值判断」</p>
@@ -137,8 +1298,8 @@
 
         <!-- Right: 3 个常见 Prompt 错误 -->
         <div class="card" style="padding:10px 12px;border-left:4px solid #EF4444">
-          <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">⚠️ 3 个常见 Prompt 错误</h3>
-          <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6">
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">⚠️ 3 个常见 Prompt 错误</h3>
+          <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">
             <div style="margin-bottom:5px">
               <strong style="color:#EF4444">❌ 问题太模糊</strong><br>
               <span style="color:#22C55E">→ 加角色 + 加约束，明确范围和深度</span>
@@ -157,12 +1318,12 @@
 
       <!-- Row 2: Before/After 对比 (2 cards) -->
       <div style="margin-bottom:10px">
-        <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📊 实战对比：差 Prompt vs 好 Prompt（星恒电源投资分析）</h3>
+        <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">📊 实战对比：差 Prompt vs 好 Prompt（星恒电源投资分析）</h3>
         <div style="display:grid;grid-template-columns:1fr 2fr;gap:10px">
           <div class="card" style="padding:10px 12px;border-left:4px solid #EF4444;background:rgba(239,68,68,0.06)">
-            <h4 style="font-size:12px;color:#EF4444;margin-bottom:4px">❌ 差 Prompt</h4>
-            <p style="font-size:10.5px;color:#EF4444;margin:0;line-height:1.6">「帮我分析一下星恒电源」</p>
-            <div style="margin-top:6px;font-size:9.5px;color:var(--text-muted);line-height:1.5">
+            <h4 style="font-size:15px;color:#EF4444;margin-bottom:4px">❌ 差 Prompt</h4>
+            <p style="font-size:13px;color:#EF4444;margin:0;line-height:1.6">「帮我分析一下星恒电源」</p>
+            <div style="margin-top:6px;font-size:13px;color:var(--text-muted);line-height:1.5">
               <span style="color:#EF4444">✗</span> 无角色定位<br>
               <span style="color:#EF4444">✗</span> 无分析维度<br>
               <span style="color:#EF4444">✗</span> 无输出格式<br>
@@ -170,8 +1331,8 @@
             </div>
           </div>
           <div class="card" style="padding:10px 12px;border-left:4px solid #22C55E;background:rgba(34,197,94,0.06)">
-            <h4 style="font-size:12px;color:#22C55E;margin-bottom:4px">✅ 好 Prompt（角色 + 步骤 + 约束）</h4>
-            <p style="font-size:10px;color:#22C55E;margin:0;line-height:1.6">
+            <h4 style="font-size:15px;color:#22C55E;margin-bottom:4px">✅ 好 Prompt（角色 + 步骤 + 约束）</h4>
+            <p style="font-size:13px;color:#22C55E;margin:0;line-height:1.6">
               「你是一位<strong style="color:#22C55E">新能源行业分析师</strong>。请基于星恒电源 FY24 审计报告（已上传），从以下三个维度分析其投资价值：<br>
               <strong>1. 行业地位</strong>（与宁德时代/比亚迪/中创新航对比）<br>
               <strong>2. 财务健康度</strong>（营收增速、毛利率、负债率）<br>
@@ -184,23 +1345,23 @@
 
       <!-- Row 3: 3 个可复制模板 -->
       <div>
-        <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">📋 可复制的 Prompt 模板（投资行业专用）</h3>
+        <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">📋 可复制的 Prompt 模板（投资行业专用）</h3>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
           <div class="card" style="padding:10px;border-top:3px solid #F59E0B">
-            <h4 style="font-size:12px;color:#F59E0B;margin-bottom:5px">🔬 行业研究</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+            <h4 style="font-size:15px;color:#F59E0B;margin-bottom:5px">🔬 行业研究</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
               「你是一位<span style="color:#F59E0B">[XX行业]</span>分析师。请分析<span style="color:#F59E0B">[行业名称]</span>的竞争格局：<br>1. 市场规模与增速<br>2. 前5名企业市场份额<br>3. 技术替代风险<br>数据来源标注具体出处。」
             </div>
           </div>
           <div class="card" style="padding:10px;border-top:3px solid #00D4FF">
-            <h4 style="font-size:12px;color:#00D4FF;margin-bottom:5px">💰 财务分析</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+            <h4 style="font-size:15px;color:#00D4FF;margin-bottom:5px">💰 财务分析</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
               「请基于<span style="color:#00D4FF">[公司名]</span>最新财报，从盈利能力、偿债能力、营运能力、成长能力四维度分析财务状况。用表格展示关键指标及同比变化，异常指标单独标注。」
             </div>
           </div>
           <div class="card" style="padding:10px;border-top:3px solid #A855F7">
-            <h4 style="font-size:12px;color:#A855F7;margin-bottom:5px">📝 会议纪要</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:9.5px;color:var(--text-muted);line-height:1.55">
+            <h4 style="font-size:15px;color:#A855F7;margin-bottom:5px">📝 会议纪要</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
               「请将以下会议录音/文字转为结构化纪要：<br>1. 会议主题<br>2. 参会方<br>3. 核心结论（3-5条）<br>4. 分歧点<br>5. 待办事项（含责任人和截止日期）<br>总字数不超过 800 字。」
             </div>
           </div>
@@ -208,144 +1369,182 @@
       </div>
     </div>
 
-    <!-- Slide 4.6：常见使用障碍与破解 -->
+    <!-- ============================================================ -->
+    <!-- Slide 5A：前两个安装包（Overview Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🔧 常见使用障碍与破解</h2>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px">三个新人最容易卡住的地方，以及最简单的破解方法</p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🎁 落地保障 · 前两个包：环境 + Agent</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">不讲抽象的学习路径。以下四个东西，<strong style="color:#F59E0B">演讲结束即可拷贝</strong>，对照教程操作。</p>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 1</span>
-            <strong style="font-size:13px;color:#22C55E">数据从哪来？</strong>
+      <!-- Scroll-Unroll: 前两个包 -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:16px;position:relative;padding:0 4px;max-width:700px;margin-left:auto;margin-right:auto">
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="一键环境安装包" style="padding:18px 16px;border-top:4px solid #F59E0B;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 14px rgba(245,158,11,0.5)">1</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:6px">📦</div>
+            <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">一键环境安装包</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">自动检测系统 → 安装 Python/Git/Node，一条命令 · 15 分钟</p>
           </div>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">公开数据</strong><br>研报客API · Tavily搜索 · 天眼查</div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">本地文件</strong><br>PDF/Excel 拖拽上传 → OCR 提取</div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">数据库</strong><br>iFind · AKShare（A股/港股）</div>
-            <div class="alert alert-warning" style="font-size:10px;padding:6px 8px;margin-top:auto">
-              Agent 不会"自己找数据"——你需要告诉它去哪找
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;text-align:left">
+              <div>· install.sh 脚本：自动检测系统（Mac/Win）→ 安装 Python/Git/Node</div>
+              <div>· 无需手动下载，一条命令完成</div>
+              <div>· 含环境自检：装完即验证</div>
             </div>
+            <p style="font-size:14px;color:#F59E0B;margin-top:6px"><strong>一条命令 · 15 分钟</strong></p>
           </div>
         </div>
 
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 2</span>
-            <strong style="font-size:13px;color:#22C55E">自动化怎么起步？</strong>
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="Agent 一键安装包" style="padding:18px 16px;border-top:4px solid #00D4FF;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 14px rgba(0,212,255,0.5)">2</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:6px">🤖</div>
+            <h3 style="font-size:15px;color:#00D4FF;margin-bottom:8px">Agent 一键安装包</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">pip install hermes-agent 一键安装，含默认配置 · 5 分钟</p>
           </div>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 1 入门</strong><br>日报/周报自动生成（一段 Prompt）</div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 2 进阶</strong><br>URL 爬取 → 结构化 → 推送飞书</div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">Level 3 深化</strong><br>Excel → 去重/标准化/异常检测 → 报告</div>
-            <div class="alert alert-success" style="font-size:10px;padding:6px 8px;margin-top:auto">
-              原则：一次只自动化一个环节，跑通再加下一个
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;text-align:left">
+              <div>· pip install hermes-agent 一键安装</div>
+              <div>· 含默认配置：开箱即用</div>
+              <div>· 含启动脚本 + 健康检查</div>
             </div>
-          </div>
-        </div>
-
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-            <span style="background:#22C55E;color:#000;font-weight:700;font-size:11px;padding:2px 8px;border-radius:3px">障碍 3</span>
-            <strong style="font-size:13px;color:#22C55E">模型怎么选？</strong>
-          </div>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">简单任务</strong><br>摘要/翻译/格式转换<br><code style="font-size:10px">DeepSeek / GLM（免费）</code></div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">主力任务</strong><br>研究/分析/报告<br><code style="font-size:10px">MiniMax M3 / M2.7</code></div>
-            <div style="margin-bottom:6px"><strong style="color:#22C55E">复杂任务</strong><br>估值建模 / Monte Carlo<br><code style="font-size:10px">Claude Sonnet / DeepSeek V4 Pro</code></div>
-            <div><strong style="color:#22C55E">敏感数据</strong><br><code style="font-size:10px">oMLX 本地部署（数据不出机器）</code></div>
+            <p style="font-size:14px;color:#00D4FF;margin-top:6px"><strong>一条命令 · 5 分钟</strong></p>
           </div>
         </div>
       </div>
 
-      <div class="card" style="padding:10px 14px;border-left:3px solid #22C55E;font-size:11px;color:var(--text-secondary);line-height:1.6">
-        <strong style="color:#22C55E">三个障碍的本质：</strong>
-        数据源 = 知道"去哪找"而非等模型自己找 · 自动化 = 渐进式，从一段 Prompt 开始 · 模型选择 = 按任务复杂度分级匹配
+      <!-- Page transition arrow -->
+      <div style="text-align:center;margin-top:20px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">基础打好了，接下来申请免费模型 + 安装技能包</p>
       </div>
     </div>
 
-    <!-- Slide 5：L1-L5 升级路径 -->
+    <!-- ============================================================ -->
+    <!-- Slide 5B：后两个包 + 教程（Continuation Page） -->
+    <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">🪜 从零基础到架构师 · 5 阶段升级路径</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">如果你已跑通第一个智能体，恭喜——你已经站在 <strong style="color:#38bdf8">L2</strong> 的门槛上。下面是完整成长路线。</p>
+      <span class="split-continuation-badge">↑ 接上一页 · 环境 + Agent</span>
 
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
-        <div class="card" style="padding:12px;border-top:3px solid #56d364;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">🌱</div>
-          <h3 style="font-size:14px;color:#56d364;margin-bottom:4px">L1 · 零基础</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">用国产 AI 助手聊天<br>发指令就能用</p>
-          <p style="font-size:12px;color:#56d364;margin-top:6px"><strong>1 天</strong></p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🎁 落地保障 · 后两个包：模型 + 技能</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">配好大脑，装上技能——Agent 就能干活了</p>
+
+      <!-- Scroll-Unroll: 后两个包 -->
+      <div data-visual="scroll-unroll" data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:12px;position:relative;padding:0 4px;max-width:700px;margin-left:auto;margin-right:auto">
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="免费模型申请教程" style="padding:18px 16px;border-top:4px solid #A855F7;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 14px rgba(168,85,247,0.5)">3</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:6px">🔑</div>
+            <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">免费模型申请教程</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">商汤 SenseNova / 阿里百炼 Qwen / 本地 Ollama · 含截图 · 10 分钟</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;text-align:left">
+              <div>· 商汤 SenseNova：注册 → 实名 → 创建 API Key（5分钟）</div>
+              <div>· 阿里百炼 Qwen：注册 → 开通模型服务 → 获取 Key</div>
+              <div>· 本地 Ollama：ollama pull qwen3（离线可用）</div>
+            </div>
+            <p style="font-size:14px;color:#A855F7;margin-top:6px"><strong>含截图教程 · 10 分钟</strong></p>
+          </div>
         </div>
-        <div class="card" style="padding:12px;border-top:3px solid #38bdf8;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">🔧</div>
-          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">L2 · 用户</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">用 AI 助手做专业工作<br>写报告/做研究/整数据</p>
-          <p style="font-size:12px;color:#38bdf8;margin-top:6px"><strong>1 周</strong></p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #F59E0B;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">🎨</div>
-          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:4px">L3 · 制作者</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">搭 n8n / Dify 流程<br>多步自动化</p>
-          <p style="font-size:12px;color:#F59E0B;margin-top:6px"><strong>1 月</strong></p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #A855F7;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">👥</div>
-          <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">L4 · 训练官</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">培训新人使用<br>沉淀标准流程</p>
-          <p style="font-size:12px;color:#A855F7;margin-top:6px"><strong>3 月</strong></p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #EC4899;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">🏛️</div>
-          <h3 style="font-size:14px;color:#EC4899;margin-bottom:4px">L5 · 架构师</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">设计 Agent 体系<br>跨部门流程</p>
-          <p style="font-size:12px;color:#EC4899;margin-top:6px"><strong>6 月+</strong></p>
+
+        <div class="card scroll-unroll-item popup-trigger" data-visual="popup" data-popup-title="信息搜索技能包" style="padding:18px 16px;border-top:4px solid #22C55E;text-align:center;position:relative;cursor:pointer">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 14px rgba(34,197,94,0.5)">4</span>
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:6px">🔌</div>
+            <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">信息搜索技能包</h3>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">SearXNG + MX 金融数据 + 浏览器自动化 · SkillHub 一键安装 · 2 分钟</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.55;text-align:left">
+              <div>· SearXNG 搜索技能（多引擎元搜索）</div>
+              <div>· MX 金融数据技能（财务/行情）</div>
+              <div>· 浏览器自动化技能（工商/天眼查）</div>
+            </div>
+            <p style="font-size:14px;color:#22C55E;margin-top:6px"><strong>SkillHub 一键安装 · 2 分钟</strong></p>
+          </div>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px">
-        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #56d364"><div style="font-size:24px;color:#56d364;font-weight:900">1.0×</div><small style="color:var(--text-secondary);font-size:10px">基线</small></div>
-        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #38bdf8"><div style="font-size:24px;color:#38bdf8;font-weight:900">3×</div><small style="color:var(--text-secondary);font-size:10px">AI 助手提效</small></div>
-        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #F59E0B"><div style="font-size:24px;color:#F59E0B;font-weight:900">7×</div><small style="color:var(--text-secondary);font-size:10px">Dify 自动化</small></div>
-        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #A855F7"><div style="font-size:24px;color:#A855F7;font-weight:900">14×</div><small style="color:var(--text-secondary);font-size:10px">多 Agent 协同</small></div>
-        <div class="card" style="padding:10px;text-align:center;border-top:3px solid #EC4899"><div style="font-size:24px;color:#EC4899;font-weight:900">40×</div><small style="color:var(--text-secondary);font-size:10px">企业级体系</small></div>
+      <!-- 教程附件说明 -->
+      <div class="card" style="padding:14px;background:rgba(34,197,94,0.04);border:1px solid #22C55E44;border-radius:8px;text-align:center;margin-top:16px">
+        <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">📋 附：对照教程《30 分钟上手手册》</h3>
+        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+          <p style="margin:0">每个安装包都配有<strong style="color:#22C55E">分步截图教程</strong>（PDF + 在线网页双版本）。从「打开终端」开始，到「发出第一条指令」，每步都有截图。看不懂的步骤旁边有二维码，扫码看视频演示。</p>
+          <p style="margin:6px 0 0 0">教程链接 + 安装包下载地址 → 演讲结束后发放。也可以访问 <a href="https://skillhub.cn" style="color:#A855F7;font-weight:700" target="_blank">skillhub.cn</a> 自行浏览技能市场。</p>
+        </div>
       </div>
 
-      <div class="alert alert-info" style="font-size:12px">
-        <strong>📌 实战观察：</strong>从 L1 到 L5，真实路径是 <strong style="color:#22C55E">6 个月</strong>（不是 6 年）。因为工具代差带来数量级跃迁。团队里有 L4·训练官，整体产出就能跨过线性增长阶段。
+      <div class="alert alert-success" style="font-size:14px;text-align:center;margin-top:14px">
+        <strong>🚀 今天带走：</strong>环境安装包 + Agent 安装包 + 免费模型申请教程 + 信息搜索技能包 + 《30 分钟上手手册》。对照教程，明天上班就能跑。
       </div>
     </div>
 
-    <!-- Slide 6：工具栈 + 12月里程碑 -->
+    <!-- Slide 6：现场互动 — 你提需求，我当场做 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:12px">🛠️ 推荐工具栈 + 12 个月里程碑</h2>
+      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:8px">⚡ 现场互动：你提需求，我当场调用智能体</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">不讲抽象的概念——在座各位<strong style="color:#22C55E">现在就提出一个真实需求</strong>，我现场操作，大家一起看 Agent 的实时输出。</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
-        <div>
-          <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">📊 各阶段推荐工具</h3>
-          <table class="data-table" style="font-size:11px;width:100%">
-            <tr><td><strong>L2 入门</strong></td><td>Flowise（拖拽式，30K+⭐）</td></tr>
-            <tr><td><strong>L3 首选</strong></td><td><strong style="color:#22C55E">Dify</strong>（AI 原生，15K+⭐）</td></tr>
-            <tr><td><strong>L3 备选</strong></td><td>n8n（通用自动化，10K+⭐）</td></tr>
-            <tr><td><strong>L3 开发</strong></td><td>Langflow（LangChain 可视化）</td></tr>
-            <tr><td><strong>L4-L5</strong></td><td><strong style="color:#A855F7">本课程 5+2+1+1 体系</strong></td></tr>
-          </table>
-          <div class="alert alert-info" style="margin-top:8px;font-size:11px">
-            <strong>Dify 1 周上手 = 过去半年开发量。</strong>工具换代速度很快，早学早有优势。
+      <div data-visual="stagger" class="reveal-stagger" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <div class="video-card" data-visual="video" data-video-title="示范一：分析一个项目" style="padding:14px;border-top:3px solid #F59E0B;text-align:center">
+          <div class="video-card-thumb">
+            <div class="video-icon">🔬</div>
+            <div class="video-label">示范一：分析一个项目</div>
+            <div class="video-sub">一键调用 Agent，3 分钟出结构化分析</div>
+            <div class="video-play-btn"></div>
+          </div>
+          <div class="v-frame-content" data-title="你说" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>你说：</strong>「帮我看一下XX公司的行业地位」</p>
+          </div>
+          <div class="v-frame-content" data-title="Agent 工作流" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>Agent 做：</strong>research Agent 启动 → SearXNG 搜索 → MX 查财务数据 → 浏览器查工商信息 → 3 分钟出结构化分析</p>
+          </div>
+          <div class="v-frame-content" data-title="产出物" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0">输出结构化分析报告，含行业地位、财务指标、工商信息、竞品对比</p>
           </div>
         </div>
-        <div>
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">📅 12 个月升级里程碑</h3>
-          <div style="background:#0F172A;padding:12px;border-radius:6px;font-size:11px;color:var(--text-secondary);line-height:1.7;font-family:monospace">
-            <strong style="color:#56d364">第 1 月（零基础→用户）：</strong>注册国产 AI 助手，学 5 种提示词模式，让 AI 写出 ≥80% 可用初稿<br>
-            <strong style="color:#38bdf8">第 2-3 月（用户→制作者）：</strong>学 Dify/n8n，搭 3 个工作流，接入 1 个外部 API<br>
-            <strong style="color:#F59E0B">第 4-6 月（制作者→训练官）：</strong>沉淀 5 个标准流程，团队培训，团队整体效率 2x<br>
-            <strong style="color:#A855F7">第 7-12 月（训练官→架构师）：</strong>设计 5+ Agent 协同体系，跨部门流程，人均产值 3x
+        <div class="video-card" data-visual="video" data-video-title="示范二：开一个 AI 讨论会" style="padding:14px;border-top:3px solid #A855F7;text-align:center">
+          <div class="video-card-thumb">
+            <div class="video-icon">🎙️</div>
+            <div class="video-label">示范二：开一个 AI 讨论会</div>
+            <div class="video-sub">多 Agent 并行调研，输出讨论纪要</div>
+            <div class="video-play-btn"></div>
+          </div>
+          <div class="v-frame-content" data-title="你说" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>你说：</strong>「讨论天保是否应该投资XX赛道」</p>
+          </div>
+          <div class="v-frame-content" data-title="Agent 工作流" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>Agent 做：</strong>main Agent 拆解议题 → research + data 并行调研 → 各方观点汇总 → 输出讨论纪要（含分歧点和建议）</p>
+          </div>
+          <div class="v-frame-content" data-title="产出物" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0">结构化讨论纪要，含各方观点、分歧点、建议和待办事项</p>
+          </div>
+        </div>
+        <div class="video-card" data-visual="video" data-video-title="示范三：一键生成汇报材料" style="padding:14px;border-top:3px solid #22C55E;text-align:center">
+          <div class="video-card-thumb">
+            <div class="video-icon">📄</div>
+            <div class="video-label">示范三：一键生成汇报材料</div>
+            <div class="video-sub">加载模板，3 分钟出标准 docx</div>
+            <div class="video-play-btn"></div>
+          </div>
+          <div class="v-frame-content" data-title="你说" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>你说：</strong>「把刚才的分析写成请示报告」</p>
+          </div>
+          <div class="v-frame-content" data-title="Agent 工作流" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0"><strong>Agent 做：</strong>report Agent 加载请示模板 → GB/T 9704 排版 → 3 分钟出标准 docx → GitHub Pages 发布链接</p>
+          </div>
+          <div class="v-frame-content" data-title="产出物" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.55;margin:0">标准公文格式 docx 文件 + GitHub Pages 在线预览链接</p>
           </div>
         </div>
       </div>
 
-      <div class="alert alert-success" style="font-size:12px;text-align:center">
-        <strong>🚀 今天带走：</strong>国产大模型 API 体验权限 + 内部工具包 + 3 个工作流模板 + 迭代方法论。明天上班就能跑。
+      <div class="card" style="padding:14px;background:rgba(245,158,11,0.06);border:2px solid #F59E0B44;border-radius:10px;text-align:center">
+        <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">🎯 现在就可以开始——请提出你的需求</h3>
+        <p style="font-size:14px;color:var(--text-secondary);margin:0;line-height:1.7">
+          <strong style="color:#22C55E">格式不限：</strong>可以是「帮我分析XX公司的投资价值」、可以是「帮我查一下XX行业的市场规模」、也可以是「讨论一下XX项目的可行性」。
+          Agent 会随着演讲的推进，在后台并行工作。到第 06 章 Demo 环节时——<strong style="color:#F59E0B">你提的需求就已经有了结果</strong>，我会当场展示。
+        </p>
       </div>
     </div>
 
@@ -353,12 +1552,11 @@
     <div class="slide">
       <div style="text-align:center;padding-top:8vh">
         <div style="font-size:48px;margin-bottom:16px">🛠️</div>
-        <h2 style="font-size:36px;color:#22C55E;margin-bottom:16px">你能用。而且比你想象的容易。</h2>
+        <h2 style="font-size:36px;color:#22C55E;margin-bottom:16px">你能用。安装包和教程已经准备好了。</h2>
         <div style="max-width:780px;margin:0 auto;font-size:15px;color:var(--text-secondary);line-height:1.8">
-          <p>30 分钟跑通第一个智能体，6 个月从零基础到架构师。</p>
-          <p>但——<strong style="color:#F59E0B">路上有很多坑</strong>。</p>
-          <p style="margin-top:16px">我们在星恒项目中踩过的坑、叠加 Agent 反而质量下降的教训、5 条决策者最该避免的错误……</p>
-          <p style="margin-top:16px;color:var(--text-muted)">第 05 章，把风险说在前面，让你少走弯路。</p>
+          <p>但在开始之前——<strong style="color:#F59E0B">有些坑，我们已经替你踩过了。</strong></p>
+          <p style="margin-top:12px">叠加 Agent 反而质量暴跌的教训、5 条决策者最该避免的错误、真实的幻觉案例与防线。</p>
+          <p style="margin-top:16px;color:var(--text-muted)">第 05 章 · 主动讲风险，让你不用重走我们的弯路。</p>
         </div>
       </div>
     </div>
@@ -367,5 +1565,303 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+  <script src="../assets/js/visuals.js?v=20260709-v1"></script>
+
+<!-- 🤖 Burst 弹窗样式 -->
+<style id="burst-css">
+  .burst-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .burst-overlay.active { display: flex; }
+  .burst-card {
+    background: linear-gradient(135deg, #0a0e27, #1a1f3a);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+    position: relative;
+  }
+  .burst-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none; border: none;
+    color: #00d4ff; font-size: 24px;
+    cursor: pointer; line-height: 1;
+  }
+  .burst-close:hover { color: #fff; }
+  .burst-title {
+    font-size: 18px; font-weight: 700;
+    color: #00d4ff; margin-bottom: 14px;
+  }
+  .burst-content { color: #ccc; font-size: 14px; line-height: 1.7; }
+</style>
+
+<script>
+(function() {
+  if (document.getElementById('burst-overlay')) return;
+  
+  var overlay = document.createElement('div');
+  overlay.className = 'burst-overlay';
+  overlay.id = 'burst-overlay';
+  overlay.innerHTML = '<div class="burst-card"><button class="burst-close" type="button">×</button><div class="burst-title" id="burst-title"></div><div class="burst-content" id="burst-content"></div></div>';
+  
+  document.body.appendChild(overlay);
+  
+  // 点 X 关闭
+  overlay.querySelector('.burst-close').addEventListener('click', function() {
+    overlay.classList.remove('active');
+  });
+  
+  // 点遮罩关闭
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
+  
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+  
+  // 全局事件代理：点击 .burst-trigger
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    e.stopPropagation();
+    var title = trigger.getAttribute('data-burst-title') || trigger.textContent.trim();
+    var content = trigger.getAttribute('data-burst-content') || '点击查看详情...';
+    document.getElementById('burst-title').textContent = title;
+    document.getElementById('burst-content').innerHTML = content;
+    overlay.classList.add('active');
+  });
+})();
+</script>
+
+
+<!-- C 方案：章节切换过场动画 -->
+<div class="transition-overlay" id="transitionOverlay">
+  <div class="transition-overlay-text" id="transitionText">Loading...</div>
+</div>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+  console.log('[C-plan] KPI animation + chapter transition initialized');
+})();
+</script>
+
+<script>
+// 追加 1（修正版）：拦截 innerHTML 注入 Burst 数据可视化
+(function() {
+  var origSet = HTMLDivElement.prototype.setAttribute;
+  
+  // 在 burst-content innerHTML 赋值后追加 viz
+  function tryInject() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl || contentEl.dataset.vizInjected) return;
+    var ch = detectChapter();
+    var viz = getChapterViz(ch);
+    if (!viz) return;
+    contentEl.insertAdjacentHTML('afterend', '<div id="burst-viz-container"></div>');
+    var vizContainer = document.getElementById('burst-viz-container');
+    if (vizContainer) {
+      vizContainer.innerHTML = viz;
+      contentEl.dataset.vizInjected = '1';
+    }
+  }
+  
+  function detectChapter() {
+    var el = document.querySelector('h1') || document.querySelector('h2');
+    var txt = el ? el.textContent : '';
+    if (txt.includes('你好') || txt.includes('数字化')) return 1;
+    if (txt.includes('你们') || txt.includes('星恒') || txt.includes('project')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('部署') || txt.includes('安装')) return 4;
+    if (txt.includes('风险') || txt.includes('幻觉') || txt.includes('坑')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟') || txt.includes('旅程回顾')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  // 拦截 burst overlay active，注入 viz
+  var _origAdd = Element.prototype.addEventListener;
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    setTimeout(function() {
+      var overlay = document.querySelector('.burst-overlay.active');
+      if (!overlay) return;
+      var contentEl = document.getElementById('burst-content');
+      if (!contentEl || contentEl.dataset.vizInjected) return;
+      var ch = detectChapter();
+      var viz = getChapterViz(ch);
+      if (!viz) return;
+      var vizDiv = document.createElement('div');
+      vizDiv.className = 'burst-viz-wrapper';
+      vizDiv.innerHTML = viz;
+      contentEl.parentNode.insertBefore(vizDiv, contentEl.nextSibling);
+      contentEl.dataset.vizInjected = '1';
+    }, 60);
+  });
+  
+  console.log('[D-plan-v2] Burst viz hook ready');
+})();
+</script>
+
+<script>
+// 追加 1：D-plan Burst 数据可视化注入器
+(function() {
+  var origHandler;
+  // 拦截 burst trigger 点击
+  document.querySelectorAll('.burst-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      // 延迟注入，等 DOM 更新
+      setTimeout(function() {
+        injectBurstViz();
+      }, 50);
+    });
+  });
+  
+  function injectBurstViz() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl) return;
+    var title = titleEl ? titleEl.textContent : '';
+    var ch = detectChapter();
+    var viz = getChapterViz(ch, title);
+    if (viz && !contentEl.querySelector('.burst-viz')) {
+      contentEl.insertAdjacentHTML('afterbegin', viz);
+    }
+  }
+  
+  function detectChapter() {
+    var h1 = document.querySelector('h1');
+    var h2s = document.querySelectorAll('h2');
+    var txt = h1 ? h1.textContent : '';
+    h2s.forEach(function(h) { txt += h.textContent; });
+    if (txt.includes('你好') || txt.includes('数字化同行者')) return 1;
+    if (txt.includes('你们') || txt.includes('project') || txt.includes('星恒')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('安装') || txt.includes('部署')) return 4;
+    if (txt.includes('风险') || txt.includes('坑') || txt.includes('幻觉')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('数据底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch, title) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  console.log('[D-plan] Burst viz injector ready');
+})();
+</script>
+
 </body>
 </html>
+<!-- 追加 3：章节专属 AI 视频 -->
+<div class="sci-video" style="margin: 40px auto; max-width: 900px;">
+  <div style="position:relative;padding-bottom:56.25%%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(0,212,255,0.4);box-shadow:0 0 30px rgba(0,212,255,0.2)">
+    <video controls autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100%%;height:100%%">
+      <source src="../assets/videos/9-agent-multiscreen.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="sci-figure-caption" style="text-align:center;color:#7a8599;font-size:13px;margin-top:10px;">▶ 多 Agent 协作系统 · 全面监控面板</p>
+</div>

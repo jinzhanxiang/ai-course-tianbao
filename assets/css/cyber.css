@@ -441,3 +441,531 @@
 .fx-burst-canvas {
   filter: drop-shadow(0 0 4px rgba(0,240,255,0.4));
 }
+
+/* ================ Phase D: SVG 雷达图 ================ */
+.radar-chart {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  aspect-ratio: 1;
+  font-family: var(--font-mono);
+}
+.radar-chart svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 6px var(--glow));
+}
+.radar-grid {
+  fill: none;
+  stroke: rgba(0, 240, 255, 0.2);
+  stroke-width: 1;
+}
+.radar-grid-strong {
+  stroke: rgba(0, 240, 255, 0.4);
+  stroke-width: 1.5;
+}
+.radar-axis {
+  stroke: rgba(0, 240, 255, 0.15);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.radar-area {
+  fill: rgba(0, 240, 255, 0.25);
+  stroke: var(--accent);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px var(--accent));
+  transform-origin: center;
+  transform: scale(0);
+  transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.radar-chart.visible .radar-area {
+  transform: scale(1);
+}
+.radar-area-2 {
+  fill: rgba(255, 0, 229, 0.2);
+  stroke: var(--accent-2);
+  stroke-width: 2;
+  transform-origin: center;
+  transform: scale(0);
+  transition: transform 1.2s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.radar-chart.visible .radar-area-2 {
+  transform: scale(1);
+}
+.radar-point {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 4px var(--accent));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.radar-chart.visible .radar-point {
+  opacity: 1;
+  animation: radar-pulse 2s ease-in-out infinite;
+}
+.radar-label {
+  fill: var(--text-primary);
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ================ Phase D: 进度环（多环同心） ================ */
+.ring-stack {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.ring-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.ring-track {
+  fill: none;
+  stroke: rgba(0, 240, 255, 0.1);
+  stroke-width: 8;
+}
+.ring-bar {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 0 6px currentColor);
+}
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.ring-num {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--glow);
+}
+.ring-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ================ Phase D: 柱状图（霓虹发光版） ================ */
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 8px;
+  height: 220px;
+  padding: 16px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.04) 100%);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+  border-left: 1px solid rgba(0, 240, 255, 0.3);
+  position: relative;
+}
+.bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  min-width: 30px;
+}
+.bar-fill {
+  width: 100%;
+  max-width: 48px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(0, 240, 255, 0.3) 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  height: 0;
+  transition: height 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 0 12px var(--glow);
+}
+.bar-item.alt .bar-fill {
+  background: linear-gradient(180deg, var(--accent-2) 0%, rgba(255, 0, 229, 0.3) 100%);
+  box-shadow: 0 0 12px rgba(255, 0, 229, 0.3);
+}
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  animation: bar-shimmer 2.5s linear infinite;
+}
+@keyframes bar-shimmer {
+  0%   { opacity: 0; transform: translateX(-100%); }
+  50%  { opacity: 0.8; }
+  100% { opacity: 0; transform: translateX(100%); }
+}
+.bar-num {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 4px var(--glow);
+  opacity: 0;
+  transition: opacity 0.4s 1s;
+}
+.bar-item.alt .bar-num { color: var(--accent-2); text-shadow: 0 0 4px rgba(255,0,229,0.4); }
+.bar-chart.visible .bar-num { opacity: 1; }
+.bar-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+/* ================ Phase D: 流程管道（带数据流动粒子） ================ */
+.flow-pipe {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  padding: 20px 0;
+  position: relative;
+  overflow-x: auto;
+}
+.flow-step {
+  flex: 1;
+  min-width: 140px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flow-pipe.visible .flow-step { opacity: 1; transform: translateX(0); }
+.flow-pipe.visible .flow-step:nth-child(1) { transition-delay: 0.1s; }
+.flow-pipe.visible .flow-step:nth-child(2) { transition-delay: 0.3s; }
+.flow-pipe.visible .flow-step:nth-child(3) { transition-delay: 0.5s; }
+.flow-pipe.visible .flow-step:nth-child(4) { transition-delay: 0.7s; }
+.flow-pipe.visible .flow-step:nth-child(5) { transition-delay: 0.9s; }
+.flow-step .step-icon {
+  font-size: 28px;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 0 6px var(--glow));
+}
+.flow-step .step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.flow-step .step-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+/* 步骤之间的连接线 + 流动粒子 */
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  min-width: 60px;
+  position: relative;
+}
+.flow-arrow::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  box-shadow: 0 0 6px var(--accent);
+}
+.flow-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+  animation: pipe-pulse 1.6s ease-in-out infinite;
+  transform: translateY(-50%);
+}
+@keyframes pipe-pulse {
+  0%   { left: 0;   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* ================ Phase D: 节点网络图（架构图专用） ================ */
+.network-graph {
+  position: relative;
+  width: 100%;
+  min-height: 360px;
+  background:
+    radial-gradient(circle at center, rgba(0, 240, 255, 0.04) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 19px, rgba(0, 240, 255, 0.05) 19px 20px),
+    repeating-linear-gradient(90deg, transparent 0 19px, rgba(0, 240, 255, 0.05) 19px 20px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.network-node {
+  position: absolute;
+  padding: 8px 14px;
+  background: rgba(10, 15, 44, 0.85);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  transform: translate(-50%, -50%);
+}
+.network-node.center {
+  background: var(--accent);
+  color: #000;
+  font-size: 14px;
+  padding: 12px 20px;
+  box-shadow: 0 0 24px var(--accent), 0 0 48px rgba(0, 240, 255, 0.4);
+}
+.network-node:hover {
+  background: var(--accent);
+  color: #000;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 24px var(--accent);
+  z-index: 10;
+}
+.network-edge {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0.4;
+  stroke-dasharray: 5 5;
+  animation: edge-flow 2s linear infinite;
+}
+@keyframes edge-flow {
+  to { stroke-dashoffset: -20; }
+}
+.network-edge.highlight {
+  stroke: var(--accent-2);
+  stroke-width: 2.5;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px var(--accent-2));
+  animation: edge-flow 1s linear infinite;
+}
+
+/* ================ Phase E: 粒子场 + 远景模糊 ================ */
+.particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* 视差远景网格（鼠标移动时滚动） */
+.parallax-grid {
+  position: fixed;
+  inset: -10%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px) 0 0 / 60px 60px,
+    linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px) 0 0 / 60px 60px;
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 70%);
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+}
+
+/* 章节主题色变量 - 通过 [data-chapter] 切换 */
+[data-chapter="01"] { --accent: #00F0FF; --accent-2: #66F7FF; }
+[data-chapter="02"] { --accent: #FF00E5; --accent-2: #FF66EC; }
+[data-chapter="03"] { --accent: #FFE600; --accent-2: #FFEE66; }
+[data-chapter="04"] { --accent: #22C55E; --accent-2: #66E08F; }
+[data-chapter="05"] { --accent: #A855F7; --accent-2: #C084FC; }
+[data-chapter="06"] { --accent: #F59E0B; --accent-2: #FBBF24; }
+[data-chapter="07"] { --accent: #EF4444; --accent-2: #F87171; }
+[data-chapter="08"] { --accent: #06B6D4; --accent-2: #67E8F9; }
+
+[data-chapter] *,
+[data-chapter] *::before,
+[data-chapter] *::after {
+  transition: --accent 0.8s ease;  /* 兼容性：浏览器不支持 */
+}
+
+/* ================ Phase E: 顶部 HUD 信息条 ================ */
+.hud-strip {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 16px;
+  background: linear-gradient(180deg, rgba(6, 10, 26, 0.95) 0%, rgba(6, 10, 26, 0.7) 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--accent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+}
+.hud-strip .hud-segment {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hud-strip .hud-segment::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: ledBlink 1.6s ease-in-out infinite;
+}
+.hud-strip .hud-time {
+  margin-left: auto;
+  color: var(--accent);
+  text-shadow: 0 0 6px var(--glow);
+}
+
+/* ================ Phase E: 全息投影式标题 ================ */
+.holo-title {
+  position: relative;
+  font-size: var(--font-h1);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent) 0%, #fff 50%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  text-shadow: 0 0 32px var(--glow);
+  display: inline-block;
+}
+.holo-title::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-2) 0%, transparent 50%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.3;
+  transform: translateX(4px);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* ================ Phase E: HUD 边框（四角标记 + 切角） ================ */
+.hud-frame {
+  position: relative;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.04), rgba(255, 0, 229, 0.04));
+  border: 1px solid var(--border);
+  clip-path: polygon(
+    16px 0,
+    100% 0,
+    100% calc(100% - 16px),
+    calc(100% - 16px) 100%,
+    0 100%,
+    0 16px
+  );
+}
+.hud-frame::before,
+.hud-frame::after,
+.hud-frame > .hud-tl,
+.hud-frame > .hud-tr,
+.hud-frame > .hud-bl,
+.hud-frame > .hud-br {
+  content: '';
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 2px solid var(--accent);
+}
+.hud-frame::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+.hud-frame::after  { top: 0; right: 0; border-left: none; border-bottom: none; }
+.hud-frame > .hud-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
+.hud-frame > .hud-br { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+/* ================ Phase E: 启动屏幕（封面页） ================ */
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  animation: bootFade 1.6s ease-in-out forwards;
+}
+.boot-logo {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-shadow: 0 0 24px var(--accent);
+  animation: bootGlitch 1.6s steps(8) forwards;
+}
+.boot-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(0, 240, 255, 0.2);
+  margin-top: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.boot-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
+  animation: bootLoad 1.4s ease-out forwards;
+}
+.boot-text {
+  margin-top: 16px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  opacity: 0.7;
+  animation: bootBlink 0.3s step-end infinite;
+}
+@keyframes bootLoad {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(0); }
+}
+@keyframes bootFade {
+  0%, 70% { opacity: 1; }
+  100%    { opacity: 0; pointer-events: none; visibility: hidden; }
+}
+@keyframes bootGlitch {
+  0%   { transform: translate(0);    filter: blur(0); }
+  20%  { transform: translate(-4px, 1px); filter: blur(2px); }
+  40%  { transform: translate(3px, -1px); }
+  60%  { transform: translate(-2px, 0); }
+  80%  { transform: translate(1px, 1px); }
+  100% { transform: translate(0); }
+}
+@keyframes bootBlink {
+  50% { opacity: 0; }
+}

@@ -6,326 +6,756 @@
   <title>第 07 章 · 下一步做什么？ — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix"
+  <link rel="stylesheet" href="../assets/css/sci-fi.css?v=20260709-v1">>
+  <link rel="stylesheet" href="../assets/css/visuals.css?v=20260709-v1">
+
+<!-- 主公增强 · 2026-07-09 方式 A：科幻化 -->
+<style id="sci-enhance">
+  /* === 流光大标题 === */
+  .glow-text {
+    background: linear-gradient(90deg, #00d4ff 0%, #a855f7 35%, #56d364 70%, #febc2e 100%) !important;
+    background-size: 300% 100% !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: glow-shift 6s ease-in-out infinite !important;
+    font-weight: 700;
+  }
+  @keyframes glow-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* === 终端命令框 === */
+  .sci-terminal {
+    background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
+    border: 1px solid rgba(0, 212, 255, 0.45);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    color: #00d4ff;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
+    position: relative;
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .sci-terminal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 3s infinite;
+  }
+  @keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  .sci-line { 
+    margin: 4px 0; 
+    font-size: 13px; 
+    line-height: 1.6; 
+    position: relative; 
+    z-index: 1; 
+  }
+  .sci-prompt { color: #56d364; margin-right: 8px; }
+  .sci-ok { color: #56d364; }
+  .sci-warn { color: #febc2e; }
+  .sci-online {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #56d364;
+    box-shadow: 0 0 10px #56d364;
+    animation: pulse 1.5s infinite;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .sci-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: #00d4ff;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* === KPI 数字卡 === */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(168, 85, 247, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 10px;
+    padding: 18px 16px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    background: linear-gradient(135deg, #00d4ff, #a855f7, #56d364);
+    border-radius: 12px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+  .kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px rgba(0, 212, 255, 0.25);
+  }
+  .kpi-card:hover::before {
+    opacity: 0.4;
+  }
+  .kpi-num {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00d4ff, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+  .kpi-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* === 角色卡片 === */
+  .role-card {
+    background: rgba(10, 14, 39, 0.6);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  .role-card:hover {
+    border-color: #00d4ff;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  .role-emoji { font-size: 36px; margin-bottom: 8px; }
+  .role-title { 
+    font-size: 14px; 
+    font-weight: 600; 
+    color: #00d4ff; 
+    margin-bottom: 6px;
+  }
+  .role-hook {
+    font-size: 12px; 
+    color: #aaa; 
+    line-height: 1.5;
+  }
+  
+  /* === 路线图卡片 === */
+  .route-card {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.1), rgba(0, 212, 255, 0.05));
+    border-left: 3px solid #56d364;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    transition: all 0.3s;
+  }
+  .route-card:hover {
+    background: linear-gradient(135deg, rgba(86, 211, 100, 0.18), rgba(0, 212, 255, 0.1));
+    transform: translateX(4px);
+  }
+  
+  /* === Burst 触发器 === */
+  .burst-trigger {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .burst-trigger:hover {
+    filter: brightness(1.15);
+  }
+  .burst-trigger::after {
+    content: '📌';
+    position: absolute;
+    top: -8px; right: -8px;
+    font-size: 12px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+  .burst-trigger:hover::after {
+    opacity: 1;
+  }
+  
+  /* === 视频容器（科幻边框） === */
+  .sci-video {
+    border: 1px solid rgba(0, 212, 255, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    position: relative;
+    background: #000;
+  }
+  .sci-video::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+    animation: scan 4s infinite;
+    z-index: 1;
+  }
+  .sci-video video {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+  
+  /* === 插图 === */
+  .sci-figure {
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(10, 14, 39, 0.4);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.1);
+  }
+  .sci-figure img {
+    max-width: 100%;
+    border-radius: 6px;
+  }
+  .sci-figure-caption {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  /* === 路线图终端 === */
+  .sci-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 24px 0;
+    padding: 12px 0;
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    position: relative;
+  }
+  .sci-track::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+  }
+  .sci-station {
+    background: #0a0e27;
+    border: 1px solid #00d4ff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #00d4ff;
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.3);
+  }
+  
+  /* === 章节进入动画 === */
+  .chapter-page {
+    animation: page-fade-in 0.6s ease-out;
+  }
+  @keyframes page-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* === 状态标签 === */
+  .status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .status-tag.online {
+    background: rgba(86, 211, 100, 0.15);
+    color: #56d364;
+    border: 1px solid rgba(86, 211, 100, 0.3);
+  }
+  .status-tag.live {
+    background: rgba(0, 212, 255, 0.15);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+  }
+  .status-tag.warn {
+    background: rgba(254, 188, 46, 0.15);
+    color: #febc2e;
+    border: 1px solid rgba(254, 188, 46, 0.3);
+  }
+  
+  /* === 数字 flight-in === */
+  .flight-in {
+    animation: flight-in 0.6s ease-out backwards;
+  }
+  @keyframes flight-in {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>
+
+
+<style>
+/* === A 方案增量：burst z-index + video controls + glow title === */
+
+/* burst trigger 必须能点击 */
+.burst-trigger {
+  position: relative !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+}
+
+/* 视频容器 - 不要拦截 burst */
+.sci-video {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* burst 弹窗标题 - 流光效果 */
+.burst-title {
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 25%, #56d364 50%, #febc2e 75%, #00d4ff 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 3s linear infinite;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-bottom: 12px !important;
+}
+
+/* burst 弹窗内容 - 更大可读 */
+.burst-content {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #e6e8eb !important;
+}
+
+.burst-content b, .burst-content strong {
+  color: #00d4ff !important;
+  font-weight: 700 !important;
+}
+
+.burst-content code {
+  background: rgba(0, 212, 255, 0.15);
+  color: #00d4ff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', Monaco, monospace;
+  font-size: 13px;
+}
+
+/* === C 方案：章节过场动画 + slide-in-from-left + KPI 滚动 === */
+
+/* 章节切换过场遮罩 */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.transition-overlay-text {
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00d4ff, #a855f7, #56d364);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowShift 2s linear infinite;
+  letter-spacing: 4px;
+}
+
+/* h2 slide-in-from-left - 替代 flight-in，更醒目 */
+h2.slide-in-left {
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* h3 fade-in-up */
+h3 {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI 数字滚动效果 */
+.kpi-num.counting {
+  display: inline-block;
+  animation: kpiPulse 2s ease-in-out infinite;
+}
+
+@keyframes kpiPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* burst-trigger 加右下角小图标 */
+.burst-trigger::after {
+  content: "🔍";
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 14px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.burst-trigger:hover::after {
+  opacity: 1;
+  color: #00d4ff;
+}
+
+/* sci-terminal 也加 z-index */
+.sci-terminal {
+  position: relative;
+  z-index: 5;
+}
+
+</style>
+
+
+<style>
+/* === 追加 1：Burst 弹窗数据可视化 === */
+.burst-card {
+  max-width: 640px !important;
+}
+
+.burst-viz {
+  margin: 16px 0;
+  padding: 16px;
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 8px;
+}
+
+.burst-viz-title {
+  font-size: 12px;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* 迷你柱状图 */
+.mini-bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 120px;
+  margin-bottom: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+
+.mini-bar {
+  flex: 1;
+  background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 4px;
+  animation: barGrow 1s ease-out;
+}
+
+@keyframes barGrow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.mini-bar:hover {
+  background: linear-gradient(180deg, #56d364 0%, #febc2e 100%);
+  box-shadow: 0 0 12px rgba(86, 211, 100, 0.6);
+}
+
+.mini-bar-value {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #e6e8eb;
+  white-space: nowrap;
+}
+
+.mini-bar-label {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+/* 进度条 */
+.mini-progress {
+  margin: 12px 0;
+}
+
+.mini-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #e6e8eb;
+}
+
+.mini-progress-label span:last-child {
+  color: #00d4ff;
+  font-weight: 700;
+}
+
+.mini-progress-bar {
+  height: 8px;
+  background: rgba(0, 212, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.mini-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff 0%, #56d364 100%);
+  border-radius: 4px;
+  animation: progressFill 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes progressFill {
+  0% { width: 0; }
+}
+
+/* 数据矩阵 */
+.mini-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-matrix-cell {
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.mini-matrix-cell:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: #00d4ff;
+  transform: translateY(-2px);
+}
+
+.mini-matrix-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #00d4ff;
+  display: block;
+  line-height: 1;
+}
+
+.mini-matrix-label {
+  font-size: 10px;
+  color: #a8b1c8;
+  margin-top: 4px;
+  display: block;
+}
+</style>
+
 </head>
 <body class="chapter-page sci-fi-bg">
+
+<!-- 追加 2：顶部 loading 进度条 -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<style>
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00d4ff 0%, #a855f7 50%, #56d364 100%);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
+</style>
+
+<script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+  console.log('[D-plan] Scroll progress bar initialized');
+})();
+</script>
+
   <main class="main-stage" style="background:#060A1A">
 
     <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:6vh">
-        <h1 style="font-size:52px;color:#A855F7;margin-bottom:8px">🚀 第 07 章 · 下一步做什么？</h1>
-        <h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">明天就能做的事 · 3 周推广路线 · 长期趋势</h2>
+        <h1 style="font-size:52px;color:#A855F7;margin-bottom:8px" class="glow-text flight-in"🚀 第 07 章 · 下一步做什么？</h1>
+        <!-- sci-enhance-comment -->
+
+<!-- 🤖 科幻增强 · sci-terminal：你的下一步任务 -->
+<div class="sci-terminal flight-in burst-trigger" data-burst-title="第 07 章 · 实战数据详情" data-burst-content="<p><b style=&quot;color:#00d4ff&quot;>你的下一步任务</b></p><p>把本部门的 1-2 个高频场景固化成 Agent 资产。</p><p>30 天见效。阻力 ≈ 0（用免费模型 + 个人 Agent）。</p>"" style="margin: 24px auto; max-width: 720px;">
+  <div class="sci-line"><span class="sci-prompt">$</span> mission_accept --user=主公</div>
+  <div class="sci-line"><span class="sci-online"></span>任务 · <span class="sci-warn">把本部门的方法论固化成 Agent 资产</span></div>
+  <div class="sci-line"><span class="sci-online"></span>范围 · 你部门 1-2 个高频场景</div>
+  <div class="sci-line"><span class="sci-online"></span>时间 · 30 天见效</div>
+  <div class="sci-line"><span class="sci-online"></span>阻力 · ≈ 0 (用免费模型 + 个人 Agent)</div>
+  <div class="sci-line"><span class="sci-ok">✓</span> 系统已 ready · 等主公一声令下</div>
+  <div class="sci-line"><span class="sci-prompt">$</span> <span class="sci-cursor"></span></div>
+</div>
+
+<!-- 🤖 现场演示视频 -->
+<div class="sci-video flight-in">
+  <video controls autoplay loop muted playsinline poster="../assets/videos/posters/05-war-room.png" 
+         style="width:100%; display:block;">
+    <source src="../assets/videos/main-multiscreen.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="sci-figure-caption burst-trigger" style="text-align:center; margin-top:-12px;">
+  🎬 战情室 · 5 个 Agent 同时在线作战
+</div>
+
+<h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px" class="flight-in"从理解到行动 · 把你的行业 Know-how 变成模型能调用的资产</h2>
         <p style="font-size:14px;color:var(--text-muted);margin-top:28px;max-width:800px;margin-left:auto;margin-right:auto">
-          前面 6 章从认知到案例、从架构到入门、从风险到演示。现在回答最后一个问题：<strong style="color:#A855F7">走出这个会场，你第一件事做什么？</strong>
+          前面 6 章从认知到案例、从架构到入门、从风险到演示。现在回答最后一个问题：<strong style="color:#A855F7">走出这个会场，你的下一步是什么？</strong>
         </p>
       </header>
     </div>
 
-    <!-- Slide 2：明天就能做的 3 件事 -->
+    <!-- Slide 2：回顾旅程 + 衔接第08章 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#22C55E;margin-bottom:14px">⚡ 明天就能做的 3 件事</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">个人即可启动，无需等待大型项目立项</p>
+      <div style="text-align:center;padding-top:6vh">
+        <div style="font-size:48px;margin-bottom:16px">🎯</div>
+        <h2 style="font-size:36px;color:#A855F7;margin-bottom:16px" class="flight-in"你已经看到了全貌。</h2>
+        <div style="max-width:780px;margin:0 auto;font-size:15px;color:var(--text-secondary);line-height:1.8">
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
-        <div class="card" style="padding:18px;border-top:3px solid #F59E0B;text-align:center">
-          <div style="font-size:36px;margin-bottom:8px">1️⃣</div>
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px">注册国产大模型，开始对话</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            <strong>耗时：5 分钟</strong><br>
-            国产大模型平台注册<br>
-            免费 API Key<br>
-            把今天的一个任务交给 AI 试试
-          </p>
-          <p style="font-size:11px;color:#22C55E;margin-top:8px">成本：0 元</p>
-        </div>
-        <div class="card" style="padding:18px;border-top:3px solid #00D4FF;text-align:center">
-          <div style="font-size:36px;margin-bottom:8px">2️⃣</div>
-          <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px">找一个重复任务，自动化它</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            <strong>耗时：30 分钟</strong><br>
-            日报/周报/信息汇总<br>
-            写一段 Prompt<br>
-            让 AI 替你写第一稿
-          </p>
-          <p style="font-size:11px;color:#22C55E;margin-top:8px">成本：0 元</p>
-        </div>
-        <div class="card" style="padding:18px;border-top:3px solid #22C55E;text-align:center">
-          <div style="font-size:36px;margin-bottom:8px">3️⃣</div>
-          <h3 style="font-size:16px;color:#22C55E;margin-bottom:8px">获取工具包，搭建第一个 Agent</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            <strong>耗时：15 分钟</strong><br>
-            获取内部工具包<br>
-            运行安装脚本<br>
-            连接飞书群机器人
-          </p>
-          <p style="font-size:11px;color:#22C55E;margin-top:8px">成本：0 元</p>
-        </div>
-      </div>
+          <div class="card" style="padding:18px;background:linear-gradient(90deg,rgba(168,85,247,0.06),rgba(34,197,94,0.06));border-radius:10px;text-align:center;margin-bottom:20px">
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.8;margin:0">
+              <strong style="color:#A855F7">回顾这 90 分钟：</strong><br>
+              从「<strong style="color:#38bdf8">这跟我有什么关系</strong>」的疑问出发，<br>
+              看到了<strong style="color:#F59E0B">星恒电源</strong>项目上 4 个 Agent 协同作战的真实战果，<br>
+              理解了<strong style="color:#A855F7">5+2+1+1</strong> 架构背后的设计逻辑和文件化实现，<br>
+              拿到了<strong style="color:#22C55E">一键安装包</strong>和 5 步上手的完整路径，<br>
+              也听到了<strong style="color:#EF4444">真实的风险</strong>和我们已经建好的防线，<br>
+              最后亲眼看到了<strong style="color:#00D4FF">系统在真实环境中的运行</strong>。
+            </p>
+          </div>
 
-      <div class="alert alert-success">
-        <p style="font-size:13px"><strong>📌 关键：</strong>不用等"完全想清楚再动手"。今天注册，明天就可以试着用。<strong style="color:#22C55E">动手实践，是最好的学习方式。</strong></p>
+          <p style="margin-top:16px">还记得第 01 章的那句话吗？</p>
+
+          <div class="story-card" style="max-width:650px;margin:12px auto">
+            <p style="font-size:16px;line-height:1.8">
+              "<strong style="color:#F59E0B">算力 = 劳动力</strong>。<br>
+              真正的护城河不是你用了什么模型——<br>
+              是你把自己的<strong style="color:#22C55E">行业 Know-how</strong> 做成了模型能调用的<strong style="color:#A855F7">资产</strong>。"
+            </p>
+          </div>
+
+          <p style="margin-top:20px;color:var(--text-muted)">但在那之前——<strong style="color:#F59E0B">花 30 秒，想一件事。</strong></p>
+        </div>
       </div>
     </div>
 
-    <!-- Slide 3：从个人到团队 · 3 周推广路线 -->
+    <!-- Slide 3：你的第一个任务 — 个人反思 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#A855F7;margin-bottom:14px">📋 从个人到团队 · 3 周推广路线（给管理者）</h2>
+      <div style="text-align:center;padding-top:4vh">
+        <h2 style="font-size:30px;color:#F59E0B;margin-bottom:6px" class="flight-in"✋ 你的第一个任务</h2>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:20px">不用等到明天——现在就想一件你<strong style="color:#22C55E">每周都在重复、占时间最多</strong>的事</p>
 
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
-        <div class="card" style="padding:16px;border-top:3px solid #F59E0B">
-          <div style="font-size:24px;margin-bottom:4px">📅</div>
-          <h3 style="color:#F59E0B;font-size:15px;margin-bottom:8px">第 1 周 · 你自己跑通</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            选一个真实项目（比如下周的投决会材料），用 4 步法跑通第一个 workflow。<br><br>
-            <strong style="color:#F59E0B">拿到真实结果，就是最好的内部说服材料。</strong>
-          </p>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #00D4FF">
-          <div style="font-size:24px;margin-bottom:4px">📅</div>
-          <h3 style="color:#00D4FF;font-size:15px;margin-bottom:8px">第 2 周 · 带 1 个同事复制</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            把你的 Prompt 模板 + 安装包拷贝给一个同事，陪他跑通第一个任务。<br><br>
-            <strong style="color:#00D4FF">沉淀 SOP：哪个步骤容易卡、怎么排查。</strong>
-          </p>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
-          <div style="font-size:24px;margin-bottom:4px">📅</div>
-          <h3 style="color:#22C55E;font-size:15px;margin-bottom:8px">第 3 周 · 部门演示 + 共享</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.7">
-            在部门例会上演示真实案例。共享 3 个工作流模板。<br><br>
-            <strong style="color:#22C55E">设定目标：每人至少 1 个 Agent 在日常工作中跑起来。</strong>
-          </p>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
-        <div class="card" style="padding:14px;border-left:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 今天带走的 3 件东西</h3>
-          <div style="font-size:12px;color:var(--text-secondary);line-height:1.8">
-            <div>1. <strong>国产大模型 API Key</strong> — 现场指导注册，5 分钟开通</div>
-            <div>2. <strong>内部工具包</strong> — 获取后解压即用</div>
-            <div>3. <strong>3 个工作流模板</strong> — 日报生成 · 信息爬取 · 数据清洗</div>
+        <div style="max-width:650px;margin:0 auto 20px">
+          <div class="card" style="padding:18px;background:rgba(245,158,11,0.04);border:2px solid #F59E0B44;border-radius:12px;text-align:left;margin-bottom:14px">
+            <div style="font-size:13px;color:var(--text-secondary);line-height:2.2">
+              <div style="margin-bottom:10px">
+                <strong style="color:#F59E0B">1. 我最花时间的一件事：</strong><br>
+                <span style="color:var(--text-muted);font-size:14px;margin-left:8px">（日报/周报？行业研究？数据整理？会议纪要？报告排版？）</span>
+              </div>
+              <div style="margin-bottom:10px">
+                <strong style="color:#00D4FF">2. 每周花在这件事上的时间：</strong><br>
+                <span style="color:var(--text-muted);font-size:14px;margin-left:8px">（2 小时？半天？一整天？）</span>
+              </div>
+              <div>
+                <strong style="color:#22C55E">3. 如果 AI 能省掉一半——你拿省下的时间做什么？</strong><br>
+                <span style="color:var(--text-muted);font-size:14px;margin-left:8px">（多看一个项目？深挖一个行业？早点下班？）</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="card" style="padding:14px;border-left:3px solid #EF4444">
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 3 个不要做</h3>
-          <div style="font-size:12px;color:var(--text-secondary);line-height:1.8">
-            <div>1. <strong>不要一开始就学 Docker/K8s</strong> — 先跑通</div>
-            <div>2. <strong>不要追求"完全自主 Agent"</strong> — 人在回路</div>
-            <div>3. <strong>不要跳过飞书连接</strong> — 不连接日常工作流只是玩具</div>
-          </div>
-        </div>
-      </div>
 
-      <div class="alert alert-info">
-        <p style="font-size:12px"><strong>📌 关键：</strong>不要一开始就要求全部门用。先自己跑出结果 → 用结果说服 → 再逐步推广。<strong style="color:#A855F7">一个成功案例胜过十场培训。</strong></p>
-      </div>
-    </div>
-
-    <!-- Slide 4：团队配置建议 -->
-    <div class="slide">
-      <h2 style="font-size:30px;color:#00D4FF;margin-bottom:14px">👥 团队配置建议：不同规模，不同方案</h2>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
-        <div class="card" style="padding:16px;border-top:3px solid #22C55E">
-          <h3 style="font-size:16px;color:#22C55E;margin-bottom:8px">🌱 个人（1-3 人）</h3>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0;color:var(--text-muted)">工具</td><td>Hermes + 飞书机器人</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">模型</td><td>国产大模型免费 API</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">月费</td><td style="color:#22C55E">0-200 元</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">目标</td><td>每人 1 个 Agent</td></tr>
-          </table>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #F59E0B">
-          <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px">🏢 部门（5-15 人）</h3>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0;color:var(--text-muted)">工具</td><td>Dify 工作流 + 飞书集成</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">模型</td><td>MiniMax + DeepSeek</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">月费</td><td style="color:#F59E0B">500-2000 元</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">目标</td><td>共享 5+ 工作流模板</td></tr>
-          </table>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #A855F7">
-          <h3 style="font-size:16px;color:#A855F7;margin-bottom:8px">🏛️ 公司（20+ 人）</h3>
-          <table style="width:100%;font-size:11px">
-            <tr><td style="padding:3px 0;color:var(--text-muted)">工具</td><td>5+ Agent 体系 + Wiki</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">模型</td><td>多模型降级链</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">月费</td><td style="color:#A855F7">2000-5000 元</td></tr>
-            <tr><td style="padding:3px 0;color:var(--text-muted)">目标</td><td>知识资产持续积累</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="alert alert-success">
-        <p style="font-size:12px"><strong>📌 核心原则：</strong>从个人到部门到公司，每一步都是自然生长——可以在现有信息化框架下灵活切入。<strong style="color:#22C55E">先用起来，再规范化。</strong></p>
-      </div>
-    </div>
-
-    <!-- Slide 5：算力 = 劳动力 -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:10px">⚡ 算力 = 劳动力 · 你的 AI 生产力公式</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">一个理解 AI 时代生产力的新框架</p>
-
-      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;max-width:800px;margin:0 auto 20px;align-items:center">
-        <div class="card" style="padding:18px;border-top:3px solid #8FA1CC;text-align:center">
-          <div style="font-size:24px;margin-bottom:6px">🏭</div>
-          <h3 style="font-size:15px;color:#8FA1CC;margin-bottom:8px">工业时代</h3>
-          <div style="font-size:12px;color:var(--text-secondary);line-height:1.8">
-            <div>劳动力 = 体力劳动产出</div>
-            <div>工厂 = 生产载体</div>
-            <div>管理 = 流水线监工</div>
-            <div>资本 = 厂房 + 设备</div>
-          </div>
-        </div>
-        <div style="font-size:28px;color:#F59E0B;padding:0 16px">→</div>
-        <div class="card" style="padding:18px;border-top:3px solid #F59E0B;text-align:center">
-          <div style="font-size:24px;margin-bottom:6px">🤖</div>
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">AI 时代</h3>
-          <div style="font-size:12px;color:var(--text-secondary);line-height:1.8">
-            <div><strong style="color:#F59E0B">算力 = 劳动力</strong></div>
-            <div>GPU/TPU = 新工厂</div>
-            <div>Agent 编排 = 新管理</div>
-            <div>知识库 = 新资本</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="max-width:700px;margin:0 auto;padding:16px;background:rgba(245,158,11,0.06);border:1px solid #F59E0B44;border-radius:10px;text-align:center">
-        <h3 style="font-size:15px;color:#F59E0B;margin-bottom:10px">📐 你的 AI 生产力公式</h3>
-        <p style="font-size:18px;font-family:monospace;color:#E8EEFF">
-          <strong style="color:#F59E0B">AI 能力</strong> = 算力 <span style="color:#8FA1CC">×</span> Agent 质量 <span style="color:#8FA1CC">×</span> 知识资产
-        </p>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px;font-size:11px;color:var(--text-secondary)">
-          <div style="padding:8px;background:rgba(0,212,255,0.06);border-radius:4px"><strong style="color:#00D4FF">算力</strong><br>GPU · 推理速度 · 并发</div>
-          <div style="padding:8px;background:rgba(168,85,247,0.06);border-radius:4px"><strong style="color:#A855F7">Agent 质量</strong><br>模型选型 · 编排 · Prompt</div>
-          <div style="padding:8px;background:rgba(34,197,94,0.06);border-radius:4px"><strong style="color:#22C55E">知识资产</strong><br>Wiki · 报告 · Know-how</div>
-        </div>
-      </div>
-
-      <div class="alert alert-warning" style="margin-top:16px;font-size:12px">
-        <strong>📌 三个因子中，算力找云厂商买，Agent 质量靠架构打磨，唯有知识资产是你的专属护城河。</strong>
-      </div>
-    </div>
-
-    <!-- Slide 6：趋势展望 · 大厂工具 vs 自建 Agent -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#A855F7;margin-bottom:12px">🌊 趋势展望 · 为什么值得自己建 Agent</h2>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-        <div class="card" style="padding:16px;border-top:3px solid #8FA1CC">
-          <h3 style="font-size:15px;color:#8FA1CC;margin-bottom:8px">🏭 大厂通用工具</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">
-            字节 Coze · 飞书 Claw · Kimi Claw · 阿里百炼 · 百度千帆 · 微软 Copilot Studio · Google ADK
-          </p>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-            <strong style="color:#22C55E">能给你的：</strong>拖拽式编排 + 预置模板 + 零代码入门<br>
-            <strong style="color:#EF4444">它们的短板：</strong><br>
-            • 费用高：按 Token 计费，规模化后成本不可控<br>
-            • 定制差：行业独有的数据管道无法嵌入<br>
-            • 数据不可控：敏感数据上云，合规风险<br>
-            • 浅层化：停留在"工具使用"，无法形成壁垒
-          </div>
-        </div>
-        <div class="card" style="padding:16px;border-top:3px solid #A855F7">
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">🎯 你自建的纵深 Agent</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">
-            先解放自己 → 再提升自己 → 最终差异化
-          </p>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-            <strong style="color:#A855F7">你能构建的差异化壁垒：</strong><br>
-            • 行业知识库：历史项目、研报、尽调底稿<br>
-            • 业务工作流：公司特有的审批、决策链路<br>
-            • 经验规则引擎：投资逻辑、风控红线、估值偏好<br>
-            • 持续进化：每次任务的记忆沉淀 + 反馈闭环<br>
-            • 数据安全：核心数据 100% 本地，不经过第三方
-          </div>
-        </div>
-      </div>
-
-      <div class="card" style="padding:16px;background:linear-gradient(90deg,rgba(168,85,247,0.06),rgba(34,197,94,0.06));border-radius:10px;text-align:center">
-        <h3 style="font-size:16px;color:#A855F7;margin-bottom:10px">💡 这就是今天这节课的价值</h3>
-        <p style="font-size:13px;color:var(--text-primary);line-height:1.8;max-width:700px;margin:0 auto">
-          大厂给你的是<strong style="color:#8FA1CC">一台电脑</strong>——每个人都能拿到。<br>
-          你能不能用好这台电脑，取决于你<strong style="color:#A855F7">在上面装了什么软件、存了什么数据、建了什么流程</strong>。<br><br>
-          <strong style="color:#22C55E">真正的护城河不是你用了什么模型——是你把自己的行业 Know-how 做成了模型能调用的资产。</strong>
-        </p>
-      </div>
-    </div>
-
-    <!-- Slide 6.5：趋势展望三方向 -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#A855F7;margin-bottom:10px">🌊 Agent 未来三个方向</h2>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:14px">三者叠加 = 不可替代的竞争壁垒</p>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
-        <div class="card" style="padding:14px;border-top:3px solid #00D4FF">
-          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:8px">🏛️ MOA 多 Agent 协作</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>提出：</strong>Together AI（arXiv 2406.04692）<br>
-            <strong>原理：</strong>多层 Agent 层级协作——Proposer 生成方案 → Aggregator 综合提炼。仅用开源模型即超越 GPT-4 Omni。<br>
-            <strong style="color:#00D4FF">启示：</strong>5+2+1+1 本质就是 MOA 的投资领域实现。未来多 Agent 协作是标配，不是可选项。
-          </p>
-        </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <h3 style="font-size:14px;color:#A855F7;margin-bottom:8px">🎯 领域微调路径</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>技术路线：</strong>LoRA/QLoRA 单卡微调 → DPO 偏好对齐 → 合成数据训练。<br>
-            <strong>三步走：</strong>持续预训练（领域语料）→ 指令微调（领域数据）→ 偏好对齐（精化）。<br>
-            <strong style="color:#A855F7">方向：</strong>本地 oMLX 微调 → 高度定制化的投资领域模型。
-          </p>
-        </div>
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:8px">📚 知识库增强</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>已在实践：</strong>Data Agent 清洗流水线 → KG+Qdrant 双库入库。每次任务自动写入结构化知识。<br>
-            <strong>效果：</strong>检索命中率 > 95%，5,786→5,886 实体持续增长。<br>
-            <strong style="color:#22C55E">本质：</strong>知识库 = 大模型的"长期记忆外挂"——模型能力不变，但可调用的知识资产持续增长。
-          </p>
-        </div>
-      </div>
-
-      <div class="card" style="padding:14px;background:linear-gradient(90deg,rgba(168,85,247,0.06),rgba(34,197,94,0.06));border-radius:10px;text-align:center">
-        <p style="font-size:13px;color:var(--text-primary);line-height:1.7;margin:0">
-          <strong style="color:#A855F7">Agent 的未来不是"一个更强的模型"——</strong>
-          而是 MOA 协作让系统更聪明 + 领域微调让模型更专业 + 知识库增强让能力可持续积累。<br>
-          <strong style="color:#22C55E">三者叠加 = 不可替代的竞争壁垒。</strong>
-        </p>
-      </div>
-    </div>
-
-    <!-- Slide 7：章节过渡 -->
-    <div class="slide">
-      <div style="text-align:center;padding-top:8vh">
-        <h2 style="font-size:32px;color:#A855F7;margin-bottom:20px">行动路线图回顾</h2>
-
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:800px;margin:0 auto 24px">
-          <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-            <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">⚡ 明天</h3>
-            <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">注册国产大模型 · 做一个任务 · 获取工具包。成本约 0 元，耗时 30 分钟。</p>
-          </div>
-          <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
-            <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">📅 3 周内</h3>
-            <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">跑通第一个项目 · 带一个同事 · 部门演示。用结果说服，不是用 PPT 说服。</p>
-          </div>
-          <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-            <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">🚀 6 个月</h3>
-            <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">L1→L5 升级路径 · 团队 Agent 体系 · 知识资产护城河。ROI 从 1× 到 40×。</p>
+          <div class="card" style="padding:14px;background:linear-gradient(90deg,rgba(34,197,94,0.06),rgba(168,85,247,0.04));border-radius:10px;text-align:center">
+            <p style="font-size:14px;color:var(--text-primary);line-height:1.7;margin:0">
+              <strong style="color:#22C55E">第 04 章的安装包 + 教程，就是为这件事准备的。</strong><br>
+              <span style="font-size:14px;color:var(--text-secondary)">你不需要一次做对所有事——只需要<strong style="color:#F59E0B">把一件事交给 AI 试一次</strong>。</span>
+            </p>
           </div>
         </div>
 
-        <div class="story-card" style="max-width:700px;margin:0 auto 20px">
-          <p class="story-meta">核心认知</p>
-          <p style="font-size:16px;line-height:1.8">
-            "工业时代靠<strong style="color:#8FA1CC">人力规模</strong>，AI 时代靠<strong style="color:#F59E0B">人机协同</strong>。<br>
-            你的 Agent 团队是你的专业杠杆，你的知识库是你的核心资产。<br>
-            <strong style="color:#22C55E">今天开始，让 AI 为你的专业判断服务。</strong>"
-          </p>
-        </div>
-
-        <p style="font-size:14px;color:var(--text-muted);margin-top:16px">
-          最后一章——<strong style="color:#EF4444">总结收尾</strong>，回顾 90 分钟的完整旅程。
-        </p>
+        <p style="font-size:13px;color:var(--text-muted)">最后一章，我们把一切收拢到<strong style="color:#22C55E">一句话</strong>上。</p>
       </div>
     </div>
 
@@ -333,5 +763,304 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+  <script src="../assets/js/visuals.js?v=20260709-v1"></script>
+
+<!-- 🤖 Burst 弹窗样式 -->
+<style id="burst-css">
+  .burst-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 8, 22, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .burst-overlay.active { display: flex; }
+  .burst-card {
+    background: linear-gradient(135deg, #0a0e27, #1a1f3a);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+    position: relative;
+  }
+  .burst-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none; border: none;
+    color: #00d4ff; font-size: 24px;
+    cursor: pointer; line-height: 1;
+  }
+  .burst-close:hover { color: #fff; }
+  .burst-title {
+    font-size: 18px; font-weight: 700;
+    color: #00d4ff; margin-bottom: 14px;
+  }
+  .burst-content { color: #ccc; font-size: 14px; line-height: 1.7; }
+</style>
+
+<script>
+(function() {
+  if (document.getElementById('burst-overlay')) return;
+  
+  var overlay = document.createElement('div');
+  overlay.className = 'burst-overlay';
+  overlay.id = 'burst-overlay';
+  overlay.innerHTML = '<div class="burst-card"><button class="burst-close" type="button">×</button><div class="burst-title" id="burst-title"></div><div class="burst-content" id="burst-content"></div></div>';
+  
+  document.body.appendChild(overlay);
+  
+  // 点 X 关闭
+  overlay.querySelector('.burst-close').addEventListener('click', function() {
+    overlay.classList.remove('active');
+  });
+  
+  // 点遮罩关闭
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.classList.remove('active');
+  });
+  
+  // ESC 关闭
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') overlay.classList.remove('active');
+  });
+  
+  // 全局事件代理：点击 .burst-trigger
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    e.stopPropagation();
+    var title = trigger.getAttribute('data-burst-title') || trigger.textContent.trim();
+    var content = trigger.getAttribute('data-burst-content') || '点击查看详情...';
+    document.getElementById('burst-title').textContent = title;
+    document.getElementById('burst-content').innerHTML = content;
+    overlay.classList.add('active');
+  });
+})();
+</script>
+
+
+<!-- C 方案：章节切换过场动画 -->
+<div class="transition-overlay" id="transitionOverlay">
+  <div class="transition-overlay-text" id="transitionText">Loading...</div>
+</div>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+  console.log('[C-plan] KPI animation + chapter transition initialized');
+})();
+</script>
+
+<script>
+// 追加 1（修正版）：拦截 innerHTML 注入 Burst 数据可视化
+(function() {
+  var origSet = HTMLDivElement.prototype.setAttribute;
+  
+  // 在 burst-content innerHTML 赋值后追加 viz
+  function tryInject() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl || contentEl.dataset.vizInjected) return;
+    var ch = detectChapter();
+    var viz = getChapterViz(ch);
+    if (!viz) return;
+    contentEl.insertAdjacentHTML('afterend', '<div id="burst-viz-container"></div>');
+    var vizContainer = document.getElementById('burst-viz-container');
+    if (vizContainer) {
+      vizContainer.innerHTML = viz;
+      contentEl.dataset.vizInjected = '1';
+    }
+  }
+  
+  function detectChapter() {
+    var el = document.querySelector('h1') || document.querySelector('h2');
+    var txt = el ? el.textContent : '';
+    if (txt.includes('你好') || txt.includes('数字化')) return 1;
+    if (txt.includes('你们') || txt.includes('星恒') || txt.includes('project')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('部署') || txt.includes('安装')) return 4;
+    if (txt.includes('风险') || txt.includes('幻觉') || txt.includes('坑')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟') || txt.includes('旅程回顾')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  // 拦截 burst overlay active，注入 viz
+  var _origAdd = Element.prototype.addEventListener;
+  document.addEventListener('click', function(e) {
+    var trigger = e.target.closest('.burst-trigger');
+    if (!trigger) return;
+    setTimeout(function() {
+      var overlay = document.querySelector('.burst-overlay.active');
+      if (!overlay) return;
+      var contentEl = document.getElementById('burst-content');
+      if (!contentEl || contentEl.dataset.vizInjected) return;
+      var ch = detectChapter();
+      var viz = getChapterViz(ch);
+      if (!viz) return;
+      var vizDiv = document.createElement('div');
+      vizDiv.className = 'burst-viz-wrapper';
+      vizDiv.innerHTML = viz;
+      contentEl.parentNode.insertBefore(vizDiv, contentEl.nextSibling);
+      contentEl.dataset.vizInjected = '1';
+    }, 60);
+  });
+  
+  console.log('[D-plan-v2] Burst viz hook ready');
+})();
+</script>
+
+<script>
+// 追加 1：D-plan Burst 数据可视化注入器
+(function() {
+  var origHandler;
+  // 拦截 burst trigger 点击
+  document.querySelectorAll('.burst-trigger').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      // 延迟注入，等 DOM 更新
+      setTimeout(function() {
+        injectBurstViz();
+      }, 50);
+    });
+  });
+  
+  function injectBurstViz() {
+    var contentEl = document.getElementById('burst-content');
+    var titleEl = document.getElementById('burst-title');
+    if (!contentEl) return;
+    var title = titleEl ? titleEl.textContent : '';
+    var ch = detectChapter();
+    var viz = getChapterViz(ch, title);
+    if (viz && !contentEl.querySelector('.burst-viz')) {
+      contentEl.insertAdjacentHTML('afterbegin', viz);
+    }
+  }
+  
+  function detectChapter() {
+    var h1 = document.querySelector('h1');
+    var h2s = document.querySelectorAll('h2');
+    var txt = h1 ? h1.textContent : '';
+    h2s.forEach(function(h) { txt += h.textContent; });
+    if (txt.includes('你好') || txt.includes('数字化同行者')) return 1;
+    if (txt.includes('你们') || txt.includes('project') || txt.includes('星恒')) return 2;
+    if (txt.includes('体系') || txt.includes('记忆') || txt.includes('计划')) return 3;
+    if (txt.includes('门槛') || txt.includes('安装') || txt.includes('部署')) return 4;
+    if (txt.includes('风险') || txt.includes('坑') || txt.includes('幻觉')) return 5;
+    if (txt.includes('Demo') || txt.includes('演示') || txt.includes('数据底座')) return 6;
+    if (txt.includes('下一步') || txt.includes('30 天') || txt.includes('旅程')) return 7;
+    if (txt.includes('回顾') || txt.includes('90 分钟')) return 8;
+    return 1;
+  }
+  
+  function getChapterViz(ch, title) {
+    var vizs = {
+      1: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 维度实战数据</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">7</span><span class="mini-matrix-label">数字员工</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5.8K</span><span class="mini-matrix-label">已存档概念</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">90</span><span class="mini-matrix-label">分钟出稿</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">×5</span><span class="mini-matrix-label">效率提升</span></div></div></div><div class="burst-viz"><div class="burst-viz-title">▎ 项目覆盖进度</div><div class="mini-progress"><div class="mini-progress-label"><span>立项尽调</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>估值建模</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>投后管理</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div></div>',
+      2: '<div class="burst-viz"><div class="burst-viz-title">▎ 星恒项目流转阶段</div><div class="mini-bar-chart"><div class="mini-bar" style="height:60%"><span class="mini-bar-label">立项</span><span class="mini-bar-value">8</span></div><div class="mini-bar" style="height:85%"><span class="mini-bar-label">尽调</span><span class="mini-bar-value">12</span></div><div class="mini-bar" style="height:100%"><span class="mini-bar-label">估值</span><span class="mini-bar-value">15</span></div><div class="mini-bar" style="height:70%"><span class="mini-bar-label">过会</span><span class="mini-bar-value">10</span></div><div class="mini-bar" style="height:45%"><span class="mini-bar-label">签约</span><span class="mini-bar-value">6</span></div></div></div>',
+      3: '<div class="burst-viz"><div class="burst-viz-title">▎ 体系组件就绪度</div><div class="mini-progress"><div class="mini-progress-label"><span>记忆系统</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>任务调度</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>多 Agent 协作</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>知识库检索</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div></div>',
+      4: '<div class="burst-viz"><div class="burst-viz-title">▎ 零门槛部署</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">16min</span><span class="mini-matrix-label">安装时间</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">5步</span><span class="mini-matrix-label">操作步骤</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">0行</span><span class="mini-matrix-label">代码要求</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">¥0</span><span class="mini-matrix-label">额外投入</span></div></div></div>',
+      5: '<div class="burst-viz"><div class="burst-viz-title">▎ 4 大风险防线</div><div class="mini-progress"><div class="mini-progress-label"><span>幻觉防御</span><span>90%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:90%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>数据隐私</span><span>95%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:95%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>成本控制</span><span>85%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:85%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>人机边界</span><span>80%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:80%"></div></div></div></div>',
+      6: '<div class="burst-viz"><div class="burst-viz-title">▎ Demo 环境就绪度</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">PostgreSQL</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Qdrant</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">oMLX</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">✓</span><span class="mini-matrix-label">Gateway</span></div></div></div>',
+      7: '<div class="burst-viz"><div class="burst-viz-title">▎ 30 天见效路径</div><div class="mini-progress"><div class="mini-progress-label"><span>第 1 周 · 试用</span><span>25%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:25%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 2 周 · 集成</span><span>50%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:50%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 3 周 · 优化</span><span>75%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:75%"></div></div></div><div class="mini-progress"><div class="mini-progress-label"><span>第 4 周 · 飞跃</span><span>100%</span></div><div class="mini-progress-bar"><div class="mini-progress-fill" style="width:100%"></div></div></div></div>',
+      8: '<div class="burst-viz"><div class="burst-viz-title">▎ 旅程总结</div><div class="mini-matrix"><div class="mini-matrix-cell"><span class="mini-matrix-num">6/6</span><span class="mini-matrix-label">问题答复</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">8章</span><span class="mini-matrix-label">内容覆盖</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">29</span><span class="mini-matrix-label">Burst 点</span></div><div class="mini-matrix-cell"><span class="mini-matrix-num">100%</span><span class="mini-matrix-label">实战</span></div></div></div>'
+    };
+    return vizs[ch] || '';
+  }
+  
+  console.log('[D-plan] Burst viz injector ready');
+})();
+</script>
+
 </body>
 </html>
+
+<!-- 追加 3：章节专属 AI 视频 -->
+<div class="sci-video" style="margin: 40px auto; max-width: 900px;">
+  <div style="position:relative;padding-bottom:56.25%%;height:0;overflow:hidden;border-radius:12px;border:1px solid rgba(0,212,255,0.4);box-shadow:0 0 30px rgba(0,212,255,0.2)">
+    <video controls autoplay loop muted playsinline style="position:absolute;top:0;left:0;width:100%%;height:100%%">
+      <source src="../assets/videos/04-neural-network.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="sci-figure-caption" style="text-align:center;color:#7a8599;font-size:13px;margin-top:10px;">▶ AI 神经网络演进 · 从感知到认知</p>
+</div>

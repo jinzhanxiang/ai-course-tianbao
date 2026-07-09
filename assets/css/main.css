@@ -197,6 +197,39 @@ body {
   padding-top: 16px;
   border-top: 1px solid var(--border);
 }
+.security-reminder {
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.security-reminder summary {
+  cursor: pointer;
+  color: #F59E0B;
+  font-weight: bold;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(245,158,11,0.08);
+  border: 1px solid rgba(245,158,11,0.25);
+  font-size: 12px;
+  list-style: none;
+}
+.security-reminder summary::-webkit-details-marker { display: none; }
+.security-reminder summary::marker { display: none; content: ""; }
+.security-reminder summary:hover {
+  background: rgba(245,158,11,0.15);
+}
+.security-detail {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: rgba(245,158,11,0.04);
+  border: 1px solid rgba(245,158,11,0.15);
+  border-radius: 6px;
+  line-height: 1.6;
+  font-size: 11px;
+}
+.security-detail p {
+  margin: 0 0 3px 0;
+}
 .sidebar-footer button {
   width: 100%;
   padding: 8px;

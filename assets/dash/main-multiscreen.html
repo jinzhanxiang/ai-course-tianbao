@@ -240,7 +240,7 @@ body {
       <div class="heartbeat-log" id="hb-log">
         <div class="log-line log-time">12:25:00 <span class="log-info">[HEARTBEAT]</span> 巡检启动</div>
         <div class="log-line log-time">12:25:01 <span class="log-ok">✓</span> docker: postgres Up</div>
-        <div class="log-line log-time">12:25:01 <span class="log-ok">✓</span> docker: qdrant Up</div>
+        <div class="log-line log-time">12:25:01 <span class="log-ok">✓</span> docker: 向量检索引擎 Up</div>
         <div class="log-line log-time">12:25:02 <span class="log-info">[OK]</span> 全部正常</div>
       </div>
     </div>
@@ -296,7 +296,7 @@ body {
     </div>
     <div class="screen-body">
       <div class="docker-row"><span class="docker-dot dot-up"></span>postgres <span style="color:#22c55e;">Up 38h</span></div>
-      <div class="docker-row"><span class="docker-dot dot-up"></span>qdrant <span style="color:#22c55e;">Up 38h</span></div>
+      <div class="docker-row"><span class="docker-dot dot-up"></span>向量检索引擎 <span style="color:#22c55e;">Up 38h</span></div>
       <div class="docker-row"><span class="docker-dot dot-up"></span>redis <span style="color:#22c55e;">Up 38h</span></div>
       <div class="docker-row"><span class="docker-dot dot-warn"></span>litellm <span style="color:#f59e0b;">Restarting</span></div>
       <div style="margin-top:10px;font-size:10px;color:#94a3b8;">
@@ -319,7 +319,7 @@ body {
       <div class="agent-card">📊 data <span class="agent-status status-progress" style="background:rgba(245,158,11,0.2);color:#f59e0b;">忙</span></div>
       <div class="agent-card">📄 report <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
       <div class="agent-card">🤖 claude-code <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
-      <div class="agent-card">⚡ hermes <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
+      <div class="agent-card">⚡ 自动化工具链 <span class="agent-status status-completed" style="background:rgba(34,197,94,0.2);color:#22c55e;">在线</span></div>
     </div>
   </div>
 
@@ -363,7 +363,7 @@ const steps = [
   { sec: 3,  msg: '💗 屏1 · 心跳 15 分钟周期 · 上次 12:25 · 下次 12:40', step: 1 },
   { sec: 7,  msg: '📊 屏2 · 任务跟踪：6 任务 · 3 完成 · 3 进行中', step: 2 },
   { sec: 11, msg: '📂 屏3 · Session 监控 · data 2.8MB 已自动压缩', step: 3 },
-  { sec: 16, msg: '🐳 屏4 · Docker · postgres/qdrant/redis 健康 · litellm 重启', step: 4 },
+  { sec: 16, msg: '🐳 屏4 · Docker · postgres/向量检索引擎/redis 健康 · litellm 重启', step: 4 },
   { sec: 21, msg: '🤖 屏5 · 7 Agent 在线 · research/data 忙 · 其余就绪', step: 5 },
   { sec: 26, msg: '🔔 屏6 · 1 CRITICAL + 2 INFO + 1 WARN · 全部自动处理', step: 6 },
   { sec: 30, msg: '✅ 巡检完成 · 心跳结束 · 异常已通知主公', step: 6 },
