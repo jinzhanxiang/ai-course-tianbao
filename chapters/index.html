@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>章节导航 · 智能体赋能投资研究</title>
+  <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #0a1428 0%, #1a1a3e 50%, #2d1b4e 100%);
+      min-height: 100vh;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin: 0 0 12px 0;
+      background: linear-gradient(135deg, #00d4ff, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+    .header p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+    .back {
+      display: inline-block;
+      margin-bottom: 24px;
+      color: #00d4ff;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 8px 16px;
+      border: 1px solid rgba(0,212,255,0.3);
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .back:hover {
+      background: rgba(0,212,255,0.1);
+      border-color: rgba(0,212,255,0.6);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      display: block;
+      padding: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, #00d4ff, #a855f7);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(0,212,255,0.4);
+      transform: translateY(-3px);
+    }
+    .card:hover::before { opacity: 1; }
+    .num {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #00d4ff;
+      padding: 4px 10px;
+      background: rgba(0,212,255,0.1);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      line-height: 1.4;
+    }
+    .desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="../index.html" class="back">← 返回总目录</a>
+    <div class="header">
+      <h1>📚 章节导航</h1>
+      <p>智能体赋能投资研究 · 8 章课程</p>
+    </div>
+    <div class="grid">
+      <a href="final-chapter-01.html" class="card">
+        <span class="num">01</span>
+        <h3 class="title">这跟我有什么关系？</h3>
+        <p class="desc">开场：从 CIO / 董秘 / 投资经理的视角，看 AI 与己的关系</p>
+      </a>
+      <a href="final-chapter-02.html" class="card">
+        <span class="num">02</span>
+        <h3 class="title">你们做了什么？</h3>
+        <p class="desc">实战：过去 12 个月我们交付了什么、带来了什么价值</p>
+      </a>
+      <a href="final-chapter-03.html" class="card">
+        <span class="num">03</span>
+        <h3 class="title">这套东西怎么运作？</h3>
+        <p class="desc">体系：5 大 Agent + 知识中台 + 模型兜底的架构原理</p>
+      </a>
+      <a href="final-chapter-04.html" class="card">
+        <span class="num">04</span>
+        <h3 class="title">我能用吗？门槛在哪？</h3>
+        <p class="desc">落地：从工具到团队跃迁，需要的投入与时间</p>
+      </a>
+      <a href="final-chapter-05.html" class="card">
+        <span class="num">05</span>
+        <h3 class="title">有什么风险和坑？</h3>
+        <p class="desc">风险：数据安全、模型幻觉、组织变革的避坑指南</p>
+      </a>
+      <a href="final-chapter-06.html" class="card">
+        <span class="num">06</span>
+        <h3 class="title">现场演示</h3>
+        <p class="desc">演示：端到端跑一个真实项目，看 AI 怎么干活</p>
+      </a>
+      <a href="final-chapter-07.html" class="card">
+        <span class="num">07</span>
+        <h3 class="title">下一步做什么？</h3>
+        <p class="desc">路径：从今天开始，30 天 / 90 天的具体行动</p>
+      </a>
+      <a href="final-chapter-08.html" class="card">
+        <span class="num">08</span>
+        <h3 class="title">总结收尾</h3>
+        <p class="desc">回顾：核心要点 + 答疑 + 后续资源</p>
+      </a>
+    </div>
+    <div class="footer">
+      天保控股 · 智能体实战内训 · 部署于 GitHub Pages
+    </div>
+  </div>
+</body>
+</html>
