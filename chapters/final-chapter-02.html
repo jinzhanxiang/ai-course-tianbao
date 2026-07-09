@@ -64,6 +64,91 @@
       </div>
     </div>
 
+    <!-- Slide 1.5：三个「小胜利」——在看大项目之前，先看三件小事 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px;text-align:center">🏆 在看大项目之前，先看三个「小胜利」</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;text-align:center">不用等大项目立项——这三件事，每件都是一个人 + Agent 在<strong style="color:#22C55E">真实工作场景</strong>中跑通的。点击卡片看真实执行步骤。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
+        <!-- 小胜利1：文字排版 -->
+        <div class="card popup-trigger" data-popup-title="📝 文字排版 · report Agent 真实执行步骤" style="padding:14px;border-top:3px solid #EC4899;cursor:pointer">
+          <div style="font-size:24px;margin-bottom:6px">📝</div>
+          <h3 style="font-size:14px;color:#EC4899;margin-bottom:6px">文字排版 · 从 Markdown 到红头文件</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
+            report Agent 一键将研究报告转为<strong>国企公文标准 Word 文档</strong>（GB/T 9704-2012）和 PPT。<br>
+            <span style="color:#EC4899">输入 Markdown → 输出 Word+PPT</span>
+          </p>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:8px">🔍 点击查看 7 步详细执行流程</div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7"><strong>report Agent 文字排版 · 7 步执行流程：</strong></p>
+            <p style="font-size:13px;line-height:1.7">
+              <strong>Step 1</strong> — 接收内容验证：检查 Markdown 输入完整性<br>
+              <strong>Step 2</strong> — 选择报告模板：20 类文档 × 34 个 Markdown 模板<br>
+              <strong>Step 3</strong> — 格式化排版：C# SOEFramework（方小标宋/黑体/楷体/仿宋，页边距 29.4pt）→ 后处理去冗余 → 格式校验<br>
+              <strong>Step 4</strong> — 图表生成：SVG 图表嵌入 Word/PPT<br>
+              <strong>Step 5</strong> — 质量校验：10 项检查（标题层级/字体/缩进/对齐/页码/关键词/结构/字数）<br>
+              <strong>Step 6</strong> — 版本控制：Git 归档 + 版本号<br>
+              <strong>Step 7</strong> — 提交 main 代理：交付件通知 → 飞书消息推送
+            </p>
+            <p style="font-size:13px;color:#22C55E;line-height:1.7">一条命令触发全流程：<code>bash report_agent_workflow.sh all input.md projectID word</code></p>
+          </div>
+        </div>
+
+        <!-- 小胜利2：会议纪要 -->
+        <div class="card popup-trigger" data-popup-title="🎙️ 会议纪要 · data Agent + report Agent 协同" style="padding:14px;border-top:3px solid #00D4FF;cursor:pointer">
+          <div style="font-size:24px;margin-bottom:6px">🎙️</div>
+          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:6px">会议纪要 · 录音到结构化纪要</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
+            data Agent 自动转录录音 → report Agent 生成<strong>结构化会议纪要</strong>。<br>
+            <span style="color:#00D4FF">输入录音文件 → 输出纪要 Word + 待办清单</span>
+          </p>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:8px">🔍 点击查看 6 步详细执行流程</div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7"><strong>会议纪要 · data + report 协同 6 步流程：</strong></p>
+            <p style="font-size:13px;line-height:1.7">
+              <strong>Step 1</strong> — 音频分片：ffmpeg 将录音切为 30s 片段（16kHz 单声道）<br>
+              <strong>Step 2</strong> — ASR 转录：FunASR Paraformer-zh 逐片语音识别 → 拼接全文<br>
+              <strong>Step 3</strong> — 说话人分离：pyannote.audio 3.1 识别每位发言人<br>
+              <strong>Step 4</strong> — 标点+优化：CT-PUNC 加标点 → transcript-fixer 修复填充词/重复<br>
+              <strong>Step 5</strong> — LLM 生成纪要：3 路并行生成（时间线/主题模块/决策导向）→ UNION 合并 → 7 项完整性自检<br>
+              <strong>Step 6</strong> — report Agent 排版：纪要内容 → 标准 Word 文档
+            </p>
+            <p style="font-size:13px;color:#22C55E;line-height:1.7">输出：transcript_raw.txt → summary_detailed.md → 标准 Word 会议纪要</p>
+          </div>
+        </div>
+
+        <!-- 小胜利3：数据清洗 -->
+        <div class="card popup-trigger" data-popup-title="🧹 数据清洗 · data Agent 完整管道" style="padding:14px;border-top:3px solid #F59E0B;cursor:pointer">
+          <div style="font-size:24px;margin-bottom:6px">🧹</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">数据清洗 · PDF 到知识图谱</h3>
+          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6;margin:0">
+            data Agent 将<strong>PDF/研报/制度文件</strong>清洗入库，构建可检索的知识底座。<br>
+            <span style="color:#F59E0B">输入 PDF 文件夹 → 输出 KG+Wiki</span>
+          </p>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:8px">🔍 点击查看 9 步详细执行流程</div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7"><strong>data Agent 数据清洗 · 9 步全管道流程：</strong></p>
+            <p style="font-size:13px;line-height:1.7">
+              <strong>Step 0</strong> — 预处理：文件名清理 → 磁盘检查 → PDF 提取（pypdfium2/OCR/Tesseract 三级降级）<br>
+              <strong>Step 1</strong> — 文件接收：类型识别 + 行业分类（14 个行业目录）+ 去重检测<br>
+              <strong>Step 2</strong> — 前置筛选：研报质量检测 + 制度文件处理 + 不合格文件拒绝<br>
+              <strong>Step 3</strong> — 核心清洗：持久化 Worker → LLM 提取实体/关系/财务指标 → 写入 cleaned/*.json<br>
+              <strong>Step 4</strong> — 清洗校验：质量校验 + 空提取阻断 + 维度填充率 &lt;90% 阻断 + 重试机制<br>
+              <strong>Step 5</strong> — 入库：Qdrant 向量库 + PostgreSQL + 知识图谱写入<br>
+              <strong>Step 6</strong> — 归档：已入库文件归档<br>
+              <strong>Step 7</strong> — 管道后完整性检查：A-F 六项审计<br>
+              <strong>Step 8</strong> — LLM Wiki 优化：非实体页面/合成/交叉链接/深度/置信度 → Wiki 版本质量修复
+            </p>
+            <p style="font-size:13px;color:#22C55E;line-height:1.7">一条命令触发全流程：<code>bash clean_v2.sh</code>（全自动，~30 分钟/批次）</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="font-size:13px">
+        <strong>📌 这三件事背后是同一套 Agent 系统。</strong>大项目（星恒电源尽调）就是这三个基础能力的<strong style="color:#22C55E">组合升级</strong>——清洗建知识底座 → 纪要沉淀决策过程 → 排版输出专业报告。先看小事，再看大项目，你会更有感觉。
+      </div>
+    </div>
+
     <!-- Slide 2：四个 Agent 各司其职（真实交付件映射 + 三类角色受益标注） -->
     <div class="slide">
       <h2 class="slide-title">📐 一个项目，四个 Agent 各司其职</h2>
