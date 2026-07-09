@@ -19,54 +19,10 @@
     @keyframes glow-shift {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
-    }
-    .sci-terminal {
-      background: linear-gradient(135deg, #050816 0%, #0a0e27 50%, #1a1f3a 100%);
-      border: 1px solid rgba(0, 212, 255, 0.45);
-      border-radius: 10px;
-      padding: 18px 22px;
-      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-      color: #00d4ff;
-      box-shadow: 0 0 40px rgba(0, 212, 255, 0.18), inset 0 0 30px rgba(0, 212, 255, 0.04);
-      position: relative;
-      overflow: hidden;
-    }
-    .sci-terminal::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, transparent, #00d4ff, transparent);
-      animation: scan 3s infinite;
-    }
-    .sci-terminal::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: repeating-linear-gradient(
-        0deg, rgba(0, 212, 255, 0.03) 0px, rgba(0, 212, 255, 0.03) 1px,
-        transparent 1px, transparent 3px
-      );
-      pointer-events: none;
-    }
-    @keyframes scan { 0% { left: -100%; } 100% { left: 100%; } }
-    .sci-line { margin: 4px 0; font-size: 13px; line-height: 1.6; position: relative; z-index: 1; }
-    .sci-prompt { color: #56d364; margin-right: 8px; }
-    .sci-ok { color: #56d364; }
-    .sci-warn { color: #febc2e; }
-    .sci-online {
-      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
-      background: #56d364; box-shadow: 0 0 10px #56d364;
-      animation: pulse 1.5s infinite; margin-right: 6px; vertical-align: middle;
-    }
+    }@keyframes scan { 0% { left: -100%; } 100% { left: 100%; } }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(0.85); }
-    }
-    .sci-cursor {
-      display: inline-block; width: 8px; height: 14px;
-      background: #00d4ff; vertical-align: middle;
-      animation: blink 1s infinite; margin-left: 2px;
     }
     @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
     .role-card {
@@ -96,9 +52,36 @@
       display: inline-block; padding: 4px 12px; border-radius: 20px;
       font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px;
     }
+    /* 时代卡片横向依次滑入 —— 表面从左到右展开 */
+    .era-reveal {
+      opacity: 0;
+      animation: eraSlideIn 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+    }
+    .era-reveal:nth-child(1) { animation-delay: 0.08s; }
+    .era-reveal:nth-child(2) { animation-delay: 0.28s; }
+    .era-reveal:nth-child(3) { animation-delay: 0.48s; }
+    .era-reveal:nth-child(4) { animation-delay: 0.68s; }
+    @keyframes eraSlideIn {
+      from { opacity: 0; transform: translateX(-30px); clip-path: inset(0 100% 0 0); }
+      to   { opacity: 1; transform: translateX(0);    clip-path: inset(0 0 0 0); }
+    }
   </style>
+
 </head>
-<body class="chapter-page sci-fi-bg">
+<body class="chapter-page"><script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();})();
+</script>
+
   <main class="main-stage">
 
     <!-- ====== Slide 1：科幻开场 ====== -->
@@ -112,18 +95,6 @@
           今天不讲 AI 概念，只回答一个问题 ——<br>
           <strong style="color:var(--accent)">作为一个投资从业者，这波 AI 浪潮跟我到底有什么关系？</strong>
         </p>
-      </div>
-
-      <div class="sci-terminal" style="margin:28px auto 0;max-width:820px;position:relative;z-index:1">
-        <div class="sci-line"><span class="sci-prompt">$</span>agent-system --boot --mode=live</div>
-        <div class="sci-line"><span class="sci-online"></span><span class="sci-ok">[ONLINE]</span>&nbsp;&nbsp;5 个智能体 · 2 个助手 · 1 套知识中台 · 本地模型兜底</div>
-        <div class="sci-line"><span class="sci-prompt">&gt;</span>调度 · 研究 · 数据 · 项目 · 报告<span class="sci-cursor"></span></div>
-        <div class="sci-line"><span class="sci-prompt">&gt;</span>架构支持 · 深度计算</div>
-        <div class="sci-line"><span class="sci-prompt">&gt;</span>知识库 · <span class="sci-ok">近6000条结构化知识</span> · 系统可用率 <span class="sci-warn">99.7%</span></div>
-        <div class="sci-line"><span class="sci-prompt">&gt;</span>安全 · <span class="sci-ok">敏感数据 100% 本地处理</span> · 零外传</div>
-        <div class="sci-line" style="margin-top:10px;color:#fff;font-size:14px">
-          <strong>系统就绪。90 分钟，回答 6 个你最关心的问题 →</strong>
-        </div>
       </div>
 
       <div style="max-width:820px;margin:16px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:11px;color:var(--text-muted);text-align:center">
@@ -142,11 +113,34 @@
 
     <!-- ====== Slide 2：每一次变革都被嘲笑过 ====== -->
     <div class="slide">
-      <h2 class="slide-title" style="margin-top:10px">🫢 每一次变革，都被嘲笑过</h2>
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-num">7</div>
+    <div class="kpi-label">数字员工</div>
+  </div>
+  <div class="kpi-card" style="animation-delay: 0.1s">
+    <div class="kpi-num">5,786</div>
+    <div class="kpi-label">已存档概念</div>
+  </div>
+  <div class="kpi-card" style="animation-delay: 0.2s">
+    <div class="kpi-num">90<span style="font-size:14px">min</span></div>
+    <div class="kpi-label">从指令到初稿</div>
+  </div>
+  <div class="kpi-card" style="animation-delay: 0.3s">
+    <div class="kpi-num">×5</div>
+    <div class="kpi-label">效率提升</div>
+  </div>
+</div>
+<div>
+  <img src="../assets/img/cover-7agents.png" alt="7 数字员工">
+  <div>图 1 · 天保智研 7 数字员工全景 · 数据流于 2026-07 实时同步</div>
+</div>
+
+<h2 class="slide-title" style="margin-top:10px">🫢 每一次变革，都被嘲笑过</h2>
       <p class="slide-subtitle">历史不会重复，但总会押韵 —— AI 时代也不例外</p>
 
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px">
-        <div class="card" style="padding:14px;border-top:3px solid #38bdf8">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #38bdf8">
           <div style="font-size:28px;margin-bottom:6px">✈️</div>
           <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">莱特兄弟 · 1903</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -156,7 +150,7 @@
             100 年后 → 全球航空业年运送 <strong>40 亿人次</strong>
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #F59E0B">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #F59E0B">
           <div style="font-size:28px;margin-bottom:6px">🚗</div>
           <h3 style="font-size:14px;color:#F59E0B;margin-bottom:4px">汽车 · 1865 红旗法案</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -166,7 +160,7 @@
             30 年后 → 马车消失，汽车工业成为<strong>万亿级产业</strong>
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #EF4444">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #EF4444">
           <div style="font-size:28px;margin-bottom:6px">🧵</div>
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:4px">珍妮纺织机 · 1760s</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -176,7 +170,7 @@
             最终 → 纺织效率提升 <strong>100 倍</strong>，农民转型产业工人
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
+        <div class="card era-reveal" style="padding:14px;border-top:3px solid #A855F7">
           <div style="font-size:28px;margin-bottom:6px">💻</div>
           <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">计算机 · 1940s</h3>
           <div style="font-size:11px;color:var(--text-secondary);line-height:1.55;margin-bottom:6px">
@@ -211,6 +205,27 @@
             </p>
           </div>
         </div>
+      </div>
+
+      <div style="margin-top:12px;padding:14px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(34,197,94,0.04));border:1px solid rgba(0,212,255,0.3);border-radius:10px">
+        <h3 style="font-size:15px;color:#00D4FF;margin:0 0 8px 0">⚡ 算力 = 劳动力 · 你的 AI 生产力公式</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:12px">
+          <div style="line-height:1.7">
+            <strong style="color:#F59E0B">🔩 蒸汽机时代</strong><br>
+            <span style="color:var(--text-secondary)">1 台蒸汽机 = 100 个工人的体力<br>→ 人类从体力劳动中解放</span>
+          </div>
+          <div style="line-height:1.7">
+            <strong style="color:#A855F7">💻 电力 / 计算机时代</strong><br>
+            <span style="color:var(--text-secondary)">1 台计算机 = 1000 个计算员的算力<br>→ 信息处理能力指数级跃升</span>
+          </div>
+          <div style="line-height:1.7">
+            <strong style="color:#22C55E">🧠 AI 时代</strong><br>
+            <span style="color:var(--text-secondary)">1 个 Agent = 1 个研究员的认知带宽 × N<br>→ 算力正在成为新时代的「劳动力」</span>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin:10px 0 0 0;text-align:center">
+          蒸汽机替代体力，计算机替代计算，AI 不是替代你——是<strong style="color:#22C55E">把你从信息搜集、数据整理、报告排版中解放出来</strong>，让你专注于只有你能做的专业判断。
+        </p>
       </div>
     </div>
 
@@ -286,7 +301,7 @@
     <!-- ====== Slide 4：工业化临界点 + McKinsey 数据 ====== -->
     <div class="slide">
       <h2 class="slide-title">📊 这不是未来，是正在发生的事</h2>
-      <p class="slide-subtitle">两个信号：行业采用的速度 + 技术成熟的拐点</p>
+      <p class="slide-subtitle">四个信号：行业采用 · 技术拐点 · 政策驱动 · 考核变革</p>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
         <div>
@@ -332,8 +347,63 @@
         </div>
       </div>
 
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:10px">🇨🇳 政策信号：国务院国资委 AI+ 行动</h3>
+          <div class="card" style="padding:14px;border-left:3px solid #F59E0B;margin-bottom:10px">
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin:0">
+              国务院国资委明确将<strong style="color:#F59E0B">"AI+"纳入央企负责人经营业绩考核</strong>，推动央企加速 AI 技术落地。国投集团要求<strong>各子企业主要负责人为财务数智化转型第一责任人</strong>，将转型任务纳入总会计师年度考核，对转型滞后企业进行专项约谈。
+            </p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #F59E0B">
+              <div style="font-size:11px;color:var(--text-secondary)">国投集团</div>
+              <div style="font-size:13px;font-weight:700;color:#F59E0B">第一责任人制</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #22C55E">
+              <div style="font-size:11px;color:var(--text-secondary)">东风股份</div>
+              <div style="font-size:13px;font-weight:700;color:#22C55E">央企 AI 典范案例</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #EC4899">
+              <div style="font-size:11px;color:var(--text-secondary)">DeepSeek</div>
+              <div style="font-size:13px;font-weight:700;color:#EC4899">央企 AI 行动核心引擎</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #38BDF8">
+              <div style="font-size:11px;color:var(--text-secondary)">上海国资委</div>
+              <div style="font-size:13px;font-weight:700;color:#38BDF8">308个AI场景需求发布</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:10px">📉 考核信号：Token 消耗量 = 新 KPI</h3>
+          <div class="card" style="padding:14px;border-left:3px solid #EF4444;margin-bottom:10px">
+            <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin:0">
+              黄仁勋在 GTC 大会公开呼吁企业<strong style="color:#EF4444">将 Token 消耗量纳入工程师 KPI</strong>。Meta 已落地：8.5 万员工 Token 用量实时追踪，前 250 名内部公开排行（"Claudeonomics"仪表盘），有工程师月消耗 <strong>2,810 亿 Token</strong>。Amazon 推出 KiroRank 评估开发者 AI 使用表现。
+            </p>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #EF4444">
+              <div style="font-size:11px;color:var(--text-secondary)">Meta</div>
+              <div style="font-size:13px;font-weight:700;color:#EF4444">8.5万人Token排行</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #A855F7">
+              <div style="font-size:11px;color:var(--text-secondary)">Amazon</div>
+              <div style="font-size:13px;font-weight:700;color:#A855F7">KiroRank 评估体系</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #F59E0B">
+              <div style="font-size:11px;color:var(--text-secondary)">单月消耗</div>
+              <div style="font-size:13px;font-weight:700;color:#F59E0B">2,810亿Token</div>
+            </div>
+            <div class="card" style="padding:10px;text-align:center;border-top:3px solid #22C55E">
+              <div style="font-size:11px;color:var(--text-secondary)">重庆国资委</div>
+              <div style="font-size:13px;font-weight:700;color:#22C55E">100%数字化穿透</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="alert alert-success" style="font-size:13px">
-        <strong>这两个信号说明什么？</strong>多 Agent 协同不是实验室概念，已经进入工业化临界点。现在的问题是：<strong style="color:#22C55E">你是 88% 中的"在用"者，还是 10% 中的"规模化"者？</strong>
+        <strong>这四个信号说明什么？</strong>多 Agent 协同不是实验室概念，已经进入工业化临界点。<strong style="color:#F59E0B">政策在推、考核在变、技术在成熟、企业在行动</strong>。现在的问题是：<strong style="color:#22C55E">你是 88% 中的"在用"者，还是 10% 中的"规模化"者？</strong>
       </div>
     </div>
 
@@ -425,5 +495,72 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+})();
+</script>
+
 </body>
 </html>

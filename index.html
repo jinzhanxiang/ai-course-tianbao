@@ -48,6 +48,15 @@
       <li><a href="chapters/final-chapter-08.html" data-chapter="7">08 · 总结收尾</a></li>
     </ol>
     <div class="sidebar-footer">
+      <details class="security-reminder">
+        <summary>🔐 数据安全提醒</summary>
+        <div class="security-detail">
+          <p>⚠️ <strong>在线 AI 工具</strong>不得传输<strong style="color:#EF4444">涉密信息</strong>。</p>
+          <p>涉密信息：尽调底稿、审计报告、估值模型、内部评审、会议纪要等。</p>
+          <p>✅ 工具请<strong>安装在个人电脑</strong>上使用。敏感数据走<strong>本地模型</strong>。</p>
+          <p style="color:#F59E0B;margin-top:6px">📌 涉密不上云，上云不涉密。</p>
+        </div>
+      </details>
       <button id="speakerBtn" title="按 P 显示演讲者备注">🎤 备注</button>
     </div>
   </aside>
@@ -81,17 +90,6 @@
           <p class="hero-tagline">真实在跑 · 全程可演示</p>
           <p class="hero-author">2026.07</p>
         </div>
-      </div>
-    </div>
-
-    <!-- ⚠️ 数据安全提醒 -->
-    <div style="margin:20px 0;padding:16px 22px;background:rgba(245,158,11,0.06);border:2px solid rgba(245,158,11,0.35);border-radius:10px;max-width:880px;margin-left:auto;margin-right:auto">
-      <h3 style="color:#F59E0B;font-size:16px;margin:0 0 10px 0">🔐 数据安全提醒（使用前必读）</h3>
-      <div style="font-size:13px;color:var(--text-secondary);line-height:1.8">
-        <p style="margin:0 0 4px 0">⚠️ 任何<strong style="color:#F59E0B">在线 AI 工具</strong>（包括但不限于各类大模型对话、智能体平台、编码助手），均不得传输<strong style="color:#EF4444">涉密信息</strong>。</p>
-        <p style="margin:0 0 4px 0">⚠️ 涉密信息包括：尽调底稿、审计报告、估值模型、内部评审、会议纪要、项目谈判记录等。</p>
-        <p style="margin:0 0 8px 0">✅ 本课程介绍的智能体工具请<strong>安装在个人电脑</strong>上使用。敏感数据处理建议走<strong>本地模型</strong>（数据不出机器），公开数据可使用国内合规 API。</p>
-        <p style="margin:4px 0 0 0;color:#F59E0B;font-size:12px">📌 原则：涉密不上云，上云不涉密。安全是底线。</p>
       </div>
     </div>
 
@@ -195,6 +193,31 @@
         </div>
       </div>
 
+      <!-- 1 个本地模型 -->
+      <div class="clickable card" data-target="expand-1local" style="padding:18px;background:rgba(168,85,247,0.08);border:2px solid #A855F7;margin-bottom:8px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span style="font-size:28px">🟣</span>
+          <div>
+            <h3 style="font-size:20px;color:#A855F7;margin:0">1 个本地模型（离线安全）</h3>
+            <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0">涉密场景离线运行，数据不出本机</p>
+          </div>
+        </div>
+      </div>
+      <div class="collapsible" id="expand-1local">
+        <div class="expand-grid">
+          <div class="expand-card" style="border-left-color:#A855F7">
+            <div class="ec-title" style="color:#A855F7">🧠 本地 LLM</div>
+            <div class="ec-meta">Ollama + 国产开源模型</div>
+            <div class="ec-desc">涉密文档处理 · 离线可用 · 数据零外传</div>
+          </div>
+          <div class="expand-card" style="border-left-color:#A855F7">
+            <div class="ec-title" style="color:#A855F7">🔒 本机运行</div>
+            <div class="ec-meta">无需网络 · 无需注册</div>
+            <div class="ec-desc">尽调底稿 / 审计报告 / 估值模型 本地处理</div>
+          </div>
+        </div>
+      </div>
+
       <div style="margin-top:28px;text-align:center">
         <a href="chapters/final-chapter-01.html" style="display:inline-block;padding:12px 28px;background:var(--accent);color:var(--bg-primary);text-decoration:none;border-radius:8px;font-size:15px;font-weight:bold">进入第 01 章 ▶</a>
       </div>
@@ -228,5 +251,12 @@
   <script src="assets/js/data.js"></script>
   <script src="assets/js/main.js?v=20260705-fix"></script>
   <script src="assets/js/effects.js?v=20260705-fix"></script>
+  <!-- 底部固定安全提醒 -->
+  <div id="securityBar" style="position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(10,14,39,0.97);border-top:2px solid rgba(245,158,11,0.5);padding:8px 24px;display:flex;align-items:center;gap:12px;font-size:12px;backdrop-filter:blur(8px);">
+    <span style="color:#F59E0B;font-weight:bold;white-space:nowrap">🔐 数据安全提醒</span>
+    <span style="color:var(--text-secondary);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">任何在线 AI 工具不得传输涉密信息。涉密不上云，上云不涉密。工具请安装在个人电脑上使用。</span>
+    <button onclick="this.parentElement.style.display='none'" style="background:none;border:1px solid rgba(255,255,255,0.2);color:var(--text-muted);cursor:pointer;padding:2px 8px;border-radius:4px;font-size:12px;white-space:nowrap">✕</button>
+  </div>
+
 </body>
 </html>

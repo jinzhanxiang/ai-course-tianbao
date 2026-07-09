@@ -6,8 +6,7 @@
   <title>第 06 章 · 现场演示 — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
-  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
-  <style>
+  <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">  <style>
     .demo-log-line { animation: logSlideIn 0.12s ease-out; white-space: pre-wrap; word-break: break-all; }
     @keyframes logSlideIn { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
     .demo-run-btn {
@@ -30,192 +29,499 @@
       border-radius: 4px; color: #F59E0B; font-size: 10px; font-weight: bold;
     }
   </style>
+
 </head>
-<body class="chapter-page sci-fi-bg">
+<body class="chapter-page"><script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();})();
+</script>
+
   <main class="main-stage" style="background:#060A1A">
 
-    <!-- Slide 1：章节封面 + 服务器状态 -->
+    <!-- Slide 1：章节封面 -->
     <div class="slide active">
       <div style="text-align:center;padding-top:6vh">
         <div style="font-size:64px;margin-bottom:16px">🎬</div>
-        <h1 style="font-size:48px;color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,0.5)">第 06 章 · 现场演示</h1>
-        <h2 style="font-size:24px;color:#8FA1CC;margin-top:10px;font-weight:normal">点击按钮 → 真实 Agent 运行 → 成果实时显示</h2>
+        <h1 style="font-size:48px;color:#00D4FF;text-shadow:0 0 40px rgba(0,212,255,0.5)" class="glow-text">第 06 章 · 现场演示</h1>
+<div>
+  <img src="../assets/img/presentation-demo.png" alt="现场演示">
+  <div>图 3 · 主公在天保智研内部路演 · 真实截图</div>
+</div>
 
-        <div class="demo-status-bar" style="max-width:560px;margin:24px auto 0">
-          <span class="demo-status-indicator" style="font-weight:bold">🔍 检测中...</span>
-          <span style="color:#8FA1CC;font-size:11px;margin-left:auto">未启动？运行 <code style="color:#F59E0B">python3 demo_server_v2.py</code></span>
+<h2 style="font-size:24px;color:#8FA1CC;margin-top:10px;font-weight:normal"3 大核心系统 · 真实生产环境 · 现场运行</h2>
+
+        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:600px;margin-left:auto;margin-right:auto">
+          <div style="padding:14px;background:rgba(168,85,247,0.06);border:1px solid #A855F744;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">🗄️</div>
+            <div style="color:#A855F7;font-size:13px;font-weight:bold">Demo 1</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">数据底座<br>data + 超级单体智能体</div>
+          </div>
+          <div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid #F59E0B44;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">🔬</div>
+            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Demo 2</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">投研系统<br>research + 智能编程助手</div>
+          </div>
+          <div style="padding:14px;background:rgba(236,72,153,0.06);border:1px solid #EC489944;border-radius:8px;text-align:center">
+            <div style="font-size:28px;margin-bottom:4px">📋</div>
+            <div style="color:#EC4899;font-size:13px;font-weight:bold">Demo 3</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px">项目管理+报告<br>project + report</div>
+          </div>
         </div>
 
-        <div style="margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin-left:auto;margin-right:auto">
-          <div style="padding:12px;background:rgba(245,158,11,0.06);border:1px solid #F59E0B44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">📊</div><div style="color:#F59E0B;font-size:11px;margin-top:4px">股权图生成</div>
-          </div>
-          <div style="padding:12px;background:rgba(236,72,153,0.06);border:1px solid #EC489944;border-radius:8px;text-align:center">
-            <div style="font-size:24px">📤</div><div style="color:#EC4899;font-size:11px;margin-top:4px">公文排版</div>
-          </div>
-          <div style="padding:12px;background:rgba(34,197,94,0.06);border:1px solid #22C55E44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">🧠</div><div style="color:#22C55E;font-size:11px;margin-top:4px">智能问答</div>
-          </div>
-          <div style="padding:12px;background:rgba(0,212,255,0.06);border:1px solid #00D4FF44;border-radius:8px;text-align:center">
-            <div style="font-size:24px">🎬</div><div style="color:#00D4FF;font-size:11px;margin-top:4px">全流程回放</div>
-          </div>
-        </div>
-
-        <p style="color:#8FA1CC;font-size:12px;margin-top:24px">4 个核心演示 · 每个背后都是真实 Agent 脚本驱动</p>
+        <p style="color:#8FA1CC;font-size:14px;margin-top:16px">3 个重磅案例 · 覆盖 5 Agent × 2 助手全协同链路</p>
       </div>
     </div>
 
-    <!-- Slide 2：Demo 1 — 股权结构图生成 -->
+        <!-- Slide 2A：数据处理全链路 · 7步流水线画卷 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#F59E0B;margin-bottom:8px">📊 Demo 1 · 股权结构图生成 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Project Agent：读取股东 JSON 数据 → Matplotlib 专业图表 → 股权穿透图 PNG
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px;text-align:center"🗄️ Demo 1 · 数据底座：7 步数据处理全链路</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;text-align:center">
+        这不是概念演示——<strong style="color:#A855F7">已经建成、持续运行</strong>的知识底座系统
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
-            <h3 style="color:#F59E0B;font-size:14px;margin-bottom:8px">运行参数</h3>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>输入：星恒电源 50 家股东 JSON</li>
-              <li>输出：A4 股权穿透图 (180dpi)</li>
-              <li>分类：A组(10家) / B组(40家)</li>
-              <li>校验：持股比例总和 = 100%</li>
-              <li>预计耗时：3-5 秒</li>
-            </ul>
-          </div>
-          <button class="demo-run-btn" data-demo="equity_chart" style="margin-top:12px;background:linear-gradient(135deg,#F59E0B,#D97706)">
-            ▶ 自动生成股权图
-          </button>
+      <div data-unroll-delay="250" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px;position:relative;padding:0 4px">
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EF4444;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.5)">1</span>
+          <div style="font-size:28px;margin-bottom:8px">📄</div>
+          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">PDF → TXT</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">pdftotext + PyMuPDF<br>双引擎提取</p>
         </div>
-        <div class="demo-output" data-demo="equity_chart" style="display:none"></div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5);color:#000">2</span>
+          <div style="font-size:28px;margin-bottom:8px">🧠</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">LLM 核心提取</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体/指标/关系/逻辑链<br>3 并发审查</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #38bdf8;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#38bdf8;box-shadow:0 0 12px rgba(56,189,248,0.5);color:#000">3</span>
+          <div style="font-size:28px;margin-bottom:8px">📋</div>
+          <h3 style="font-size:14px;color:#38bdf8;margin-bottom:6px">中间 JSON</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">术语统一 + 错别字修正<br>512-1024 token 分块</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">4</span>
+          <div style="font-size:28px;margin-bottom:8px">🗄️</div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">PostgreSQL 入库</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">entity / indicator / chunk<br>relation / logic 7 表</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #EC4899;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.5)">5</span>
+          <div style="font-size:28px;margin-bottom:8px">🔢</div>
+          <h3 style="font-size:14px;color:#EC4899;margin-bottom:6px">BGE-M3 向量化</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">本地 MLX 推理<br>Qdrant 3 集合入库</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5);color:#000">6</span>
+          <div style="font-size:28px;margin-bottom:8px">✅</div>
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">质量门控</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">5 层审计：Schema → Wiki<br>全链路质量保障</p>
+        </div>
+
+        <div class="pipeline-connector"></div>
+
+        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative;grid-column:span 1">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5);color:#000">7</span>
+          <div style="font-size:28px;margin-bottom:8px">📚</div>
+          <h3 style="font-size:14px;color:#00D4FF;margin-bottom:6px">Wiki 生成</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">实体 1055 + 框架 190<br>指标 3279 + 逻辑链 988</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:24px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted);margin:0">7 步全流程，每步都经过验证。下一页看<strong style="color:#22C55E">产出物</strong>——LLM Wiki 知识底座。</p>
       </div>
     </div>
 
-    <!-- Slide 3：Demo 2 — 国企公文排版 -->
+    <!-- Slide 2B：LLM Wiki · 投资研究的知识底座 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#EC4899;margin-bottom:8px">📤 Demo 2 · 国企公文排版生成 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Report Agent：上传 Markdown 文件 → 公文编译工具 → DOCX 公文 + PNG 预览 · 现场展示秒级出文
+      <span class="split-continuation-badge">↑ 接上一页 · 7 步数据处理全链路</span>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px"🧬 LLM Wiki · 投资研究的知识底座</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:14px">
+        193 份深度研报完成入库——这是 Agent 做投资研究的<strong style="color:#22C55E">第一大信息来源</strong>
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #EC4899">
-            <h3 style="color:#EC4899;font-size:14px;margin-bottom:8px">操作步骤</h3>
-            <ol style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>拖拽 .md 文件到上传区（或点击选择）</li>
-              <li>后端自动调用编译脚本生成 DOCX</li>
-              <li>文档转换工具生成 PNG 预览图</li>
-              <li>预览图 + 下载链接实时回传投屏</li>
-              <li>格式：GB/T 9704-2012 国企公文标准</li>
-            </ol>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+        <div class="card popup-trigger" data-popup-title="🧬 知识图谱规模" style="padding:18px 16px;cursor:pointer;border-top:4px solid #22C55E;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🧬</div>
+          <strong style="font-size:15px;color:#22C55E">知识图谱规模</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">193 份研报 · 5,894 实体<br>11,075 关系 · 25 行业<br>🔍 点击查看行业分布</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">193 份深度研报 · 5,894 个实体 · 11,075 条关系 · 25 个行业</p>
+            <p style="font-size:13px;color:var(--text-secondary)">新能源电池 2,068 实体 / 电力设备 1,637 / 半导体 291 / 医药 251 / AI 131</p>
           </div>
-          <div class="demo-upload-zone" data-demo="soe_doc_upload">
-            <div class="demo-drop-area" style="border:2px dashed #1E3A6E;border-radius:10px;padding:20px;text-align:center;cursor:pointer;margin:12px 0">
-              <span style="font-size:28px;display:block;margin-bottom:6px">📁</span>
-              <p style="color:#8FA1CC;font-size:13px;margin:0">拖拽 .md 文件到此处<br><span style="font-size:11px;color:#8FA1CC88">或点击选择文件</span></p>
-              <input type="file" accept=".md,.txt" style="display:none">
+        </div>
+
+        <div class="card popup-trigger" data-popup-title="🔌 双引擎服务" style="padding:18px 16px;cursor:pointer;border-top:4px solid #00D4FF;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🔌</div>
+          <strong style="font-size:15px;color:#00D4FF">双引擎服务</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">静态 Wiki + API 检索<br>Qdrant 向量库 &gt;95% 命中率<br>🔍 点击查看详情</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">静态 Wiki：localhost:19000（对外知识门户）</p>
+            <p style="font-size:14px;line-height:1.7">API 服务：localhost:19001（Agent 检索接口）</p>
+            <p style="font-size:14px;line-height:1.7">Qdrant 向量库：语义检索命中率 &gt;95%</p>
+          </div>
+        </div>
+
+        <div class="card popup-trigger" data-popup-title="🤝 协同机制" style="padding:18px 16px;cursor:pointer;border-top:4px solid #A855F7;text-align:center">
+          <div style="font-size:32px;margin-bottom:8px">🤝</div>
+          <strong style="font-size:15px;color:#A855F7">协同机制</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 0 0;line-height:1.5">data 清洗 + 超级单体智能体 调度<br>5 层质量审计 → 批次入库<br>🔍 点击查看流程</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:14px;line-height:1.7">超级单体智能体 准备 PDF → data 运行 clean_v2.sh（7 步全流程）→ 超级单体智能体 5 层质量审计 → 下一批次。193 份深度研报已完成入库，覆盖 25 个行业。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-success" style="font-size:14px;max-width:860px;margin:0 auto">
+        <strong>📌 为什么这是"底座"？</strong>Agent 做投资研究时，Wiki 是<strong style="color:#22C55E">第一大信息来源</strong>——检索命中率 &gt;95%，响应 &lt;0.5s。每次项目结束后自动入库，知识资产持续沉淀。<strong style="color:#F59E0B">行业深度来自积累，不来自通用搜索。</strong>
+      </div>
+    </div>
+
+<!-- Slide 3：Demo 2A — V3 Work Stream 架构全览 -->
+    <div class="slide">
+      <h2 style="font-size:22px;color:#EF4444;margin-bottom:2px;text-align:center">🔴 Demo 2A · 先看看这套"看起来很严谨"的架构</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-align:center">
+        4 Phase 流水线 × 9 步质控链 · 64K 行 Python · 42 个模块 · 这是真实在跑的 V3 系统
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px">
+
+        <!-- 左：4 Phase 卡片概览 -->
+        <div>
+          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📐 4 Phase 流水线（单向，无反馈回路）</h3>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8;font-size:14px">
+              <strong style="color:#38bdf8">Phase 0 · 识别与分派</strong>
+              <span style="color:var(--text-secondary)">— 判断任务类型（尽调/研究/行业）→ 识别公司类型 → 选择数据源</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;font-size:14px">
+              <strong style="color:#F59E0B">Phase 1 · 并行数据采集</strong>
+              <span style="color:var(--text-secondary)">— 4 个 Work Stream 同时启动：财务 / 商业 / 法务 / 运营，各自调用不同数据源</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;font-size:14px">
+              <strong style="color:#A855F7">Phase 2 · 并行单流分析</strong>
+              <span style="color:var(--text-secondary)">— 每个 WS 独立推理：财务评分 / 竞争格局 / 合规风险 / 运营风险</span>
+            </div>
+            <div style="text-align:center;color:#8FA1CC;font-size:9px">↓</div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899;font-size:14px">
+              <strong style="color:#EC4899">Phase 3+4 · 交叉合成 + 报告生成</strong>
+              <span style="color:var(--text-secondary)">— 串行等待全部上游 → 估值/风险/协同 3 项交叉 → 按框架整合输出报告</span>
             </div>
           </div>
         </div>
-        <div class="demo-output" data-demo="soe_doc_upload" style="display:none"></div>
-      </div>
-    </div>
 
-    <!-- Slide 4：Demo 3 — Hermes 智能问答 -->
-    <div class="slide">
-      <h2 style="font-size:30px;color:#22C55E;margin-bottom:8px">🧠 Demo 3 · Hermes 智能问答 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:10px">
-        Hermes Agent：国产大模型 + DeepSeek V4 Flash → 自动分析投资标的风险
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <!-- 右：质控链 + 系统指标（简化） -->
         <div>
-          <div class="card" style="padding:14px;border-left:3px solid #22C55E">
-            <h3 style="color:#22C55E;font-size:14px;margin-bottom:8px">问答内容</h3>
-            <div style="background:#0A0E27;border:1px solid #1E3A6E;border-radius:6px;padding:10px;font-size:12px;color:#E8EEFF;font-family:monospace;margin-bottom:10px">
-              请用三句话分析星恒电源 13.73% 收购的估值风险
+          <div class="card" style="padding:12px;border-top:3px solid #EF4444;margin-bottom:8px">
+            <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">🔍 每个 Work Stream 内部：9 步质控链</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.55">
+              <strong style="color:#EF4444">数据层：</strong>质量过滤 → 逻辑推理 → 覆盖率检查<br>
+              <strong style="color:#F59E0B">验证层：</strong>一致性验证 → Challenge A 评分 → 子框架覆盖度<br>
+              <strong style="color:#A855F7">输出层：</strong>关键发现提取 → 非上市对标 → 综合置信度
             </div>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>引擎：国产 SenseNova 大模型</li>
-              <li>模式：one-shot 单轮问答</li>
-              <li>预计耗时：&lt; 10 秒</li>
-            </ul>
           </div>
-          <button class="demo-run-btn" data-demo="hermes_query" style="margin-top:12px;background:linear-gradient(135deg,#22C55E,#16A34A)">
-            ▶ 向 Hermes 提问
-          </button>
+
+          <div class="card" style="padding:12px;border-left:3px solid #F59E0B;margin-bottom:8px">
+            <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">⚙️ 运行数据</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.6">
+              64K+ 行 Python · 42 个模块 · 全流程约 16 分钟<br>
+              Challenge A 通过率 &gt;90% · 报告完整度 &gt;95%
+            </div>
+          </div>
+
+          <div style="text-align:center;padding:10px;background:rgba(239,68,68,0.06);border-radius:6px;border:1px dashed #EF4444">
+            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">
+              <strong style="color:#EF4444">看起来很严谨，对吧？</strong><br>
+              <span style="font-size:14px">但问题就出在<strong style="color:#F59E0B">"严谨"</strong>上——Phase 间断层、质控是外挂的、Agent 不知道"为什么被打回"。<br>下一页看：<strong style="color:#22C55E">怎么用 1 个方法文件反超 64K 行代码。</strong></span>
+            </p>
+          </div>
         </div>
-        <div class="demo-output" data-demo="hermes_query" style="display:none"></div>
       </div>
     </div>
 
-    <!-- Slide 5：Demo 4 — 全流程回放 -->
+    <!-- Slide 4：Demo 2B — 严谨 ≠ 好用 + hv-analysis 进化 + 星恒电源验证 -->
     <div class="slide">
-      <h2 style="font-size:30px;color:#00D4FF;margin-bottom:8px">🎬 Demo 4 · 90 分钟全流程回放 <span style="font-size:13px;background:#22C55E;color:#000;padding:2px 8px;border-radius:4px;vertical-align:middle">必演</span></h2>
-      <p style="color:var(--text-secondary);font-size:13px;margin-bottom:6px">
-        星恒电源 13.73% 收购尽调 · 5 个 Agent 协同 · 完整时间线
+      <h2 style="font-size:22px;color:#22C55E;margin-bottom:2px;text-align:center">🟢 Demo 2B · 但是——严谨 ≠ 好用</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;text-align:center">
+        上一页展示了 V3 的<strong style="color:#EF4444">全部架构细节</strong>。下面看问题出在哪，以及怎么用<strong style="color:#22C55E">1 个方法文件</strong>反超——并在<strong style="color:#00D4FF">星恒电源</strong>项目上验证。
       </p>
-      <span class="demo-prerecorded-badge" style="margin-bottom:10px">预录回放 · 约 2 分钟</span>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div class="card" style="padding:14px;border-left:3px solid #00D4FF">
-            <h3 style="color:#00D4FF;font-size:14px;margin-bottom:8px">时间线概要</h3>
-            <ul style="color:var(--text-secondary);font-size:12px;line-height:1.8;margin:0;padding-left:16px">
-              <li>00:00-00:03 main 接收指令 + 任务拆解</li>
-              <li>00:05-00:35 data/research/project 并行</li>
-              <li>00:35-00:55 Claude Code 纵深 + 估值拆解</li>
-              <li>00:55-01:15 report 排版 + 交付决策</li>
-            </ul>
-          </div>
-          <button class="demo-run-btn" data-demo="full_pipeline" style="margin-top:12px;background:linear-gradient(135deg,#00D4FF,#0090B8)">
-            ▶ 播放全流程回放
-          </button>
+      <!-- 7 维雷达图 -->
+      <div class="radar-chart" style="margin-bottom:20px"
+        data-radar-labels='["代码量","架构","质控","深度","幻觉率","估值","输出质量"]'
+        data-radar-values='[15,15,25,30,15,35,15]'
+        data-radar-values2='[95,95,90,85,97,90,95]'
+        data-radar-max="100">
+        <div class="radar-legend">
+          <div class="radar-legend-item"><span class="radar-legend-circle"></span> V3 架构</div>
+          <div class="radar-legend-item"><span class="radar-legend-circle-2"></span> hv-analysis</div>
         </div>
-        <div class="demo-output" data-demo="full_pipeline" style="display:none"></div>
+      </div>
+
+      <!-- 上：3 阶段进化 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:6px">
+        <!-- 阶段 1：V3 搭建与缺陷 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #EF4444;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 阶段 1：V3 工作流搭建</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · research Agent 搭建 4 Phase 流水线<br>
+              · 53 个 Python 文件 · ~64K 行代码<br>
+              · 19 固定维度 · Challenge Gate A/B 质控<br>
+              · 40+ 版本迭代（V3.19 → V3.41.11）<br>
+              <strong style="color:#EF4444">问题：5 类 bug 反复修复 20+ 次</strong>
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
+            <h3 style="font-size:14px;color:#F59E0B;margin-bottom:3px">🟡 智能编程助手 诊断 3 大缺陷</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              ① <strong>Phase 间断层</strong>：Phase 1 推理结果被 Phase 2 忽略，无法回退补充检索<br>
+              ② <strong>外挂式质控</strong>：9 步 QC 外部执行，Agent 不知道「为什么被打回」<br>
+              ③ <strong>交叉合成太浅</strong>：仅 3 项交叉，WS1 结论不触发 WS2 重新审视
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 2：hv-analysis 升级 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #22C55E;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">🟢 阶段 2：hv-analysis 升级</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · <strong>智能编程助手 主导</strong>：识别 V3 模式缺陷 → 提出方法论替代方案<br>
+              · 1 个 SKILL.md（2401 行）替代 64K 行代码<br>
+              · 4 Phase 自适应闭环（每章 Q1-Q4 自检 → 即时补检索）<br>
+              · S1-S7 警醒信号（决策偏见检测）<br>
+              · cite-then-answer 幻觉率 15% → &lt;3%<br>
+              <strong style="color:#22C55E">一天内完成认知跃迁</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 阶段 3：方法论验证 -->
+        <div>
+          <div class="card" style="padding:10px;border-top:3px solid #00D4FF;margin-bottom:6px">
+            <h3 style="font-size:13px;color:#00D4FF;margin-bottom:4px">🔵 阶段 3：星恒项目方法论验证</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              · <strong>项目</strong>：天保-星恒电源尽调分析<br>
+              · 16 份报告 · 主报告 ~64,000 字<br>
+              · 多源数据交叉验证（PS/PB/PE 三方法）<br>
+              · 四层护城河侵蚀追踪（FY2020-FY2025）<br>
+              · 6 家公司 31 个法律问题核查<br>
+              · 第 02 章已详细展开项目全貌
+            </div>
+          </div>
+          <div class="card" style="padding:10px;border-left:3px solid #A855F7">
+            <h3 style="font-size:14px;color:#A855F7;margin-bottom:3px">📊 方法论改进效果</h3>
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
+              旧方法（V3）：报告质量得分 75.5/100，幻觉率 ~15%<br>
+              新方法（hv-analysis）：内嵌自检替代外部门禁<br>
+              cite-then-answer 防线：幻觉率降至 &lt;3%<br>
+              <strong style="color:#A855F7">结论：方法文件的改进直接提升报告质量</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 下：7 维对比表 -->
+      <div style="overflow-x:auto;margin-bottom:6px">
+        <table style="width:100%;font-size:14px;border-collapse:collapse;text-align:center">
+          <thead>
+            <tr style="background:rgba(239,68,68,0.1)">
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);width:14%">对比维度</th>
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);color:#EF4444;width:43%">V3 旧范式</th>
+              <th style="padding:5px;border:1px solid rgba(255,255,255,0.1);color:#22C55E;width:43%">hv-analysis 新范式</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">代码量</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">64K+ 行 Python · 42+ 模块</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">0 行代码 · 1 个 SKILL.md（2401 行）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">架构</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">Phase 1/2 并行，Phase 3 串行等待全部上游，无反馈回路</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">4 Phase 自适应闭环，每章 Q1-Q4 自检 → 即时补检索</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">质控</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">9 步 QC 链外挂式门禁，Challenge A 4 维 ≥40 / B 7 维 ≥75</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">内嵌自检 Q1-Q4（写时自查）+ S1-S7 警醒信号（决策偏见检测）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">深度</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">4 WS 独立分析，但交叉合成仅 3 项，缺产业链纵深</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">21-25 章自适应模板，纵+横交叉洞察 7 章，含产业链全景</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">幻觉率</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">~15%（年份错配/数字迁移）</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">&lt;3%（cite-then-answer + 双重验证）</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">估值</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">单一 DCF，无模拟</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">Monte Carlo 10000 次 + IRR 双模型交叉</td>
+            </tr>
+            <tr>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08)">输出质量</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#EF4444">~8,000 字，需人工大量补充</td>
+              <td style="padding:4px;border:1px solid rgba(255,255,255,0.08);color:#22C55E">21,392 字，信息密度 2.6x，可独立交付</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-warning" style="font-size:13px">
+        <strong>📌 核心公式：原则 > 清单，自检 > 门禁。</strong>64K 行代码实现的工程自动化，被 1 个方法文件反超——<strong style="color:#22C55E">最高杠杆的改进点不是写更多代码，而是给 Agent 一个好方法</strong>。research Agent 做广度（搭建工作流+执行研究），智能编程助手 做深度（识别架构缺陷+设计方法论+验证估值模型）。
+      </div>
+    </div>
+
+    <!-- Slide 5：Demo 3 — 项目管理与报告生成：project + report 协同 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#EC4899;margin-bottom:4px">📋 Demo 3 · 项目管理与报告生成：project + report 协同</h2>
+      <p style="color:var(--text-secondary);font-size:14px;margin-bottom:8px">
+        project Agent 跟踪 28 个项目全生命周期 · report Agent 一键生成 Word/PPT/PDF 专业文档
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px">
+        <!-- 左侧：项目管理系统 → popup triggers -->
+        <div>
+          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:8px">📊 project Agent · 项目全生命周期管理</h3>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="card popup-trigger" data-popup-title="📊 项目报告中心" style="padding:12px 14px;cursor:pointer;border-left:3px solid #00D4FF">
+              <strong style="font-size:14px;color:#00D4FF">项目报告中心</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">28 项目统一管理 · 卡片/列表双视图 · 全文搜索 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">项目报告中心（jinzhanxiang.github.io/tianbao-projects/）</p>
+                <p style="font-size:14px;line-height:1.7">卡片/列表双视图 · 分类筛选（储备/并购/汇报/知识图谱）· 全文搜索</p>
+                <p style="font-size:14px;line-height:1.7">28 个项目统一管理：7 核心 + 9 储备 + 7 工具 + 5 知识库</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-popup-title="🚀 一键部署流水线" style="padding:12px 14px;cursor:pointer;border-left:3px solid #22C55E">
+              <strong style="font-size:14px;color:#22C55E">一键部署流水线</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">research → project → git push → 3 在线站点 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">research 出报告 → sessions_send 通知 project → git push GitHub Pages</p>
+                <p style="font-size:14px;line-height:1.7">降级链：GitHub Pages → Vercel/Cloudflare → ngrok 临时隧道</p>
+                <p style="font-size:14px;line-height:1.7">3 个在线站点：天保项目中心 / 储备项目库 / 星恒报告</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-popup-title="📈 项目进度追踪" style="padding:12px 14px;cursor:pointer;border-left:3px solid #F59E0B">
+              <strong style="font-size:14px;color:#F59E0B">项目进度追踪</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">独立时间线 · 自动版本控制 · 报告链接直接分享 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">每个项目独立时间线页面（如星恒电源：5.12 方案到达 → 7.7 纳入储备库）</p>
+                <p style="font-size:14px;line-height:1.7">自动版本控制 · 报告链接直接分享同事</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：报告生成 → popup triggers -->
+        <div>
+          <h3 style="font-size:15px;color:#EC4899;margin-bottom:8px">📄 report Agent · 专业文档一键生成</h3>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div class="card popup-trigger" data-popup-title="📝 Word 文档生成" style="padding:12px 14px;cursor:pointer;border-left:3px solid #EC4899">
+              <strong style="font-size:14px;color:#EC4899">Word 文档生成</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">GB/T 9704-2012 国企公文标准 · 20类文档 · 34模板 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">C# .NET SOE 框架 · GB/T 9704-2012 国企公文标准</p>
+                <p style="font-size:14px;line-height:1.7">20 类文档 · 34 个 Markdown 模板</p>
+                <p style="font-size:14px;line-height:1.7">三会材料 / 请示汇报 / 分析报告 / 尽调报告 / 法律文件 / 估值报告</p>
+                <p style="font-size:14px;line-height:1.7">仿宋字体 · 标准页边距 · 红头文件格式</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-popup-title="📊 PPT 演示文稿生成" style="padding:12px 14px;cursor:pointer;border-left:3px solid #A855F7">
+              <strong style="font-size:14px;color:#A855F7">PPT 演示文稿生成</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">IR→PPTX 编译引擎 · 5套主题 · 14模板 · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">IR（中间表示）→ PPTX 编译引擎 · 84KB 主程序</p>
+                <p style="font-size:14px;line-height:1.7">5 套主题（国企公文/商务汇报/科技风格/简约现代/党建主题）</p>
+                <p style="font-size:14px;line-height:1.7">14 个 IR 模板 · 演进 8 个大版本（v3.7 → v11.1）</p>
+              </div>
+            </div>
+            <div class="card popup-trigger" data-popup-title="📦 其他输出格式" style="padding:12px 14px;cursor:pointer;border-left:3px solid #22C55E">
+              <strong style="font-size:14px;color:#22C55E">其他输出格式</strong>
+              <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">PDF · 思维导图 · 交互式 HTML · 🔍 点击展开</p>
+              <div class="popup-detail" style="display:none">
+                <p style="font-size:14px;line-height:1.7">PDF：Puppeteer Chrome-headless A4 渲染</p>
+                <p style="font-size:14px;line-height:1.7">思维导图：Markmap 自动生成（如星恒 v22 版 803KB）</p>
+                <p style="font-size:14px;line-height:1.7">交互式 HTML：带 SVG 图表 + Dark Mode + 响应式</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="font-size:13px">
+        <strong>📌 协同价值：</strong>research 产出分析 → report 排版为 Word/PPT → project 一键部署上线。从<strong style="color:#F59E0B">研究完成到报告可分享</strong>，全流程自动化。传统模式：研究 3 天 + 排版 2 天 + 部署半天。Agent 模式：研究 90 分钟 + 排版 3 分钟 + 部署 10 秒。
       </div>
     </div>
 
     <!-- Slide 6：演示总结 + 过渡 -->
     <div class="slide">
-      <div style="text-align:center;padding-top:6vh">
-        <h2 style="font-size:32px;color:#00D4FF;margin-bottom:16px">📊 演示总结</h2>
+      <div style="text-align:center;padding-top:4vh">
+        <h2 style="font-size:28px;color:#00D4FF;margin-bottom:10px">📊 演示总结 · 3 大 Demo 覆盖全协同链路</h2>
 
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:800px;margin:0 auto 20px">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:680px;margin:0 auto 16px">
+          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #A855F7">
+            <div style="font-size:28px;margin-bottom:4px">🗄️</div>
+            <div style="color:#A855F7;font-size:13px;font-weight:bold">Demo 1 · data+超级单体智能体</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">7 步清洗流水线<br>193 研报 · 5,894 实体<br>11,075 关系 · 25 行业</div>
+          </div>
           <div class="card" style="padding:14px;text-align:center;border-top:3px solid #F59E0B">
-            <div style="font-size:24px;margin-bottom:4px">📊</div>
-            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Project Agent</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">股权图 3-5s</div>
+            <div style="font-size:28px;margin-bottom:4px">🔬</div>
+            <div style="color:#F59E0B;font-size:13px;font-weight:bold">Demo 2 · research+CC</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">V3 64K 行→1 个方法文件<br>星恒电源 25 章 · 42 图表<br>幻觉率 15% → &lt;3%</div>
           </div>
           <div class="card" style="padding:14px;text-align:center;border-top:3px solid #EC4899">
-            <div style="font-size:24px;margin-bottom:4px">📄</div>
-            <div style="color:#EC4899;font-size:13px;font-weight:bold">Report Agent</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">公文排版 15-20s</div>
-          </div>
-          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #22C55E">
-            <div style="font-size:24px;margin-bottom:4px">🧠</div>
-            <div style="color:#22C55E;font-size:13px;font-weight:bold">Hermes</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">智能问答 &lt;10s</div>
-          </div>
-          <div class="card" style="padding:14px;text-align:center;border-top:3px solid #00D4FF">
-            <div style="font-size:24px;margin-bottom:4px">🎬</div>
-            <div style="color:#00D4FF;font-size:13px;font-weight:bold">五Agent协同</div>
-            <div style="color:#8FA1CC;font-size:11px;margin-top:4px">90min → 2min 回放</div>
+            <div style="font-size:28px;margin-bottom:4px">📋</div>
+            <div style="color:#EC4899;font-size:13px;font-weight:bold">Demo 3 · project+report</div>
+            <div style="color:#8FA1CC;font-size:13px;margin-top:4px;line-height:1.5">28 项目仪表盘<br>Word 20 类型 · 34 模板<br>PPT IR→PPTX 5 主题</div>
           </div>
         </div>
 
-        <div class="story-card" style="max-width:700px;margin:0 auto 20px">
+        <div class="story-card" style="max-width:680px;margin:0 auto 16px">
           <p class="story-meta">演示核心信息</p>
-          <p style="font-size:16px;line-height:1.7">
-            以上 4 个演示全部由<strong style="color:#22C55E">真实 Agent 脚本</strong>驱动，不是模拟动画。<br>
-            每个按钮背后都是命令行里跑过的同一个脚本——<strong style="color:#00D4FF">只不过现在，它们直接跑在演讲屏上</strong>。
+          <p style="font-size:14px;line-height:1.7">
+            以上 3 个演示覆盖了<strong style="color:#22C55E">5 Agent × 2 助手</strong>的全部协同链路——从数据底座到投研分析到项目交付。<br>
+            每个演示都是<strong style="color:#00D4FF">真实生产系统</strong>——不是原型，是已经在跑的基础设施。<br>
+            <span style="font-size:14px;color:#F59E0B">第 04 章大家提出的需求，如果预设 Demo 未能覆盖——演示结束后单独为你跑一遍。</span>
           </p>
         </div>
 
-        <p style="font-size:14px;color:var(--text-muted);margin-top:16px">
-          演示环节到此结束。接下来第 07 章——<strong style="color:#A855F7">下一步做什么？</strong>你的行动清单。
+        <p style="font-size:13px;color:var(--text-muted)">
+          演示环节到此结束。接下来第 07 章——<strong style="color:#A855F7">下一步做什么？</strong>花 30 秒，找到你的第一个任务。
         </p>
       </div>
     </div>
@@ -227,5 +533,72 @@
   <script src="../assets/js/main.js?v=20260705-fix"></script>
   <script src="../assets/js/demo_v2.js?v=20260705-v2"></script>
   <script src="../assets/js/effects.js?v=20260705-v2"></script>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+})();
+</script>
+
 </body>
 </html>

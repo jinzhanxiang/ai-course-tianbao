@@ -7,393 +7,683 @@
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
+
 </head>
-<body class="chapter-page sci-fi-bg">
+<body class="chapter-page"><script>
+(function() {
+  function updateProgress() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var bar = document.getElementById('scrollProgress');
+    if (bar) bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();})();
+</script>
+
   <main class="main-stage">
 
-    <!-- Slide 1：章节封面 -->
+    <!-- Slide 1：章节封面 — 结论前置（真实数据：星恒项目专题会汇报 2026-06-16） -->
     <div class="slide active">
-      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
-        <h1 style="font-size:56px;color:#ec4899;margin-bottom:8px">🔬 第 02 章 · 你们做了什么？</h1>
-        <h2 style="font-size:28px;color:var(--text-secondary);font-weight:normal;margin-top:8px">
-          星恒电源 13.73% 收购尽调 · 一个项目的完整叙事
+      <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:3vh">
+        <h1 style="font-size:48px;color:#ec4899;margin-bottom:12px" class="glow-text">🔬 第 02 章 · 这套系统做成了什么？</h1>
+
+<h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px"
+          天保控股 × 星恒电源：一个人 + 5 个 Agent，90 分钟从指令到初稿
         </h2>
-        <p style="font-size:14px;color:var(--text-muted);margin-top:32px;max-width:800px;margin-left:auto;margin-right:auto">
-          第 01 章回答了「这跟我有什么关系」。本章用<strong style="color:#ec4899">一个真实项目</strong>展示：5 个智能体 + 90 分钟 = 一份专业尽调报告。这不是概念验证，是已经发生的实战记录。
-        </p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:8px"><strong style="color:#ec4899">「你们」= 这套 Agent 系统 + 指挥它的人。</strong>不是某个团队，不是某个厂商——是你面前的这套工具链和它的使用者。</p>
       </header>
-    </div>
 
-    <!-- Slide 2：项目全貌 KPI -->
-    <div class="slide">
-      <h2 class="slide-title" style="margin-top:10px">🚀 一个项目看全貌 · 星恒电源 13.73% 收购尽调</h2>
-      <p class="slide-subtitle">5 Agent 协同 × 90 分钟 × 272KB 主报告 + 9 附件 — 本章所有数据来自真实运行记录</p>
+      <div style="max-width:760px;margin:0 auto;text-align:center">
+        <div class="card" style="padding:20px;background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(34,197,94,0.04));border:2px solid #EF444444;border-radius:12px;margin-bottom:16px">
+          <div style="font-size:14px;color:var(--text-secondary);margin-bottom:8px">天保控股拟收购星恒电源 13.73% 老股 · 项目专班 + 国信证券 + 允公律所</div>
+          <div style="font-size:36px;font-weight:700;color:#EF4444;margin-bottom:4px">不建议收购</div>
+          <div style="font-size:14px;color:var(--text-secondary);line-height:1.6">
+            收购对价 5 亿（PS 1.0x，整体估值 36.4 亿）· 独立估值期望约 2.72 亿 → <strong style="color:#EF4444">期望回报 -45.6%</strong>
+          </div>
+        </div>
 
-      <div class="kpi-row" style="margin:24px 0">
-        <div class="kpi-card">
-          <div class="kpi-num">90<span style="font-size:22px">min</span></div>
-          <div class="kpi-label">一份完整尽调报告</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
+          <div class="card" style="padding:14px;border-top:3px solid #EF4444;text-align:center">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px">传统方式</div>
+            <div style="font-size:20px;font-weight:700;color:#EF4444">2-3 人 × 2 周</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin-top:4px">手工搜集数据 + 手动建模型 + 人工排版 · 信息维度受限</div>
+          </div>
+          <div class="card" style="padding:14px;border-top:3px solid #22C55E;text-align:center">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px">5 Agent 协同 + 项目专班决策</div>
+            <div style="font-size:20px;font-weight:700;color:#22C55E">90 分钟出初稿</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin-top:4px">AI 做基础工作 → 人做判断 → 30+ 次迭代打磨 → 16 份报告体系</div>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-num">5</div>
-          <div class="kpi-label">Agent 并行协同</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-num">67<span style="font-size:22px">页</span></div>
-          <div class="kpi-label">尽调复核意见</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-num">30<span style="font-size:22px">+</span></div>
-          <div class="kpi-label">次迭代打磨</div>
-        </div>
-      </div>
 
-      <div class="alert alert-info" style="max-width:900px;margin:0 auto;font-size:14px">
-        <strong>项目背景：</strong>某国企拟收购星恒电源 13.73% 股权。标的为动力电池企业，年营收 ~30 亿。传统尽调需 2-3 人 × 2 周。实际用 5 Agent 协同体系，<strong style="color:#22C55E">90 分钟出初稿，30+ 次迭代至最终交付</strong>。
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;max-width:900px;margin-left:auto;margin-right:auto">
-        <div class="card" style="padding:12px;border-left:3px solid #22C55E;font-size:12px">
-          <strong style="color:#22C55E">✅ 核心结论：</strong>Monte Carlo 10000 次模拟 → 估值 36.4 亿 → 较收购价亏损约 68% → <strong style="color:#EF4444">不建议收购</strong>
-        </div>
-        <div class="card" style="padding:12px;border-left:3px solid #38bdf8;font-size:12px">
-          <strong style="color:#38bdf8">📎 在线可查：</strong><code style="font-size:11px">jinzhanxiang.github.io/xingheng-report/</code> — 桌面版+手机版，完整迭代链路可追溯
-        </div>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:10px">
+          第 01 章回答了「这跟我有什么关系」。本章用<strong style="color:#ec4899">天保控股星恒电源尽调项目</strong>的真实过程展示：AI 不是替代判断，而是<strong style="color:#22C55E">把专业判断建立在更完整的数据和更严谨的验证之上</strong>。所有数据均来自实际交付件，报告在线可查。
+        </p>
       </div>
     </div>
 
-    <!-- Slide 3：四个 Agent 各司其职 -->
+    <!-- Slide 2：四个 Agent 各司其职（真实交付件映射 + 三类角色受益标注） -->
     <div class="slide">
       <h2 class="slide-title">📐 一个项目，四个 Agent 各司其职</h2>
-      <p class="slide-subtitle">不是「一个 AI 干所有事」，而是专业分工、并行协同</p>
+      <p class="slide-subtitle">不是「一个 AI 干所有事」，而是专业分工、并行协同——每个 Agent 对应真实交付件，<strong style="color:#22C55E">三类角色各取所需</strong></p>
 
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1100px;margin-left:auto;margin-right:auto;margin-top:16px">
+      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1100px;margin-left:auto;margin-right:auto;margin-top:16px">
         <div class="card" style="padding:16px;border-top:3px solid #F59E0B;text-align:center">
           <div style="font-size:28px;margin-bottom:6px">🔬</div>
-          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">research + Claude Code</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>行业+财务+估值</strong><br>
-            动力电池产业链深度研究<br>
-            Monte Carlo 10000 次模拟<br>
-            历史基准 IRR 模型<br>
-            <span style="color:#F59E0B">大幅压缩基础研究时间，研究员聚焦判断</span>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">research + 智能编程助手</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0 0 10px 0">
+            <strong>行业研究 + 估值分析</strong><br>
+            7 维度产业链搜索<br>
+            PS 法概率加权估值<br>
+            四层护城河侵蚀追踪<br>
+            20 年技术进化史梳理<br>
+            <span style="color:#F59E0B">→ 附件 C-I + 主报告估值章节</span>
           </p>
+          <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;font-size:9px">
+            <span style="background:rgba(34,197,94,0.15);color:#22C55E;padding:2px 6px;border-radius:3px">📈 前台投资岗</span>
+          </div>
         </div>
         <div class="card" style="padding:16px;border-top:3px solid #A855F7;text-align:center">
           <div style="font-size:28px;margin-bottom:6px">🗄️</div>
-          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">data + Hermes</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>行业数据清洗+入库</strong><br>
-            50 家股东信息提取<br>
-            动力电池产业链实体入库<br>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px">data + 超级单体智能体</h3>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0 0 10px 0">
+            <strong>数据清洗 + 交叉验证</strong><br>
+            10 项核心主张多源验证<br>
+            50+ 家股东信息提取<br>
+            审计数据 vs 管理口径比对<br>
             竞品研报 OCR → 结构化<br>
-            <span style="color:#A855F7">+98 实体，下次同类项目直接检索</span>
+            <span style="color:#A855F7">→ marketshare_verify + claims_verification</span>
           </p>
+          <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;font-size:9px">
+            <span style="background:rgba(34,197,94,0.15);color:#22C55E;padding:2px 6px;border-radius:3px">📈 前台投资岗</span>
+            <span style="background:rgba(168,85,247,0.15);color:#A855F7;padding:2px 6px;border-radius:3px">📋 行政支持岗</span>
+          </div>
         </div>
         <div class="card" style="padding:16px;border-top:3px solid #38bdf8;text-align:center">
           <div style="font-size:28px;margin-bottom:6px">📋</div>
           <h3 style="font-size:15px;color:#38bdf8;margin-bottom:8px">project</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>全流程资料+线上部署</strong><br>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0 0 10px 0">
+            <strong>全流程管理 + 线上部署</strong><br>
             尽调底稿集中管理<br>
-            项目节点跟踪+版本控制<br>
+            项目时间线自动追踪<br>
+            专题会汇报稿版本控制<br>
             GitHub Pages 一键部署<br>
-            <span style="color:#38bdf8">报告链接直接发同事</span>
+            <span style="color:#38bdf8">→ timeline.html + 报告目录</span>
           </p>
+          <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;font-size:9px">
+            <span style="background:rgba(245,158,11,0.15);color:#F59E0B;padding:2px 6px;border-radius:3px">👔 管理层</span>
+            <span style="background:rgba(168,85,247,0.15);color:#A855F7;padding:2px 6px;border-radius:3px">📋 行政支持岗</span>
+          </div>
         </div>
         <div class="card" style="padding:16px;border-top:3px solid #EC4899;text-align:center">
           <div style="font-size:28px;margin-bottom:6px">📄</div>
           <h3 style="font-size:15px;color:#EC4899;margin-bottom:8px">report</h3>
-          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
-            <strong>80 页 Word + PPT 展示</strong><br>
-            国企公文标准排版<br>
-            股权穿透图自动生成<br>
-            关键数据可视化图表<br>
-            <span style="color:#EC4899">大幅减少排版时间，快速生成规范文档</span>
+          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6;margin:0 0 10px 0">
+            <strong>报告生成 + 可视化</strong><br>
+            国企公文标准 HTML 排版<br>
+            可比公司估值对比表<br>
+            产业链结构图自动生成<br>
+            17 桌面版 + 17 移动版<br>
+            <span style="color:#EC4899">→ 主报告 + meeting_briefing + 12 附件</span>
           </p>
+          <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;font-size:9px">
+            <span style="background:rgba(245,158,11,0.15);color:#F59E0B;padding:2px 6px;border-radius:3px">👔 管理层</span>
+            <span style="background:rgba(168,85,247,0.15);color:#A855F7;padding:2px 6px;border-radius:3px">📋 行政支持岗</span>
+          </div>
         </div>
       </div>
 
       <div style="margin-top:16px;padding:14px 18px;background:linear-gradient(90deg,rgba(6,182,212,0.06),rgba(168,85,247,0.06));border-radius:8px;text-align:center">
         <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.8">
-          <strong style="color:#06b6d4">📐 一个任务怎么流转？</strong><br>
-          <span style="font-family:monospace;font-size:12px">
-            用户指令 → <span style="color:#22C55E">main 拆解为 4 个子任务</span> →
+          <strong style="color:#06b6d4">📐 真实任务流转</strong><br>
+          <span style="font-family:monospace;font-size:14px">
+            专班指令「做星恒尽调」→ <span style="color:#22C55E">main 拆解为行业/财务/法律/估值 4 条线</span> →
             <span style="color:#F59E0B">research + data</span> 并行启动 →
-            <span style="color:#38bdf8">project</span> 跟踪进度 →
-            <span style="color:#A855F7">Claude Code</span> 纵深估值 →
+            <span style="color:#38bdf8">project</span> 跟踪节点 →
+            <span style="color:#A855F7">智能编程助手</span> 纵深估值（PS/PB/PE 三方法交叉验证）→
             <span style="color:#EC4899">report</span> 排版输出 →
-            90 分钟交付 80 页成稿
+            90 分钟初稿 → 30+ 次迭代 → 2026-06-22 交付第 6 版
           </span>
         </p>
       </div>
     </div>
 
-    <!-- Slide 4：四阶段迭代全记录 -->
+    <!-- Slide 3：project Agent 全流程项目管理 —— 时间线 + 16 份报告在线可查 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#8b5cf6;margin-bottom:10px">🔄 四个阶段 · 从启动到交付的完整链路</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">
-        智能体不是「一键出报告就完事了」——以下是<strong style="color:#8b5cf6">星恒电源项目</strong>从第一版到最终交付的真实路径。
-      </p>
+      <h2 class="slide-title" style="margin-top:10px">📋 project Agent · 星恒项目全流程管理</h2>
+      <p class="slide-subtitle">项目不是「做完一个报告就完了」——project Agent 管理了从立项到交付的<strong style="color:#38bdf8">完整 38 天生命周期</strong>，16 份报告全部在线可查</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-        <div class="card" style="padding:12px;border-left:4px solid #EF4444">
-          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 Phase 1 · 05.14 首次启动（前 4 轮系统校准）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>AI 做了什么：</strong>Research Agent 自动运行——Phase 0 本地文件消化 → Phase 1 纵向分析 → 多源数据检索 → LLM 生成初稿。<br>
-            <strong style="color:#F59E0B">校准期的发现：</strong>系统接口待配置、知识库结构待适配、异常处理机制待补充。<br>
-            <strong style="color:#F59E0B">重要发现：基于公开信息的营收高估约 100%</strong>
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(245,158,11,0.08);border-radius:4px;font-size:11px;color:#F59E0B">
-            <strong>💡 人的判断：</strong>拿到 v1 报告后，立即发现营收数字与其他尽调材料矛盾 → 触发审计数据修正流程。
-          </div>
-        </div>
-
-        <div class="card" style="padding:12px;border-left:4px solid #F59E0B">
-          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 Phase 2 · 05.15 审计突破 + 当日 8 轮迭代</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>AI 做了什么：</strong>修复 API Key → 搜索恢复 → 天眼查数据源集成。Claude Code 介入：基于审计报告重新建模。Monte Carlo 10000 次模拟 → P10/P50/P90 全分布。管理层声称交叉验证：发现预测偏差 -35%，产能规划高估 67%。<br>
-            <strong style="color:#F59E0B">关键突破：</strong>v1（公开数据）→ v2（审计数据），营收修正至准确值。
-          </div>
-        </div>
-
-        <div class="card" style="padding:12px;border-left:4px solid #38bdf8">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 Phase 3 · 06.11-12 dd1→dd11 质量打磨（11轮/15h）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>AI 做了什么：</strong>11 轮 data 质量迭代，每轮 Challenge A 数据完整性校验 + Challenge B 逻辑一致性门控。dd6 首次注入真实财务数据（营收 29.49 亿、净利润 2,163 万）。天眼查 v2：50 家股东信息提取。Hermes V0→V3：OCR 提取率 30%→90%+。
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(56,189,248,0.08);border-radius:4px;font-size:11px;color:#38bdf8">
-            <strong>💡 人的判断：</strong>每轮 dd 迭代后人工抽检关键数据点——发现 dd5 的产能数据与审计报告不一致 → 触发 dd6 全量校准。
-          </div>
-        </div>
-
-        <div class="card" style="padding:12px;border-left:4px solid #22C55E">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">🟢 Phase 4 · 06.20-22 Claude Code 纵深 + 交付部署</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong>AI 做了什么：</strong>Claude Code v1→v2→v3 纵深分析。17 家股东逐一穿透。Monte Carlo 10000 次模拟：P10/P50/P90 全分布估值。project Agent：GitHub Pages 一键部署。<br>
-            <strong>最终交付：272KB 主报告 + 9 附件 + 交互式 HTML</strong>
-          </div>
-          <div style="margin-top:6px;padding:6px 10px;background:rgba(34,197,94,0.08);border-radius:4px;font-size:11px;color:#22C55E">
-            <strong>💡 人的判断：</strong>最终投资决策（不建议收购，估值亏 68%）由投资团队做出——AI 提供数据和模型，人不做甩手掌柜。
-          </div>
-        </div>
+      <!-- 顶部：线上部署 URL 展示 -->
+      <div class="card" style="padding:10px 18px;background:linear-gradient(90deg,rgba(56,189,248,0.08),rgba(56,189,248,0.02));border:1px solid #38bdf844;border-radius:8px;margin-bottom:12px;text-align:center">
+        <span style="font-size:14px;color:var(--text-muted)">🔗 线上报告中心：</span>
+        <span style="font-family:monospace;font-size:14px;color:#38bdf8;font-weight:600">https://jinzhanxiang.github.io/xingheng-report/</span>
+        <span style="font-size:14px;color:var(--text-muted);margin-left:8px">（静态站点服务一键部署，project Agent 自动同步更新）</span>
       </div>
 
-      <div class="alert alert-success" style="margin-top:8px">
-        <p style="font-size:12px"><strong>📌 核心启示：</strong>AI 不是「一键出报告」，而是<strong style="color:#22C55E">人机协同的持续打磨</strong>。30+ 次迭代中，AI 负责基础工作（搜索/清洗/计算/排版），人负责专业判断（发现数据矛盾/验证假设/做最终决策）。<strong style="color:#F59E0B">每一次迭代，AI 都在积累记忆——下次同类项目直接复用。</strong></p>
-      </div>
-    </div>
+      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:12px;margin-bottom:10px">
 
-    <!-- Slide 5：26轮迭代可视化 + 3次突破 -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px">🧬 26 轮迭代精进：从启动到稳定交付</h2>
-      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:10px">
-        星恒项目 Research Agent 的<strong style="color:#F59E0B">真实迭代日志</strong>——前 4 轮系统校准，第 5 轮首次突破，累计 26 轮迭代至稳定交付。
-      </p>
-
-      <div style="margin-bottom:12px;padding:12px 16px;background:rgba(0,0,0,0.2);border-radius:8px">
-        <p style="font-size:11px;color:var(--text-muted);margin:0 0 8px 0;text-align:center">每次迭代 ≈ 一次完整流水线运行，彩色框 = 产出可用报告</p>
-        <div style="display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin-bottom:8px">
-          <span style="font-size:10px;color:var(--text-muted);margin-right:6px;align-self:center">05.14</span>
-          <span style="width:16px;height:16px;background:#EF4444;border-radius:3px;font-size:7px;color:#fff;display:flex;align-items:center;justify-content:center">1</span>
-          <span style="width:16px;height:16px;background:#EF4444;border-radius:3px;font-size:7px;color:#fff;display:flex;align-items:center;justify-content:center">2</span>
-          <span style="width:16px;height:16px;background:#EF4444;border-radius:3px;font-size:7px;color:#fff;display:flex;align-items:center;justify-content:center">3</span>
-          <span style="width:16px;height:16px;background:#EF4444;border-radius:3px;font-size:7px;color:#fff;display:flex;align-items:center;justify-content:center">4</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 4px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:2px;align-self:center">05.15</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold">5</span>
-          <span style="width:16px;height:16px;background:#F59E0B;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">6</span>
-          <span style="width:16px;height:16px;background:#F59E0B;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">7</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">8</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">9</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">10</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">11</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:7px;color:#000;display:flex;align-items:center;justify-content:center">12</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 4px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:2px;align-self:center">06.11-12</span>
-          <span style="width:16px;height:16px;background:#38bdf8;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">13</span>
-          <span style="width:16px;height:16px;background:#38bdf8;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">14</span>
-          <span style="width:16px;height:16px;background:#38bdf8;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">15</span>
-          <span style="width:16px;height:16px;background:#38bdf8;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">16</span>
-          <span style="width:16px;height:16px;background:#F59E0B;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">17</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold">18</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">19</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">20</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">21</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">22</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold">23</span>
-          <span style="font-size:10px;color:var(--text-muted);margin:0 4px;align-self:center">→</span>
-          <span style="font-size:10px;color:var(--text-muted);margin-right:2px;align-self:center">06.20-22</span>
-          <span style="width:16px;height:16px;background:#F59E0B;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">24</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center">25</span>
-          <span style="width:16px;height:16px;background:#22C55E;border-radius:3px;font-size:6px;color:#000;display:flex;align-items:center;justify-content:center;font-weight:bold">26</span>
-        </div>
-        <div style="display:flex;gap:12px;justify-content:center;font-size:10px">
-          <span><span style="display:inline-block;width:10px;height:10px;background:#EF4444;border-radius:2px;vertical-align:middle;margin-right:3px"></span>校准期</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#F59E0B;border-radius:2px;vertical-align:middle;margin-right:3px"></span>部分可用</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#38bdf8;border-radius:2px;vertical-align:middle;margin-right:3px"></span>DD 打磨</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#22C55E;border-radius:2px;vertical-align:middle;margin-right:3px"></span>可用/突破</span>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
-        <div class="card" style="padding:12px;border-top:3px solid #22C55E;text-align:center">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">🚀 第 1 次突破</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0"><strong>05.15 05:18</strong><br>审计数据首次接入成功<br>7 维度搜索全部返回结果<br><span style="color:#22C55E">从 0 → 1 的关键转折</span></p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #38bdf8;text-align:center">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">📊 第 1 次质量达标</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0"><strong>06.12 09:14（dd6）</strong><br>首次注入真实财务数据<br>营收 29.49 亿 / 净利 2,163 万<br><span style="color:#38bdf8">Challenge A+B 双通过</span></p>
-        </div>
-        <div class="card" style="padding:12px;border-top:3px solid #A855F7;text-align:center">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🏁 最终交付</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0"><strong>06.22 + 07.02</strong><br>Claude Code v3 产业链全景<br>GitHub Pages 线上部署<br><span style="color:#A855F7">272KB 主报告 + 9 附件</span></p>
-        </div>
-      </div>
-
-      <div class="alert alert-warning" style="font-size:12px">
-        <strong>📌 讲这个不是为了展示迭代过程——是为了让你放心：</strong>系统启动时有校准期是正常的，<strong style="color:#F59E0B">每次迭代都会沉淀为记忆和校验规则</strong>。第一个项目走过的弯路，第二个项目启动时自动跳过。AI 系统的真正价值不在「一步到位」，而在<strong style="color:#22C55E">「每一次迭代都在积累，越做越可靠」</strong>。
-      </div>
-    </div>
-
-    <!-- Slide 6：IRR 计算链 + 估值结论 -->
-    <div class="slide">
-      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:10px">💰 估值计算全链路 · 从数据到结论</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px">
-        这不是「AI 拍脑袋给了一个估值」——以下展示完整的计算链路，每一步都可追溯。
-      </p>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <!-- 左栏：时间线 -->
         <div>
-          <div class="card" style="padding:14px;border-top:3px solid #00D4FF;margin-bottom:12px">
-            <h3 style="font-size:14px;color:#00D4FF;margin-bottom:8px">📐 计算链路</h3>
-            <div style="font-size:11px;color:var(--text-secondary);line-height:1.8">
-              <div>1. 历史基准 IRR 模型（复合增长率 0-15% / 净利率 1.5-2.5% / PE 8-12倍）</div>
-              <div>2. → 全部组合深度亏损</div>
-              <div>3. → Monte Carlo 10000 次模拟</div>
-              <div>4. → P10/P50/P90 全分布</div>
-              <div>5. → <strong style="color:#EF4444">估值 36.4 亿，较收购价亏损约 68%</strong></div>
+          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:8px">⏱ 项目时间线（05.15 → 06.22）</h3>
+          <div class="reveal-stagger" style="display:flex;flex-direction:column;gap:5px;font-size:10.5px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>05.15</strong> 首版报告上线</span>
+              <span style="color:#38bdf8;font-size:14px">v1 · 3附件</span>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>05.15-06.10</strong> 连续迭代</span>
+              <span style="color:#F59E0B;font-size:14px">v2-v5 · 11轮data迭代</span>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>06.15</strong> ⭐ 专题会汇报</span>
+              <span style="color:#F59E0B;font-size:14px">meeting_briefing</span>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>06.21</strong> 产业链纵深分析</span>
+              <span style="color:#A855F7;font-size:14px">appendix_i 新增</span>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E;display:flex;justify-content:space-between;align-items:center">
+              <span><strong>06.22</strong> 第 6 版终稿交付</span>
+              <span style="color:#22C55E;font-size:14px">16 份报告完整体系</span>
             </div>
           </div>
-          <div class="card" style="padding:14px;border-left:3px solid #F59E0B">
-            <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🔑 关键迭代</h3>
-            <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-              <div>• v1 基于公开信息 → 营收高估约 100%（60-80 亿 → 实际 29.49 亿）</div>
-              <div>• v2 引入审计数据 → 营收修正至准确值</div>
-              <div>• v3 产业链上下游全景分析 → 竞争格局量化</div>
-            </div>
+          <div style="margin-top:8px;padding:6px 10px;background:rgba(56,189,248,0.06);border-radius:4px;font-size:14px;color:var(--text-secondary);line-height:1.5">
+            project Agent 具体干了什么：<strong style="color:#38bdf8">版本控制</strong>（6 版迭代追踪）· <strong style="color:#38bdf8">静态站点服务一键部署</strong>（report生成后自动发布）· <strong style="color:#38bdf8">项目台账管理</strong>（尽调底稿集中+待办追踪）· <strong style="color:#38bdf8">跨Agent协调</strong>（research/data/report 节点同步）
           </div>
         </div>
+
+        <!-- 右栏：16 份报告分类卡片 -->
         <div>
-          <div class="card" style="padding:14px;border-top:3px solid #EC4899;margin-bottom:12px">
-            <h3 style="font-size:14px;color:#EC4899;margin-bottom:8px">📊 数据交叉验证清单</h3>
-            <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-              <div>✅ 营收：审计报告 29.49 亿 vs 天眼查 29.5 亿（吻合）</div>
-              <div>✅ 净利：审计报告 2,163 万 vs 行业均值 ~2,000 万（吻合）</div>
-              <div>✅ 股东：天眼查 50 家 vs 工商登记 50 家（100% 覆盖）</div>
-              <div>✅ 竞品：宁德时代/比亚迪/中创新航 12 维度对标</div>
-              <div>⚠️ 产能规划：管理层声称 vs 实际产出偏差 67%</div>
+          <h3 style="font-size:13px;color:#EC4899;margin-bottom:8px">📑 16 份报告体系（真实交付件）</h3>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:9.5px">
+            <div class="card" style="padding:6px 8px;border-top:2px solid #F59E0B;background:rgba(245,158,11,0.04)">
+              <strong style="color:#F59E0B">📊 主报告</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">商业尽调分析报告<br>~64K字 · 7维度搜索</div>
+            </div>
+            <div class="card" style="padding:6px 8px;border-top:2px solid #EF4444;background:rgba(239,68,68,0.04)">
+              <strong style="color:#EF4444">⚖️ 法律 / 路径</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">附件A 法律尽调<br>附件B 收并购路径分析</div>
+            </div>
+            <div class="card" style="padding:6px 8px;border-top:2px solid #00D4FF;background:rgba(0,212,255,0.04)">
+              <strong style="color:#00D4FF">📈 竞争 / 财务</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">附件C 竞争力纵横<br>附件D 财务健康度纵横</div>
+            </div>
+            <div class="card" style="padding:6px 8px;border-top:2px solid #A855F7;background:rgba(168,85,247,0.04)">
+              <strong style="color:#A855F7">🏭 产业链 / 技术</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">附件E 前驱体体外循环<br>附件F 固相法技术研判</div>
+            </div>
+            <div class="card" style="padding:6px 8px;border-top:2px solid #22C55E;background:rgba(34,197,94,0.04)">
+              <strong style="color:#22C55E">📐 估值 / 产业链</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">附件H 估值交叉验证<br>附件I 产业链投资标的</div>
+            </div>
+            <div class="card" style="padding:6px 8px;border-top:2px solid #EC4899;background:rgba(236,72,153,0.04)">
+              <strong style="color:#EC4899">📋 专题会 / 验证</strong>
+              <div style="color:var(--text-secondary);line-height:1.5;margin-top:2px">meeting_briefing<br>3 份验证报告 + 方案分析</div>
             </div>
           </div>
-          <div class="alert alert-success" style="font-size:12px">
-            <strong>AI 辅助可大幅压缩计算时间。</strong>但估值假设的合理性仍需投资团队确认——AI 算数，人做判断。
+          <div style="margin-top:6px;padding:6px 10px;background:rgba(56,189,248,0.06);border-radius:4px;font-size:14px;color:var(--text-secondary);text-align:center">
+            <strong style="color:#38bdf8">project Agent 的交付不是「一个报告」</strong>——是 1 主报告 + 12 附件 + 3 验证报告，可追溯、可复用的完整知识资产
           </div>
         </div>
       </div>
+
+      <div class="alert alert-success" style="margin-top:8px;font-size:14px;max-width:1000px;margin-left:auto;margin-right:auto">
+        <strong>📌 项目管理的本质是信息管理。</strong>project Agent 不是「做项目的 AI」——它是<strong style="color:#22C55E">项目信息的中央枢纽</strong>：版本不乱、状态透明、报告在线、可追溯。项目专班、国信证券、允公律所三方的交付件全部由 project Agent 统一管理和部署。
+      </div>
     </div>
 
-    <!-- Slide 7：幻觉防御实录（来自星恒的真实坑） -->
+    <!-- Slide 4A：七步投资分析全链路 · 步骤 1-3（背景/流程展开） -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#EC4899;margin-bottom:10px">🛡️ 踩过的坑 · 幻觉防御实录</h2>
+      <h2 style="font-size:30px;color:#F59E0B;margin-bottom:4px;text-align:center">🔬 从立项到过会 · 七步投资分析全链路（上）</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;text-align:center">步骤 1-3：立项收集 → 商业分析 → 产业链纵深——<strong style="color:#F59E0B">哪个 Agent 做了什么</strong>、产出了<strong style="color:#22C55E">哪份具体报告</strong></p>
+
+      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;position:relative;padding:0 4px">
+
+        <!-- 步骤 1 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #F59E0B;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.4)">1</span>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">立项与信息收集</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">专班指令 → main 拆解为行业/财务/法律/估值 4 条工作线，sessions_send 并行下发</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#22C55E">main Agent 拆解任务：</strong>「做星恒尽调」→ 4 线并行<br>
+            <strong style="color:#F59E0B">research Agent 启动搜索：</strong>7 维度 × 3+ 来源，多引擎交叉验证<br>
+            <span style="color:#38bdf8">→ 主报告 §1 联网信息收集汇总</span>
+          </div>
+        </div>
+
+        <!-- 步骤 2 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #EF4444;position:relative">
+          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.4)">2</span>
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">商业纵横分析 → 发现核心矛盾</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">市占率 72.5% 但净利仅 4,509 万，净利率 1.2%——市占率这么高，为什么不赚钱？</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#EF4444">四层护城河侵蚀：</strong>OEM 关系瓦解(80%→6.38%) · 产品结构 · 前驱体体外循环 · 合规市场萎缩(-45.8%)<br>
+            <strong style="color:#A855F7">关键洞察：</strong>ATL 新能安从 5% 追至 18.5%，星恒市场地位正在被侵蚀<br>
+            <span style="color:#38bdf8">→ 附件C 竞争力纵横 + 附件D 财务健康度纵横</span>
+          </div>
+        </div>
+
+        <!-- 步骤 3 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #A855F7;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.4)">3</span>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">产业链纵深分析</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">前驱体体外循环 + 客户结构安全风险 + 磷酸锰铁锂渗透率趋势</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#A855F7">data Agent 数据支撑：</strong>50+ 家股东信息提取 + 审计 vs 管理口径比对<br>
+            <strong style="color:#EF4444">关键风险发现：</strong>斯科兰德关联交易 + 客户集中度（雅迪+爱玛收入仅 6.38%）<br>
+            <span style="color:#38bdf8">→ 附件E 前驱体体外循环 + 附件G 客户结构 + 附件I 产业链标的</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">步骤 4-6：估值碰撞 → 并购方案收敛 → 专题会汇报决策</p>
+      </div>
+    </div>
+
+    <!-- Slide 4B：七步投资分析全链路 · 步骤 4-6（AI 映射/结论） -->
+    <div class="slide">
+      <span class="split-continuation-badge">↑ 接上一页 · 七步分析链路</span>
+      <h2 style="font-size:28px;color:#EC4899;margin-bottom:4px;text-align:center">🔬 从立项到过会 · 七步投资分析全链路（下）</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;text-align:center">步骤 4-6：估值碰撞 → 方案收敛 → 决策输出——<strong style="color:#EC4899">AI 算数，人做判断</strong></p>
+
+      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;position:relative;padding:0 4px">
+
+        <!-- 步骤 4 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #00D4FF;position:relative">
+          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.4)">4</span>
+          <h3 style="font-size:15px;color:#00D4FF;margin-bottom:6px">估值分析 · 独立 vs 券商正面碰撞</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">PS/PB/PE 三方法 → 期望约 2.72 亿 → 收购对价 5 亿 → 期望回报 -45.6%</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#00D4FF">research Agent 三方法估值：</strong>PS 法三情景(14.9-28 亿) + PB 法下限(26 亿) + PE 辅助<br>
+            <strong style="color:#EC4899">智能编程助手发现关键缺陷：</strong>券商 PE 含宁德时代(116x)结构不可比；FY2027 净利 2 亿需营收 167 亿<br>
+            <span style="color:#38bdf8">→ 附件H 估值分析专项——多方法交叉验证</span>
+          </div>
+        </div>
+
+        <!-- 步骤 5 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #EC4899;position:relative">
+          <span class="unroll-badge" style="background:#EC4899;box-shadow:0 0 12px rgba(236,72,153,0.4)">5</span>
+          <h3 style="font-size:15px;color:#EC4899;margin-bottom:6px">并购方式对比 · 三方案收敛</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">老股收购 vs 增资扩股 vs 上市公司并购——收敛至最优路径</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#22C55E">收敛结论：</strong>上市公司并购为最优路径（天保基建 A 股平台）<br>
+            <strong style="color:#F59E0B">同步分析：</strong>允公律所发现 6 家标的公司 31 个问题，进一步支持并购路径<br>
+            <span style="color:#38bdf8">→ 附件B 收并购路径分析 + proposal_analysis</span>
+          </div>
+        </div>
+
+        <!-- 步骤 6 -->
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #22C55E;position:relative">
+          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.4)">6</span>
+          <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">专题会汇报 · 从分析到决策</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">三方案对比 + 估值对比表 + 风险清单 → 管理层 5 分钟理解核心结论</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            <strong style="color:#22C55E">report Agent 生成专题汇报：</strong>国企公文标准 HTML 排版<br>
+            <strong style="color:#38bdf8">project Agent 交付保障：</strong>16 份报告在线可查，任何质疑当场验证<br>
+            <strong style="color:#EF4444">决策结论：</strong>不建议以当前对价收购<br>
+            <span style="color:#38bdf8">→ meeting_briefing 专题会汇报（2026-06-15）</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 底部总结 -->
+      <div style="margin-top:14px;padding:10px 14px;background:linear-gradient(90deg,rgba(245,158,11,0.06),rgba(34,197,94,0.06));border-radius:8px;text-align:center">
+        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.8">
+          <strong style="color:#F59E0B">⏱ 全流程：</strong>
+          05.15 首版 → 06.10 审计数据 → 06.15 专题会 → 06.21 产业链 → <strong style="color:#22C55E">06.22 第 6 版终稿交付</strong>
+          &nbsp;·&nbsp;
+          <strong style="color:#EC4899">核心启示：</strong>AI 把数据搜集、多源验证、估值计算、报告排版压缩到 90 分钟，人把时间花在<strong style="color:#F59E0B">判断假设合理性、发现数据矛盾、做最终决策</strong>上。
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 5A：估值计算全链路（四层计算流） -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#F59E0B;margin-bottom:6px">💰 估值计算全链路 · 四层递进计算</h2>
       <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
-        LLM 会产生事实错误（幻觉）——不是故意的，但结果一样需要警惕。以下 4 个坑全部来自<strong style="color:#EC4899">星恒电源项目的真实记录</strong>。
+        不是「AI 拍脑袋给了一个估值」——以下展示完整的四层计算链路，每一步都可追溯。
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
-        <div class="card" style="padding:10px;border-left:3px solid #EF4444">
-          <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 股东比例造假</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
+      <div class="reveal-stagger" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+
+        <!-- 层1：PS法（主方法） -->
+        <div class="card popup-trigger" data-popup-title="第一层 · PS 法" style="padding:14px 16px;cursor:pointer;border-left:4px solid #00D4FF;background:rgba(0,212,255,0.04)">
+          <strong style="font-size:15px;color:#00D4FF">第一层 · PS 法（权重 85%）</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">可比 PS 0.41x/0.57x/0.77x × FY2025营收 36.36亿 → 14.9亿~28.0亿</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:6px">
+              可比 PS <strong>0.41x / 0.57x / 0.77x</strong>（三情景）× FY2025 营收 <strong>36.36 亿</strong>
+              → 整体估值区间：<strong style="color:#00D4FF">14.9 亿 ~ 28.0 亿</strong>
+            </div>
+            <div style="font-size:14px;color:var(--text-muted);margin-top:4px">
+              可比公司选取：宁德时代、比亚迪、国轩高科等动力电池企业，PS 倍数较 iFind 实时数据下行 40-60%
+            </div>
+          </div>
         </div>
-        <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
-          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 research 声称"已完成"</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过 fs 校验发现差异并仲裁。</p>
+
+        <!-- 层2：PB法（下限锚） -->
+        <div class="card popup-trigger" data-popup-title="第二层 · PB 法" style="padding:14px 16px;cursor:pointer;border-left:4px solid #A855F7;background:rgba(168,85,247,0.04)">
+          <strong style="font-size:15px;color:#A855F7">第二层 · PB 法（权重 10%）</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">PB 1.13x × 归母净资产 23.02亿 → 26.0亿</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:6px">
+              基准 PB <strong>1.13x</strong>（选取佛塑科技可比交易所得）× 归母净资产 <strong>23.02 亿</strong>
+              → 整体估值：<strong style="color:#A855F7">26.0 亿</strong>
+            </div>
+            <div style="font-size:14px;color:var(--text-muted);margin-top:4px">
+              提供估值下限参考——即使 PS 法最悲观情景，PB 法确认资产底价不低于 26 亿
+            </div>
+          </div>
         </div>
-        <div class="card" style="padding:10px;border-left:3px solid #A855F7">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🟣 财务数字年份错配</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 将 2022 年营收 35.99 亿错误标注为 2024 年。原始数据源标记模糊导致。</p>
+
+        <!-- 层3：PE法（辅助参考） -->
+        <div class="card popup-trigger" data-popup-title="第三层 · PE 法" style="padding:14px 16px;cursor:pointer;border-left:4px solid #F59E0B;background:rgba(245,158,11,0.04)">
+          <strong style="font-size:15px;color:#F59E0B">第三层 · PE 法（权重 5%）</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">PE 18.04x × FY2027E净利 0.90亿 → 敏感性参考</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:14px;color:var(--text-secondary);line-height:1.7;margin-top:6px">
+              正力新能 PE <strong>18.04x</strong> × FY2027E 净利 <strong>0.90 亿</strong> → 仅作敏感性分析
+            </div>
+            <div style="font-size:14px;color:var(--text-muted);margin-top:4px">
+              券商 PE 均值含宁德时代（116x），结构不可比 → PE 法仅作辅助参考，权重仅 5%
+            </div>
+          </div>
         </div>
-        <div class="card" style="padding:10px;border-left:3px solid #38bdf8">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 SelfCheckGPT 一致性验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
+
+        <!-- 层4：概率加权汇总（视觉重点） -->
+        <div class="card popup-trigger" data-popup-title="第四层 · 概率加权汇总" style="padding:14px 16px;cursor:pointer;border:2px solid #EF4444;background:rgba(239,68,68,0.06);border-radius:8px">
+          <strong style="font-size:15px;color:#EF4444">第四层 · 概率加权汇总</strong>
+          <p style="font-size:13px;color:var(--text-secondary);margin:4px 0 0 0">期望价值约 2.72 亿 → 收购对价 5 亿 → 期望回报 -45.6%</p>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:12px">第四层 · 概率加权汇总 → 13.73% 期望价值</div>
+
+          <div style="display:flex;gap:8px;align-items:flex-end;height:70px;margin-bottom:8px">
+            <div style="flex:35;background:linear-gradient(180deg,#EF4444,#EF444444);border-radius:4px 4px 0 0;text-align:center;padding-top:6px">
+              <span style="font-size:14px;color:#fff;font-weight:700">IPO 失败</span>
+              <div style="font-size:14px;color:#fff;font-weight:700">35%</div>
+            </div>
+            <div style="flex:40;background:linear-gradient(180deg,#F59E0B,#F59E0B44);border-radius:4px 4px 0 0;text-align:center;padding-top:6px">
+              <span style="font-size:14px;color:#000;font-weight:700">基准情景</span>
+              <div style="font-size:14px;color:#000;font-weight:700">40%</div>
+            </div>
+            <div style="flex:10;background:linear-gradient(180deg,#22C55E,#22C55E44);border-radius:4px 4px 0 0;text-align:center;padding-top:6px">
+              <span style="font-size:14px;color:#fff;font-weight:700">乐观</span>
+              <div style="font-size:14px;color:#fff;font-weight:700">10%</div>
+            </div>
+            <div style="flex:15;background:rgba(128,128,128,0.2);border-radius:4px 4px 0 0;text-align:center;padding-top:6px;border:1px dashed #888">
+              <span style="font-size:14px;color:var(--text-muted)">其他</span>
+              <div style="font-size:14px;color:var(--text-muted)">15%</div>
+            </div>
+          </div>
+
+          <div style="text-align:center;margin-top:8px">
+            <span style="font-size:13px;color:var(--text-secondary)">概率加权期望值 → </span>
+            <strong style="color:#EF4444;font-size:22px">约 2.72 亿</strong>
+            <span style="font-size:13px;color:var(--text-muted);margin-left:8px">（收购对价 5 亿 → 期望回报 <strong style="color:#EF4444">-45.6%</strong>）</span>
+          </div>
+          </div>
         </div>
+
       </div>
 
-      <h3 style="font-size:16px;color:#22C55E;margin-bottom:10px">📋 cite-then-answer · 先引用再回答</h3>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
-        <div class="card" style="padding:10px;border-top:3px solid #38bdf8">
-          <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">1. 来源锁定</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
-        </div>
-        <div class="card" style="padding:10px;border-top:3px solid #22C55E">
-          <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">2. 双重验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
-        </div>
-        <div class="card" style="padding:10px;border-top:3px solid #A855F7">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">3. self-check 自检</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
-        </div>
-      </div>
-
-      <div class="alert alert-success" style="font-size:12px">
-        <strong>📌 实战效果：</strong>引入 cite-then-answer 后，幻觉类错误从 ~15% 降至 &lt;3%。关键不是「更聪明的模型」，而是<strong style="color:#22C55E">更严格的流程</strong>。
+      <div class="alert alert-success" style="font-size:14px">
+        <strong>AI 算数，人做判断。</strong>估值假设（PS 倍数/概率分布/可比公司选取）由投资团队逐项确认。AI 压缩了计算时间，不替代专业判断。
       </div>
     </div>
 
-    <!-- Slide 8：方法论突破 -->
+    <!-- Slide 5B：独立估值 vs 券商估值 · 核心分歧 + 数据交叉验证 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:6px">🧬 方法的进化：从「管 Agent」到「帮 Agent」</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">
-        星恒项目不仅交付了一份报告，更催生了一个<strong style="color:#22C55E">方法论突破</strong>——从 64K 行 Python 的刚性流水线，到 1 个方法文件的自适应方法论。
+      <h2 style="font-size:28px;color:#EC4899;margin-bottom:6px">⚔️ 独立估值 vs 券商估值 · 核心分歧与数据验证</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">
+        上一页展示了独立估值的计算过程。这里正面比较<strong style="color:#EF4444">项目专班</strong> vs <strong style="color:#38bdf8">国信证券</strong>的估值差异——以及差异背后的关键缺陷发现。
       </p>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
-        <div class="card" style="padding:12px;border-left:3px solid #EF4444">
-          <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 旧范式：V3 刚性流水线</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            • 17 phase × 70 模块 × 64K 行 Python<br>
-            • 数据源路由刚性预设<br>
-            • 单向 12 步，不能回退补充检索<br>
-            • 质疑节点是外部门禁<br>
-            <strong style="color:#EF4444">核心问题：64K 行代码实现的是一个僵硬的流水线</strong>
-          </div>
-        </div>
-        <div class="card" style="padding:12px;border-left:3px solid #22C55E">
-          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 新范式：纵横分析法（hv-analysis）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            • 1 个方法文件，0 行代码<br>
-            • 自适应闭环：每章 Q1-Q4 自检 → 补缺口 → 循环<br>
-            • 数据源路由规则：告诉「用什么」，不规定调用顺序<br>
-            • 警醒信号 S1-S7：教 Agent 「如何发现自己的偏见」<br>
-            <strong style="color:#22C55E">核心公式：原则 > 清单，自检 > 门禁</strong>
-          </div>
+      <!-- 对比表 -->
+      <div class="card" style="padding:14px 18px;border-top:3px solid #EC4899;margin-bottom:12px">
+        <table style="width:100%;font-size:14px;border-collapse:collapse">
+          <thead>
+            <tr style="color:var(--text-muted);border-bottom:1px solid var(--border)">
+              <th style="padding:8px;text-align:left">对比维度</th>
+              <th style="padding:8px;text-align:center;color:#EF4444">独立估值（项目专班）</th>
+              <th style="padding:8px;text-align:center;color:#38bdf8">券商估值（国信证券）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px"><strong>估值方法</strong></td>
+              <td style="padding:8px;text-align:center;color:#EF4444">PS 法（主）+ PB + PE</td>
+              <td style="padding:8px;text-align:center;color:#38bdf8">PE 法（主）</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px"><strong>可比倍数</strong></td>
+              <td style="padding:8px;text-align:center;color:#EF4444">PS 0.41-0.77x</td>
+              <td style="padding:8px;text-align:center;color:#38bdf8">PE 32.86x</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px"><strong>关键缺陷</strong></td>
+              <td style="padding:8px;text-align:center;font-size:13px;color:#EF4444">PE 均值含宁德时代（116x），结构不可比</td>
+              <td style="padding:8px;text-align:center;font-size:13px;color:#38bdf8">FY2027 净利 2 亿 → 需营收 167 亿，历史增速不支持</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:8px"><strong>IPO 后估值</strong></td>
+              <td style="padding:8px;text-align:center;color:#EF4444">14.9-28.0 亿</td>
+              <td style="padding:8px;text-align:center;color:#38bdf8">65.73 亿</td>
+            </tr>
+            <tr>
+              <td style="padding:8px"><strong>13.73% 价值</strong></td>
+              <td style="padding:8px;text-align:center"><strong style="color:#EF4444;font-size:16px">2.72 亿</strong></td>
+              <td style="padding:8px;text-align:center"><strong style="color:#38bdf8;font-size:16px">7.67 亿</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 数据交叉验证 -->
+      <div class="card" style="padding:14px 18px;border-top:3px solid #22C55E;background:rgba(34,197,94,0.04);margin-bottom:12px">
+        <h3 style="font-size:14px;color:#22C55E;margin-bottom:8px">📊 数据交叉验证（真实核查项）</h3>
+        <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:13px;color:var(--text-secondary);line-height:1.7">
+          <div class="popup-trigger" data-popup-title="营收验证" style="padding:6px 10px;background:rgba(34,197,94,0.06);border-radius:4px;cursor:pointer">✅ 营收：审计 vs 管理（偏差&lt;1%）<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">审计报告营收数据与管理报表偏差小于1%，数据可信度高。FY2025营收36.36亿，审计确认无重大差异。</p></div></div>
+          <div class="popup-trigger" data-popup-title="净利验证" style="padding:6px 10px;background:rgba(34,197,94,0.06);border-radius:4px;cursor:pointer">✅ 净利：口径差异 13%<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">审计口径与管理口径净利差异13%，主要由收入确认时点和费用归集方式差异导致，属正常范围。管理口径净利4,509万 vs 审计口径约3,923万。</p></div></div>
+          <div class="popup-trigger" data-popup-title="市占率验证" style="padding:6px 10px;background:rgba(34,197,94,0.06);border-radius:4px;cursor:pointer">✅ 市占率：合规 72.5% vs 全口径 16.7%<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">合规市场口径（两轮车锂电新国标市场）市占率72.5%，但合规市场总量从874万组萎缩至474万组（-45.8%）。全口径（含非合规市场）市占率仅16.7%，说明星恒在更广阔的市场中份额有限。</p></div></div>
+          <div class="popup-trigger" data-popup-title="可比PS验证" style="padding:6px 10px;background:rgba(245,158,11,0.06);border-radius:4px;cursor:pointer">⚠️ 可比 PS：实时较 iFind 下行 40-60%<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">iFind数据库的可比公司PS倍数基于历史均值，但实时市场数据显示动力电池行业PS倍数已大幅下行。项目专班采用的PS倍数（0.41x-0.77x）较iFind数据保守40-60%，更贴近当前市场环境。</p></div></div>
+          <div class="popup-trigger" data-popup-title="产能验证" style="padding:6px 10px;background:rgba(245,158,11,0.06);border-radius:4px;cursor:pointer">⚠️ 产能：B3-1 金砖 72 产线搁浅<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">星恒B3-1金砖72产线项目搁浅，原计划产能扩张未能如期推进。该产线旨在提升磷酸锰铁锂电芯产能，搁浅意味着未来2-3年产能增长不及预期，对估值构成下行压力。</p></div></div>
+          <div class="popup-trigger" data-popup-title="护城河验证" style="padding:6px 10px;background:rgba(239,68,68,0.06);border-radius:4px;cursor:pointer">🔴 护城河：OEM 关系 FY2020-25 瓦解<div class="popup-detail" style="display:none"><p style="margin:0;font-size:14px">FY2020-2025年间，星恒OEM关系持续瓦解——主机厂直接供货占比从80%降至6.38%。核心客户雅迪、爱玛出货量虽高但FY2025收入贡献仅6.38%，表明客户议价权大幅增强，星恒的护城河正在被侵蚀。</p></div></div>
         </div>
       </div>
 
-      <div class="alert alert-success" style="font-size:12px">
-        <strong>📌 这个案例的核心启示：</strong>在 AI 辅助投资研究领域，<strong style="color:#22C55E">最高杠杆的改进点不是工程自动化，而是给 Agent 一个好方法</strong>。从海量代码的刚性流水线，到一份方法文件驱动的高质量输出——这就是方法论的力量。这和日常工作一样：<strong style="color:#F59E0B">工具很重要，但方法论才是天花板。</strong>
+      <div class="alert alert-warning" style="font-size:14px">
+        <strong>关键发现：</strong>智能编程助手独立验证券商估值时发现——券商 PE 均值含宁德时代（116x），结构不可比；FY2027 净利 2 亿需营收 167 亿，历史增速不支持。<strong style="color:#EF4444">AI 不是替代专业判断，而是发现人工容易忽略的逻辑缺陷。</strong>
       </div>
     </div>
 
-    <!-- Slide 9：章节过渡 -->
+<!-- Slide 6：技能与方法——星恒项目用到的真实技能栈 -->
+    <div class="slide">
+      <h2 class="slide-title" style="margin-top:10px">🛠️ 星恒项目装了什么技能？用出了什么方法？</h2>
+      <p class="slide-subtitle">以下技能和方法均来自系统真实安装记录——不是「以后可以做」，是「已经跑通了」</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px">
+
+        <!-- 左：预装技能（开箱即用） -->
+        <div>
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:8px">📦 开箱即用的 8 个技能（预装）</h3>
+          <div class="reveal-stagger" style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E">
+              <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:2px">🔬 hv-analysis</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">行业研究+估值分析，1 个 SKILL.md（2401 行）替代 64K 行 Python，自适应闭环自检</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #00D4FF">
+              <div style="font-size:13px;font-weight:700;color:#00D4FF;margin-bottom:2px">🔍 SearXNG 搜索</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">Docker 自建元搜索，多引擎+LLM 前后处理（查询改写+相关性评分）</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B">
+              <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:2px">📊 MX 技能</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">金融数据查询（财务指标/行情/产业链），iFind + MX 双源</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7">
+              <div style="font-size:13px;font-weight:700;color:#A855F7;margin-bottom:2px">🌐 浏览器自动化</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">天眼查工商信息+网页抓取+竞品数据采集，Playwright 驱动</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899">
+              <div style="font-size:13px;font-weight:700;color:#EC4899;margin-bottom:2px">📄 研报客 yanbaoke</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">专业研报搜索，行业数据主源，结构化提取</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #38bdf8">
+              <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:2px">📚 飞书文档·Wiki·云盘</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">企业文档读写+知识库双向同步+文件存储共享</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #febc2e">
+              <div style="font-size:13px;font-weight:700;color:#febc2e;margin-bottom:2px">🔗 ACP 路由</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">跨 Agent 通信协议，任务分发和消息路由</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #56d364">
+              <div style="font-size:13px;font-weight:700;color:#56d364;margin-bottom:2px">🔍 Tavily 搜索</div>
+              <div style="font-size:9.5px;color:var(--text-secondary);line-height:1.5">海外市场+英文研报搜索，补充国际化数据维度</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：用出来的方法（实战沉淀） -->
+        <div>
+          <h3 style="font-size:14px;color:#F59E0B;margin-bottom:8px">💡 打出来的 6 个方法（用着用着就会了）</h3>
+          <div class="reveal-stagger" style="display:flex;flex-direction:column;gap:7px">
+            <div class="card" style="padding:10px 12px;border-left:4px solid #EF4444;background:rgba(239,68,68,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#EF4444;margin-bottom:2px">1. cite-then-answer（来源锁定→双重验证→自检）</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">每次输出前锁定数据来源 → 多源交叉校验 → 输出后自我检查。幻觉率从 <strong style="color:#EF4444">15% 降至 < 3%</strong>。</div>
+            </div>
+            <div class="card" style="padding:10px 12px;border-left:4px solid #F59E0B;background:rgba(245,158,11,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:2px">2. 多源交叉验证（单源不可信，至少 2 源对齐）</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">10 项核心主张逐项多源比对——审计报告 / 管理报表 / 第三方研报 / 天眼查工商——任何单一来源不通过则标记 ⚠️。</div>
+            </div>
+            <div class="card" style="padding:10px 12px;border-left:4px solid #00D4FF;background:rgba(0,212,255,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#00D4FF;margin-bottom:2px">3. PS/PB/PE 三方法估值 + 概率加权期望值</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">PS 法（主，三情景）+ PB 法（下限锚）+ PE 法（辅助）→ 概率加权 → 期望价值。<strong>每种方法都可追溯到可比公司和底层假设</strong>。</div>
+            </div>
+            <div class="card" style="padding:10px 12px;border-left:4px solid #A855F7;background:rgba(168,85,247,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#A855F7;margin-bottom:2px">4. 超级单体智能体 OCR 提取管线（30% → 90%+）</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">PDF/图片 → 超级单体智能体 OCR 提取 → 结构化 → 交叉比对。经星恒项目实战优化，<strong>提取准确率从 30% 提升至 90%+</strong>。</div>
+            </div>
+            <div class="card" style="padding:10px 12px;border-left:4px solid #22C55E;background:rgba(34,197,94,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:2px">5. 5 层 Hook 全生命周期自动化</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">SessionStart 加载上下文 → UserPromptSubmit 关键词触发 → PreCompact 防丢失 → PreToolUse 同步进度 → Stop 双向归档。<strong>无需人工记忆跨会话状态</strong>。</div>
+            </div>
+            <div class="card" style="padding:10px 12px;border-left:4px solid #EC4899;background:rgba(236,72,153,0.04)">
+              <div style="font-size:13px;font-weight:700;color:#EC4899;margin-bottom:2px">6. Agent 记忆积累机制（越用越强）</div>
+              <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">每个项目结束 → 数据入库 Wiki 知识库 → 经验教训写入 lessons.md → 下次自动加载。<strong>193 份研报 + 5,894 实体 + 11,075 关系，持续增长</strong>。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-warning" style="font-size:14px">
+        <strong>📌 最高杠杆的改进不是写更多代码，而是<strong style="color:#22C55E">给 Agent 一个好方法</strong>。</strong>原则 > 清单，自检 > 门禁。星恒项目积累的 6 个方法已写入 AGENTS.md 和 SKILL.md，下一个项目启动时自动加载——<strong style="color:#22C55E">不再重走弯路</strong>。
+      </div>
+    </div>
+
+    <!-- Slide 7A：传统方式 · 星恒项目投入全景（背景展开） -->
+    <div class="slide">
+      <h2 style="font-size:30px;color:#F59E0B;margin-bottom:4px;text-align:center">💰 这个项目，钱和时间花在了哪里</h2>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:4px;text-align:center">传统尽调方式的工作量全景——<strong style="color:#EF4444">2-3 人 × 2 周</strong>手工搜集数据 + 手动建模型 + 人工排版</p>
+
+      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;position:relative;padding:0 4px">
+
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #EF4444;position:relative">
+          <span class="unroll-badge" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.4)">1</span>
+          <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px">人工数据搜集</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">手工翻阅研报、财务报告、工商信息——覆盖维度受限，信息碎片化</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            行业规模 / 竞争格局 / 政策 / 财务 / 上下游 / 技术 / 资本市场——7 个维度各需数小时，信息覆盖不完整
+          </div>
+        </div>
+
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #F59E0B;position:relative">
+          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.4)">2</span>
+          <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px">手工建模 + 交叉验证</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">Excel 建模 + 多源数据比对——耗时且易遗漏矛盾点</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            PS/PB/PE 三方法估值 + 可比公司筛选 + 概率加权——至少 2-3 天手工计算，且单源数据难验证
+          </div>
+        </div>
+
+        <div class="card scroll-unroll-item" style="padding:16px;border-top:3px solid #A855F7;position:relative">
+          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.4)">3</span>
+          <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px">人工排版 + 版本管理</h3>
+          <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:8px">Word 排版 + 多版本手工维护——格式错乱、版本混乱是常态</p>
+          <div style="font-size:11px;color:var(--text-muted);line-height:1.5">
+            16 份报告的排版校对 + 6 版迭代的版本追踪——至少 1-2 天，且版本一致性难以保证
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <div class="story-split-arrow">⬇</div>
+        <p style="font-size:13px;color:var(--text-muted)">AI 介入后：90 分钟初稿 + 30+ 轮迭代 → 16 份报告体系，ROI ≈ 40-80 倍</p>
+      </div>
+    </div>
+
+    <!-- Slide 7B：AI 辅助成果 · ROI 与 Ch01 信号回调（AI 映射/结论） -->
+    <div class="slide">
+      <span class="split-continuation-badge">↑ 接上一页 · 投入产出对比</span>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px;text-align:center">💡 AI 辅助成果 · 回到 Ch01 的两个信号</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px">
+        <div>
+          <div class="card" style="padding:14px;border-top:3px solid #22C55E;margin-bottom:10px">
+            <h3 style="font-size:14px;color:#22C55E;margin-bottom:8px">📊 天保-星恒项目投入产出</h3>
+            <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
+              <p style="margin:0 0 6px 0"><strong style="color:#F59E0B">Token 消耗：</strong>约 200-300 万 token（全流程 30+ 轮迭代，6 个版本）</p>
+              <p style="margin:0 0 6px 0"><strong style="color:#F59E0B">API 成本：</strong>约 ¥50-80（云端大模型调用费）</p>
+              <p style="margin:0 0 6px 0"><strong style="color:#22C55E">人力节省：</strong>传统 2-3 人×2 周 → AI 90 分钟初稿 + 人工复核数天</p>
+              <p style="margin:0 0 6px 0"><strong style="color:#22C55E">交付件：</strong>16 份报告 · 主报告 ~64K 字 · 全量 HTML ~3.4MB</p>
+              <p style="margin:0"><strong style="color:#22C55E">数据资产沉淀：</strong>35 家 PE 股东 + 产业链实体入库，下个项目可直接复用</p>
+            </div>
+          </div>
+          <div class="alert alert-success" style="font-size:14px">
+            <strong>一句话：</strong>花了几十块钱的 Token，省了两周的人力，产出了一套可复用的数据资产——<strong style="color:#22C55E">ROI ≈ 40-80 倍</strong>。
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:10px">🎯 回到 Ch01 的信号，对上了吗？</h3>
+          <div style="display:grid;gap:8px">
+            <div class="card" style="padding:10px;border-left:3px solid #EF4444">
+              <div style="font-size:13px"><strong style="color:#EF4444">信号一 Token KPI：</strong></div>
+              <div style="font-size:14px;color:var(--text-secondary)">Meta 已将 Token 消耗量纳入工程师考核，8.5 万员工实时追踪排行；黄仁勋在 GTC 公开呼吁企业跟进。星恒项目就是一个示范：Token 花得少（200-300万）、产出高（16份报告）、数据资产留下来。</div>
+            </div>
+            <div class="card" style="padding:10px;border-left:3px solid #A855F7">
+              <div style="font-size:13px"><strong style="color:#A855F7">信号二「用完即降智」：</strong></div>
+              <div style="font-size:14px;color:var(--text-secondary)">90 分钟完成原本两周的工作——这个效率落差，就是「用完即降智」的原理。不是 AI 让人变笨，是<strong>AI 把专业能力放大了 10 倍</strong>。</div>
+            </div>
+            <div class="card" style="padding:10px;border-left:3px solid #22C55E">
+              <div style="font-size:13px"><strong style="color:#22C55E">三类角色全覆盖：</strong></div>
+              <div style="font-size:14px;color:var(--text-secondary)">管理层拿三方案对比决策摘要 · 前台拿 PS/PB/PE 三方法估值模型 · 中后台拿 16 份标准化报告——同一套系统，三类人各取所需。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:12px;font-size:13px">
+        <strong>这个案例的核心信息不是「我们做了个尽调」</strong>——而是：<strong style="color:#22C55E">AI 已经把专业工作的效率差异拉到了 10 倍级别</strong>。会用的人 90 分钟出初稿，不用的人两周还在翻材料。而且差距只会越来越大——因为每一个项目做完，数据资产和校验规则都在积累。
+      </div>
+    </div>
+
+    <!-- Slide 8：章节过渡 -->
     <div class="slide">
       <div style="text-align:center;padding-top:8vh">
         <div style="font-size:48px;margin-bottom:16px">🔬</div>
         <h2 style="font-size:36px;color:#ec4899;margin-bottom:16px">一个项目，四个 Agent，三十次迭代</h2>
         <div style="max-width:780px;margin:0 auto;font-size:15px;color:var(--text-secondary);line-height:1.8">
-          <p>星恒电源项目回答了<strong style="color:#ec4899">「你们做成了什么」</strong>——</p>
-          <p>90 分钟从指令到 80 页成稿，30+ 次迭代打磨，最终给出<strong style="color:#EF4444">「不建议收购」</strong>的明确结论。</p>
-          <p style="margin-top:16px">但你可能在想：<strong style="color:#22C55E">这套东西背后到底是什么原理？怎么运作的？</strong></p>
-          <p style="margin-top:16px;color:var(--text-muted)">第 03 章，我们拆开来看——5+2+1+1 体系的全貌。</p>
+          <p>天保控股星恒电源尽调项目回答了<strong style="color:#ec4899">「这套系统做成了什么」</strong>——</p>
+          <p>一个人，指挥<strong style="color:#22C55E">一支 AI 团队</strong>，90 分钟从指令到初稿，30+ 次迭代打磨，最终交付<strong style="color:#22C55E">16 份报告</strong>，给出<strong style="color:#EF4444">「不建议收购」</strong>的明确结论。</p>
+          <p style="margin-top:6px;font-size:13px;color:var(--text-muted)">所有报告在线可查：jinzhanxiang.github.io/xingheng-report/</p>
+          <p style="margin-top:16px">这不是科幻小说的情节——<strong style="color:#F59E0B">这是 2026 年 5 月已经跑通的真实项目</strong>。</p>
+          <p style="margin-top:8px">但你可能在想：<strong style="color:#22C55E">这套东西背后到底是什么原理？怎么运作的？</strong></p>
+          <p style="margin-top:16px;color:var(--text-muted)">第 03 章，我们把引擎盖打开——看看这支数字军团是怎么协同作战的。</p>
         </div>
       </div>
     </div>
@@ -402,5 +692,72 @@
 
   <script src="../assets/js/layout.js?v=20260705-fix"></script>
   <script src="../assets/js/main.js?v=20260705-fix"></script>
+
+<script>
+// C 方案：KPI 数字滚动 + 章节过场
+(function() {
+  // KPI 数字滚动效果
+  function animateKPI(el) {
+    if (!el || el.dataset.animated) return;
+    el.dataset.animated = '1';
+    var text = el.textContent.trim();
+    var num = parseFloat(text.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    var suffix = text.replace(/[0-9.,]/g, '');
+    var decimals = (text.split('.')[1] || '').replace(/[^0-9]/g, '').length;
+    var start = performance.now();
+    var duration = 1200;
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      var val = (num * eased).toFixed(decimals);
+      // 千分位逗号
+      if (num >= 1000) {
+        val = Number(val).toLocaleString('en-US', {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals
+        });
+      }
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  
+  // IntersectionObserver 触发 KPI 滚动
+  if ('IntersectionObserver' in window) {
+    var kpiObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          animateKPI(entry.target);
+          kpiObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    document.querySelectorAll('.kpi-num').forEach(function(el) {
+      kpiObserver.observe(el);
+    });
+  }
+  
+  // 章节过场动画（按 m key 或 N 键触发）
+  function showTransition(text, callback) {
+    var overlay = document.getElementById('transitionOverlay');
+    var textEl = document.getElementById('transitionText');
+    if (!overlay) return;
+    textEl.textContent = text || '';
+    overlay.classList.add('active');
+    setTimeout(function() {
+      overlay.classList.remove('active');
+      if (callback) setTimeout(callback, 300);
+    }, 800);
+  }
+  
+  // 暴露给全局
+  window.showTransition = showTransition;
+  
+})();
+</script>
+
 </body>
 </html>
