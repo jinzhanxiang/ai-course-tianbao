@@ -116,7 +116,7 @@
           <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">每次会话自动注入 3.5KB，仅保留当前活跃上下文</p>
           <div class="popup-detail" style="display:none">
             <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:4px;font-family:monospace">MEMORY.md (3.5KB)</div>
-            <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
               <strong>自动注入</strong>——每次会话启动时自动加载<br>
               仅保留当前活跃上下文：项目状态、关键决策、待办事项<br>
               会话压缩时可丢弃（不损失长期知识）<br>
@@ -132,7 +132,7 @@
           <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">按标签搜索精准加载，Token 节省 70%+</p>
           <div class="popup-detail" style="display:none">
             <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;font-family:monospace">Memos (SQLite + API)</div>
-            <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
               <strong>按标签搜索，精准加载</strong><br>
               决策/教训/洞察，每条带结构化标签<br>
               只加载相关标签（如 #decision #lesson #xingheng）<br>
@@ -148,7 +148,7 @@
           <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">按需读取不预加载，Token 节省 90%+</p>
           <div class="popup-detail" style="display:none">
             <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:4px;font-family:monospace">Obsidian (Markdown)</div>
-            <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.6">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
               <strong>按需读取，不预加载</strong><br>
               研报/实体/指标等结构化知识库<br>
               通过 read_file 在需要时才加载<br>
@@ -161,7 +161,7 @@
       <!-- Token 节省对比表 -->
       <div style="margin-bottom:12px">
         <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📊 同一任务的三层加载对比</h3>
-        <table style="width:100%;font-size:10.5px;border-collapse:collapse">
+        <table style="width:100%;font-size:12px;border-collapse:collapse">
           <thead>
             <tr style="color:var(--text-muted);border-bottom:1px solid var(--border)">
               <th style="padding:6px 8px;text-align:left">层级</th>
@@ -200,7 +200,7 @@
       <!-- 实际数据流示例 -->
       <div style="padding:10px 14px;background:rgba(15,23,42,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:8px">
         <h4 style="font-size:13px;color:#F59E0B;margin:0 0 6px 0">🔄 实际数据流：星恒项目中的一次记忆调用</h4>
-        <div style="font-family:monospace;font-size:9px;color:#8FA1CC;line-height:1.7">
+        <div style="font-family:monospace;font-size:12px;color:#8FA1CC;line-height:1.7">
           <div>1. <span style="color:#EF4444">SessionStart Hook</span> → 自动注入 <span style="color:#EF4444">MEMORY.md (3.5KB)</span>：当前项目状态 + 关键决策 + 上次会话摘要</div>
           <div>2. <span style="color:#F59E0B">UserPrompt: "做星恒尽调"</span> → 触发关键词 → Memos 搜索 <span style="color:#F59E0B">#xingheng #valuation #battery</span></div>
           <div>3. <span style="color:#F59E0B">Memos 返回 1,800 tokens</span>：星恒历史决策 · PE估值教训 · 产业链分析框架</div>
@@ -252,8 +252,8 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
             <div class="card" style="padding:8px 10px;border-left:3px solid #06b6d4;background:rgba(6,182,212,0.04)">
               <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:2px">📋 AGENTS.md</div>
-              <div style="font-size:9px;color:var(--text-muted);margin-bottom:2px">核心行为规则 · 加载优先级最高</div>
-              <div style="font-size:8.5px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">核心行为规则 · 加载优先级最高</div>
+              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
                 任务分派规则 · 工具调用上限30次<br>
                 心跳监控间隔 · 飞书进度汇报格式<br>
                 —— 定义「怎么干活」
@@ -261,8 +261,8 @@
             </div>
             <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;background:rgba(168,85,247,0.04)">
               <div style="font-size:14px;font-weight:700;color:#A855F7;margin-bottom:2px">🧬 SOUL.md</div>
-              <div style="font-size:9px;color:var(--text-muted);margin-bottom:2px">人格与原则 · 风格约束</div>
-              <div style="font-size:8.5px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">人格与原则 · 风格约束</div>
+              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
                 诚实优于讨好 · 简洁优于完整<br>
                 国企公文规范 · 要点列表回复<br>
                 —— 定义「是什么性格」
@@ -270,8 +270,8 @@
             </div>
             <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.04)">
               <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:2px">👤 USER.md</div>
-              <div style="font-size:9px;color:var(--text-muted);margin-bottom:2px">用户画像 · 偏好 · 目标</div>
-              <div style="font-size:8.5px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">用户画像 · 偏好 · 目标</div>
+              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
                 名字：金战祥 · 称呼：主公<br>
                 角色：天保控股投资部投资管理<br>
                 —— 定义「了解谁」
@@ -279,8 +279,8 @@
             </div>
             <div class="card" style="padding:8px 10px;border-left:3px solid #EF4444;background:rgba(239,68,68,0.04)">
               <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:2px">🔧 TOOLS.md</div>
-              <div style="font-size:9px;color:var(--text-muted);margin-bottom:2px">环境配置 · 路径 · 脚本</div>
-              <div style="font-size:8.5px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">环境配置 · 路径 · 脚本</div>
+              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
                 SSH路径 · 工作区根目录<br>
                 清理脚本 · 本地服务端口<br>
                 —— 定义「在哪干活、用什么工具」
@@ -288,8 +288,8 @@
             </div>
             <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899;background:rgba(236,72,153,0.04);grid-column:1/-1">
               <div style="font-size:14px;font-weight:700;color:#EC4899;margin-bottom:2px">🧠 MEMORY.md</div>
-              <div style="font-size:9px;color:var(--text-muted);margin-bottom:2px">长期记忆索引</div>
-              <div style="font-size:8.5px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
+              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">长期记忆索引</div>
+              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
                 → 指向 memory/YYYY-MM-DD.md · 项目记忆 · 经验教训 · 用户偏好 —— 定义「记住什么」
               </div>
             </div>
@@ -556,7 +556,7 @@
           <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">SessionStart 加载 → UserPromptSubmit 关键词检测 → PreCompact 落盘提醒 → PreToolUse 同步 → Stop 双向持久化</p>
           <div class="popup-detail" style="display:none">
             <h3 style="font-size:13px;color:#A855F7;margin-bottom:6px">🪝 5 层 Hooks（全生命周期自动化）</h3>
-            <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.65">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.65">
               <div><strong style="color:#A855F7">SessionStart：</strong>自动加载项目索引 + 当前状态 + 经验教训 + 会话日志</div>
               <div><strong style="color:#A855F7">UserPromptSubmit：</strong>关键词检测 → 自动加载相关上下文</div>
               <div><strong style="color:#A855F7">PreCompact：</strong>上下文压缩前强制提醒落盘，防信息丢失</div>
@@ -570,7 +570,7 @@
           <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">SearXNG 自建搜索、研报客、飞书文档、浏览器自动化、Tavily、ACP 路由、飞书 Wiki、飞书云盘</p>
           <div class="popup-detail" style="display:none">
             <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">🔌 8 大插件（数据源 + 通道全覆盖）</h3>
-            <div style="font-size:10.5px;color:var(--text-secondary);line-height:1.65">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.65">
               <div><strong style="color:#22C55E">🔍 SearXNG 自建搜索：</strong>Docker 自托管元搜索引擎，多引擎聚合（Google/Bing/DuckDuckGo 等），LLM 前处理（查询改写+意图识别）+ LLM 后处理（相关性评分 0-10 + 噪声过滤 + 域名黑白名单 + 安全网兜底），无 API 配额限制</div>
               <div><strong style="color:#22C55E">📊 研报客 yanbaoke：</strong>专业研报搜索引擎，行业数据主源</div>
               <div><strong style="color:#22C55E">📄 飞书文档：</strong>企业文档读写，报告直发飞书群</div>

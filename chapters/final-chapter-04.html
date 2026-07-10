@@ -142,7 +142,7 @@
       <!-- Prompt 公式 -->
       <div style="margin-top:12px;padding:14px 18px;background:linear-gradient(90deg,rgba(245,158,11,0.08),rgba(34,197,94,0.04));border-radius:10px;max-width:780px;margin-left:auto;margin-right:auto">
         <h3 style="font-size:14px;color:#F59E0B;margin-bottom:8px;text-align:center">🧠 好 Prompt 的万能公式：角色 + 任务 + 维度 + 格式</h3>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:11px;color:var(--text-secondary);line-height:1.6">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:12px;color:var(--text-secondary);line-height:1.6">
           <div style="padding:8px;background:rgba(245,158,11,0.06);border-radius:6px;text-align:center">
             <strong style="color:#F59E0B">① 角色</strong><br>「你是投资分析师」<br><span style="color:var(--text-muted)">设定专业身份</span>
           </div>
@@ -520,9 +520,9 @@
           · <strong>哪一步不能跳</strong>（质量控制节点——漏了这一步报告就不可靠）<br>
           · <strong>出错优先看哪一层</strong>（数据源挂了？API 超额？降级用哪个备选）<br>
           · <strong>做完怎么交差</strong>（输出格式、验证标准、通知谁）<br>
-          <span style="font-size:11px;color:var(--text-muted)">举个例子：hv-analysis Skill（纵横分析法）不是告诉 Agent「你是投资专家」，而是告诉它：先读本地文件→识别缺口→选数据源→每章自检 Q1-Q4→S1-S7 警醒信号→降级链。Agent 拿着这份 SOP，就像新人拿着带教手册——每一步都知道怎么走。<br><br>
+          <span style="font-size:12px;color:var(--text-muted)">举个例子：hv-analysis Skill（纵横分析法）不是告诉 Agent「你是投资专家」，而是告诉它：先读本地文件→识别缺口→选数据源→每章自检 Q1-Q4→S1-S7 警醒信号→降级链。Agent 拿着这份 SOP，就像新人拿着带教手册——每一步都知道怎么走。<br><br>
           <strong style="color:#00D4FF;font-size:12px">另一个例子：literature-review（文献综述）Skill</strong><br>
-          <span style="font-size:11px;color:var(--text-muted)">不会只扔一句「帮我综述一下」。它要求 Agent <strong>先搜再读再写</strong>：先抓 DOI、作者、年份 → 再组织判断 → 碰上争议性结论<strong>查撤稿和后续验证</strong> → 最后拿出来的不是论文列表，是<strong style="color:#22C55E">每句话都能追溯到出处的综合评估</strong>。这就是 SOP 的力量——不是告诉 Agent「你是文献专家」，而是告诉它「先做什么、再做什么、什么不能跳过」。</span>
+          <span style="font-size:12px;color:var(--text-muted)">不会只扔一句「帮我综述一下」。它要求 Agent <strong>先搜再读再写</strong>：先抓 DOI、作者、年份 → 再组织判断 → 碰上争议性结论<strong>查撤稿和后续验证</strong> → 最后拿出来的不是论文列表，是<strong style="color:#22C55E">每句话都能追溯到出处的综合评估</strong>。这就是 SOP 的力量——不是告诉 Agent「你是文献专家」，而是告诉它「先做什么、再做什么、什么不能跳过」。</span>
         </p>
       </div>
 
@@ -784,7 +784,7 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
         <div class="card" style="padding:12px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 阶段一：V3 的结构性缺陷</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>17 phase × 70 模块 × 64K 行 Python</strong><br>
             · Phase 1 输出被 Phase 2 忽略（架构断层）<br>
             · 数据源路由刚性预设（MX → Qdrant → KG 必须全走）<br>
@@ -795,7 +795,7 @@
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
           <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 阶段二：关键认知转折</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>一个朴素的问题：</strong><br>
             为什么老分析师比年轻分析师强？<br><br>
             不是因为「步骤更多」或「模板更全」：<br>
@@ -808,7 +808,7 @@
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #22C55E">
           <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 阶段三：纵横分析法诞生</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>1 个 SKILL.md，0 行代码</strong><br>
             · Phase 0 前置：先读本地一手文件，再搜<br>
             · 自适应闭环：每章 Q1-Q4 自检 → 补缺口 → 循环<br>
@@ -821,7 +821,7 @@
       </div>
 
       <div style="margin-bottom:10px">
-        <table style="width:100%;font-size:11px">
+        <table style="width:100%;font-size:12px">
           <tr style="background:rgba(255,255,255,0.03)">
             <td style="padding:5px 8px"><strong>维度</strong></td>
             <td style="padding:5px 8px;color:#EF4444"><strong>V3 工作流</strong></td>
@@ -863,7 +863,7 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
         <div class="card" style="padding:12px;border-left:3px solid #22C55E">
           <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">✅ 实战验证（2 个案例）</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>晶能光电 · 方法报告 vs 基线报告（人工+AI 协作）：</strong><br>
             · 总字数：27,629 vs 14,586（+89%）<br>
             · 数据来源标注：49 处、28 种 vs 少数<br>
@@ -876,7 +876,7 @@
         </div>
         <div class="card" style="padding:12px;border-left:3px solid #A855F7">
           <h3 style="font-size:13px;color:#A855F7;margin-bottom:6px">💡 4 个关键启示</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
             <strong>1. Agent 需要「原则」而不是「清单」</strong><br>
             清单越细，Agent 越蠢。给它路由规则+自检问题+降级链，让它自己判断。<br>
             <strong>2. 数据源为 Agent 服务，不是反过来</strong><br>

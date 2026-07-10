@@ -48,19 +48,19 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
         <div class="card" style="padding:10px;border-left:3px solid #EF4444">
           <h3 style="font-size:13px;color:#EF4444;margin-bottom:4px">🔴 股东比例造假</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">LLM 声称某股东持股 17.73%，Tavily 交叉验证发现无此数据——数字从一个案例"迁移"到了另一个公司。</p>
         </div>
         <div class="card" style="padding:10px;border-left:3px solid #F59E0B">
           <h3 style="font-size:13px;color:#F59E0B;margin-bottom:4px">🟡 research 声称"已完成"</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过文件校验发现差异并仲裁。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">两次 sessions_send "已完成"，但文件实际未写入。main 通过文件校验发现差异并仲裁。</p>
         </div>
         <div class="card" style="padding:10px;border-left:3px solid #A855F7">
           <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🟣 财务数字年份错配</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">LLM 将 2022 年营收 35.99 亿标注为 2024 年。原始数据源标记模糊导致。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">LLM 将 2022 年营收 35.99 亿标注为 2024 年。原始数据源标记模糊导致。</p>
         </div>
         <div class="card" style="padding:10px;border-left:3px solid #38bdf8">
           <h3 style="font-size:13px;color:#38bdf8;margin-bottom:4px">🔵 SelfCheckGPT 一致性验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">10 个 LLM 输出做事实一致性检查，3/10 存在偏差。自检是第一道防线。</p>
         </div>
       </div>
 
@@ -68,15 +68,15 @@
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
         <div class="card" style="padding:12px;border-top:3px solid #38bdf8">
           <h3 style="font-size:14px;color:#38bdf8;margin-bottom:4px">1. 来源锁定</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">每条关键数据标注来源文件 + 段落。例："（星恒 FY24 审计报告 P23 营收 36.36 亿）"</p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #22C55E">
           <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">2. 双重验证</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">关键数字必须两个独立源交叉验证。一个来自 LLM 检索，一个来自 Tavily / 外部 API。</p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #A855F7">
           <h3 style="font-size:14px;color:#A855F7;margin-bottom:4px">3. self-check 自检</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5">输出后三项检查：事实核查 / 逻辑一致性 / 来源可追溯。三项通过才算"完成"。</p>
         </div>
       </div>
 
@@ -96,22 +96,22 @@
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
         <div class="card" style="padding:12px;border-top:3px solid #22C55E">
           <h3 style="font-size:14px;color:#22C55E;margin-bottom:4px">📐 基线：HV Analysis</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">晶能光电 · 65,265 字 · 49 个 H2 · 11 个 Insight · 445 数据点 · 6 家对标公司</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">晶能光电 · 65,265 字 · 49 个 H2 · 11 个 Insight · 445 数据点 · 6 家对标公司</p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:4px">🔬 增强版：+ 质疑 Agent</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">叠加上去后 → 11,136 字（-83%）· 14 个 H2（-35）· 0 个 Insight（-100%）· ~50 数据点（-89%）</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">叠加上去后 → 11,136 字（-83%）· 14 个 H2（-35）· 0 个 Insight（-100%）· ~50 数据点（-89%）</p>
         </div>
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
         <div style="padding:12px;background:rgba(239,68,68,0.06);border-radius:8px;border-left:3px solid #EF4444">
           <h3 style="font-size:13px;color:#EF4444;margin-bottom:6px">🔴 根本原因：工作流被"腰斩"</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">指令"不走 data 代理"被误解为"不进行 LLM 深度分析"→ 检索层被跳过 → 对标分析被跳过 → 只做了数据溯源标注（唯一提升项）。<strong style="color:#EF4444">新模块把原有功能"吃掉"了。</strong></p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">指令"不走 data 代理"被误解为"不进行 LLM 深度分析"→ 检索层被跳过 → 对标分析被跳过 → 只做了数据溯源标注（唯一提升项）。<strong style="color:#EF4444">新模块把原有功能"吃掉"了。</strong></p>
         </div>
         <div style="padding:12px;background:rgba(34,197,94,0.06);border-radius:8px;border-left:3px solid #22C55E">
           <h3 style="font-size:13px;color:#22C55E;margin-bottom:6px">🟢 修复：框架层面集成，不是流程外打补丁</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">新增 <code>--input-dir</code> 参数 + <code>local_context</code> 注入到 LLM prompt → 保留完整工作流。本地文件作为 context，不替代分析步骤。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">新增 <code>--input-dir</code> 参数 + <code>local_context</code> 注入到 LLM prompt → 保留完整工作流。本地文件作为 context，不替代分析步骤。</p>
         </div>
       </div>
 
@@ -131,19 +131,19 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
         <div class="card" style="padding:12px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:6px">🔴 V3 流水线</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">17 phase × 70 模块 × 64K 行 Python。Phase 1 输出被 Phase 2 忽略（架构断层）。数据源路由刚性预设。单向 12 步不可回退。<strong style="color:#EF4444">代码越多，越僵硬。</strong></p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">17 phase × 70 模块 × 64K 行 Python。Phase 1 输出被 Phase 2 忽略（架构断层）。数据源路由刚性预设。单向 12 步不可回退。<strong style="color:#EF4444">代码越多，越僵硬。</strong></p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #F59E0B">
           <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">🟡 认知转折</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">为什么老分析师比年轻分析师强？不是步骤更多，而是：知道什么时候用什么数据源 / 能识别数据缺口 / 会交叉验证 / 经验是<strong>原则</strong>不是<strong>清单</strong>。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">为什么老分析师比年轻分析师强？不是步骤更多，而是：知道什么时候用什么数据源 / 能识别数据缺口 / 会交叉验证 / 经验是<strong>原则</strong>不是<strong>清单</strong>。</p>
         </div>
         <div class="card" style="padding:12px;border-top:3px solid #22C55E">
           <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🟢 hv-analysis</h3>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.6">1 个方法文件 · 0 行代码 · 自适应闭环（每章自检 → 补缺口 → 循环）· 内置警醒信号 · 降级链。核心公式：<strong style="color:#22C55E">原则 > 清单，自检 > 门禁</strong>。</p>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.6">1 个方法文件 · 0 行代码 · 自适应闭环（每章自检 → 补缺口 → 循环）· 内置警醒信号 · 降级链。核心公式：<strong style="color:#22C55E">原则 > 清单，自检 > 门禁</strong>。</p>
         </div>
       </div>
 
-      <table style="width:100%;font-size:11px;margin-bottom:10px">
+      <table style="width:100%;font-size:12px;margin-bottom:10px">
         <tr style="background:rgba(255,255,255,0.03)">
           <td style="padding:5px 8px"><strong>维度</strong></td>
           <td style="padding:5px 8px;color:#EF4444"><strong>V3 工作流</strong></td>
@@ -250,36 +250,36 @@
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
         <div class="card" style="padding:14px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">Agent 级记忆</h3>
-          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+          <div style="font-size:12px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
             data-agent → 管清洗<br>
             research-agent → 管分析<br>
             report-agent → 管排版
           </div>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">
             每个 Agent 独立记忆文件，职责分离。<br>
             <strong style="color:#EF4444">5 个 Agent = 5 倍有效上下文</strong>
           </p>
         </div>
         <div class="card" style="padding:14px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">会话级记忆</h3>
-          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+          <div style="font-size:12px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
             空闲检测 → 摘要压缩<br>
             模式提取 → 知识提炼<br>
             Session > 3MB 自动触发
           </div>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">
             休眠时自动对历史会话压缩提炼。<br>
             <strong style="color:#EF4444">上下文不浪费，经验不丢失</strong>
           </p>
         </div>
         <div class="card" style="padding:14px;border-top:3px solid #EF4444">
           <h3 style="font-size:14px;color:#EF4444;margin-bottom:8px">存储级记忆</h3>
-          <div style="font-size:10px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
+          <div style="font-size:12px;color:var(--text-secondary);background:#0A0E27;border:1px solid #1E3A6E;padding:6px 8px;border-radius:4px;margin-bottom:6px;font-family:monospace">
             Qdrant 向量库 + PostgreSQL<br>
             检索命中率 > 95%<br>
             5,786 → 5,886 实体持续增长
           </div>
-          <p style="font-size:11px;color:var(--text-secondary);line-height:1.5;margin:0">
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">
             双库互补，每次任务自动入库。<br>
             <strong style="color:#EF4444">知识资产持续沉淀</strong>
           </p>
@@ -287,21 +287,21 @@
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
-          <strong style="color:#EF4444">MEMOS</strong> <span style="font-size:9px;color:var(--text-muted)">(Docker 自托管)</span><br>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">MEMOS</strong> <span style="font-size:12px;color:var(--text-muted)">(Docker 自托管)</span><br>
           结构化短期记忆插件，emoji+标签格式，支持时序查询与语义检索。类似 OpenClaw 自带的 Dreaming 记忆系统。
         </div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
-          <strong style="color:#EF4444">MEM0</strong> <span style="font-size:9px;color:var(--text-muted)">(60K+ Stars)</span><br>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+          <strong style="color:#EF4444">MEM0</strong> <span style="font-size:12px;color:var(--text-muted)">(60K+ Stars)</span><br>
           通用记忆层插件：自动提取关键信息 → 分层存储 → 向量语义检索。与 MEMOS 互补，覆盖不同记忆粒度。
         </div>
-        <div style="font-size:11px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.5;padding:10px;background:rgba(239,68,68,0.04);border-radius:6px">
           <strong style="color:#EF4444">Obsidian 双向链接</strong><br>
           Graph View 知识关联可视化，Agent 工作成果自动同步到知识库。记忆插件 + Obsidian = 完整的记忆基础设施。
         </div>
       </div>
 
-      <div class="alert alert-warning" style="font-size:11px">
+      <div class="alert alert-warning" style="font-size:12px">
         <strong>📌 实践建议：</strong>从第一天上手就建立记忆习惯——每个 Agent 配独立的身份文件，每个任务结束后追加经验教训。记忆的复利效应会在 3 个月后显著拉开差距。这些记忆插件（MEMOS、MEM0）本质上和 OpenClaw 自带的 Dreaming 系统一样——都是让 Agent 记住该记住的事。
       </div>
     </div>

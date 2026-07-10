@@ -199,7 +199,7 @@ body {
 }
 .security-reminder {
   margin-bottom: 10px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
 }
 .security-reminder summary {
@@ -225,7 +225,7 @@ body {
   border: 1px solid rgba(245,158,11,0.15);
   border-radius: 6px;
   line-height: 1.6;
-  font-size: 11px;
+  font-size: 12px;
 }
 .security-detail p {
   margin: 0 0 3px 0;
@@ -257,7 +257,7 @@ body {
   overflow-y: auto;
 }
 .agent-rail h4 {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--accent);
   margin: 8px 0 4px;
   writing-mode: vertical-rl;
@@ -861,7 +861,7 @@ tr:hover td:first-child {
   margin-bottom: 6px;
 }
 .expand-card .ec-meta {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted);
   margin-bottom: 8px;
 }
@@ -991,7 +991,7 @@ tr:hover td:first-child {
   left: 50%;
   transform: translateX(-50%) scale(0.85);
   padding: 3px 10px;
-  font-size: 11px;
+  font-size: 12px;
   background: var(--accent);
   color: var(--bg-primary);
   border-radius: 4px;
@@ -1588,7 +1588,7 @@ tr:hover td:first-child {
 
 .burst-trigger::before {
   content: '👆';
-  font-size: 11px;
+  font-size: 12px;
   margin-right: 3px;
   opacity: 0;
   transition: opacity 0.25s ease;
@@ -1880,7 +1880,7 @@ tr:hover td:first-child {
   box-shadow: 0 6px 18px rgba(0, 212, 255, 0.25);
 }
 .chapter-nav .label {
-  font-size: 11px;
+  font-size: 12px;
   opacity: 0.65;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -2112,7 +2112,7 @@ kbd {
   background: rgba(0, 212, 255, 0.04);
 }
 .loop-comparison-table code {
-  font-size: 11px;
+  font-size: 12px;
   background: rgba(56, 189, 248, 0.1);
   color: #38bdf8;
   padding: 1px 6px;
@@ -2129,7 +2129,7 @@ kbd {
 
 /* 响应式：迫不得已缩小（不会伤可读性） */
 @media (max-width: 1200px) {
-  .loop-comparison-table { font-size: 11px; }
+  .loop-comparison-table { font-size: 12px; }
   .loop-comparison-table thead th,
   .loop-comparison-table tbody td { padding: 8px 10px; }
 }
@@ -2180,7 +2180,7 @@ kbd {
   padding: 3px 10px;
   border: 1px solid;
   border-radius: 5px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   background: rgba(13, 17, 23, 0.6);
   letter-spacing: 0.2px;
@@ -2195,7 +2195,7 @@ kbd {
 }
 
 .layer-note {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   font-style: italic;
   text-align: right;
@@ -2256,7 +2256,7 @@ kbd {
 .arch-name small {
   display: block;
   color: var(--text-secondary);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
   margin-top: 2px;
 }
@@ -2270,12 +2270,12 @@ kbd {
   padding: 2px 8px;
   border: 1px solid currentColor;
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   background: rgba(13, 17, 23, 0.6);
 }
 .arch-role {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   font-style: italic;
   text-align: right;
@@ -2672,7 +2672,7 @@ kbd {
 }
 
 .live5-cmd {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-secondary);
   margin-bottom: 8px;
   min-height: 32px;
@@ -2689,7 +2689,7 @@ kbd {
 }
 
 .live5-result {
-  font-size: 11px;
+  font-size: 12px;
   color: #56d364;
   font-weight: 600;
 }
@@ -2805,7 +2805,7 @@ kbd {
   position: absolute;
   bottom: 8px;
   right: 12px;
-  font-size: 10px;
+  font-size: 12px;
   color: rgba(0, 212, 255, 0.7);
   font-family: 'JetBrains Mono', monospace;
   letter-spacing: 1px;
@@ -3275,7 +3275,7 @@ body::before {
   }
   
   .loop-comparison-table {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
@@ -3291,7 +3291,7 @@ body::before {
   padding: 2px 8px;
   background: linear-gradient(135deg, #ef4444, #f97316);
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   border-radius: 10px;
   margin-left: 6px;
@@ -3303,7 +3303,7 @@ body::before {
   padding: 2px 8px;
   background: linear-gradient(135deg, #f59e0b, #ef4444);
   color: white;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   border-radius: 10px;
   margin-left: 6px;
@@ -3758,7 +3758,7 @@ html[data-mode="presentation"] .slide {
 }
 .demo-output-status {
   margin-left: auto;
-  font-size: 11px;
+  font-size: 12px;
   padding: 2px 10px;
   border-radius: 4px;
 }
@@ -3793,7 +3793,7 @@ html[data-mode="presentation"] .slide {
   border: 1px solid #1E3A6E;
   border-radius: 6px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: #E8EEFF;
   line-height: 1.7;
   white-space: pre-wrap;
@@ -3806,7 +3806,7 @@ html[data-mode="presentation"] .slide {
   border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 6px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: #EF4444;
   line-height: 1.6;
   white-space: pre-wrap;
@@ -3865,7 +3865,7 @@ html[data-mode="presentation"] .slide {
 .demo-kpi-label {
   display: block;
   color: #8FA1CC;
-  font-size: 10px;
+  font-size: 12px;
   margin-top: 4px;
 }
 
@@ -3985,7 +3985,7 @@ html[data-mode="presentation"] .slide {
 }
 .demo-output-status {
   color: #8FA1CC;
-  font-size: 11px;
+  font-size: 12px;
   transition: color 0.3s ease;
 }
 .demo-output-close {
@@ -4016,7 +4016,7 @@ html[data-mode="presentation"] .slide {
   border-radius: 6px;
   padding: 10px 14px;
   font-family: var(--font-mono, monospace);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
   color: #E8EEFF;
 }
@@ -4050,7 +4050,7 @@ html[data-mode="presentation"] .slide {
   border: 1px solid rgba(239, 68, 68, 0.4);
   border-radius: 4px;
   color: #EF4444;
-  font-size: 11px;
+  font-size: 12px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -4067,7 +4067,7 @@ html[data-mode="presentation"] .slide {
   border: 1px solid rgba(168, 85, 247, 0.4);
   border-radius: 4px;
   color: #A855F7;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
 }
 
@@ -4119,7 +4119,7 @@ html[data-mode="presentation"] .slide {
   border-radius: 6px;
   padding: 12px 16px;
   font-family: var(--font-mono, monospace);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   color: #E8EEFF;
   white-space: pre-wrap;

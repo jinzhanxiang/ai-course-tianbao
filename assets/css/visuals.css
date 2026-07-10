@@ -45,7 +45,7 @@
   stroke-dasharray: 6 3;
 }
 .radar-label {
-  font-size: 11px;
+  font-size: 12px;
   fill: var(--text-secondary, #8fa8cc);
   text-anchor: middle;
 }
@@ -95,7 +95,7 @@
   position: absolute;
   top: -10px;
   left: 16px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   padding: 2px 10px;
   border-radius: 4px;
@@ -198,7 +198,7 @@
   white-space: nowrap;
 }
 .compare-label {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -254,7 +254,7 @@
   margin-top: 4px;
 }
 .dash-sub {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted, #5a6b95);
   margin-top: 2px;
 }
@@ -390,7 +390,7 @@
   text-align: center;
 }
 .timeline-node-year {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-muted, #5a6b95);
   position: absolute;
   top: -24px;
