@@ -36,7 +36,7 @@
   <div>图 2 · 不编程 vs 用 Agent · 天保内部真实数据（2026-Q2）</div>
 </div>
 
-<h2 style="font-size:20px;color:var(--text-secondary);font-weight:normal;margin-top:6px"5 步上手：装环境 → 装 Agent → 选模型 → 装技能 → 学对话</h2>
+<h2 style="font-size:20px;color:var(--text-secondary);font-weight:normal;margin-top:6px"4 步上手：装 Agent → 选模型 → 装技能 → Prompt 工程</h2>
         <p style="font-size:14px;color:var(--text-muted);margin-top:14px;max-width:800px;margin-left:auto;margin-right:auto">
           第 03 章讲清了体系原理。现在回答最实际的问题：<strong style="color:#22C55E">你不会编程，能不能用？答案是：不但能用，而且比你想象的简单。</strong>在智能体时代，编程的门槛已被 Agent 抹平——从装环境到跑通第一个任务，5 步约 1 小时。
         </p>
@@ -225,155 +225,123 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- Slide 3A：第一步：安装基础环境（Overview Page） -->
+    <!-- Slide 3：第一步：装 Agent（含环境准备） -->
     <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:8px">🗺️ 从零开始 · 第一步：装环境</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:6px">刚才说了——你不需要会编程。下面这些步骤，Agent 会帮你完成。你要做的只是走一遍流程。</p>
-      <div class="alert alert-info" style="font-size:13px;margin-bottom:14px">
-        <strong>💡 提示：</strong>下面的内容看起来像技术配置，但你要做的只是<strong style="color:#22C55E">按步骤操作</strong>——不需要理解每一项的含义。就像你不需要懂发动机原理也能开车一样。记住：<strong style="color:#F59E0B">Agent 才是你的司机</strong>。
+      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:4px">🤖 第一步：装 Agent</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;text-align:center;max-width:760px;margin-left:auto;margin-right:auto">Agent 才是你的司机——环境准备 + Agent 安装一气呵成，下面每一步都不需要你懂技术原理</p>
+
+      <div class="alert alert-info" style="font-size:13px;margin-bottom:12px">
+        <strong>💡 核心认知：</strong>下面的内容看起来像技术配置，但你要做的只是<strong style="color:#22C55E">按步骤操作</strong>——就像你不需要懂发动机原理也能开车一样。记住：<strong style="color:#F59E0B">Agent 才是你的司机。</strong>
       </div>
 
-      <h3 style="font-size:20px;color:#F59E0B;margin-bottom:10px;text-align:center">1️⃣ 安装基础环境（Mac + Windows 均适用）</h3>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">四条路径，一次性安装，以后不再需要</p>
+      <!-- Part A: 环境准备（简化为4个卡片） -->
+      <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px;text-align:center">📦 环境准备（一次性，以后不再需要）</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+        <div class="card popup-trigger" data-popup-title="Python 3.10+" style="padding:10px;border-top:3px solid #F59E0B;text-align:center;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:20px;margin-bottom:3px">🐍</div>
+            <h4 style="font-size:13px;color:#F59E0B;margin-bottom:3px">Python 3.10+</h4>
+            <p style="font-size:12px;color:var(--text-muted);margin:0">Mac 自带 / Windows 下载</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Mac 自带 Python 3 · Windows：python.org 下载 → 勾选"Add to PATH"</p>
+          </div>
+        </div>
+        <div class="card popup-trigger" data-popup-title="Git" style="padding:10px;border-top:3px solid #00D4FF;text-align:center;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:20px;margin-bottom:3px">📂</div>
+            <h4 style="font-size:13px;color:#00D4FF;margin-bottom:3px">Git</h4>
+            <p style="font-size:12px;color:var(--text-muted);margin:0">macOS 终端 / git-scm.com</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">Mac：终端输入 <code>git --version</code> 按提示安装 · Windows：git-scm.com 下载</p>
+          </div>
+        </div>
+        <div class="card popup-trigger" data-popup-title="Node.js 18+" style="padding:10px;border-top:3px solid #A855F7;text-align:center;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:20px;margin-bottom:3px">🟢</div>
+            <h4 style="font-size:13px;color:#A855F7;margin-bottom:3px">Node.js 18+</h4>
+            <p style="font-size:12px;color:var(--text-muted);margin:0">nodejs.org LTS 版本</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">nodejs.org 下载 LTS 版本 → 一路下一步</p>
+          </div>
+        </div>
+        <div class="card popup-trigger" data-popup-title="Docker Desktop" style="padding:10px;border-top:3px solid #22C55E;text-align:center;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:20px;margin-bottom:3px">🐳</div>
+            <h4 style="font-size:13px;color:#22C55E;margin-bottom:3px">Docker Desktop</h4>
+            <p style="font-size:12px;color:var(--text-muted);margin:0">可选 · docker.com 下载</p>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">docker.com 下载 → 安装后启动（可选，后续装 SearXNG 搜索需要）</p>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:13px;color:var(--text-muted)">⏱ 约 15 分钟 · 一次性安装</p>
 
-      <!-- Scroll-Unroll: 4 infrastructure items -->
-      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px;position:relative;padding:0 4px">
-        <div class="card scroll-unroll-item popup-trigger" data-popup-title="Python 3.10+" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative;cursor:pointer">
+      <!-- Divider -->
+      <div style="border-top:1px dashed rgba(255,255,255,0.1);margin:8px 0"></div>
+
+      <!-- Part B: Agent 安装 -->
+      <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px;text-align:center">🤖 安装 Hermes Agent（三条命令）</h3>
+
+      <!-- Windows 离线安装包（新增） -->
+      <div class="card" style="padding:10px 14px;background:rgba(34,197,94,0.04);border:1px solid #22C55E44;border-radius:8px;margin-bottom:10px">
+        <h4 style="font-size:13px;color:#22C55E;margin-bottom:4px">🪟 Windows 用户：离线安装包（无需联网，3 分钟就绪）</h4>
+        <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+          <p style="margin:0 0 4px 0">我们准备了<strong style="color:#22C55E">一键离线安装包</strong>：内置 Python 3.11.9 + 29 个依赖包，完全无需联网。</p>
+          <p style="margin:0"><strong>操作：</strong>解压 <code>hermes-installer/</code> → 双击 <code>setup.bat</code> → 填入商汤 API Key → 双击 <code>启动Hermes.bat</code></p>
+          <p style="margin:4px 0 0 0;color:var(--text-muted)">安装后自动创建：启动Hermes.bat / 日报生成器.bat / 飞书模式.bat / 环境验证.bat</p>
+        </div>
+      </div>
+
+      <!-- Mac/Linux 命令行安装 -->
+      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;position:relative;padding:0 4px">
+        <div class="card scroll-unroll-item" style="padding:14px;border-top:3px solid #F59E0B;text-align:center;position:relative">
           <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
-          <div class="popup-trigger-preview">
-            <div style="font-size:24px;margin-bottom:6px">🐍</div>
-            <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">Python 3.10+</h4>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Mac 自带 / Windows 下载安装 · 勾选 Add to PATH</p>
-          </div>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-              <p style="margin:0">Mac 自带 Python 3 · Windows：python.org 下载 → 勾选"Add to PATH" → 一路下一步</p>
-            </div>
-          </div>
-        </div>
-        <div class="card scroll-unroll-item popup-trigger" data-popup-title="Git" style="padding:18px 14px;border-top:4px solid #00D4FF;text-align:center;position:relative;cursor:pointer">
-          <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 12px rgba(0,212,255,0.5)">2</span>
-          <div class="popup-trigger-preview">
-            <div style="font-size:24px;margin-bottom:6px">📂</div>
-            <h4 style="font-size:15px;color:#00D4FF;margin-bottom:6px">Git</h4>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">Mac 终端输入 git --version · Windows git-scm.com 下载</p>
-          </div>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-              <p style="margin:0">Mac：终端输入 <code>git --version</code> 按提示安装 · Windows：git-scm.com 下载</p>
-            </div>
-          </div>
-        </div>
-        <div class="card scroll-unroll-item popup-trigger" data-popup-title="Node.js 18+" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative;cursor:pointer">
-          <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">3</span>
-          <div class="popup-trigger-preview">
-            <div style="font-size:24px;margin-bottom:6px">🟢</div>
-            <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">Node.js 18+</h4>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">nodejs.org 下载 LTS 版本 · 一路下一步</p>
-          </div>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-              <p style="margin:0">nodejs.org 下载 LTS 版本 → 一路下一步</p>
-            </div>
-          </div>
-        </div>
-        <div class="card scroll-unroll-item popup-trigger" data-popup-title="Docker Desktop" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative;cursor:pointer">
-          <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">4</span>
-          <div class="popup-trigger-preview">
-            <div style="font-size:24px;margin-bottom:6px">🐳</div>
-            <h4 style="font-size:15px;color:#22C55E;margin-bottom:6px">Docker Desktop</h4>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.5">可选 · 安装 SearXNG 搜索需要 · docker.com 下载</p>
-          </div>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-              <p style="margin:0">docker.com 下载 → 安装后启动即可（可选，安装 SearXNG 搜索需要）</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p style="text-align:center;font-size:14px;color:#F59E0B;margin-top:16px"><strong>⏱ 约 15 分钟 · 一次性安装，以后不再需要</strong></p>
-
-      <!-- Page transition arrow -->
-      <div style="text-align:center;margin-top:14px">
-        <div class="story-split-arrow">⬇</div>
-        <p style="font-size:13px;color:var(--text-muted)">环境就绪，下一步安装 Agent——三条命令，约 5 分钟</p>
-      </div>
-    </div>
-
-    <!-- ============================================================ -->
-    <!-- Slide 3B：第二步：安装 Agent（Continuation Page） -->
-    <!-- ============================================================ -->
-    <div class="slide">
-      <span class="split-continuation-badge">↑ 接上一页 · 安装基础环境</span>
-
-      <h2 style="font-size:28px;color:#00D4FF;margin-bottom:8px">🤖 第二步：安装 Agent</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center;max-width:700px;margin-left:auto;margin-right:auto">超级单体智能体 CLI 一键安装——三条命令，约 5 分钟</p>
-
-      <!-- Agent install steps as scroll-unroll -->
-      <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;position:relative;padding:0 4px">
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #F59E0B;text-align:center;position:relative">
-          <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 12px rgba(245,158,11,0.5)">1</span>
-          <div style="font-size:24px;margin-bottom:6px">📥</div>
-          <h4 style="font-size:15px;color:#F59E0B;margin-bottom:6px">克隆仓库</h4>
-          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+          <div style="font-size:20px;margin-bottom:4px">📥</div>
+          <h4 style="font-size:14px;color:#F59E0B;margin-bottom:4px">克隆仓库</h4>
+          <div style="background:#0A0E27;padding:6px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.4;margin-top:3px">
             git clone https://github.com/jeffijoe/hermes-agent<br>
             cd hermes-agent
           </div>
+          <p style="font-size:12px;color:var(--text-muted);margin:4px 0 0 0">Mac / Linux 终端</p>
         </div>
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #A855F7;text-align:center;position:relative">
+        <div class="card scroll-unroll-item" style="padding:14px;border-top:3px solid #A855F7;text-align:center;position:relative">
           <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 12px rgba(168,85,247,0.5)">2</span>
-          <div style="font-size:24px;margin-bottom:6px">📦</div>
-          <h4 style="font-size:15px;color:#A855F7;margin-bottom:6px">安装依赖</h4>
-          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+          <div style="font-size:20px;margin-bottom:4px">📦</div>
+          <h4 style="font-size:14px;color:#A855F7;margin-bottom:4px">安装依赖</h4>
+          <div style="background:#0A0E27;padding:6px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.4;margin-top:3px">
             pip install -e .
           </div>
-          <p style="font-size:13px;color:var(--text-muted);margin:6px 0 0 0">pip 自动处理所有依赖</p>
+          <p style="font-size:12px;color:var(--text-muted);margin:4px 0 0 0">自动处理所有依赖</p>
         </div>
-        <div class="card scroll-unroll-item" style="padding:18px 14px;border-top:4px solid #22C55E;text-align:center;position:relative">
+        <div class="card scroll-unroll-item" style="padding:14px;border-top:3px solid #22C55E;text-align:center;position:relative">
           <span class="unroll-badge" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)">3</span>
-          <div style="font-size:24px;margin-bottom:6px">🚀</div>
-          <h4 style="font-size:15px;color:#22C55E;margin-bottom:6px">启动网关</h4>
-          <div style="background:#0A0E27;padding:8px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.5;margin-top:6px">
+          <div style="font-size:20px;margin-bottom:4px">🚀</div>
+          <h4 style="font-size:14px;color:#22C55E;margin-bottom:4px">启动网关</h4>
+          <div style="background:#0A0E27;padding:6px;border-radius:4px;font-family:monospace;font-size:12px;color:#22C55E;line-height:1.4;margin-top:3px">
             python -m hermes_cli.main gateway run --replace
           </div>
-          <p style="font-size:13px;color:var(--text-muted);margin:6px 0 0 0">Agent 后台常驻 · 端口 19000</p>
+          <p style="font-size:12px;color:var(--text-muted);margin:4px 0 0 0">后台常驻 · 端口 19000</p>
         </div>
       </div>
 
-      <!-- Platform note -->
-      <div class="card" style="padding:12px;background:rgba(0,212,255,0.04);border:1px solid #00D4FF44;border-radius:8px;margin-top:14px;text-align:center">
-        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6">
-          <strong>Windows 用户注意：</strong>PowerShell 或 CMD 均可运行。如遇到权限问题，PowerShell 以管理员身份运行。<strong>Mac/Linux 用户</strong>直接用终端。启动后 Agent 在后台常驻，默认端口 19000。
-        </p>
-      </div>
-
-      <p style="text-align:center;font-size:14px;color:#00D4FF;margin-top:12px"><strong>⏱ 约 5 分钟 · pip 自动处理所有依赖</strong></p>
-
-      <div class="alert alert-success" style="font-size:14px;margin-top:14px">
-        <strong>前两步总计约 20 分钟。</strong>装完这两步，你就有了一个运行中的 Agent 环境。接下来是给它配「大脑」（模型）和「技能包」。
+      <div class="alert alert-success" style="font-size:13px;margin-top:10px">
+        <strong>第一步总计约 20 分钟（Windows 离线包仅需 3 分钟）。</strong>装完这一步，你就有了一个运行中的 Agent。接下来给它配「大脑」（模型）和「技能包」。
       </div>
     </div>
 
     <!-- ============================================================ -->
-    <!-- Slide 4A：第三步：选择模型（Overview Page） -->
+    <!-- Slide 4：第二步：选择模型 -->
     <!-- ============================================================ -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🧠 第三步：选模型——免费模型足够起步</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Agent 的大脑——选对模型，事半功倍。以下四款均可免费开始使用。</p>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px">🧠 第二步：选模型——免费模型足够起步</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Agent 的大脑——选对模型，事半功倍。以下四款均可免费开始使用，重点关注前两个：商汤（免费云端）和 Ollama（本地离线）。</p>
 
-      <!-- Skill intro card (context from original slide) -->
-      <div class="card" style="padding:12px;background:rgba(168,85,247,0.04);border:1px solid #A855F744;border-radius:8px;margin-bottom:14px">
-        <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">📦 先搞清楚：什么是「技能」？</h3>
-        <div style="font-size:13px;color:var(--text-secondary);line-height:1.7">
-          <p style="margin:0 0 6px 0"><strong style="color:#A855F7">技能 = Agent 的「可安装能力包」。</strong>就像手机安装 App 获得新功能——装微信就能聊天，装地图就能导航。Agent 也一样：装「SearXNG 搜索」技能 → 能搜索网页，装「MX 金融数据」技能 → 能查财务指标。</p>
-          <p style="margin:0 0 6px 0"><strong style="color:#F59E0B">技能商店（SkillHub）= Agent 的 App Store。</strong>浏览 → 搜索 → 看评价 → 一键安装。不写一行代码，就像你在手机上下载应用一样。</p>
-          <p style="margin:0"><strong style="color:#22C55E">核心架构：</strong>每个技能就是一个独立的 Markdown 文件（SKILL.md），定义了这个技能「能做什么、怎么调用、需要什么参数」。Agent 读取 SKILL.md → 学会这项技能 → 下次遇到相关任务自动调用。简单、透明、可复用。</p>
-        </div>
-      </div>
-
-      <h3 style="font-size:18px;color:#F59E0B;margin-bottom:10px;text-align:center">3️⃣ 选择模型：免费模型足够起步</h3>
+      <h3 style="font-size:16px;color:#F59E0B;margin-bottom:8px;text-align:center">四款免费模型，按场景选择</h3>
 
       <!-- Scroll-Unroll: 4 model cards with popups preserved -->
       <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;position:relative;padding:0 4px">
@@ -451,87 +419,118 @@
     </div>
 
     <!-- ============================================================ -->
-    <!-- Slide 4B：第四步：安装技能（Continuation Page） -->
+    <!-- Slide 5：第三步：安装技能——信息搜索三件套 + SkillHub -->
     <!-- ============================================================ -->
     <div class="slide">
       <span class="split-continuation-badge">↑ 接上一页 · 选择模型</span>
 
-      <h2 style="font-size:28px;color:#A855F7;margin-bottom:6px">📦 第四步：安装技能——SkillHub 技能商店 + 信息搜索三件套</h2>
-      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:14px;text-align:center">技能商店 = Agent 的 App Store。浏览 → 搜索 → 一键安装。不写一行代码。</p>
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px">📦 第三步：安装技能——信息搜索三件套</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;text-align:center">Agent 装好了，但还不会搜索、不会查数据、不会抓网页。装这三个技能，覆盖投资研究 90% 的信息获取需求。</p>
 
-      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:12px;margin-bottom:14px">
-        <div class="card" style="padding:14px;border-top:3px solid #A855F7">
-          <h4 style="font-size:15px;color:#A855F7;margin-bottom:8px">🛒 去哪里找技能？SkillHub 技能商店</h4>
-          <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-            <p style="margin:0 0 8px 0">访问 <a href="https://skillhub.cn" style="color:#A855F7;font-weight:700" target="_blank">skillhub.cn</a> → 浏览技能市场 → 找到需要的技能 → 一键安装到 Agent</p>
-            <p style="margin:0 0 4px 0">类似手机应用商店：搜索、筛选、看评价、一键安装。不写一行代码。</p>
-            <p style="margin:0;color:#A855F7;font-size:14px"><strong>技能商店 = Agent 的 App Store</strong></p>
+      <!-- 三件套详细卡片 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+
+        <!-- SearXNG 深度解析 -->
+        <div class="card popup-trigger" data-popup-title="SearXNG 自建搜索引擎" style="padding:12px;border-top:3px solid #00D4FF;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:22px;margin-bottom:4px;text-align:center">🔍</div>
+            <h4 style="font-size:14px;color:#00D4FF;margin-bottom:6px;text-align:center">SearXNG 元搜索</h4>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55">
+              <p style="margin:0 0 3px 0"><strong style="color:#00D4FF">是什么：</strong>开源的<strong>元搜索引擎</strong>——它自己不做搜索，而是同时把关键词发给 Google、Bing、DuckDuckGo、Wikipedia 等几十个搜索引擎，汇总去重后返回给你。</p>
+              <p style="margin:0 0 3px 0"><strong style="color:#00D4FF">为什么用它：</strong></p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">免费自建：</strong>Docker 一条命令部署在自己的电脑上，不花一分钱</p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">无 API 配额限制：</strong>不调用任何商业搜索 API，没有「本月额度用完」这种事</p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">隐私保护：</strong>搜索请求不经过第三方服务器，你的查询记录只有你自己知道</p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">多引擎聚合：</strong>一次搜索 = Google + Bing + Wikipedia + DuckDuckGo 同时查，信息覆盖面远超单一搜索引擎</p>
+            </div>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>安装命令：</strong><br>
+              <code>docker run -d -p 8082:8080 searxng/searxng</code><br>
+              一条命令，浏览器打开 localhost:8082 即可使用<br>
+              Agent 通过 SearXNG skill 自动调用
+            </p>
           </div>
         </div>
-        <div class="card" style="padding:14px;border-top:3px solid #22C55E">
-          <h4 style="font-size:15px;color:#22C55E;margin-bottom:8px">📦 推荐首装：信息搜索三件套（一键安装包）</h4>
-          <div data-unroll-delay="300" class="scroll-unroll" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
-            <div class="scroll-unroll-item popup-trigger" data-popup-title="SearXNG 搜索" style="padding:10px;background:rgba(0,212,255,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
-              <span class="unroll-badge" style="background:#00D4FF;box-shadow:0 0 10px rgba(0,212,255,0.5)">1</span>
-              <div class="popup-trigger-preview">
-                <div style="font-size:18px;margin-bottom:3px">🔍</div>
-                <strong style="font-size:14px;color:#00D4FF">SearXNG 搜索</strong>
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">多引擎元搜索 · 无 API 配额限制</p>
-              </div>
-              <div class="popup-detail" style="display:none">
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">自建元搜索引擎<br>多引擎聚合<br>无 API 配额限制</p>
-              </div>
-            </div>
-            <div class="scroll-unroll-item popup-trigger" data-popup-title="MX 金融数据" style="padding:10px;background:rgba(245,158,11,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
-              <span class="unroll-badge" style="background:#F59E0B;box-shadow:0 0 10px rgba(245,158,11,0.5)">2</span>
-              <div class="popup-trigger-preview">
-                <div style="font-size:18px;margin-bottom:3px">📊</div>
-                <strong style="font-size:14px;color:#F59E0B">MX 金融数据</strong>
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">财务指标查询 · 行情数据 · 产业链图谱</p>
-              </div>
-              <div class="popup-detail" style="display:none">
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">财务指标查询<br>行情数据获取<br>产业链图谱</p>
-              </div>
-            </div>
-            <div class="scroll-unroll-item popup-trigger" data-popup-title="浏览器自动化" style="padding:10px;background:rgba(168,85,247,0.08);border-radius:6px;text-align:center;cursor:pointer;position:relative">
-              <span class="unroll-badge" style="background:#A855F7;box-shadow:0 0 10px rgba(168,85,247,0.5)">3</span>
-              <div class="popup-trigger-preview">
-                <div style="font-size:18px;margin-bottom:3px">🌐</div>
-                <strong style="font-size:14px;color:#A855F7">浏览器自动化</strong>
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0">天眼查抓取 · 网页采集 · 竞品监控</p>
-              </div>
-              <div class="popup-detail" style="display:none">
-                <p style="font-size:13px;color:var(--text-secondary);margin:3px 0 0 0;line-height:1.4">天眼查工商抓取<br>网页数据采集<br>竞品信息监控</p>
-              </div>
+
+        <!-- MX 金融数据 -->
+        <div class="card popup-trigger" data-popup-title="MX 金融数据" style="padding:12px;border-top:3px solid #F59E0B;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:22px;margin-bottom:4px;text-align:center">📊</div>
+            <h4 style="font-size:14px;color:#F59E0B;margin-bottom:6px;text-align:center">MX 金融数据</h4>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55">
+              <p style="margin:0 0 3px 0"><strong style="color:#F59E0B">是什么：</strong>专业金融数据 API，覆盖 A 股/港股/美股的<strong>财务指标、行情数据、产业链图谱</strong>。</p>
+              <p style="margin:0 0 3px 0"><strong style="color:#F59E0B">怎么用：</strong></p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">手机免费注册：</strong>mx.com 注册即送免费额度，无需付费</p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">结构化数据：</strong>不是网页搜索，返回的是可直接使用的财务报表数据</p>
+              <p style="margin:0">· <strong style="color:#22C55E">产业链图谱：</strong>输入一家公司，自动画出上下游供应商和客户关系</p>
             </div>
           </div>
-          <p style="font-size:13px;color:var(--text-muted);margin-top:10px;text-align:center">三个技能覆盖了投资研究 90% 的信息获取需求——搜索、金融数据、工商信息。</p>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>获取方式：</strong><br>
+              手机号注册 → 领取免费额度 → Agent 通过 MX skill 自动调用<br>
+              免费额度足以支撑日常投资研究使用
+            </p>
+          </div>
+        </div>
+
+        <!-- 浏览器自动化 -->
+        <div class="card popup-trigger" data-popup-title="浏览器自动化" style="padding:12px;border-top:3px solid #A855F7;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:22px;margin-bottom:4px;text-align:center">🌐</div>
+            <h4 style="font-size:14px;color:#A855F7;margin-bottom:6px;text-align:center">浏览器自动化</h4>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.55">
+              <p style="margin:0 0 3px 0"><strong style="color:#A855F7">是什么：</strong>让 Agent 像人一样<strong>操作浏览器</strong>——打开网页、点击、翻页、提取数据，自动爬取任何网站信息。</p>
+              <p style="margin:0 0 3px 0"><strong style="color:#A855F7">能做什么：</strong></p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">天眼查工商抓取：</strong>自动查公司工商变更、股东信息、司法风险</p>
+              <p style="margin:0 0 1px 0">· <strong style="color:#22C55E">竞品官网采集：</strong>批量抓取产品信息、价格变化、新闻公告</p>
+              <p style="margin:0">· <strong style="color:#22C55E">任意网页结构化：</strong>看到任何网页有数据，Agent 都能自动抓下来整理成表格</p>
+            </div>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <p style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin:0">
+              <strong>典型用法：</strong><br>
+              你说「帮我查一下 XX 公司的工商变更记录」→ Agent 自动打开天眼查 → 搜索公司 → 提取变更记录 → 整理成表格
+            </p>
+          </div>
         </div>
       </div>
 
-      <div style="margin-top:12px;padding:14px 16px;background:linear-gradient(90deg,rgba(168,85,247,0.06),rgba(34,197,94,0.04));border-left:3px solid #A855F7;border-radius:8px">
-        <h3 style="font-size:14px;color:#A855F7;margin-bottom:8px">💡 什么是 Skill？不是 Prompt，是 SOP</h3>
-        <p style="font-size:12px;color:var(--text-secondary);line-height:1.7;margin:0">
-          刚接触的人很容易以为 Skill 就是「高级 Prompt」——写一段话告诉 AI 你是谁。差远了。<br>
-          <strong style="color:#F59E0B">一份 Skill，本质是一份 SOP（标准作业程序）。</strong>它写清楚的<strong style="color:#22C55E">不是「你要做什么」，而是「你该怎么做」</strong>：<br>
-          · <strong>什么时候触发</strong>（用户说了什么关键词就启动这个 Skill）<br>
-          · <strong>第一步查什么</strong>（先找哪个数据源，为什么）<br>
-          · <strong>用哪个工具</strong>（搜索？API？浏览器？哪个最合适）<br>
-          · <strong>哪一步不能跳</strong>（质量控制节点——漏了这一步报告就不可靠）<br>
-          · <strong>出错优先看哪一层</strong>（数据源挂了？API 超额？降级用哪个备选）<br>
-          · <strong>做完怎么交差</strong>（输出格式、验证标准、通知谁）<br>
-          <span style="font-size:12px;color:var(--text-muted)">举个例子：hv-analysis Skill（纵横分析法）不是告诉 Agent「你是投资专家」，而是告诉它：先读本地文件→识别缺口→选数据源→每章自检 Q1-Q4→S1-S7 警醒信号→降级链。Agent 拿着这份 SOP，就像新人拿着带教手册——每一步都知道怎么走。<br><br>
-          <strong style="color:#00D4FF;font-size:12px">另一个例子：literature-review（文献综述）Skill</strong><br>
-          <span style="font-size:12px;color:var(--text-muted)">不会只扔一句「帮我综述一下」。它要求 Agent <strong>先搜再读再写</strong>：先抓 DOI、作者、年份 → 再组织判断 → 碰上争议性结论<strong>查撤稿和后续验证</strong> → 最后拿出来的不是论文列表，是<strong style="color:#22C55E">每句话都能追溯到出处的综合评估</strong>。这就是 SOP 的力量——不是告诉 Agent「你是文献专家」，而是告诉它「先做什么、再做什么、什么不能跳过」。</span>
+      <!-- SkillHub 完整指南 -->
+      <div class="card" style="padding:14px;background:linear-gradient(135deg,rgba(168,85,247,0.06),rgba(245,158,11,0.04));border:1px solid #A855F744;border-radius:10px;margin-bottom:10px">
+        <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px;text-align:center">🛒 去哪里找技能？SkillHub 技能商店（skillhub.cn）</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div>
+            <h4 style="font-size:13px;color:#F59E0B;margin-bottom:4px">📱 技能商店 = Agent 的 App Store</h4>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 3px 0">就像你在手机上装 App 获得新功能一样——装微信就能聊天，装地图就能导航。</p>
+              <p style="margin:0 0 3px 0">Agent 也一样：装「SearXNG」→ 能搜索网页，装「MX」→ 能查财务数据。</p>
+              <p style="margin:0"><strong style="color:#22C55E">不写一行代码，浏览 → 搜索 → 看评价 → 一键安装。</strong></p>
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:13px;color:#22C55E;margin-bottom:4px">🔍 如何挑选技能？四个筛选标准</h4>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 2px 0"><strong style="color:#F59E0B">1. 看下载量：</strong>高下载量 = 社区验证过</p>
+              <p style="margin:0 0 2px 0"><strong style="color:#F59E0B">2. 看更新日期：</strong>最近更新 = 有人维护</p>
+              <p style="margin:0 0 2px 0"><strong style="color:#F59E0B">3. 看 SKILL.md：</strong>打开看内容是否清晰——好的 Skill 像一份 SOP，不是一段 Prompt</p>
+              <p style="margin:0"><strong style="color:#F59E0B">4. 看依赖：</strong>是否需要额外付费 API？免费自建优先</p>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:center;font-size:13px;margin-top:8px">
+          访问 <a href="https://skillhub.cn" style="color:#A855F7;font-weight:700" target="_blank">skillhub.cn</a> 浏览技能市场。除了信息搜索三件套，还有 PDF 处理、Office 文档生成、飞书/企业微信通知等数百个技能可选。
         </p>
       </div>
 
-      <div class="alert alert-success" style="font-size:14px;margin-top:8px">
-        <strong>后两步总计约 15 分钟。</strong>四条路径加起来不到 1 小时，你就有了一个能搜索、能查数据、能自动抓取信息的 AI Agent。
+      <div class="alert alert-success" style="font-size:13px;margin-top:6px">
+        <strong>第三步约 15 分钟（Docker+SearXNG）。</strong>装完这三步——Agent、模型、技能——你就有了一个能搜索、能查金融数据、能自动抓取网上信息的 AI Agent。接下来学最后一步：怎么跟它高效对话。
       </div>
     </div>
 
-    <!-- Slide 4.3：深入理解 — 一个 Skill 到底是什么？ -->
+    <!-- Slide 5.5：深入理解 — 一个 Skill 到底是什么？ -->
     <div class="slide">
       <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px">🔍 深入理解：一个 Skill 到底是什么？</h2>
       <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">刚才说了技能是「可安装能力包」。现在用一个真实案例，让你看清<strong style="color:#F59E0B">Skill ≠ 高级 Prompt</strong></p>
@@ -674,9 +673,9 @@
       </div>
     </div>
 
-    <!-- Slide 4.5：Prompt 工程入门（Step 5） -->
+    <!-- Slide 6：第四步：Prompt 工程入门 -->
     <div class="slide">
-      <h2 style="font-size:28px;color:#22C55E;margin-bottom:2px">💬 第五步：学会与智能体高效对话（Prompt 工程）</h2>
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:2px">💬 第四步：学会与智能体高效对话（Prompt 工程）</h2>
       <p style="font-size:14px;color:var(--text-secondary);margin-bottom:10px">环境装好了、模型配好了、技能装好了——最后一步，学会<strong style="color:#22C55E">「问对问题」</strong></p>
 
       <!-- Row 1: 5 Patterns + 3 Errors (2-col) -->
@@ -741,27 +740,31 @@
         </div>
       </div>
 
-      <!-- Row 3: 3 个可复制模板 -->
+      <!-- Row 3: 信息搜索技能包实战（替代模板） -->
       <div>
-        <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">📋 可复制的 Prompt 模板（投资行业专用）</h3>
+        <h3 style="font-size:15px;color:#22C55E;margin-bottom:6px">📋 实战：用一句 Prompt 触发搜索技能包</h3>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:8px;text-align:center">你不需要写长 Prompt——Agent 安装了技能后，你只需要<strong style="color:#F59E0B">说人话</strong>，Agent 自动调用正确的技能：</p>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-          <div class="card" style="padding:10px;border-top:3px solid #F59E0B">
-            <h4 style="font-size:15px;color:#F59E0B;margin-bottom:5px">🔬 行业研究</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
-              「你是一位<span style="color:#F59E0B">[XX行业]</span>分析师。请分析<span style="color:#F59E0B">[行业名称]</span>的竞争格局：<br>1. 市场规模与增速<br>2. 前5名企业市场份额<br>3. 技术替代风险<br>数据来源标注具体出处。」
+          <div class="card" style="padding:10px;border-top:3px solid #00D4FF;background:rgba(0,212,255,0.04)">
+            <h4 style="font-size:14px;color:#00D4FF;margin-bottom:5px">🔍 触发 SearXNG 搜索</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:4px">
+              「查一下<span style="color:#00D4FF">锂电池</span>行业最新的政策文件和市场规模」
             </div>
+            <p style="font-size:12px;color:#22C55E;margin:0">→ Agent 自动调用 SearXNG，同时搜索 Google+Bing+Wikipedia，返回去重汇总结果</p>
           </div>
-          <div class="card" style="padding:10px;border-top:3px solid #00D4FF">
-            <h4 style="font-size:15px;color:#00D4FF;margin-bottom:5px">💰 财务分析</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
-              「请基于<span style="color:#00D4FF">[公司名]</span>最新财报，从盈利能力、偿债能力、营运能力、成长能力四维度分析财务状况。用表格展示关键指标及同比变化，异常指标单独标注。」
+          <div class="card" style="padding:10px;border-top:3px solid #F59E0B;background:rgba(245,158,11,0.04)">
+            <h4 style="font-size:14px;color:#F59E0B;margin-bottom:5px">📊 触发 MX 金融数据</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:4px">
+              「<span style="color:#F59E0B">宁德时代</span>最近三年的营收、净利、毛利率，跟行业均值对比」
             </div>
+            <p style="font-size:12px;color:#22C55E;margin:0">→ Agent 自动调用 MX API，返回结构化财务数据，标注同比变化</p>
           </div>
-          <div class="card" style="padding:10px;border-top:3px solid #A855F7">
-            <h4 style="font-size:15px;color:#A855F7;margin-bottom:5px">📝 会议纪要</h4>
-            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55">
-              「请将以下会议录音/文字转为结构化纪要：<br>1. 会议主题<br>2. 参会方<br>3. 核心结论（3-5条）<br>4. 分歧点<br>5. 待办事项（含责任人和截止日期）<br>总字数不超过 800 字。」
+          <div class="card" style="padding:10px;border-top:3px solid #A855F7;background:rgba(168,85,247,0.04)">
+            <h4 style="font-size:14px;color:#A855F7;margin-bottom:5px">🌐 触发浏览器自动化</h4>
+            <div style="background:#0A0E27;padding:8px;border-radius:4px;font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:4px">
+              「帮我看一下<span style="color:#A855F7">星恒电源</span>最近的工商变更和司法风险」
             </div>
+            <p style="font-size:12px;color:#22C55E;margin:0">→ Agent 自动打开天眼查，搜索公司，提取变更记录，整理成表格</p>
           </div>
         </div>
       </div>
