@@ -31,7 +31,7 @@
     <div class="slide active">
       <header class="chapter-header" style="margin-bottom:24px;text-align:center;padding-top:4vh">
         <h1 style="font-size:52px;color:#06b6d4;margin-bottom:8px" class="glow-text">🏗️ 第 03 章 · 这套东西怎么运作的？</h1>
-<h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">5 个 Agent 各司其职 · 你只管用，不用管运维
+<h2 style="font-size:26px;color:var(--text-secondary);font-weight:normal;margin-top:8px">身份·记忆·技能 · 一个 Agent 的完整构成
         </h2>
         <p style="font-size:14px;color:var(--text-muted);margin-top:32px;max-width:800px;margin-left:auto;margin-right:auto">
           第 02 章用星恒案例展示了「能做什么」。本章用<strong style="color:#06b6d4">5 分钟讲清楚背后的系统是怎么运转的</strong>——不深入技术细节，重点是让你理解：数据安全吗？谁在控制？出错了怎么办？
@@ -39,287 +39,335 @@
       </header>
     </div>
 
+    
     <!-- Slide 2：一个智能体的最小组成（概览） -->
     <div class="slide">
-      <h2 class="slide-title">🏗️ 一个智能体的最小组成</h2>
-      <p class="slide-subtitle">四个器官：大脑思考、双手执行、记忆学习、计划统筹。下面两页展开其中最关键的两个——<strong style="color:#F59E0B">记忆</strong>和<strong style="color:#06b6d4">计划</strong></p>
+      <h2 class="slide-title">🏗️ 一个智能体的最小组成——身份第一</h2>
+      <p class="slide-subtitle">不是「一个会聊天的 AI」——核心是<strong style="color:#EC4899">身份</strong>。你是谁 → 你有什么能力 → 你用什么工具 → 你怎么思考</p>
 
-      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:14px">
-        <div class="card" style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">🧠</span><h3 style="margin:0">大脑（大模型）</h3></div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">负责推理、决策、规划。云端主力 + 本地兜底。模型越强，Agent 越聪明。</p>
+      <!-- 四层递进架构 -->
+      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+        <div class="card" style="padding:12px;border-top:3px solid #EC4899;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🪪</div>
+          <h3 style="font-size:14px;color:#EC4899;margin:0 0 4px 0">身份（Identity）</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">"我是谁？"——最底层、最关键的设定。身份模糊 = Agent 摇摆不定。OpenClaw 用 <strong style="color:#EC4899">identity/rd.md</strong> 定义</p>
         </div>
-        <div class="card" style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">🔧</span><h3 style="margin:0">双手（工具）</h3></div>
-          <p style="font-size:13px;color:var(--text-secondary);line-height:1.65">读 PDF、写文件、跑 Python、调数据库、搜网页。工具越多，能做的事越多。</p>
+        <div class="card" style="padding:12px;border-top:3px solid:#F59E0B;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🧠</div>
+          <h3 style="font-size:14px;color:#F59E0B;margin:0 0 4px 0">大脑（模型）</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">推理、决策、规划。云端主力 + 本地兜底。模型越强，Agent 越聪明</p>
         </div>
-        <div class="card" style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">📝</span><h3 style="margin:0">记忆（Memory）</h3></div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6">
-            每次对话自动积累，越用越聪明——不是比喻，是事实。<br>
-            <strong style="color:#F59E0B">三层分工：</strong>会话级即时记忆 → 项目级标签检索 → 知识级按需读取。Token 优化 70-90%。<br>
-            <span style="color:#A855F7;font-size:14px">→ 下页展开完整记忆架构</span>
-          </p>
+        <div class="card" style="padding:12px;border-top:3px solid #06b6d4;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🔧</div>
+          <h3 style="font-size:14px;color:#06b6d4;margin:0 0 4px 0">双手（工具+技能）</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">读 PDF、写文件、跑 Python、搜网页。工具是原子操作，技能是打包的能力</p>
         </div>
-        <div class="card" style="padding:16px">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><span style="font-size:24px">📋</span><h3 style="margin:0">计划（Planning）</h3></div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.6">
-            逐步推理 + 反思-行动循环。但不是凭空发生——计划受 5 个 Markdown 文件的约束。<br>
-            <span style="color:#06b6d4;font-size:14px">→ 第 2B 页展开文件即架构 = Agent 的行为宪法</span>
-          </p>
+        <div class="card" style="padding:12px;border-top:3px solid #22C55E;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">📝</div>
+          <h3 style="font-size:14px;color:#22C55E;margin:0 0 4px 0">记忆（Memory）</h3>
+          <p style="font-size:12px;color:var(--text-secondary);line-height:1.5;margin:0">短期会话 → 中期项目标签 → 长期知识沉淀。越用越聪明，不是比喻</p>
         </div>
       </div>
 
-      <h3 style="font-size:14px;color:#F59E0B;margin-bottom:8px">📁 每个 Agent 由 5 个 Markdown 文件定义——文件即架构</h3>
-      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:14px">
-        <div class="card" style="padding:10px;border-top:3px solid #06b6d4;text-align:center">
-          <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:3px">📋 AGENTS.md</div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.4;margin:0">行为规则<br>怎么干活</p>
+      <!-- 主流 Agent 框架对比 -->
+      <h3 style="font-size:14px;color:#F59E0B;margin-bottom:8px">主流 Agent 框架的身份/行为/工具/记忆文件对照</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:11px;margin-bottom:10px">
+        <div class="card" style="padding:8px;border-top:2px solid #EC4899;text-align:center">
+          <div style="font-size:12px;font-weight:700;color:#EC4899;margin-bottom:3px">🪪 身份</div>
+          <div style="color:var(--text-secondary);line-height:1.5">
+            <span style="color:#EC4899">OpenClaw:</span> identity/rd.md<br>
+            <span style="color:#F59E0B">Claude Code:</span> CLAUDE.md<br>
+            <span style="color:#A855F7">Hermes:</span> soul.md
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">定义"我是谁、我的性格、我的原则"</div>
         </div>
-        <div class="card" style="padding:10px;border-top:3px solid #A855F7;text-align:center">
-          <div style="font-size:14px;font-weight:700;color:#A855F7;margin-bottom:3px">🧬 SOUL.md</div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.4;margin:0">人格与原则<br>什么性格</p>
+        <div class="card" style="padding:8px;border-top:2px solid #06b6d4;text-align:center">
+          <div style="font-size:12px;font-weight:700;color:#06b6d4;margin-bottom:3px">📋 行为规则</div>
+          <div style="color:var(--text-secondary);line-height:1.5">
+            <span style="color:#EC4899">OpenClaw:</span> agents/<br>
+            <span style="color:#F59E0B">Claude Code:</span> CLAUDE.md<br>
+            <span style="color:#A855F7">Hermes:</span> agents.md
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">定义"怎么干活、任务分派、工具上限"</div>
         </div>
-        <div class="card" style="padding:10px;border-top:3px solid #22C55E;text-align:center">
-          <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:3px">👤 USER.md</div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.4;margin:0">用户画像<br>了解谁</p>
+        <div class="card" style="padding:8px;border-top:2px solid #A855F7;text-align:center">
+          <div style="font-size:12px;font-weight:700;color:#A855F7;margin-bottom:3px">🔧 工具/技能</div>
+          <div style="color:var(--text-secondary);line-height:1.5">
+            <span style="color:#EC4899">OpenClaw:</span> tools/ + skills/<br>
+            <span style="color:#F59E0B">Claude Code:</span> settings.json<br>
+            <span style="color:#A855F7">Hermes:</span> tools.md
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">定义"有什么武器、用什么插件"</div>
         </div>
-        <div class="card" style="padding:10px;border-top:3px solid #EF4444;text-align:center">
-          <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:3px">🔧 TOOLS.md</div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.4;margin:0">环境配置<br>在哪干活</p>
-        </div>
-        <div class="card" style="padding:10px;border-top:3px solid #EC4899;text-align:center">
-          <div style="font-size:14px;font-weight:700;color:#EC4899;margin-bottom:3px">🧠 MEMORY.md</div>
-          <p style="font-size:14px;color:var(--text-secondary);line-height:1.4;margin:0">记忆索引<br>记住什么</p>
+        <div class="card" style="padding:8px;border-top:2px solid #22C55E;text-align:center">
+          <div style="font-size:12px;font-weight:700;color:#22C55E;margin-bottom:3px">🧠 记忆</div>
+          <div style="color:var(--text-secondary);line-height:1.5">
+            <span style="color:#EC4899">OpenClaw:</span> memory/ + Memos<br>
+            <span style="color:#F59E0B">Claude Code:</span> MEMORY.md<br>
+            <span style="color:#A855F7">Hermes:</span> memory.md
+          </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">定义"记住什么、索引在哪、怎么检索"</div>
         </div>
       </div>
 
-      <div style="padding:10px 16px;background:rgba(245,158,11,0.06);border-radius:6px;border-left:3px solid #F59E0B">
-        <p style="font-size:13px;color:var(--text-secondary);line-height:1.6;margin:0">
-          <strong style="color:#F59E0B">不需要复杂的配置文件，不需要写代码。</strong>5 个 Markdown 文件定义 Agent 的全部行为——<strong style="color:#22C55E">简单、透明、可版本控制</strong>。给 Agent 加能力就是改这 5 个文件。这就是为什么「不需要程序员，需要懂业务的人」。
+      <div style="padding:10px 16px;background:rgba(236,72,153,0.06);border-radius:6px;border-left:3px solid #EC4899">
+        <p style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin:0">
+          <strong style="color:#EC4899">为什么身份是第一位的？</strong>如果没有身份，Agent 就是一个「什么都能聊」的通用对话机器人——它可以聊天气、写诗、编故事，但不会<strong style="color:#F59E0B">知道自己是投资研究团队的成员</strong>，不会<strong style="color:#F59E0B">坚持投资研究的严谨标准</strong>。身份定义了 Agent 的全部行为边界。OpenClaw 的 <strong style="color:#EC4899">identity/rd.md</strong> 文件、Claude Code 的 <strong style="color:#F59E0B">CLAUDE.md</strong> 文件，本质上都是回答同一个问题：<strong style="color:#EC4899">"你是谁？"</strong>
         </p>
       </div>
     </div>
 
-    <!-- Slide 2A：记忆系统深度解析 — 短中长期三层架构（真实 Token 优化数据） -->
+
+    <!-- Slide 2A：记忆系统深度解析 — 三层架构 + 做梦机制 -->
     <div class="slide">
       <h2 class="slide-title">📝 记忆系统深度解析 · Agent 如何记住一切</h2>
-      <p class="slide-subtitle">不是「一个记忆文件」——是<strong style="color:#F59E0B">三层分工、逐级降本</strong>的记忆架构。以下来自超级单体智能体的真实运行数据</p>
+      <p class="slide-subtitle">记忆不是「一个文件」——是<strong style="color:#F59E0B">三层分工 + 每日做梦</strong>的完整记忆系统</p>
 
       <!-- 三层架构图 -->
-      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px">
-
+      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
         <!-- 短期：MEMORY.md -->
-        <div class="card popup-trigger" data-popup-title="短期 · 会话级 · MEMORY.md" style="padding:14px 16px;border-top:3px solid #EF4444;text-align:center;cursor:pointer">
-          <div style="font-size:28px;margin-bottom:6px">⚡</div>
-          <strong style="font-size:15px;color:#EF4444">短期 · 会话级</strong>
-          <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">每次会话自动注入 3.5KB，仅保留当前活跃上下文</p>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:4px;font-family:monospace">MEMORY.md (3.5KB)</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-              <strong>自动注入</strong>——每次会话启动时自动加载<br>
-              仅保留当前活跃上下文：项目状态、关键决策、待办事项<br>
-              会话压缩时可丢弃（不损失长期知识）<br>
-              <span style="color:#EF4444">→ Token 基准：3.5KB（极轻）</span>
-            </div>
-          </div>
+        <div class="card" style="padding:12px 14px;border-top:3px solid #EF4444;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">⚡</div>
+          <strong style="font-size:14px;color:#EF4444">短期 · 会话级</strong>
+          <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
+            每次会话自动注入 ~3.5KB<br>
+            当前项目状态 + 关键决策<br>
+            会话压缩时可丢弃<br>
+            <span style="color:#EF4444;font-size:11px">→ Token 基准 ~3.5KB</span>
+          </p>
         </div>
-
         <!-- 中期：Memos -->
-        <div class="card popup-trigger" data-popup-title="中期 · 项目级 · Memos (SQLite + API)" style="padding:14px 16px;border-top:3px solid #F59E0B;text-align:center;cursor:pointer">
-          <div style="font-size:28px;margin-bottom:6px">🏷️</div>
-          <strong style="font-size:15px;color:#F59E0B">中期 · 项目级</strong>
-          <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">按标签搜索精准加载，Token 节省 70%+</p>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:4px;font-family:monospace">Memos (SQLite + API)</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-              <strong>按标签搜索，精准加载</strong><br>
-              决策/教训/洞察，每条带结构化标签<br>
-              只加载相关标签（如 #decision #lesson #xingheng）<br>
-              <span style="color:#F59E0B">→ Token 节省 70%+（对比全量加载）</span>
-            </div>
+        <div class="card" style="padding:12px 14px;border-top:3px solid #F59E0B;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🏷️</div>
+          <strong style="font-size:14px;color:#F59E0B">中期 · 项目级</strong>
+          <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
+            Memos (SQLite) 标签检索<br>
+            决策/教训/洞察结构化存储<br>
+            只加载相关标签<br>
+            <span style="color:#F59E0B;font-size:11px">→ Token 节省 70%+</span>
+          </p>
+        </div>
+        <!-- 长期：Obsidian + work papers -->
+        <div class="card" style="padding:12px 14px;border-top:3px solid #22C55E;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">📚</div>
+          <strong style="font-size:14px;color:#22C55E">长期 · 知识级</strong>
+          <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
+            Obsidian Markdown 知识库<br>
+            研报/实体/每日笔记/工作底稿<br>
+            按需 read_file 加载<br>
+            <span style="color:#22C55E;font-size:11px">→ Token 节省 90%+</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Token 比较表（精简） -->
+      <table style="width:100%;font-size:11px;border-collapse:collapse;margin-bottom:10px">
+        <tr style="border-bottom:1px solid var(--border)">
+          <th style="padding:4px 6px;text-align:left">层级</th><th style="padding:4px 6px;text-align:center">触发方式</th><th style="padding:4px 6px;text-align:center">Token</th><th style="padding:4px 6px;text-align:center">节省</th>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)"><td style="padding:4px 6px"><strong style="color:#EF4444">短期</strong></td><td style="padding:4px 6px;text-align:center">自动注入</td><td style="padding:4px 6px;text-align:center">~3.5KB</td><td style="padding:4px 6px;text-align:center">基准</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)"><td style="padding:4px 6px"><strong style="color:#F59E0B">中期</strong></td><td style="padding:4px 6px;text-align:center">#标签搜索</td><td style="padding:4px 6px;text-align:center">~1,800 tokens</td><td style="padding:4px 6px;text-align:center;color:#22C55E">70%+</td></tr>
+        <tr><td style="padding:4px 6px"><strong style="color:#22C55E">长期</strong></td><td style="padding:4px 6px;text-align:center">按需读取</td><td style="padding:4px 6px;text-align:center">~300 tokens</td><td style="padding:4px 6px;text-align:center;color:#22C55E">90%+</td></tr>
+      </table>
+
+      <!-- NEW: Dreaming 机制 + Mem0 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div class="card" style="padding:10px 12px;border-left:3px solid #A855F7">
+          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🌙 OpenClaw Dreaming 系统：每日"做梦"</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong style="color:#A855F7">浅睡（每次任务后）：</strong>即时摘要 → 本次对话的关键决策和产出<br>
+            <strong style="color:#A855F7">打盹（周期性）：</strong>合并同类上下文 → 减少冗余记忆<br>
+            <strong style="color:#A855F7">做梦（每日深度处理）：</strong>全天对话日志 → 提取教训 → 更新 memory/YYYY-MM-DD.md 每日笔记<br>
+            <strong style="color:#22C55E">结果：</strong>Agent 每天早上"醒来"，知道昨天做了什么、学到了什么。
           </div>
         </div>
-
-        <!-- 长期：Obsidian -->
-        <div class="card popup-trigger" data-popup-title="长期 · 知识级 · Obsidian (Markdown)" style="padding:14px 16px;border-top:3px solid #22C55E;text-align:center;cursor:pointer">
-          <div style="font-size:28px;margin-bottom:6px">📚</div>
-          <strong style="font-size:15px;color:#22C55E">长期 · 知识级</strong>
-          <p style="font-size:13px;color:var(--text-secondary);margin:6px 0 0 0;line-height:1.5">按需读取不预加载，Token 节省 90%+</p>
-          <div class="popup-detail" style="display:none">
-            <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:4px;font-family:monospace">Obsidian (Markdown)</div>
-            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
-              <strong>按需读取，不预加载</strong><br>
-              研报/实体/指标等结构化知识库<br>
-              通过 read_file 在需要时才加载<br>
-              <span style="color:#22C55E">→ Token 节省 90%+（不预加载）</span>
-            </div>
+        <div class="card" style="padding:10px 12px;border-left:3px solid #EC4899">
+          <h3 style="font-size:13px;color:#EC4899;margin-bottom:4px">🧩 主流记忆插件：Mem0 / MemOS</h3>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
+            <strong style="color:#EC4899">Mem0 (mem0.ai)：</strong>开源记忆层，自动从对话中提取实体/关系/偏好，跨会话持久化。每个用户/Agent 独立记忆空间。<br>
+            <strong style="color:#F59E0B">MemOS：</strong>记忆操作系统，类比"记忆体"——统一管理短期/长期/情景/语义四类记忆。<br>
+            <strong style="color:#22C55E">本系统实践：</strong>MEMORY.md + Memos (SQLite) + Obsidian Vault → 不依赖外部服务，本地完全控制。
           </div>
         </div>
       </div>
 
-      <!-- Token 节省对比表 -->
-      <div style="margin-bottom:12px">
-        <h3 style="font-size:13px;color:#F59E0B;margin-bottom:6px">📊 同一任务的三层加载对比</h3>
-        <table style="width:100%;font-size:12px;border-collapse:collapse">
-          <thead>
-            <tr style="color:var(--text-muted);border-bottom:1px solid var(--border)">
-              <th style="padding:6px 8px;text-align:left">层级</th>
-              <th style="padding:6px 8px;text-align:center">存储工具</th>
-              <th style="padding:6px 8px;text-align:center">触发方式</th>
-              <th style="padding:6px 8px;text-align:center">Token 消耗</th>
-              <th style="padding:6px 8px;text-align:center">vs 全量加载</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 8px"><strong style="color:#EF4444">即时</strong></td>
-              <td style="padding:6px 8px;text-align:center;font-family:monospace">MEMORY.md</td>
-              <td style="padding:6px 8px;text-align:center">自动注入</td>
-              <td style="padding:6px 8px;text-align:center;color:#EF4444">~3.5KB</td>
-              <td style="padding:6px 8px;text-align:center">基准线</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:6px 8px"><strong style="color:#F59E0B">中期</strong></td>
-              <td style="padding:6px 8px;text-align:center;font-family:monospace">Memos</td>
-              <td style="padding:6px 8px;text-align:center">#标签 搜索</td>
-              <td style="padding:6px 8px;text-align:center;color:#F59E0B">~1,800 tokens</td>
-              <td style="padding:6px 8px;text-align:center;color:#22C55E;font-weight:700">节省 70%+</td>
-            </tr>
-            <tr>
-              <td style="padding:6px 8px"><strong style="color:#22C55E">长期</strong></td>
-              <td style="padding:6px 8px;text-align:center;font-family:monospace">Obsidian</td>
-              <td style="padding:6px 8px;text-align:center">read_file 按需</td>
-              <td style="padding:6px 8px;text-align:center;color:#22C55E">~300 tokens</td>
-              <td style="padding:6px 8px;text-align:center;color:#22C55E;font-weight:700">节省 90%+</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- 实际数据流示例 -->
-      <div style="padding:10px 14px;background:rgba(15,23,42,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:8px">
-        <h4 style="font-size:13px;color:#F59E0B;margin:0 0 6px 0">🔄 实际数据流：星恒项目中的一次记忆调用</h4>
-        <div style="font-family:monospace;font-size:12px;color:#8FA1CC;line-height:1.7">
-          <div>1. <span style="color:#EF4444">SessionStart Hook</span> → 自动注入 <span style="color:#EF4444">MEMORY.md (3.5KB)</span>：当前项目状态 + 关键决策 + 上次会话摘要</div>
-          <div>2. <span style="color:#F59E0B">UserPrompt: "做星恒尽调"</span> → 触发关键词 → Memos 搜索 <span style="color:#F59E0B">#xingheng #valuation #battery</span></div>
-          <div>3. <span style="color:#F59E0B">Memos 返回 1,800 tokens</span>：星恒历史决策 · PE估值教训 · 产业链分析框架</div>
-          <div>4. <span style="color:#22C55E">Agent 按需 read_file</span> → Obsidian：星恒底稿 · 券商研报 · DCF模型（仅 300 tokens 上下文）</div>
-          <div>5. <strong style="color:#22C55E">全流程 Token 总量：~5,600 tokens</strong> vs 全量预加载需 ~20,000+ tokens → <strong style="color:#22C55E">实际节省 72%</strong></div>
+      <!-- 长期记忆的实际实现 -->
+      <div class="card" style="padding:10px 14px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.04)">
+        <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">📂 长期记忆的具体实现：每日笔记 + 工作底稿 + Obsidian</h3>
+        <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
+          <strong>每日笔记（memory/YYYY-MM-DD.md）：</strong>每次工作结束后自动生成 → 记录今天的对话摘要、关键决策、产出文件。<strong>不是人写的，是 Agent 睡觉时自动写的。</strong><br>
+          <strong>工作底稿：</strong>项目过程中产生的研报、模型、图表 → 沉淀到 Obsidian Vault，下个项目 Agent 可以按需读取。<br>
+          <strong>联动机制：</strong>SessionStart Hook → 自动加载今日笔记 + 上次会话摘要 → Agent 一睁眼就知道"我在哪、在做什么、昨天做到哪了"。
         </div>
-      </div>
-
-      <div class="alert alert-info" style="margin-top:10px;font-size:13px">
-        <strong>核心设计原则：分层记忆，减少重复加载。</strong>不是把所有东西都塞进上下文——而是<strong style="color:#22C55E">在需要的时候，加载需要的东西</strong>。这就像你不会把整个档案室搬进会议室——你只是调出跟当前议题相关的那几份文件。
+        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:center">→ 这些不是概念——是本系统实际运行的记忆机制。MEMORY.md (3.5KB) + Memos (#标签检索) + Obsidian (50+ memory 文件)</div>
       </div>
     </div>
 
-        <!-- Slide 2B：文件即架构 = Agent 的行为宪法（计划与行为规范） -->
+
+    <!-- Slide 2B：文件即架构 = Agent 的行为宪法 -->
     <div class="slide">
-      <h2 class="slide-title">📋 计划与行为规范 · 文件即架构 = Agent 的「宪法」</h2>
-      <p class="slide-subtitle">前面说到四器官中的「计划」——但计划不是凭空发生的。<strong style="color:#F59E0B">计划是在这 5 个文件的约束下运行的</strong>。文件定义了 Agent 的身份边界和能力范围，计划是在这个框架内的动态推理。</p>
+      <h2 class="slide-title">📋 文件即架构 · 一个 Agent = 6 个 Markdown 文件</h2>
+      <p class="slide-subtitle">不需要写代码——<strong style="color:#F59E0B">改 Markdown 就是改 Agent</strong>。每个文件控制 Agent 的一个维度</p>
 
-      <!-- 碰撞动画：计划（左）vs 文件即架构（右） -->
-      <div class="collision-stage" style="margin-bottom:12px">
-
-        <!-- 左：概念辨析（动态运行时） -->
-        <div class="collision-left">
-          <h3 style="font-size:13px;color:#F59E0B;margin-bottom:8px;text-align:center">🧠 计划（运行时动态行为）</h3>
-          <div class="card" style="padding:10px 12px;border-left:3px solid #EF4444;margin-bottom:6px;background:rgba(239,68,68,0.03)">
-            <div style="font-size:13px;font-weight:700;color:#EF4444;margin-bottom:3px">❌ 计划 ≠ 文件即架构</div>
-            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">计划是 Agent <strong>运行时</strong>的动态行为——每一步推理、每一次工具调用、每一个任务拆解</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+        <div class="card" style="padding:10px 12px;border-top:3px solid #EC4899">
+          <div style="font-size:14px;font-weight:700;color:#EC4899;margin-bottom:3px">🪪 IDENTITY.md / rd.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">身份 · 加载优先级最高</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            我是谁 · 我的性格 · 我的原则<br>
+            在什么机构 · 为谁工作<br>
+            —— 定义"我是谁"
           </div>
-          <div class="card" style="padding:10px 12px;border-left:3px solid #22C55E;margin-bottom:6px;background:rgba(34,197,94,0.03)">
-            <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:3px">✅ 文件即架构 = 计划的「宪法框架」</div>
-            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">5 个 Markdown 文件定义了 Agent 的<strong>全部行为边界</strong>——计划只能在这个边界内进行。就像一个人的性格+技能+经验限定了 TA 的思考方式</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">OpenClaw: identity/rd.md<br>Claude Code: CLAUDE.md</div>
+        </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #06b6d4">
+          <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:3px">📋 AGENTS.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">行为规则 · 任务分派</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            任务分派规则 · 工具调用上限<br>
+            心跳间隔 · 进度汇报格式<br>
+            —— 定义"怎么干活"
           </div>
-          <div class="card" style="padding:10px 12px;border-left:3px solid #06b6d4;background:rgba(6,182,212,0.03)">
-            <div style="font-size:13px;font-weight:700;color:#06b6d4;margin-bottom:3px">🔗 关系：文件约束计划，计划驱动行动</div>
-            <div style="font-size:14px;color:var(--text-secondary);line-height:1.5">
-              <strong>AGENTS.md</strong> 说「任务分派规则」→ 计划拆解任务时循此规则<br>
-              <strong>SOUL.md</strong> 说「诚实优于讨好」→ 计划推理时不回避负面结论<br>
-              <strong>TOOLS.md</strong> 说「工具调用上限 30 次」→ 计划控制在 30 步以内
-            </div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:3px">OpenClaw: agents/ 目录<br>Hermes: agents.md</div>
+        </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #A855F7">
+          <div style="font-size:14px;font-weight:700;color:#A855F7;margin-bottom:3px">🔧 TOOLS.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">工具配置 · 环境路径</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            SSH 路径 · 工作区根目录<br>
+            脚本位置 · 本地服务端口<br>
+            —— 定义"在哪干活、用什么"
           </div>
         </div>
-
-        <!-- 中：碰撞标记 -->
-        <div class="collision-center">⚡</div>
-
-        <!-- 右：5 个宪法文件（静态架构） -->
-        <div class="collision-right">
-          <h3 style="font-size:13px;color:#06b6d4;margin-bottom:8px;text-align:center">📁 文件即架构（静态行为宪法）</h3>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-            <div class="card" style="padding:8px 10px;border-left:3px solid #06b6d4;background:rgba(6,182,212,0.04)">
-              <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:2px">📋 AGENTS.md</div>
-              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">核心行为规则 · 加载优先级最高</div>
-              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
-                任务分派规则 · 工具调用上限30次<br>
-                心跳监控间隔 · 飞书进度汇报格式<br>
-                —— 定义「怎么干活」
-              </div>
-            </div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7;background:rgba(168,85,247,0.04)">
-              <div style="font-size:14px;font-weight:700;color:#A855F7;margin-bottom:2px">🧬 SOUL.md</div>
-              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">人格与原则 · 风格约束</div>
-              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
-                诚实优于讨好 · 简洁优于完整<br>
-                国企公文规范 · 要点列表回复<br>
-                —— 定义「是什么性格」
-              </div>
-            </div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.04)">
-              <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:2px">👤 USER.md</div>
-              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">用户画像 · 偏好 · 目标</div>
-              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
-                名字：金战祥 · 称呼：主公<br>
-                角色：天保控股投资部投资管理<br>
-                —— 定义「了解谁」
-              </div>
-            </div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #EF4444;background:rgba(239,68,68,0.04)">
-              <div style="font-size:14px;font-weight:700;color:#EF4444;margin-bottom:2px">🔧 TOOLS.md</div>
-              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">环境配置 · 路径 · 脚本</div>
-              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
-                SSH路径 · 工作区根目录<br>
-                清理脚本 · 本地服务端口<br>
-                —— 定义「在哪干活、用什么工具」
-              </div>
-            </div>
-            <div class="card" style="padding:8px 10px;border-left:3px solid #EC4899;background:rgba(236,72,153,0.04);grid-column:1/-1">
-              <div style="font-size:14px;font-weight:700;color:#EC4899;margin-bottom:2px">🧠 MEMORY.md</div>
-              <div style="font-size:12px;color:var(--text-muted);margin-bottom:2px">长期记忆索引</div>
-              <div style="font-size:12px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:3px;background:rgba(0,0,0,0.2);border-radius:3px">
-                → 指向 memory/YYYY-MM-DD.md · 项目记忆 · 经验教训 · 用户偏好 —— 定义「记住什么」
-              </div>
-            </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #F59E0B">
+          <div style="font-size:14px;font-weight:700;color:#F59E0B;margin-bottom:3px">🧬 SOUL.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">人格原则 · 回复风格</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            诚实优于讨好 · 简洁优于完整<br>
+            国企公文规范 · 要点列表回复<br>
+            —— 定义"是什么性格"
           </div>
         </div>
-
+        <div class="card" style="padding:10px 12px;border-top:3px solid #22C55E">
+          <div style="font-size:14px;font-weight:700;color:#22C55E;margin-bottom:3px">👤 USER.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">用户画像 · 偏好配置</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            名字 · 称呼 · 角色<br>
+            工作偏好 · 输出格式<br>
+            —— 定义"了解谁"
+          </div>
+        </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #EC4899">
+          <div style="font-size:14px;font-weight:700;color:#EC4899;margin-bottom:3px">🧠 MEMORY.md</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:3px">记忆索引 · 长期记忆</div>
+          <div style="font-size:11px;color:#8FA1CC;line-height:1.4;font-family:monospace;padding:4px;background:rgba(0,0,0,0.2);border-radius:3px">
+            指向 memory/YYYY-MM-DD.md<br>
+            项目记忆 · 经验教训<br>
+            —— 定义"记住什么"
+          </div>
+        </div>
       </div>
 
-      <!-- 加载顺序 = 优先级链 -->
-      <div style="padding:10px 14px;background:linear-gradient(90deg,rgba(245,158,11,0.06),rgba(6,182,212,0.06));border-radius:8px;border-left:3px solid #F59E0B;text-align:center">
-        <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.8">
-          <strong style="color:#F59E0B">📂 文件加载顺序 = 优先级链：</strong>
-          <span style="font-family:monospace;font-size:14px;color:#06b6d4">AGENTS.md</span>
+      <!-- 文件加载顺序 -->
+      <div style="padding:8px 14px;background:linear-gradient(90deg,rgba(236,72,153,0.06),rgba(6,182,212,0.06));border-radius:8px;border-left:3px solid #EC4899;text-align:center;margin-bottom:8px">
+        <p style="font-size:12px;color:var(--text-secondary);margin:0;line-height:1.8">
+          <strong style="color:#EC4899">📂 加载顺序 = 优先级链：</strong>
+          <span style="font-family:monospace;font-size:13px;color:#EC4899">IDENTITY</span>
           <span style="color:var(--text-muted)">→</span>
-          <span style="font-family:monospace;font-size:14px;color:#A855F7">SOUL.md</span>
+          <span style="font-family:monospace;font-size:13px;color:#06b6d4">AGENTS.md</span>
           <span style="color:var(--text-muted)">→</span>
-          <span style="font-family:monospace;font-size:14px;color:#22C55E">USER.md</span>
+          <span style="font-family:monospace;font-size:13px;color:#A855F7">SOUL.md</span>
           <span style="color:var(--text-muted)">→</span>
-          <span style="font-family:monospace;font-size:14px;color:#EF4444">TOOLS.md</span>
+          <span style="font-family:monospace;font-size:13px;color:#22C55E">USER.md</span>
           <span style="color:var(--text-muted)">→</span>
-          <span style="font-family:monospace;font-size:14px;color:#EC4899">MEMORY.md</span>
+          <span style="font-family:monospace;font-size:13px;color:#F59E0B">TOOLS.md</span>
+          <span style="color:var(--text-muted)">→</span>
+          <span style="font-family:monospace;font-size:13px;color:#EC4899">MEMORY.md</span>
         </p>
-        <p style="font-size:14px;color:var(--text-muted);margin:4px 0 0 0">
-          所有文件均为纯 Markdown，可直接用记事本编辑，<strong style="color:#22C55E">可 Git 版本管理</strong>。
-          <strong style="color:#F59E0B">越前面的文件优先级越高——AGENTS.md 的规则如果和 SOUL.md 冲突，以 AGENTS.md 为准。</strong>
-        </p>
+        <p style="font-size:11px;color:var(--text-muted);margin:2px 0 0 0">越前面的文件优先级越高——IDENTITY 的设定如果和 AGENTS.md 冲突，以 IDENTITY 为准</p>
       </div>
 
-      <div class="alert alert-success" style="margin-top:10px;font-size:13px">
-        <strong>一句话总结：</strong><strong style="color:#22C55E">文件即架构，架构约束计划，计划驱动行动。</strong>给 Agent 加能力不是改代码——是改这 5 个 Markdown 文件。这就是为什么「不需要程序员，需要懂业务的人」——你知道 Agent 该做什么、不该做什么、用什么方式做。
+      <div class="alert alert-success" style="font-size:12px">
+        <strong>一句话：</strong>6 个 Markdown 文件 = 1 个 Agent 的全部定义。给 Agent 加能力不是改代码——是改这几个文件。这就是为什么<strong style="color:#22C55E">「不需要程序员，需要懂业务的人」</strong>——你知道 Agent 该做什么、不该做什么、用什么方式做。
+      </div>
+    </div>
+
+
+    <!-- Slide 2C：技能 = Agent 的可安装能力包 -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px;text-align:center">📦 技能（Skill）= Agent 的"App"</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;text-align:center">
+        如果 6 个 Markdown 文件定义了 Agent 的"身份和性格"，<strong style="color:#A855F7">技能就是 Agent 的"可安装能力包"</strong>
+      </p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:10px">
+        <div>
+          <h3 style="font-size:14px;color:#A855F7;margin-bottom:6px">🧩 技能 vs 工具 · 有什么区别？</h3>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #06b6d4">
+              <strong style="color:#06b6d4">工具（Tool）= 原子操作</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">读文件、写文件、发 HTTP 请求、执行 Shell 命令——<strong>单一功能，无上下文</strong></div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">例如：<code>read_file</code>、<code>web_search</code>、<code>bash</code></div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7">
+              <strong style="color:#A855F7">技能（Skill）= 打包的能力</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">工具 + Prompt + 知识 + 流程——<strong>完整的工作流，自带上下文和自检</strong></div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px">例如：<code>hv-analysis</code> 技能 = SearXNG搜索 + MX财务 + 浏览器 + 纵横分析模板 + 自检清单</div>
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-top:6px">
+            <strong style="color:#F59E0B">类比：</strong>工具是螺丝刀、扳手——原子工具。技能是「修车」——需要知道先后顺序、用量多少、注意事项。你不需要教 Agent 怎么拧螺丝（它有工具），你需要告诉它<strong style="color:#A855F7">怎么修车</strong>（给它技能）。
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:14px;color:#22C55E;margin-bottom:6px">🛒 技能商店 SkillHub = Agent 的 App Store</h3>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px">
+            <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E">
+              <strong style="color:#22C55E">浏览</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">访问 <strong>skillhub.cn</strong> → 按分类/热度/评分浏览技能市场</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B">
+              <strong style="color:#F59E0B">搜索</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">按关键词搜索——"搜索""金融数据""文档生成"等</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #06b6d4">
+              <strong style="color:#06b6d4">看评价</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">社区评分 + 使用反馈 + 更新记录。不闭眼安装。</div>
+            </div>
+            <div class="card" style="padding:8px 10px;border-left:3px solid #A855F7">
+              <strong style="color:#A855F7">一键安装</strong>
+              <div style="color:var(--text-secondary);margin-top:2px;line-height:1.5">复制安装命令 → 粘贴到终端 → Agent 自动下载配置。不写代码。</div>
+            </div>
+          </div>
+          <div style="padding:8px 10px;background:rgba(168,85,247,0.06);border-radius:6px;margin-top:8px;font-size:12px;color:var(--text-secondary);line-height:1.6">
+            <strong style="color:#A855F7">就像手机装 App：</strong>装微信→能聊天，装地图→能导航。<strong>装技能→Agent 获得新能力。</strong>你不需要懂微信的代码——你只需要知道自己想聊天。同样，你不需要懂技能的代码——你只需要知道自己想让 Agent 做什么。
+          </div>
+        </div>
+      </div>
+
+      <!-- 本系统用到的技能（真实列表） -->
+      <h3 style="font-size:14px;color:#F59E0B;margin-bottom:6px">本系统已安装的核心技能（来自 SkillHub + 自建）</h3>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;font-size:11px">
+        <div class="card" style="padding:8px;border-top:2px solid #F59E0B;text-align:center">
+          <strong style="color:#F59E0B">🔬 hv-analysis</strong>
+          <div style="color:var(--text-secondary);line-height:1.4;margin-top:2px">行业研究+估值分析<br>2401 行 SKILL.md<br><span style="color:var(--text-muted)">自建 · 核心方法论</span></div>
+        </div>
+        <div class="card" style="padding:8px;border-top:2px solid #00D4FF;text-align:center">
+          <strong style="color:#00D4FF">🔍 SearXNG 搜索</strong>
+          <div style="color:var(--text-secondary);line-height:1.4;margin-top:2px">自建元搜索引擎<br>多引擎聚合+LLM过滤<br><span style="color:var(--text-muted)">SkillHub · 免费自建</span></div>
+        </div>
+        <div class="card" style="padding:8px;border-top:2px solid #A855F7;text-align:center">
+          <strong style="color:#A855F7">📊 MX 金融数据</strong>
+          <div style="color:var(--text-secondary);line-height:1.4;margin-top:2px">财务指标/行情/产业链<br>手机注册免费领用<br><span style="color:var(--text-muted)">SkillHub · 免费额度</span></div>
+        </div>
+        <div class="card" style="padding:8px;border-top:2px solid #22C55E;text-align:center">
+          <strong style="color:#22C55E">🌐 浏览器自动化</strong>
+          <div style="color:var(--text-secondary);line-height:1.4;margin-top:2px">天眼查/工商/网页<br>Playwright 驱动<br><span style="color:var(--text-muted)">自建 · 信息爬取</span></div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:8px;font-size:12px">
+        <strong>📌 第 04 章会教你怎么安装这些技能。</strong>本章你需要记住的是：<strong style="color:#A855F7">技能 = 可安装的能力包，SkillHub = App Store</strong>。Agent 不会"天生就会"做投资研究——是你给它安装了研究技能，它才会的。
       </div>
     </div>
 
