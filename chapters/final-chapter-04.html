@@ -285,7 +285,7 @@
       <div style="border-top:1px dashed rgba(255,255,255,0.1);margin:8px 0"></div>
 
       <!-- Part B: Agent 安装 -->
-      <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px;text-align:center">🤖 安装 Hermes Agent（三条命令）</h3>
+      <h3 style="font-size:16px;color:#00D4FF;margin-bottom:8px;text-align:center">🤖 安装超级单体智能体（三条命令）</h3>
 
       <!-- Windows 离线安装包（新增） -->
       <div class="card" style="padding:10px 14px;background:rgba(34,197,94,0.04);border:1px solid #22C55E44;border-radius:8px;margin-bottom:10px">
@@ -533,10 +533,10 @@
     <!-- Slide 5.5：深入理解 — 一个 Skill 到底是什么？ -->
     <div class="slide">
       <h2 style="font-size:28px;color:#A855F7;margin-bottom:4px">🔍 深入理解：一个 Skill 到底是什么？</h2>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">刚才说了技能是「可安装能力包」。现在用一个真实案例，让你看清<strong style="color:#F59E0B">Skill ≠ 高级 Prompt</strong></p>
+      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px">刚才说了技能是「可安装能力包」。现在用一个<strong style="color:#F59E0B">人人能懂的经典案例</strong>，让你看清 Skill ≠ 高级 Prompt</p>
 
       <!-- 两栏对比：你以为 vs 实际上是 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
 
         <!-- 左：你以为 -->
         <div class="card" style="padding:14px;border-top:3px solid #EF4444;background:rgba(239,68,68,0.03)">
@@ -544,9 +544,9 @@
           <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
             <p style="margin:0 0 8px 0">就是一段高级提示词，像这样：</p>
             <div style="padding:8px;background:rgba(0,0,0,0.2);border-radius:4px;font-family:SF Mono,Monaco,monospace;font-size:13px;color:#8FA1CC;line-height:1.6">
-              "你是一位资深投资分析师，请帮我分析一下宁德时代的投资价值，包括估值、财务和行业竞争格局。"
+              "帮我搜索一下锂电池行业的最新政策，总结关键要点。"
             </div>
-            <p style="margin:8px 0 0 0;color:#EF4444">结果：Agent 自由发挥，可能查几个网页就"分析"了——没有专业数据、没有估值模型、结论不可复现。</p>
+            <p style="margin:8px 0 0 0;color:#EF4444">结果：Agent 可能随便搜几个网页，自己"总结"一下——不知道搜了哪些来源、有没有遗漏。</p>
           </div>
         </div>
 
@@ -554,109 +554,109 @@
         <div class="card" style="padding:14px;border-top:3px solid #22C55E;background:rgba(34,197,94,0.03)">
           <h3 style="font-size:15px;color:#22C55E;margin-bottom:8px">✅ 实际上的 Skill</h3>
           <div style="font-size:13px;color:var(--text-secondary);line-height:1.65">
-            <p style="margin:0 0 8px 0">是一份<strong style="color:#22C55E">完整的 SOP（标准作业程序）</strong>，以 iFind 投研技能为例：</p>
+            <p style="margin:0 0 8px 0">是一份<strong style="color:#22C55E">完整的 SOP（标准作业程序）</strong>，以 SearXNG 网页搜索技能为例：</p>
             <div style="padding:8px;background:rgba(0,0,0,0.2);border-radius:4px;font-family:SF Mono,Monaco,monospace;font-size:13px;color:#8FA1CC;line-height:1.6">
               SKILL.md 中定义了：<br>
-              · 11 个触发词自动匹配（"目标价""值得投资吗"等）<br>
-              · 必须走异步任务中心，不允许 Agent 自己生成报告<br>
-              · 提交 → 轮询状态（30s等待）→ 读取结果 → 保存文件<br>
-              · 成功直接输出原文，禁止总结改写<br>
-              · 失败输出 errorMessage，不重试
+              · 触发词："搜索""查一下""找一下"等<br>
+              · 必须同时查询 4 个搜索引擎（Google/Bing/Wikipedia/DuckDuckGo）<br>
+              · 结果去重 → 相关性排序 → 前 10 条输出<br>
+              · 每条结果必须标注来源 URL 和引擎名<br>
+              · 搜索失败 → 自动切换引擎重试
             </div>
           </div>
         </div>
 
       </div>
 
-      <!-- 真实案例：ifind 投研技能 -->
-      <h3 style="font-size:15px;color:#F59E0B;margin-bottom:8px">📖 真实案例：iFind 公司投研 Skill 的执行流程</h3>
-      <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:8px">来源：~/.openclaw/workspace-research/skills/ifind-company-investment-research/SKILL.md（153行）</p>
-      <div class="reveal-stagger" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px">
-        <div class="popup-trigger card" data-popup-title="Step 1 · 提交任务" style="padding:10px 12px;border-top:3px solid #38bdf8;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+      <!-- 真实案例：SearXNG 搜索技能 -->
+      <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px;text-align:center">📖 经典案例：SearXNG 搜索 Skill 的执行流程</h3>
+      <p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:8px">以一个最简单的搜索请求为例——"帮我查一下锂电池行业最新政策"</p>
+      <div class="reveal-stagger" style="display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;justify-content:center">
+        <div class="popup-trigger card" data-popup-title="Step 1 · 解析意图" style="padding:10px 12px;border-top:3px solid #38bdf8;min-width:130px;text-align:center;flex-shrink:0;cursor:pointer">
           <div class="popup-trigger-preview">
-            <div style="font-size:18px;margin-bottom:4px">📤</div>
-            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:4px">Step 1 · 提交任务</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0">匹配触发词 → 调用脚本提交异步任务</p>
+            <div style="font-size:18px;margin-bottom:3px">🎯</div>
+            <div style="font-size:13px;font-weight:700;color:#38bdf8;margin-bottom:3px">Step 1 · 解析意图</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">匹配触发词"查一下"→ 识别为搜索任务</p>
           </div>
           <div class="popup-detail" style="display:none">
             <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
-              用户说"宁德时代值得投资吗"<br>
-              匹配触发词 → 调用脚本提交异步任务<br>
-              <span style="color:#8FA1CC">不手写 HTTP，不走捷径</span>
+              用户说"查一下锂电池行业最新政策"<br>
+              匹配触发词 → 识别为网页搜索任务<br>
+              提取关键词：锂电池 行业 最新政策
             </p>
           </div>
         </div>
         <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
-        <div class="popup-trigger card" data-popup-title="Step 2 · 轮询状态" style="padding:10px 12px;border-top:3px solid #A855F7;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+        <div class="popup-trigger card" data-popup-title="Step 2 · 多引擎并发" style="padding:10px 12px;border-top:3px solid #A855F7;min-width:130px;text-align:center;flex-shrink:0;cursor:pointer">
           <div class="popup-trigger-preview">
-            <div style="font-size:18px;margin-bottom:4px">⏳</div>
-            <div style="font-size:13px;font-weight:700;color:#A855F7;margin-bottom:4px">Step 2 · 轮询状态</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0">每 30 秒查一次状态，SUCCEEDED → 结果处理</p>
+            <div style="font-size:18px;margin-bottom:3px">🔍</div>
+            <div style="font-size:13px;font-weight:700;color:#A855F7;margin-bottom:3px">Step 2 · 多引擎并发</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">同时发给 4 个搜索引擎，不依赖任何一个</p>
           </div>
           <div class="popup-detail" style="display:none">
             <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
-              每 30 秒查一次状态<br>
-              SUCCEEDED → 进入结果处理<br>
-              FAILED → 输出错误，不重试
+              同时查询 Google + Bing + Wikipedia + DuckDuckGo<br>
+              不依赖任何单一搜索引擎<br>
+              超时 10 秒自动跳过故障引擎
             </p>
           </div>
         </div>
         <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
-        <div class="popup-trigger card" data-popup-title="Step 3 · 读取结果" style="padding:10px 12px;border-top:3px solid #F59E0B;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+        <div class="popup-trigger card" data-popup-title="Step 3 · 去重排序" style="padding:10px 12px;border-top:3px solid #F59E0B;min-width:130px;text-align:center;flex-shrink:0;cursor:pointer">
           <div class="popup-trigger-preview">
-            <div style="font-size:18px;margin-bottom:4px">📋</div>
-            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:4px">Step 3 · 读取结果</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0">直接输出原文，禁止总结改写，Agent 不参与内容生成</p>
+            <div style="font-size:18px;margin-bottom:3px">📊</div>
+            <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:3px">Step 3 · 去重排序</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">合并结果 → 去重 → 按相关性排序</p>
           </div>
           <div class="popup-detail" style="display:none">
             <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
-              直接输出 result 原文<br>
-              <span style="color:#EF4444">禁止总结、改写、补充</span><br>
-              Agent 不参与内容生成
+              4 个引擎的结果合并<br>
+              相同 URL 去重（保留最优来源标注）<br>
+              按关键词匹配度 + 来源权威度排序
             </p>
           </div>
         </div>
         <div style="align-self:center;color:#8FA1CC;font-size:14px;flex-shrink:0">→</div>
-        <div class="popup-trigger card" data-popup-title="Step 4 · 保存文件" style="padding:10px 12px;border-top:3px solid #22C55E;min-width:140px;text-align:center;flex-shrink:0;cursor:pointer">
+        <div class="popup-trigger card" data-popup-title="Step 4 · 结构化输出" style="padding:10px 12px;border-top:3px solid #22C55E;min-width:130px;text-align:center;flex-shrink:0;cursor:pointer">
           <div class="popup-trigger-preview">
-            <div style="font-size:18px;margin-bottom:4px">💾</div>
-            <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:4px">Step 4 · 保存文件</div>
-            <p style="font-size:13px;color:var(--text-secondary);margin:0">写入指定目录，不解压、不改名、不加料</p>
+            <div style="font-size:18px;margin-bottom:3px">📋</div>
+            <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:3px">Step 4 · 结构化输出</div>
+            <p style="font-size:13px;color:var(--text-secondary);margin:0">前 10 条 · 标题+URL+来源标注</p>
           </div>
           <div class="popup-detail" style="display:none">
             <p style="font-size:13px;color:var(--text-secondary);line-height:1.4;margin:0">
-              写入用户指定目录<br>
-              文件名: company-investment-research-{taskId}.md<br>
-              不解压、不改名、不加料
+              输出前 10 条结果<br>
+              每条标注：标题 · URL · 来源引擎 · 摘要<br>
+              Agent 禁止"总结"——原文是什么就是什么
             </p>
           </div>
         </div>
       </div>
 
       <!-- 关键规则卡片 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:6px">
         <div class="card" style="padding:8px 10px;border-left:3px solid #EF4444;background:rgba(239,68,68,0.03)">
           <div style="font-size:13px;font-weight:700;color:#EF4444;margin-bottom:2px">🚫 绝对禁止</div>
           <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
-            手写 HTTP 请求<br>
-            绕过异步任务中心<br>
-            失败后重试
+            只查一个搜索引擎<br>
+            自己"总结"搜索结果<br>
+            不标注来源 URL
           </div>
         </div>
         <div class="card" style="padding:8px 10px;border-left:3px solid #F59E0B;background:rgba(245,158,11,0.03)">
           <div style="font-size:13px;font-weight:700;color:#F59E0B;margin-bottom:2px">⚡ 必须遵守</div>
           <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
-            优先调用自带脚本<br>
-            成功时不二次总结<br>
-            Markdown 原样输出
+            必须 4 引擎并发<br>
+            每条结果标注来源<br>
+            故障引擎自动降级
           </div>
         </div>
         <div class="card" style="padding:8px 10px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.03)">
           <div style="font-size:13px;font-weight:700;color:#22C55E;margin-bottom:2px">✅ 设计意图</div>
           <div style="font-size:12px;color:var(--text-secondary);line-height:1.5">
-            模型只做调度，不做生成<br>
-            报告内容来自专业数据源<br>
-            每次结果可复现
+            不依赖单一引擎<br>
+            结果可追溯可复现<br>
+            每次搜索质量一致
           </div>
         </div>
       </div>
@@ -665,9 +665,11 @@
         <p style="font-size:13px;color:var(--text-primary);line-height:1.7;margin:0">
           <strong style="color:#A855F7">Skill ≠ 高级 Prompt。Skill 写的是「怎么做」，不是「做什么」。</strong><br>
           <span style="color:var(--text-secondary);font-size:13px">
-            一份好的 Skill = 触发条件（11个词）+ 工具选择（Python脚本）+ 步骤顺序（提交→轮询→结果→保存）+ 错误处理（失败不重试）+ 交付标准（原样输出，不加料）。<br>
+            一份好的 Skill = 触发条件 + 工具选择 + 步骤顺序 + 错误处理 + 交付标准。<br>
             <strong style="color:#F59E0B">这是 Agent 和「高级提示词」之间最本质的区别。</strong>
-            没有 Skill 的 Agent 是一个聪明但散漫的实习生；有 Skill 的 Agent 是一个<strong style="color:#22C55E">按 SOP 执行的专家</strong>。
+            没有 Skill 的 Agent 是一个聪明但散漫的实习生——你让他"搜一下"，他随便搜搜就给你"总结"；<br>
+            有 Skill 的 Agent 是一个<strong style="color:#22C55E">按 SOP 执行的专家</strong>——他知道必须 4 引擎并发、必须去重排序、必须标注来源。<br>
+            <span style="font-size:12px;color:var(--text-muted)">这就是为什么信息搜索三件套（SearXNG + MX + 浏览器自动化）都是以 Skill 形式安装的——不是每人手写一段 Prompt，而是每个 Skill 都是一份 SOP。</span>
           </span>
         </p>
       </div>
@@ -772,7 +774,7 @@
       <div class="alert" style="padding:12px 16px;background:linear-gradient(90deg,rgba(168,85,247,0.08),rgba(34,197,94,0.06));border:1px solid rgba(168,85,247,0.3);border-radius:10px;text-align:center;margin-top:10px">
         <p style="font-size:13px;color:var(--text-secondary);margin:0;line-height:1.6">
           <strong style="color:#A855F7">💡 每次都要手写这么长的 Prompt？</strong> 不需要。<strong style="color:#22C55E">技能（Skill）和 Agent 就是为「把这些专业 Prompt 事先内置」而存在的。</strong><br>
-          你只需要说<strong style="color:#F59E0B">「分析星恒电源」</strong>，系统自动加载预置的行业研究 Prompt、财务分析 Prompt、估值对比 Prompt——这就是上一节 iFind Skill 的设计原理：<strong>一次写好，永久复用，一键调用。</strong>
+          你只需要说<strong style="color:#F59E0B">「分析星恒电源」</strong>，系统自动加载预置的行业研究 Prompt、财务分析 Prompt、估值对比 Prompt——这就是上一节 SearXNG 搜索 Skill 的设计原理：<strong>一次写好，永久复用，一键调用。</strong>
         </p>
       </div>
     </div>
@@ -817,7 +819,7 @@
             · 自适应闭环：每章 Q1-Q4 自检 → 补缺口 → 循环<br>
             · 数据源路由规则：告诉「用什么/禁止用什么」，不规定调用顺序<br>
             · 警醒信号 S1-S7：教 Agent「如何发现自己的偏见」<br>
-            · 降级链：MX → iFind → SearXNG（失败不退出）<br>
+            · 降级链：MX → SearXNG → 浏览器自动化（失败不退出）<br>
             <strong style="color:#22C55E">核心公式：原则 > 清单，自检 > 门禁（详见第05章第4节）</strong>
           </div>
         </div>

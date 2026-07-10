@@ -118,91 +118,142 @@
     </div>
 
 
-    <!-- Slide 2A：记忆系统深度解析 — 三层架构 + 做梦机制 -->
+    <!-- Slide 2A：记忆系统深度解析 — Dreaming 机制 + 记忆插件生态 -->
     <div class="slide">
       <h2 class="slide-title">📝 记忆系统深度解析 · Agent 如何记住一切</h2>
-      <p class="slide-subtitle">记忆不是「一个文件」——是<strong style="color:#F59E0B">三层分工 + 每日做梦</strong>的完整记忆系统</p>
+      <p class="slide-subtitle">Agent 的记忆不是"一个数据库"——是<strong style="color:#F59E0B">内置机制（Dreaming）+ 可安装插件（Mem0/Memos/MemOS...）+ 存储后端（Obsidian）</strong>的组合</p>
 
-      <!-- 三层架构图 -->
-      <div class="reveal-stagger" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
-        <!-- 短期：MEMORY.md -->
-        <div class="card" style="padding:12px 14px;border-top:3px solid #EF4444;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">⚡</div>
-          <strong style="font-size:14px;color:#EF4444">短期 · 会话级</strong>
+      <!-- Part 1: Dreaming 内置机制 -->
+      <h3 style="font-size:15px;color:#A855F7;margin-bottom:8px;text-align:center">🌙 内置机制：OpenClaw Dreaming 系统——Agent 每天"做梦"</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
+        <div class="card" style="padding:12px 14px;border-top:3px solid #A855F7;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">😴</div>
+          <strong style="font-size:14px;color:#A855F7">浅睡（每次任务后）</strong>
           <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
-            每次会话自动注入 ~3.5KB<br>
-            当前项目状态 + 关键决策<br>
-            会话压缩时可丢弃<br>
-            <span style="color:#EF4444;font-size:11px">→ Token 基准 ~3.5KB</span>
+            即时摘要<br>
+            记录本次对话的<br>
+            关键决策和产出
           </p>
         </div>
-        <!-- 中期：Memos -->
         <div class="card" style="padding:12px 14px;border-top:3px solid #F59E0B;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">🏷️</div>
-          <strong style="font-size:14px;color:#F59E0B">中期 · 项目级</strong>
+          <div style="font-size:24px;margin-bottom:4px">💤</div>
+          <strong style="font-size:14px;color:#F59E0B">打盹（周期性）</strong>
           <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
-            Memos (SQLite) 标签检索<br>
-            决策/教训/洞察结构化存储<br>
-            只加载相关标签<br>
-            <span style="color:#F59E0B;font-size:11px">→ Token 节省 70%+</span>
+            合并同类上下文<br>
+            减少冗余记忆<br>
+            保持记忆库精炼
           </p>
         </div>
-        <!-- 长期：Obsidian + work papers -->
-        <div class="card" style="padding:12px 14px;border-top:3px solid #22C55E;text-align:center">
-          <div style="font-size:24px;margin-bottom:4px">📚</div>
-          <strong style="font-size:14px;color:#22C55E">长期 · 知识级</strong>
+        <div class="card" style="padding:12px 14px;border-top:3px solid:#22C55E;text-align:center">
+          <div style="font-size:24px;margin-bottom:4px">🌙</div>
+          <strong style="font-size:14px;color:#22C55E">做梦（每日深度处理）</strong>
           <p style="font-size:12px;color:var(--text-secondary);margin:4px 0 0 0;line-height:1.5">
-            Obsidian Markdown 知识库<br>
-            研报/实体/每日笔记/工作底稿<br>
-            按需 read_file 加载<br>
-            <span style="color:#22C55E;font-size:11px">→ Token 节省 90%+</span>
+            全天对话日志深度提炼<br>
+            提取教训 → 更新每日笔记<br>
+            Agent 每天早上"醒来自知"
           </p>
         </div>
       </div>
+      <div class="card" style="padding:8px 14px;border-left:3px solid #A855F7;background:rgba(168,85,247,0.04);margin-bottom:10px">
+        <p style="font-size:12px;color:var(--text-secondary);margin:0;line-height:1.6">
+          <strong style="color:#A855F7">Dreaming 是 Agent 自带的"睡眠记忆巩固"机制——不是你手动写的，是 Agent 自动运行的。</strong>
+          就像人每天睡觉时大脑会整理白天的记忆一样，Agent 在"睡觉"时自动回顾全天对话，提取关键信息，更新到记忆中。
+          <strong style="color:#22C55E">结果是：Agent 每天早上启动时，知道昨天做了什么、学到了什么、今天该做什么。</strong>
+        </p>
+      </div>
 
-      <!-- Token 比较表（精简） -->
-      <table style="width:100%;font-size:11px;border-collapse:collapse;margin-bottom:10px">
-        <tr style="border-bottom:1px solid var(--border)">
-          <th style="padding:4px 6px;text-align:left">层级</th><th style="padding:4px 6px;text-align:center">触发方式</th><th style="padding:4px 6px;text-align:center">Token</th><th style="padding:4px 6px;text-align:center">节省</th>
-        </tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)"><td style="padding:4px 6px"><strong style="color:#EF4444">短期</strong></td><td style="padding:4px 6px;text-align:center">自动注入</td><td style="padding:4px 6px;text-align:center">~3.5KB</td><td style="padding:4px 6px;text-align:center">基准</td></tr>
-        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)"><td style="padding:4px 6px"><strong style="color:#F59E0B">中期</strong></td><td style="padding:4px 6px;text-align:center">#标签搜索</td><td style="padding:4px 6px;text-align:center">~1,800 tokens</td><td style="padding:4px 6px;text-align:center;color:#22C55E">70%+</td></tr>
-        <tr><td style="padding:4px 6px"><strong style="color:#22C55E">长期</strong></td><td style="padding:4px 6px;text-align:center">按需读取</td><td style="padding:4px 6px;text-align:center">~300 tokens</td><td style="padding:4px 6px;text-align:center;color:#22C55E">90%+</td></tr>
-      </table>
+      <!-- Part 2: 记忆插件生态 -->
+      <h3 style="font-size:15px;color:#EC4899;margin-bottom:8px;text-align:center">🧩 记忆插件生态：可安装的"记忆增强模块"</h3>
+      <p style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;text-align:center">
+        除了 Agent 自带的 Dreaming 系统，还可以安装<strong style="color:#EC4899">第三方记忆插件</strong>来增强记忆能力——就像手机装 App 扩展功能一样。以下是当前主流的记忆插件：
+      </p>
 
-      <!-- NEW: Dreaming 机制 + Mem0 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
-        <div class="card" style="padding:10px 12px;border-left:3px solid #A855F7">
-          <h3 style="font-size:13px;color:#A855F7;margin-bottom:4px">🌙 OpenClaw Dreaming 系统：每日"做梦"</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong style="color:#A855F7">浅睡（每次任务后）：</strong>即时摘要 → 本次对话的关键决策和产出<br>
-            <strong style="color:#A855F7">打盹（周期性）：</strong>合并同类上下文 → 减少冗余记忆<br>
-            <strong style="color:#A855F7">做梦（每日深度处理）：</strong>全天对话日志 → 提取教训 → 更新 memory/YYYY-MM-DD.md 每日笔记<br>
-            <strong style="color:#22C55E">结果：</strong>Agent 每天早上"醒来"，知道昨天做了什么、学到了什么。
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+        <!-- MEMOS -->
+        <div class="card" style="padding:10px 12px;border-top:3px solid #EC4899">
+          <h4 style="font-size:13px;color:#EC4899;margin-bottom:3px">📝 MEMOS</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>结构化短期记忆插件</strong><br>
+            · emoji + 标签格式（#决策 #教训）<br>
+            · SQLite 本地存储 · Docker 部署<br>
+            · 标签检索，按需加载<br>
+            <span style="color:#22C55E">优势：轻量·即时·结构化</span>
           </div>
         </div>
-        <div class="card" style="padding:10px 12px;border-left:3px solid #EC4899">
-          <h3 style="font-size:13px;color:#EC4899;margin-bottom:4px">🧩 主流记忆插件：Mem0 / MemOS</h3>
-          <div style="font-size:11px;color:var(--text-secondary);line-height:1.6">
-            <strong style="color:#EC4899">Mem0 (mem0.ai)：</strong>开源记忆层，自动从对话中提取实体/关系/偏好，跨会话持久化。每个用户/Agent 独立记忆空间。<br>
-            <strong style="color:#F59E0B">MemOS：</strong>记忆操作系统，类比"记忆体"——统一管理短期/长期/情景/语义四类记忆。<br>
-            <strong style="color:#22C55E">本系统实践：</strong>MEMORY.md + Memos (SQLite) + Obsidian Vault → 不依赖外部服务，本地完全控制。
+        <!-- Mem0 -->
+        <div class="card" style="padding:10px 12px;border-top:3px solid #F59E0B">
+          <h4 style="font-size:13px;color:#F59E0B;margin-bottom:3px">🧠 Mem0</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>开源通用记忆层 (mem0.ai)</strong><br>
+            · 自动提取实体/关系/偏好<br>
+            · 跨会话持久化 · 向量检索<br>
+            · 每个用户/Agent 独立记忆空间<br>
+            <span style="color:#22C55E">优势：智能·自动·跨会话</span>
+          </div>
+        </div>
+        <!-- MemOS -->
+        <div class="card" style="padding:10px 12px;border-top:3px solid #00D4FF">
+          <h4 style="font-size:13px;color:#00D4FF;margin-bottom:3px">💿 MemOS</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>记忆操作系统</strong><br>
+            · 统一管理四类记忆：<br>
+            　短期/长期/情景/语义<br>
+            · "记忆体"抽象 · 插件式架构<br>
+            <span style="color:#22C55E">优势：体系·统一·分层</span>
           </div>
         </div>
       </div>
 
-      <!-- 长期记忆的实际实现 -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px">
+        <div class="card" style="padding:10px 12px;border-top:3px solid #A855F7">
+          <h4 style="font-size:13px;color:#A855F7;margin-bottom:3px">🔗 Zep</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>企业级记忆服务</strong><br>
+            · 知识图谱 + 向量混合检索<br>
+            · 时序记忆 · 用户/会话双维度<br>
+            <span style="color:#22C55E">优势：企业·图谱·时序</span>
+          </div>
+        </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #22C55E">
+          <h4 style="font-size:13px;color:#22C55E;margin-bottom:3px">📚 LangMem</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>LangChain 生态记忆</strong><br>
+            · 语义记忆 + 过程记忆<br>
+            · 与 LangGraph Agent 深度集成<br>
+            <span style="color:#22C55E">优势：生态·集成·语义</span>
+          </div>
+        </div>
+        <div class="card" style="padding:10px 12px;border-top:3px solid #EF4444">
+          <h4 style="font-size:13px;color:#EF4444;margin-bottom:3px">⚡ TiMem</h4>
+          <div style="font-size:11px;color:var(--text-secondary);line-height:1.55">
+            <strong>时序记忆框架</strong><br>
+            · 时间感知记忆检索<br>
+            · 事件链追踪 · 因果推理<br>
+            <span style="color:#22C55E">优势：时序·事件·因果</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="padding:8px 14px;border-left:3px solid #EC4899;background:rgba(236,72,153,0.04);margin-bottom:8px">
+        <p style="font-size:12px;color:var(--text-secondary);margin:0;line-height:1.6">
+          <strong style="color:#EC4899">关键认知：这些全是"记忆插件"——不是"短期用 X、长期用 Y"的分类。</strong>
+          就像浏览器可以装不同的密码管理器（1Password、Bitwarden、iCloud Keychain）——它们都是密码管理插件，只是架构不同、侧重点不同。
+          你选择一个装上就行，或者像我们一样，<strong style="color:#22C55E">自建一套</strong>：MEMOS（标签检索）+ Obsidian Vault（Markdown 知识库）= 本地完全控制的记忆方案。
+        </p>
+      </div>
+
+      <!-- Part 3: 存储后端 · Obsidian -->
       <div class="card" style="padding:10px 14px;border-left:3px solid #22C55E;background:rgba(34,197,94,0.04)">
-        <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">📂 长期记忆的具体实现：每日笔记 + 工作底稿 + Obsidian</h3>
+        <h3 style="font-size:13px;color:#22C55E;margin-bottom:4px">📂 存储后端：Obsidian Vault —— 记忆的"硬盘"</h3>
         <div style="font-size:11px;color:var(--text-secondary);line-height:1.7">
-          <strong>每日笔记（memory/YYYY-MM-DD.md）：</strong>每次工作结束后自动生成 → 记录今天的对话摘要、关键决策、产出文件。<strong>不是人写的，是 Agent 睡觉时自动写的。</strong><br>
-          <strong>工作底稿：</strong>项目过程中产生的研报、模型、图表 → 沉淀到 Obsidian Vault，下个项目 Agent 可以按需读取。<br>
+          <strong>记忆插件负责"怎么记"，Obsidian 负责"记在哪"：</strong><br>
+          所有的记忆——无论是 Dreaming 自动生成的每日笔记、MEMOS 标签检索的教训、还是研报和模型——最终都沉淀到 <strong style="color:#22C55E">Obsidian Markdown 文件</strong>中。<br>
+          <strong>为什么选 Obsidian？</strong>纯文本 Markdown → 不绑定任何软件 → Agent 可以直接 read_file → 人类也可以直接打开阅读。<br>
           <strong>联动机制：</strong>SessionStart Hook → 自动加载今日笔记 + 上次会话摘要 → Agent 一睁眼就知道"我在哪、在做什么、昨天做到哪了"。
         </div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:center">→ 这些不是概念——是本系统实际运行的记忆机制。MEMORY.md (3.5KB) + Memos (#标签检索) + Obsidian (50+ memory 文件)</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:4px;text-align:center">→ Dreaming 系统（Agent 自带）+ MEMOS（标签检索插件）+ Obsidian Vault（Markdown 存储）= 完整记忆方案</div>
       </div>
     </div>
-
 
     <!-- Slide 2B：文件即架构 = Agent 的行为宪法 -->
     <div class="slide">
