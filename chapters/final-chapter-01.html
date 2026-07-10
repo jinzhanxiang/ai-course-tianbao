@@ -348,6 +348,39 @@
       <div class="alert alert-warning" style="margin-top:16px;font-size:12px">
         <strong>📌 三个因子中，算力找云厂商买，Agent 质量靠架构打磨，唯有知识资产是你的专属护城河。</strong>
       </div>
+
+      <details style="margin-top:12px;max-width:700px;margin-left:auto;margin-right:auto;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text-secondary)">
+        <summary style="cursor:pointer;color:#00D4FF;font-weight:700;font-size:13px">⚡ 算力到底是怎么产生的？</summary>
+        <div style="margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;line-height:1.7">
+          <div style="padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">🔲</div>
+            <div style="font-size:11px;font-weight:700;color:#00D4FF;margin-bottom:3px">芯片层</div>
+            <div style="font-size:11px">GPU 芯片（NVIDIA H100/B200 等）</div>
+            <div style="font-size:11px;color:var(--text-muted)">单卡算力 ~1,000 TFLOPS</div>
+          </div>
+          <div style="padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">🏭</div>
+            <div style="font-size:11px;font-weight:700;color:#00D4FF;margin-bottom:3px">基建层</div>
+            <div style="font-size:11px">万卡集群 + 电力 + 液冷</div>
+            <div style="font-size:11px;color:var(--text-muted)">≈ 一座小型发电站</div>
+          </div>
+          <div style="padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">☁️</div>
+            <div style="font-size:11px;font-weight:700;color:#00D4FF;margin-bottom:3px">服务层</div>
+            <div style="font-size:11px">阿里云 · 华为云 · AWS</div>
+            <div style="font-size:11px;color:var(--text-muted)">封装为 API，按量付费</div>
+          </div>
+          <div style="padding:8px;background:rgba(255,255,255,0.02);border-radius:6px;text-align:center">
+            <div style="font-size:18px;margin-bottom:4px">⚡</div>
+            <div style="font-size:11px;font-weight:700;color:#00D4FF;margin-bottom:3px">产出层</div>
+            <div style="font-size:11px">模型推理 → 生成 Token</div>
+            <div style="font-size:11px;color:var(--text-muted)">即你收到的文本回复</div>
+          </div>
+        </div>
+        <p style="margin:10px 0 0 0;font-size:11px;color:var(--text-muted);text-align:center;line-height:1.6">
+          <strong style="color:#F59E0B">类比：算力 ≈ 电力。</strong>发电厂（GPU 集群）→ 电网（云服务）→ 电器（AI 应用）。你付的每一分钱，买的都是 GPU 的运行时间。
+        </p>
+      </details>
     </div>
 
     <!-- ====== Slide 3.5：市场上已有的智能体一览 ====== -->
@@ -495,6 +528,48 @@
           </div>
         </div>
       </div>
+
+      <details style="margin-top:10px;background:rgba(168,85,247,0.04);border:1px solid rgba(168,85,247,0.2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--text-secondary)">
+        <summary style="cursor:pointer;color:#A855F7;font-weight:700;font-size:13px">🔤 Token 到底是什么？为什么它成了新 KPI？</summary>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:12px;line-height:1.7">
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#A855F7;margin-bottom:4px">Token = AI 的"最小语义单元"</div>
+            <p style="margin:0 0 6px 0;font-size:11px">不是字，不是词，而是一个"有意义的小片段"。模型不认汉字，只认 Token ID（一串数字）。</p>
+            <table style="width:100%;font-size:11px;border-collapse:collapse">
+              <tr style="border-bottom:1px solid rgba(168,85,247,0.15)">
+                <td style="padding:3px 6px;color:var(--text-muted)">"人工智能"</td>
+                <td style="padding:3px 6px;color:#A855F7">≈ 2 tokens</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(168,85,247,0.15)">
+                <td style="padding:3px 6px;color:var(--text-muted)">"artificial intelligence"</td>
+                <td style="padding:3px 6px;color:#A855F7">≈ 2 tokens</td>
+              </tr>
+              <tr style="border-bottom:1px solid rgba(168,85,247,0.15)">
+                <td style="padding:3px 6px;color:var(--text-muted)">200K 上下文窗口</td>
+                <td style="padding:3px 6px;color:#A855F7">≈ 15 万汉字（一本中篇小说）</td>
+              </tr>
+              <tr>
+                <td style="padding:3px 6px;color:var(--text-muted)">星恒项目全流程</td>
+                <td style="padding:3px 6px;color:#A855F7">200-300 万 Token ≈ 几十元成本</td>
+              </tr>
+            </table>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#A855F7;margin-bottom:4px">类比：Token ≈ AI 世界的"度"</div>
+            <div style="font-size:11px;line-height:1.8">
+              <div>⚡ 电力按<strong style="color:#F59E0B">度</strong>（kWh）计费</div>
+              <div>🤖 AI 按<strong style="color:#A855F7">Token</strong> 计费</div>
+              <div style="margin-top:6px;padding:6px 8px;background:rgba(168,85,247,0.08);border-radius:4px">
+                <strong style="color:#A855F7">Token 消耗量 = 你的 AI 使用强度</strong><br>
+                <span style="color:var(--text-muted)">就像用电量衡量工业化程度，Token 消耗量衡量智能化程度。</span>
+              </div>
+              <div style="margin-top:6px;font-size:11px;color:var(--text-muted)">
+                所以 58 同城"日耗 2,000 亿 Token"意味着：AI 已经渗透进搜索、推荐、客服、审核、代码生成等每一个业务环节。
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
 
       <div class="alert alert-success" style="font-size:13px">
         <strong>这四个信号说明什么？</strong>多 Agent 协同不是实验室概念，已经进入工业化临界点。<strong style="color:#F59E0B">政策在推、考核在变、技术在成熟、企业在行动</strong>。现在的问题是：<strong style="color:#22C55E">你是 88% 中的"在用"者，还是 10% 中的"规模化"者？</strong>
