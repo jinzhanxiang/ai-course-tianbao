@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第 02 章 · 你们做了什么？ — 智能体赋能投资研究</title>
+  <title>第 02 章 · 这套系统做成了什么？ — 智能体赋能投资研究</title>
   <link rel="stylesheet" href="../assets/css/main.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/themes.css?v=20260705-fix">
   <link rel="stylesheet" href="../assets/css/cyber.css?v=20260705-fix">
@@ -550,6 +550,32 @@
         这是整个尽调中最具争议的环节——<strong style="color:#EF4444">独立估值 2.72 亿 vs 券商估值 7.67 亿</strong>，差异从何而来？
       </p>
 
+      <!-- 估值对比可视化横条 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;max-width:780px;margin-left:auto;margin-right:auto">
+        <div class="card" style="padding:12px;border:2px solid #EF4444;border-radius:8px;text-align:center;background:rgba(239,68,68,0.04)">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">独立估值（概率加权期望值）</div>
+          <div style="width:100%;height:24px;background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden;margin-bottom:4px">
+            <div style="width:35%;height:100%;background:linear-gradient(90deg,#EF4444,#EC4899);border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+              <span style="font-size:11px;font-weight:700;color:#fff">2.72 亿</span>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-muted)">PS 0.41-0.77x × FY2025 营收 36.36 亿 · 概率加权 35/40/10/15</div>
+        </div>
+        <div class="card" style="padding:12px;border:2px solid #38bdf8;border-radius:8px;text-align:center;background:rgba(56,189,248,0.04)">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">券商估值（国信证券 PE 法）</div>
+          <div style="width:100%;height:24px;background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden;margin-bottom:4px">
+            <div style="width:45%;height:100%;background:linear-gradient(90deg,#38bdf8,#0EA5E9);border-radius:12px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px">
+              <span style="font-size:11px;font-weight:700;color:#fff">7.67 亿</span>
+            </div>
+          </div>
+          <div style="font-size:10px;color:var(--text-muted)">PE 32.86x × FY2027E 净利 2 亿 · 含CATL异常值 · 增速假设缺乏依据</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-bottom:10px">
+        <span style="font-size:13px;font-weight:700;color:#EF4444">差异 = 4.95 亿（券商估值是独立估值的 2.8 倍）</span>
+        <span style="font-size:10px;color:var(--text-muted);margin-left:8px">↓ 差异来源：方法选择 + 可比公司筛选 + 增速假设</span>
+      </div>
+
       <!-- 三方法卡片 -->
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
         <div class="card" style="padding:12px;border-top:3px solid #00D4FF;text-align:center">
@@ -855,6 +881,85 @@
 
       <div class="alert alert-success" style="font-size:13px;max-width:900px;margin:0 auto">
         <strong>一句话总结这个案例：</strong>AI 把数据搜集、多源验证、估值计算、报告排版压缩到 90 分钟——人把时间花在<strong style="color:#22C55E">判断假设合理性、发现数据矛盾、做最终决策</strong>上。不是 AI 替代人，是<strong style="color:#F59E0B">AI 让人做只有人能做的事</strong>。
+      </div>
+    </div>
+
+    <!-- ====== Slide 11B：三个小胜利——过程里的意外收获 ====== -->
+    <div class="slide">
+      <h2 style="font-size:28px;color:#22C55E;margin-bottom:4px;text-align:center">✨ 三个小胜利——过程里的意外收获</h2>
+      <p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px;text-align:center">大结论（不建议收购）之外，这套系统在工作过程中还产生了三个<strong style="color:#22C55E">意料之外的小胜利</strong>——它们不是计划好的，是在 Agent 执行过程中自然涌现的。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:10px">
+
+        <!-- 小胜利 1 -->
+        <div class="card popup-trigger" data-popup-title="小胜利 1 · 券商估值缺陷" style="padding:14px;border-top:4px solid #EF4444;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:4px;text-align:center">🔍</div>
+            <h3 style="font-size:15px;color:#EF4444;margin-bottom:6px;text-align:center">45 秒发现券商估值缺陷</h3>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0">国信证券 PE 均值 32.86x 含宁德时代——CATL 营收 4,237 亿 = 星恒的 <strong style="color:#EF4444">116 倍</strong>，结构不可比。</p>
+              <p style="margin:0">智能编程助手在读取可比公司列表时，<strong style="color:#F59E0B">自动识别</strong>出 CATL 作为异常值——不是我们让它查的，是它自己发现的。</p>
+            </div>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0"><strong style="color:#F59E0B">Agent 执行过程：</strong></p>
+              <p style="margin:0 0 2px 0">1. 读取附件H 可比公司列表（8 家公司 + PE 倍数）</p>
+              <p style="margin:0 0 2px 0">2. 自动计算每家公司的营收规模</p>
+              <p style="margin:0 0 2px 0">3. 发现 CATL 营收 4,237 亿 vs 其他 7 家均值 36.3 亿</p>
+              <p style="margin:0 0 2px 0">4. 标记为「结构不可比」并建议剔除后重算</p>
+              <p style="margin:0">→ 剔除 CATL 后 PE 均值从 32.86x 降至 9.42x，差异 3.5 倍</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 小胜利 2 -->
+        <div class="card popup-trigger" data-popup-title="小胜利 2 · 高市占率悖论" style="padding:14px;border-top:4px solid #F59E0B;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:4px;text-align:center">🧩</div>
+            <h3 style="font-size:15px;color:#F59E0B;margin-bottom:6px;text-align:center">高市占率悖论自动解构</h3>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0">人类直觉：「72.5% 市占率 = 强」。但 Agent 30 分钟内从四个维度系统解构了这个直觉。</p>
+              <p style="margin:0">不是我们让它「质疑市占率」——是在做横向对标时，它<strong style="color:#F59E0B">自己跑出来的发现</strong>：高市占率≠高盈利。</p>
+            </div>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0"><strong style="color:#F59E0B">Agent 分析路径：</strong></p>
+              <p style="margin:0 0 2px 0">1. 提取 FY2020-2024 市占率 vs 毛利率 vs 净利率时间序列</p>
+              <p style="margin:0 0 2px 0">2. 发现：市占率 45%→72.5%，毛利率同期 20%→8%——反向运动</p>
+              <p style="margin:0 0 2px 0">3. 交叉验证：对比天能/超威——市占率更低但毛利率更高</p>
+              <p style="margin:0 0 2px 0">4. 自动生成四层侵蚀框架（价格战/产品结构/客户集中/技术替代）</p>
+              <p style="margin:0">→ 核心洞察：星恒的市占率是靠降价抢来的，不是靠产品力赢来的</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 小胜利 3 -->
+        <div class="card popup-trigger" data-popup-title="小胜利 3 · 项目自动追踪" style="padding:14px;border-top:4px solid #A855F7;cursor:pointer">
+          <div class="popup-trigger-preview">
+            <div style="font-size:28px;margin-bottom:4px;text-align:center">📅</div>
+            <h3 style="font-size:15px;color:#A855F7;margin-bottom:6px;text-align:center">38 天零遗漏自动追踪</h3>
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0">16 份报告 × 30+ 轮迭代 × 三方协作（天保+券商+律所），传统方式至少需要<strong>一个专职 PM</strong>。</p>
+              <p style="margin:0">project Agent 自动完成了<strong style="color:#A855F7">版本管理+日报生成+站点部署</strong>——人类只做了决策。</p>
+            </div>
+          </div>
+          <div class="popup-detail" style="display:none">
+            <div style="font-size:12px;color:var(--text-secondary);line-height:1.6">
+              <p style="margin:0 0 4px 0"><strong style="color:#A855F7">project Agent 自动完成：</strong></p>
+              <p style="margin:0 0 2px 0">1. 每次报告更新自动生成新版本号（v1→v6），旧版本不覆盖</p>
+              <p style="margin:0 0 2px 0">2. 每天晚上自动生成日报：今日产出+待办+风险更新</p>
+              <p style="margin:0 0 2px 0">3. 三方交付件（天保/券商/律所）统一入口，自动索引</p>
+              <p style="margin:0 0 2px 0">4. 任何数据点可回溯——「这个数字哪来的？」→ 点开即见原始来源</p>
+              <p style="margin:0">→ 38 天全过程，零遗漏，零版本混乱</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="font-size:13px;max-width:900px;margin:0 auto">
+        <strong>💡 这三个小胜利的共同特点：</strong>都不是我们事先计划好的。Agent 在执行任务的过程中，自己发现了异常、自己追问了原因、自己产出了洞察。<strong style="color:#22C55E">这就是「智能体」和「自动化脚本」的本质区别——它会主动思考，不只是被动执行。</strong>
       </div>
     </div>
 
